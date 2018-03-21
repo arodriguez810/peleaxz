@@ -1,0 +1,6 @@
+{
+	"nickname":"",
+	"authtype":"",
+	"authvalue":"",
+	"date":""
+}

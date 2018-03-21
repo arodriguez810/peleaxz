@@ -1,0 +1,35 @@
+{
+	"name":"angel",
+	"birth":"10081989",
+	"gender":"male",
+	"titles":{
+		"nation":"refigo",
+		"range":"begginer"
+	},
+	"general":{
+		"experience":0,
+		"elements":[
+			{
+				"type":"fire",
+				"level":1,
+				"base":true
+			},
+			{
+				"type":"wind",
+				"level":1
+			},
+		]
+	},
+	"stats":{
+		"magicpower":1,
+		"magicresistance":1,
+		"attackpower":1,
+		"meleedefend":1,
+		"mana":1,
+		"energy":1,
+	},
+	"avatar":{
+		
+	}
+	
+}
