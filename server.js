@@ -1,12 +1,21 @@
-var http = require('http');
-var file = require('fs');
+var HTTP = require('http');
+var FILE = require('fs');
 var util = require('util');
+const URL = require('url');
 
-http.createServer(function (req, res) {
-    res.writeHead(200, {'Content-Type': 'text/html'});
-    res.write(util.format('%s.html',req.url));
-    file.readFile(util.format('%s.html',req.url), function(err, data) {
-        res.write(data);
-        res.end();
+HTTP.createServer(function (REQUEST, RESPONSE) {
+    RESPONSE.writeHead(200, {'Content-Type': 'text/html'});
+    var page = decodeURI(REQUEST.url);
+    if (page.indexOf(">") !== -1) {
+        var urlparts = page.split('>');
+        var folder = urlparts[0];
+        var pagepart = urlparts[1];
+        page = util.format('./pages/%s/%s.html', folder, pagepart);
+    }else{
+        page = util.format('./pages%s/index.html',page);
+    }
+    FILE.readFile(page, function(err, data) {
+        RESPONSE.write(data);
+        RESPONSE.end();
     });
 }).listen(8090);
