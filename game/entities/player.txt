@@ -7,7 +7,7 @@
 		"range":"begginer"
 	},
 	"general":{
-		"experience":0,
+		"experience":1,
 		"elements":[
 			{
 				"type":"fire",
@@ -17,19 +17,57 @@
 			{
 				"type":"wind",
 				"level":1
-			},
+			}
+		],
+		"buffs":[
+			{
+				"name":"speedup",
+				"cooldown":128
+			}
+		],
+		"status":[
+			{
+				"name":"poisoned",
+				"cooldown":15
+			}	
+		],
+		"arms":[
+			{
+				"name":"samehada",
+				"cooldown":false
+			}
 		]
 	},
 	"stats":{
-		"magicpower":1,
-		"magicresistance":1,
-		"attackpower":1,
-		"meleedefend":1,
-		"mana":1,
-		"energy":1,
+		"magicpower":{
+			"base":1,
+			"extra":0
+		},
+		"magicresistance":{
+			"base":1,
+			"extra":0
+		},
+		"attackpower":{
+			"base":1,
+			"extra":0
+		},
+		"meleedefend":{
+			"base":1,
+			"extra":0
+		},
+		"mana":{
+			"base":1,
+			"extra":0
+		},
+		"energy":{
+			"base":1,
+			"extra":0
+		},
 	},
 	"avatar":{
-		
+		face:{
+			gender:"male",
+			
+		}
 	}
-	
 }
