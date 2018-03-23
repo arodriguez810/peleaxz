@@ -1,0 +1,2 @@
+service ..\http.js
+pause
