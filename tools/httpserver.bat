@@ -1,2 +1,2 @@
-service ..\http.js
+nodemon ..\admin\server.js
 pause
