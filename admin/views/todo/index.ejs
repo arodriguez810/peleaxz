@@ -1,0 +1,37 @@
+<html lang="en">
+<head>
+    <% include ../master/head %>
+    <script src="../../controllers/todo.js"></script>
+</head>
+</html>
+<div class="container" ng-app="app" ng-controller="todoController">
+    <div class="jumbotron text-center">
+        <h1>Count: <span class="label label-info">{{ todos.length }}</span></h1>
+    </div>
+    <div id="todo-list" class="row">
+        <div class="col-sm-4 col-sm-offset-4">
+
+            <!-- LOOP OVER THE TODOS IN $scope.todos -->
+            <div class="checkbox" ng-repeat="todo in todos">
+                <label>
+                    <input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text }}
+                </label>
+            </div>
+
+        </div>
+    </div>
+    <div id="todo-form" class="row">
+        <div class="col-sm-8 col-sm-offset-2 text-center">
+            <form>
+                <div class="form-group">
+
+                    <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+                    <input type="text" class="form-control input-lg text-center" placeholder=""
+                           ng-model="formData.text">
+                </div>
+                <!-- createToDo() WILL CREATE NEW TODOS -->
+                <button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,2 +1,2 @@
+start
 nodemon ..\admin\server.js
-pause

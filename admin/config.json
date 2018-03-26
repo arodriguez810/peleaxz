@@ -1,0 +1,38 @@
+{
+  "port": "8090",
+  "mongo": "mongodb://localhost:27017/pxz",
+  "modules": [
+    {
+      "var": "express",
+      "module": "express"
+    },
+    {
+      "var": "mongoose",
+      "module": "mongoose"
+    },
+    {
+      "var": "morgan",
+      "module": "morgan"
+    },
+    {
+      "var": "bodyParser",
+      "module": "body-parser"
+    },
+    {
+      "var": "methodOverride",
+      "module": "method-override"
+    },
+    {
+      "var": "S",
+      "module": "string"
+    },
+    {
+      "var": "util",
+      "module": "util"
+    },
+    {
+      "var": "layout",
+      "module": "express-layout"
+    }
+  ]
+}
