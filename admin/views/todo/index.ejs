@@ -6,7 +6,7 @@
     <div class="col-sm-4 col-sm-offset-4">
         <div class="checkbox" ng-repeat="item in todoList">
             <label>
-                <input type="checkbox" ng-click="deleteTodo(item._id)"> {{ item.text }}
+                <input type="checkbox" ng-click="todo.delete(item._id,after)"> {{ item.text }} + {{ item.text2 }} + {{ item.name }}
             </label>
         </div>
 
@@ -16,9 +16,11 @@
     <div class="col-sm-8 col-sm-offset-2 text-center">
         <form>
             <div class="form-group">
-                <input class="form-control input-lg text-center" placeholder="" ng-model="formData.text">
+                <input class="form-control input-lg text-center" placeholder="" ng-model="model.text">
+                <input class="form-control input-lg text-center" placeholder="" ng-model="model.text2">
+                <input class="form-control input-lg text-center" placeholder="" ng-model="model.name">
             </div>
-            <button class="btn btn-primary btn-lg" ng-click="create()">Add</button>
+            <button class="btn btn-primary btn-lg" ng-click="todo.insert(model,after)">Add</button>
         </form>
     </div>
 </div>

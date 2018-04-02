@@ -2,33 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8fb134e-e727-43fe-b984-89a1d2d7969c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/admin/defaults/models/@model@.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/admin/defaults/service/@model@.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/admin/defaults/views/@model@/index.ejs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/admin/views/admin/login.ejs" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/info/consolecolor.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/db/collection-2-2770888694553575536.wt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/db/index-3-2770888694553575536.wt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/entities/account.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/game/entities/player.txt" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/admin/defaults/controllers/@model@.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/WiredTiger.wt" afterPath="$PROJECT_DIR$/db/WiredTiger.wt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/_mdb_catalog.wt" afterPath="$PROJECT_DIR$/db/_mdb_catalog.wt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/collection-0-4911855374159341883.wt" afterPath="$PROJECT_DIR$/db/collection-0-4911855374159341883.wt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/index-1-4911855374159341883.wt" afterPath="$PROJECT_DIR$/db/index-1-4911855374159341883.wt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/sizeStorer.wt" afterPath="$PROJECT_DIR$/db/sizeStorer.wt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/config.json" afterPath="$PROJECT_DIR$/admin/config.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/controllers/core.js" afterPath="$PROJECT_DIR$/admin/controllers/core.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/controllers/todo.js" afterPath="$PROJECT_DIR$/admin/controllers/todo.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/custommodules/request.js" afterPath="$PROJECT_DIR$/admin/custommodules/request.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/package-lock.json" afterPath="$PROJECT_DIR$/admin/package-lock.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/server.js" afterPath="$PROJECT_DIR$/admin/server.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/service/todo.js" afterPath="$PROJECT_DIR$/admin/service/todo.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/views/master/footer.ejs" afterPath="$PROJECT_DIR$/admin/views/master/footer.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/views/master/head.ejs" afterPath="$PROJECT_DIR$/admin/views/master/head.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/models/todo.json" afterPath="$PROJECT_DIR$/admin/models/todo.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/views/todo/index.ejs" afterPath="$PROJECT_DIR$/admin/views/todo/index.ejs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/WiredTiger.turtle" afterPath="$PROJECT_DIR$/db/WiredTiger.turtle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tools/httpserver.bat" afterPath="$PROJECT_DIR$/tools/httpserver.bat" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -45,8 +30,8 @@
       <file leaf-file-name="todo.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin/controllers/todo.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="23" lean-forward="false" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="23" />
+            <state relative-caret-position="85">
+              <caret line="5" column="11" lean-forward="false" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -55,18 +40,8 @@
       <file leaf-file-name="core.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin/controllers/core.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="491">
-              <caret line="49" column="51" lean-forward="false" selection-start-line="49" selection-start-column="51" selection-end-line="49" selection-end-column="51" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="request.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/admin/custommodules/request.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="29" column="34" lean-forward="false" selection-start-line="29" selection-start-column="34" selection-end-line="29" selection-end-column="34" />
+            <state relative-caret-position="34">
+              <caret line="2" column="9" lean-forward="false" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -75,8 +50,48 @@
       <file leaf-file-name="index.ejs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin/views/todo/index.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="67" lean-forward="false" selection-start-line="20" selection-start-column="61" selection-end-line="20" selection-end-column="67" />
+            <state relative-caret-position="374">
+              <caret line="22" column="65" lean-forward="false" selection-start-line="22" selection-start-column="61" selection-end-line="22" selection-end-column="65" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="todo.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/models/todo.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" column="14" lean-forward="false" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="@model@.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/defaults/controllers/@model@.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="3" lean-forward="false" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="request.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/custommodules/request.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="15" column="53" lean-forward="false" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="53" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="server.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/admin/server.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="259">
+              <caret line="65" column="78" lean-forward="false" selection-start-line="65" selection-start-column="78" selection-end-line="65" selection-end-column="78" />
               <folding />
             </state>
           </provider>
@@ -109,13 +124,13 @@
       <find>admin</find>
       <find>&quot;</find>
       <find>mongoose</find>
-      <find>formData</find>
       <find>params.Model</find>
       <find>modules</find>
       <find>\x1b[47m</find>
       <find>\x1b[43m\x1b[31m</find>
       <find>\x1b[0m</find>
       <find>console</find>
+      <find>formData</find>
     </findStrings>
     <replaceStrings>
       <replace>sendFile</replace>
@@ -140,7 +155,6 @@
         <option value="$PROJECT_DIR$/admin/css/style.css" />
         <option value="$PROJECT_DIR$/tools/httpserver.bat" />
         <option value="$PROJECT_DIR$/admin/models/todo.json.js" />
-        <option value="$PROJECT_DIR$/admin/models/todo.json" />
         <option value="$PROJECT_DIR$/admin/models/admin.json" />
         <option value="$PROJECT_DIR$/admin/tsconfig.json" />
         <option value="$PROJECT_DIR$/admin/js/server/request.js" />
@@ -155,15 +169,17 @@
         <option value="$PROJECT_DIR$/admin/custommodules/consolecolor.js" />
         <option value="$PROJECT_DIR$/admin/service/todo.js" />
         <option value="$PROJECT_DIR$/admin/config.json" />
-        <option value="$PROJECT_DIR$/admin/server.js" />
         <option value="$PROJECT_DIR$/admin/custommodules/request.js" />
         <option value="$PROJECT_DIR$/admin/views/master/head.ejs" />
         <option value="$PROJECT_DIR$/admin/views/master/footer.ejs" />
         <option value="$PROJECT_DIR$/admin/views/admin/login.ejs" />
         <option value="$PROJECT_DIR$/admin/defaults/models/@model@.json" />
         <option value="$PROJECT_DIR$/admin/controllers/core.js" />
+        <option value="$PROJECT_DIR$/admin/defaults/controllers/@model@.js" />
         <option value="$PROJECT_DIR$/admin/controllers/todo.js" />
+        <option value="$PROJECT_DIR$/admin/models/todo.json" />
         <option value="$PROJECT_DIR$/admin/views/todo/index.ejs" />
+        <option value="$PROJECT_DIR$/admin/server.js" />
       </list>
     </option>
   </component>
@@ -183,9 +199,9 @@
   <component name="NodeModulesDirectoryManager">
     <handled-path value="$PROJECT_DIR$/admin/node_modules" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-308" />
-    <option name="y" value="111" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="1396" />
+    <option name="y" value="-75" />
     <option name="width" value="1366" />
     <option name="height" value="738" />
   </component>
@@ -223,8 +239,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -236,24 +250,6 @@
               <item name="peleaxz" type="b2602c69:ProjectViewProjectNode" />
               <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
               <item name="admin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="peleaxz" type="b2602c69:ProjectViewProjectNode" />
-              <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="peleaxz" type="b2602c69:ProjectViewProjectNode" />
-              <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="custommodules" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="peleaxz" type="b2602c69:ProjectViewProjectNode" />
-              <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="defaults" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="peleaxz" type="b2602c69:ProjectViewProjectNode" />
@@ -272,30 +268,33 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="last_opened_file_path" value="$USER_HOME$/mobile" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Apps\peleaxz\admin\defaults\controllers" />
+      <recent name="D:\Apps\peleaxz\admin\defaults\views\pxz" />
+      <recent name="D:\Apps\peleaxz\admin\defaults" />
+      <recent name="D:\Apps\peleaxz\admin\views" />
+      <recent name="D:\Apps\peleaxz\admin\views\admin" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Apps\peleaxz\admin\defaults\models" />
       <recent name="D:\Apps\peleaxz\admin\defaults\service" />
       <recent name="D:\Apps\peleaxz\admin\defaults" />
       <recent name="D:\Apps\peleaxz\admin\custommodules" />
       <recent name="D:\Apps\peleaxz\admin\controllers" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Apps\peleaxz\admin\defaults\views\pxz" />
-      <recent name="D:\Apps\peleaxz\admin\defaults" />
-      <recent name="D:\Apps\peleaxz\admin\views" />
-      <recent name="D:\Apps\peleaxz\admin\views\admin" />
-      <recent name="D:\Apps\peleaxz\admin\custommodules" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -325,16 +324,18 @@
       <workItem from="1522009244916" duration="1192000" />
       <workItem from="1522015776266" duration="30526000" />
       <workItem from="1522537913775" duration="3548000" />
+      <workItem from="1522680470531" duration="3817000" />
+      <workItem from="1522698640978" duration="73000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57497000" />
+    <option name="totallyTimeSpent" value="61387000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="22" width="1382" height="754" extended-state="6" />
+    <frame x="1396" y="-75" width="1366" height="738" extended-state="0" />
     <layout>
-      <window_info id="Project" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18155198" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18148148" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32917318" sideWeight="0.50292826" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -363,6 +364,78 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/admin/controllers/core.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="9" lean-forward="false" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/views/todo/index.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="65" lean-forward="false" selection-start-line="22" selection-start-column="61" selection-end-line="22" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/models/todo.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="14" lean-forward="false" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/defaults/controllers/@model@.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="3" lean-forward="false" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/custommodules/request.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="53" lean-forward="false" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1105">
+          <caret line="65" column="78" lean-forward="true" selection-start-line="65" selection-start-column="78" selection-end-line="65" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/controllers/todo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="23" lean-forward="false" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/controllers/core.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="833">
+          <caret line="49" column="51" lean-forward="false" selection-start-line="49" selection-start-column="51" selection-end-line="49" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/custommodules/request.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="34" lean-forward="false" selection-start-line="29" selection-start-column="34" selection-end-line="29" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/admin/controllers/todo.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="527">
@@ -458,25 +531,11 @@
     <entry file="file://$PROJECT_DIR$/admin/views/master/footer.html" />
     <entry file="file://$PROJECT_DIR$/admin/views/master/master.html" />
     <entry file="file://$PROJECT_DIR$/admin/info/consolecolor.txt" />
-    <entry file="file://$PROJECT_DIR$/admin/models/todo.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="6" lean-forward="false" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/admin/custommodules/consolecolor.js" />
     <entry file="file://$PROJECT_DIR$/admin/config.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="1" lean-forward="false" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1122">
-          <caret line="66" column="40" lean-forward="true" selection-start-line="66" selection-start-column="40" selection-end-line="66" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -527,7 +586,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -535,7 +593,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="2" lean-forward="true" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -543,38 +600,61 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="21" lean-forward="false" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/defaults/controllers/@model@.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="3" lean-forward="false" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/controllers/core.js">
+    <entry file="file://$PROJECT_DIR$/admin/models/todo.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="491">
-          <caret line="49" column="51" lean-forward="false" selection-start-line="49" selection-start-column="51" selection-end-line="49" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/controllers/todo.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="23" lean-forward="false" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="23" />
+        <state relative-caret-position="51">
+          <caret line="3" column="14" lean-forward="false" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/views/todo/index.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="67" lean-forward="false" selection-start-line="20" selection-start-column="61" selection-end-line="20" selection-end-column="67" />
+        <state relative-caret-position="374">
+          <caret line="22" column="65" lean-forward="false" selection-start-line="22" selection-start-column="61" selection-end-line="22" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/controllers/todo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="11" lean-forward="false" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/controllers/core.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="9" lean-forward="false" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/custommodules/request.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="29" column="34" lean-forward="false" selection-start-line="29" selection-start-column="34" selection-end-line="29" selection-end-column="34" />
+        <state relative-caret-position="255">
+          <caret line="15" column="53" lean-forward="false" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="65" column="78" lean-forward="false" selection-start-line="65" selection-start-column="78" selection-end-line="65" selection-end-column="78" />
           <folding />
         </state>
       </provider>

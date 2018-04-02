@@ -1,3 +1,5 @@
 {
-  text: String
+  text: String,
+  text2: String,
+  name: String
 }
