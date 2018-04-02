@@ -1,6 +1,0 @@
-{
-	"nickname":"",
-	"authtype":"",
-	"authvalue":"",
-	"date":""
-}

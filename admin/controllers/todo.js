@@ -1,31 +1,10 @@
-app.controller('todoController', function ($scope, $http) {
+var url = window.location.pathname;
+var modelName = url.substring(url.lastIndexOf('/') + 1);
+
+app.controller(modelName + 'Controller', function ($scope, $http) {
     $scope.formData = {};
-    $scope.title = "Todo Crud";
-    $scope.getList = function () {
-        $http.get('/api/todo/list')
-            .then(function (data) {
-                $scope.todos = data.data;
-                console.log(data);
-            }, function (data) {
-                console.log('Error: ' + data);
-            });
-    };
-    $scope.getList();
-    $scope.createTodo = function () {
-        $http.post('/api/todo/insert', $scope.formData)
-            .then(function (data) {
-                $scope.formData = {};
-                $scope.getList();
-            }, function (data) {
-                console.log('Error: ' + data);
-            });
-    };
-    $scope.deleteTodo = function (id) {
-        $http.delete('/api/todo/' + id)
-            .then(function (data) {
-                $scope.getList();
-            }, function (data) {
-                console.log('Error: ' + data);
-            });
-    };
+    basicMethods($scope, $http, modelName);
+    $scope.todo.list(function (data) {
+        $scope.todoList = data;
+    });
 });

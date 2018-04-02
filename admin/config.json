@@ -33,6 +33,10 @@
     {
       "var": "layout",
       "module": "express-layout"
+    },
+    {
+      "var": "colors",
+      "module": "colors"
     }
   ]
 }
