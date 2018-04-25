@@ -50,12 +50,21 @@ allparams += "modelName: '@model@',";
 allparams += "util:util,";
 allparams += "modules:modules,";
 allparams += "fs:fs,";
-allparams += "S:S";
+allparams += "S:S,";
+allparams += "session:session";
 allparams += "}";
 
 //******* Load Models********//
 var models = [];
 var collections = {};
+var session = {
+    name: 'Angel',
+    lastName: 'Rodriguez',
+    id: '12309iasdkasl123',
+    fullName: function () {
+        return this.name + " " + this.lastName;
+    }
+};
 fs.readdir('./models', function (err, files) {
     for (var i in files) {
         var file = files[i];

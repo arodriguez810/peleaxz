@@ -1,2 +1,28 @@
 <% include ../master/head %>
+<div class="jumbotron text-center">
+    <h1>Count: <span class="label label-info">{{ @model@s.length }}</span></h1>
+</div>
+<div id="todo-list" class="row">
+    <div class="col-sm-4 col-sm-offset-4">
+        <div class="checkbox" ng-repeat="item in @model@s">
+            <label>
+                <button class="btn btn-primary btn-lg" ng-click="@model@.delete(item._id,after)">
+                    {{ item.name }}, {{ item.description}}
+                </button>
+            </label>
+        </div>
+
+    </div>
+</div>
+<div id="todo-form" class="row">
+    <div class="col-sm-8 col-sm-offset-2 text-center">
+        <form>
+            <div class="form-group">
+                <input class="form-control input-lg text-center" placeholder="" ng-model="model.name">
+                <input class="form-control input-lg text-center" placeholder="" ng-model="model.description">
+            </div>
+            <button class="btn btn-primary btn-lg" ng-click="@model@.insert(model,after)">Add @model@</button>
+        </form>
+    </div>
+</div>
 <% include ../master/footer %>

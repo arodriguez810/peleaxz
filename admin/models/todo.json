@@ -1,5 +1,4 @@
 {
-  text: String,
-  text2: String,
-  name: String
+  name: String,
+  description: String
 }

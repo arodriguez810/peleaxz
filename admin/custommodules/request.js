@@ -7,7 +7,8 @@ exports.defaultRequests = function (params) {
             var viewName = params.S(file).contains("index.ejs") ? "" : file.replace(".ejs", "");
             params.app.get(params.util.format('/%s/%s', params.modelName, viewName), function (req, res) {
                 res.render('../views/' + params.modelName + '/' + viewName, {
-                    modelName: params.modelName
+                    modelName: params.modelName,
+                    session: params.session
                 });
             });
         }
