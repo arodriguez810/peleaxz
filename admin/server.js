@@ -1,17 +1,41 @@
 //******* Load Modules********//
 var lines = process.stdout.getWindowSize()[1];
-for (var i = 0; i < lines; i++) {
-    console.log('\r\n');
-}
+for (var i = 0; i < lines; i++)  console.log('\r\n');
 var fs = require("fs");
 var CONFIG = eval("(" + fs.readFileSync('config.json') + ")");
-var modules = {}, localModules = [], modulesList = [];
-
+var modules = {}, localjs = [], localModules = [], modulesList = [];
 for (var i in CONFIG.modules) {
     var module = CONFIG.modules[i];
     localModules.push(module.module);
     eval("var " + module.var + " = require('" + module.module + "');")
 }
+
+
+//******* Load Custom Modules********//
+fs.readdir('./custommodules/', function (err, files) {
+    for (var i in files) {
+        var file = files[i];
+        modulesList.push(file.replace(".js", ""));
+        eval("modules." + file.replace(".js", "") + " = require('./custommodules/" + file + "');");
+    }
+});
+var getFiles = function (dir, filelist, prefix) {
+    var fs = fs || require('fs'),
+        files = fs.readdirSync(dir);
+    filelist = filelist || [];
+    prefix = prefix || "";
+    files.forEach(function (file) {
+        if (fs.statSync(dir + '/' + file).isDirectory()) {
+            filelist = getFiles(dir + '/' + file, filelist, file + "/");
+        }
+        else {
+            filelist.push(prefix + file);
+        }
+    });
+    return filelist;
+};
+localjs = getFiles('./js/');
+//******* Load Custom Modules********//
 
 //******* App Configuration ********//
 var app = express();
@@ -24,6 +48,7 @@ app.use(bodyParser.json({type: 'application/vnd.api+json'}));
 app.use(methodOverride());
 app.set('view engine', 'ejs');
 app.set('layouts', './views/master');
+
 colors.setTheme({
     pxz: ['red', 'bgYellow'],
     error: ['red', 'underline'],
@@ -31,27 +56,21 @@ colors.setTheme({
     info: ['cyan', 'bgBlue'],
     warning: ['yellow', 'bgRed']
 });
-
-//******* Load Custom Modules********//
-fs.readdir('./custommodules/', function (err, files) {
-    for (var i in files) {
-        var file = files[i];
-        modulesList.push(file.replace(".js", ""));
-        eval("modules." + file.replace(".js", "") + " = require('./custommodules/" + file + "');");
-    }
-});
+//******* App Configuration ********//
 
 //******* Params To Services********//
 var allparams = "{";
-allparams += "app: app,";
-allparams += "dir: __dirname,";
-allparams += "collections: collections,";
-allparams += "modelName: '@model@',";
-allparams += "util:util,";
-allparams += "modules:modules,";
-allparams += "fs:fs,";
-allparams += "S:S,";
-allparams += "session:session";
+allparams += "      app: app,";
+allparams += "      dir: __dirname,";
+allparams += "      collections: collections,";
+allparams += "      modelName: '@model@',";
+allparams += "      util:util,";
+allparams += "      modules:modules,";
+allparams += "      fs:fs,";
+allparams += "      S:S,";
+allparams += "      localjs:localjs,";
+allparams += "      models:models,";
+allparams += "      session:session";
 allparams += "}";
 
 //******* Load Models********//
@@ -60,11 +79,13 @@ var collections = {};
 var session = {
     name: 'Angel',
     lastName: 'Rodriguez',
-    id: '12309iasdkasl123',
+    id: '1',
     fullName: function () {
         return this.name + " " + this.lastName;
     }
 };
+var sessions = [];
+sessions.push(session);
 fs.readdir('./models', function (err, files) {
     for (var i in files) {
         var file = files[i];

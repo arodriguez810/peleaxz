@@ -5,11 +5,40 @@ exports.defaultRequests = function (params) {
         for (var i in files) {
             var file = files[i];
             var viewName = params.S(file).contains("index.ejs") ? "" : file.replace(".ejs", "");
-            params.app.get(params.util.format('/%s/%s', params.modelName, viewName), function (req, res) {
-                res.render('../views/' + params.modelName + '/' + viewName, {
+            params.app.get(params.util.format('/%s/%s', (params.modelName === 'home' ? '' : params.modelName), viewName), function (req, res) {
+                var path = req.originalUrl;
+                var realPath = path.split('?');
+                var query = "";
+                if (realPath.length > 1) {
+                    query = realPath[1];
+                    realPath = realPath[0];
+                } else {
+                    if (realPath[0] === '/')
+                        realPath = realPath[0] + '/home';
+                    else {
+                        if (realPath[0].split('/').length > 1)
+                            realPath = realPath[0];
+                        else
+                            realPath = realPath[0] + '/index';
+                    }
+                }
+                var send = {
                     modelName: params.modelName,
-                    session: params.session
-                });
+                    session: params.session,
+                    localjs: params.localjs,
+                    models: params.models
+                };
+
+                if (query !== "") {
+                    var nodos = query.split('&');
+                    for (var i in nodos) {
+                        var nodo = nodos[i].split('=');
+                        var key = nodo[0];
+                        var value = nodo[1];
+                        eval("send." + key + " = '" + value + "'");
+                    }
+                }
+                res.render('../views/' + realPath, send);
             });
         }
     });
