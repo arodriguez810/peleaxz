@@ -1,3 +1,15 @@
-<div id="userController" ng-controller="userController as userController">
-    user
+<div id="ms_userController" ng-controller="ms_userController as ms_userController">
+    ms_user
+    <table class="table">
+        <thead class="bg-danger">
+        <th ng-repeat="(key, value) in ms_userController.list.data[0]">{{key}}</th>
+        </thead>
+        <tbody>
+        <tr ng-repeat="(key, value) in ms_userController.list.data">
+            <td ng-repeat="item in value">
+                {{item}}
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>

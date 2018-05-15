@@ -1,51 +1,51 @@
 exports.createTable = function (model, object, params) {
-    var tsql = params.util.format("IF NOT EXISTS(SELECT [name] FROM sys.tables WHERE [name] = '%s') CREATE TABLE [%s] (", model, model);
+    var tsql = params.util.format("CREATE TABLE IF NOT EXISTS `%s` (", model);
     for (var property in object) {
-        tsql += params.util.format("\n[%s] %s,", property, object[property]);
+        if (property[0] === "$")
+            tsql += params.util.format("\n%s %s,", property.replace("$", ""), object[property]);
+        else
+            tsql += params.util.format("\n`%s` %s,", property, object[property]);
     }
     tsql += "*";
     tsql = tsql.replace(",*", "");
     tsql += ");";
     return tsql;
 };
-exports.alterBlackList = ["DEFAULT", "GETDATE()", "IDENTITY(1,1)", "IDENTITY", "1"];
+exports.alterBlackList = [];
 exports.addColumns = function (model, object, params) {
-    var tsql = "";
+    var tsql = [];
     for (var property in object)
-        tsql += params.util.format("IF NOT EXISTS (SELECT * FROM   sys.columns WHERE  object_id = OBJECT_ID(N'[dbo].[" + model + "]') AND name = '" + property + "') ALTER TABLE [%s] ADD [%s] %s;\n", model, property, object[property]);
-    for (var black in exports.alterBlackList)
-        tsql = params.S(tsql).replaceAll(exports.alterBlackList[black], '').s;
+        tsql.push("ALTER TABLE `" + params.CONFIG.mysql.database + "`.`" + model + "` ADD COLUMN `" + property + "` " + object[property] + ";");
     return tsql;
 };
 exports.alterColumns = function (model, object, params) {
-    var tsql = "";
+    var tsql = [];
     for (var property in object)
-        tsql += params.util.format("ALTER TABLE [%s] ALTER COLUMN [%s] %s;\n", model, property, object[property]);
-    for (var black in exports.alterBlackList)
-        tsql = params.S(tsql).replaceAll(exports.alterBlackList[black], '').s;
+        tsql.push("ALTER TABLE `" + params.CONFIG.mysql.database + "`.`" + model + "` MODIFY COLUMN `" + property + "` " + object[property] + ";");
     return tsql;
 };
-exports.executeNonQuery = function (query, params, callback) {
-    var connection = new params.mssql.ConnectionPool(params.CONFIG.mssql);
-    connection.connect().then(function () {
-        var request = new params.mssql.Request(connection);
-        request.query(query).then(function (recordset) {
+exports.executeNonQuery = function (queries, params, callback) {
+    if (!(Array.isArray(queries)))
+        queries = [queries];
+    for (var i in queries) {
+        var query = queries[i];
+        var connection = params.mysql.createConnection(params.CONFIG.mysql);
+        connection.connect();
+        connection.query(query, function (error, results, fields) {
+            if (error)
+                if (callback) {
+                    callback({query: query, error: error.sqlMessage});
+                    return;
+                }
             if (callback)
-                callback({query: query, error: false, recordset: recordset});
-        }).catch(function (err) {
-            console.log(err.originalError.message.error);
-            if (callback)
-                callback({query: query, error: err.originalError.message});
+                callback({query: query, error: false, recordset: results});
         });
-    }).catch(function (err) {
-        console.log(err.originalError.message.error);
-        if (callback)
-            callback({query: query, error: err.originalError.message});
-    });
+        connection.end();
+    }
 };
 exports.insert = function (table, data, params) {
     var datas = (Array.isArray(data)) ? data : [data];
-    var queries = "";
+    var queries = [];
     for (var m in datas) {
         var data = datas[m];
         var columns = [];
@@ -55,19 +55,19 @@ exports.insert = function (table, data, params) {
             if (property[0] === "$")
                 columns.push(property.replace('$', ''));
             else
-                columns.push("[" + property + "]");
+                columns.push("`" + property + "`");
             if (value[0] === "$")
                 values.push(value.replace('$', ''));
             else
                 values.push("'" + value + "'");
         }
-        queries += params.format("INSERT INTO [{0}]({1}) VALUES({2});\n", table, columns.join(", "), values.join(", "));
+        queries.push(params.format("INSERT INTO `{0}` ({1}) VALUES({2});\n", table, columns.join(", "), values.join(", ")));
     }
     return queries;
 };
 exports.update = function (table, data, params) {
     var datas = (Array.isArray(data)) ? data : [data];
-    var queries = "";
+    var queries = [];
     for (var m in datas) {
         var data = datas[m];
         var columns = "";
@@ -80,7 +80,7 @@ exports.update = function (table, data, params) {
                 if (property[0] === "$")
                     columns = (property.replace('$', ''));
                 else
-                    columns = ("[" + property + "]");
+                    columns = ("`" + property + "`");
                 if (value[0] === "$")
                     values = (value.replace('$', ''));
                 else
@@ -97,7 +97,7 @@ exports.update = function (table, data, params) {
                         for (var i in options.where) {
                             var obj = options.where[i];
                             var field = obj.field !== undefined ? obj.field : "id";
-                            field = field[0] === '$' ? field.replace('$', '') : "[" + field + "]";
+                            field = field[0] === '$' ? field.replace('$', '') : "`" + field + "`";
                             var operator = obj.operator !== undefined ? obj.operator : "=";
                             var connector = obj.connector !== undefined ? obj.connector : "AND";
                             if (Array.isArray(obj.value)) {
@@ -118,7 +118,7 @@ exports.update = function (table, data, params) {
                 }
             }
         }
-        queries += params.format("UPDATE [{0}] SET {1} {2};\n", table, sets.join(", "), where);
+        queries.push(params.format("UPDATE `{0}` SET {1} {2};\n", table, sets.join(", "), where));
     }
     return queries;
 };
@@ -134,41 +134,36 @@ exports.delete = function (table, data, params) {
             if (property[0] === "$")
                 columns.push(property.replace('$', ''));
             else
-                columns.push("[" + property + "]");
+                columns.push("`" + property + "`");
             if (value[0] === "$")
                 values.push(value.replace('$', ''));
             else
                 values.push("'" + value + "'");
         }
-        queries += params.format("DELETE FROM [{0}] WHERE \n", table, columns.join(", "), values.join(", "));
+        queries += params.format("DELETE FROM `{0}` WHERE \n", table, columns.join(", "), values.join(", "));
     }
     return queries;
 };
 exports.data = function (query, params, callback, index) {
-    var connection = new params.mssql.ConnectionPool(params.CONFIG.mssql);
-    connection.connect().then(function () {
-        var request = new params.mssql.Request(connection);
-        request.query(query).then(function (recordset) {
-            if (callback)
-                callback({
-                    query: query,
-                    error: false,
-                    data: recordset.recordset,
-                    count: recordset.rowsAffected,
-                    index: index
-                });
-        }).catch(function (err) {
-            console.log(err.originalError.message.error);
-            if (callback)
-                callback({query: query, error: err.originalError.message});
-        });
-    }).catch(function (err) {
-        console.log(err.originalError.message.error);
+    var connection = params.mysql.createConnection(params.CONFIG.mysql);
+    connection.connect();
+    connection.query(query, function (error, results, fields) {
+        if (error)
+            if (callback) {
+                callback({query: query, error: error.sqlMessage});
+                return;
+            }
         if (callback)
-            callback({query: query, error: err.originalError.message});
+            callback({
+                query: query,
+                error: false,
+                data: results,
+                index: index
+            });
     });
+    connection.end();
 };
-exports.defaultRequests = function (Model,params) {
+exports.defaultRequests = function (Model, params) {
     params.modelName = Model.tableName;
     params.fs.readdir(params.util.format('./views/%s', params.modelName), function (err, files) {
         params.modules.request.LoadEJS(files, params);
@@ -186,41 +181,40 @@ exports.defaultRequests = function (Model,params) {
             res.json(data);
         });
     });
-    params.app.get(params.util.format('/api/%s/all', this.tableName), function (req, res) {
+    params.app.get(params.util.format('/api/%s/all', Model.tableName), function (req, res) {
         Model.all(req.query, function (data) {
             if (data.error !== false) res.send(data.error);
             res.json(data);
         });
     });
-    params.app.get(params.util.format('/api/%s/get/:id', this.tableName), function (req, res) {
+    params.app.get(params.util.format('/api/%s/get/:id', Model.tableName), function (req, res) {
         Model.find(req.params.id, function (data) {
             if (data.error !== false) res.send(data.error);
             res.json(data);
         });
     });
-    params.app.post('/api/' + this.tableName + '/insert', function (req, res) {
+    params.app.post('/api/' + Model.tableName + '/insert', function (req, res) {
         Model.insert(req.body, function (data) {
             if (data.error !== false) res.send(data.error);
             res.json(data);
         });
     });
-    params.app.put('/api/' + this.tableName + '/update/:id', function (req, res) {
+    params.app.put('/api/' + Model.tableName + '/update/:id', function (req, res) {
         Model.update(req.params.id, req.body, function (data) {
             if (data.error !== false) res.send(data.error);
             res.json(data);
         });
     });
-    params.app.delete('/api/' + this.tableName + '/delete/:id', function (req, res) {
+    params.app.delete('/api/' + Model.tableName + '/delete/:id', function (req, res) {
         Model.delete(req.params.id, function (data) {
             if (data.error !== false) res.send(data.error);
             res.json(data);
         });
     });
 };
-
-exports.Model = function (tableName,params) {
+exports.Model = function (tableName, params) {
     this.tableName = tableName;
-    this.mssql = params.mssql;
+    this.mysql = params.mysql;
     this.config = params.config;
     //search
     this.all = function (options, callback) {
@@ -239,12 +233,12 @@ exports.Model = function (tableName,params) {
     //update
     this.update = function (id, data, callback) {
         data.where = [{value: id}];
-        exports.data(exports.update(tableName, data, params), params, function (data) {
+        exports.executeNonQuery(exports.update(tableName, data, params), params, function (data) {
             callback(data);
         });
     };
     this.updateAll = function (data, callback) {
-        exports.data(exports.update(tableName, data, params), params, function (data) {
+        exports.executeNonQuery(exports.update(tableName, data, params), params, function (data) {
             callback(data);
         });
     };
@@ -254,13 +248,13 @@ exports.Model = function (tableName,params) {
             finalwhere.push({value: eval("where." + property), field: property});
         }
         data.where = finalwhere;
-        exports.data(exports.update(tableName, data, params), params, function (data) {
+        exports.executeNonQuery(exports.update(tableName, data, params), params, function (data) {
             callback(data);
         });
     };
     //insert
     this.insert = function (data, callback) {
-        exports.data(exports.insert(tableName, data, params), params, function (data) {
+        exports.executeNonQuery(exports.insert(tableName, data, params), params, function (data) {
             callback(data);
         });
     };
@@ -292,7 +286,7 @@ exports.Model = function (tableName,params) {
                 for (var i in options.where) {
                     var obj = options.where[i];
                     var field = obj.field !== undefined ? obj.field : "id";
-                    field = field[0] === '$' ? field.replace('$', '') : "[" + field + "]";
+                    field = field[0] === '$' ? field.replace('$', '') : "`" + field + "`";
                     var operator = obj.operator !== undefined ? obj.operator : "=";
                     var connector = obj.connector !== undefined ? obj.connector : "AND";
                     if (Array.isArray(obj.value)) {
@@ -320,7 +314,7 @@ exports.Model = function (tableName,params) {
                     if (column[0] === "$")
                         selectfinal.push(column.replace('$', ''));
                     else
-                        selectfinal.push("[" + column + "]");
+                        selectfinal.push("`" + column + "`");
                 }
                 selectfinal = selectfinal.join(", ");
             }
@@ -328,17 +322,17 @@ exports.Model = function (tableName,params) {
         var groupby = "";
         if (options.groupby) {
             if (Array.isArray(options.groupby))
-                groupby = " GROUP BY " + "[" + options.groupby.join("],[") + "]";
+                groupby = " GROUP BY " + "`" + options.groupby.join("`,`") + "`";
             else
-                groupby = " GROUP BY " + "[" + options.groupby + "]";
+                groupby = " GROUP BY " + "`" + options.groupby + "`";
         }
 
         var orderby = "";
         if (options.orderby) {
             if (Array.isArray(options.orderby))
-                orderby = " ORDER BY " + "[" + options.orderby.join("],[") + "]";
+                orderby = " ORDER BY " + "`" + options.orderby.join("`,`") + "`";
             else
-                orderby = " ORDER BY " + "[" + options.orderby + "]";
+                orderby = " ORDER BY " + "`" + options.orderby + "`";
         }
 
         var distinct = '';
@@ -358,11 +352,11 @@ exports.Model = function (tableName,params) {
                 if (options.page !== undefined) {
                     $pagec = options.page;
                     var $value = $limitvalue * ($pagec - 1);
-                    $page = params.format("OFFSET {0} ROWS FETCH NEXT {1} ROWS ONLY", $value, $limitvalue);
+                    $page = params.format("limit  {1} OFFSET {0}", $value, $limitvalue);
                 }
             }
         }
-        var query = params.format("{sentence} {distinct} {selectfinal} FROM [{table}] {where} {groupby} {orderby} {limit} {page}",
+        var query = params.format("{sentence} {distinct} {selectfinal} FROM `{table}` {where} {groupby} {orderby} {limit} {page}",
             {
                 sentence: sentence,
                 distinct: distinct,
@@ -375,7 +369,7 @@ exports.Model = function (tableName,params) {
                 page: $page
             }
         );
-        var queryCount = params.format("SELECT count(*) count FROM [{table}] {where} {groupby}",
+        var queryCount = params.format("SELECT count(*) count FROM `{table}` {where} {groupby}",
             {
                 table: tableName,
                 where: where,
@@ -404,7 +398,5 @@ exports.Model = function (tableName,params) {
 
 
     };
-
-
 };
 

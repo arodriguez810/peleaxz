@@ -1,6 +1,19 @@
 {
   "port": "8090",
   "mongo": "mongodb://localhost:27017/pxz",
+  "mssql": {
+    "user": "sa",
+    "password": "*sa*",
+    "server": "localhost",
+    "database": "pxz",
+    "port": 1433
+  },
+  "mysql": {
+    "host": "localhost",
+    "user": "root",
+    "password": "toor",
+    "database": "pxz"
+  },
   "modules": [
     {
       "var": "express",
@@ -35,8 +48,36 @@
       "module": "express-layout"
     },
     {
+      "var": "mssql",
+      "module": "mssql"
+    },
+    {
+      "var": "nodemssql",
+      "module": "node-mssql"
+    },
+    {
       "var": "colors",
       "module": "colors"
+    },
+    {
+      "var": "co",
+      "module": "co"
+    },
+    {
+      "var": "format",
+      "module": "string-format"
+    },
+    {
+      "var": "mysql",
+      "module": "mysql"
+    },
+    {
+      "var": "child_process",
+      "module": "child_process"
+    },
+    {
+      "var": "pluralize",
+      "module": "pluralize"
     }
   ]
 }

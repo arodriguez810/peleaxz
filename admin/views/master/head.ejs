@@ -32,14 +32,18 @@
     <script type="text/javascript" src="assets/js/plugins/pickers/daterangepicker.js"></script>
     <script type="text/javascript" src="assets/js/core/app.js"></script>
     <script type="text/javascript" src="assets/js/plugins/ui/ripple.min.js"></script>
-    <script type="text/javascript" src="assets/js/pages/animations_css3.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/velocity/velocity.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/velocity/velocity.ui.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/ui/prism.min.js"></script>
     <!-- /theme JS files -->
 
     <script type="text/javascript" src="assets/js/core/libraries/angular.min.js"></script>
     <script src="controllers/core.js"></script>
+
     <% models.forEach(function(item){ %>
     <script src="controllers/<%= item %>.js"></script>
     <% }); %>
+
     <% localjs.forEach(function(item){ %>
     <script src="js/<%= item %>"></script>
     <% }); %>

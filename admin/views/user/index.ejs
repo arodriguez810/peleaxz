@@ -1,0 +1,15 @@
+<div id="userController" ng-controller="userController as userController">
+    user
+    <table class="table">
+        <thead class="bg-green">
+        <th ng-repeat="(key, value) in userController.list.data[0]">{{key}}</th>
+        </thead>
+        <tbody>
+        <tr ng-repeat="(key, value) in userController.list.data">
+            <td ng-repeat="item in value">
+                {{item}}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
