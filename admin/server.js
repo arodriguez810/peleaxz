@@ -3,7 +3,7 @@ var lines = process.stdout.getWindowSize()[1];
 for (var i = 0; i < lines; i++) console.log('\r\n');
 var fs = require("fs");
 var CONFIG = eval("(" + fs.readFileSync('config.json') + ")");
-var modules = {}, localjs = [], localModules = [],localModulesVars = [], modulesList = [];
+var modules = {}, localjs = [], localModules = [], localModulesVars = [], modulesList = [];
 for (var i in CONFIG.modules) {
     var module = CONFIG.modules[i];
     localModules.push(module.module);
@@ -134,6 +134,7 @@ fs.readdir('./models/mongo', function (err, files) {
                 var create = modules.mssql.createTable(model, object, eval("(" + allparams + ")"));
                 var add = modules.mssql.addColumns(model, object, eval("(" + allparams + ")"));
                 var alter = modules.mssql.alterColumns(model, object, eval("(" + allparams + ")"));
+                modules.mssql.deleteColumns(model, object, eval("(" + allparams + ")"));
                 modules.mssql.executeNonQuery(create, eval("(" + allparams + ")"));
                 modules.mssql.executeNonQuery(alter, eval("(" + allparams + ")"));
                 modules.mssql.executeNonQuery(add, eval("(" + allparams + ")"));
@@ -155,6 +156,7 @@ fs.readdir('./models/mongo', function (err, files) {
                     var create = modules.mysql.createTable(model, object, eval("(" + allparams + ")"));
                     var add = modules.mysql.addColumns(model, object, eval("(" + allparams + ")"));
                     var alter = modules.mysql.alterColumns(model, object, eval("(" + allparams + ")"));
+                    modules.mysql.deleteColumns(model, object, eval("(" + allparams + ")"));
                     modules.mysql.executeNonQuery(create, eval("(" + allparams + ")"));
                     modules.mysql.executeNonQuery(alter, eval("(" + allparams + ")"));
                     modules.mysql.executeNonQuery(add, eval("(" + allparams + ")"));

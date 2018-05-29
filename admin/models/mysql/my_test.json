@@ -5,6 +5,5 @@
   "active": "BIT NULL",
   "created": "DATETIME NOT NULL DEFAULT current_timestamp",
   "updated": "DATETIME NULL DEFAULT current_timestamp",
-  "deleted": "DATETIME NULL",
   "$PRIMARY": "KEY (ID)"
 }

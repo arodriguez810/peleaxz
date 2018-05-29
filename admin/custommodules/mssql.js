@@ -8,6 +8,7 @@ exports.createTable = function (model, object, params) {
     tsql += ");";
     return tsql;
 };
+
 exports.alterBlackList = ["DEFAULT", "GETDATE()", "IDENTITY(1,1)", "IDENTITY", "1"];
 exports.addColumns = function (model, object, params) {
     var tsql = "";
@@ -16,6 +17,29 @@ exports.addColumns = function (model, object, params) {
     for (var black in exports.alterBlackList)
         tsql = params.S(tsql).replaceAll(exports.alterBlackList[black], '').s;
     return tsql;
+};
+exports.deleteColumns = function (model, object, params) {
+    var tsql = "";
+    var deleteColumns = [];
+    exports.data("select COLUMN_NAME from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME='" + model + "'", params, function (data) {
+        var onlynames = [];
+        var onlyNamesObjects = [];
+        for (var i in data.data)
+            onlynames.push(data.data[i].COLUMN_NAME);
+
+        for (var property in object)
+            onlyNamesObjects.push(property);
+
+        for (var i in onlynames) {
+            if (!onlyNamesObjects.includes(onlynames[i])) {
+                deleteColumns.push(onlynames[i]);
+            }
+        }
+        for (var i in deleteColumns)
+            exports.executeNonQuery(params.format("ALTER TABLE {0} DROP COLUMN {1};\n", model, deleteColumns[i]), params, function (data) {
+                console.log(data);
+            });
+    });
 };
 exports.alterColumns = function (model, object, params) {
     var tsql = "";
@@ -168,7 +192,7 @@ exports.data = function (query, params, callback, index) {
             callback({query: query, error: err.originalError.message});
     });
 };
-exports.defaultRequests = function (Model,params) {
+exports.defaultRequests = function (Model, params) {
     params.modelName = Model.tableName;
     params.fs.readdir(params.util.format('./views/%s', params.modelName), function (err, files) {
         params.modules.request.LoadEJS(files, params);
@@ -217,7 +241,7 @@ exports.defaultRequests = function (Model,params) {
         });
     });
 };
-exports.Model = function (tableName,params) {
+exports.Model = function (tableName, params) {
     this.tableName = tableName;
     this.mssql = params.mssql;
     this.config = params.config;

@@ -4,6 +4,5 @@
   "description": "NVARCHAR(200) NULL",
   "active": "BIT NOT NULL",
   "created": "DATETIME NOT NULL DEFAULT GETDATE()",
-  "updated": "DATETIME NOT NULL DEFAULT GETDATE()",
-  "deleted": "DATETIME NULL"
+  "updated": "DATETIME NOT NULL DEFAULT GETDATE()"
 }

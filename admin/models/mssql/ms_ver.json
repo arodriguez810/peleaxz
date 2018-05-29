@@ -1,0 +1,1 @@
+{"uno":"int NULL","dos":"datetime NULL","tres":"nvarchar(50) NULL","cuatro":"bit  NOT NULL","cinco":"uniqueidentifier NULL","seis":"float NULL","siete":"date  NOT NULL","ocho":"nchar(10) NULL"}

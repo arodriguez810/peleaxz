@@ -24,6 +24,29 @@ exports.alterColumns = function (model, object, params) {
         tsql.push("ALTER TABLE `" + params.CONFIG.mysql.database + "`.`" + model + "` MODIFY COLUMN `" + property + "` " + object[property] + ";");
     return tsql;
 };
+
+exports.deleteColumns = function (model, object, params) {
+    var deleteColumns = [];
+    exports.data("select COLUMN_NAME from information_schema.`COLUMNS` where TABLE_NAME='" + model + "' and TABLE_SCHEMA='" + params.CONFIG.mysql.database + "'", params, function (data) {
+        var onlynames = [];
+        var onlyNamesObjects = [];
+        for (var i in data.data)
+            onlynames.push(data.data[i].COLUMN_NAME);
+
+        for (var property in object)
+            onlyNamesObjects.push(property);
+        for (var i in onlynames) {
+            if (!onlyNamesObjects.includes(onlynames[i])) {
+                deleteColumns.push(onlynames[i]);
+            }
+        }
+        for (var i in deleteColumns)
+            exports.executeNonQuery(params.format("ALTER TABLE {0} DROP COLUMN {1};\n", model, deleteColumns[i]), params, function (data) {
+                console.log(data);
+            });
+    });
+};
+
 exports.executeNonQuery = function (queries, params, callback) {
     if (!(Array.isArray(queries)))
         queries = [queries];

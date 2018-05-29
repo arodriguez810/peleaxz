@@ -2,70 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8fb134e-e727-43fe-b984-89a1d2d7969c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/admin/custommodules/mssql.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/admin/custommodules/mysql.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/admin/custommodules/tools.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/admin/defaults/models/mongo/@model@.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/admin/defaults/models/mssql/@model@.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/admin/defaults/models/mysql/@model@.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/admin/js/animation.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/admin/models/mssql/ms_user.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/admin/models/mysql/my_user.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/admin/service/my_user.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/admin/views/home/login.ejs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/admin/views/master/error/403.ejs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/admin/views/master/error/404.ejs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/admin/views/master/error/405.ejs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/admin/views/master/error/500.ejs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/admin/views/master/error/503.ejs" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/controllers/role.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/defaults/#generated/controllers/role.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/defaults/#generated/controllers/user.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/defaults/#generated/models/role.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/defaults/#generated/models/user.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/defaults/#generated/service/role.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/defaults/#generated/service/user.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/defaults/#generated/views/role/index.ejs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/defaults/#generated/views/user/index.ejs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/defaults/models/@model@.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/models/role.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/models/user.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/service/role.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/views/role/index.ejs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/views/user/test.ejs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/db/collection-0--6143965012821612831.wt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/db/collection-0-2128159002659370700.wt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/db/collection-0-2770888694553575536.wt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/db/collection-4-8136088884132376062.wt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/db/index-1--6143965012821612831.wt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/db/index-1-2128159002659370700.wt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/db/index-1-2770888694553575536.wt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/db/index-5-8136088884132376062.wt" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/admin/controllers/user.js" afterPath="$PROJECT_DIR$/admin/controllers/ms_user.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/admin/models/home.json" afterPath="$PROJECT_DIR$/admin/models/mongo/home.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/admin/service/user.js" afterPath="$PROJECT_DIR$/admin/service/ms_user.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/admin/views/user/index.ejs" afterPath="$PROJECT_DIR$/admin/views/ms_user/index.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/defaults/generator.exe" afterPath="$PROJECT_DIR$/admin/defaults/generator.exe" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/WiredTiger.wt" afterPath="$PROJECT_DIR$/db/WiredTiger.wt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/_mdb_catalog.wt" afterPath="$PROJECT_DIR$/db/_mdb_catalog.wt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/collection-0-4911855374159341883.wt" afterPath="$PROJECT_DIR$/db/collection-0-4911855374159341883.wt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/index-1-4911855374159341883.wt" afterPath="$PROJECT_DIR$/db/index-1-4911855374159341883.wt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/sizeStorer.wt" afterPath="$PROJECT_DIR$/db/sizeStorer.wt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/programs/mvcgenerator/.vs/mvcgenerator/v14/.suo" afterPath="$PROJECT_DIR$/programs/mvcgenerator/.vs/mvcgenerator/v14/.suo" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/programs/mvcgenerator/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache" afterPath="$PROJECT_DIR$/programs/mvcgenerator/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/config.json" afterPath="$PROJECT_DIR$/admin/config.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/controllers/home.js" afterPath="$PROJECT_DIR$/admin/controllers/home.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/custommodules/request.js" afterPath="$PROJECT_DIR$/admin/custommodules/request.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/defaults/controllers/@model@.js" afterPath="$PROJECT_DIR$/admin/defaults/controllers/@model@.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/defaults/service/@model@.js" afterPath="$PROJECT_DIR$/admin/defaults/service/@model@.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/defaults/views/@model@/index.ejs" afterPath="$PROJECT_DIR$/admin/defaults/views/@model@/index.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/package-lock.json" afterPath="$PROJECT_DIR$/admin/package-lock.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/custommodules/mssql.js" afterPath="$PROJECT_DIR$/admin/custommodules/mssql.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/custommodules/mysql.js" afterPath="$PROJECT_DIR$/admin/custommodules/mysql.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/custommodules/tools.js" afterPath="$PROJECT_DIR$/admin/custommodules/tools.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/models/mssql/ms_log.json" afterPath="$PROJECT_DIR$/admin/models/mssql/ms_log.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/models/mysql/my_test.json" afterPath="$PROJECT_DIR$/admin/models/mysql/my_test.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/server.js" afterPath="$PROJECT_DIR$/admin/server.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/service/home.js" afterPath="$PROJECT_DIR$/admin/service/home.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/views/master/footer.ejs" afterPath="$PROJECT_DIR$/admin/views/master/footer.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/views/master/head.ejs" afterPath="$PROJECT_DIR$/admin/views/master/head.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/views/master/menu.ejs" afterPath="$PROJECT_DIR$/admin/views/master/menu.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/views/master/navbar.ejs" afterPath="$PROJECT_DIR$/admin/views/master/navbar.ejs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/WiredTiger.turtle" afterPath="$PROJECT_DIR$/db/WiredTiger.turtle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/mongod.lock" afterPath="$PROJECT_DIR$/db/mongod.lock" />
     </list>
@@ -84,28 +33,8 @@
       <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1972">
-              <caret line="116" column="12" lean-forward="false" selection-start-line="116" selection-start-column="12" selection-end-line="116" selection-end-column="99" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/config.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1122">
-              <caret line="66" column="20" lean-forward="false" selection-start-line="66" selection-start-column="14" selection-end-line="66" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mssql.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/custommodules/mssql.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2924">
-              <caret line="172" column="13" lean-forward="false" selection-start-line="172" selection-start-column="11" selection-end-line="172" selection-end-column="13" />
+            <state relative-caret-position="414">
+              <caret line="94" column="25" lean-forward="false" selection-start-line="94" selection-start-column="17" selection-end-line="94" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -114,19 +43,32 @@
       <file leaf-file-name="tools.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/admin/custommodules/tools.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="137">
-              <caret line="14" column="70" lean-forward="true" selection-start-line="14" selection-start-column="70" selection-end-line="14" selection-end-column="70" />
+            <state relative-caret-position="290">
+              <caret line="50" column="84" lean-forward="true" selection-start-line="50" selection-start-column="84" selection-end-line="50" selection-end-column="84" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="request.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/custommodules/request.js">
+      <file leaf-file-name="my_test.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/models/mysql/my_test.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1666">
-              <caret line="98" column="25" lean-forward="false" selection-start-line="98" selection-start-column="20" selection-end-line="98" selection-end-column="25" />
+            <state relative-caret-position="34">
+              <caret line="2" column="2" lean-forward="false" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="34" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mssql.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/custommodules/mssql.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="283">
+              <caret line="184" column="0" lean-forward="false" selection-start-line="184" selection-start-column="0" selection-end-line="184" selection-end-column="0" />
+              <folding>
+                <element signature="e#3857#6612#0" expanded="false" />
+                <element signature="e#6662#7387#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -145,9 +87,7 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>gitu</find>
       <find>custommodules</find>
-      <find>modules</find>
       <find>filelist</find>
       <find>homeController</find>
       <find>replace</find>
@@ -167,7 +107,6 @@
       <find>array</find>
       <find>[</find>
       <find>mssql</find>
-      <find>modelsql</find>
       <find>stringModel</find>
       <find>models</find>
       <find>collections</find>
@@ -175,6 +114,9 @@
       <find>localModules</find>
       <find>fs</find>
       <find>format</find>
+      <find>modules</find>
+      <find>modelsql</find>
+      <find>res</find>
     </findStrings>
     <replaceStrings>
       <replace>sendFile</replace>
@@ -193,8 +135,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/admin/models/todo.json" />
-        <option value="$PROJECT_DIR$/admin/custommodules/home.js" />
         <option value="$PROJECT_DIR$/admin/views/home/index.ejs" />
         <option value="$PROJECT_DIR$/admin/controllers/todo.js" />
         <option value="$PROJECT_DIR$/admin/functions/globalevents.js" />
@@ -232,8 +172,6 @@
         <option value="$PROJECT_DIR$/admin/controllers/ms_user.js" />
         <option value="$PROJECT_DIR$/admin/views/master/navbar.ejs" />
         <option value="$PROJECT_DIR$/admin/models/mysql/my_user.json" />
-        <option value="$PROJECT_DIR$/admin/custommodules/mssql.js" />
-        <option value="$PROJECT_DIR$/admin/custommodules/mysql.js" />
         <option value="$PROJECT_DIR$/admin/views/master/menu.ejs" />
         <option value="$PROJECT_DIR$/admin/custommodules/request.js" />
         <option value="$PROJECT_DIR$/admin/views/user/index.ejs" />
@@ -242,7 +180,11 @@
         <option value="$PROJECT_DIR$/admin/views/master/head.ejs" />
         <option value="$PROJECT_DIR$/admin/views/home/login.ejs" />
         <option value="$PROJECT_DIR$/admin/config.json" />
+        <option value="$PROJECT_DIR$/admin/models/mssql/ms_log.json" />
+        <option value="$PROJECT_DIR$/admin/custommodules/mssql.js" />
         <option value="$PROJECT_DIR$/admin/server.js" />
+        <option value="$PROJECT_DIR$/admin/models/mysql/my_test.json" />
+        <option value="$PROJECT_DIR$/admin/custommodules/mysql.js" />
         <option value="$PROJECT_DIR$/admin/custommodules/tools.js" />
       </list>
     </option>
@@ -263,7 +205,7 @@
   <component name="NodeModulesDirectoryManager">
     <handled-path value="$PROJECT_DIR$/admin/node_modules" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="y" value="22" />
     <option name="width" value="1382" />
@@ -321,7 +263,20 @@
               <item name="peleaxz" type="b2602c69:ProjectViewProjectNode" />
               <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
               <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="custommodules" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="peleaxz" type="b2602c69:ProjectViewProjectNode" />
+              <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="peleaxz" type="b2602c69:ProjectViewProjectNode" />
+              <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+              <item name="mssql" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -415,16 +370,15 @@
       <workItem from="1525639773097" duration="3198000" />
       <workItem from="1525821228258" duration="20000" />
       <workItem from="1526133239531" duration="14288000" />
-      <workItem from="1526264894369" duration="5775000" />
+      <workItem from="1526264894369" duration="22121000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="218141000" />
+    <option name="totallyTimeSpent" value="234487000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="22" width="1382" height="754" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="22" width="1382" height="754" extended-state="6" />
     <layout>
       <window_info id="Project" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16105418" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -470,14 +424,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="19" />
+      <option name="time" value="20" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/admin/js/string/function.js" />
-    <entry file="file://$PROJECT_DIR$/admin/views/todo/index.ejs" />
-    <entry file="file://$PROJECT_DIR$/admin/views/user/ztest.ejs" />
     <entry file="file://$PROJECT_DIR$/admin/views/role/index.ejs" />
     <entry file="file://$PROJECT_DIR$/admin/views/user/test.ejs" />
     <entry file="file://$PROJECT_DIR$/admin/assets/js/core/libraries/angular.min.js">
@@ -634,13 +585,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/defaults/controllers/@model@.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="7" lean-forward="false" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/admin/controllers/ms_log.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -687,13 +631,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="1" lean-forward="true" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/custommodules/mysql.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="213" column="2" lean-forward="false" selection-start-line="213" selection-start-column="2" selection-end-line="213" selection-end-column="2" />
         </state>
       </provider>
     </entry>
@@ -767,14 +704,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/custommodules/mssql.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2924">
-          <caret line="172" column="13" lean-forward="false" selection-start-line="172" selection-start-column="11" selection-end-line="172" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/admin/custommodules/request.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1666">
@@ -783,26 +712,77 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/server.js">
+    <entry file="file://$PROJECT_DIR$/admin/config.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1972">
-          <caret line="116" column="12" lean-forward="false" selection-start-line="116" selection-start-column="12" selection-end-line="116" selection-end-column="99" />
+        <state relative-caret-position="691">
+          <caret line="66" column="20" lean-forward="false" selection-start-line="66" selection-start-column="14" selection-end-line="66" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/config.json">
+    <entry file="file://$PROJECT_DIR$/admin/models/mssql/ms_log.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1122">
-          <caret line="66" column="20" lean-forward="false" selection-start-line="66" selection-start-column="14" selection-end-line="66" selection-end-column="20" />
+        <state relative-caret-position="102">
+          <caret line="6" column="50" lean-forward="false" selection-start-line="6" selection-start-column="50" selection-end-line="6" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/custommodules/mysql.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="392">
+          <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/models/mysql/my_test.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="2" lean-forward="false" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/custommodules/mssql.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="184" column="0" lean-forward="false" selection-start-line="184" selection-start-column="0" selection-end-line="184" selection-end-column="0" />
+          <folding>
+            <element signature="e#3857#6612#0" expanded="false" />
+            <element signature="e#6662#7387#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="94" column="25" lean-forward="false" selection-start-line="94" selection-start-column="17" selection-end-line="94" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/models/mssql/ms_ver.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/defaults/controllers/@model@.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="7" lean-forward="false" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/custommodules/tools.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="14" column="70" lean-forward="true" selection-start-line="14" selection-start-column="70" selection-end-line="14" selection-end-column="70" />
+        <state relative-caret-position="290">
+          <caret line="50" column="84" lean-forward="true" selection-start-line="50" selection-start-column="84" selection-end-line="50" selection-end-column="84" />
           <folding />
         </state>
       </provider>
