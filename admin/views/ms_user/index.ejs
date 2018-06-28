@@ -1,15 +1,85 @@
 <div id="ms_userController" ng-controller="ms_userController as ms_userController">
-    ms_user
-    <table class="table">
-        <thead class="bg-danger">
-        <th ng-repeat="(key, value) in ms_userController.list.data[0]">{{key}}</th>
-        </thead>
-        <tbody>
-        <tr ng-repeat="(key, value) in ms_userController.list.data">
-            <td ng-repeat="item in value">
-                {{item}}
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="panel panel-flat">
+        <div class="panel-heading">
+            <h5 class="panel-title">User List</h5>
+            <div class="heading-elements">
+                <ul class="icons-list">
+                    <li><a ng-click="ms_userController.refresh();"><i class="icon-reload-alt"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-togglable table-hover">
+                <thead class="bg-danger">
+                <tr>
+                    <th ng-repeat="(key, value) in ms_userController.crud.table.columns" ng-show="value.visible!=false">
+                        <input type="checkbox" ng-model="ms_userController.checkall" ng-show="key==='id'"
+                               ng-click="ms_userController.checkAll()">
+                        {{value.label||key}}
+                    </th>
+                    <th class="text-center" style="width: 30px;">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class=" icon-more2"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="#"><i class="icon-folder-remove"></i>Remove</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-file-download2"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="#"><i class="icon-file-pdf"></i> Export to .pdf</a></li>
+                                    <li><a href="#"><i class="icon-file-excel"></i> Export to .csv</a></li>
+                                    <li><a href="#"><i class="icon-file-excel"></i> Export to .xlsx</a></li>
+                                    <li><a href="#"><i class="icon-file-word"></i> Export to .doc</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="(key, row) in ms_userController.list.data" data-object="{{row}}">
+                    <td ng-repeat="(key, value) in ms_userController.crud.table.columns" ng-show="value.visible!=false">
+                        <input type="checkbox" data-object="{{row}}"
+                               name="singlecheck[]"
+                               value="row.id"
+                               ng-checked="ms_userController.selected"
+                               ng-show="key==='id'"
+                               ng-click="ms_userController.check(this)">
+                        {{$eval("row."+key)}}
+                    </td>
+                    <td class="text-center">
+                        <ul class="icons-list">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class=" icon-more2"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="#"><i class="icon-pencil5"></i> Edit</a></li>
+                                    <li><a href="#"><i class="icon-folder-remove"></i>Remove</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-file-download2"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li><a href="#"><i class="icon-file-pdf"></i> Export to .pdf</a></li>
+                                    <li><a href="#"><i class="icon-file-excel"></i> Export to .csv</a></li>
+                                    <li><a href="#"><i class="icon-file-excel"></i> Export to .xlsx</a></li>
+                                    <li><a href="#"><i class="icon-file-word"></i> Export to .doc</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>

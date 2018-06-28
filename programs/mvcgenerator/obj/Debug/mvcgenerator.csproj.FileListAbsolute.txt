@@ -10,3 +10,9 @@ C:\wamp64\wwwalter\peleaxz\tools\mvcgenerator\obj\Debug\mvcgenerator.pdb
 C:\wamp64\wwwalter\peleaxz\tools\mvcgenerator\bin\Debug\mvcgenerator.exe
 C:\wamp64\wwwalter\peleaxz\tools\mvcgenerator\bin\Debug\mvcgenerator.pdb
 C:\wamp64\wwwalter\peleaxz\tools\mvcgenerator\obj\Debug\mvcgenerator.csprojResolveAssemblyReference.cache
+C:\wamp64\wwwalter\peleaxz\programs\mvcgenerator\bin\Debug\mvcgenerator.exe.config
+C:\wamp64\wwwalter\peleaxz\programs\mvcgenerator\obj\Debug\mvcgenerator.exe
+C:\wamp64\wwwalter\peleaxz\programs\mvcgenerator\obj\Debug\mvcgenerator.pdb
+C:\wamp64\wwwalter\peleaxz\programs\mvcgenerator\bin\Debug\mvcgenerator.exe
+C:\wamp64\wwwalter\peleaxz\programs\mvcgenerator\bin\Debug\mvcgenerator.pdb
+C:\wamp64\wwwalter\peleaxz\programs\mvcgenerator\obj\Debug\mvcgenerator.csprojResolveAssemblyReference.cache

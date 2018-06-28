@@ -1,9 +1,0 @@
-{
-  "id": "int NOT NULL AUTO_INCREMENT",
-  "name": "NVARCHAR(50) NOT NULL",
-  "description": "NVARCHAR(200) NULL",
-  "active": "BIT NULL",
-  "created": "DATETIME NOT NULL DEFAULT current_timestamp",
-  "updated": "DATETIME NULL DEFAULT current_timestamp",
-  "$PRIMARY": "KEY (ID)"
-}

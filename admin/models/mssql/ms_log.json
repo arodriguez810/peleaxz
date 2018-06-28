@@ -1,8 +1,0 @@
-{
-  "id": "[int] IDENTITY(1,1) NOT NULL",
-  "name": "NVARCHAR(50) NOT NULL",
-  "description": "NVARCHAR(200) NULL",
-  "active": "BIT NOT NULL",
-  "created": "DATETIME NOT NULL DEFAULT GETDATE()",
-  "updated": "DATETIME NOT NULL DEFAULT GETDATE()"
-}

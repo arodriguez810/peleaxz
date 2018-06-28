@@ -1,0 +1,29 @@
+{
+  "table": {
+    "columns": {
+      "id": {
+        "label": "#"
+      },
+      "name": {
+        "label": "Name"
+      },
+      "description": {
+        "label": "Description"
+      },
+      "active": {
+        "visible": false
+      },
+      "created": {
+        "visible": false
+      },
+      "updated": {
+        "visible": false
+      },
+      "deleted": {
+        "visible": false
+      }
+    }
+  },
+  "form": {
+  }
+}

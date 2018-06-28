@@ -85,6 +85,7 @@ exports.insert = function (table, data, params) {
             else
                 values.push("'" + value + "'");
         }
+        values = values.replace("'", "''");
         queries += params.format("INSERT INTO [{0}]({1}) VALUES({2});\n", table, columns.join(", "), values.join(", "));
     }
     return queries;
@@ -238,6 +239,19 @@ exports.defaultRequests = function (Model, params) {
         Model.delete(req.params.id, function (data) {
             if (data.error !== false) res.send(data.error);
             res.json(data);
+        });
+    });
+
+    params.app.get(params.util.format('/api/%s/crud', params.modelName), function (req, res) {
+        params.fs.readFile(params.util.format("./crud/mssql/%s.json", params.modelName), "utf8", function (err, data) {
+            if (err) {
+                res.json({message: err, error: true});
+            }
+            res.json({
+                message: "Success",
+                crud: eval("(" + data + ")"),
+                error: false
+            });
         });
     });
 };

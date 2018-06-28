@@ -5,4 +5,5 @@ app.controller('my_userController', function ($scope, $http, $compile) {
     my_userController.my_user.list(function (data) {
         my_userController.list = data;
     });
+
 });

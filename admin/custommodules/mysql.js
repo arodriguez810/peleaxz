@@ -84,6 +84,7 @@ exports.insert = function (table, data, params) {
             else
                 values.push("'" + value + "'");
         }
+        values = values.replace("'","''");
         queries.push(params.format("INSERT INTO `{0}` ({1}) VALUES({2});\n", table, columns.join(", "), values.join(", ")));
     }
     return queries;

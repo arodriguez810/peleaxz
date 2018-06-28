@@ -1,0 +1,15 @@
+<div id="my_verController" ng-controller="my_verController as my_verController">
+    my_ver
+    <table class="table">
+        <thead>
+        <th ng-repeat="(key, value) in my_verController.list.data[0]">{{key}}</th>
+        </thead>
+        <tbody>
+        <tr ng-repeat="(key, value) in my_verController.list.data">
+            <td ng-repeat="item in value">
+                {{item}}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

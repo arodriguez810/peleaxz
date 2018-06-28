@@ -10,13 +10,14 @@ namespace mvcgenerator
 {
     class Program
     {
+        static bool nomodel = false;
+        static string[] modelFolders = { "models", "crud" };
         static void Main(string[] args)
         {
             #region Execute
             //Process.Start("generate.bat");
             //return;
             #endregion
-
 
             string to = Directory.GetParent(realroot).FullName;
             //if (Directory.Exists(to))
@@ -99,16 +100,31 @@ namespace mvcgenerator
 
                     string newDir = Path.Combine(to, plus, item.Name).Replace("@model@", model);
 
-                    if (newDir.Contains("models\\mongo") && prefix != "")
+                    if (nomodel)
+                    {
+                        if (newDir.Contains("models"))
+                            continue;
+                    }
+
+                    bool continues = false;
+                    foreach (var folder in modelFolders)
+                    {
+                        if (newDir.Contains($"{folder}\\mongo") && prefix != "")
+                            continues = true;
+                        if (newDir.Contains($"{folder}\\mssql") && prefix != "ms")
+                            continues = true;
+                        if (newDir.Contains($"{folder}\\mysql") && prefix != "my")
+                            continues = true;
+                        if (newDir.Contains($"{folder}\\oracle") && prefix != "ora")
+                            continues = true;
+                        if (newDir.Contains($"{folder}\\postgress") && prefix != "post")
+                            continues = true;
+                    }
+
+                    if (continues)
                         continue;
-                    if (newDir.Contains("models\\mssql") && prefix != "ms")
-                        continue;
-                    if (newDir.Contains("models\\mysql") && prefix != "my")
-                        continue;
-                    if (newDir.Contains("models\\oracle") && prefix != "ora")
-                        continue;
-                    if (newDir.Contains("models\\postgress") && prefix != "post")
-                        continue;
+
+
 
                     FileInfo newFile = new FileInfo(newDir);
 
