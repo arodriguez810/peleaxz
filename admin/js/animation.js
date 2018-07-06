@@ -1,14 +1,31 @@
 animation = {
-    loading: function () {
-        var block = $("#content");
+    play: function (block, animation) {
+        if (block === undefined) block = "#content";
+        var element = $(block);
+        if (animation === undefined) {
+            animation = element.data("animation");
+        }
+        element.addClass("animated " + animation).one("webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend", function () {
+            element.removeClass("animated " + animation);
+        });
+    },
+    loading: function (customBlock, text, spinner) {
+        if (customBlock === undefined) customBlock = "#content";
+        if (text === undefined) text = "Loading...";
+        if (spinner !== undefined) {
+            animation.spinner.on(spinner);
+        }
+        var block = $(customBlock);
         $(block).block({
-            message: '<i class="icon-spinner2 spinner" style="font-size: 50px"></i>',
+            message: text + '<br><i class="icon-spinner2 spinner" style="font-size: 140px"></i>',
             overlayCSS: {
                 backgroundColor: '#fff',
                 opacity: 0.8,
                 cursor: 'wait',
                 'box-shadow': '0 0 0 1px #ddd',
-                height: 'auto'
+                height: '100%',
+                width: '100%',
+                left: '0px'
             },
             css: {
                 border: 0,
@@ -16,18 +33,42 @@ animation = {
             }
         });
     },
-    stoploading: function () {
-        var block = $("#content");
+    stoploading: function (customBlock, spinner) {
+        if (customBlock === undefined) customBlock = "#content";
+        if (spinner !== undefined) {
+            animation.spinner.off(spinner);
+        }
+        var block = $(customBlock);
         $(block).unblock();
+    },
+    spinner: {
+        on: function (customBlock) {
+            var i = $(customBlock).find("i");
+            $(customBlock).addClass("disabled");
+            if (i.length <= 0) {
+                $(customBlock).addClass("spinner");
+            } else {
+                i.addClass("spinner");
+            }
+        },
+        off: function (customBlock) {
+            var i = $(customBlock).find("i");
+            $(customBlock).removeClass("disabled");
+            if (i.length <= 0) {
+                $(customBlock).removeClass("spinner");
+            } else {
+                i.removeClass("spinner");
+            }
+        }
     }
 };
 
 
 $(document).ready(function () {
-    $(".navbar, .navbar-brand, .navbar-text, .navbar-nav > li, .page-header, .page-title, .page-header .heading-elements, .breadcrumb, .breadcrumb-elements > li, .content > .panel, .content .row > [class*=col-], .footer")
+    $(".navbar, .navbar-brand, .navbar-text, .navbar-nav > li, .page-header, .page-title, .page-header .heading-elements, .breadcrumb, .breadcrumb-elements > li, .content > .panel, .content .row > [class*=col-], .footer, img, .sidebar-content, .sidebar-content div")
         .css('opacity', 1)
         .velocity("transition.slideDownIn", {
-            stagger: 200,
+            stagger: 50,
             duration: 200,
             complete: function (elements) {
                 $(this).removeAttr('style');

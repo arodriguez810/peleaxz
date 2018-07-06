@@ -11,8 +11,15 @@ function basicMethods($scope, $http, modelName) {
     };
 
     $scope.check = function (element) {
-        console.log($scope.singlecheck);
-        $scope.checkall=false;
+        var checkall = true;
+        $(".singlecheck").each(function () {
+            if ($(this).prop('checked') === false) {
+                checkall = false;
+                console.log("false");
+                return false;
+            }
+        });
+        $scope.checkall = checkall;
     };
 
     var func = function (callBack) {

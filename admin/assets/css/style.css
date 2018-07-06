@@ -1,0 +1,21 @@
+.disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.marginFooter {
+    margin-left: 20px !important;
+}
+
+.content:first-child {
+    padding-top: 0px;
+}
+
+.content {
+    padding: 0 0 0 0;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0px;
+}
