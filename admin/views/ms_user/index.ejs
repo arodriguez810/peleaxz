@@ -23,10 +23,10 @@
                     <li><a data-function="menu" href="#home"><i class="icon-home2 position-left"></i> Home</a></li>
                     <li class="active">User MSSQL</li>
                 </ul>
-
                 <ul class="breadcrumb-elements">
                     <li><a href="#" class="legitRipple"><i class="icon-plus-circle2 position-left"></i>
-                            Create New User</a></li>
+                            Create New User</a>
+                    </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle legitRipple" data-toggle="dropdown" aria-expanded="false">
                             <i class=" icon-database-export position-left"></i>
@@ -38,6 +38,18 @@
                             <li><a href="#"><i class="icon-file-excel"></i>CSV</a></li>
                             <li><a href="#"><i class="icon-file-excel"></i>XLSX</a></li>
                             <li><a href="#"><i class="icon-file-word"></i>DOC</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle legitRipple" data-toggle="dropdown" aria-expanded="false">
+                            <i class="icon-starburst position-left"></i>
+                            Batch options
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="#"><i class="icon-trash"></i>Remove</a></li>
+                            <li><a href="#"><i class="icon-checkmark-circle"></i>Enable</a></li>
+                            <li><a href="#"><i class="icon-circle"></i>Disable</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -56,32 +68,13 @@
                             {{value.label||key}}
                         </th>
                         <th class="text-center" style="width: 30px;">
-                            <ul class="icons-list">
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class=" icon-more2"></i>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li><a href="#"><i class="icon-folder-remove"></i>Remove</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="icon-file-download2"></i>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li><a href="#"><i class="icon-file-pdf"></i> Export to .pdf</a></li>
-                                        <li><a href="#"><i class="icon-file-excel"></i> Export to .csv</a></li>
-                                        <li><a href="#"><i class="icon-file-excel"></i> Export to .xlsx</a></li>
-                                        <li><a href="#"><i class="icon-file-word"></i> Export to .doc</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
+
                         </th>
                     </tr>
                     </thead>
                     <tbody id="ms_userTableBody">
-                    <tr ng-repeat="(key, row) in ms_userController.list.data" data-object="{{row}}">
+                    <tr ng-repeat="(key, row) in ms_userController.list.data" data-object="{{row}}"
+                        class="{{!row.active?'bg-grey-300':''}}">
                         <td ng-repeat="(key, value) in ms_userController.table.crud.table.columns"
                             ng-show="value.visible!=false">
                             <input type="checkbox" data-object="{{row}}"
@@ -100,7 +93,10 @@
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-right">
                                         <li><a href="#"><i class="icon-pencil5"></i> Edit</a></li>
-                                        <li><a href="#"><i class="icon-folder-remove"></i>Remove</a></li>
+                                        <li><a href="#"><i class="icon-trash"></i>Remove</a></li>
+                                        <li ng-show="!row.active"><a href="#"><i class="icon-checkmark-circle"></i>Enable</a>
+                                        </li>
+                                        <li ng-show="row.active"><a href="#"><i class="icon-circle"></i>Disable</a></li>
                                     </ul>
                                 </li>
                                 <li>

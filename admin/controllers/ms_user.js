@@ -26,7 +26,7 @@ app.controller('ms_userController', function ($scope, $http, $compile) {
                     animation.stoploading("#ms_userTable", "#loadingButton");
                 });
             }
-        }, 3000);
+        }, 1000);
     };
     ms_userController.refresh();
 });
