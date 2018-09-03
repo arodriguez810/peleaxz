@@ -34,6 +34,12 @@
     $type.__class = true;
 
     $prototype = $type.prototype;
+
+    $prototype.replaceAll = function(search, replacement) {
+        var target = this;
+        return target.replace(new RegExp(search, 'g'), replacement);
+    };
+
     $prototype.endsWith = function String$endsWith(suffix) {
         /// <summary>Determines whether the end of this instance matches the specified string.</summary>
         /// <param name="suffix" type="String">A string to compare to.</param>

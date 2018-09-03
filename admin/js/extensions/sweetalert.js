@@ -1,0 +1,4 @@
+sweetalert =
+    {
+
+    };
