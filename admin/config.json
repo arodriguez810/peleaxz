@@ -14,6 +14,20 @@
     "password": "toor",
     "database": "pxz"
   },
+  "ui": {
+    "tables": {
+      "paginator": {
+        "range": 10,
+        "limits": [
+          10,
+          50,
+          100,
+          200,
+          0
+        ]
+      }
+    }
+  },
   "modules": [
     {
       "var": "express",

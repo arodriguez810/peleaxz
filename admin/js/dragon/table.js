@@ -1,70 +1,27 @@
-api = {
-    run: function ($scope, $http, modelName) {
-        $scope.formData = {};
-        $scope.rootPath = '/api/' + modelName;
-        eval("$scope." + modelName + " ={}");
-
-
-        var func = function (parameters, callBack) {
-
-            if (parameters.limit === 0) {
-                parameters.limit = Number.MAX_SAFE_INTEGER;
-            }
-
-            var $queryString = $.param(parameters);
-
-            $http.get($scope.rootPath + '/list?' + $queryString).then(function (data) {
-                callBack(data.data);
-            }, function (data) {
-                console.log('Error: ' + data);
-            });
+table = {
+    run: function ($scope) {
+        /*Validation******************************/
+        $scope.stopInteraction = function () {
+            return $scope.table.is.loading;
         };
-        eval("$scope" + "" + ".list = func;");
+        /*Validation******************************/
 
-        var func = function (id, callBack) {
-            $http.get($scope.rootPath + '/get/' + id).then(function (data) {
-                callBack(data.data);
-            }, function (data) {
-                console.log('Error: ' + data);
-            });
+        /*CHECK BOX******************************/
+        $scope.checkAll = function () {
+            if ($scope.stopInteraction()) return false;
+            $scope.selected = $scope.checkall;
         };
-
-        eval("$scope" + "" + ".get = func;");
-
-        var func = function (dataToInsert, callback) {
-            $http.post($scope.rootPath + '/insert', dataToInsert).then(function (data) {
-                callback(data);
-            }, function (data) {
-                console.log('Error: ' + data);
+        $scope.check = function (element) {
+            if ($scope.stopInteraction()) return false;
+            var checkall = true;
+            $(".singlecheck").each(function () {
+                if ($(this).prop('checked') === false) {
+                    checkall = false;
+                    return false;
+                }
             });
+            $scope.checkall = checkall;
         };
-        eval("$scope" + "" + ".insert = func;");
-
-        var func = function (id, dataToUpdate, callback) {
-            $http.post($scope.rootPath + '/update/' + id, dataToUpdate).then(function (data) {
-                callback(data);
-            }, function (data) {
-                console.log('Error: ' + data);
-            });
-        };
-        eval("$scope" + "" + ".update = func;");
-
-        var func = function (id, callback) {
-            $http.delete($scope.rootPath + '/delete/' + id).then(function (data) {
-                callback(data);
-            }, function (data) {
-                console.log('Error: ' + data);
-            });
-        };
-        eval("$scope" + "" + ".delete = func;");
-
-        var func = function (callBack) {
-            $http.get($scope.rootPath + '/crud/').then(function (data) {
-                callBack(data.data.crud);
-            }, function (data) {
-                console.log('Error: ' + data);
-            });
-        };
-        eval("$scope" + "" + ".crud = func;");
+        /*CHECK BOX******************************/
     }
 };

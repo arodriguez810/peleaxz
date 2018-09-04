@@ -1,5 +1,5 @@
 paginator = {
-    run: function ($scope, $http, modelName) {
+    run: function ($scope) {
         /*Paginator******************************/
 
         $scope.goLimit = function (limit) {
@@ -17,7 +17,6 @@ paginator = {
         };
 
         $scope.pageChanged = function () {
-            $scope.table.pages[$scope.table.currentPage - 1].class = "spinner";
             $scope.refresh();
         };
         $scope.pageNotChanged = function () {
@@ -43,6 +42,7 @@ paginator = {
         };
         $scope.lastPage = function () {
             if ($scope.stopInteraction()) return false;
+            console.log('last');
             if ($scope.table.currentPage !== $scope.table.totalPages) {
                 $scope.table.currentPage = $scope.table.totalPages;
                 $scope.pageChanged();
@@ -70,5 +70,25 @@ paginator = {
             }
         };
         /*Paginator******************************/
+    },
+    make: function ($scope, data) {
+        $scope.records = data;
+        $scope.table.totalPages = data.totalPage;
+        $scope.table.pages = [];
+        var halfOfRange = Math.ceil(CONFIG.ui.tables.paginator.range / 2);
+        var initPaginator = $scope.table.currentPage - halfOfRange;
+        initPaginator = initPaginator <= 0 ? 1 : initPaginator;
+        initPaginator = initPaginator > (data.totalPage - CONFIG.ui.tables.paginator.range) ? (data.totalPage - CONFIG.ui.tables.paginator.range) : initPaginator;
+        initPaginator = initPaginator <= 0 ? 1 : initPaginator;
+        var lastPaginator = $scope.table.currentPage + halfOfRange;
+        lastPaginator = lastPaginator < CONFIG.ui.tables.paginator.range ? CONFIG.ui.tables.paginator.range : lastPaginator;
+        lastPaginator = lastPaginator > data.totalPage ? data.totalPage : lastPaginator;
+        for (var i = initPaginator; i <= lastPaginator; i++) {
+            $scope.table.pages.push({
+                number: i,
+                current: $scope.table.currentPage === i ? "active" : "",
+                class: ""
+            });
+        }
     }
-}
+};

@@ -1,16 +1,19 @@
-<div id="ms_userController" ng-controller="ms_userController as ms_userController">
+<div id="ms_user" ng-controller="ms_user as ms_user">
     <div class="panel panel-flat">
         <div class="page-header page-header-default">
+            <!--Sub Header-->
             <div class="page-header-content">
                 <div class="page-title">
-                    <h4><i class="icon-eye position-left"></i> <span class="text-semibold">Users</span> - List</h4>
-                    <a class="heading-elements-toggle"><i class="icon-eye"></i></a></div>
+                    <h4><span class="text-semibold">Users</span> - List</h4>
+                    <a class="heading-elements-toggle"><i class="icon-eye"></i></a>
 
+                </div>
                 <div class="heading-elements">
+
                     <div class="heading-btn-group">
                         <a id="loadingButton"
                            class="btn btn-link btn-float text-size-small has-text legitRipple"
-                           ng-click="ms_userController.refresh();"
+                           ng-click="ms_user.refresh();"
                         >
                             <i class="text-primary icon-reload-alt"></i>
                             <span>Refresh</span>
@@ -18,6 +21,8 @@
                     </div>
                 </div>
             </div>
+            <!--Sub Header-->
+            <!--Breadcrumb and Table Options-->
             <div class="breadcrumb-line"><a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
                 <ul class="breadcrumb">
                     <li><a data-function="menu" href="#home"><i class="icon-home2 position-left"></i> Home</a></li>
@@ -52,19 +57,37 @@
                             <li><a href="#"><i class="icon-circle"></i>Disable</a></li>
                         </ul>
                     </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle legitRipple" data-toggle="dropdown" aria-expanded="false">
+                            <i class="icon-list position-left"></i>
+                            Records Per Page ({{ms_user.table.currentLimit===0?'All':ms_user.table.currentLimit}})
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li class="{{ms_user.limitActive(row)}}"
+                                ng-repeat="(key, row) in ms_user.CONFIG.ui.tables.paginator.limits">
+                                <a ng-click="ms_user.goLimit(row)">{{row==0?'All':row}}</a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
+            <!--Breadcrumb and Table Options-->
         </div>
         <div class="subcontent">
-            <div class="table-responsive">
-                <table class="table table-togglable table-hover" data-animation="bounceInUp" id="ms_userTable"
-                       ng-show="ms_userController.table.loaded">
+
+            <div class="table-responsive" id="ms_userTablePanel">
+                <!--Table List-->
+
+                <table class="table table-togglable table-hover table-framed" data-animation="bounceInUp"
+                       id="ms_userTable">
                     <thead class="bg-danger">
+                    <!--Columns-->
                     <tr>
-                        <th ng-repeat="(key, value) in ms_userController.table.crud.table.columns"
+                        <th ng-repeat="(key, value) in ms_user.table.crud.table.columns"
                             ng-show="value.visible!=false">
-                            <input type="checkbox" ng-model="ms_userController.checkall" ng-show="key==='id'"
-                                   ng-click="ms_userController.checkAll()">
+                            <input type="checkbox" ng-model="ms_user.checkall" ng-show="key==='id'"
+                                   ng-click="ms_user.checkAll()">
                             {{value.label||key}}
                         </th>
                         <th class="text-center" style="width: 30px;">
@@ -73,18 +96,20 @@
                     </tr>
                     </thead>
                     <tbody id="ms_userTableBody">
-                    <tr ng-repeat="(key, row) in ms_userController.list.data" data-object="{{row}}"
-                        class="{{!row.active?'bg-grey-300':''}}">
-                        <td ng-repeat="(key, value) in ms_userController.table.crud.table.columns"
+                    <tr ng-repeat="(key, row) in ms_user.records.data" data-object="{{row}}"
+                        class="{{!row.active?'bg-grey-300 text-grey-600':''}}">
+                        <!--MultiSelect And Key-->
+                        <td ng-repeat="(key, value) in ms_user.table.crud.table.columns"
                             ng-show="value.visible!=false">
                             <input type="checkbox" data-object="{{row}}"
                                    class="singlecheck"
                                    value="row.id"
-                                   ng-checked="ms_userController.selected"
+                                   ng-checked="ms_user.selected"
                                    ng-show="key==='id'"
-                                   ng-click="ms_userController.check(this)">
+                                   ng-click="ms_user.check(this)">
                             {{$eval("row."+key)}}
                         </td>
+                        <!--Options-->
                         <td class="text-center">
                             <ul class="icons-list">
                                 <li class="dropdown">
@@ -92,7 +117,7 @@
                                         <i class=" icon-more2"></i>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-right">
-                                        <li><a href="#"><i class="icon-pencil5"></i> Edit</a></li>
+                                        <li><a href="#"><i class="icon-pencil5"></i>Edit</a></li>
                                         <li><a href="#"><i class="icon-trash"></i>Remove</a></li>
                                         <li ng-show="!row.active"><a href="#"><i class="icon-checkmark-circle"></i>Enable</a>
                                         </li>
@@ -114,7 +139,22 @@
                         </td>
                     </tr>
                     </tbody>
+
                 </table>
+
+                <!--Table List-->
+            </div>
+            <div class="text-right">
+                <ul class="pagination bg-danger" ng-show="ms_user.table.totalPages>1">
+                    <li><a data-popup="tooltip" title="First" ng-click="ms_user.firstPage()">‹‹</a></li>
+                    <li><a data-popup="tooltip" title="Back" ng-click="ms_user.backPage()">‹</a></li>
+                    <li class="{{row.current}} {{row.class}}" ng-repeat="(key, row) in ms_user.table.pages">
+                        <a data-popup="tooltip" title="Page {{row.number}}"
+                           ng-click="ms_user.goPage(row.number)">{{row.number}}</a>
+                    </li>
+                    <li><a data-popup="tooltip" title="Next" ng-click="ms_user.nextPage()">›</a></li>
+                    <li><a data-popup="tooltip" title="Last" ng-click="ms_user.lastPage()">››</a></li>
+                </ul>
             </div>
         </div>
 

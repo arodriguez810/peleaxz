@@ -20,10 +20,12 @@ exports.LoadEJS = function (files, params) {
                 }
             }
             var models = params.models.concat(params.modelsql).concat(params.modelmysql);
+
             var send = {
                 modelName: params.modelName,
                 session: params.session,
                 localjs: params.localjs,
+                CONFIG: params.CONFIG,
                 models: models
             };
 
@@ -62,7 +64,6 @@ exports.defaultRequests = function (params, Model) {
         exports.LoadEJS(files, params);
     });
     exports.loadEJSSimple('./views/master/error', 'error', params);
-
 
 
     params.app.get(params.util.format('/api/%s/list', params.modelName), function (req, res) {
@@ -146,7 +147,7 @@ exports.defaultRequests = function (params, Model) {
 
 
     params.app.get(params.util.format('/api/%s/crud', params.modelName), function (req, res) {
-        params.fs.readFile(util.format("./crud/mongo/%s.json", params.modelName), function (err,data) {
+        params.fs.readFile(util.format("./crud/mongo/%s.json", params.modelName), function (err, data) {
             if (err) {
                 res.json({message: err, error: true});
             }

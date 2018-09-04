@@ -24,4 +24,6 @@ app.controller(modelName + 'Controller', function ($scope, $http, $compile, $con
         });
     };
     homeController.loadContent();
+
+
 });

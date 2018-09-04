@@ -19,3 +19,8 @@
     position: absolute;
     bottom: 0px;
 }
+
+.pagination {
+    margin-top: 0;
+    margin-bottom: 0px;
+}
