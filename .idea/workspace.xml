@@ -2,574 +2,221 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8fb134e-e727-43fe-b984-89a1d2d7969c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/swf/datatables/flashExport.swf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/swf/handsontable/zero_clipboard.swf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/samples/img/github-top.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/samples/img/header-bg.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/samples/img/header-separator.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/samples/img/logo.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/samples/img/navigation-tip.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/samples/old/assets/inlineall/logo.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/samples/toolbarconfigurator/font/fontello.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/samples/toolbarconfigurator/font/fontello.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/samples/toolbarconfigurator/font/fontello.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/charts/echarts/columns_waterfalls.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/charts/echarts/combinations.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/charts/echarts/funnels_chords.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/charts/echarts/lines_areas.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/charts/echarts/pies_donuts.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/charts/echarts/scatter.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/charts/echarts/timeline_option.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/charts/google/bars/bar.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/charts/google/bars/bar_stacked.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/charts/google/bars/column.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/charts/google/bars/column_stacked.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/charts/google/bars/combo.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/charts/google/bars/histogram.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/charts/google/bubbles/bubble.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/charts/google/bubbles/bubble_gradient.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/charts/google/lines/area.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/charts/google/lines/area_intervals.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/charts/google/lines/area_stacked.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/charts/google/lines/area_stepped.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/charts/google/lines/line_intervals.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/charts/google/lines/lines.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/charts/google/other/candlestick.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/charts/google/other/diff.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/charts/google/other/geo.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/charts/google/other/sankey.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/charts/google/other/trendline.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/charts/google/pies/3d_exploded.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/charts/google/pies/donut.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/charts/google/pies/donut_exploded.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/charts/google/pies/donut_rotate.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/charts/google/pies/pie.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/charts/google/pies/pie_3d.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/charts/google/pies/pie_diff_border.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/charts/google/pies/pie_diff_invert.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/charts/google/pies/pie_diff_opacity.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/charts/google/pies/pie_diff_radius.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/charts/google/pies/pie_exploded.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/charts/google/pies/pie_rotate.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/charts/google/scatter/scatter.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/charts/google/scatter/scatter_diff.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/app.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/app.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/bootstrap.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jasny_bootstrap.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/core.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/effects.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/full.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.af-ZA.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.af.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.am-ET.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.am.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.ar-AE.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.ar-BH.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.ar-DZ.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.ar-EG.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.ar-IQ.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.ar-JO.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.ar-KW.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.ar-LB.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.ar-LY.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.ar-MA.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.ar-OM.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.ar-QA.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.ar-SA.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.ar-SY.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.ar-TN.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.ar-YE.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.ar.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.arn-CL.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.arn.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.as-IN.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.as.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.az-Cyrl-AZ.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.az-Cyrl.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.az-Latn-AZ.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.az-Latn.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.en-GB.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.en-IE.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.en-IN.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.en-JM.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.en-MY.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.en-NZ.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.en-PH.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.en-SG.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.en-TT.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.en-US.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.en-ZA.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.en-ZW.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.es-AR.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.es-BO.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.es-CL.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.es-CO.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.es.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.et-EE.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.et.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.eu-ES.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.eu.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.fa-IR.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.fa.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.fi-FI.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.fi.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.fil-PH.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.fil.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.fo-FO.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.fo.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.fr-BE.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.fr-CA.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.fr-CH.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.id-ID.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.id.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.ig-NG.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.ig.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.ii-CN.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.ii.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.is-IS.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.is.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.it-CH.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.it-IT.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.it.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.iu-Cans-CA.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.iu-Cans.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.iu-Latn-CA.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.iu-Latn.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/core/libraries/jquery_ui/globalize/cultures/globalize.culture.iu.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/addon/display/fullscreen.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/addon/display/fullscreen.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/addon/display/placeholder.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/addon/display/rulers.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/addon/edit/closebrackets.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/addon/edit/closetag.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/addon/edit/continuelist.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/addon/edit/matchbrackets.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/addon/edit/matchtags.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/addon/edit/trailingspace.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/addon/fold/brace-fold.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/addon/fold/comment-fold.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/addon/fold/foldcode.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/addon/fold/foldgutter.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/addon/fold/foldgutter.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/addon/fold/indent-fold.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/mode/clojure/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/mode/cobol/cobol.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/mode/cobol/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/mode/coffeescript/coffeescript.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/mode/coffeescript/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/mode/commonlisp/commonlisp.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/mode/commonlisp/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/mode/css/css.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/mode/css/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/mode/css/less.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/mode/css/less_test.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/mode/css/scss.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/mode/css/scss_test.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/mode/css/test.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/mode/d/d.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/mode/d/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/mode/jinja2/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/mode/jinja2/jinja2.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/mode/julia/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/mode/julia/julia.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/mode/livescript/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/mode/livescript/livescript.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/mode/livescript/livescript.ls" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/mode/lua/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/mode/lua/lua.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/mode/scheme/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/mode/scheme/scheme.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/mode/shell/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/mode/shell/shell.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/mode/sieve/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/mode/sieve/sieve.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/mode/smalltalk/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/mode/smalltalk/smalltalk.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/mode/smarty/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/mode/smarty/smarty.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/mode/smartymixed/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/mode/smartymixed/smartymixed.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/mode/solr/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/mode/solr/solr.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/mode/sparql/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/mode/sparql/sparql.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/theme/mbo.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/theme/mdn-like.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/theme/midnight.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/theme/monokai.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/theme/neat.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/theme/night.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/theme/paraiso-dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/theme/paraiso-light.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/theme/pastel-on-dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/theme/rubyblue.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/theme/solarized.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/theme/the-matrix.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/theme/tomorrow-night-eighties.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/theme/twilight.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/theme/vibrant-ink.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/codemirror/theme/xq-dark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/wysihtml5/locales/bootstrap-wysihtml5.ja-JP.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/wysihtml5/locales/bootstrap-wysihtml5.ko-KR.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/wysihtml5/locales/bootstrap-wysihtml5.lt-LT.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/wysihtml5/locales/bootstrap-wysihtml5.mo-MD.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/wysihtml5/locales/bootstrap-wysihtml5.nb-NB.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/wysihtml5/locales/bootstrap-wysihtml5.nl-NL.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/wysihtml5/locales/bootstrap-wysihtml5.pl-PL.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/wysihtml5/locales/bootstrap-wysihtml5.pt-BR.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/wysihtml5/locales/bootstrap-wysihtml5.ru-RU.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/wysihtml5/locales/bootstrap-wysihtml5.sk-SK.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/wysihtml5/locales/bootstrap-wysihtml5.sv-SE.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/wysihtml5/locales/bootstrap-wysihtml5.tr-TR.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/wysihtml5/locales/bootstrap-wysihtml5.ua-UA.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/wysihtml5/locales/bootstrap-wysihtml5.zh-CN.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/wysihtml5/locales/bootstrap-wysihtml5.zh-TW.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/editors/wysihtml5/parsers.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/forms/validation/localization/messages_eu.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/forms/validation/localization/messages_eu.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/forms/validation/localization/messages_fa.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/forms/validation/localization/messages_fa.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/forms/validation/localization/messages_fi.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/forms/validation/localization/messages_fi.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/forms/validation/localization/messages_fr.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/forms/validation/localization/messages_fr.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/forms/validation/localization/messages_ge.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/forms/validation/localization/messages_ge.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/forms/validation/localization/messages_gl.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/forms/validation/localization/messages_gl.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/forms/validation/localization/messages_he.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/forms/validation/localization/messages_he.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/forms/validation/localization/messages_hr.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/forms/validation/localization/messages_hr.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/forms/validation/localization/messages_sr_lat.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/forms/validation/localization/messages_sr_lat.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/forms/validation/localization/messages_sv.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/forms/validation/localization/messages_sv.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/forms/validation/localization/messages_th.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/forms/validation/localization/messages_th.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/forms/validation/localization/messages_tj.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/forms/validation/localization/messages_tj.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/forms/validation/localization/messages_tr.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/forms/validation/localization/messages_tr.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/forms/validation/localization/messages_uk.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/forms/validation/localization/messages_uk.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/forms/validation/localization/messages_ur.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/forms/validation/localization/messages_ur.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/forms/validation/localization/messages_vi.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/forms/validation/localization/messages_vi.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/maps/jvectormap/map_files/countries/uk.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/maps/jvectormap/map_files/countries/usa.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/maps/jvectormap/map_files/countries/venezuela.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/maps/jvectormap/map_files/europe.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/maps/jvectormap/map_files/world.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/media/cropper.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/media/fancybox.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/notifications/bootbox.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/notifications/jgrowl.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/notifications/noty.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/notifications/pnotify.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/notifications/sweet_alert.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/pagination/bootpag.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/pagination/bs_pagination.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/pagination/datepaginator.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/pickers/anytime.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/pickers/pickadate/translations/ko_KR.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/pickers/pickadate/translations/ne_NP.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/pickers/pickadate/translations/nl_NL.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/pickers/pickadate/translations/no_NO.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/pickers/pickadate/translations/pl_PL.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/pickers/pickadate/translations/pt_BR.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/pickers/pickadate/translations/pt_PT.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/pickers/pickadate/translations/ro_RO.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/pickers/pickadate/translations/ru_RU.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/pickers/pickadate/translations/sk_SK.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/pickers/pickadate/translations/sl_SI.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/pickers/pickadate/translations/sv_SE.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/pickers/pickadate/translations/th_TH.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/pickers/pickadate/translations/tr_TR.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/pickers/pickadate/translations/uk_UA.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/pickers/pickadate/translations/vi_VN.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/tables/handsontable/languages/pl-PL.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/tables/handsontable/languages/pt-BR.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/tables/handsontable/languages/pt-PT.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/tables/handsontable/languages/ru-RU.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/tables/handsontable/languages/ru-UA.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/tables/handsontable/languages/sk-SK.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/tables/handsontable/languages/sv-SE.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/tables/handsontable/languages/th-TH.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/tables/handsontable/languages/tr-TR.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/tables/handsontable/languages/uk-UA.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/tables/handsontable/languages/zh-CN.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/tables/handsontable/languages/zh-TW.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/trees/fancytree_all.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/trees/fancytree_childcounter.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/ui/dragula.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/ui/drilldown.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/ui/fullcalendar/lang/nl-be.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/ui/fullcalendar/lang/nl.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/ui/fullcalendar/lang/nn.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/ui/fullcalendar/lang/pl.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/ui/fullcalendar/lang/pt-br.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/ui/fullcalendar/lang/pt.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/ui/fullcalendar/lang/ro.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/ui/fullcalendar/lang/ru.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/ui/fullcalendar/lang/sk.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/ui/fullcalendar/lang/sl.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/ui/fullcalendar/lang/sr-cyrl.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/ui/fullcalendar/lang/sr.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/ui/fullcalendar/lang/sv.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/ui/fullcalendar/lang/th.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/ui/fullcalendar/lang/tr.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/ui/fullcalendar/lang/uk.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/uploaders/plupload/i18n/pl.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/uploaders/plupload/i18n/pt.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/uploaders/plupload/i18n/pt_BR.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/uploaders/plupload/i18n/ro.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/uploaders/plupload/i18n/ru.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/uploaders/plupload/i18n/sk.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/uploaders/plupload/i18n/sl.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/uploaders/plupload/i18n/sq.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/uploaders/plupload/i18n/sr.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/uploaders/plupload/i18n/sv.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/uploaders/plupload/i18n/th_TH.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/uploaders/plupload/i18n/tr.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/uploaders/plupload/i18n/uk_UA.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/uploaders/plupload/i18n/vi.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/uploaders/plupload/i18n/zh_CN.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/js/plugins/uploaders/plupload/i18n/zh_TW.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/less/_bootstrap/mixins/alerts.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/less/_bootstrap/mixins/background-variant.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/less/_bootstrap/mixins/border-radius.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/less/_bootstrap/mixins/buttons.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/less/_bootstrap/mixins/center-block.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/less/_bootstrap/mixins/clearfix.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/less/_bootstrap/mixins/forms.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/less/_bootstrap/mixins/gradients.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/less/_bootstrap/mixins/grid-framework.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/less/_bootstrap/mixins/grid.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/less/_bootstrap/mixins/hide-text.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/less/_bootstrap/mixins/image.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/less/_bootstrap/mixins/labels.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/less/_bootstrap/mixins/list-group.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/less/_bootstrap/mixins/nav-divider.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/less/_bootstrap/mixins/nav-vertical-align.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/less/bootstrap-limitless/buttons.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/less/bootstrap-limitless/close.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/less/bootstrap-limitless/code.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/less/bootstrap-limitless/dropdowns.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/less/bootstrap-limitless/forms.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/less/bootstrap-limitless/glyphicons.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/less/bootstrap-limitless/input-groups.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/less/bootstrap-limitless/labels.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/less/bootstrap-limitless/list-group.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/less/bootstrap-limitless/media.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/less/bootstrap-limitless/modals.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/less/bootstrap-limitless/navbar.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/less/bootstrap-limitless/navs.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/less/bootstrap-limitless/pager.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/less/bootstrap-limitless/pagination.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/less/bootstrap-limitless/panels.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/less/core/mixins/nav-vertical-align.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/less/core/variables/variables-core.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/less/core/variables/variables-custom.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/locales/en.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/locales/ru.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/assets/locales/ua.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/blog_classic_h.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/blog_classic_v.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/blog_grid.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/blog_sidebar_left.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/blog_sidebar_right.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/blog_single.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/boxed_default.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/boxed_full.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/lang/is.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/lang/it.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/lang/ja.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/lang/ka.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/lang/km.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/lang/ko.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/lang/ku.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/lang/lt.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/lang/lv.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/lang/mk.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/lang/mn.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/lang/ms.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/lang/nb.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/lang/nl.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/lang/no.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/lang/pl.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/plugins/a11yhelp/dialogs/lang/ja.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/plugins/a11yhelp/dialogs/lang/km.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/plugins/a11yhelp/dialogs/lang/ko.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/plugins/a11yhelp/dialogs/lang/ku.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/plugins/a11yhelp/dialogs/lang/lt.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/plugins/a11yhelp/dialogs/lang/lv.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/plugins/a11yhelp/dialogs/lang/mk.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/plugins/a11yhelp/dialogs/lang/mn.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/plugins/a11yhelp/dialogs/lang/nb.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/plugins/a11yhelp/dialogs/lang/nl.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/plugins/a11yhelp/dialogs/lang/no.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/plugins/a11yhelp/dialogs/lang/pl.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/plugins/a11yhelp/dialogs/lang/pt-br.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/plugins/a11yhelp/dialogs/lang/pt.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/plugins/a11yhelp/dialogs/lang/ro.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/plugins/a11yhelp/dialogs/lang/ru.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/plugins/scayt/LICENSE.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/plugins/scayt/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/plugins/scayt/dialogs/options.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/plugins/scayt/dialogs/toolbar.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/plugins/specialchar/dialogs/lang/_translationstatus.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/plugins/specialchar/dialogs/lang/af.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/plugins/specialchar/dialogs/lang/ar.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/plugins/specialchar/dialogs/lang/bg.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/plugins/specialchar/dialogs/lang/ca.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/plugins/specialchar/dialogs/lang/cs.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/plugins/specialchar/dialogs/lang/cy.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/plugins/specialchar/dialogs/lang/da.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/plugins/specialchar/dialogs/lang/de.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/plugins/specialchar/dialogs/lang/el.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/plugins/specialchar/dialogs/lang/en-gb.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/plugins/specialchar/dialogs/lang/en.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/plugins/wsc/dialogs/wsc_ie.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/samples/css/samples.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/samples/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/samples/js/sample.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/samples/js/sf.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/samples/old/ajax.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/samples/old/api.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/samples/old/appendto.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/samples/old/assets/outputxhtml/outputxhtml.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/samples/old/assets/posteddata.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/samples/toolbarconfigurator/font/config.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/samples/toolbarconfigurator/font/fontello.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/samples/toolbarconfigurator/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/samples/toolbarconfigurator/js/abstracttoolbarmodifier.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/samples/toolbarconfigurator/js/fulltoolbareditor.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/samples/toolbarconfigurator/js/toolbarmodifier.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/samples/toolbarconfigurator/js/toolbartextmodifier.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/samples/toolbarconfigurator/lib/codemirror/LICENSE" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/samples/toolbarconfigurator/lib/codemirror/codemirror.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/samples/toolbarconfigurator/lib/codemirror/codemirror.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/samples/toolbarconfigurator/lib/codemirror/javascript.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/samples/toolbarconfigurator/lib/codemirror/neo.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/ckeditor/samples/toolbarconfigurator/lib/codemirror/show-hint.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/colors_info.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/colors_orange.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/colors_pink.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/colors_primary.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/colors_purple.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/colors_slate.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/colors_success.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/colors_teal.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/colors_violet.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/colors_warning.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/components_affix.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/components_alerts.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/components_breadcrumbs.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/components_buttons.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/components_dropdowns.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/components_labels.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/d3_lines_basic.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/d3_other.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/d3_pies.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/d3_tree.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/datatable_advanced.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/datatable_api.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/datatable_basic.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/datatable_data_sources.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/datatable_extension_autofill.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/datatable_extension_buttons_flash.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/datatable_extension_buttons_html5.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/datatable_extension_buttons_init.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/datatable_extension_buttons_print.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/datatable_extension_colvis.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/datatable_extension_fixed_columns.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/datatable_extension_fixed_header.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/extension_fullcalendar_views.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/extension_image_cropper.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/extra_context_menu.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/extra_fab.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/extra_idle_timeout.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/extra_session_timeout.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/extra_sliders_ion.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/extra_sliders_noui.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/extra_trees.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/form_bootstrap_select.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/form_checkboxes_radios.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/form_controls_extended.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/form_dual_listboxes.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/form_editable.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/form_floating_labels.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/form_input_groups.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/job_detailed.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/job_list_cards.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/job_list_panel.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/jqueryui_components.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/jqueryui_forms.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/jqueryui_interactions.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/jqueryui_navigation.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/jqueryui_sliders.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/layout_footer_fixed.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/layout_navbar_fixed.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/layout_navbar_hideable.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/layout_navbar_hideable_sidebar.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/layout_navbar_sidebar_fixed.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/layout_sidebar_fixed_native.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/learning_detailed.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/learning_grid.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/sidebar_double_fix_mini.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/sidebar_double_hide.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/sidebar_double_visible.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/sidebar_dual.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/sidebar_dual_double_collapse.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/sidebar_dual_double_hide.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/sidebar_dual_swap.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/sidebar_hidden.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/sidebar_light.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/sidebar_mini_collapse.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/sidebar_mini_hide.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/starters/1_col.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/starters/2_col.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/starters/3_col_double.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/starters/3_col_dual.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/starters/4_col.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/starters/layout_navbar_fixed_main.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/starters/layout_navbar_fixed_secondary.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/table_basic.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/table_borders.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/table_elements.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/table_responsive.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/table_sizing.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/table_styling.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/task_manager_detailed.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/task_manager_grid.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/task_manager_list.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/timelines_center.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/timelines_left.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/timelines_right.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/uploader_bootstrap.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/c/uploader_dropzone.html" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/alpaca_advanced.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/alpaca_basic.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/alpaca_controls.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/animations_css3.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/animations_velocity_basic.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/animations_velocity_examples.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/animations_velocity_ui.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/appearance_draggable_panels.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/appearance_panel_heading.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/blog_single.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/chat_layouts.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/colors_blue.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/colors_brown.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/colors_danger.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/colors_green.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/colors_grey.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/colors_indigo.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/colors_info.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/colors_orange.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/colors_pink.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/colors_primary.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/colors_purple.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/colors_slate.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/colors_success.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/colors_teal.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/colors_violet.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/colors_warning.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/components_affix.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/components_buttons.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/components_dropdowns.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/components_loaders.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/components_media.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/components_modals.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/components_navs.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/components_notifications_other.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/components_notifications_pnotify.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/components_page_header.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/components_pagination.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/components_popups.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/components_sliders.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/components_thumbnails.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/dashboard.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/dashboard_boxed.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/dashboard_boxed_full.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/datatables_advanced.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/datatables_api.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/datatables_basic.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/datatables_data_sources.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/datatables_extension_autofill.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/datatables_extension_buttons_flash.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/datatables_extension_buttons_html5.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/datatables_extension_buttons_init.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/datatables_extension_buttons_print.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/datatables_extension_colvis.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/datatables_extension_fixed_columns.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/datatables_extension_fixed_header.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/datatables_extension_key_table.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/datatables_extension_reorder.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/datatables_extension_row_reorder.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/datatables_extension_scroller.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/datatables_extension_select.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/datatables_responsive.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/datatables_sorting.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/ecommerce_customers.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/ecommerce_orders_history.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/ecommerce_product_list.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/editor_ckeditor.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/editor_code.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/editor_summernote.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/editor_wysihtml5.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/extension_blockui.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/extension_dnd.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/extension_image_cropper.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/extra_context_menu.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/extra_fab.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/extra_fullcalendar.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/extra_fullcalendar_advanced.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/extra_fullcalendar_formats.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/extra_idle_timeout.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/extra_session_timeout.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/extra_sliders_ion.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/extra_sliders_noui.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/extra_trees.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/form_bootstrap_select.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/form_checkboxes_radios.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/form_controls_extended.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/form_dual_listboxes.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/form_editable.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/form_floating_labels.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/form_input_groups.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/form_inputs.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/form_layouts.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/form_multiselect.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/form_select2.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/form_selectbox.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/form_tags_input.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/form_validation.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/gallery.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/gallery_library.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/general_widgets_content.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/general_widgets_stats.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/handsontable_ac_password.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/handsontable_advanced.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/handsontable_basic.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/handsontable_cells.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/handsontable_cols.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/handsontable_context.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/handsontable_custom_checks.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/handsontable_search.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/handsontable_types.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/internationalization_callbacks.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/internationalization_fallback.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/internationalization_on_init.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/internationalization_switch_direct.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/internationalization_switch_query.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/invoice_archive.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/invoice_grid.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/invoice_template.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/job_apply.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/job_list.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/jqueryui_components.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/jqueryui_forms.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/jqueryui_interactions.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/jqueryui_navigation.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/jqueryui_sliders.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/layout_fixed_custom.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/layout_fixed_native.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/layout_navbar_hideable.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/layout_navbar_hideable_sidebar.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/layout_navbar_secondary_fixed.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/learning.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/learning_detailed.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/login.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/login_validation.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/mail_list.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/mail_list_read.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/mail_list_write.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/navbar_components.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/navbar_hideable.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/navbar_multiple.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/navbar_single.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/navigation_horizontal_elements.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/navigation_horizontal_mega.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/navigation_vertical_sizing.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/picker_color.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/picker_date.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/picker_location.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/sidebar_components.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/sidebar_detached_sticky_custom.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/sidebar_detached_sticky_native.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/sidebar_dual.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/table_elements.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/table_responsive.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/task_detailed.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/tasks_grid.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/tasks_list.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/timelines.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/uploader_bootstrap.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/uploader_dropzone.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/uploader_plupload.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/user_pages_list.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/user_pages_profile.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/user_profile_tabbed.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/wizard_form.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/wizard_steps.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/assets/js/pages/wizard_stepy.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/controllers/core.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/controllers/home.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/controllers/ms_user.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/crud/mssql/ms_user.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/js/dragon/api.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/js/dragon/paginator.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/js/dragon/table.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/js/events/globalevents.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/js/extensions/angular.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/js/extensions/animation.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/js/extensions/jquery.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/js/extensions/sweetalert.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/js/plugins/plugins.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/js/plugins/string.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/models/mongo/home.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/models/mssql/ms_user.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/service/home.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/service/ms_user.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/views/home/index.ejs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/views/home/login.ejs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/views/master/error/403.ejs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/views/master/error/404.ejs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/views/master/error/405.ejs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/views/master/error/500.ejs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/views/master/error/503.ejs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/views/master/footer.ejs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/views/master/head.ejs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/views/master/menu.ejs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/views/master/navbar.ejs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/views/ms_user/index.ejs" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/admin/custommodules/mssql.js" afterPath="$PROJECT_DIR$/admin/modules/mssql.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/admin/custommodules/mysql.js" afterPath="$PROJECT_DIR$/admin/modules/mysql.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/admin/custommodules/request.js" afterPath="$PROJECT_DIR$/admin/modules/request.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/admin/custommodules/tools.js" afterPath="$PROJECT_DIR$/admin/modules/tools.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/WiredTiger.wt" afterPath="$PROJECT_DIR$/db/WiredTiger.wt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/collection-0-4911855374159341883.wt" afterPath="$PROJECT_DIR$/db/collection-0-4911855374159341883.wt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/index-1-4911855374159341883.wt" afterPath="$PROJECT_DIR$/db/index-1-4911855374159341883.wt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/sizeStorer.wt" afterPath="$PROJECT_DIR$/db/sizeStorer.wt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/peleaxz.iml" afterPath="$PROJECT_DIR$/.idea/peleaxz.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/assets/css/icons/icomoon/styles.css" afterPath="$PROJECT_DIR$/admin/assets/css/icons/icomoon/styles.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/assets/css/style.css" afterPath="$PROJECT_DIR$/admin/assets/css/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/config.json" afterPath="$PROJECT_DIR$/admin/config.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/controllers/core.js" afterPath="$PROJECT_DIR$/admin/controllers/core.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/controllers/home.js" afterPath="$PROJECT_DIR$/admin/controllers/home.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/controllers/ms_user.js" afterPath="$PROJECT_DIR$/admin/controllers/ms_user.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/custommodules/request.js" afterPath="$PROJECT_DIR$/admin/custommodules/request.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/js/dragon/paginator.js" afterPath="$PROJECT_DIR$/admin/js/dragon/paginator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/js/dragon/table.js" afterPath="$PROJECT_DIR$/admin/js/dragon/table.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/models/mssql/ms_user.json" afterPath="$PROJECT_DIR$/admin/models/mssql/ms_user.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/views/master/head.ejs" afterPath="$PROJECT_DIR$/admin/views/master/head.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/views/ms_user/index.ejs" afterPath="$PROJECT_DIR$/admin/views/ms_user/index.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/defaults/controllers/@model@.js" afterPath="$PROJECT_DIR$/admin/defaults/controllers/@model@.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/server.js" afterPath="$PROJECT_DIR$/admin/server.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/WiredTiger.turtle" afterPath="$PROJECT_DIR$/db/WiredTiger.turtle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/mongod.lock" afterPath="$PROJECT_DIR$/db/mongod.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tools/c/assets/css/icons/icomoon/styles.css" afterPath="$PROJECT_DIR$/tools/c/assets/css/icons/icomoon/styles.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tools/c/starters/assets/css/icons/icomoon/styles.css" afterPath="$PROJECT_DIR$/tools/c/starters/assets/css/icons/icomoon/styles.css" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -583,63 +230,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ms_user.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/controllers/ms_user.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="83">
-              <caret line="17" column="8" lean-forward="false" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="index.ejs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/views/ms_user/index.ejs">
+        <entry file="file://$PROJECT_DIR$/admin/5-views/ms_user/index.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="389">
-              <caret line="155" column="82" lean-forward="false" selection-start-line="155" selection-start-column="82" selection-end-line="155" selection-end-column="82" />
-              <folding>
-                <element signature="n#style#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="paginator.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/js/dragon/paginator.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
-              <caret line="18" column="42" lean-forward="false" selection-start-line="18" selection-start-column="42" selection-end-line="18" selection-end-column="42" />
+            <state relative-caret-position="221">
+              <caret line="13" column="41" lean-forward="true" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ms_user.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/models/mssql/ms_user.json">
+      <file leaf-file-name="table.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/table.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="1" lean-forward="true" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+            <state relative-caret-position="136">
+              <caret line="8" column="29" lean-forward="true" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/server.js">
+      <file leaf-file-name="repeatKey.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/scripts/events/repeatKey.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="183">
-              <caret line="81" column="34" lean-forward="true" selection-start-line="81" selection-start-column="34" selection-end-line="81" selection-end-column="34" />
+            <state relative-caret-position="457">
+              <caret line="36" column="25" lean-forward="true" selection-start-line="36" selection-start-column="25" selection-end-line="36" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="request.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/admin/custommodules/request.js">
+      <file leaf-file-name="globalevents.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/scripts/events/globalevents.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="58" lean-forward="true" selection-start-line="15" selection-start-column="58" selection-end-line="15" selection-end-column="58" />
+            <state relative-caret-position="-288">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -659,49 +284,54 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>console.log(</find>
-      <find>data-popup=</find>
-      <find>Left tooltip position</find>
-      <find>Popover</find>
-      <find>export</find>
-      <find>popover</find>
-      <find>=popover</find>
-      <find>pop</find>
-      <find>Left popover position</find>
-      <find>show-popover-method-target</find>
-      <find>top</find>
-      <find>ms_userController</find>
-      <find>.&quot; + &quot;&quot;</find>
-      <find>.ms_user</find>
-      <find>refresh</find>
-      <find>.list</find>
-      <find>records per</find>
-      <find>MAX_SAFE_INTEGER</find>
-      <find>ms_user.list</find>
-      <find>basicMethods</find>
+      <find>./service</find>
+      <find>1-mo</find>
+      <find>./1-models</find>
+      <find>/models</find>
+      <find>controllers</find>
+      <find>/views/master</find>
+      <find>folders.model</find>
+      <find>folders.models</find>
+      <find>services</find>
+      <find>collectionsql</find>
+      <find>mongo</find>
+      <find>let</find>
+      <find>let</find>
       <find>modelName</find>
-      <find>Paginator</find>
-      <find>ms_user</find>
-      <find>makep</find>
-      <find>totalpage</find>
-      <find>localjs</find>
-      <find>lastPage</find>
+      <find>modules/</find>
+      <find>custom modi</find>
+      <find>LoadEJS</find>
+      <find>folders.views</find>
+      <find>views</find>
+      <find>.controller</find>
+      <find>scripts</find>
+      <find>folders.</find>
+      <find>models</find>
+      <find>modules</find>
+      <find>mysql</find>
+      <find>crud</find>
+      <find>default</find>
+      <find>per p</find>
+      <find>batch</find>
       <find>create</find>
-      <find>lala</find>
-      <find>console</find>
     </findStrings>
     <replaceStrings>
       <replace>sendFile</replace>
       <replace>Model</replace>
       <replace>\x1b[43m</replace>
-      <replace>@model@</replace>
       <replace>&lt;%= root %&gt;</replace>
       <replace>`</replace>
       <replace>mysql</replace>
       <replace>&quot;</replace>
       <replace>ms_user</replace>
       <replace>&quot; + &quot;&quot;</replace>
+      <replace>$scope.modelName</replace>
       <replace>$scope</replace>
+      <replace>$scope.modelText</replace>
+      <replace>@model@</replace>
+      <replace>'./1-models</replace>
+      <replace>./2-service</replace>
+      <replace>&quot;./'+folders.models+'</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -710,57 +340,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/admin/custommodules/sqlhelper.js" />
-        <option value="$PROJECT_DIR$/admin/service/ms_user.js" />
-        <option value="$PROJECT_DIR$/admin/service/user.js" />
-        <option value="$PROJECT_DIR$/admin/defaults/service/@model@.js" />
-        <option value="$PROJECT_DIR$/admin/defaults/controllers/@model@.js" />
-        <option value="$PROJECT_DIR$/admin/defaults/views/@model@/index.ejs" />
-        <option value="$PROJECT_DIR$/admin/controllers/user.js" />
-        <option value="$PROJECT_DIR$/admin/views/master/navbar.ejs" />
-        <option value="$PROJECT_DIR$/admin/models/mysql/my_user.json" />
-        <option value="$PROJECT_DIR$/admin/views/user/index.ejs" />
-        <option value="$PROJECT_DIR$/admin/views/my_user/index.ejs" />
-        <option value="$PROJECT_DIR$/admin/views/home/login.ejs" />
-        <option value="$PROJECT_DIR$/admin/models/mssql/ms_log.json" />
-        <option value="$PROJECT_DIR$/admin/models/mysql/my_test.json" />
-        <option value="$PROJECT_DIR$/admin/models/mssql/ms_ver.json" />
-        <option value="$PROJECT_DIR$/admin/custommodules/tools.js" />
-        <option value="$PROJECT_DIR$/admin/models/mysql/my_ver.json" />
-        <option value="$PROJECT_DIR$/admin/models/mssql/ms_user_columns.json" />
-        <option value="$PROJECT_DIR$/admin/custommodules/mysql.js" />
-        <option value="$PROJECT_DIR$/admin/defaults/crud/mongo/@model@.json" />
-        <option value="$PROJECT_DIR$/admin/defaults/crud/mssql/@model@.json" />
-        <option value="$PROJECT_DIR$/admin/defaults/crud/mysql/@model@.json" />
-        <option value="$PROJECT_DIR$/admin/controllers/my_user.js" />
-        <option value="$PROJECT_DIR$/admin/custommodules/mssql.js" />
-        <option value="$PROJECT_DIR$/admin/assets/js/pages/form_checkboxes_radios.js" />
-        <option value="$PROJECT_DIR$/admin/assets/js/plugins/forms/styling/switchery.min.js" />
-        <option value="$PROJECT_DIR$/admin/crud/mssql/ms_user.json" />
-        <option value="$PROJECT_DIR$/admin/views/master/menu.ejs" />
         <option value="$PROJECT_DIR$/admin/views/master/footer.ejs" />
         <option value="$PROJECT_DIR$/admin/js/animation.js" />
-        <option value="$PROJECT_DIR$/admin/assets/css/style.css" />
         <option value="$PROJECT_DIR$/admin/service/home.js" />
         <option value="$PROJECT_DIR$/admin/views/home/index.ejs" />
         <option value="$PROJECT_DIR$/admin/js/string.js" />
         <option value="$PROJECT_DIR$/admin/js/sweetalert.js" />
-        <option value="$PROJECT_DIR$/admin/views/master/head.ejs" />
         <option value="$PROJECT_DIR$/admin/js/globalplugins.js" />
-        <option value="$PROJECT_DIR$/admin/controllers/home.js" />
         <option value="$PROJECT_DIR$/admin/js/plugins.js" />
         <option value="$PROJECT_DIR$/admin/js/globalevents.js" />
-        <option value="$PROJECT_DIR$/admin/config.json" />
-        <option value="$PROJECT_DIR$/admin/views/ms_user/index.ejs" />
         <option value="$PROJECT_DIR$/admin/js/paginator.js" />
         <option value="$PROJECT_DIR$/admin/js/api.js" />
-        <option value="$PROJECT_DIR$/admin/controllers/core.js" />
-        <option value="$PROJECT_DIR$/admin/js/dragon/table.js" />
-        <option value="$PROJECT_DIR$/admin/controllers/ms_user.js" />
-        <option value="$PROJECT_DIR$/admin/js/dragon/paginator.js" />
         <option value="$PROJECT_DIR$/admin/models/mssql/ms_user.json" />
-        <option value="$PROJECT_DIR$/admin/server.js" />
+        <option value="$PROJECT_DIR$/admin/js/dragon/api.js" />
+        <option value="$PROJECT_DIR$/admin/js/system/variables.js" />
+        <option value="$PROJECT_DIR$/admin/js/extensions/angular.js" />
+        <option value="$PROJECT_DIR$/admin/views/master/menu.ejs" />
+        <option value="$PROJECT_DIR$/admin/js/dragon/crud.js" />
+        <option value="$PROJECT_DIR$/tools/c/assets/css/icons/icomoon/styles.css" />
+        <option value="$PROJECT_DIR$/admin/custommodules/mysql.js" />
+        <option value="$PROJECT_DIR$/admin/controllers/ms_user.js" />
+        <option value="$PROJECT_DIR$/admin/js/events/sweetalertbase.js" />
+        <option value="$PROJECT_DIR$/admin/js/events/globalevents.js" />
+        <option value="$PROJECT_DIR$/admin/js/extensions/sweetalertbase.js" />
+        <option value="$PROJECT_DIR$/admin/js/extensions/sweetalert.js" />
+        <option value="$PROJECT_DIR$/admin/js/events/repeatKey.js" />
+        <option value="$PROJECT_DIR$/admin/js/dragon/sortable.js" />
+        <option value="$PROJECT_DIR$/admin/js/dragon/table.js" />
+        <option value="$PROJECT_DIR$/admin/js/dragon/filter.js" />
+        <option value="$PROJECT_DIR$/admin/controllers/core.js" />
+        <option value="$PROJECT_DIR$/admin/controllers/home.js" />
+        <option value="$PROJECT_DIR$/admin/crud/mssql/ms_user.json" />
+        <option value="$PROJECT_DIR$/admin/js/dragon/ANDY.js" />
+        <option value="$PROJECT_DIR$/admin/service/ms_user.js" />
+        <option value="$PROJECT_DIR$/admin/defaults/controllers/@model@.js" />
+        <option value="$PROJECT_DIR$/admin/custommodules/mssql.js" />
+        <option value="$PROJECT_DIR$/admin/views/ms_user/index.ejs" />
+        <option value="$PROJECT_DIR$/admin/views/master/navbar.ejs" />
         <option value="$PROJECT_DIR$/admin/custommodules/request.js" />
+        <option value="$PROJECT_DIR$/admin/views/master/head.ejs" />
+        <option value="$PROJECT_DIR$/admin/js/dragon/paginator.js" />
+        <option value="$PROJECT_DIR$/admin/config.json" />
+        <option value="$PROJECT_DIR$/admin/3-controllers/home.js" />
+        <option value="$PROJECT_DIR$/admin/5-views/master/head.ejs" />
+        <option value="$PROJECT_DIR$/admin/server.js" />
+        <option value="$PROJECT_DIR$/admin/modules/request.js" />
+        <option value="$PROJECT_DIR$/admin/modules/mssql.js" />
+        <option value="$PROJECT_DIR$/admin/modules/mysql.js" />
+        <option value="$PROJECT_DIR$/admin/5-views/ms_user/index.ejs" />
+        <option value="$PROJECT_DIR$/admin/assets/css/style.css" />
+        <option value="$PROJECT_DIR$/admin/scripts/dragon/table.js" />
+        <option value="$PROJECT_DIR$/admin/scripts/events/repeatKey.js" />
       </list>
     </option>
   </component>
@@ -776,9 +406,6 @@
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
-  </component>
-  <component name="NodeModulesDirectoryManager">
-    <handled-path value="$PROJECT_DIR$/admin/node_modules" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
@@ -838,46 +465,21 @@
               <item name="peleaxz" type="b2602c69:ProjectViewProjectNode" />
               <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
               <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="scripts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="peleaxz" type="b2602c69:ProjectViewProjectNode" />
               <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
               <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="peleaxz" type="b2602c69:ProjectViewProjectNode" />
-              <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="scripts" type="462c0819:PsiDirectoryNode" />
               <item name="dragon" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="peleaxz" type="b2602c69:ProjectViewProjectNode" />
               <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
               <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="peleaxz" type="b2602c69:ProjectViewProjectNode" />
-              <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-              <item name="mssql" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="peleaxz" type="b2602c69:ProjectViewProjectNode" />
-              <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="peleaxz" type="b2602c69:ProjectViewProjectNode" />
-              <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="master" type="462c0819:PsiDirectoryNode" />
+              <item name="scripts" type="462c0819:PsiDirectoryNode" />
+              <item name="events" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -904,15 +506,15 @@
     <property name="node.js.path.for.package.standard" value="project" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.selected.package.standard" value="" />
-    <property name="SearchEverywhereHistoryKey" value="req&#9;FILE&#9;file://C:/wamp64/wwwalter/peleaxz/admin/custommodules/request.js&#10;core&#9;FILE&#9;file://C:/wamp64/wwwalter/peleaxz/admin/controllers/core.js&#10;he&#9;FILE&#9;file://C:/wamp64/wwwalter/peleaxz/admin/views/master/head.ejs&#10;com&#9;FILE&#9;file://C:/wamp64/wwwalter/peleaxz/tools/c/components_popups.html&#10;components_popups&#9;FILE&#9;file://C:/wamp64/wwwalter/peleaxz/tools/c/assets/js/pages/components_popups.js&#10;sty&#9;FILE&#9;file://C:/wamp64/wwwalter/peleaxz/admin/assets/css/style.css" />
+    <property name="SearchEverywhereHistoryKey" value="st&#9;FILE&#9;file://C:/wamp64/wwwalter/peleaxz/admin/assets/css/style.css&#10;inde&#9;FILE&#9;file://C:/wamp64/wwwalter/peleaxz/admin/5-views/ms_user/index.ejs&#10;head&#9;FILE&#9;file://C:/wamp64/wwwalter/peleaxz/admin/5-views/master/head.ejs&#10;hea&#9;FILE&#9;file://C:/wamp64/wwwalter/peleaxz/admin/5-views/master/head.ejs&#10;re&#9;FILE&#9;file://C:/wamp64/wwwalter/peleaxz/admin/modules/request.js&#10;head\&#9;FILE&#9;file://C:/wamp64/wwwalter/peleaxz/admin/5-views/master/head.ejs&#10;confi&#9;FILE&#9;file://C:/wamp64/wwwalter/peleaxz/admin/config.json&#10;conf&#9;FILE&#9;file://C:/wamp64/wwwalter/peleaxz/admin/config.json&#10;navba&#9;FILE&#9;file://C:/wamp64/wwwalter/peleaxz/admin/views/master/navbar.ejs&#10;ms_user/&#9;FILE&#9;file://C:/wamp64/wwwalter/peleaxz/admin/views/ms_user&#10;glo&#9;FILE&#9;file://C:/wamp64/wwwalter/peleaxz/admin/js/events/globalevents.js&#10;tab&#9;FILE&#9;file://C:/wamp64/wwwalter/peleaxz/admin/js/dragon/table.js&#10;glob&#9;FILE&#9;file://C:/wamp64/wwwalter/peleaxz/admin/js/events/globalevents.js&#10;sty&#9;FILE&#9;file://C:/wamp64/wwwalter/peleaxz/admin/assets/css/style.css&#10;menu&#9;FILE&#9;file://C:/wamp64/wwwalter/peleaxz/admin/views/master/menu.ejs&#10;navbar&#9;FILE&#9;file://C:/wamp64/wwwalter/peleaxz/admin/views/master/navbar.ejs&#10;layout_navbar_hideable_sidebar&#9;FILE&#9;file://C:/wamp64/wwwalter/peleaxz/tools/c/layout_navbar_hideable_sidebar.html&#10;nav&#9;FILE&#9;file://C:/wamp64/wwwalter/peleaxz/admin/views/master/navbar.ejs&#10;con&#9;FILE&#9;file://C:/wamp64/wwwalter/peleaxz/admin/config.json&#10;pag&#9;FILE&#9;file://C:/wamp64/wwwalter/peleaxz/admin/js/dragon/paginator.js&#10;he&#9;FILE&#9;file://C:/wamp64/wwwalter/peleaxz/admin/views/master/head.ejs&#10;form_sele&#9;FILE&#9;file://C:/wamp64/wwwalter/peleaxz/admin/assets/js/pages/form_select2.js&#10;req&#9;FILE&#9;file://C:/wamp64/wwwalter/peleaxz/admin/custommodules/request.js&#10;core&#9;FILE&#9;file://C:/wamp64/wwwalter/peleaxz/admin/controllers/core.js&#10;com&#9;FILE&#9;file://C:/wamp64/wwwalter/peleaxz/tools/c/components_popups.html&#10;components_popups&#9;FILE&#9;file://C:/wamp64/wwwalter/peleaxz/tools/c/assets/js/pages/components_popups.js" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\wamp64\wwwalter\peleaxz\admin\js\dragon" />
+      <recent name="C:\wamp64\wwwalter\peleaxz\admin\js\events" />
+      <recent name="C:\wamp64\wwwalter\peleaxz\admin\js\system" />
       <recent name="C:\wamp64\wwwalter\peleaxz\admin\js" />
       <recent name="C:\wamp64\wwwalter\peleaxz\admin\defaults\crud" />
-      <recent name="C:\wamp64\wwwalter\peleaxz\admin\models\mssql" />
-      <recent name="C:\wamp64\wwwalter\peleaxz\admin\custommodules" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\wamp64\wwwalter\peleaxz\admin\js\extensions" />
@@ -988,12 +590,12 @@
       <workItem from="1534963810031" duration="22000" />
       <workItem from="1535829582680" duration="18644000" />
       <workItem from="1535985009573" duration="17000" />
-      <workItem from="1535985048058" duration="13768000" />
+      <workItem from="1535985048058" duration="88554000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="325994000" />
+    <option name="totallyTimeSpent" value="400780000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="22" width="1382" height="754" extended-state="6" />
@@ -1048,252 +650,34 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/admin/models/mysql/my_test.json" />
-    <entry file="file://$PROJECT_DIR$/admin/models/mysql/my_ver.json" />
-    <entry file="file://$PROJECT_DIR$/admin/views/my_user/index.ejs" />
-    <entry file="file://$PROJECT_DIR$/admin/custommodules/mysql.js">
+    <entry file="file://$PROJECT_DIR$/admin/assets/js/pages/form_select2.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="77" column="36" lean-forward="false" selection-start-line="77" selection-start-column="36" selection-end-line="77" selection-end-column="36" />
+        <state relative-caret-position="188">
+          <caret line="336" column="14" lean-forward="false" selection-start-line="336" selection-start-column="7" selection-end-line="336" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/defaults/models/mongo/@model@.json">
+    <entry file="file://$PROJECT_DIR$/tools/c/form_select2.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+        <state relative-caret-position="494">
+          <caret line="1182" column="49" lean-forward="false" selection-start-line="1182" selection-start-column="42" selection-end-line="1182" selection-end-column="49" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/defaults/crud/mysql/@model@.json">
+    <entry file="file://$PROJECT_DIR$/admin/assets/js/plugins/sweetalert/sweetalert.min.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="1" lean-forward="false" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/defaults/crud/mssql/@model@.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="1" lean-forward="false" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/defaults/crud/mongo/@model@.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="4" lean-forward="true" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/controllers/my_user.js" />
-    <entry file="file://$PROJECT_DIR$/admin/assets/js/core/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1135">
-          <caret line="406" column="19" lean-forward="false" selection-start-line="406" selection-start-column="19" selection-end-line="406" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/assets/js/plugins/forms/styling/switchery.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="888" column="32" lean-forward="false" selection-start-line="888" selection-start-column="32" selection-end-line="888" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/custommodules/mssql.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="242" column="7" lean-forward="false" selection-start-line="242" selection-start-column="7" selection-end-line="242" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/assets/js/pages/form_checkboxes_radios.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/controllers/user.js" />
-    <entry file="file://$PROJECT_DIR$/admin/models/mongo/home.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/assets/css/colors.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1428">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/assets/css/core.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="477">
-          <caret line="6917" column="0" lean-forward="true" selection-start-line="6917" selection-start-column="0" selection-end-line="6917" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/assets/js/pages/animations_css3.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="11" lean-forward="true" selection-start-line="16" selection-start-column="8" selection-end-line="22" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/views/home/login.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="105" column="0" lean-forward="false" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/views/master/footer.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="43" lean-forward="false" selection-start-line="1" selection-start-column="43" selection-end-line="1" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/views/master/menu.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/node_modules/sqlite3/node_modules/tough-cookie/lib/pubsuffix.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="95" column="131727" lean-forward="false" selection-start-line="95" selection-start-column="131727" selection-end-line="95" selection-end-column="131727" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/views/master/navbar.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="50" lean-forward="false" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/service/ms_user.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/assets/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="20" lean-forward="false" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/custommodules/tools.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="48" lean-forward="false" selection-start-line="30" selection-start-column="48" selection-end-line="30" selection-end-column="48" />
+        <state relative-caret-position="217">
+          <caret line="0" column="29799" lean-forward="false" selection-start-line="0" selection-start-column="29792" selection-end-line="0" selection-end-column="29799" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/js/plugins/string.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/views/home/index.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/service/home.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/js/globalplugins.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="4" lean-forward="false" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/js/extensions/sweetalert.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="6" lean-forward="false" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/crud/mssql/ms_user.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="17" lean-forward="false" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/controllers/home.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/views/master/head.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="45" lean-forward="true" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tools/c/components_popups.html">
-      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="188">
-          <caret line="1465" column="85" lean-forward="false" selection-start-line="1465" selection-start-column="64" selection-end-line="1465" selection-end-column="85" />
-          <folding>
-            <element signature="n#style#0;n#td#1;n#tr#1;n#tbody#0;n#table#0;n#div#1;n#div#1;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#td#0;n#tr#1;n#tbody#0;n#table#0;n#div#1;n#div#3;n#div#1;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tools/c/assets/js/pages/components_popups.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="133" column="8" lean-forward="false" selection-start-line="133" selection-start-column="8" selection-end-line="133" selection-end-column="25" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/config.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="11" lean-forward="true" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/js/plugins/plugins.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <caret line="74" column="16" lean-forward="false" selection-start-line="74" selection-start-column="10" selection-end-line="74" selection-end-column="16" />
           <folding />
         </state>
       </provider>
@@ -1301,33 +685,95 @@
     <entry file="file://$PROJECT_DIR$/admin/js/extensions/angular.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
+          <caret line="0" column="9" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/js/system/variables.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/js/extensions/animation.js">
+    <entry file="file://$PROJECT_DIR$/admin/views/home/index.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="35" column="4" lean-forward="false" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="4" />
-          <folding>
-            <marker date="1530562505373" expanded="true" signature="859:875" ph="..." />
-          </folding>
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tools/c/starters/assets/css/components.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="358">
+          <caret line="193" column="38" lean-forward="false" selection-start-line="193" selection-start-column="21" selection-end-line="193" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tools/c/layout_navbar_hideable_sidebar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="336" column="40" lean-forward="true" selection-start-line="336" selection-start-column="40" selection-end-line="336" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/views/master/menu.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="25" lean-forward="true" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/modules/tools.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-68">
+          <caret line="14" column="44" lean-forward="true" selection-start-line="14" selection-start-column="44" selection-end-line="14" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tools/c/assets/css/icons/icomoon/styles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="842" column="46" lean-forward="true" selection-start-line="842" selection-start-column="46" selection-end-line="842" selection-end-column="46" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/js/events/globalevents.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="33" lean-forward="false" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
+        <state relative-caret-position="426">
+          <caret line="42" column="7" lean-forward="false" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/js/extensions/jquery.js">
+    <entry file="file://$PROJECT_DIR$/admin/js/extensions/sweetalertbase.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="85">
+          <caret line="5" column="31" lean-forward="false" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/js/events/repeatKey.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="24" column="57" lean-forward="true" selection-start-line="24" selection-start-column="57" selection-end-line="24" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/js/extensions/sweetalert.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="59" lean-forward="false" selection-start-line="14" selection-start-column="59" selection-end-line="14" selection-end-column="59" />
           <folding />
         </state>
       </provider>
@@ -1335,49 +781,39 @@
     <entry file="file://$PROJECT_DIR$/admin/controllers/core.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="36" lean-forward="false" selection-start-line="0" selection-start-column="36" selection-end-line="0" selection-end-column="36" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/js/dragon/table.js">
+    <entry file="file://$PROJECT_DIR$/admin/js/dragon/ANDY.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="31" lean-forward="false" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+        <state relative-caret-position="0">
+          <caret line="0" column="8" lean-forward="true" selection-start-line="0" selection-start-column="8" selection-end-line="0" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/js/dragon/api.js">
+    <entry file="file://$PROJECT_DIR$/admin/defaults/controllers/@model@.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="45" lean-forward="false" selection-start-line="3" selection-start-column="36" selection-end-line="3" selection-end-column="45" />
+        <state relative-caret-position="153">
+          <caret line="9" column="31" lean-forward="true" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/controllers/ms_user.js">
+    <entry file="file://$PROJECT_DIR$/admin/defaults/crud/mssql/@model@.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="83">
-          <caret line="17" column="8" lean-forward="false" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="37" />
+        <state relative-caret-position="238">
+          <caret line="14" column="16" lean-forward="true" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/views/ms_user/index.ejs">
+    <entry file="file://$PROJECT_DIR$/admin/controllers/home.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="155" column="82" lean-forward="false" selection-start-line="155" selection-start-column="82" selection-end-line="155" selection-end-column="82" />
-          <folding>
-            <element signature="n#style#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/js/dragon/paginator.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="18" column="42" lean-forward="false" selection-start-line="18" selection-start-column="42" selection-end-line="18" selection-end-column="42" />
+        <state relative-caret-position="442">
+          <caret line="26" column="33" lean-forward="false" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
           <folding />
         </state>
       </provider>
@@ -1385,23 +821,239 @@
     <entry file="file://$PROJECT_DIR$/admin/models/mssql/ms_user.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
-          <caret line="9" column="1" lean-forward="true" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+          <caret line="9" column="1" lean-forward="false" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/js/dragon/api.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1037">
+          <caret line="61" column="46" lean-forward="false" selection-start-line="61" selection-start-column="42" selection-end-line="61" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/js/dragon/crud.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="5" lean-forward="true" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/js/dragon/table.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="53" lean-forward="false" selection-start-line="17" selection-start-column="53" selection-end-line="17" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/js/dragon/sortable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/views/master/head.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="59" column="37" lean-forward="false" selection-start-line="59" selection-start-column="37" selection-end-line="59" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/js/dragon/paginator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="14" column="13" lean-forward="true" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/views/master/navbar.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="17" lean-forward="true" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/crud/mssql/ms_user.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="17" lean-forward="false" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/js/dragon/filter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="2" lean-forward="false" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/controllers/ms_user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="3" lean-forward="true" selection-start-line="13" selection-start-column="3" selection-end-line="13" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/service/ms_user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="2" lean-forward="true" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/views/ms_user/index.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="49" column="29" lean-forward="false" selection-start-line="49" selection-start-column="29" selection-end-line="49" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/assets/js/plugins/forms/selects/bootstrap_select.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="6" column="18469" lean-forward="false" selection-start-line="6" selection-start-column="18469" selection-end-line="6" selection-end-column="18469" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/assets/less/_main_full/bootstrap.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/2-service/ms_user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/4-crud/mssql/ms_user.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" column="5" lean-forward="true" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/3-controllers/home.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="63" lean-forward="false" selection-start-line="17" selection-start-column="63" selection-end-line="17" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/5-views/master/head.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/3-controllers/ms_user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="30" lean-forward="true" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="81" column="34" lean-forward="true" selection-start-line="81" selection-start-column="34" selection-end-line="81" selection-end-column="34" />
+        <state relative-caret-position="85">
+          <caret line="5" column="8" lean-forward="false" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/custommodules/request.js">
+    <entry file="file://$PROJECT_DIR$/admin/modules/request.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="58" lean-forward="true" selection-start-line="15" selection-start-column="58" selection-end-line="15" selection-end-column="58" />
+        <state relative-caret-position="292">
+          <caret line="157" column="44" lean-forward="true" selection-start-line="157" selection-start-column="44" selection-end-line="157" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/modules/mssql.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="244" column="3" lean-forward="true" selection-start-line="244" selection-start-column="3" selection-end-line="255" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/modules/mysql.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="245" column="45" lean-forward="true" selection-start-line="245" selection-start-column="45" selection-end-line="245" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/config.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="21" lean-forward="true" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/assets/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="31" column="10" lean-forward="false" selection-start-line="31" selection-start-column="10" selection-end-line="31" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/5-views/ms_user/index.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="41" lean-forward="true" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/scripts/events/repeatKey.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="457">
+          <caret line="36" column="25" lean-forward="true" selection-start-line="36" selection-start-column="25" selection-end-line="36" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/scripts/events/globalevents.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-288">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/table.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="29" lean-forward="true" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
           <folding />
         </state>
       </provider>

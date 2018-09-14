@@ -1,8 +1,21 @@
 //******* Load Modules********//
+var folders = {
+    models: "1-models",
+    service: "2-service",
+    controllers: "3-controllers",
+    crud: "4-crud",
+    views: "5-views",
+    master: "views/master",
+    systems: "6-systems",
+    scripts: "scripts",
+    modules: 'modules',
+    config: 'config.json'
+};
+
 var lines = process.stdout.getWindowSize()[1];
 for (var i = 0; i < lines; i++) console.log('\r\n');
 var fs = require("fs");
-var CONFIG = eval("(" + fs.readFileSync('config.json') + ")");
+var CONFIG = eval("(" + fs.readFileSync(folders.config) + ")");
 var modules = {}, localjs = [], localModules = [], localModulesVars = [], modulesList = [];
 for (var i in CONFIG.modules) {
     var module = CONFIG.modules[i];
@@ -13,13 +26,15 @@ for (var i in CONFIG.modules) {
 
 
 //******* Load Custom Modules********//
-fs.readdir('./custommodules/', function (err, files) {
+fs.readdir('./' + folders.modules + '/', function (err, files) {
+
     for (var i in files) {
         var file = files[i];
         modulesList.push(file.replace(".js", ""));
-        eval("modules." + file.replace(".js", "") + " = require('./custommodules/" + file + "');");
+        eval("modules." + file.replace(".js", "") + " = require('./" + folders.modules + '/' + file + "');");
     }
 });
+
 var getFiles = function (dir, filelist, prefix) {
     var fs = fs || require('fs'),
         files = fs.readdirSync(dir);
@@ -35,7 +50,7 @@ var getFiles = function (dir, filelist, prefix) {
     });
     return filelist;
 };
-localjs = getFiles('./js/');
+localjs = getFiles('./' + folders.scripts + '/');
 //******* Load Custom Modules********//
 
 //******* App Configuration ********//
@@ -49,7 +64,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.json({type: 'application/vnd.api+json'}));
 app.use(methodOverride());
 app.set('view engine', 'ejs');
-app.set('layouts', './views/master');
+app.set('layouts', './' + folders.master);
 
 colors.setTheme({
     pxz: ['red', 'bgYellow'],
@@ -69,6 +84,7 @@ for (var i in modulesList) {
     allparams += "      " + name + ":" + name + ",";
 }
 
+
 for (var i in localModulesVars) {
     var name = localModulesVars[i];
     allparams += "      " + name + ":" + name + ",";
@@ -82,6 +98,7 @@ allparams += "      models:models,";
 allparams += "      mssql:mssql,";
 allparams += "      mysql:mysql,";
 allparams += "      CONFIG:CONFIG,";
+allparams += "      folders:folders,";
 if (CONFIG.mongo)
     allparams += "  mongoose:mongoose,";
 if (CONFIG.mssql)
@@ -104,7 +121,7 @@ var session = {
 };
 var sessions = [];
 sessions.push(session);
-fs.readdir('./models/mongo', function (err, files) {
+fs.readdir('./' + folders.models + '/mongo', function (err, files) {
 
     if (CONFIG.mongo) {
         for (var i in files) {
@@ -113,15 +130,16 @@ fs.readdir('./models/mongo', function (err, files) {
         }
         for (var i in models) {
             var model = models[i];
-            var content = fs.readFileSync(util.format("./models/mongo/%s.json", model));
+            var content = fs.readFileSync(util.format('./' + folders.models + "/mongo/%s.json", model));
             eval(util.format("collections.%s = mongoose.model('%s', %s);", model, model, content));
-            eval(util.format("%sService = require('./service/%s.js');", model, model));
+            eval(util.format("%sService = require('" + './' + folders.service + "/%s.js');", model, model));
             var stringModel = S(allparams).replaceAll("@model@", model).s;
             eval(util.format("%sService.init(%s);", model, stringModel));
         }
     }
 
-    fs.readdir('./models/mssql', function (err, files) {
+
+    fs.readdir('./' + folders.models + '/mssql', function (err, files) {
         if (CONFIG.mssql) {
             for (var i in files) {
                 var file = files[i];
@@ -129,7 +147,7 @@ fs.readdir('./models/mongo', function (err, files) {
             }
             for (var i in modelsql) {
                 var model = modelsql[i];
-                var content = fs.readFileSync(util.format("./models/mssql/%s.json", model));
+                var content = fs.readFileSync(util.format('./' + folders.models + "/mssql/%s.json", model));
                 var object = eval("(" + util.format("%s", content) + ")");
                 var create = modules.mssql.createTable(model, object, eval("(" + allparams + ")"));
                 var add = modules.mssql.addColumns(model, object, eval("(" + allparams + ")"));
@@ -138,12 +156,12 @@ fs.readdir('./models/mongo', function (err, files) {
                 modules.mssql.executeNonQuery(create, eval("(" + allparams + ")"));
                 modules.mssql.executeNonQuery(alter, eval("(" + allparams + ")"));
                 modules.mssql.executeNonQuery(add, eval("(" + allparams + ")"));
-                eval(util.format("%sService = require('./service/%s.js');", model, model));
+                eval(util.format("%sService = require('" + './' + folders.service + "/%s.js');", model, model));
                 var stringModel = S(allparams).replaceAll("@model@", model).s;
                 eval(util.format("%sService.init(%s);", model, stringModel));
             }
         }
-        fs.readdir('./models/mysql', function (err, files) {
+        fs.readdir('./' + folders.models + '/mysql', function (err, files) {
             if (CONFIG.mysql) {
                 for (var i in files) {
                     var file = files[i];
@@ -151,7 +169,7 @@ fs.readdir('./models/mongo', function (err, files) {
                 }
                 for (var i in modelmysql) {
                     var model = modelmysql[i];
-                    var content = fs.readFileSync(util.format("./models/mysql/%s.json", model));
+                    var content = fs.readFileSync(util.format('./' + folders.models + "/mysql/%s.json", model));
                     var object = eval("(" + util.format("%s", content) + ")");
                     var create = modules.mysql.createTable(model, object, eval("(" + allparams + ")"));
                     var add = modules.mysql.addColumns(model, object, eval("(" + allparams + ")"));
@@ -160,7 +178,7 @@ fs.readdir('./models/mongo', function (err, files) {
                     modules.mysql.executeNonQuery(create, eval("(" + allparams + ")"));
                     modules.mysql.executeNonQuery(alter, eval("(" + allparams + ")"));
                     modules.mysql.executeNonQuery(add, eval("(" + allparams + ")"));
-                    eval(util.format("%sService = require('./service/%s.js');", model, model));
+                    eval(util.format("%sService = require('" + './' + folders.service + "/%s.js');", model, model));
                     var stringModel = S(allparams).replaceAll("@model@", model).s;
                     eval(util.format("%sService.init(%s);", model, stringModel));
                 }
@@ -187,11 +205,11 @@ fs.readdir('./models/mongo', function (err, files) {
             modules.tools.init(eval("(" + allparams + ")"));
             app.listen(CONFIG.port);
 
-            console.log("******************Pelea XZ Server*************************************".pxz);
+            console.log("******************Dragon Server*************************************".pxz);
             console.log("Server : ".pxz + CONFIG.port);
             if (CONFIG.mongo)
                 console.log("MongoDB: ".pxz + CONFIG.mongo);
-            console.log("Models : ".pxz + models);
+            console.log("Mongo  : ".pxz + models);
             if (CONFIG.mssql)
                 console.log("MSSQL  : ".pxz + modelsql);
             if (CONFIG.mysql)

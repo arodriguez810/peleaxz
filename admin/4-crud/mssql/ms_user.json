@@ -1,0 +1,33 @@
+{
+  "table": {
+    "columns": {
+      "id": {
+        "label": "ID",
+        "sorttype": "numeric"
+      },
+      "name": {
+        "label": "Name"
+      },
+      "description": {
+        "label": "Description",
+        "sortable": false
+      },
+      "active": {
+        "visible": true,
+        "sorttype": "amount"
+      },
+      "created": {
+        "visible": true,
+        "sorttype": "time"
+      },
+      "updated": {
+        "visible": false
+      },
+      "deleted": {
+        "visible": false
+      }
+    }
+  },
+  "form": {
+  }
+}

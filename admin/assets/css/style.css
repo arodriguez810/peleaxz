@@ -8,7 +8,7 @@
 }
 
 .content:first-child {
-    padding-top: 0px;
+    padding-top: 0;
 }
 
 .content {
@@ -17,10 +17,33 @@
 
 .footer {
     position: absolute;
-    bottom: 0px;
+    bottom: 0;
 }
 
 .pagination {
     margin-top: 0;
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
+
+.subcontent{
+    padding: 0 20px 0 20px;
+}
+
+button.btn {
+    margin: 0 15px 0 0;
+}
+
+/*.fixed_headers {*/
+    /*width: @table_width;*/
+    /*table-layout: fixed;*/
+    /*border-collapse: collapse;*/
+/*}*/
+
+/*th {*/
+    /*text-decoration: underline;*/
+/*}*/
+
+/*th, td {*/
+    /*padding: 5px;*/
+    /*text-align: left;*/
+/*}*/

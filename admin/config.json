@@ -15,6 +15,21 @@
     "database": "pxz"
   },
   "ui": {
+    "colors": {
+      "primary": "teal",
+      "danger": "danger",
+      "success": "success",
+      "warning": "warning",
+      "info": "blue",
+      "default": "default",
+      "sidebar": "default",
+      "tag": {
+        "table": "info",
+        "navbar": "primary",
+        "border": "info",
+        "dropdown":"primary"
+      }
+    },
     "tables": {
       "paginator": {
         "range": 10,
