@@ -434,6 +434,7 @@ exports.Model = function (tableName, params) {
                 if (options.limit !== undefined)
                     if (data.index !== undefined) {
                         data.totalPage = Math.ceil(countData.data[0].count / data.index.limitvalue);
+                        data.totalCount = countData.data[0].count;
                         data.currentPage = data.index.pagec;
                     }
                     else

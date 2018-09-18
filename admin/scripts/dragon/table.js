@@ -11,11 +11,27 @@ table = {
         };
 
         /*Info******************************/
-        $scope.columnVisible = function (value) {
-            return value.visible !== false;
+        $scope.tableStatus = function () {
+            console.log($scope.table.currentCount);
+            var currentShow = ($scope.table.currentPage * $scope.table.currentLimit) - ($scope.table.currentLimit - 1);
+            var result = String.format("{0} sorted by {1} {2}ending, showing {3} to {4} of {5} entries",
+                $scope.plural,
+                $scope.table.orderby,
+                $scope.table.order,
+                currentShow,
+                currentShow + ($scope.table.currentCount - 1),
+                $scope.table.totalCount
+            );
+
+            return result;
         };
         /*Info******************************/
         /*Column******************************/
+
+        $scope.columnLabel = function (value, key) {
+            var label = value.label || key;
+            return capitalize(label);
+        };
         $scope.columnVisible = function (value) {
             return value.visible !== false;
         };
@@ -31,6 +47,10 @@ table = {
         /*Validation******************************/
 
         /*CHECK BOX******************************/
+        $scope.checkVisible = function (key) {
+            return key === 'id' && $scope.isBatch();
+        };
+
         $scope.checkAll = function () {
             if ($scope.stopInteraction()) return false;
             $scope.selected = $scope.checkall;

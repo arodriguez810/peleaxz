@@ -1,15 +1,17 @@
 {
   "table": {
+    "columnsalign": "center",
     "columns": {
       "id": {
         "label": "ID",
-        "sorttype": "numeric"
+        "sorttype": "numeric",
+        "align": "right"
       },
       "name": {
-        "label": "Name"
+        "label": "name"
       },
       "description": {
-        "label": "Description",
+        "label": "description",
         "sortable": false
       },
       "active": {
@@ -28,6 +30,7 @@
       }
     }
   },
+  "batch": true,
   "form": {
   }
 }

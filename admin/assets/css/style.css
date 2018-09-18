@@ -27,10 +27,18 @@
 
 .subcontent{
     padding: 0 20px 0 20px;
+    min-height: 480px;
 }
 
 button.btn {
     margin: 0 15px 0 0;
+}
+
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    padding: 8px 20px;
+    line-height: 1.5384616;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
 }
 
 /*.fixed_headers {*/

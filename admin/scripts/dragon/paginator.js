@@ -4,6 +4,8 @@ paginator = {
         $scope.table.currentLimit = CONFIG.ui.tables.paginator.limits[0];
         $scope.table.pages = [];
         $scope.table.totalPags = 0;
+        $scope.table.totalCount = 0;
+        $scope.table.currentCount = 0;
 
         $scope.goLimit = function (limit) {
             if ($scope.stopInteraction()) return false;
@@ -87,7 +89,7 @@ paginator = {
 
         $scope.goPage = function (page) {
             if ($scope.stopInteraction()) return false;
-            if (page < $scope.table.totalPages) {
+            if (page < $scope.table.totalPages + 1) {
                 if ($scope.table.currentPage !== page) {
                     $scope.table.currentPage = page;
                     $scope.pageChanged();
@@ -100,6 +102,8 @@ paginator = {
     make: function ($scope, data) {
         $scope.records = data;
         $scope.table.totalPages = data.totalPage;
+        $scope.table.totalCount = data.totalCount;
+        $scope.table.currentCount = parseInt(data.count);
         $scope.table.pages = [];
         var halfOfRange = Math.ceil(CONFIG.ui.tables.paginator.range / 2);
         var initPaginator = $scope.table.currentPage - halfOfRange;

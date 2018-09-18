@@ -12,6 +12,7 @@ var folders = {
     config: 'config.json'
 };
 
+
 var lines = process.stdout.getWindowSize()[1];
 for (var i = 0; i < lines; i++) console.log('\r\n');
 var fs = require("fs");
