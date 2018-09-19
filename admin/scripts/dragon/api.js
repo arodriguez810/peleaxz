@@ -1,4 +1,4 @@
-api = {
+API = {
     run: function ($scope, $http) {
         $scope.formData = {};
         $scope.rootPath = '/api/' + $scope.modelName;

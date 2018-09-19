@@ -1,4 +1,4 @@
-jquery = {
+JQUERY = {
     loadScript: function (url, key, callback) {
         $.ajax({
             url: url,

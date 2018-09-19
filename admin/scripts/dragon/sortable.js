@@ -1,4 +1,4 @@
-sortable = {
+SORTABLE = {
     run: function ($scope) {
         var first = true;
         var firstColumn = "";

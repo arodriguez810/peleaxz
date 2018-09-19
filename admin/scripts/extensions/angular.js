@@ -1,4 +1,4 @@
-angularjs =
+ANGULARJS =
     {
         get: function (id) {
             return eval('angular.element(document.getElementById("' + id + '")).scope().' + id);

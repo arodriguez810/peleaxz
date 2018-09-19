@@ -3,7 +3,7 @@ var modelName = 'home';
 app.controller(modelName + 'Controller', function ($scope, $http, $compile, $controller) {
     var homeController = this;
     homeController.loadContent = function (view) {
-        animation.loading();
+        ANIMATION.loading();
         if (view === undefined) {
             view = window.location.href.split('#');
             if (view.length > 1)
@@ -15,13 +15,13 @@ app.controller(modelName + 'Controller', function ($scope, $http, $compile, $con
         $http.get(view, {}).then(function (data) {
             var key = view.split('/')[0];
             var html = data.data;
-            jquery.loadScript(String.format(FOLDERS.controllers + '/{0}.js', key), key, function (data) {
+            JQUERY.loadScript(String.format(FOLDERS.controllers + '/{0}.js', key), key, function (data) {
                 $("#content").html($compile(html)($scope));
-                animation.stoploading();
+                ANIMATION.stoploading();
             });
         }, function (data) {
             $("#content").load("error/" + data.status);
-            animation.stoploading();
+            ANIMATION.stoploading();
         });
     };
     homeController.loadContent();

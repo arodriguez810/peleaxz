@@ -1,0 +1,78 @@
+<div class="table-responsive" id="<%= modelName %>TablePanel">
+    <!--Table List-->
+    <table class="table table-togglable table-hover table-framed" data-animation="bounceInUp"
+           id="<%= modelName %>Table" data-scope="<%= modelName %>">
+        <thead class="bg-<%= TAG.table %>">
+        <!--Columns-->
+        <tr>
+            <th ng-repeat="(key, value) in <%= modelName %>.table.crud.table.columns"
+                ng-show="<%= modelName %>.columnVisible(value)">
+                <input type="checkbox" ng-model="<%= modelName %>.checkall" ng-show="<%= modelName %>.checkVisible(key)"
+                       ng-click="<%= modelName %>.checkAll()">
+
+                {{<%= modelName %>.columnLabel(value,key)}}
+
+                <i ng-click="<%= modelName %>.sort(value,key)" data-popup="tooltip"
+                   title="Sort By {{<%= modelName %>.columnLabel(value,key)}}"
+                   class="{{<%= modelName %>.sortIcon(value)}} cursor-pointer">
+                </i>
+            </th>
+            <th class="text-center" style="width: 30px;">
+                <i ng-click="<%= modelName %>.refresh()" data-popup="tooltip" title="Refresh"
+                   class="icon-reload-alt loadingButton">
+                </i>
+                <i ng-click="<%= modelName %>.openFilters();" data-popup="tooltip" title="Filter"
+                   class="icon-filter4">
+                </i>
+            </th>
+        </tr>
+        </thead>
+        <tbody id="<%= modelName %>TableBody">
+        <!--Rows-->
+        <tr ng-repeat="(key, row) in <%= modelName %>.records.data" data-object="{{row}}"
+            class=" {{<%= modelName %>.rowActive(row)}}">
+            <!--MultiSelect And Key-->
+            <td ng-repeat="(key, value) in <%= modelName %>.table.crud.table.columns"
+                ng-show="value.visible!=false">
+                <input type="checkbox" data-object="{{row}}"
+                       class="singlecheck"
+                       value="row.id"
+                       ng-checked="<%= modelName %>.selected"
+                       ng-show="key==='id' && <%= modelName %>.isBatch()"
+                       ng-click="<%= modelName %>.check(this)">
+                {{$eval("row."+key)}}
+            </td>
+            <!--Options-->
+            <td class="text-center">
+                <ul class="icons-list">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class=" icon-more2"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="#"><i class="icon-pencil5"></i>Edit</a></li>
+                            <li><a href="#"><i class="icon-trash"></i>Remove</a></li>
+                            <li ng-show="!row.active"><a href="#"><i class="icon-checkmark-circle"></i>Enable</a>
+                            </li>
+                            <li ng-show="row.active"><a href="#"><i class="icon-circle"></i>Disable</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-file-download2"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="#"><i class="icon-file-pdf"></i> Export to .pdf</a></li>
+                            <li><a href="#"><i class="icon-file-excel"></i> Export to .csv</a></li>
+                            <li><a href="#"><i class="icon-file-excel"></i> Export to .xlsx</a></li>
+                            <li><a href="#"><i class="icon-file-word"></i> Export to .doc</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!--Table List-->
+</div>
