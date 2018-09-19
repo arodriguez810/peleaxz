@@ -1,43 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a8fb134e-e727-43fe-b984-89a1d2d7969c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/admin/1-models/mssql/ms_tipo.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/admin/2-service/ms_tipo.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/admin/3-controllers/ms_tipo.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/admin/4-crud/mssql/ms_tipo.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/admin/5-views/ms_tipo/index.ejs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/admin/5-views/templates/table/header.ejs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/admin/5-views/templates/table/index.ejs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/admin/5-views/templates/table/paginator.ejs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/admin/scripts/dragon/compile.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/admin/scripts/dragon/json.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/admin/scripts/dragon/load.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/admin/scripts/dragon/modal.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/admin/scripts/plugins/array.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/admin/scripts/extensions/modal.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/3-controllers/home.js" afterPath="$PROJECT_DIR$/admin/3-controllers/home.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/3-controllers/ms_user.js" afterPath="$PROJECT_DIR$/admin/3-controllers/ms_user.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/5-views/master/error/404.ejs" afterPath="$PROJECT_DIR$/admin/5-views/master/error/404.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/5-views/master/footer.ejs" afterPath="$PROJECT_DIR$/admin/5-views/master/footer.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/5-views/master/head.ejs" afterPath="$PROJECT_DIR$/admin/5-views/master/head.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/5-views/master/menu.ejs" afterPath="$PROJECT_DIR$/admin/5-views/master/menu.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/5-views/ms_user/index.ejs" afterPath="$PROJECT_DIR$/admin/5-views/ms_user/index.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/config.json" afterPath="$PROJECT_DIR$/admin/config.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/scripts/dragon/api.js" afterPath="$PROJECT_DIR$/admin/scripts/dragon/api.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/scripts/dragon/crud.js" afterPath="$PROJECT_DIR$/admin/scripts/dragon/crud.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/scripts/dragon/filter.js" afterPath="$PROJECT_DIR$/admin/scripts/dragon/filter.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/scripts/dragon/paginator.js" afterPath="$PROJECT_DIR$/admin/scripts/dragon/paginator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/scripts/dragon/sortable.js" afterPath="$PROJECT_DIR$/admin/scripts/dragon/sortable.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/scripts/dragon/table.js" afterPath="$PROJECT_DIR$/admin/scripts/dragon/table.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/scripts/events/globalevents.js" afterPath="$PROJECT_DIR$/admin/scripts/events/globalevents.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/scripts/events/repeatKey.js" afterPath="$PROJECT_DIR$/admin/scripts/events/repeatKey.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/scripts/extensions/angular.js" afterPath="$PROJECT_DIR$/admin/scripts/extensions/angular.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/scripts/extensions/animation.js" afterPath="$PROJECT_DIR$/admin/scripts/extensions/animation.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/scripts/extensions/jquery.js" afterPath="$PROJECT_DIR$/admin/scripts/extensions/jquery.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin/scripts/extensions/sweetalert.js" afterPath="$PROJECT_DIR$/admin/scripts/extensions/sweetalert.js" />
-    </list>
+    <list default="true" id="a8fb134e-e727-43fe-b984-89a1d2d7969c" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -281,7 +245,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-8" />
     <option name="y" value="22" />
     <option name="width" value="1382" />
@@ -462,10 +426,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="461865000" />
+    <option name="totallyTimeSpent" value="462327000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="22" width="1382" height="754" extended-state="6" />
+    <frame x="-8" y="22" width="1382" height="754" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16105418" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
