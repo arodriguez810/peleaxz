@@ -1,4 +1,4 @@
-sweetalert =
+SWEETALERT =
     {
         goPage: function ($scope) {
             myswal({
@@ -16,7 +16,7 @@ sweetalert =
                         }).then((result) => {
                             console.log(result);
                             if (result.dismiss === undefined)
-                                sweetalert.goPage($scope);
+                                SWEETALERT.goPage($scope);
                         });
                     } else {
                         $scope.goPage(parseInt(result.value));

@@ -1,0 +1,56 @@
+<div class="page-header page-header-default border-bottom-lg border-bottom-<%= TAG.border %>">
+    <!--Breadcrumb and Table Options-->
+    <div class="breadcrumb-line"><a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+        <ul class="breadcrumb">
+            <li><a data-function="menu" href="#home"><i class="icon-home2 position-left"></i> Home </a></li>
+            <li class="active">User MSSQL</li>
+        </ul>
+        <ul class="breadcrumb-elements">
+            <li><a href="#<%=modelName%>" class="legitRipple"><i class="icon-plus-circle2 position-left"></i>
+                    Create</a>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle legitRipple" data-toggle="dropdown"
+                   aria-expanded="false">
+                    <i class=" icon-database-export position-left"></i>
+                    Export
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="#"><i class="icon-file-pdf"></i>PDF</a></li>
+                    <li><a href="#"><i class="icon-file-excel"></i>CSV</a></li>
+                    <li><a href="#"><i class="icon-file-excel"></i>XLSX</a></li>
+                    <li><a href="#"><i class="icon-file-word"></i>DOC</a></li>
+                </ul>
+            </li>
+            <li class="dropdown" ng-show="<%=modelName%>.isBatch()">
+                <a href="#" class="dropdown-toggle legitRipple" data-toggle="dropdown"
+                   aria-expanded="false">
+                    <i class="icon-starburst position-left"></i>
+                    Batch
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="#"><i class="icon-trash"></i>Remove</a></li>
+                    <li><a href="#"><i class="icon-checkmark-circle"></i>Enable</a></li>
+                    <li><a href="#"><i class="icon-circle"></i>Disable</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle legitRipple" data-toggle="dropdown"
+                   aria-expanded="false">
+                    <i class="icon-list position-left"></i>
+                    Per Page ({{<%=modelName%>.table.currentLimit===0?'All':<%=modelName%>.table.currentLimit}})
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li class="{{<%=modelName%>.limitActive(row)}}"
+                        ng-repeat="(key, row) in <%=modelName%>.CONFIG.ui.tables.paginator.limits">
+                        <a ng-click="<%=modelName%>.goLimit(row)">{{row==0?'All':row}}</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <!--Breadcrumb and Table Options-->
+</div>

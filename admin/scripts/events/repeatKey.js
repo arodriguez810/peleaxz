@@ -21,23 +21,23 @@ KEY = {
         run: function (key) {
             switch (KEY.repeat.key) {
                 case "1": {
-                    if (angularjs.tableScope !== null) {
-                        eval(angularjs.tableScope + ".firstPage()");
-                        eval(angularjs.tableScope + ".resetSort()");
+                    if (ANGULARJS.tableScope !== null) {
+                        eval(ANGULARJS.tableScope + ".firstPage()");
+                        eval(ANGULARJS.tableScope + ".resetSort()");
                     }
                     break;
                 }
                 case "R":
                 case "r": {
-                    if (angularjs.tableScope !== null) {
-                        eval(angularjs.tableScope + ".refresh()");
+                    if (ANGULARJS.tableScope !== null) {
+                        eval(ANGULARJS.tableScope + ".refresh()");
                     }
                     break;
                 }
                 case "P":
                 case "p": {
-                    if (angularjs.tableScope !== null) {
-                        eval(angularjs.tableScope + ".refresh()");
+                    if (ANGULARJS.tableScope !== null) {
+                        eval(ANGULARJS.tableScope + ".refresh()");
                     }
                     break;
                 }

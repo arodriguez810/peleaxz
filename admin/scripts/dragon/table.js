@@ -1,4 +1,4 @@
-table = {
+TABLE = {
     run: function ($scope, crud) {
         $scope.records = [];
         $scope.CONFIG = CONFIG;
@@ -12,7 +12,6 @@ table = {
 
         /*Info******************************/
         $scope.tableStatus = function () {
-            console.log($scope.table.currentCount);
             var currentShow = ($scope.table.currentPage * $scope.table.currentLimit) - ($scope.table.currentLimit - 1);
             var result = String.format("{0} sorted by {1} {2}ending, showing {3} to {4} of {5} entries",
                 $scope.plural,
@@ -69,18 +68,18 @@ table = {
         /*CHECK BOX******************************/
 
         $scope.afterData = function (data) {
-            paginator.make($scope, data);
-            animation.stoploading("#" + $scope.modelName + "TablePanel", ".loadingButton");
+            PAGINATOR.make($scope, data);
+            ANIMATION.stoploading("#" + $scope.modelName + "TablePanel", ".loadingButton");
             $scope.table.is.loading = false;
         };
 
         $scope.refresh = function () {
-            animation.loading("#" + $scope.modelName + "TablePanel", "Refresing " + $scope.modelText + " List...", ".loadingButton");
+            ANIMATION.loading("#" + $scope.modelName + "TablePanel", "Refresing " + $scope.modelText + " List...", ".loadingButton");
             $scope.table.is.loading = true;
             setTimeout(function () {
                 if ($scope.table.loaded !== true) {
                     $scope.table.loaded = true;
-                    animation.play("#" + $scope.modelName + "Table");
+                    ANIMATION.play("#" + $scope.modelName + "Table");
                     $scope.list(
                         {
                             limit: $scope.table.currentLimit,
@@ -105,7 +104,6 @@ table = {
         };
 
         $scope.stateText = function () {
-
             return String.format("{0} order by {1} ", $scope.plural, $scope.table.orderby);
         };
     }

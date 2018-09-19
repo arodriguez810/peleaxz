@@ -1,4 +1,4 @@
-animation = {
+ANIMATION = {
     play: function (block, animation) {
         if (block === undefined) block = "#content";
         var element = $(block);
@@ -13,7 +13,7 @@ animation = {
         if (customBlock === undefined) customBlock = "#content";
         if (text === undefined) text = "Loading...";
         if (spinner !== undefined) {
-            animation.spinner.on(spinner);
+            ANIMATION.spinner.on(spinner);
         }
         var block = $(customBlock);
         $(block).block({
@@ -36,7 +36,7 @@ animation = {
     stoploading: function (customBlock, spinner) {
         if (customBlock === undefined) customBlock = "#content";
         if (spinner !== undefined) {
-            animation.spinner.off(spinner);
+            ANIMATION.spinner.off(spinner);
         }
         var block = $(customBlock);
         $(block).unblock();

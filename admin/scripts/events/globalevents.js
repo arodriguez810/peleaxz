@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $(window).bind('hashchange', function () { //detect hash change
-        angularjs.get('homeController').loadContent();
+        ANGULARJS.get('homeController').loadContent();
     });
 
     $(document).on('mouseover', '[data-popup=tooltip]', function () {
@@ -34,12 +34,12 @@ $(document).ready(function () {
     $(document).on('keyup', 'body', function (e) {
         console.log(e.key);
         KEY.repeat.make(e.key);
-        if (angularjs.tableScope !== null)
-            eval(String.format("{0}.pageKey('{1}')", angularjs.tableScope, e.key));
+        if (ANGULARJS.tableScope !== null)
+            eval(String.format("{0}.pageKey('{1}')", ANGULARJS.tableScope, e.key));
     });
 
     $(document).on('mouseover', '.table', function (e) {
-        angularjs.tableScope = $(this).data("scope");
+        ANGULARJS.tableScope = $(this).data("scope");
     });
 });
 

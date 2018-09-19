@@ -16,7 +16,7 @@
   },
   "ui": {
     "colors": {
-      "primary": "teal",
+      "primary": "indigo",
       "danger": "danger",
       "success": "success",
       "warning": "warning",

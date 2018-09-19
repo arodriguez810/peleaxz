@@ -1,4 +1,4 @@
-paginator = {
+PAGINATOR = {
     run: function ($scope) {
         $scope.table.currentPage = 1;
         $scope.table.currentLimit = CONFIG.ui.tables.paginator.limits[0];
@@ -84,7 +84,7 @@ paginator = {
         };
 
         $scope.goPageModal = function () {
-            sweetalert.goPage($scope);
+            SWEETALERT.goPage($scope);
         };
 
         $scope.goPage = function (page) {
