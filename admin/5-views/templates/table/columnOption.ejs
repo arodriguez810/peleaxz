@@ -1,0 +1,26 @@
+<ul class="icons-list">
+    <li><a  data-popup="tooltip" title="Edit" href="#"><i class="icon-pencil5"></i></a></li>
+    <li>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <i class=" icon-cog2"></i>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-right">
+            <li><a href="#"><i class="icon-pencil5"></i>Edit</a></li>
+            <li><a href="#"><i class="icon-trash"></i>Remove</a></li>
+            <li ng-show="!row.active"><a href="#"><i class="icon-checkmark-circle"></i>Enable</a>
+            </li>
+            <li ng-show="row.active"><a href="#"><i class="icon-circle"></i>Disable</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="icon-file-download2"></i>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-right">
+            <li><a href="#"><i class="icon-file-pdf"></i> Export to .pdf</a></li>
+            <li><a href="#"><i class="icon-file-excel"></i> Export to .csv</a></li>
+            <li><a href="#"><i class="icon-file-excel"></i> Export to .xlsx</a></li>
+            <li><a href="#"><i class="icon-file-word"></i> Export to .doc</a></li>
+        </ul>
+    </li>
+</ul>
