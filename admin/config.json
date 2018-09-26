@@ -1,6 +1,7 @@
 {
+  "appName": "Dragon Framework",
   "port": "8090",
-  "mongo": "mongodb://localhost:27017/pxz",
+  //"mongo": "mongodb://localhost:27017/pxz",
   "mssql": {
     "user": "sa",
     "password": "*sa*",
@@ -8,26 +9,26 @@
     "database": "pxz",
     "port": 1433
   },
-  "mysql": {
-    "host": "localhost",
-    "user": "root",
-    "password": "toor",
-    "database": "pxz"
-  },
+  //  "mysql": {
+  //    "host": "localhost",
+  //    "user": "root",
+  //    "password": "toor",
+  //    "database": "pxz"
+  //  },
   "ui": {
     "colors": {
-      "primary": "indigo",
+      "primary": "brown",
       "danger": "danger",
       "success": "success",
       "warning": "warning",
-      "info": "blue",
+      "info": "orange",
       "default": "default",
       "sidebar": "default",
       "tag": {
         "table": "info",
         "navbar": "primary",
         "border": "info",
-        "dropdown":"primary"
+        "dropdown": "primary"
       }
     },
     "tables": {
@@ -107,6 +108,10 @@
     {
       "var": "pluralize",
       "module": "pluralize"
+    },
+    {
+      "var": "sleep",
+      "module": "system-sleep"
     }
   ]
 }

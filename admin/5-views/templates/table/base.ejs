@@ -1,13 +1,17 @@
 <div class="table-responsive" id="<%= modelName %>TablePanel">
-    <!--Table List-->
-    <table class="table table-togglable table-hover table-framed"
+    <!--Table List -->
+    <table class="table table-togglable table-framed sindu-table"
            data-animation="bounceInUp"
-           id="<%= modelName %>Table" data-scope="<%= modelName %>">
+           id="<%= modelName %>Table"
+           data-scope="<%= modelName %>">
         <thead class="bg-<%= TAG.table %>" id="<%= modelName %>head">
         <!--Columns-->
         <tr>
-            <th ng-repeat="(key, value) in <%= modelName %>.table.crud.table.columns"
-                ng-show="<%= modelName %>.columnVisible(value)">
+            <th ng-repeat="(key, value) in <%= modelName %>.columns()"
+                ng-show="<%= modelName %>.columnVisible(value)"
+                data-column="{{key}}"
+                class="handle"
+            >
                 <%- include('columns',{modelName:modelName}); %>
             </th>
             <%- include('columnOption',{modelName:modelName}); %>

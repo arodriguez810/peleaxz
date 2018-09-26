@@ -1,10 +1,9 @@
-<div id="ms_user" ng-controller="ms_user as ms_user">
+<div id="<%= modelName %>" ng-controller="<%= modelName %> as <%= modelName %>">
     <div class="panel panel-flat">
-        <%- include('../templates/table/header',{modelName:'ms_user'}); %>
+        <%- include('../templates/table/header',{modelName:modelName}); %>
         <div class="subcontent">
-            <%- include('../templates/table/index',{modelName:'ms_user'}); %>
+            <%- include('../templates/table/base',{modelName:modelName}); %>
         </div>
     </div>
-    <div id="ms_user_modalpool">
-    </div>
+    <%- include('../templates/modalpool',{modelName:modelName}); %>
 </div><!--end-->

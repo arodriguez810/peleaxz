@@ -1,5 +1,5 @@
 TABLE = {
-    run: function ($scope, crud) {
+    run: function ($scope, $http, $compile) {
         $scope.records = [];
         $scope.CONFIG = CONFIG;
         $scope.table = {
@@ -10,61 +10,35 @@ TABLE = {
             }
         };
 
-        /*Rows******************************/
-        $scope.cellValue = function (key, column, row) {
-            var value = eval("row." + key);
-            if (value === null || value === undefined)
-                return column.null || "";
-            if (column.shorttext) {
-                var shorttext = value;
-                if (shorttext.length > column.shorttext) {
-                    shorttext = String.format("<a>{0}</a>",
-                        shorttext.substring(0, column.shorttext) + "...");
-                }
-                return shorttext;
-            }
-            return value;
-        };
-        $scope.cellClick = function (key, column, row) {
-            var value = eval("row." + key);
-            if (column.click) {
-                eval(column.click);
-            }
-        };
-
-        $scope.replaceRules = function (str) {
-            return str;
-        };
-        /*Rows******************************/
-
-        /*Info******************************/
-        $scope.tableStatus = function () {
-            var currentShow = ($scope.table.currentPage * $scope.table.currentLimit) - ($scope.table.currentLimit - 1);
-            var result = String.format("{0} sorted by {1} {2}ending, showing {3} to {4} of {5} entries",
-                $scope.plural,
-                $scope.table.orderby,
-                $scope.table.order,
-                currentShow,
-                currentShow + ($scope.table.currentCount - 1),
-                $scope.table.totalCount
-            );
-
-            return result;
-        };
-        /*Info******************************/
-        /*Column******************************/
-
-        $scope.columnLabel = function (value, key) {
-            var label = value.label || key;
-            return capitalize(label);
-        };
         $scope.columnVisible = function (value) {
             return value.visible !== false;
         };
-        $scope.rowActive = function (row) {
-            return !row.active ? 'bg-' + COLOR.danger + '-300 text-white' : '';
+
+        $scope.columns = function () {
+            if (STORAGE.hasColumns($scope)) {
+                var storage_columns = STORAGE.getColumns($scope);
+                return $scope.reorderColumn(storage_columns);
+            } else
+                return $scope.table.crud.table.columns;
+            return $scope.table.crud.table.columns;
         };
-        /*Column******************************/
+
+        $scope.restoreStorage = function () {
+            SWEETALERT.confirm({
+                message: "This option removes all persisted configuration data for this table, sorting, columns reorder, current page, limit per page, filters, are you sure?",
+                confirm: function () {
+                    $scope.clearModel();
+                    $scope.refresh();
+                }
+            });
+        };
+        $scope.reorderColumn = function (storage_columns) {
+            var ordered = {};
+            for (let obj of storage_columns) {
+                eval("ordered." + obj + " = $scope.table.crud.table.columns." + obj);
+            }
+            return ordered;
+        };
 
         /*Validation******************************/
         $scope.stopInteraction = function () {
@@ -72,37 +46,29 @@ TABLE = {
         };
         /*Validation******************************/
 
-        /*CHECK BOX******************************/
-        $scope.checkVisible = function (key) {
-            return key === 'id' && $scope.isBatch();
-        };
-
-        $scope.checkAll = function () {
-            if ($scope.stopInteraction()) return false;
-            $scope.selected = $scope.checkall;
-        };
-        $scope.check = function () {
-            if ($scope.stopInteraction()) return false;
-            var checkall = true;
-            $(".singlecheck").each(function () {
-                if ($(this).prop('checked') === false) {
-                    checkall = false;
-                    return false;
-                }
-            });
-            $scope.checkall = checkall;
-        };
-        /*CHECK BOX******************************/
-
         $scope.afterData = function (data) {
             PAGINATOR.make($scope, data);
             ANIMATION.stoploading("#" + $scope.modelName + "TablePanel", ".loadingButton");
             $scope.table.is.loading = false;
+            FIXELEMENT.add($scope.modelName + "head");
         };
 
         $scope.refresh = function () {
-            ANIMATION.loading("#" + $scope.modelName + "TablePanel", "Refresing " + $scope.modelText + " List...", ".loadingButton");
+            ANIMATION.loading("#" + $scope.modelName + "TablePanel", "Refresing " + $scope.plural + " List...", ".loadingButton");
             $scope.table.is.loading = true;
+
+            if (STORAGE.hasPage($scope))
+                $scope.table.currentPage = STORAGE.getPage($scope);
+            if ($scope.hasModel("limit")) {
+                $scope.table.currentLimit = parseInt($scope.getModel('limit'));
+            }
+            if ($scope.hasModel("sortcolumn")) {
+                $scope.table.orderby = $scope.getModel('sortcolumn');
+            }
+            if ($scope.hasModel("sortorder")) {
+                $scope.table.order = $scope.getModel('sortorder');
+            }
+
             setTimeout(function () {
                 if ($scope.table.loaded !== true) {
                     $scope.table.loaded = true;
@@ -115,6 +81,7 @@ TABLE = {
                             order: $scope.table.order
                         }, function (data) {
                             $scope.afterData(data);
+                            DRAG.run($scope);
                         });
                 } else {
                     $scope.list(
@@ -128,10 +95,6 @@ TABLE = {
                         });
                 }
             }, 0);
-        };
-
-        $scope.stateText = function () {
-            return String.format("{0} order by {1} ", $scope.plural, $scope.table.orderby);
         };
     }
 };

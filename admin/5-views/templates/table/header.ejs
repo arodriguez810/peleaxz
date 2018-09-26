@@ -6,6 +6,9 @@
             <li class="active">User MSSQL</li>
         </ul>
         <ul class="breadcrumb-elements">
+            <li><a ng-click="<%=modelName%>.restoreStorage()" class="legitRipple"><i class="icon-rotate-ccw3 position-left"></i>
+                    Restore</a>
+            </li>
             <li><a href="#<%=modelName%>" class="legitRipple"><i class="icon-plus-circle2 position-left"></i>
                     Create</a>
             </li>
@@ -17,6 +20,7 @@
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="#"><i class="icon-copy3"></i>Clipboard</a></li>
                     <li><a href="#"><i class="icon-file-pdf"></i>PDF</a></li>
                     <li><a href="#"><i class="icon-file-excel"></i>CSV</a></li>
                     <li><a href="#"><i class="icon-file-excel"></i>XLSX</a></li>

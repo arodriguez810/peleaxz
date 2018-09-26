@@ -1,6 +1,16 @@
 $(document).ready(function () {
     $(window).bind('hashchange', function () { //detect hash change
-        ANGULARJS.get('homeController').loadContent();
+        FIXELEMENT.elements = [];
+        ANGULARJS.get('baseController').base();
+    });
+
+    $(document).on("scroll", function () {
+        FIXELEMENT.run();
+    });
+
+    $("input[type='checkbox'].styled").uniform({
+        radioClass: 'choice',
+        wrapperClass: 'border-primary-600 text-primary-800'
     });
 
     $(document).on('mouseover', '[data-popup=tooltip]', function () {
@@ -8,7 +18,24 @@ $(document).ready(function () {
             $(this).tooltip({
                 template:
                 '<div class="tooltip">' +
-                '   <div class="bg-'+COLOR.primary+'">' +
+                '   <div class="bg-' + COLOR.primary + '">' +
+                '       <div class="tooltip-arrow">' +
+                '       </div>' +
+                '       <div class="tooltip-inner">' +
+                '       </div>' +
+                '   </div>' +
+                '</div>'
+            });
+            $(this).tooltip('show');
+        }
+    });
+
+    $(document).on('mouseover', '[data-popup=tooltip]', function () {
+        if ($(this).data('original-title') === undefined) {
+            $(this).tooltip({
+                template:
+                '<div class="tooltip">' +
+                '   <div class="bg-' + COLOR.primary + '">' +
                 '       <div class="tooltip-arrow">' +
                 '       </div>' +
                 '       <div class="tooltip-inner">' +
@@ -24,7 +51,7 @@ $(document).ready(function () {
         if ($(this).data('original-title') === undefined) {
             console.log($(this));
             $(this).popover({
-                template: '<div class="popover border-teal-400"><div class="arrow"></div><h3 class="popover-title bg-'+COLOR.primary+'-400"></h3><div class="popover-content"></div></div>',
+                template: '<div class="popover border-teal-400"><div class="arrow"></div><h3 class="popover-title bg-' + COLOR.primary + '-400"></h3><div class="popover-content"></div></div>',
                 placement: 'top',
             });
             $(this).popover('show');
@@ -32,7 +59,6 @@ $(document).ready(function () {
     });
 
     $(document).on('keyup', 'body', function (e) {
-        console.log(e.key);
         KEY.repeat.make(e.key);
         if (ANGULARJS.tableScope !== null)
             eval(String.format("{0}.pageKey('{1}')", ANGULARJS.tableScope, e.key));
@@ -41,5 +67,7 @@ $(document).ready(function () {
     $(document).on('mouseover', '.table', function (e) {
         ANGULARJS.tableScope = $(this).data("scope");
     });
+
+
 });
 

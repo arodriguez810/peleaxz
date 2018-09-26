@@ -132,7 +132,7 @@ MODAL = {
                         {
                             color: "success",
                             title: "Save",
-                            func: "ms_user.openFilters2();"
+                            func: "ms_all.openFilters2();"
                         }
                     ]
                 },

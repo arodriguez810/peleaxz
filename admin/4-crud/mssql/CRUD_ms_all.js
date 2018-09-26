@@ -1,4 +1,4 @@
-ms_userCRUD = {
+CRUD_ms_all = {
     table: {
         rowClass: function (row) {
             return (row.active === false) ? 'bg-' + COLOR.danger + "-300" : "";
@@ -18,14 +18,11 @@ ms_userCRUD = {
                 label: "description",
                 sortable: false,
                 shorttext: 20,
-                null: "<span class='text-grey'>[NULL]</span>",
+                null: "<span class='text-grey'>[NULL]</span>"
             },
             active: {
                 visible: true,
-                sorttype: "bool",
-                click:function (data) {
-                    TAG.table = "teal";
-                }
+                sorttype: "bool"
             },
             created: {
                 visible: true,

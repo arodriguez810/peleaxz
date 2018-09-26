@@ -25,7 +25,7 @@
     margin-bottom: 0;
 }
 
-.subcontent{
+.subcontent {
     padding: 0 20px 0 20px;
     min-height: 480px;
 }
@@ -41,17 +41,9 @@ button.btn {
     border-top: 1px solid #ddd;
 }
 
-/*.fixed_headers {*/
-    /*width: @table_width;*/
-    /*table-layout: fixed;*/
-    /*border-collapse: collapse;*/
-/*}*/
-
-/*th {*/
-    /*text-decoration: underline;*/
-/*}*/
-
-/*th, td {*/
-    /*padding: 5px;*/
-    /*text-align: left;*/
-/*}*/
+.dragontable th {
+    width: auto !important;
+}
+.sindu_dragger table {
+    background: #CCCCCC !important;
+}

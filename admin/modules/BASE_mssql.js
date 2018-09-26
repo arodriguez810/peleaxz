@@ -170,7 +170,6 @@ exports.delete = function (table, data, params) {
     return queries;
 };
 exports.data = function (query, params, callback, index) {
-    console.log(query);
     var connection = new params.mssql.ConnectionPool(params.CONFIG.mssql);
     connection.connect().then(function () {
         var request = new params.mssql.Request(connection);
@@ -376,18 +375,18 @@ exports.Model = function (tableName, params) {
         }
 
         var order = "";
-        if (options.order) {
-            order = options.order;
-        } else {
-            order = "asc"
-        }
-
         var orderby = "";
         if (options.orderby) {
             if (Array.isArray(options.orderby))
                 orderby = " ORDER BY " + "[" + options.orderby.join("],[") + "]";
             else
                 orderby = " ORDER BY " + "[" + options.orderby + "]";
+
+            if (options.order) {
+                order = options.order;
+            } else {
+                order = "asc"
+            }
         }
 
 

@@ -23,11 +23,19 @@ SORTABLE = {
                 if (!column.sorted)
                     icon = "icon-sort";
                 else {
-                    if (column.sorttype === undefined)
+                    if (column.sorttype === undefined) {
                         icon = "icon-sort-alpha-";
-                    else
-                        icon = types[column.sorttype];
-                    icon += column.order;
+                        icon += column.order;
+                    }
+                    else {
+                        if (column.sorttype === "bool") {
+                            icon = "icon-stack-";
+                            icon += column.order === "asc" ? "empty" : "check";
+                        } else {
+                            icon = types[column.sorttype];
+                            icon += column.order;
+                        }
+                    }
                 }
             }
             return icon;
@@ -54,7 +62,9 @@ SORTABLE = {
             column.sorted = true;
             column.order = column.order === "asc" ? "desc" : "asc";
             $scope.table.orderby = columnName;
+            $scope.saveModel('sortcolumn','table.orderby');
             $scope.table.order = column.order;
+            $scope.saveModel('sortorder','table.order');
             for (var i in $scope.table.crud.table.columns) {
                 if (i !== columnName) {
                     $scope.table.crud.table.columns[i].sorted = false;

@@ -380,18 +380,17 @@ exports.Model = function (tableName, params) {
         }
 
         var order = "";
-        if (options.order) {
-            order = options.order;
-        } else {
-            order = "asc"
-        }
-
         var orderby = "";
         if (options.orderby) {
             if (Array.isArray(options.orderby))
                 orderby = " ORDER BY " + "`" + options.orderby.join("`,`") + "`";
             else
                 orderby = " ORDER BY " + "`" + options.orderby + "`";
+            if (options.order) {
+                order = options.order;
+            } else {
+                order = "asc"
+            }
         }
 
         var distinct = '';

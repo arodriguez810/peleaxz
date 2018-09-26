@@ -6,9 +6,11 @@
       <excludeFolder url="file://$MODULE_DIR$/admin/defaults" />
       <excludeFolder url="file://$MODULE_DIR$/admin/node_modules" />
       <excludeFolder url="file://$MODULE_DIR$/db" />
+      <excludeFolder url="file://$MODULE_DIR$/programs" />
       <excludeFolder url="file://$MODULE_DIR$/temp" />
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
     </content>
+    <content url="file://$MODULE_DIR$/tools/c" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>

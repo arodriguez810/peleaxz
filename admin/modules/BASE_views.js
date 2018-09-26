@@ -2,7 +2,7 @@ exports.LoadEJS = function (files, params) {
     for (var i in files) {
         var file = files[i];
         var viewName = params.S(file).contains("index.ejs") ? "" : file.replace(".ejs", "");
-        params.app.get(params.util.format('/%s/%s', (params.modelName === 'home' ? '' : params.modelName), viewName), function (req, res) {
+        params.app.get(params.util.format('/%s%s', (params.modelName === 'base' ? '' : params.modelName + '/'), viewName), function (req, res) {
             var path = req.originalUrl;
             var realPath = path.split('?');
             var query = "";
@@ -11,7 +11,7 @@ exports.LoadEJS = function (files, params) {
                 realPath = realPath[0];
             } else {
                 if (realPath[0] === '/')
-                    realPath = realPath[0] + '/home';
+                    realPath = realPath[0] + '/base';
                 else {
                     if (realPath[0].split('/').length > 1)
                         realPath = realPath[0];
@@ -19,6 +19,7 @@ exports.LoadEJS = function (files, params) {
                         realPath = realPath[0] + '/index';
                 }
             }
+
             var models = params.models.concat(params.modelsql).concat(params.modelmysql);
             var tags = params.CONFIG.ui.colors.tag;
             var newtags = {};
@@ -28,7 +29,6 @@ exports.LoadEJS = function (files, params) {
                 eval('newtags.' + tag + ' = ' + largeVar + '===undefined ? "' + itag + '" : ' + largeVar + ';');
             }
 
-            console.log(models);
             var send = {
                 modelName: params.modelName,
                 session: params.session,
@@ -38,7 +38,8 @@ exports.LoadEJS = function (files, params) {
                 COLOR: params.CONFIG.ui.colors,
                 TAG: newtags,
                 models: models,
-                FOLDERS: params.folders
+                FOLDERS: params.folders,
+                DATA: req.query
             };
 
             if (query !== "") {
@@ -50,7 +51,6 @@ exports.LoadEJS = function (files, params) {
                     eval("send." + key + " = '" + value + "'");
                 }
             }
-
             res.render('../' + params.folders.views + '/' + realPath, send);
         });
     }
@@ -71,11 +71,31 @@ exports.loadEJSSimple = function (folder, prefix, params) {
     });
 };
 
+
 exports.init = function (params) {
-    params.modelName = "home";
+    params.modelName = "base";
     params.fs.readdir(params.util.format('./' + params.folders.views + '/%s', params.modelName), function (err, files) {
-        params.modelName = "home";
+        params.modelName = "base";
         exports.LoadEJS(files, params);
     });
+
+    var getFiles = function (dir, filelist, prefix) {
+        var fs = params.fs || require('fs'),
+            files = fs.readdirSync(dir);
+        filelist = filelist || [];
+        prefix = prefix || "";
+        files.forEach(function (file) {
+            if (fs.statSync(dir + '/' + file).isDirectory()) {
+                filelist = getFiles(dir + '/' + file, filelist, prefix + file + "/");
+            }
+            else {
+                filelist.push(prefix + file);
+            }
+        });
+        console.log(filelist)
+        return filelist;
+    };
+
+    getFiles(params.folders.views + "/")
     exports.loadEJSSimple('./' + params.folders.views + '/master/error', 'error', params);
 };

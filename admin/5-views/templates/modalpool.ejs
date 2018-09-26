@@ -1,9 +1,3 @@
-<input type="checkbox" ng-model="<%= modelName %>.checkall" ng-show="<%= modelName %>.checkVisible(key)"
-       ng-click="<%= modelName %>.checkAll()">
+<div id="<%= modelName %>_modalpool">
 
-{{<%= modelName %>.columnLabel(value,key)}}
-
-<i ng-click="<%= modelName %>.sort(value,key)" data-popup="tooltip"
-   title="Sort By {{<%= modelName %>.columnLabel(value,key)}}"
-   class="{{<%= modelName %>.sortIcon(value)}} cursor-pointer">
-</i>
+</div>

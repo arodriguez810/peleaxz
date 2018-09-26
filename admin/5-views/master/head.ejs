@@ -43,15 +43,21 @@
     <script type="text/javascript" src="assets/js/plugins/forms/selects/select2.min.js"></script>
     <!-- /theme JS files -->
     <script type="text/javascript" src="assets/js/core/libraries/angular.min.js"></script>
+    <script type="text/javascript" src="assets/js/core/libraries/angular-sanitize.js"></script>
+    <script type="text/javascript" src="node_modules/table-dragger/dist/table-dragger.min.js"></script>
 
+    <script src="<%= FOLDERS.controllers %>/CO_BASE.js"></script>
 
-    <% models.forEach(function(item){ %>
-    <script src="<%= FOLDERS.controllers %>/<%= item %>.js"></script>
-    <% }); %>
-
+    <% models.forEach(function(item){ if(item != undefined){ %>
+    <script src="<%= FOLDERS.controllers %>/CO_<%= item %>.js"></script>
+    <% }}); %>
 
     <% localjs.forEach(function(item){ %>
     <script src="<%= FOLDERS.scripts %>/<%= item %>"></script>
+    <% }); %>
+
+    <% crudjs.forEach(function(item){ %>
+    <script src="<%= FOLDERS.crud %>/<%= item %>"></script>
     <% }); %>
 
     <script>
@@ -63,11 +69,13 @@
         TAG = eval("(" + TAG.replaceAll("&#34;", '"') + ")");
         FOLDERS = "<%= JSON.stringify(FOLDERS) %>";
         FOLDERS = eval("(" + FOLDERS.replaceAll("&#34;", '"') + ")");
+        DATA = "<%= JSON.stringify(DATA) %>";
+        DATA = eval("(" + DATA.replaceAll("&#34;", '"') + ")");
     </script>
 
 </head>
 <body ng-app="app">
-<div id="<%= modelName %>Controller" ng-controller="<%= modelName %>Controller as <%= modelName %>Controller">
+<div id="baseController" ng-controller="baseController as baseController">
     <% include navbar %>
     <!-- Page container -->
     <div class="page-container">
@@ -78,3 +86,10 @@
             <div class="content-wrapper">
                 <!-- Content area -->
                 <div class="content" id="content">
+                    <!-- Error title -->
+                    <div class="text-center content-group">
+                        <h1 class="error-title text-<%= COLOR.primary %>" style="font-size: 140px">
+                            Welcome to <%= CONFIG.appName %>
+                        </h1>
+                    </div>
+                    <!-- /error title -->

@@ -1,167 +1,55 @@
-TABLE = {
+TABLEEVENT = {
     run: function ($scope, $http, $compile) {
-        $scope.records = [];
-        $scope.CONFIG = CONFIG;
-        $scope.table = {
-            loaded: false,
-            crud: null,
-            is: {
-                loading: true
-            }
-        };
+        $scope.cell = {};
+        $scope.cell.selected = [];
+        $scope.events = ['click', 'dblclick', 'mousedown', 'mouseenter', 'mouseleave', 'mousemove', 'mouseover', 'mouseup'];
+        $scope.events.forEach(function (obj) {
+            eval(" $scope.cell." + obj + " = function (key, column, row, element) {\n" +
+                "            var value = eval(\"row.\" + key);\n" +
+                "                var data  = {\n" +
+                "                    value: value,\n" +
+                "                    $scope: $scope,\n" +
+                "                    $http: $http,\n" +
+                "                    $compile: $compile,\n" +
+                "                    key: key,\n" +
+                "                    column: column,\n" +
+                "                    element: element,\n" +
+                "                    row: row\n" +
+                "                };\n" +
+                "            if (typeof column." + obj + " === \"function\") \n" +
+                "                column." + obj + "(data);" +
+                "            if(typeof $scope.cell.extend" + obj + "===\"function\") " +
+                "                $scope.cell.extend" + obj + "(data);" +
+                "            " +
+                "        };");
+        });
 
-        /*Rows******************************/
-        $scope.cellValue = function (key, column, row) {
-            var value = eval("row." + key);
-            if (value === null || value === undefined)
-                return column.null || "";
-            if (column.shorttext) {
-                var shorttext = value;
-                if (shorttext.length > column.shorttext) {
-                    shorttext = String.format("<a>{0}</a>",
-                        shorttext.substring(0, column.shorttext) + "...");
-                }
-                return shorttext;
-            }
-            return value;
-        };
-        $scope.cellClick = function (key, column, row) {
-            var value = eval("row." + key);
-            if (typeof column.click === "function") {
-                column.click({
-                    value: value,
-                    $scope: $scope,
-                    $http: $http,
-                    $compile: $compile,
-                    key: key,
-                    column: column,
-                    row: row
-                });
-            }else{
-                if (column.shorttext) {
-                    var shorttext = value;
-                    if (shorttext.length > column.shorttext) {
-                        $scope.modal.simpleModal(value, {header: {title: 'Full text of ' + column.label}});
-                    }
+        $scope.cell.extendclick = function (data) {
+            if (data.column.shorttext) {
+                var shorttext = data.value;
+                if (shorttext.length > data.column.shorttext) {
+                    $scope.modal.simpleModal(data.value, {
+                        header: {title: 'Full text of ' + data.column.label},
+                    });
                 }
             }
         };
 
-        $scope.cellmouseover = function (key, column, row) {
-            var value = eval("row." + key);
-            if (typeof column.click === "function") {
-                column.click({
-                    value: value,
-                    $scope: $scope,
-                    $http: $http,
-                    $compile: $compile,
-                    key: key,
-                    column: column,
-                    row: row
-                });
-            }
+        $scope.cell.select = function (event) {
+            $("tr").removeClass('alpha-' + COLOR.info);
+            var classElement = 'bg-' + COLOR.info;
+            if (!$(event.currentTarget).parent().hasClass(classElement))
+                $(event.currentTarget).parent().addClass('alpha-' + COLOR.info);
         };
 
-        $scope.replaceRules = function (str) {
-            return str;
-        };
-        /*Rows******************************/
-
-        /*Info******************************/
-        $scope.tableStatus = function () {
-            var currentShow = ($scope.table.currentPage * $scope.table.currentLimit) - ($scope.table.currentLimit - 1);
-            var result = String.format("{0} sorted by {1} {2}ending, showing {3} to {4} of {5} entries",
-                $scope.plural,
-                $scope.table.orderby,
-                $scope.table.order,
-                currentShow,
-                currentShow + ($scope.table.currentCount - 1),
-                $scope.table.totalCount
-            );
-
-            return result;
-        };
-        /*Info******************************/
-        /*Column******************************/
-
-        $scope.columnLabel = function (value, key) {
-            var label = value.label || key;
-            return capitalize(label);
-        };
-        $scope.columnVisible = function (value) {
-            return value.visible !== false;
-        };
-        $scope.rowActive = function (row) {
-            return !row.active ? 'bg-' + COLOR.danger + '-300 text-white' : '';
-        };
-        /*Column******************************/
-
-        /*Validation******************************/
-        $scope.stopInteraction = function () {
-            return $scope.table.is.loading;
-        };
-        /*Validation******************************/
-
-        /*CHECK BOX******************************/
-        $scope.checkVisible = function (key) {
-            return key === 'id' && $scope.isBatch();
+        $scope.cell.dblselect = function (event) {
+            var classElement = 'bg-' + COLOR.info;
+            if ($(event.currentTarget).hasClass(classElement))
+                $(event.currentTarget).removeClass('bg-' + COLOR.info);
+            else
+                $(event.currentTarget).addClass('bg-' + COLOR.info);
         };
 
-        $scope.checkAll = function () {
-            if ($scope.stopInteraction()) return false;
-            $scope.selected = $scope.checkall;
-        };
-        $scope.check = function () {
-            if ($scope.stopInteraction()) return false;
-            var checkall = true;
-            $(".singlecheck").each(function () {
-                if ($(this).prop('checked') === false) {
-                    checkall = false;
-                    return false;
-                }
-            });
-            $scope.checkall = checkall;
-        };
-        /*CHECK BOX******************************/
 
-        $scope.afterData = function (data) {
-            PAGINATOR.make($scope, data);
-            ANIMATION.stoploading("#" + $scope.modelName + "TablePanel", ".loadingButton");
-            $scope.table.is.loading = false;
-        };
-
-        $scope.refresh = function () {
-            ANIMATION.loading("#" + $scope.modelName + "TablePanel", "Refresing " + $scope.plural + " List...", ".loadingButton");
-            $scope.table.is.loading = true;
-            setTimeout(function () {
-                if ($scope.table.loaded !== true) {
-                    $scope.table.loaded = true;
-                    ANIMATION.play("#" + $scope.modelName + "Table");
-                    $scope.list(
-                        {
-                            limit: $scope.table.currentLimit,
-                            page: $scope.table.currentPage,
-                            orderby: $scope.table.orderby,
-                            order: $scope.table.order
-                        }, function (data) {
-                            $scope.afterData(data);
-                        });
-                } else {
-                    $scope.list(
-                        {
-                            limit: $scope.table.currentLimit,
-                            page: $scope.table.currentPage,
-                            orderby: $scope.table.orderby,
-                            order: $scope.table.order
-                        }, function (data) {
-                            $scope.afterData(data);
-                        });
-                }
-            }, 0);
-        };
-
-        $scope.stateText = function () {
-            return String.format("{0} order by {1} ", $scope.plural, $scope.table.orderby);
-        };
     }
 };

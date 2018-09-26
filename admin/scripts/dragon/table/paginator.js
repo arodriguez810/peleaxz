@@ -7,10 +7,14 @@ PAGINATOR = {
         $scope.table.totalCount = 0;
         $scope.table.currentCount = 0;
 
+
         $scope.goLimit = function (limit) {
             if ($scope.stopInteraction()) return false;
             if ($scope.table.currentLimit !== limit) {
                 $scope.table.currentLimit = limit;
+                $scope.table.currentPage = 1;
+                STORAGE.savePage($scope);
+                $scope.saveModel('limit', "table.currentLimit");
                 $scope.pageChanged();
             } else {
                 $scope.pageNotChanged();
@@ -22,6 +26,7 @@ PAGINATOR = {
         };
 
         $scope.pageChanged = function () {
+            STORAGE.savePage($scope);
             $scope.refresh();
         };
 
@@ -116,7 +121,7 @@ PAGINATOR = {
         for (var i = initPaginator; i <= lastPaginator; i++) {
             $scope.table.pages.push({
                 number: i,
-                current: $scope.table.currentPage === i ? "active" : "",
+                current: $scope.table.currentPage === i ? ("active bg-" + TAG.table) : "",
                 class: ""
             });
         }

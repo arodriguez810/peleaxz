@@ -28,11 +28,10 @@ for (var i in CONFIG.modules) {
 
 //******* Load Custom Modules********//
 fs.readdir('./' + folders.modules + '/', function (err, files) {
-
     for (var i in files) {
         var file = files[i];
-        modulesList.push(file.replace(".js", ""));
-        eval("modules." + file.replace(".js", "") + " = require('./" + folders.modules + '/' + file + "');");
+        modulesList.push(file.replace(".js", "").replace("BASE_", ""));
+        eval("modules." + file.replace(".js", "").replace("BASE_", "") + " = require('./" + folders.modules + '/' + file + "');");
     }
 });
 
@@ -43,7 +42,7 @@ var getFiles = function (dir, filelist, prefix) {
     prefix = prefix || "";
     files.forEach(function (file) {
         if (fs.statSync(dir + '/' + file).isDirectory()) {
-            filelist = getFiles(dir + '/' + file, filelist, file + "/");
+            filelist = getFiles(dir + '/' + file, filelist, prefix + file + "/");
         }
         else {
             filelist.push(prefix + file);
@@ -52,11 +51,12 @@ var getFiles = function (dir, filelist, prefix) {
     return filelist;
 };
 localjs = getFiles('./' + folders.scripts + '/');
+crudjs = getFiles('./' + folders.crud + '/');
 //******* Load Custom Modules********//
 
 //******* App Configuration ********//
 var app = express();
-if (CONFIG.mongo)
+if (CONFIG.mongo !== undefined)
     mongoose.connect(CONFIG.mongo);
 app.use(express.static(__dirname));
 app.use(morgan('dev'));
@@ -85,7 +85,6 @@ for (var i in modulesList) {
     allparams += "      " + name + ":" + name + ",";
 }
 
-
 for (var i in localModulesVars) {
     var name = localModulesVars[i];
     allparams += "      " + name + ":" + name + ",";
@@ -95,6 +94,7 @@ allparams += "      modelName: '@model@',";
 allparams += "      modules:modules,";
 allparams += "      fs:fs,";
 allparams += "      localjs:localjs,";
+allparams += "      crudjs:crudjs,";
 allparams += "      models:models,";
 allparams += "      mssql:mssql,";
 allparams += "      mysql:mysql,";
@@ -122,102 +122,116 @@ var session = {
 };
 var sessions = [];
 sessions.push(session);
-fs.readdir('./' + folders.models + '/mongo', function (err, files) {
 
-    if (CONFIG.mongo) {
+loadedMotors = 0;
+if (CONFIG.mongo !== undefined) {
+    fs.readdir('./' + folders.models + '/mongo', function (err, files) {
+
         for (var i in files) {
             var file = files[i];
-            models.push(S(file).replaceAll(".json", "").s);
+            models.push(S(file).replaceAll(".json", "").replaceAll("MO_", "").s);
         }
         for (var i in models) {
             var model = models[i];
-            var content = fs.readFileSync(util.format('./' + folders.models + "/mongo/%s.json", model));
+            var content = fs.readFileSync(util.format('./' + folders.models + "/mongo/MO_%s.json", model));
             eval(util.format("collections.%s = mongoose.model('%s', %s);", model, model, content));
-            eval(util.format("%sService = require('" + './' + folders.service + "/%s.js');", model, model));
+            eval(util.format("%sService = require('" + './' + folders.service + "/SE_%s.js');", model, model));
             var stringModel = S(allparams).replaceAll("@model@", model).s;
             eval(util.format("%sService.init(%s);", model, stringModel));
         }
-    }
 
-
-    fs.readdir('./' + folders.models + '/mssql', function (err, files) {
-        if (CONFIG.mssql) {
-            for (var i in files) {
-                var file = files[i];
-                modelsql.push(S(file).replaceAll(".json", "").s);
-            }
-            for (var i in modelsql) {
-                var model = modelsql[i];
-                var content = fs.readFileSync(util.format('./' + folders.models + "/mssql/%s.json", model));
-                var object = eval("(" + util.format("%s", content) + ")");
-                var create = modules.mssql.createTable(model, object, eval("(" + allparams + ")"));
-                var add = modules.mssql.addColumns(model, object, eval("(" + allparams + ")"));
-                var alter = modules.mssql.alterColumns(model, object, eval("(" + allparams + ")"));
-                modules.mssql.deleteColumns(model, object, eval("(" + allparams + ")"));
-                modules.mssql.executeNonQuery(create, eval("(" + allparams + ")"));
-                modules.mssql.executeNonQuery(alter, eval("(" + allparams + ")"));
-                modules.mssql.executeNonQuery(add, eval("(" + allparams + ")"));
-                eval(util.format("%sService = require('" + './' + folders.service + "/%s.js');", model, model));
+        if (CONFIG.mongo)
+            for (var i in models) {
+                var model = models[i];
                 var stringModel = S(allparams).replaceAll("@model@", model).s;
-                eval(util.format("%sService.init(%s);", model, stringModel));
+                modules.request.defaultRequests(eval("(" + stringModel + ")"), eval(util.format("collections.%s", model)));
             }
-        }
-        fs.readdir('./' + folders.models + '/mysql', function (err, files) {
-            if (CONFIG.mysql) {
-                for (var i in files) {
-                    var file = files[i];
-                    modelmysql.push(S(file).replaceAll(".json", "").s);
-                }
-                for (var i in modelmysql) {
-                    var model = modelmysql[i];
-                    var content = fs.readFileSync(util.format('./' + folders.models + "/mysql/%s.json", model));
-                    var object = eval("(" + util.format("%s", content) + ")");
-                    var create = modules.mysql.createTable(model, object, eval("(" + allparams + ")"));
-                    var add = modules.mysql.addColumns(model, object, eval("(" + allparams + ")"));
-                    var alter = modules.mysql.alterColumns(model, object, eval("(" + allparams + ")"));
-                    modules.mysql.deleteColumns(model, object, eval("(" + allparams + ")"));
-                    modules.mysql.executeNonQuery(create, eval("(" + allparams + ")"));
-                    modules.mysql.executeNonQuery(alter, eval("(" + allparams + ")"));
-                    modules.mysql.executeNonQuery(add, eval("(" + allparams + ")"));
-                    eval(util.format("%sService = require('" + './' + folders.service + "/%s.js');", model, model));
-                    var stringModel = S(allparams).replaceAll("@model@", model).s;
-                    eval(util.format("%sService.init(%s);", model, stringModel));
-                }
-            }
-            if (CONFIG.mongo)
-                for (var i in models) {
-                    var model = models[i];
-                    var stringModel = S(allparams).replaceAll("@model@", model).s;
-                    modules.request.defaultRequests(eval("(" + stringModel + ")"), eval(util.format("collections.%s", model)));
-                }
-            var MSSQLDB = {};
-            if (CONFIG.mssql)
-                for (var i in modelsql) {
-                    eval("MSSQLDB." + modelsql[i] + " = new modules.mssql.Model('" + modelsql[i] + "'," + allparams + ");");
-                    modules.mssql.defaultRequests(eval(util.format("MSSQLDB.%s", modelsql[i])), eval("(" + stringModel + ")"));
-                }
-            var MYQLDB = {};
-            if (CONFIG.mysql)
-                for (var i in modelmysql) {
-                    eval("MYQLDB." + modelmysql[i] + " = new modules.mysql.Model('" + modelmysql[i] + "'," + allparams + ");");
-                    modules.mysql.defaultRequests(eval(util.format("MYQLDB.%s", modelmysql[i])), eval("(" + stringModel + ")"));
-                }
-
-            modules.tools.init(eval("(" + allparams + ")"));
-            app.listen(CONFIG.port);
-
-            console.log("******************Dragon Server*************************************".pxz);
-            console.log("Server : ".pxz + CONFIG.port);
-            if (CONFIG.mongo)
-                console.log("MongoDB: ".pxz + CONFIG.mongo);
-            console.log("Mongo  : ".pxz + models);
-            if (CONFIG.mssql)
-                console.log("MSSQL  : ".pxz + modelsql);
-            if (CONFIG.mysql)
-                console.log("MYSQL  : ".pxz + modelmysql);
-            console.log("Custom : ".pxz + modulesList);
-            console.log("Modules: ".pxz + localModules);
-            console.log("**********************************************************************".pxz);
-        });
+        loadedMotors++;
     });
-});
+} else
+    loadedMotors++;
+
+
+if (CONFIG.mssql !== undefined) {
+    fs.readdir('./' + folders.models + '/mssql', function (err, files) {
+
+        for (var i in files) {
+            var file = files[i];
+            modelsql.push(S(file).replaceAll(".json", "").replaceAll("MO_", "").s);
+        }
+
+        for (var i in modelsql) {
+            var model = modelsql[i];
+            var content = fs.readFileSync(util.format('./' + folders.models + "/mssql/MO_%s.json", model));
+            var object = eval("(" + util.format("%s", content) + ")");
+            var create = modules.mssql.createTable(model, object, eval("(" + allparams + ")"));
+            var add = modules.mssql.addColumns(model, object, eval("(" + allparams + ")"));
+            var alter = modules.mssql.alterColumns(model, object, eval("(" + allparams + ")"));
+            modules.mssql.deleteColumns(model, object, eval("(" + allparams + ")"));
+            modules.mssql.executeNonQuery(create, eval("(" + allparams + ")"));
+            modules.mssql.executeNonQuery(alter, eval("(" + allparams + ")"));
+            modules.mssql.executeNonQuery(add, eval("(" + allparams + ")"));
+            eval(util.format("%sService = require('" + './' + folders.service + "/SE_%s.js');", model, model));
+            var stringModel = S(allparams).replaceAll("@model@", model).s;
+            eval(util.format("%sService.init(%s);", model, stringModel));
+        }
+        var MSSQLDB = {};
+        for (var i in modelsql) {
+            eval("MSSQLDB." + modelsql[i] + " = new modules.mssql.Model('" + modelsql[i] + "'," + allparams + ");");
+            modules.mssql.defaultRequests(eval(util.format("MSSQLDB.%s", modelsql[i])), eval("(" + stringModel + ")"));
+        }
+        loadedMotors++;
+
+    });
+} else
+    loadedMotors++;
+
+if (CONFIG.mysql !== undefined) {
+    fs.readdir('./' + folders.models + '/mysql', function (err, files) {
+
+        for (var i in files) {
+            var file = files[i];
+            modelmysql.push(S(file).replaceAll(".json", "").replaceAll("MO_", "").s);
+        }
+        for (var i in modelmysql) {
+            var model = modelmysql[i];
+            var content = fs.readFileSync(util.format('./' + folders.models + "/mysql/MO_%s.json", model));
+            var object = eval("(" + util.format("%s", content) + ")");
+            var create = modules.mysql.createTable(model, object, eval("(" + allparams + ")"));
+            var add = modules.mysql.addColumns(model, object, eval("(" + allparams + ")"));
+            var alter = modules.mysql.alterColumns(model, object, eval("(" + allparams + ")"));
+            modules.mysql.deleteColumns(model, object, eval("(" + allparams + ")"));
+            modules.mysql.executeNonQuery(create, eval("(" + allparams + ")"));
+            modules.mysql.executeNonQuery(alter, eval("(" + allparams + ")"));
+            modules.mysql.executeNonQuery(add, eval("(" + allparams + ")"));
+            eval(util.format("%sService = require('" + './' + folders.service + "/SE_%s.js');", model, model));
+            var stringModel = S(allparams).replaceAll("@model@", model).s;
+            eval(util.format("%sService.init(%s);", model, stringModel));
+        }
+
+        var MYQLDB = {};
+        for (var i in modelmysql) {
+            eval("MYQLDB." + modelmysql[i] + " = new modules.mysql.Model('" + modelmysql[i] + "'," + allparams + ");");
+            modules.mysql.defaultRequests(eval(util.format("MYQLDB.%s", modelmysql[i])), eval("(" + stringModel + ")"));
+        }
+        loadedMotors++;
+    });
+} else
+    loadedMotors++;
+
+while (loadedMotors < 3) sleep(1);
+
+modules.tools.init(eval("(" + allparams + ")"));
+modules.views.init(eval("(" + allparams + ")"));
+app.listen(CONFIG.port);
+console.log("******************Dragon Server*************************************".pxz);
+console.log("Server : ".pxz + CONFIG.port);
+if (CONFIG.mongo !== undefined)
+    console.log("Mongo  : ".pxz + models);
+if (CONFIG.mssql !== undefined)
+    console.log("MSSQL  : ".pxz + modelsql);
+if (CONFIG.mysql !== undefined)
+    console.log("MYSQL  : ".pxz + modelmysql);
+console.log("Custom : ".pxz + modulesList);
+console.log("Modules: ".pxz + localModules);
+console.log("**********************************************************************".pxz);
