@@ -1,0 +1,28 @@
+{
+  "name": "pxz-admin",
+  "version": "1.0.0",
+  "description": "Pelea XZ Administrator",
+  "main": "server.js",
+  "author": "Angel Rodriguez",
+  "dependencies": {
+    "body-parser": "~1.5.2",
+    "co": "^4.6.0",
+    "colors": "^1.3.2",
+    "ejs": "^2.6.1",
+    "express": "~4.7.2",
+    "express-layout": "^0.1.0",
+    "method-override": "~2.1.2",
+    "mongoose": "~3.6.2",
+    "morgan": "~1.2.2",
+    "mssql": "^4.2.1",
+    "mysql": "^2.16.0",
+    "node-mssql": "0.0.1",
+    "pluralize": "^7.0.0",
+    "string": "^3.3.3",
+    "string-format": "^2.0.0",
+    "system-sleep": "^1.3.6"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
+  }
+}
