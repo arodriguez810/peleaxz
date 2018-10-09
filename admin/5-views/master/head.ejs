@@ -15,6 +15,7 @@
     <link href="assets/css/colors.css" rel="stylesheet" type="text/css">
     <link href="assets/css/style.css" rel="stylesheet" type="text/css">
     <link href="assets/css/extras/animate.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/sweetalert2.min.css" rel="stylesheet" type="text/css">
     <!-- /global stylesheets -->
 
     <!-- Core JS files -->
@@ -39,26 +40,36 @@
     <script type="text/javascript" src="assets/js/plugins/velocity/velocity.ui.min.js"></script>
     <script type="text/javascript" src="assets/js/plugins/ui/prism.min.js"></script>
     <script type="text/javascript" src="assets/js/plugins/sweetalert/sweetalert2.all.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/numeral/numeral.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/media/cropper.min.js"></script>
+
     <script type="text/javascript" src="assets/js/core/libraries/jquery_ui/interactions.min.js"></script>
     <script type="text/javascript" src="assets/js/plugins/forms/selects/select2.min.js"></script>
     <!-- /theme JS files -->
     <script type="text/javascript" src="assets/js/core/libraries/angular.min.js"></script>
     <script type="text/javascript" src="assets/js/core/libraries/angular-sanitize.js"></script>
     <script type="text/javascript" src="node_modules/table-dragger/dist/table-dragger.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= CONFIG.googlemap %>"></script>
 
     <script src="<%= FOLDERS.controllers %>/CO_BASE.js"></script>
 
-    <% models.forEach(function(item){ if(item != undefined){ %>
-    <script src="<%= FOLDERS.controllers %>/CO_<%= item %>.js"></script>
-    <% }}); %>
-
     <% localjs.forEach(function(item){ %>
-    <script src="<%= FOLDERS.scripts %>/<%= item %>"></script>
+        <script src="<%= FOLDERS.scripts %>/<%= item %>"></script>
     <% }); %>
 
     <% crudjs.forEach(function(item){ %>
-    <script src="<%= FOLDERS.crud %>/<%= item %>"></script>
+        <script src="<%= FOLDERS.crud %>/<%= item %>"></script>
     <% }); %>
+
+
+<% models.forEach(function(item){ if(item != undefined){ %>
+        <script src="<%= FOLDERS.controllers %>/CO_<%= item %>.js"></script>
+    <% }}); %>
+
+
+
+
+
 
     <script>
         CONFIG = "<%= JSON.stringify(CONFIG) %>";
@@ -70,12 +81,18 @@
         FOLDERS = "<%= JSON.stringify(FOLDERS) %>";
         FOLDERS = eval("(" + FOLDERS.replaceAll("&#34;", '"') + ")");
         DATA = "<%= JSON.stringify(DATA) %>";
+        DATA = "<%= JSON.stringify(DATA) %>";
         DATA = eval("(" + DATA.replaceAll("&#34;", '"') + ")");
+        SERVICES = "<%= JSON.stringify(SERVICES) %>";
+        SERVICES = eval("(" + SERVICES.replaceAll("&#34;", '"') + ")");
+        SERVICE.run(SERVICES);
+        MODEL = {};
     </script>
 
 </head>
 <body ng-app="app">
 <div id="baseController" ng-controller="baseController as baseController">
+    <button class=" upButtom btn bg-<%=COLOR.primary %>" title="Go to top"><i style="font-size: 30px;" class="icon-square-up"></i></button>
     <% include navbar %>
     <!-- Page container -->
     <div class="page-container">

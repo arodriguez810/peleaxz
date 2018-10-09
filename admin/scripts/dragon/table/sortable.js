@@ -10,9 +10,17 @@ SORTABLE = {
             $scope.table.crud.table.columns[i].sorted = false;
             $scope.table.crud.table.columns[i].order = "asc";
         }
+
         $scope.table.orderby = firstColumn;
         $scope.table.order = "asc";
-        $scope.table.crud.table.columns[firstColumn].sorted = true;
+        if ($scope.hasModel("sortcolumn")) {
+            $scope.table.orderby = $scope.getModel("sortcolumn");
+        }
+        if ($scope.hasModel("sortorder")) {
+            $scope.table.order = $scope.getModel("sortorder");
+        }
+        $scope.table.crud.table.columns[$scope.table.orderby].order = $scope.table.order;
+        $scope.table.crud.table.columns[$scope.table.orderby].sorted = true;
         $scope.sortIcon = function (column) {
             var types = [];
             var icon = "";
@@ -20,14 +28,12 @@ SORTABLE = {
             types["amount"] = " icon-sort-amount-";
             types["time"] = "icon-sort-time-";
             if (column.sortable !== false) {
-                if (!column.sorted)
-                    icon = "icon-sort";
+                if (!column.sorted) icon = "icon-sort";
                 else {
                     if (column.sorttype === undefined) {
                         icon = "icon-sort-alpha-";
                         icon += column.order;
-                    }
-                    else {
+                    } else {
                         if (column.sorttype === "bool") {
                             icon = "icon-stack-";
                             icon += column.order === "asc" ? "empty" : "check";
@@ -62,9 +68,11 @@ SORTABLE = {
             column.sorted = true;
             column.order = column.order === "asc" ? "desc" : "asc";
             $scope.table.orderby = columnName;
-            $scope.saveModel('sortcolumn','table.orderby');
+            if ($scope.characterist('persist'))
+                $scope.saveModel("sortcolumn", "table.orderby");
             $scope.table.order = column.order;
-            $scope.saveModel('sortorder','table.order');
+            if ($scope.characterist('persist'))
+                $scope.saveModel("sortorder", "table.order");
             for (var i in $scope.table.crud.table.columns) {
                 if (i !== columnName) {
                     $scope.table.crud.table.columns[i].sorted = false;

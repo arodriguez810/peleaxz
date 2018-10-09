@@ -1,13 +1,31 @@
 var app = angular.module('app', ['ngSanitize']);
 app.controller('baseController', function ($scope, $http, $compile, $controller) {
     var baseController = this;
+    baseController.favorites = [];
+    if (STORAGE.exist('favorites')) {
+        baseController.favorites = STORAGE.get('favorites');
+    }
     baseController.base = function () {
         LOAD.loadContent($scope, $http, $compile);
-    }
+    };
     baseController.base();
+    baseController.deleteFavorite = function (href) {
+        if (STORAGE.exist('favorites')) {
+            var stored = STORAGE.get('favorites');
+            var newarray = [];
+            stored.forEach(function (item) {
+                if (item.href !== href)
+                    newarray.push(item);
+            });
+            console.log(newarray);
+            //STORAGE.add('favorites', stored);
+            //baseController.favorites = STORAGE.get('favorites');
+        }
+    };
 });
 
 RUNCONTROLLER = function (conrollerName, inside, $scope, $http, $compile) {
+    inside.MENU = MENU.current;
     inside.modelName = conrollerName;
     inside.singular = inside.modelName.split('_')[1];
     inside.plural = pluralize(inside.singular);
@@ -15,15 +33,19 @@ RUNCONTROLLER = function (conrollerName, inside, $scope, $http, $compile) {
     API.run(inside, $http);
     COMPILE.run(inside, $scope, $compile);
     TABLE.run(inside, $http, $compile);
+    CRUD.run(inside, inside.crudConfig);
+    TABLEOPTIONS.run(inside);
     TABLEEVENT.run(inside, $http, $compile);
     TABLEFORMAT.run(inside);
-    TABLESELECTION.run(inside);
-    CRUD.run(inside, inside.crudConfig);
     PAGINATOR.run(inside);
+    STORAGE.run(inside);
     SORTABLE.run(inside);
     MODAL.run(inside);
     FILTER.run(inside);
+    TABLESELECTION.run(inside);
     LOAD.run(inside, $http);
-    STORAGE.run(inside);
+    PERMISSIONS.run(inside);
+    MENU.run(inside);
+
     inside.refresh();
 };

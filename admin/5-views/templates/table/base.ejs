@@ -1,12 +1,13 @@
-<div class="table-responsive" id="<%= modelName %>TablePanel">
+<div class="table-responsive" id="<%= modelName %>TablePanel" style="{{<%= modelName %>.scrollable()}}">
     <!--Table List -->
-    <table class="table table-togglable table-framed sindu-table"
+    <table class="table table-togglable table-framed sindu-table dragon-table"
+            style="{{<%= modelName %>.width()}}"
            data-animation="bounceInUp"
            id="<%= modelName %>Table"
            data-scope="<%= modelName %>">
         <thead class="bg-<%= TAG.table %>" id="<%= modelName %>head">
         <!--Columns-->
-        <tr>
+        <tr class="bg-<%= TAG.table %> dragon-columns">
             <th ng-repeat="(key, value) in <%= modelName %>.columns()"
                 ng-show="<%= modelName %>.columnVisible(value)"
                 data-column="{{key}}"
@@ -20,7 +21,7 @@
         <tbody id="<%= modelName %>TableBody">
         <!--Rows-->
         <tr ng-repeat="(key, row) in <%= modelName %>.records.data" data-object="{{row}}"
-            class=" {{<%= modelName %>.rowClass(row)}}">
+            class="dragon-rows {{<%= modelName %>.rowClass(row)}} {{<%= modelName %>.trCheck(row)}}">
             <%- include('rows',{modelName:modelName}); %>
             <!--Options-->
             <%- include('rowOptions',{modelName:modelName}); %>

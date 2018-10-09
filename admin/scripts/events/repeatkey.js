@@ -37,7 +37,28 @@ KEY = {
                 case "P":
                 case "p": {
                     if (ANGULARJS.tableScope !== null) {
-                        eval(ANGULARJS.tableScope + ".refresh()");
+                        eval(ANGULARJS.tableScope + ".goPageModal()");
+                    }
+                    break;
+                }
+                case "t":
+                case "T": {
+                    if (ANGULARJS.tableScope !== null) {
+                        eval(ANGULARJS.tableScope + ".restoreStorage()");
+                    }
+                    break;
+                }
+                case "f":
+                case "F": {
+                    if (ANGULARJS.tableScope !== null) {
+                        eval(ANGULARJS.tableScope + ".openFilters()");
+                    }
+                    break;
+                }
+                case "a":
+                case "A": {
+                    if (ANGULARJS.tableScope !== null) {
+                        eval(ANGULARJS.tableScope + ".add()");
                     }
                     break;
                 }

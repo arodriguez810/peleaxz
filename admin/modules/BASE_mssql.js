@@ -9,7 +9,7 @@ exports.createTable = function (model, object, params) {
     return tsql;
 };
 
-exports.alterBlackList = ["DEFAULT", "GETDATE()", "IDENTITY(1,1)", "IDENTITY", "1"];
+exports.alterBlackList = ["DEFAULT", "GETDATE()", "IDENTITY(1,1)", "IDENTITY"];
 exports.addColumns = function (model, object, params) {
     var tsql = "";
     for (var property in object)

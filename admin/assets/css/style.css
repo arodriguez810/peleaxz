@@ -34,7 +34,12 @@ button.btn {
     margin: 0 15px 0 0;
 }
 
-.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
     padding: 8px 20px;
     line-height: 1.5384616;
     vertical-align: top;
@@ -44,6 +49,49 @@ button.btn {
 .dragontable th {
     width: auto !important;
 }
+
 .sindu_dragger table {
-    background: #CCCCCC !important;
+    background: #cccccc !important;
+}
+
+.swal2-popup {
+    font-size: medium !important;
+}
+
+.show-tr {
+    visibility: hidden;
+}
+
+.show-td {
+    visibility: hidden;
+}
+
+th:hover .show-tr {
+    visibility: visible;
+}
+
+tr:hover .show-td {
+    visibility: visible;
+}
+
+.tableimage {
+    width: 30px;
+}
+
+tr.dragon-columns.dragon-column-hide i {
+    display: none;
+}
+tr.dragon-columns.dragon-column-hide th {
+    cursor: default;
+}
+
+.upButtom {
+    display: none;
+    position: fixed;
+    bottom: 62px;
+    right: 30px;
+    z-index: 99;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 15px;
 }

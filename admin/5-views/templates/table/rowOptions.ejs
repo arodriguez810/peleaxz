@@ -1,27 +1,20 @@
-<td class="text-center">
-    <ul class="icons-list">
-        <li>
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class=" icon-cog2"></i>
+<td class="text-center"
+    ng-show="(<%= modelName %>.allow('actions') && <%= modelName %>.allow(['edit','remove','active']))">
+    <ul class="icons-list" style="z-index: 99999">
+        <li ng-repeat="(key, option) in <%= modelName %>.options"
+            ng-show="<%= modelName %>.allow(<%= modelName %>.option.permission(option,key,row)) && <%= modelName %>.option.show(option,key,row)">
+            <a ng-click="<%= modelName %>.option.click(option,key,row,false)" class="dropdown-toggle"
+               data-toggle="dropdown">
+                <i class=" icon-{{<%= modelName %>.option.icon(option,key,row)}}"></i>
             </a>
             <ul class="dropdown-menu dropdown-menu-right">
-                <li><a href="#"><i class="icon-pencil5"></i>Edit</a></li>
-                <li><a href="#"><i class="icon-trash"></i>Remove</a></li>
-                <li ng-show="!row.active"><a href="#"><i class="icon-checkmark-circle"></i>Enable</a>
+                <li ng-repeat="(key, menu) in option.menus"
+                    ng-show="<%= modelName %>.allow(<%= modelName %>.option.permission(menu,key,row)) && <%= modelName %>.option.show(menu,key,row)">
+                    <a ng-click="<%= modelName %>.option.click(menu,key,row)">
+                        <i class="icon-{{<%= modelName %>.option.icon(menu,key,row)}}"></i>
+                        {{<%= modelName %>.option.text(menu,key,row)}}
+                    </a>
                 </li>
-                <li ng-show="row.active"><a href="#"><i class="icon-circle"></i>Disable</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="icon-file-download2"></i>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-right">
-                <li><a href="#"><i class="icon-copy3"></i> Export to clipboard</a></li>
-                <li><a href="#"><i class="icon-file-pdf"></i> Export to .pdf</a></li>
-                <li><a href="#"><i class="icon-file-excel"></i> Export to .csv</a></li>
-                <li><a href="#"><i class="icon-file-excel"></i> Export to .xlsx</a></li>
-                <li><a href="#"><i class="icon-file-word"></i> Export to .doc</a></li>
             </ul>
         </li>
     </ul>

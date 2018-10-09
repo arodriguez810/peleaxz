@@ -10,15 +10,44 @@
     <div class="navbar-collapse collapse" id="navbar-mobile">
         <ul class="nav navbar-nav">
             <li>
-                <a class="sidebar-control sidebar-main-toggle hidden-xs">
+                <a class="sidebar-control sidebar-main-toggle hidden-xs" data-popup="tooltip" title=""
+                   data-placement="bottom" data-container="body" data-original-title="Lite Menu">
                     <i class="icon-paragraph-justify3"></i>
                 </a>
             </li>
             <li>
-                <a class="sidebar-control sidebar-main-hide hidden-xs legitRipple" data-popup="tooltip" title="" data-placement="bottom" data-container="body" data-original-title="Hide main">
+                <a class="sidebar-control sidebar-main-hide hidden-xs legitRipple" data-popup="tooltip" title=""
+                   data-placement="bottom" data-container="body" data-original-title="Hide Menu">
                     <i class="icon-lan3"></i>
                 </a>
             </li>
+            <li>
+                <a class="sidebar-control" onclick="STORAGE.clearAll()" data-popup="tooltip" title=""
+                   data-placement="bottom" data-container="body" data-original-title="Restore all Configuration">
+                    <i class="icon-loop"></i>
+                </a>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle legitRipple" data-toggle="dropdown" aria-expanded="false">
+                    <i class="icon-heart5"></i>
+                </a>
+
+                <div class="dropdown-menu dropdown-content">
+                    <ul class="media-list dropdown-content-body width-100">
+                        <li ng-repeat="(key,menu) in baseController.favorites" class="media">
+                            <div class="media-left">
+                                <a href="{{menu.href}}"
+                                   class="btn border-<%= COLOR.primary %> text-<%= COLOR.info %> btn-flat btn-rounded btn-icon btn-sm legitRipple">
+                                    <i class="{{menu.icon}}"></i>
+                                </a>
+                                <a href="{{menu.href}}"> {{menu.text}}</a>
+                                <i ng-click="baseController.deleteFavorite(menu.href)" class="icon-trash" style="float: left"></i>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
         </ul>
         <div class="navbar-right">
             <p class="navbar-text">Hi, <%= session.fullName() %></p>

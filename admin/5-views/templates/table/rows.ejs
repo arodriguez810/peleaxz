@@ -1,17 +1,16 @@
 <td ng-repeat="(key, value) in <%= modelName %>.columns()"
     ng-show="value.visible!=false"
     class="{{value.class || ''}}"
-
-    ng-click="<%= modelName %>.cell.select($event)"
+    style="{{value.style || ''}}"
+    ng-click="<%= modelName %>.cell.select($event,row)"
     ng-dblclick="<%= modelName %>.cell.dblselect($event)"
 >
-    <input type="checkbox" data-object="{{row}}"
-           class="singlecheck styled"
-           value="row.id"
-           ng-checked="<%= modelName %>.selected"
-           ng-show="key==='id' && <%= modelName %>.isBatch()"
-           ng-click="<%= modelName %>.check(this)">
 
+    <span
+            ng-bind-html="<%= modelName %>.drawCheck(key,row)"
+            ng-click="<%= modelName %>.check(row)"
+    >
+    </span>
     <span ng-bind-html="<%= modelName %>.cellValue(key,value,row)"
           ng-click="<%= modelName %>.cell.click(key,value,row)"
           ng-dblclick="<%= modelName %>.cell.dblclick(key,value,row)"

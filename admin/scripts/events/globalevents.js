@@ -1,30 +1,40 @@
 $(document).ready(function () {
+
     $(window).bind('hashchange', function () { //detect hash change
         FIXELEMENT.elements = [];
         ANGULARJS.get('baseController').base();
     });
 
     $(document).on("scroll", function () {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            $(".upButtom").show();
+        } else {
+            $(".upButtom").hide();
+        }
         FIXELEMENT.run();
     });
 
-    $("input[type='checkbox'].styled").uniform({
-        radioClass: 'choice',
-        wrapperClass: 'border-primary-600 text-primary-800'
+
+    $(document).on('click', '.dragon-menu a', function () {
+        MENU.setLast($(this));
+    });
+    $(document).on('click', '.upButtom', function () {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
     });
 
     $(document).on('mouseover', '[data-popup=tooltip]', function () {
         if ($(this).data('original-title') === undefined) {
             $(this).tooltip({
                 template:
-                '<div class="tooltip">' +
-                '   <div class="bg-' + COLOR.primary + '">' +
-                '       <div class="tooltip-arrow">' +
-                '       </div>' +
-                '       <div class="tooltip-inner">' +
-                '       </div>' +
-                '   </div>' +
-                '</div>'
+                    '<div class="tooltip">' +
+                    '   <div class="bg-' + COLOR.primary + '">' +
+                    '       <div class="tooltip-arrow">' +
+                    '       </div>' +
+                    '       <div class="tooltip-inner">' +
+                    '       </div>' +
+                    '   </div>' +
+                    '</div>'
             });
             $(this).tooltip('show');
         }
@@ -34,14 +44,14 @@ $(document).ready(function () {
         if ($(this).data('original-title') === undefined) {
             $(this).tooltip({
                 template:
-                '<div class="tooltip">' +
-                '   <div class="bg-' + COLOR.primary + '">' +
-                '       <div class="tooltip-arrow">' +
-                '       </div>' +
-                '       <div class="tooltip-inner">' +
-                '       </div>' +
-                '   </div>' +
-                '</div>'
+                    '<div class="tooltip">' +
+                    '   <div class="bg-' + COLOR.primary + '">' +
+                    '       <div class="tooltip-arrow">' +
+                    '       </div>' +
+                    '       <div class="tooltip-inner">' +
+                    '       </div>' +
+                    '   </div>' +
+                    '</div>'
             });
             $(this).tooltip('show');
         }

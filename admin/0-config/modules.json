@@ -1,0 +1,72 @@
+{
+  "modules": [
+    {
+      "var": "express",
+      "module": "express"
+    },
+    {
+      "var": "mongoose",
+      "module": "mongoose"
+    },
+    {
+      "var": "morgan",
+      "module": "morgan"
+    },
+    {
+      "var": "bodyParser",
+      "module": "body-parser"
+    },
+    {
+      "var": "methodOverride",
+      "module": "method-override"
+    },
+    {
+      "var": "S",
+      "module": "string"
+    },
+    {
+      "var": "util",
+      "module": "util"
+    },
+    {
+      "var": "layout",
+      "module": "express-layout"
+    },
+    {
+      "var": "mssql",
+      "module": "mssql"
+    },
+    {
+      "var": "nodemssql",
+      "module": "node-mssql"
+    },
+    {
+      "var": "colors",
+      "module": "colors"
+    },
+    {
+      "var": "co",
+      "module": "co"
+    },
+    {
+      "var": "format",
+      "module": "string-format"
+    },
+    {
+      "var": "mysql",
+      "module": "mysql"
+    },
+    {
+      "var": "child_process",
+      "module": "child_process"
+    },
+    {
+      "var": "pluralize",
+      "module": "pluralize"
+    },
+    {
+      "var": "sleep",
+      "module": "system-sleep"
+    }
+  ]
+}

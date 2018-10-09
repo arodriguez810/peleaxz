@@ -6,46 +6,95 @@ MODAL = {
         $scope.modal.historyObject = [];
         $scope.modal.add = function (data) {
             var buttonsHtml = "";
-            data.footer.cancelButton = data.footer.cancelButton === undefined ? true : data.footer.cancelButton;
+            data.footer.cancelButton =
+                data.footer.cancelButton === undefined
+                    ? true
+                    : data.footer.cancelButton;
             data.backMode = data.backMode === undefined ? true : data.backMode;
-            data.header.closeButton = data.closeButton === undefined ? true : data.closeButton;
-            data.content.sameController = data.content.sameController === undefined ? false : data.content.sameController;
+            data.header.closeButton =
+                data.closeButton === undefined ? true : data.closeButton;
+            data.content.sameController =
+                data.content.sameController === undefined
+                    ? false
+                    : data.content.sameController;
             for (var i in data.footer.buttons) {
                 var item = data.footer.buttons[i];
-                buttonsHtml += String.format("<button type=\"button\" class=\"btn bg-{0}\" ng-click='{2}'>{1}</button>",
+                buttonsHtml += String.format(
+                    '<button type="button" class="btn bg-{0}" ng-click=\'{2}\'>{1}</button>',
                     item.color,
                     item.title,
-                    item.func,
+                    item.func
                 );
             }
-            if ($("#modal" + data.id).length > 0)
-                $("#modal" + data.id).remove();
+            if ($("#modal" + data.id).length > 0) $("#modal" + data.id).remove();
 
-            var backMode = ($scope.modal.history.length > 0 && data.backMode);
-            var closeModal = String.format("ng-click=\"{0}.modal.close()\"", $scope.modelName);
-            var animation = (data.animation || "");
-            var bgheader = (data.header.bg || "primary");
-            var cancelTitle = backMode ? "Back to " + ARRAY.last($scope.modal.historyObject).header.title : "Close";
-            var closeText = backMode ? ("<=" + (ARRAY.last($scope.modal.historyObject).header.title)) : "&times;";
-            var headercloseButton = ((data.header.closeButton) ? "    <button type=\"button\" id='closeModal' class=\"close cancelmodal\" " + closeModal + ">" + closeText + "</button>" : "");
-            var h = (data.header.h || "h6");
-            var icon = ((data.header.icon) ? "<i class=\"icon-" + data.header.icon + "\"></i>" : "");
-            var title = (data.header.title || "");
-            var content = ((data.content.data.startsWith("->")) ? "" : data.content.data);
+            var backMode = $scope.modal.history.length > 0 && data.backMode;
+            var closeModal = String.format(
+                'ng-click="{0}.modal.close()"',
+                $scope.modelName
+            );
+            var animation = data.animation || "";
+            var bgheader = data.header.bg || "primary";
+            var cancelTitle = backMode
+                ? "Back to " + ARRAY.last($scope.modal.historyObject).header.title
+                : "Close";
+            var closeText = backMode
+                ? "<=" + ARRAY.last($scope.modal.historyObject).header.title
+                : "&times;";
+            var headercloseButton = data.header.closeButton
+                ? '    <button type="button" id=\'closeModal\' class="close cancelmodal" ' +
+                closeModal +
+                ">" +
+                closeText +
+                "</button>"
+                : "";
+            var h = data.header.h || "h6";
+            var icon = data.header.icon
+                ? '<i class="icon-' + data.header.icon + '"></i>'
+                : "";
+            var title = data.header.title || "";
+            var content = data.content.data.startsWith("->") ? "" : data.content.data;
             var cancelText = backMode ? "Back" : "Close";
-            var cancelButton = ((data.footer.cancelButton) ? "    <button type=\"button\" class=\"btn btn-link\" " + closeModal + " >" + cancelText + "</button>" : "");
+            var cancelButton = data.footer.cancelButton
+                ? '    <button type="button" class="btn btn-link" ' +
+                closeModal +
+                " >" +
+                cancelText +
+                "</button>"
+                : "";
 
             var html =
-                String.format("<div id=\"modal" + data.id + "\" class=\"modal {0}\"  data-backdrop=\"false\">", animation) +
-                " <div class=\"modal-dialog " + data.width + " \">" +
-                "  <div class=\"modal-content\">" +
-                "   <div class=\"modal-header bg-" + bgheader + "\">" + headercloseButton +
-                "    <" + h + " class=\"modal-title\">" + icon + title + "</" + h + ">" +
+                String.format(
+                    '<div id="modal' +
+                    data.id +
+                    '" class="modal {0}"  data-backdrop="false">',
+                    animation
+                ) +
+                ' <div class="modal-dialog ' +
+                data.width +
+                ' ">' +
+                '  <div class="modal-content">' +
+                '   <div class="modal-header bg-' +
+                bgheader +
+                '">' +
+                headercloseButton + "    <" +
+                h +
+                ' class="modal-title">' +
+                icon +
+                title +
+                "</" +
+                h +
+                ">" +
                 "   </div>" +
-                "   <div class=\"modal-body\" id='modalcontent" + data.id + "'>" +
-                "" + content +
+                '   <div class="modal-body" id=\'modalcontent' +
+                data.id +
+                "'>" +
+                "" +
+                content +
                 "   </div>" +
-                "   <div class=\"modal-footer\">" + cancelButton + buttonsHtml +
+                '   <div class="modal-footer">' +
+                cancelButton +
+                buttonsHtml +
                 "   </div>" +
                 "  </div>" +
                 " </div>" +
@@ -53,33 +102,42 @@ MODAL = {
 
             $("#" + $scope.modal.DOMID).append(html);
 
-
             if (data.content.data.startsWith("->")) {
                 if (data.content.sameController)
-                    $scope.loadContent(data.content.data.replaceAll('->', ''), 'modalcontent' + data.id, data.content.loadingContentText || "Loading...", function (success) {
-                        $scope.build("modal" + data.id);
-                    });
+                    $scope.loadContent(
+                        data.content.data.replaceAll("->", ""),
+                        "modalcontent" + data.id,
+                        data.content.loadingContentText || "Loading...",
+                        function (success) {
+                            $scope.build("modal" + data.id);
+                        }
+                    );
                 else
-                    $scope.loadContentClean(data.content.data.replaceAll('->', ''), 'modalcontent' + data.id, data.content.loadingContentText || "Loading...", function (success) {
-                        $scope.build("modal" + data.id);
-                    });
+                    $scope.loadContentClean(
+                        data.content.data.replaceAll("->", ""),
+                        "modalcontent" + data.id,
+                        data.content.loadingContentText || "Loading...",
+                        function (success) {
+                            $scope.build("modal" + data.id);
+                        }
+                    );
             } else {
                 $scope.build("modal" + data.id);
             }
 
-            $("#modal" + data.id).on('show.bs.modal', function () {
+            $("#modal" + data.id).on("show.bs.modal", function () {
                 if (typeof data.event.show.begin === "function")
                     data.event.show.begin($scope);
             });
-            $("#modal" + data.id).on('hide.bs.modal', function () {
+            $("#modal" + data.id).on("hide.bs.modal", function () {
                 if (typeof data.event.hide.begin === "function")
                     data.event.hide.begin($scope);
             });
-            $("#modal" + data.id).on('hidden.bs.modal', function () {
+            $("#modal" + data.id).on("hidden.bs.modal", function () {
                 if (typeof data.event.hide.end === "function")
                     data.event.hide.end($scope);
             });
-            $("#modal" + data.id).on('shown.bs.modal', function () {
+            $("#modal" + data.id).on("shown.bs.modal", function () {
                 if (typeof data.event.show.end === "function")
                     data.event.show.end($scope);
             });
@@ -116,8 +174,8 @@ MODAL = {
             var id = view.replaceAll("/", "_").replaceAll("#", "_");
             var properties = {
                 id: id,
-                animation: '',
-                width: 'modal-lg',//modal-xs modal-sm modal-lg modal-full
+                animation: "",
+                width: "modal-lg", //modal-xs modal-sm modal-lg modal-full
                 backMode: true,
                 header: {
                     title: "Test Modal",
@@ -139,7 +197,7 @@ MODAL = {
                 content: {
                     data: "->" + view,
                     loadingContentText: "Loading Filters",
-                    sameController: true,
+                    sameController: true
                 },
                 event: {
                     show: {
@@ -168,8 +226,8 @@ MODAL = {
             var id = "simple";
             var properties = {
                 id: id,
-                animation: '',
-                width: 'modal-lg',
+                animation: "",
+                width: "modal-lg",
                 backMode: false,
                 header: {
                     title: "",
@@ -184,23 +242,19 @@ MODAL = {
                 content: {
                     data: html,
                     loadingContentText: "Loading...",
-                    sameController: true,
+                    sameController: true
                 },
                 event: {
                     show: {
                         begin: function (data) {
-
                         },
                         end: function (data) {
-
                         }
                     },
                     hide: {
                         begin: function (data) {
-
                         },
                         end: function (data) {
-
                         }
                     }
                 }
@@ -208,6 +262,11 @@ MODAL = {
             var merge = DSON.merge(properties, options);
             $scope.modal.add(merge);
             $scope.modal.open(id);
+        };
+        $scope.modal.map = function (location, content, options) {
+            $scope.modal.simpleModal('<div id="mapdiv" class="map-container"></div>', options);
+            var map = MAP.basic("#mapdiv", location, {zoom: 18});
+            MAP.pixel(map, content);
         };
     }
 };

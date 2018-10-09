@@ -368,9 +368,9 @@ $(function() {
     // Toggle mini sidebar
     $('.sidebar-main-toggle').on('click', function (e) {
         e.preventDefault();
-
-        // Toggle min sidebar class
         $('body').toggleClass('sidebar-xs');
+        var hasClass = $('body').hasClass('sidebar-xs');
+        STORAGE.add('app.sidebar-xs',hasClass)
     });
 
 
@@ -394,6 +394,8 @@ $(function() {
     $(document).on('click', '.sidebar-main-hide', function (e) {
         e.preventDefault();
         $('body').toggleClass('sidebar-main-hidden');
+        var hasClass = $('body').hasClass('sidebar-main-hidden');
+        STORAGE.add('app.sidebar-main-ishide',hasClass)
     });
 
 

@@ -1,11 +1,19 @@
 PAGINATOR = {
     run: function ($scope) {
+        $scope.getLimits = function () {
+            var limits = $scope.table.crud.table.limits || CONFIG.ui.tables.paginator.limits;
+            if(limits.length===0)
+                return [10];
+            else return limits;
+        };
+
         $scope.table.currentPage = 1;
-        $scope.table.currentLimit = CONFIG.ui.tables.paginator.limits[0];
+        $scope.table.currentLimit = $scope.getLimits()[0];
         $scope.table.pages = [];
         $scope.table.totalPags = 0;
         $scope.table.totalCount = 0;
         $scope.table.currentCount = 0;
+
 
 
         $scope.goLimit = function (limit) {
@@ -14,7 +22,8 @@ PAGINATOR = {
                 $scope.table.currentLimit = limit;
                 $scope.table.currentPage = 1;
                 STORAGE.savePage($scope);
-                $scope.saveModel('limit', "table.currentLimit");
+                if ($scope.characterist('persist'))
+                    $scope.saveModel('limit', "table.currentLimit");
                 $scope.pageChanged();
             } else {
                 $scope.pageNotChanged();

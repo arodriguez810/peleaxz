@@ -4,20 +4,37 @@
         <!-- Main navigation -->
         <div class="sidebar-category sidebar-category-visible">
             <div class="category-content no-padding">
-                <ul class="navigation navigation-main navigation-accordion">
+                <ul class="navigation navigation-main navigation-accordion dragon-menu">
                     <li class="navigation-header">
-                        <span>CRUD's</span>
-                        <i class="icon-menu" title="" data-original-title="CRUD's">
-
-                        </i>
+                        <span>CRUD's</span><i class="icon-menu" title="" data-original-title="CRUD's"></i>
                     </li>
                     <li>
-                        <a data-function="menu" href="#ms_all"><i class="icon-user"></i> <span>Tutorial</span></a>
+                        <a data-function="menu" href="/"><i class="icon-home"></i> <span>Tutorial</span></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="icon-tree5"></i> <span>Grant Parent</span></a>
+                        <ul>
+                            <li>
+                                <a href="#"><i class="icon-graduation2"></i> <span>Parent</span></a>
+                                <ul>
+                                    <li>
+                                        <a data-function="menu" href="#ms_all"><i class="icon-user"></i>
+                                            <span>Tutorial</span></a>
+                                    </li>
+                                    <li>
+                                        <a data-function="menu" href="#ms_child"><i class="icon-archive"></i> <span>Child</span></a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="navigation-header">
+                        <span>Extra</span><i class="icon-menu" title="" data-original-title="CRUD's"></i>
                     </li>
                     <% for(var i = 1;i <= 30;i++) { %>
-                    <li>
-                        <a data-function="menu" href="#ms_user"><i class="icon-eye"></i> <span>Menu <%= i %></span></a>
-                    </li>
+                        <li>
+                            <a data-function="menu" href="#ms_user"><i class="icon-eye"></i> <span>Menu <%= i %></span></a>
+                        </li>
                     <% } %>
                 </ul>
             </div>

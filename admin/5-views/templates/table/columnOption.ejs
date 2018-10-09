@@ -1,8 +1,3 @@
-<th class="text-center">
-    <i ng-click="<%= modelName %>.refresh()" data-popup="tooltip" title="Refresh"
-       class="icon-reload-alt loadingButton">
-    </i>
-    <i ng-click="<%= modelName %>.openFilters();" data-popup="tooltip" title="Filter"
-       class="icon-filter4">
-    </i>
+<th ng-show="<%= modelName %>.allow('actions') && <%= modelName %>.allow(['edit','remove','active'])" class="text-center">
+    Actions
 </th>
