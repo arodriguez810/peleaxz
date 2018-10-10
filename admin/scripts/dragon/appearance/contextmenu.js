@@ -20,6 +20,7 @@ $(document).ready(function () {
             onItem: function (context, e) {
                 var row = context.parent().data('object');
                 angular.element(context).triggerHandler('click');
+                context.trigger("click");
             }
         });
     });
