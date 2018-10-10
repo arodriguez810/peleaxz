@@ -26,3 +26,21 @@ FIXELEMENT = {
         });
     }
 };
+
+$(document).ready(function () {
+    
+    $(document).on("scroll", function () {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            $(".upButtom").show();
+        } else {
+            $(".upButtom").hide();
+        }
+        FIXELEMENT.run();
+    });
+
+    $(document).on('click', '.upButtom', function () {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    });
+
+});

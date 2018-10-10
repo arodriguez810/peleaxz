@@ -1,9 +1,9 @@
-<div class="table-responsive" id="<%= modelName %>TablePanel" style="{{<%= modelName %>.scrollable()}}">
+<div class="" id="<%= modelName %>TablePanel" style="{{<%= modelName %>.scrollable()}}">
     <!--Table List -->
     <table class="table table-togglable table-framed sindu-table dragon-table"
-            style="{{<%= modelName %>.width()}}"
            data-animation="bounceInUp"
            id="<%= modelName %>Table"
+           style="{{<%= modelName %>.width()}}"
            data-scope="<%= modelName %>">
         <thead class="bg-<%= TAG.table %>" id="<%= modelName %>head">
         <!--Columns-->
@@ -29,5 +29,19 @@
         </tbody>
     </table>
     <!--Table List-->
+</div>
+<div class="context-menu" ng-show="<%= modelName %>.characterist('contextMenu')">
+    <ul class="dropdown-menu" ng-show="<%= modelName %>.options.length>0">
+        <li>
+            <a
+                    ng-repeat="(key, menu) in <%= modelName %>.options[0].menus"
+                    ng-click="<%= modelName %>.option.click(menu,key,{},true)"
+            >
+                <i class="icon-{{<%= modelName %>.option.icon(menu,key,{},true)}}"></i>
+                {{<%= modelName %>.option.text(menu,key,{},true,true)}}
+            </a>
+            <ol class="divider"></ol>
+        </li>
+    </ul>
 </div>
 <%- include('paginator',{modelName:modelName}); %>

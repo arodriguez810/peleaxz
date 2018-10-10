@@ -3,12 +3,14 @@ CRUD_ms_all = {
         rowClass: function (row, $scope) {
             return $scope.active(row) === false ? "bg-" + COLOR.danger + "-300" : "";
         },
-        width: 300,
+        width: 200,
         offWidth: 5,
         baseWidth: 1000,
         columnsalign: "center",
-        limits: [10, 50, 100],
+        limits: [5, 10, 50, 100],
         activeColumn: "active",
+        contextMenu: true,
+        sorteable:true,
         columns: {
             id: {
                 label: "ID",

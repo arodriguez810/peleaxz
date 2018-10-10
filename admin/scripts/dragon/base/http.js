@@ -1,10 +1,17 @@
 HTTP = {
-  objToQuery: function(obj) {
-    var str = [];
-    for (var p in obj)
-      if (obj.hasOwnProperty(p)) {
-        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-      }
-    return str.join("&");
-  }
+    objToQuery: function (obj) {
+        var str = [];
+        for (var p in obj)
+            if (obj.hasOwnProperty(p)) {
+                str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+            }
+        return str.join("&");
+    }
 };
+$(document).ready(function () {
+
+    $(window).bind('hashchange', function () { //detect hash change
+        FIXELEMENT.elements = [];
+        ANGULARJS.get('baseController').base();
+    });
+});

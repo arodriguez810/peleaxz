@@ -17,9 +17,8 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
                 if (item.href !== href)
                     newarray.push(item);
             });
-            console.log(newarray);
-            //STORAGE.add('favorites', stored);
-            //baseController.favorites = STORAGE.get('favorites');
+            STORAGE.add('favorites', newarray);
+            baseController.favorites = newarray;
         }
     };
 });
@@ -46,6 +45,5 @@ RUNCONTROLLER = function (conrollerName, inside, $scope, $http, $compile) {
     LOAD.run(inside, $http);
     PERMISSIONS.run(inside);
     MENU.run(inside);
-
     inside.refresh();
 };

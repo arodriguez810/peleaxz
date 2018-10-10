@@ -1,4 +1,4 @@
-<td class="text-center"
+<td class="text-center dragon-actions"
     ng-show="(<%= modelName %>.allow('actions') && <%= modelName %>.allow(['edit','remove','active']))">
     <ul class="icons-list" style="z-index: 99999">
         <li ng-repeat="(key, option) in <%= modelName %>.options"
@@ -7,7 +7,7 @@
                data-toggle="dropdown">
                 <i class=" icon-{{<%= modelName %>.option.icon(option,key,row)}}"></i>
             </a>
-            <ul class="dropdown-menu dropdown-menu-right">
+            <ul class="dropdown-menu dropdown-menu-right dragon-menu">
                 <li ng-repeat="(key, menu) in option.menus"
                     ng-show="<%= modelName %>.allow(<%= modelName %>.option.permission(menu,key,row)) && <%= modelName %>.option.show(menu,key,row)">
                     <a ng-click="<%= modelName %>.option.click(menu,key,row)">
@@ -19,3 +19,5 @@
         </li>
     </ul>
 </td>
+
+

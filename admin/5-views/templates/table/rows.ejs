@@ -1,6 +1,6 @@
 <td ng-repeat="(key, value) in <%= modelName %>.columns()"
     ng-show="value.visible!=false"
-    class="{{value.class || ''}}"
+    class="{{value.class || ''}} context-control"
     style="{{value.style || ''}}"
     ng-click="<%= modelName %>.cell.select($event,row)"
     ng-dblclick="<%= modelName %>.cell.dblselect($event)"

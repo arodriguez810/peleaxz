@@ -79,3 +79,18 @@ KEY = {
         }
     },
 };
+
+$(document).ready(function () {
+
+
+    $(document).on('keyup', 'body', function (e) {
+        KEY.repeat.make(e.key);
+        if (ANGULARJS.tableScope !== null)
+            eval(String.format("{0}.pageKey('{1}')", ANGULARJS.tableScope, e.key));
+    });
+
+    $(document).on('mouseover', '.table', function (e) {
+        ANGULARJS.tableScope = $(this).data("scope");
+    });
+
+});

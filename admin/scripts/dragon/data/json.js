@@ -18,7 +18,5 @@ DSON = {
     },
     noset: function (text) {
         return "";
-        text = DSON.ifundefined(text, "Not set")
-        return "<span class='text-grey-300'>[" + text + "]</span>";
     }
 };
