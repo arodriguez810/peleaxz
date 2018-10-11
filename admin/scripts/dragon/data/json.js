@@ -10,9 +10,6 @@ DSON = {
             obj === undefined || obj === null || obj === "" || obj <= 0 || obj === "0"
         );
     },
-    /**
-     * ifundefined
-     */
     ifundefined: function (variable, result) {
         return variable === undefined ? result : variable;
     },

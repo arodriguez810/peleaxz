@@ -14,13 +14,17 @@ $(document).ready(function () {
         $(".context-control").contextmenu({
             target: '.context-menu',
             before: function (e, element, target) {
+                eval(String.format("{0}.lastMenu = ({0}.lastMenu === ({0}.options.length-1) ? 0 : ({0}.lastMenu+({0}.currentOptionsContext().count))) {1}", ANGULARJS.tableScope));
                 element.trigger('click');
                 return true;
             },
             onItem: function (context, e) {
+                var tr = context.parent();
+                var td = tr.find('.dragon-actions').eq(0);
                 var row = context.parent().data('object');
-                angular.element(context).triggerHandler('click');
-                context.trigger("click");
+                var action = $(e.target).data('action');
+                var link = tr.find('[data-action=' + action + ']').eq(0);
+                link.trigger('click');
             }
         });
     });
@@ -62,7 +66,6 @@ $(document).ready(function () {
 
     $(document).on('mouseover', '[data-popup=popover]', function () {
         if ($(this).data('original-title') === undefined) {
-            console.log($(this));
             $(this).popover({
                 template: '<div class="popover border-teal-400"><div class="arrow"></div><h3 class="popover-title bg-' + COLOR.primary + '-400"></h3><div class="popover-content"></div></div>',
                 placement: 'top',

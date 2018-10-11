@@ -4,6 +4,48 @@ CRUD_ms_all = DSON.merge(CRUD_ms_all,
             options: [
                 {
                     text: (data) => {
+                        return "Laptop";
+                    },
+                    title: (data) => {
+                        return "";
+                    },
+                    icon: (data) => {
+                        return "laptop";
+                    },
+                    permission: (data) => {
+                        return ['stack'];
+                    },
+                    characterist: (data) => {
+                        return '';
+                    },
+                    click: function (data) {
+                        alert(data.row.name);
+                        return false;
+                    }
+                },
+                {
+                    text: (data) => {
+                        return "Stack2";
+                    },
+                    title: (data) => {
+                        return "";
+                    },
+                    icon: (data) => {
+                        return "stack2";
+                    },
+                    permission: (data) => {
+                        return ['stack'];
+                    },
+                    characterist: (data) => {
+                        return '';
+                    },
+                    click: function (data) {
+                        alert(data.row.name);
+                        return false;
+                    }
+                },
+                {
+                    text: (data) => {
                         return "";
                     },
                     icon: (data) => {
@@ -30,6 +72,7 @@ CRUD_ms_all = DSON.merge(CRUD_ms_all,
                                 return "";
                             },
                             click: function (data) {
+                                alert(data.row.name);
                                 return false;
                             }
                         },
@@ -47,6 +90,7 @@ CRUD_ms_all = DSON.merge(CRUD_ms_all,
                                 return "";
                             },
                             click: function (data) {
+                                alert(data.row.name);
                                 return false;
                             }
                         },
@@ -64,6 +108,7 @@ CRUD_ms_all = DSON.merge(CRUD_ms_all,
                                 return "";
                             },
                             click: function (data) {
+                                alert(data.row.name);
                                 return false;
                             },
                             show: function (data) {
@@ -88,7 +133,7 @@ CRUD_ms_all = DSON.merge(CRUD_ms_all,
                     menus: [
                         {
                             text: (data) => {
-                                return "Export to clipboard";
+                                return "Export to Clipboard";
                             },
                             icon: (data) => {
                                 return "copy3";
@@ -100,12 +145,13 @@ CRUD_ms_all = DSON.merge(CRUD_ms_all,
                                 return "";
                             },
                             click: function (data) {
+                                alert(data.row.name);
                                 return false;
                             }
                         },
                         {
                             text: (data) => {
-                                return "Export to .pdf";
+                                return "Export to PDF";
                             },
                             icon: (data) => {
                                 return "file-pdf";
@@ -117,12 +163,13 @@ CRUD_ms_all = DSON.merge(CRUD_ms_all,
                                 return "";
                             },
                             click: function (data) {
+                                alert(data.row.name);
                                 return false;
                             }
                         },
                         {
                             text: (data) => {
-                                return "Export to .csv";
+                                return "Export to CSV";
                             },
                             icon: (data) => {
                                 return "file-excel";
@@ -134,12 +181,13 @@ CRUD_ms_all = DSON.merge(CRUD_ms_all,
                                 return "";
                             },
                             click: function (data) {
+                                alert(data.row.name);
                                 return false;
                             }
                         },
                         {
                             text: (data) => {
-                                return "Export to .xlsx";
+                                return "Export to XLSX";
                             },
                             icon: (data) => {
                                 return "file-excel";
@@ -151,12 +199,13 @@ CRUD_ms_all = DSON.merge(CRUD_ms_all,
                                 return "";
                             },
                             click: function (data) {
+                                alert(data.row.name);
                                 return false;
                             }
                         },
                         {
                             text: (data) => {
-                                return "Export to .doc";
+                                return "Export to DOC";
                             },
                             icon: (data) => {
                                 return "file-word";
@@ -168,6 +217,7 @@ CRUD_ms_all = DSON.merge(CRUD_ms_all,
                                 return "";
                             },
                             click: function (data) {
+                                alert(data.row.name);
                                 return false;
                             }
                         }

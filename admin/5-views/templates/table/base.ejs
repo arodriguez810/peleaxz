@@ -34,13 +34,15 @@
     <ul class="dropdown-menu" ng-show="<%= modelName %>.options.length>0">
         <li>
             <a
-                    ng-repeat="(key, menu) in <%= modelName %>.options[0].menus"
-                    ng-click="<%= modelName %>.option.click(menu,key,{},true)"
+                    data-action="{{<%= modelName %>.option.action(menu,{},true,true)}}"
+                    ng-repeat="(key, menu) in <%= modelName %>.currentOptionsContext().menus"
             >
-                <i class="icon-{{<%= modelName %>.option.icon(menu,key,{},true)}}"></i>
-                {{<%= modelName %>.option.text(menu,key,{},true,true)}}
+                <i
+                        data-action="{{<%= modelName %>.option.action(menu,{},true,true)}}"
+                        class="icon-{{<%= modelName %>.option.icon(menu,{},true)}}">
+                </i>
+                {{<%= modelName %>.option.text(menu,{},true,true)}}
             </a>
-            <ol class="divider"></ol>
         </li>
     </ul>
 </div>
