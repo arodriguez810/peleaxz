@@ -10,7 +10,8 @@ CRUD_ms_all = {
         limits: [5, 10, 50, 100],
         activeColumn: "active",
         contextMenu: true,
-        sorteable:true,
+        sorteable: true,
+        key: 'id',
         columns: {
             id: {
                 label: "ID",

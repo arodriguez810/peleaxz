@@ -9,13 +9,20 @@ $(document).ready(function () {
         }
     });
 
+    var lastTD = -1;
     $(document).on('mouseover', '.context-control:not(.already-context)', function () {
         $(".context-control").addClass('already-context');
         $(".context-control").contextmenu({
             target: '.context-menu',
             before: function (e, element, target) {
-                eval(String.format("{0}.lastMenu = ({0}.lastMenu === ({0}.options.length-1) ? 0 : ({0}.lastMenu+({0}.currentOptionsContext().count))) {1}", ANGULARJS.tableScope));
+                var row = element.parent().parent().children().index(element.parent());
+                if (lastTD === row) {
+                    eval(String.format("{0}.lastMenu = ({0}.lastMenu === ({0}.options.length-1) ? 0 : ({0}.lastMenu+({0}.currentOptionsContext().count))) {1}", ANGULARJS.tableScope));
+                } else {
+                    eval(String.format("{0}.lastMenu = 0", ANGULARJS.tableScope));
+                }
                 element.trigger('click');
+                lastTD = row;
                 return true;
             },
             onItem: function (context, e) {

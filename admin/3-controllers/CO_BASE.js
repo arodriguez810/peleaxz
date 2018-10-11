@@ -45,5 +45,6 @@ RUNCONTROLLER = function (conrollerName, inside, $scope, $http, $compile) {
     LOAD.run(inside, $http);
     PERMISSIONS.run(inside);
     MENU.run(inside);
+    TABLEACTION.run(inside);
     inside.refresh();
 };

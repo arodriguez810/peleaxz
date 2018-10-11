@@ -30,8 +30,10 @@ MENU = {
     setActive: function (link) {
         $(".dragon-menu li").removeClass('active');
         var a = $('.dragon-menu a[href="#' + link + '"]:eq(0)');
-        MENU.setLast(a);
-        MENU.expand(a);
+        if(a.length>0) {
+            MENU.setLast(a);
+            MENU.expand(a);
+        }
     },
     expand: function (a) {
         var LI = a.parent();

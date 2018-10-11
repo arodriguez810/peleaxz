@@ -80,8 +80,23 @@ TABLEEVENT = {
             }
         };
 
+
+        $scope.cell.dblColumnSelect = function (event) {
+            var dataColumn = $(event.currentTarget).data('column');
+            $("[data-column=" + dataColumn + "]:not(th)").each(function () {
+                var control = $(this);
+                if (control.hasClass("alpha-" + COLOR.info))
+                    control.removeClass("alpha-" + COLOR.info);
+                else {
+                    control.addClass("alpha-" + COLOR.info);
+                }
+            });
+
+        };
+
         $scope.cell.select = function (event, row) {
             $("tr").removeClass("alpha-" + COLOR.info);
+            $("td").removeClass("alpha-" + COLOR.info);
             var classElement = "bg-" + COLOR.info;
             if (!$(event.currentTarget).parent().hasClass(classElement))
                 if (row.selected !== true)
@@ -89,6 +104,7 @@ TABLEEVENT = {
         };
 
         $scope.cell.dblselect = function (event) {
+            $("td").removeClass("alpha-" + COLOR.info);
             var classElement = "bg-" + COLOR.info;
             if ($(event.currentTarget).hasClass(classElement))
                 $(event.currentTarget).removeClass("bg-" + COLOR.info);
