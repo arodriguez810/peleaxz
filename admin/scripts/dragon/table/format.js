@@ -3,6 +3,9 @@ TABLEFORMAT = {
 
         $scope.cellValue = function (key, column, row) {
             var value = eval("row." + key);
+            if (column.link !== undefined) {
+                return "<a class='btn btn-" + TAG.table + "'>" + value + "</a>";
+            }
             value = $scope.formatByType(column, row, key);
             if (typeof column.format === "function")
                 value = column.format(value);
@@ -17,6 +20,7 @@ TABLEFORMAT = {
                 }
                 return shorttext;
             }
+
             return value;
         };
 
@@ -45,6 +49,8 @@ TABLEFORMAT = {
 
         $scope.formatByType = function (column, row, key) {
             var value = eval("row." + key);
+
+
             if (column.formattype !== undefined) {
                 if (column.formattype.indexOf("datetime") !== -1) {
                     if (DSON.oseaX(value)) return DSON.noset();
@@ -112,12 +118,14 @@ TABLEFORMAT = {
                     }
                 }
             }
+
+
             return value;
         };
 
         $scope.rowClass = function (row) {
             if (typeof $scope.table.crud.table.rowClass === "function")
-                return $scope.table.crud.table.rowClass(row,$scope);
+                return $scope.table.crud.table.rowClass(row, $scope);
             return "";
         };
     }

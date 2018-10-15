@@ -1,0 +1,51 @@
+<div class="" id="<%= modelName %>TablePanel" style="{{<%= modelName %>.scrollable()}}">
+    <!--Table List -->
+    <table class="table table-togglable table-framed sindu-table dragon-table"
+           data-animation="bounceInUp"
+           id="<%= modelName %>Table"
+           style="{{<%= modelName %>.width()}}"
+           data-scope="<%= modelName %>">
+        <thead class="bg-<%= TAG.table %>" id="<%= modelName %>head">
+        <!--Columns-->
+        <tr class="bg-<%= TAG.table %> dragon-columns">
+            <th ng-repeat="(key, value) in <%= modelName %>.columns()"
+                ng-show="<%= modelName %>.columnVisible(value)"
+                data-column="{{key}}"
+
+                ng-dblclick="<%= modelName %>.cell.dblColumnSelect($event)"
+                class="handle"
+            >
+                <%- include('columns',{modelName:modelName}); %>
+            </th>
+            <%- include('columnOption',{modelName:modelName}); %>
+        </tr>
+        </thead>
+        <tbody id="<%= modelName %>TableBody">
+        <!--Rows-->
+        <tr ng-repeat="(key, row) in <%= modelName %>.records.data" data-object="{{row}}"
+            class="dragon-rows {{<%= modelName %>.rowClass(row)}} {{<%= modelName %>.trCheck(row)}}">
+            <%- include('rows',{modelName:modelName}); %>
+            <!--Options-->
+            <%- include('rowOptions',{modelName:modelName}); %>
+        </tr>
+        </tbody>
+    </table>
+    <!--Table List-->
+</div>
+<div class="context-menu" ng-show="<%= modelName %>.characterist('contextMenu')">
+    <ul class="dropdown-menu" ng-show="<%= modelName %>.options.length>0">
+        <li>
+            <a
+                    data-action="{{<%= modelName %>.option.action(menu,{},true,true)}}"
+                    ng-repeat="(key, menu) in <%= modelName %>.currentOptionsContext().menus"
+            >
+                <i
+                        data-action="{{<%= modelName %>.option.action(menu,{},true,true)}}"
+                        class="icon-{{<%= modelName %>.option.icon(menu,{},true)}}">
+                </i>
+                {{<%= modelName %>.option.text(menu,{},true,true)}}
+            </a>
+        </li>
+    </ul>
+</div>
+<%- include('paginator',{modelName:modelName}); %>

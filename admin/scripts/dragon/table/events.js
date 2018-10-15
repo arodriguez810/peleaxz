@@ -29,6 +29,15 @@ TABLEEVENT = {
         });
 
         $scope.cell.extendclick = function (data) {
+
+            if (data.column.link) {
+                var id = eval("data.row." + data.column.link.from);
+                BASEAPI.get(data.column.link.table, id, function (data) {
+                    alert(data);
+                });
+                return;
+            }
+
             if (data.column.shorttext) {
                 var shorttext = data.value;
                 if (!DSON.oseaX(shorttext))

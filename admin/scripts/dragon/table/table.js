@@ -2,13 +2,9 @@ TABLE = {
     run: function ($scope, $http, $compile) {
         $scope.records = [];
         $scope.CONFIG = CONFIG;
-        $scope.table = {
-            loaded: false,
-            crud: null,
-            is: {
-                loading: true
-            }
-        };
+        $scope.table.loading = false;
+        $scope.table.is = {};
+        $scope.table.is.loading = true;
 
         $scope.scrollable = function () {
             return $scope.width() !== "" ? "overflow-x: scroll;overflow-y: visible;" : "";
@@ -146,7 +142,8 @@ TABLE = {
                             limit: $scope.table.currentLimit,
                             page: $scope.table.currentPage,
                             orderby: $scope.table.orderby,
-                            order: $scope.table.order
+                            order: $scope.table.order,
+                            join: $scope.table.crud.table.single
                         },
                         function (data) {
                             $scope.afterData(data);
@@ -159,7 +156,8 @@ TABLE = {
                             limit: $scope.table.currentLimit,
                             page: $scope.table.currentPage,
                             orderby: $scope.table.orderby,
-                            order: $scope.table.order
+                            order: $scope.table.order,
+                            join: $scope.table.crud.table.single
                         },
                         function (data) {
                             $scope.afterData(data);

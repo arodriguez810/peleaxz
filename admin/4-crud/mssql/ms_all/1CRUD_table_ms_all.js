@@ -22,6 +22,18 @@ CRUD_ms_all = {
                 label: "name",
                 shorttext: 20
             },
+            ms_child_name: {
+                label: "child",
+                shorttext: 20,
+                link: {
+                    table: "ms_child",
+                    from: "child"
+                }
+            },
+            ms_other_description: {
+                label: "other",
+                shorttext: 20
+            },
             description: {
                 label: "description",
                 sortable: false,

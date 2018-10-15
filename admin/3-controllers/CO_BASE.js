@@ -31,8 +31,8 @@ RUNCONTROLLER = function (conrollerName, inside, $scope, $http, $compile) {
     eval("inside.crudConfig = CRUD_" + conrollerName);
     API.run(inside, $http);
     COMPILE.run(inside, $scope, $compile);
-    TABLE.run(inside, $http, $compile);
     CRUD.run(inside, inside.crudConfig);
+    TABLE.run(inside, $http, $compile);
     TABLEOPTIONS.run(inside);
     TABLEEVENT.run(inside, $http, $compile);
     TABLEFORMAT.run(inside);

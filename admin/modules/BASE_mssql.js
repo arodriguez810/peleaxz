@@ -11,6 +11,33 @@ exports.createTable = function (model, object, params) {
 
 exports.alterBlackList = ["DEFAULT", "GETDATE()", "IDENTITY(1,1)", "IDENTITY"];
 exports.addColumns = function (model, object, params) {
+
+    var tsql = "";
+    var deleteColumns = [];
+    exports.data("select COLUMN_NAME from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME='" + model + "'", params, function (data) {
+        var onlynames = [];
+        var onlyNamesObjects = [];
+        for (var i in data.data)
+            onlynames.push(data.data[i].COLUMN_NAME);
+
+        for (var property in object)
+            onlyNamesObjects.push(property);
+
+        for (var i in onlynames) {
+            if (!onlyNamesObjects.includes(onlynames[i])) {
+                deleteColumns.push(onlynames[i]);
+            }
+        }
+        deletes = [];
+        for (var i in deleteColumns) {
+            deletes.push(params.format("ALTER TABLE {0} DROP COLUMN {1};\n", model, deleteColumns[i]));
+        }
+        // exports.executeNonQuery(params.format("ALTER TABLE {0} DROP COLUMN {1};\n", model, deleteColumns[i]), params, function (data) {
+        //     console.log(data);
+        // });
+        return deletes;
+    });
+
     var tsql = "";
     for (var property in object)
         tsql += params.util.format("IF NOT EXISTS (SELECT * FROM   sys.columns WHERE  object_id = OBJECT_ID(N'[dbo].[" + model + "]') AND name = '" + property + "') ALTER TABLE [%s] ADD [%s] %s;\n", model, property, object[property]);
@@ -35,11 +62,16 @@ exports.deleteColumns = function (model, object, params) {
                 deleteColumns.push(onlynames[i]);
             }
         }
-        for (var i in deleteColumns)
-            exports.executeNonQuery(params.format("ALTER TABLE {0} DROP COLUMN {1};\n", model, deleteColumns[i]), params, function (data) {
-                console.log(data);
-            });
+        deletes = [];
+        for (var i in deleteColumns) {
+            deletes.push(params.format("ALTER TABLE {0} DROP COLUMN {1};\n", model, deleteColumns[i]));
+        }
+        // exports.executeNonQuery(params.format("ALTER TABLE {0} DROP COLUMN {1};\n", model, deleteColumns[i]), params, function (data) {
+        //     console.log(data);
+        // });
+        return deletes;
     });
+    return [];
 };
 exports.alterColumns = function (model, object, params) {
     var tsql = "";
@@ -213,19 +245,20 @@ exports.defaultRequests = function (Model, params) {
         });
     });
 
-    params.app.get(params.util.format('/api/%s/list', Model.tableName), function (req, res) {
-        if (req.query.limit === undefined)
-            req.query.limit = 10;
-        if (req.query.page === undefined)
-            req.query.page = 1;
-        if (req.query.orderby === undefined)
-            req.query.orderby = "id";
+    params.app.post(params.util.format('/api/%s/list', Model.tableName), function (req, res) {
+        if (req.body.limit === undefined)
+            req.body.limit = 10;
+        if (req.body.page === undefined)
+            req.body.page = 1;
+        if (req.body.orderby === undefined)
+            req.body.orderby = "id";
 
-        Model.all(req.query, function (data) {
+        Model.all(req.body, function (data) {
             if (data.error !== false) res.send(data.error);
             res.json(data);
         });
     });
+
     params.app.get(params.util.format('/api/%s/all', Model.tableName), function (req, res) {
         Model.all(req.query, function (data) {
             if (data.error !== false) res.send(data.error);
@@ -321,11 +354,49 @@ exports.Model = function (tableName, params) {
     this.searchAndDelete = function (options, callback) {
         this.search(options, callback, 'DELETE');
     };
-    //core
-    this.search = function (options, callback, prefix) {
-        var offTableName = options.tableName || tableName;
-        var sentence = prefix || "SELECT";
-        var where = "";
+    this.clearQuotes = function (data) {
+        var newstr = params.S(data).replaceAll("[", "").s;
+        newstr = params.S(newstr).replaceAll("]", "").s;
+        return newstr;
+    };
+    this.colPointer = function (column, base) {
+        base = base === undefined ? false : true;
+        var spliter = column.split(".");
+        if (spliter.length > 1) {
+            var pointer = spliter[0];
+            column = spliter[1];
+            if (!base) {
+                if (column[0] === "[")
+                    return params.format("{0}.{1}", pointer, column);
+                else
+                    return params.format("{0}.[{1}]", pointer, column);
+            } else {
+                if (column[0] === "[")
+                    return params.format("{0}.{1} as {2}_{3}", pointer, column, this.clearQuotes(pointer), this.clearQuotes(column));
+                else
+                    return params.format("{0}.[{1}] as {2}_{3}", pointer, column, this.clearQuotes(pointer), this.clearQuotes(column));
+            }
+
+        } else {
+            var pointer = "BASE";
+            if (!base) {
+                if (column[0] === "[")
+                    return params.format("{0}.{1}", pointer, column);
+                else
+                    return params.format("{0}.[{1}]", pointer, column);
+            } else {
+                if (column[0] === "[")
+                    return params.format("{0}.{1} as {2}_{3}", pointer, column, this.clearQuotes(pointer), this.clearQuotes(column));
+                else
+                    return params.format("{0}.[{1}] as {2}_{3}", pointer, column, this.clearQuotes(pointer), this.clearQuotes(column));
+            }
+        }
+    };
+
+    this.makeWhere = function (where, whereWord) {
+        whereWord = whereWord === undefined ? true : whereWord;
+        var options = {};
+        options.where = where;
         if (options.where !== undefined) {
             var connectors = [];
             if (options.where.length > 0) {
@@ -333,7 +404,7 @@ exports.Model = function (tableName, params) {
                 for (var i in options.where) {
                     var obj = options.where[i];
                     var field = obj.field !== undefined ? obj.field : "id";
-                    field = field[0] === '$' ? field.replace('$', '') : "[" + field + "]";
+                    field = field[0] === '$' ? field.replace('$', '') : this.colPointer(field);
                     var operator = obj.operator !== undefined ? obj.operator : "=";
                     var connector = obj.connector !== undefined ? obj.connector : "AND";
                     if (Array.isArray(obj.value)) {
@@ -345,14 +416,87 @@ exports.Model = function (tableName, params) {
                         connectors.push(connector);
                     }
                 }
-                where = "WHERE " + where.join(" ") + "<<**>>";
+                where = (whereWord ? "WHERE " : "") + where.join(" ") + "<<**>>";
                 for (var i in connectors) {
                     var strtoreplace = connectors[i] + "<<**>>";
                     where = params.S(where).replaceAll(strtoreplace, "").s;
                 }
+                return where;
             }
         }
-        var selectfinal = sentence === "SELECT" ? "*" : "";
+        return "";
+    };
+
+    this.search = function (options, callback, prefix) {
+        var offTableName = options.tableName || tableName;
+        var sentence = prefix || "SELECT";
+        var where = this.makeWhere(options.where);
+
+        var join = "";
+        var joinColumns = [];
+        if (options.join !== undefined) {
+            if (Array.isArray(options.join)) {
+                if (options.join.length > 0) {
+                    join = [];
+                    for (var i in options.join) {
+                        var obj = options.join[i];
+                        if (obj.table !== undefined) {
+                            var field = obj.field !== undefined ? obj.field : "[id]";
+                            field = this.colPointer(obj.table + "." + field);
+                            var baseField = obj.base !== undefined ? obj.base : "[id]";
+                            baseField = this.colPointer(baseField);
+                            var type = obj.type !== undefined ? obj.type : "LEFT";
+                            var operator = obj.operator !== undefined ? obj.operator : "=";
+                            var connector = obj.connector !== undefined ? obj.connector : "AND";
+                            var Jcolumns = obj.columns !== undefined ? obj.columns : this.colPointer("[" + obj.table + "].[name]", true);
+                            var subwhere = this.makeWhere(options.join.where, false);
+                            if (Array.isArray(Jcolumns))
+                                for (const jco of Jcolumns)
+                                    joinColumns.push(this.colPointer(obj.table + "." + jco, true));
+                            else
+                                joinColumns.push(Jcolumns);
+
+                            if (subwhere === "")
+                                join.push(params.format(" {0} JOIN {1} ON {2} {3} {4}", type, obj.table, this.colPointer(baseField), operator, field));
+                            else
+                                join.push(params.format(" {0} JOIN {1} ON {2} {3} {4} {5} ({6})", type, obj.table, this.colPointer(baseField), operator, field, connector, subwhere));
+                        } else {
+                            var spliter = obj.split(':');
+                            var type = spliter[0];
+                            var inner = spliter[1];
+                            var baseField = spliter[2];
+                            var Jcolumns = this.colPointer("[" + inner + "].[name]", true);
+                            console.log("Jcolumns:", Jcolumns);
+                            if (spliter.length > 3) {
+                                Jcolumns = spliter[3].split(',');
+                                for (const jco of Jcolumns)
+                                    joinColumns.push(this.colPointer(inner + "." + jco, true));
+                            } else {
+                                joinColumns.push(Jcolumns);
+                            }
+                            join.push(params.format(" {0} JOIN {1} ON {2} {3} [{1}].[{4}]", type, inner, this.colPointer(baseField), "=", "id"));
+                        }
+                    }
+                    join = join.join(" ");
+                } else {
+                    var spliter = options.join.split(':');
+                    var type = spliter[0];
+                    var inner = spliter[1];
+                    var baseField = spliter[2];
+                    var Jcolumns = this.colPointer("[" + inner + "].[name]", true);
+                    if (spliter.length > 3) {
+                        Jcolumns = spliter[3].split(',');
+                        for (const jco of Jcolumns)
+                            joinColumns.push(jco);
+                    } else {
+                        joinColumns.push(Jcolumns);
+                    }
+                    join = (params.format(" {0} JOIN {1} ON {2} {3} [{1}].[{4}]", type, inner, this.colPointer(baseField), "=", "id"));
+                }
+            }
+        }
+
+        var selectfinal = sentence === "SELECT" ? "BASE.*" : "";
         if (options.columns !== undefined) {
             if (options.columns.length > 0) {
                 selectfinal = [];
@@ -361,26 +505,40 @@ exports.Model = function (tableName, params) {
                     if (column[0] === "$")
                         selectfinal.push(column.replace('$', ''));
                     else
-                        selectfinal.push("[" + column + "]");
+                        selectfinal.push(this.colPointer(column));
                 }
                 selectfinal = selectfinal.join(", ");
             }
         }
+
+
+        selectfinal = joinColumns.length > 0 ? (selectfinal + ("," + joinColumns.join(","))) : selectfinal;
+
         var groupby = "";
         if (options.groupby) {
-            if (Array.isArray(options.groupby))
-                groupby = " GROUP BY " + "[" + options.groupby.join("],[") + "]";
+            if (Array.isArray(options.groupby)) {
+                groupbyarray = [];
+                for (const grby of options.groupby) {
+                    groupbyarray.push(grby);
+                }
+                groupby = " GROUP BY " + groupbyarray.join(",");
+            }
             else
-                groupby = " GROUP BY " + "[" + options.groupby + "]";
+                groupby = " GROUP BY " + options.groupby;
         }
 
         var order = "";
         var orderby = "";
         if (options.orderby) {
-            if (Array.isArray(options.orderby))
-                orderby = " ORDER BY " + "[" + options.orderby.join("],[") + "]";
+            if (Array.isArray(options.orderby)) {
+                orderbyarray = [];
+                for (const grby of options.orderby) {
+                    orderbyarray.push(grby);
+                }
+                orderby = " ORDER BY " + orderbyarray.join(",");
+            }
             else
-                orderby = " ORDER BY " + "[" + options.orderby + "]";
+                orderby = " ORDER BY " + options.orderby;
 
             if (options.order) {
                 order = options.order;
@@ -411,12 +569,14 @@ exports.Model = function (tableName, params) {
                 }
             }
         }
-        var query = params.format("{sentence} {distinct} {selectfinal} FROM [{table}] {where} {groupby} {orderby} {order} {limit} {page}",
+        var query = params.format("{sentence} {distinct} {selectfinal} FROM [{table}] BASE {join} {where} {groupby} {orderby} {order} {limit} {page}",
             {
                 sentence: sentence,
                 distinct: distinct,
                 selectfinal: selectfinal,
+                joinColumns: joinColumns,
                 table: offTableName,
+                join: join,
                 where: where,
                 groupby: groupby,
                 orderby: orderby,
@@ -425,9 +585,12 @@ exports.Model = function (tableName, params) {
                 page: $page
             }
         );
-        var queryCount = params.format("SELECT count(*) count FROM [{table}] {where} {groupby}",
+
+        console.log(query);
+        var queryCount = params.format("SELECT count(*) count FROM [{table}] BASE {join} {where} {groupby}",
             {
                 table: offTableName,
+                join: join,
                 where: where,
                 groupby: groupby
             }

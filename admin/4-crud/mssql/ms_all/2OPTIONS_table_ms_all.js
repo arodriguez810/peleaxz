@@ -7,7 +7,7 @@ CRUD_ms_all = DSON.merge(CRUD_ms_all,
                         return "Laptop";
                     },
                     title: (data) => {
-                        return "";
+                        return "Test Option";
                     },
                     icon: (data) => {
                         return "laptop";
@@ -28,7 +28,7 @@ CRUD_ms_all = DSON.merge(CRUD_ms_all,
                         return "Stack2";
                     },
                     title: (data) => {
-                        return "";
+                        return "Test Option 2";
                     },
                     icon: (data) => {
                         return "stack2";

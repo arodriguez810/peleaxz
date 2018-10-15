@@ -11,9 +11,9 @@ API = {
                 parameters.limit = Number.MAX_SAFE_INTEGER;
             }
 
-            var $queryString = $.param(parameters);
+            console.log(JSON.stringify(parameters));
 
-            $http.get($scope.rootPath + '/list?' + $queryString).then(function (data) {
+            $http.post($scope.rootPath + '/list', parameters).then(function (data) {
                 callBack(data.data);
             }, function (data) {
                 console.log('Error: ' + data);

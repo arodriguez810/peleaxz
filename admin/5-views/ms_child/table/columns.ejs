@@ -1,0 +1,14 @@
+<span title="Check All" class="cursor-pointer"
+      ng-bind-html="<%= modelName %>.drawCheck(key)"
+      ng-click="<%= modelName %>.checkAll()">
+</span>
+
+<span ng-bind-html="<%= modelName %>.columnLabel(value,key)"></span>
+
+<i ng-show="<%= modelName %>.characterist('sortable')" ng-click="<%= modelName %>.sort(value,key)"
+   class="{{<%= modelName %>.sortIcon(value)}} cursor-pointer"></i>
+<i ng-show="<%= modelName %>.characterist('persist')"
+   ng-click="<%= modelName %>.hideColumn(key)"
+   style="float:right"
+   class="float-right cursor-pointer icon-eye-blocked show-tr">
+</i>

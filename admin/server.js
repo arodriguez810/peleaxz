@@ -12,7 +12,7 @@ var folders = {
     modules: "modules",
     config: "0-config"
 };
-var modules = {}, localjs = [], localModules = [], localModulesVars = [], modulesList = [];
+var modules = {}, localjs = [], localModules = [], localModulesVars = [], modulesList = [], developer = {};
 var fs = require("fs");
 var getFiles = function (dir, filelist, prefix) {
     var fs = fs || require("fs"),
@@ -30,6 +30,7 @@ var getFiles = function (dir, filelist, prefix) {
 };
 var CONFIG = {};
 configs = getFiles("./" + folders.config + "/");
+
 configs = configs.filter(function (file) {
     return file.indexOf('.disabled') === -1;
 });
@@ -194,22 +195,15 @@ if (CONFIG.mssql !== undefined) {
                 util.format("./" + folders.models + "/mssql/MO_%s.json", model)
             );
             var object = eval("(" + util.format("%s", content) + ")");
-            var create = modules.mssql.createTable(
-                model,
-                object,
-                eval("(" + allparams + ")")
-            );
-            var add = modules.mssql.addColumns(
-                model,
-                object,
-                eval("(" + allparams + ")")
-            );
-            var alter = modules.mssql.alterColumns(
-                model,
-                object,
-                eval("(" + allparams + ")")
-            );
-            modules.mssql.deleteColumns(model, object, eval("(" + allparams + ")"));
+            var create = modules.mssql.createTable(model, object, eval("(" + allparams + ")"));
+            var add = modules.mssql.addColumns(model, object, eval("(" + allparams + ")"));
+            var alter = modules.mssql.alterColumns(model, object, eval("(" + allparams + ")"));
+
+
+            var removes = modules.mssql.deleteColumns(model, object, eval("(" + allparams + ")"));
+            removes.forEach(function (item) {
+                console.log(item.error);
+            });
             modules.mssql.executeNonQuery(create, eval("(" + allparams + ")"));
             modules.mssql.executeNonQuery(alter, eval("(" + allparams + ")"));
             modules.mssql.executeNonQuery(add, eval("(" + allparams + ")"));
@@ -217,15 +211,7 @@ if (CONFIG.mssql !== undefined) {
         }
         var MSSQLDB = {};
         for (var i in modelsql) {
-            eval(
-                "MSSQLDB." +
-                modelsql[i] +
-                " = new modules.mssql.Model('" +
-                modelsql[i] +
-                "'," +
-                allparams +
-                ");"
-            );
+            eval("MSSQLDB." + modelsql[i] + " = new modules.mssql.Model('" + modelsql[i] + "'," + allparams + ");");
             modules.mssql.defaultRequests(
                 eval(util.format("MSSQLDB.%s", modelsql[i])),
                 eval("(" + stringModel + ")")
@@ -254,21 +240,10 @@ if (CONFIG.mysql !== undefined) {
                 util.format("./" + folders.models + "/mysql/MO_%s.json", model)
             );
             var object = eval("(" + util.format("%s", content) + ")");
-            var create = modules.mysql.createTable(
-                model,
-                object,
-                eval("(" + allparams + ")")
-            );
-            var add = modules.mysql.addColumns(
-                model,
-                object,
-                eval("(" + allparams + ")")
-            );
-            var alter = modules.mysql.alterColumns(
-                model,
-                object,
-                eval("(" + allparams + ")")
-            );
+            var create = modules.mysql.createTable(model, object, eval("(" + allparams + ")"));
+            var add = modules.mysql.addColumns(model, object, eval("(" + allparams + ")"));
+            var alter = modules.mysql.alterColumns(model, object, eval("(" + allparams + ")"));
+
             modules.mysql.deleteColumns(model, object, eval("(" + allparams + ")"));
             modules.mysql.executeNonQuery(create, eval("(" + allparams + ")"));
             modules.mysql.executeNonQuery(alter, eval("(" + allparams + ")"));
@@ -279,14 +254,7 @@ if (CONFIG.mysql !== undefined) {
         var MYQLDB = {};
         for (var i in modelmysql) {
             eval(
-                "MYQLDB." +
-                modelmysql[i] +
-                " = new modules.mysql.Model('" +
-                modelmysql[i] +
-                "'," +
-                allparams +
-                ");"
-            );
+                "MYQLDB." + modelmysql[i] + " = new modules.mysql.Model('" + modelmysql[i] + "'," + allparams + ");");
             modules.mysql.defaultRequests(
                 eval(util.format("MYQLDB.%s", modelmysql[i])),
                 eval("(" + stringModel + ")")

@@ -1,7 +1,9 @@
 CRUD = {
     run: function ($scope, crud) {
+        $scope.table = {};
         $scope.crud = crud;
         $scope.table.crud = crud;
+
         $scope.lastRow = {};
         $scope.active = function (row) {
             var value = eval("row." + $scope.activeColumn());
