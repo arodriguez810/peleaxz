@@ -4,24 +4,34 @@ TABLEOPTIONS = {
         $scope.option = {};
         $scope.option.data = "{$scope:$scope.modelName,column:value,key:key,row:row}";
         $scope.lastMenu = 0;
+        $scope.getOptions = function (isModal) {
+            if (isModal === true) {
+                if (!DSON.oseaX(ARRAY.last(MODAL.historyObject)))
+                    return ARRAY.last(MODAL.historyObject).viewData.crud.table.options;
+            }
+            else return $scope.options;
+        };
         $scope.currentOptionsContext = function () {
-            if (!DSON.oseaX($scope.options[$scope.lastMenu])) {
-                if (DSON.oseaX($scope.options[$scope.lastMenu].menus)) {
-                    menus = [];
-                    var count = 0;
-                    for (const option of $scope.options) {
-                        if (DSON.oseaX(option.menus)) {
-                            menus.push(option);
-                            count++;
+            if (!DSON.oseaX($scope.options)) {
+                if (!DSON.oseaX($scope.options[$scope.lastMenu])) {
+                    if (DSON.oseaX($scope.options[$scope.lastMenu].menus)) {
+                        menus = [];
+                        var count = 0;
+                        for (const option of $scope.options) {
+                            if (DSON.oseaX(option.menus)) {
+                                menus.push(option);
+                                count++;
+                            }
                         }
+                        return {menus: menus, count: count};
                     }
-                    return {menus: menus, count: count};
+                    return {menus: $scope.options[$scope.lastMenu].menus, count: 1};
                 }
-                return {menus: $scope.options[$scope.lastMenu].menus, count: 1};
             }
         };
-        $scope.option.text = (option, row, last) => {
-            if (last === true) row = $scope.lastRow;
+        $scope.option.text = (option, row, last, isModal) => {
+            if (DSON.oseaX(isModal))
+                if (last === true) row = $scope.lastRow;
             if (DSON.oseaX(option.text))
                 return 'No text set';
             if (typeof option.text === "function")
@@ -37,8 +47,9 @@ TABLEOPTIONS = {
             }
             return newText;
         };
-        $scope.option.action = (option, row, last) => {
-            if (last === true) row = $scope.lastRow;
+        $scope.option.action = (option, row, last, isModal) => {
+            if (DSON.oseaX(isModal))
+                if (last === true) row = $scope.lastRow;
             if (DSON.oseaX(option.text))
                 return 'noaction';
             if (typeof option.text === "function")
@@ -46,7 +57,7 @@ TABLEOPTIONS = {
             else
                 return $scope.option.replaceAction(option.text);
         };
-        $scope.option.title = (option, row, last) => {
+        $scope.option.title = (option, row, last, isModal) => {
             if (last === true) row = $scope.lastRow;
             if (DSON.oseaX(option.title))
                 return 'No title set';
@@ -55,8 +66,9 @@ TABLEOPTIONS = {
             else
                 return option.title;
         };
-        $scope.option.icon = (option, row, last) => {
-            if (last === true) row = $scope.lastRow;
+        $scope.option.icon = (option, row, last, isModal) => {
+            if (DSON.oseaX(isModal))
+                if (last === true) row = $scope.lastRow;
             if (DSON.oseaX(option.icon))
                 return 'icon-x';
             if (typeof option.icon === "function")
@@ -64,8 +76,10 @@ TABLEOPTIONS = {
             else
                 return option.icon;
         };
-        $scope.option.permission = (option, row, last) => {
-            if (last === true) row = $scope.lastRow;
+        $scope.option.permission = (option, row, last, isModal) => {
+
+            if (DSON.oseaX(isModal))
+                if (last === true) row = $scope.lastRow;
             if (DSON.oseaX(option.permission))
                 return '';
             if (typeof option.permission === "function")
@@ -73,8 +87,9 @@ TABLEOPTIONS = {
             else
                 return option.permission;
         };
-        $scope.option.characterist = (option, row, last) => {
-            if (last === true) row = $scope.lastRow;
+        $scope.option.characterist = (option, row, last, isModal) => {
+            if (DSON.oseaX(isModal))
+                if (last === true) row = $scope.lastRow;
             if (DSON.oseaX(option.characterist))
                 return '';
             if (typeof option.characterist === "function")
@@ -82,8 +97,9 @@ TABLEOPTIONS = {
             else
                 return option.characterist;
         };
-        $scope.option.click = function (option, row, alerty, last) {
-            if (last === true) row = $scope.lastRow;
+        $scope.option.click = function (option, row, alerty, last, isModal) {
+            if (DSON.oseaX(isModal))
+                if (last === true) row = $scope.lastRow;
             alerty = DSON.ifundefined(alerty, true);
             if (DSON.oseaX(option.click)) {
                 if (alerty)
@@ -95,8 +111,9 @@ TABLEOPTIONS = {
             else
                 return option.click;
         };
-        $scope.option.show = function (option, row, last) {
-            if (last === true) row = $scope.lastRow;
+        $scope.option.show = function (option, row, last, isModal) {
+            if (DSON.oseaX(isModal))
+                if (last === true) row = $scope.lastRow;
             if (DSON.oseaX(option.show))
                 return true;
             if (typeof option.show === "function")

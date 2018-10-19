@@ -1,0 +1,66 @@
+{
+  "menus": [
+    {
+      "text": "home",
+      "href": "/",
+      "icon": "home"
+    },
+    {
+      "text": "Grant Parent",
+      "href": "#",
+      "icon": "tree5",
+      "menus": [
+        {
+          "text": "Parent",
+          "href": "#",
+          "icon": "graduation2",
+          "menus": [
+            {
+              "text": "Tutorial",
+              "href": "#ms_all",
+              "icon": "user"
+            },
+            {
+              "text": "Child",
+              "href": "#ms_child",
+              "icon": "archive"
+            },
+            {
+              "text": "Other",
+              "href": "#ms_other",
+              "icon": "cube"
+            },
+            {
+              "text": "Parent 2",
+              "href": "#",
+              "icon": "list",
+              "menus": [
+                {
+                  "text": "Product",
+                  "href": "#ms_product",
+                  "icon": "apple2"
+                },
+                {
+                  "text": "Category",
+                  "href": "#ms_category",
+                  "icon": "list2"
+                },
+                {
+                  "text": "Products And Alls",
+                  "href": "#ms_allproducts",
+                  "icon": "key"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Extra",
+      "href": "#",
+      "class": "navigation-header",
+      "icon": "menu"
+    }
+  ]
+}

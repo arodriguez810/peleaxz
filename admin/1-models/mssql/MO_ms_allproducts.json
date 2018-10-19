@@ -1,0 +1,4 @@
+{
+  "all": "int NOT NULL",
+  "product": "int NOT NULL"
+}

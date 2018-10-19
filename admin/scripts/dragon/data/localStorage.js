@@ -79,16 +79,14 @@ STORAGE = {
     basehasModel: function ($scope, name) {
         return STORAGE.get($scope.modelName + "." + name) !== null;
     },
-    saveColumns: function ($scope) {
-        if ($scope.characterist('persist')) {
-            var tableColumns = $("#" + $scope.modelName + "Table thead tr");
-            var orderColumns = [];
-            for (var i = 0; i < tableColumns.children().length; i++) {
-                var item = $(tableColumns.children()[i]).data("column");
-                if (item !== undefined) orderColumns.push(item);
-            }
-            STORAGE.add($scope.modelName + ".columns", orderColumns);
+    saveColumns: function (modelName, element) {
+        var tableColumns = $(element).find("thead tr");
+        var orderColumns = [];
+        for (var i = 0; i < tableColumns.children().length; i++) {
+            var item = $(tableColumns.children()[i]).data("column");
+            if (item !== undefined) orderColumns.push(item);
         }
+        STORAGE.add(modelName + ".columns", orderColumns);
     },
     getColumns: function ($scope) {
         return STORAGE.get($scope.modelName + ".columns");

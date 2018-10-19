@@ -1,6 +1,7 @@
 var app = angular.module('app', ['ngSanitize']);
 app.controller('baseController', function ($scope, $http, $compile, $controller) {
     var baseController = this;
+    baseController.menus = CONFIG.menus;
     baseController.favorites = [];
     if (STORAGE.exist('favorites')) {
         baseController.favorites = STORAGE.get('favorites');
@@ -28,6 +29,8 @@ RUNCONTROLLER = function (conrollerName, inside, $scope, $http, $compile) {
     inside.modelName = conrollerName;
     inside.singular = inside.modelName.split('_')[1];
     inside.plural = pluralize(inside.singular);
+    inside.$http = $http;
+    inside.$compile = $compile;
     eval("inside.crudConfig = CRUD_" + conrollerName);
     API.run(inside, $http);
     COMPILE.run(inside, $scope, $compile);
@@ -45,6 +48,5 @@ RUNCONTROLLER = function (conrollerName, inside, $scope, $http, $compile) {
     LOAD.run(inside, $http);
     PERMISSIONS.run(inside);
     MENU.run(inside);
-    TABLEACTION.run(inside);
     inside.refresh();
 };

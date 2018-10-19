@@ -1,16 +1,10 @@
 SORTABLE = {
     run: function ($scope) {
-        var first = true;
-        var firstColumn = "";
+        var firstColumn = $scope.table.crud.table.key || "id";
         for (var i in $scope.table.crud.table.columns) {
-            if (first) {
-                firstColumn = i;
-                first = false;
-            }
             $scope.table.crud.table.columns[i].sorted = false;
             $scope.table.crud.table.columns[i].order = "asc";
         }
-
         $scope.table.orderby = firstColumn;
         $scope.table.order = "asc";
         if ($scope.hasModel("sortcolumn")) {

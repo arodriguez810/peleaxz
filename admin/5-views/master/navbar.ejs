@@ -34,13 +34,13 @@
                 <div class="dropdown-menu dropdown-content">
                     <ul class="media-list dropdown-content-body width-100">
                         <li ng-repeat="(key,menu) in baseController.favorites" class="media">
-                            <div class="media-left">
+                            <div class="">
                                 <a href="{{menu.href}}"
                                    class="btn border-<%= COLOR.primary %> text-<%= COLOR.info %> btn-flat btn-rounded btn-icon btn-sm legitRipple">
                                     <i class="{{menu.icon}}"></i>
                                 </a>
 
-                                <a href="{{menu.href}}"> {{menu.text}}    </a>
+                                <a href="{{menu.href}}">{{menu.text}}</a>
                                 <i ng-click="baseController.deleteFavorite(menu.href)" class="icon-trash"></i>
                             </div>
                         </li>

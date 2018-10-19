@@ -13343,50 +13343,53 @@
     <session id="-1886836537">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
-          <entry key="project.open.time.10" value="1" />
+          <entry key="project.closed" value="3" />
+          <entry key="project.open.time.10" value="2" />
           <entry key="project.open.time.20" value="1" />
+          <entry key="project.open.time.21" value="1" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.opened" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="css" value="5" />
-          <entry key="ejs" value="88" />
+          <entry key="css" value="7" />
+          <entry key="disabled" value="2" />
+          <entry key="ejs" value="175" />
           <entry key="html" value="6" />
-          <entry key="js" value="240" />
-          <entry key="json" value="23" />
+          <entry key="js" value="567" />
+          <entry key="json" value="50" />
           <entry key="ts" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CSS" value="5" />
-          <entry key="EJS" value="88" />
+          <entry key="CSS" value="7" />
+          <entry key="EJS" value="175" />
           <entry key="HTML" value="6" />
-          <entry key="JSON" value="23" />
-          <entry key="JavaScript" value="240" />
+          <entry key="JSON" value="50" />
+          <entry key="JavaScript" value="567" />
+          <entry key="PLAIN_TEXT" value="2" />
           <entry key="TypeScript" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="css" value="64" />
+          <entry key="css" value="68" />
           <entry key="disabled" value="2" />
-          <entry key="ejs" value="3007" />
+          <entry key="ejs" value="4022" />
           <entry key="html" value="1" />
-          <entry key="js" value="17101" />
-          <entry key="json" value="90" />
+          <entry key="js" value="22605" />
+          <entry key="json" value="391" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="CSS" value="64" />
-          <entry key="EJS" value="3007" />
+          <entry key="CSS" value="68" />
+          <entry key="EJS" value="4022" />
           <entry key="HTML" value="1" />
-          <entry key="JSON" value="90" />
-          <entry key="JavaScript" value="17101" />
+          <entry key="JSON" value="391" />
+          <entry key="JavaScript" value="22605" />
           <entry key="PLAIN_TEXT" value="2" />
         </counts>
       </usages-collector>
@@ -13394,11 +13397,38 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/base/baseapi.js">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/table/drag.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+            <state relative-caret-position="238">
+              <caret line="14" column="35" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/data/localStorage.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="81" column="48" selection-start-line="81" selection-start-column="48" selection-end-line="81" selection-end-column="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/data/array.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/components/modal.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1547">
+              <caret line="91" column="69" selection-start-line="91" selection-start-column="69" selection-end-line="91" selection-end-column="69" />
             </state>
           </provider>
         </entry>
@@ -13406,20 +13436,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/table/events.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="9" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
-              <folding>
-                <element signature="n#style#0;n#object#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="476">
+              <caret line="70" column="26" lean-forward="true" selection-start-line="70" selection-start-column="26" selection-end-line="70" selection-end-column="26" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/5-views/ms_child/show.ejs">
+        <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/table/table.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="19" lean-forward="true" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
+            <state relative-caret-position="211">
+              <caret line="155" column="34" lean-forward="true" selection-start-line="155" selection-start-column="34" selection-end-line="155" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin/5-views/templates/table/base.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="12" column="78" selection-start-line="12" selection-start-column="78" selection-end-line="12" selection-end-column="99" />
             </state>
           </provider>
         </entry>
@@ -13438,47 +13474,38 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>oncosle</find>
-      <find>text</find>
-      <find>.</find>
-      <find>key</find>
-      <find>key: key,</find>
-      <find>action</find>
-      <find>option,key</find>
-      <find>,key,</find>
-      <find>alert(data.key);</find>
-      <find>,key</find>
-      <find>currentOptionsContext</find>
-      <find>cons</find>
-      <find>conso</find>
-      <find>selected</find>
-      <find>search</find>
+      <find>$scope.table.crud</find>
+      <find>cancelTitle</find>
+      <find>.lastRow</find>
+      <find>,row</find>
+      <find>if ($scope.modal.historyObject.length === 0)</find>
+      <find>row, last</find>
+      <find>,d_row</find>
+      <find>click</find>
+      <find>or</find>
       <find>value</find>
-      <find>orderby</find>
-      <find>groupby</find>
-      <find>base</find>
-      <find>replaceal</find>
-      <find>deletes</find>
-      <find>join</find>
-      <find>consol</find>
-      <find>console</find>
-      <find>inner</find>
-      <find>developer</find>
-      <find>crudConfig</find>
-      <find>crud</find>
-      <find>formData</find>
-      <find>$scope.rootPath =</find>
+      <find>data</find>
+      <find>$scope.modal.history</find>
+      <find>historyObject</find>
+      <find>modalpool</find>
+      <find>ARRAY.last(MODAL.historyObject</find>
+      <find>template</find>
+      <find>info</find>
+      <find>sorttype</find>
+      <find>defaultReiq</find>
+      <find>params.modules</find>
+      <find>express</find>
+      <find>localModules</find>
+      <find>sorteable</find>
+      <find>sortable</find>
+      <find>DSON.keepInvermerge(C</find>
+      <find>dragger</find>
+      <find>console.log(CR</find>
+      <find>tableDragger</find>
+      <find>handl</find>
+      <find>handre</find>
     </findStrings>
     <replaceStrings>
-      <replace>ms_user</replace>
-      <replace>&quot; + &quot;&quot;</replace>
-      <replace>$scope.modelName</replace>
-      <replace>$scope</replace>
-      <replace>$scope.modelText</replace>
-      <replace>@model@</replace>
-      <replace>'./1-models</replace>
-      <replace>./2-service</replace>
-      <replace>&quot;./'+folders.models+'</replace>
       <replace />
       <replace>&lt;%=modelName%&gt;.</replace>
       <replace>&lt;%=modelName%&gt;</replace>
@@ -13500,6 +13527,15 @@
       <replace>alert(data.row.name);</replace>
       <replace>var rootPath =</replace>
       <replace>rootPath</replace>
+      <replace>,d_column</replace>
+      <replace>var finalCrud = $scope.table.crud;</replace>
+      <replace>finalCrud</replace>
+      <replace>,d_row</replace>
+      <replace>if (DSON.oseaX(isModal))</replace>
+      <replace>row, last,isModal</replace>
+      <replace>,d_row,true</replace>
+      <replace>DSON.keepmerge(C</replace>
+      <replace>MODAL.history</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -13508,57 +13544,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/admin/0-config/mssql.json" />
-        <option value="$PROJECT_DIR$/admin/0-config/mongo.json" />
-        <option value="$PROJECT_DIR$/admin/0-config/mysql.disabled" />
-        <option value="$PROJECT_DIR$/admin/0-config/modules.json" />
-        <option value="$PROJECT_DIR$/admin/0-config/app.json" />
-        <option value="$PROJECT_DIR$/admin/3-controllers/CO_ms_all.js" />
-        <option value="$PROJECT_DIR$/admin/4-crud/mssql/ms_child/2ACCESS_table_ms_child.js" />
-        <option value="$PROJECT_DIR$/admin/5-views/templates/table/columns.ejs" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/table/selection.js" />
-        <option value="$PROJECT_DIR$/admin/assets/css/style.css" />
-        <option value="$PROJECT_DIR$/admin/5-views/ms_all/index.ejs" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/base/load.js" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/table/permissions.js" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/data/localStorage.js" />
-        <option value="$PROJECT_DIR$/admin/5-views/templates/table/header.ejs" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/data/array.js" />
-        <option value="$PROJECT_DIR$/admin/5-views/master/navbar.ejs" />
-        <option value="$PROJECT_DIR$/tools/c/extra_context_menu.html" />
-        <option value="$PROJECT_DIR$/admin/5-views/master/head.ejs" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/base/http.js" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/appearance/fixelement.js" />
-        <option value="$PROJECT_DIR$/admin/scripts/events/globalevents.js" />
-        <option value="$PROJECT_DIR$/admin/scripts/events/repeatkey.js" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/data/json.js" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/components/menu.js" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/table/actions.js" />
-        <option value="$PROJECT_DIR$/admin/5-views/templates/table/rows.ejs" />
-        <option value="$PROJECT_DIR$/admin/5-views/templates/table/base.ejs" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/appearance/contextmenu.js" />
-        <option value="$PROJECT_DIR$/admin/4-crud/mssql/ms_all/2OPTIONS_table_ms_all.js" />
-        <option value="$PROJECT_DIR$/admin/5-views/templates/table/rowOptions.ejs" />
-        <option value="$PROJECT_DIR$/admin/5-views/ms_child/table/header.ejs" />
-        <option value="$PROJECT_DIR$/admin/5-views/ms_child/index.ejs" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/base/api.js" />
-        <option value="$PROJECT_DIR$/admin/1-models/mssql/MO_ms_all.json" />
-        <option value="$PROJECT_DIR$/admin/server.js" />
         <option value="$PROJECT_DIR$/admin/5-views/master/menu.ejs" />
-        <option value="$PROJECT_DIR$/admin/3-controllers/CO_ms_other.js" />
-        <option value="$PROJECT_DIR$/admin/4-crud/mssql/ms_other/1CRUD_table_ms_child.js" />
-        <option value="$PROJECT_DIR$/admin/4-crud/mssql/ms_other/2ACCESS_table_ms_child.js" />
-        <option value="$PROJECT_DIR$/admin/3-controllers/CO_BASE.js" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/table/crud.js" />
+        <option value="$PROJECT_DIR$/admin/0-config/db/mssql.json" />
+        <option value="$PROJECT_DIR$/admin/1-models/mssql/MO_ms_all.json" />
+        <option value="$PROJECT_DIR$/admin/4-crud/mssql/ms_category/access.js" />
+        <option value="$PROJECT_DIR$/admin/5-views/ms_allproducts/detail.ejs" />
+        <option value="$PROJECT_DIR$/admin/5-views/ms_product/detail.ejs" />
+        <option value="$PROJECT_DIR$/admin/5-views/ms_category/detail.ejs" />
+        <option value="$PROJECT_DIR$/admin/scripts/dragon/base/load.js" />
+        <option value="$PROJECT_DIR$/admin/5-views/master/navbar.ejs" />
         <option value="$PROJECT_DIR$/admin/scripts/dragon/table/options.js" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/table/table.js" />
-        <option value="$PROJECT_DIR$/admin/modules/BASE_mssql.js" />
-        <option value="$PROJECT_DIR$/admin/4-crud/mssql/ms_all/3RELATIONS_table_ms_all.js" />
-        <option value="$PROJECT_DIR$/admin/4-crud/mssql/ms_all/1CRUD_table_ms_all.js" />
+        <option value="$PROJECT_DIR$/admin/scripts/dragon/table/permissions.js" />
+        <option value="$PROJECT_DIR$/admin/scripts/dragon/appearance/contextmenu.js" />
+        <option value="$PROJECT_DIR$/admin/5-views/ms_all/index.ejs" />
+        <option value="$PROJECT_DIR$/admin/5-views/templates/modalpool.ejs" />
+        <option value="$PROJECT_DIR$/admin/5-views/ms_allproducts/index.ejs" />
+        <option value="$PROJECT_DIR$/admin/5-views/ms_category/index.ejs" />
+        <option value="$PROJECT_DIR$/admin/5-views/ms_child/index.ejs" />
+        <option value="$PROJECT_DIR$/admin/5-views/ms_other/index.ejs" />
+        <option value="$PROJECT_DIR$/admin/5-views/ms_product/index.ejs" />
+        <option value="$PROJECT_DIR$/admin/5-views/templates/table/header.ejs" />
+        <option value="$PROJECT_DIR$/admin/0-config/menu.json" />
         <option value="$PROJECT_DIR$/admin/scripts/dragon/table/format.js" />
-        <option value="$PROJECT_DIR$/admin/5-views/ms_child/show.ejs" />
+        <option value="$PROJECT_DIR$/admin/5-views/templates/form/detail.ejs" />
+        <option value="$PROJECT_DIR$/admin/5-views/templates/table/rowOptions.ejs" />
         <option value="$PROJECT_DIR$/admin/scripts/dragon/table/events.js" />
+        <option value="$PROJECT_DIR$/admin/0-config/modules.json" />
+        <option value="$PROJECT_DIR$/admin/server.js" />
+        <option value="$PROJECT_DIR$/admin/modules/BASE_mssql.js" />
         <option value="$PROJECT_DIR$/admin/scripts/dragon/base/baseapi.js" />
+        <option value="$PROJECT_DIR$/admin/4-crud/mssql/a.defautls/1columns.js" />
+        <option value="$PROJECT_DIR$/admin/4-crud/mssql/ms_all/options.js" />
+        <option value="$PROJECT_DIR$/admin/4-crud/mssql/ms_product/relations.js" />
+        <option value="$PROJECT_DIR$/admin/5-views/master/head.ejs" />
+        <option value="$PROJECT_DIR$/admin/3-controllers/CO_BASE.js" />
+        <option value="$PROJECT_DIR$/admin/4-crud/mssql/ms_all/relations.js" />
+        <option value="$PROJECT_DIR$/admin/4-crud/mssql/a.defautls/defaults.js" />
+        <option value="$PROJECT_DIR$/admin/scripts/dragon/table/sortable.js" />
+        <option value="$PROJECT_DIR$/admin/scripts/dragon/data/json.js" />
+        <option value="$PROJECT_DIR$/admin/4-crud/mssql/ms_allproducts/1columns.js" />
+        <option value="$PROJECT_DIR$/admin/4-crud/mssql/ms_all/1columns.js" />
+        <option value="$PROJECT_DIR$/admin/4-crud/mssql/ms_category/1columns.js" />
+        <option value="$PROJECT_DIR$/admin/4-crud/mssql/ms_child/1columns.js" />
+        <option value="$PROJECT_DIR$/admin/4-crud/mssql/ms_other/1columns.js" />
+        <option value="$PROJECT_DIR$/admin/4-crud/mssql/ms_product/1columns.js" />
+        <option value="$PROJECT_DIR$/admin/scripts/dragon/table/table.js" />
+        <option value="$PROJECT_DIR$/admin/4-crud/mssql/ms_allproducts/relations.js" />
+        <option value="$PROJECT_DIR$/admin/scripts/dragon/components/modal.js" />
+        <option value="$PROJECT_DIR$/admin/0-config/theme.json" />
+        <option value="$PROJECT_DIR$/admin/5-views/templates/table/base.ejs" />
+        <option value="$PROJECT_DIR$/admin/scripts/dragon/table/drag.js" />
+        <option value="$PROJECT_DIR$/admin/scripts/dragon/data/localStorage.js" />
       </list>
     </option>
   </component>
@@ -13615,7 +13651,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -13632,26 +13667,56 @@
               <item name="peleaxz" type="b2602c69:ProjectViewProjectNode" />
               <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
               <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="5-views" type="462c0819:PsiDirectoryNode" />
+              <item name="4-crud" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="peleaxz" type="b2602c69:ProjectViewProjectNode" />
               <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
               <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="5-views" type="462c0819:PsiDirectoryNode" />
-              <item name="ms_child" type="462c0819:PsiDirectoryNode" />
+              <item name="4-crud" type="462c0819:PsiDirectoryNode" />
+              <item name="mssql" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="peleaxz" type="b2602c69:ProjectViewProjectNode" />
+              <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="4-crud" type="462c0819:PsiDirectoryNode" />
+              <item name="mssql" type="462c0819:PsiDirectoryNode" />
+              <item name="ms_all" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="peleaxz" type="b2602c69:ProjectViewProjectNode" />
+              <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="scripts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="peleaxz" type="b2602c69:ProjectViewProjectNode" />
+              <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="scripts" type="462c0819:PsiDirectoryNode" />
+              <item name="dragon" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="peleaxz" type="b2602c69:ProjectViewProjectNode" />
+              <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="scripts" type="462c0819:PsiDirectoryNode" />
+              <item name="dragon" type="462c0819:PsiDirectoryNode" />
+              <item name="table" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
-    <property name="SearchEverywhereHistoryKey" value="load&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/base/load.js&#10;api&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/base/api.js&#10;event&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/events.js&#10;forma&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/format.js&#10;BASE_&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/modules/BASE_mssql.js&#10;CO_B&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/3-controllers/CO_BASE.js&#10;table&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/table.js&#10;menu&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/master/menu.ejs&#10;API&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/base/api.js&#10;2&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/4-crud/mssql/ms_all/2OPTIONS_table_ms_all.js&#10;row&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/templates/table/rowOptions.ejs&#10;BASE_m&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/modules/BASE_mssql.js&#10;conte&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/appearance/contextmenu.js&#10;base&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/templates/table/base.ejs&#10;column&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/templates/table/columns.ejs&#10;menu.js&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/components/menu.js&#10;rowo&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/templates/table/rowOptions.ejs&#10;3&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/4-crud/mssql/ms_all/3ACCESS_table_ms_all.js&#10;op&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/options.js&#10;repeat&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/events/repeatkey.js&#10;context&#9;FILE&#9;file://C:/wamp/www/peleaxz/tools/c/assets/js/pages/extra_context_menu.js&#10;glo&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/events/globalevents.js&#10;rowop&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/templates/table/rowOptions.ejs&#10;option&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/options.js&#10;permi&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/permissions.js&#10;perm&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/permissions.js&#10;bas&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/templates/table/base.ejs&#10;colum&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/templates/table/columnOption.ejs&#10;json&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/data/json.js&#10;CRUD&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/4-crud/mssql/ms_all/1CRUD_table_ms_all.js&#10;options&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/options.js&#10;Base&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/3-controllers/CO_BASE.js&#10;contextmenu.js&#9;FILE&#9;file://C:/wamp/www/peleaxz/tools/c/assets/js/plugins/extensions/contextmenu.js&#10;hea&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/master/head.ejs&#10;he&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/master/head.ejs&#10;BAse&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/3-controllers/CO_BASE.js&#10;rows&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/templates/table/rows.ejs&#10;extra_context_menu&#9;FILE&#9;file://C:/wamp/www/peleaxz/tools/c/extra_context_menu.html&#10;globa&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/events/globalevents.js&#10;even&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/events.js&#10;ARRAY&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/data/array.js&#10;angula&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/extensions/angular.js&#10;BASE&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/3-controllers/CO_BASE.js&#10;na&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/master/navbar.ejs&#10;header&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/templates/table/header.ejs&#10;colu&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/templates/table/columnOption.ejs&#10;extra&#9;FILE&#9;file://C:/wamp/www/peleaxz/tools/c/assets/js/pages/extra_context_menu.js&#10;CO&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/3-controllers/CO_BASE.js&#10;service_sitemap&#9;FILE&#9;file://C:/wamp/www/peleaxz/tools/c/service_sitemap.html&#10;navbar&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/master/navbar.ejs" />
+    <property name="SearchEverywhereHistoryKey" value="ARRAY&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/data/array.js&#10;theme&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/0-config/theme.json&#10;even&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/events.js&#10;base&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/templates/table/base.ejs&#10;modal&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/components/modal.js&#10;BAS&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/3-controllers/CO_BASE.js&#10;table&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/table.js&#10;sorta&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/sortable.js&#10;head&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/master/head.ejs&#10;BASE&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/modules/BASE_mssql.js&#10;BASEAP&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/base/baseapi.js&#10;serve&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/server.js&#10;MS&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/modules/BASE_mssql.js&#10;sorte&#9;null&#9;null&#10;forma&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/format.js&#10;rowo&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/templates/table/rowOptions.ejs&#10;deta&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/templates/form/detail.ejs&#10;for&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/format.js&#10;menu.json&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/0-config/menu.json&#10;eve&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/events.js&#10;moda&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/components/modal.js&#10;heade&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/master/head.ejs&#10;header&#9;null&#9;null&#10;hea&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/master/head.ejs&#10;opti&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/options.js&#10;json&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/data/json.js&#10;permis&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/permissions.js&#10;permi&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/permissions.js&#10;options&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/options.js&#10;navbar&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/master/navbar.ejs&#10;mssql&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/modules/BASE_mssql.js&#10;theme.&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/0-config/theme.json&#10;detai&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/templates/form/detail.ejs&#10;COB&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/3-controllers/CO_BASE.js&#10;tab&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/table.js&#10;BASE_&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/modules/BASE_mssql.js&#10;load&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/base/load.js&#10;B&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/3-controllers/CO_BASE.js&#10;tabl&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/table.js&#10;detail&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/templates/form/detail.ejs&#10;form&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/format.js&#10;format&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/format.js&#10;templates/&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/templates&#10;CO_b&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/3-controllers/CO_BASE.js&#10;1col&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/4-crud/mssql/ms_allproducts/1columns.js&#10;columns&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/templates/table/columns.ejs&#10;bas&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/templates/table/base.ejs&#10;CO_B&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/3-controllers/CO_BASE.js&#10;BASE_ms&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/modules/BASE_mssql.js&#10;mss&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/0-config/db/mssql.json" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="8.10.0" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -13670,19 +13735,19 @@
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp\www\peleaxz\admin\4-crud\mssql\a.defautls" />
+      <recent name="C:\wamp\www\peleaxz\admin\5-views\ms_product" />
+      <recent name="C:\wamp\www\peleaxz\admin\5-views\ms_other" />
+      <recent name="C:\wamp\www\peleaxz\admin\5-views\ms_child" />
+      <recent name="C:\wamp\www\peleaxz\admin\5-views\ms_category" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\wamp\www\peleaxz\admin\5-views\templates\form" />
       <recent name="C:\wamp\www\peleaxz\admin\0-config\db" />
       <recent name="C:\wamp\www\peleaxz\admin\config" />
       <recent name="C:\wamp\www\peleaxz\admin\4-crud\mssql\ms_all" />
       <recent name="C:\wamp\www\peleaxz\admin\scripts\dragon\file" />
-      <recent name="C:\wamp64\wwwalter\peleaxz\admin\scripts\dragon\table" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\wamp\www\peleaxz\admin\5-views\ms_child" />
-      <recent name="C:\wamp\www\peleaxz\admin\scripts\dragon\base" />
-      <recent name="C:\wamp\www\peleaxz\admin\4-crud\mssql\ms_all" />
-      <recent name="C:\wamp\www\peleaxz\admin\5-views" />
-      <recent name="C:\wamp\www\peleaxz\admin\4-crud\mssql" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -13754,12 +13819,14 @@
       <workItem from="1537830030545" duration="2964000" />
       <workItem from="1538504229509" duration="427000" />
       <workItem from="1538504727149" duration="56374000" />
-      <workItem from="1538722195691" duration="163032000" />
+      <workItem from="1538722195691" duration="218724000" />
+      <workItem from="1539869141259" duration="1280000" />
+      <workItem from="1539872245370" duration="47515000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="810824000" />
+    <option name="totallyTimeSpent" value="915311000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="32" width="1382" height="744" extended-state="6" />
@@ -13781,7 +13848,7 @@
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info active="true" anchor="right" content_ui="combo" id="Project" order="3" visible="true" weight="0.18078668" />
+      <window_info anchor="right" content_ui="combo" id="Project" order="3" weight="0.1860817" />
     </layout>
     <layout-to-restore>
       <window_info id="Favorites" order="0" side_tool="true" />
@@ -13800,7 +13867,7 @@
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info active="true" anchor="right" content_ui="combo" id="Project" order="3" visible="true" weight="0.18078668" />
+      <window_info active="true" anchor="right" content_ui="combo" id="Project" order="3" visible="true" weight="0.1860817" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -13810,352 +13877,351 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/admin/scripts/extensions/angular.js">
+    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/base/load.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="9" selection-end-column="9" />
+        <state relative-caret-position="306">
+          <caret line="18" column="34" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="38" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/appearance/sidebar.js">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/table/crud.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="63" selection-start-line="20" selection-start-column="51" selection-end-line="20" selection-end-column="63" />
+        </state>
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tools/c/extra_context_menu.html">
+    <entry file="file://$PROJECT_DIR$/admin/5-views/master/navbar.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
-          <caret line="25" column="4" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="94" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/master/head.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="28" column="69" selection-start-line="28" selection-start-column="69" selection-end-line="28" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/templates/table/columnOption.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="44" selection-start-column="37" selection-end-column="44" />
+          <caret line="43" column="11" lean-forward="true" selection-start-line="43" selection-start-column="11" selection-end-line="43" selection-end-column="11" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/table/permissions.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="22" column="14" lean-forward="true" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tools/c/assets/js/plugins/extensions/contextmenu.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="3" lean-forward="true" selection-start-line="3" selection-start-column="3" selection-end-line="3" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tools/c/assets/js/pages/extra_context_menu.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="33" column="12" selection-start-line="33" selection-start-column="12" selection-end-line="33" selection-end-column="24" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/base/http.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" selection-start-line="10" selection-end-line="16" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/appearance/fixelement.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="30" column="4" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/events/globalevents.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="1" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/events/repeatkey.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="81" lean-forward="true" selection-start-line="81" selection-end-line="81" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/data/json.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="84" selection-start-line="9" selection-start-column="84" selection-end-line="9" selection-end-column="84" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.es5.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="456" column="14" selection-start-line="456" selection-start-column="14" selection-end-line="456" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/data/string.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="37" column="25" selection-start-line="37" selection-start-column="15" selection-end-line="37" selection-end-column="25" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/ms_all/nana.ejs">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/components/menu.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="35" column="9" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/table/selection.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="22" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/table/actions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="4" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/templates/table/columns.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
-          <folding>
-            <element signature="n#style#0;n#i#1;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="391">
+          <caret line="29" column="72" selection-start-line="29" selection-start-column="72" selection-end-line="29" selection-end-column="72" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/appearance/contextmenu.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="20" lean-forward="true" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
+        <state relative-caret-position="187">
+          <caret line="11" column="20" lean-forward="true" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/templates/table/rowOptions.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="65" selection-start-line="16" selection-start-column="65" selection-end-line="16" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/templates/table/rows.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="29" lean-forward="true" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/ms_child/table/base.ejs">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/ms_child/table/header.ejs">
+    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/file/file.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
-          <caret line="74" column="62" selection-start-line="74" selection-start-column="62" selection-end-line="74" selection-end-column="62" />
+          <caret line="26" column="23" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/5-views/templates/modalpool.ejs">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/5-views/ms_all/index.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="10" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/5-views/ms_allproducts/index.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="10" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/5-views/ms_category/index.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="10" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/5-views/ms_child/index.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="16" lean-forward="true" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+        <state relative-caret-position="102">
+          <caret line="6" column="10" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/ms_all/index.ejs">
+    <entry file="file://$PROJECT_DIR$/admin/5-views/ms_product/index.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="16" lean-forward="true" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/5-views/ms_other/index.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="10" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/table/options.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
-          <caret line="8" column="16" lean-forward="true" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+          <caret line="8" column="65" lean-forward="true" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="65" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/templates/table/base.ejs">
+    <entry file="file://$PROJECT_DIR$/admin/assets/js/plugins/forms/selects/bootstrap_select.min.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="28" column="35" selection-start-line="28" selection-start-column="25" selection-end-line="28" selection-end-column="35" />
+        <state relative-caret-position="17">
+          <caret line="6" column="18469" selection-start-line="6" selection-start-column="18469" selection-end-line="6" selection-end-column="18469" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/1-models/mssql/MO_ms_other.json">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/admin/5-views/templates/form/detail.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" column="39" selection-start-line="28" selection-start-column="39" selection-end-line="28" selection-end-column="39" />
+        </state>
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/1-models/mssql/MO_ms_all.json">
+    <entry file="file://$PROJECT_DIR$/admin/5-views/templates/table/rowOptions.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/5-views/templates/table/header.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="31" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/0-config/menu.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="477">
+          <caret line="50" column="30" selection-start-line="50" selection-start-column="30" selection-end-line="50" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/0-config/modules.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="21" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="47" column="11" selection-start-line="47" selection-start-column="4" selection-end-line="47" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/table/format.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="50" lean-forward="true" selection-start-line="17" selection-start-column="50" selection-end-line="17" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/base/baseapi.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="25" column="7" lean-forward="true" selection-start-line="25" selection-start-column="7" selection-end-line="25" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/4-crud/mssql/ms_all/access.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
-          <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
+          <caret line="11" column="29" lean-forward="true" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/4-crud/mssql/ms_other/2ACCESS_table_ms_child.js">
+    <entry file="file://$PROJECT_DIR$/admin/4-crud/mssql/ms_allproducts/access.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/4-crud/mssql/ms_category/access.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/modules/BASE_mssql.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="507" column="46" selection-start-line="507" selection-start-column="42" selection-end-line="507" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/5-views/master/head.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="55" lean-forward="true" selection-start-line="55" selection-end-line="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/4-crud/mssql/ms_product/relations.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="40" selection-start-column="40" selection-end-column="40" />
+          <caret column="28" selection-start-column="28" selection-end-column="28" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/4-crud/mssql/ms_other/1CRUD_table_ms_child.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/3-controllers/CO_ms_other.js">
+    <entry file="file://$PROJECT_DIR$/admin/3-controllers/CO_ms_all.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="3" lean-forward="true" selection-start-line="3" selection-start-column="3" selection-end-line="3" selection-end-column="3" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/ms_other/table/base.ejs">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/master/menu.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="24" column="118" selection-start-line="24" selection-start-column="118" selection-end-line="24" selection-end-column="118" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/4-crud/mssql/ms_all/2OPTIONS_table_ms_all.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="45" selection-start-line="30" selection-start-column="45" selection-end-line="30" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/4-crud/mssql/ms_all/4ACCESS_table_ms_all.js">
+    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/table/sortable.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
-          <caret line="6" column="14" lean-forward="true" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="14" />
+          <caret line="6" column="9" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/server.js">
+    <entry file="file://$PROJECT_DIR$/admin/4-crud/mssql/ms_allproducts/1columns.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-659">
-          <caret line="205" column="15" selection-start-line="205" selection-start-column="15" selection-end-line="205" selection-end-column="15" />
+        <state relative-caret-position="34">
+          <caret line="2" column="36" selection-end-line="2" selection-end-column="36" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/table/options.js">
+    <entry file="file://$PROJECT_DIR$/admin/4-crud/mssql/ms_category/1columns.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
+        <state>
+          <caret selection-end-line="2" selection-end-column="32" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/table/table.js">
+    <entry file="file://$PROJECT_DIR$/admin/4-crud/mssql/ms_child/1columns.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="29" selection-end-line="2" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/4-crud/mssql/ms_other/1columns.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="2" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/4-crud/mssql/ms_product/1columns.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="30" lean-forward="true" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/data/json.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="18" column="35" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/4-crud/mssql/a.defautls/defaults.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="16" lean-forward="true" selection-start-column="16" selection-end-column="16" />
+          <folding>
+            <element signature="e#717#7282#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/4-crud/mssql/ms_all/relations.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
-          <caret line="159" column="64" selection-start-line="159" selection-start-column="64" selection-end-line="159" selection-end-column="64" />
+          <caret line="27" column="2" selection-start-line="27" selection-start-column="2" selection-end-line="27" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/4-crud/mssql/ms_all/1columns.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="2" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/4-crud/mssql/ms_all/options.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2907">
+          <caret column="24" selection-start-column="24" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/4-crud/mssql/ms_allproducts/relations.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="2" selection-start-line="20" selection-start-column="2" selection-end-line="20" selection-end-column="2" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/3-controllers/CO_BASE.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="34" column="12" selection-start-line="34" selection-start-column="12" selection-end-line="34" selection-end-column="12" />
+        <state relative-caret-position="497">
+          <caret line="42" column="24" selection-start-line="42" selection-start-column="24" selection-end-line="42" selection-end-column="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/table/crud.js">
+    <entry file="file://$PROJECT_DIR$/admin/0-config/theme.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="8" lean-forward="true" selection-start-column="8" selection-end-column="8" />
+        <state relative-caret-position="51">
+          <caret line="3" column="24" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/modules/BASE_mssql.js">
+    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/components/modal.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-282">
-          <caret line="521" column="42" selection-start-line="521" selection-start-column="42" selection-end-line="521" selection-end-column="42" />
+        <state relative-caret-position="1547">
+          <caret line="91" column="69" selection-start-line="91" selection-start-column="69" selection-end-line="91" selection-end-column="69" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/4-crud/mssql/ms_all/3RELATIONS_table_ms_all.js">
+    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/data/array.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="32" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
+        <state relative-caret-position="34">
+          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/table/format.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1564">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/base/load.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="85" column="8" selection-start-line="85" selection-start-column="8" selection-end-line="85" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/4-crud/mssql/ms_all/1CRUD_table_ms_all.js">
+    <entry file="file://$PROJECT_DIR$/admin/5-views/templates/table/base.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
-          <caret line="27" column="20" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
+          <caret line="12" column="78" selection-start-line="12" selection-start-column="78" selection-end-line="12" selection-end-column="99" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/base/api.js">
+    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/table/table.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="36" lean-forward="true" selection-start-line="16" selection-start-column="36" selection-end-line="16" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/ms_child/show.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="19" lean-forward="true" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
+        <state relative-caret-position="211">
+          <caret line="155" column="34" lean-forward="true" selection-start-line="155" selection-start-column="34" selection-end-line="155" selection-end-column="34" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/table/events.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="9" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
-          <folding>
-            <element signature="n#style#0;n#object#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="476">
+          <caret line="70" column="26" lean-forward="true" selection-start-line="70" selection-start-column="26" selection-end-line="70" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/base/baseapi.js">
+    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/table/drag.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+        <state relative-caret-position="238">
+          <caret line="14" column="35" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/data/localStorage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="81" column="48" selection-start-line="81" selection-start-column="48" selection-end-line="81" selection-end-column="48" />
         </state>
       </provider>
     </entry>

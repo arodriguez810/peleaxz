@@ -1,6 +1,16 @@
+<script>
+
+</script>
 <div class="" id="<%= modelName %>TablePanel" style="{{<%= modelName %>.scrollable()}}">
     <!--Table List -->
-    <table class="table table-togglable table-framed sindu-table dragon-table"
+    <div
+            ng-show="<%= modelName %>.records.data.length<=0"
+            class="alert alpha-<%= TAG.table %> border-<%= TAG.table %> alert-styled-left">
+        There is no data to show in this table.
+    </div>
+
+    <table ng-show="<%= modelName %>.records.data.length>0"
+           class="table table-togglable table-framed sindu-table dragon-table <%= modelName %>-drag"
            data-animation="bounceInUp"
            id="<%= modelName %>Table"
            style="{{<%= modelName %>.width()}}"

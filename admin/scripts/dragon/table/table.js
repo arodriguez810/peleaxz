@@ -53,6 +53,8 @@ TABLE = {
             }
             return count;
         };
+
+
         $scope.columns = function () {
 
             if (STORAGE.hasColumns($scope)) {
@@ -121,6 +123,7 @@ TABLE = {
             );
             $scope.table.is.loading = true;
 
+
             if (STORAGE.hasPage($scope))
                 $scope.table.currentPage = STORAGE.getPage($scope);
             if ($scope.hasModel("limit")) {
@@ -137,30 +140,37 @@ TABLE = {
                 if ($scope.table.loaded !== true) {
                     $scope.table.loaded = true;
                     ANIMATION.play("#" + $scope.modelName + "Table");
+                    dataToList = {
+                        limit: $scope.table.currentLimit,
+                        page: $scope.table.currentPage,
+                        orderby: $scope.table.orderby,
+                        order: $scope.table.order,
+                        join: $scope.table.crud.table.single
+                    };
+                    if (!DSON.oseaX(ARRAY.last(MODAL.historyObject)))
+                        dataToList.where = ARRAY.last(MODAL.historyObject).viewData.data;
                     $scope.list(
-                        {
-                            limit: $scope.table.currentLimit,
-                            page: $scope.table.currentPage,
-                            orderby: $scope.table.orderby,
-                            order: $scope.table.order,
-                            join: $scope.table.crud.table.single
-                        },
+                        dataToList,
                         function (data) {
                             $scope.afterData(data);
                             DRAG.run($scope);
                         }
                     );
                 } else {
+                    dataToList = {
+                        limit: $scope.table.currentLimit,
+                        page: $scope.table.currentPage,
+                        orderby: $scope.table.orderby,
+                        order: $scope.table.order,
+                        join: $scope.table.crud.table.single
+                    };
+                    if (!DSON.oseaX(ARRAY.last(MODAL.historyObject)))
+                        dataToList.where = ARRAY.last(MODAL.historyObject).viewData.data;
                     $scope.list(
-                        {
-                            limit: $scope.table.currentLimit,
-                            page: $scope.table.currentPage,
-                            orderby: $scope.table.orderby,
-                            order: $scope.table.order,
-                            join: $scope.table.crud.table.single
-                        },
+                        dataToList,
                         function (data) {
                             $scope.afterData(data);
+                            DRAG.run($scope);
                         }
                     );
                 }

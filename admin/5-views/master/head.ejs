@@ -62,15 +62,9 @@
         <script src="<%= FOLDERS.crud %>/<%= item %>"></script>
     <% }); %>
 
-
-<% models.forEach(function(item){ if(item != undefined){ %>
+    <% models.forEach(function(item){ if(item != undefined){ %>
         <script src="<%= FOLDERS.controllers %>/CO_<%= item %>.js"></script>
     <% }}); %>
-
-
-
-
-
 
     <script>
         CONFIG = "<%= JSON.stringify(CONFIG) %>";
@@ -93,7 +87,11 @@
 </head>
 <body ng-app="app">
 <div id="baseController" ng-controller="baseController as baseController">
-    <button class=" upButtom btn bg-<%=COLOR.primary %>" title="Go to top"><i style="font-size: 30px;" class="icon-square-up"></i></button>
+    <div id="modalpool">
+
+    </div>
+    <button class=" upButtom btn bg-<%= COLOR.primary %>" title="Go to top"><i style="font-size: 30px;"
+                                                                               class="icon-square-up"></i></button>
     <% include navbar %>
     <!-- Page container -->
     <div class="page-container">

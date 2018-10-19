@@ -30,12 +30,86 @@ TABLEEVENT = {
 
         $scope.cell.extendclick = function (data) {
 
-            if (data.column.link) {
-                var id = eval("data.row." + data.column.link.from);
-                BASEAPI.get(data.column.link.table, id, function (data) {
-                    alert(data);
-                });
+
+            if (data.column.multilink) {
+                var mylink = data.column.multilink;
+                var id = eval("data.row." + mylink.from);
+                SWEETALERT.loading({message: DSON.template(mylink.modal.content.loadingContentText, data.row)});
+                var linkCrud = eval("CRUD_" + mylink.table);
+                BASEAPI.list(mylink.table,
+                    {
+                        limit: 0,
+                        page: 1,
+                        orderby: linkCrud.table.key || "id",
+                        order: "asc",
+                        join: linkCrud.table.single,
+                        where: [
+                            {
+                                field: mylink.to,
+                                value: id
+                            }
+                        ]
+                    }
+                    , function (info) {
+                        SWEETALERT.stop();
+                        multiarray = [];
+                        info.data.forEach(function (item) {
+                            multiarray.push(eval("item." + mylink.getList));
+                        });
+                        var oldTitle = mylink.modal.header.title;
+                        mylink.modal.header.title = DSON.template(mylink.modal.header.title, data.row);
+                        $scope.viewData = {
+                            from: $scope.modelName,
+                            to: mylink.list,
+                            data: [
+                                {
+                                    field: mylink.wherelist,
+                                    value: multiarray
+                                }
+                            ],
+                            crud: linkCrud
+                        };
+                        $scope.modal.modalView(String.format("{0}", mylink.list), mylink.modal);
+                        mylink.modal.header.title = oldTitle;
+                    });
                 return;
+            }
+            if (data.column.link) {
+                if (!DSON.oseaX(data.value)) {
+                    var mylink = data.column.link;
+                    var id = eval("data.row." + mylink.from);
+                    SWEETALERT.loading({message: mylink.modal.content.loadingContentText});
+                    var linkCrud = eval("CRUD_" + mylink.table);
+                    BASEAPI.list(mylink.table,
+                        {
+                            limit: 1,
+                            page: 1,
+                            orderby: linkCrud.table.key || "id",
+                            order: "asc",
+                            join: linkCrud.table.single,
+                            where: [
+                                {
+                                    field: linkCrud.table.key,
+                                    value: id
+                                }
+                            ]
+                        }
+                        , function (info) {
+                            SWEETALERT.stop();
+                            $scope.viewData = {
+                                from: $scope.modelName,
+                                to: mylink.table,
+                                data: info.data,
+                                crud: linkCrud
+                            };
+                            mylink.modal.content.sameController = true;
+                            var oldTitle = mylink.modal.header.title;
+                            mylink.modal.header.title = DSON.template(mylink.modal.header.title, data.row);
+                            $scope.modal.modalView(String.format("{0}/detail", $scope.modelName), mylink.modal);
+                            mylink.modal.header.title = oldTitle;
+                        });
+                    return;
+                }
             }
 
             if (data.column.shorttext) {
@@ -46,43 +120,47 @@ TABLEEVENT = {
                             header: {title: "Full text of " + data.column.label}
                         });
                     }
-            } else if (data.column.formattype.indexOf("location") !== -1) {
-                console.log(data.column.formattype);
-                if (!DSON.oseaX(data.value)) {
-                    var location = data.value.split(',');
-                    if (location.length > 1) {
-                        var lat = parseFloat(location[0]);
-                        var lng = parseFloat(location[1]);
-                        var name = data.column.formattype.split(':');
-                        name = name.length > 1 ? (eval("data.row." + name[1]) + " location") : "Map View";
-                        console.log(name);
-                        $scope.modal.map({lat: lat, lng: lng}, name, {header: {title: name}});
-                    }
-                }
-            } else if (data.column.formattype.indexOf("file") !== -1) {
-                var format = data.column.formattype.split(":");
-                format = format.length > 1 ? format[1] : "";
-                var fileUrl = String.format("{0}/{1}/{2}", CONFIG.filePath, $scope.modelName, data.value);
-                if (!DSON.oseaX(data.value)) {
-                    switch (format) {
-                        case "image": {
-                            LOAD.template('templates/components/crop', {src: fileUrl}, function (html) {
-                                $scope.modal.simpleModal(html, {header: {title: 'Image Full Preview'}});
-                            });
-                            break;
+            } else {
+                if (!DSON.oseaX(data.column.formattype)) {
+                    if (data.column.formattype.indexOf("location") !== -1) {
+                        console.log(data.column.formattype);
+                        if (!DSON.oseaX(data.value)) {
+                            var location = data.value.split(',');
+                            if (location.length > 1) {
+                                var lat = parseFloat(location[0]);
+                                var lng = parseFloat(location[1]);
+                                var name = data.column.formattype.split(':');
+                                name = name.length > 1 ? (eval("data.row." + name[1]) + " location") : "Map View";
+                                console.log(name);
+                                $scope.modal.map({lat: lat, lng: lng}, name, {header: {title: name}});
+                            }
                         }
-                        case "all": {
-                            if (FILE.noSupport(data.value)) {
-                                return;
+                    } else if (data.column.formattype.indexOf("file") !== -1) {
+                        var format = data.column.formattype.split(":");
+                        format = format.length > 1 ? format[1] : "";
+                        var fileUrl = String.format("{0}/{1}", CONFIG.filePath, data.value);
+                        if (!DSON.oseaX(data.value)) {
+                            switch (format) {
+                                case "image": {
+                                    LOAD.template('templates/components/crop', {src: fileUrl}, function (html) {
+                                        $scope.modal.simpleModal(html, {header: {title: 'Image Full Preview'}});
+                                    });
+                                    break;
+                                }
+                                case "all": {
+                                    if (FILE.noSupport(data.value)) {
+                                        return;
+                                    }
+                                    if (FILE.isImage(data.value)) {
+                                        LOAD.template('templates/components/crop', {src: fileUrl}, function (html) {
+                                            $scope.modal.simpleModal(html, {header: {title: 'Image Full Preview'}});
+                                        });
+                                    } else {
+                                        $scope.modal.simpleModal("<object style='width: 100%;height: 100%' data=\"" + fileUrl + "\"></object>", {header: {title: 'Preview'}});
+                                    }
+                                    break;
+                                }
                             }
-                            if (FILE.isImage(data.value)) {
-                                LOAD.template('templates/components/crop', {src: fileUrl}, function (html) {
-                                    $scope.modal.simpleModal(html, {header: {title: 'Image Full Preview'}});
-                                });
-                            } else {
-                                $scope.modal.simpleModal("<object style='width: 100%;height: 100%' data=\"" + fileUrl + "\"></object>", {header: {title: 'Preview'}});
-                            }
-                            break;
                         }
                     }
                 }

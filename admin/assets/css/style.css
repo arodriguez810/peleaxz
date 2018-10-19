@@ -95,3 +95,7 @@ tr.dragon-columns.dragon-column-hide th {
     cursor: pointer;
     padding: 15px;
 }
+
+
+body { padding-right: 0 !important }
+

@@ -2,7 +2,7 @@
     <!--Breadcrumb and Table Options-->
     <div class="breadcrumb-line"><a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
 
-        <ul class="breadcrumb">
+        <ul class="breadcrumb" ng-show="!<%= modelName %>.modal.isOpen()">
             <li ng-repeat="(key, menu) in <%= modelName %>.MENU.parents">
                 <a data-function="menu" href="javascript:void(0)">
                     <i class="{{menu.icon}} position-left"></i>

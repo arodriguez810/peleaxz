@@ -1,9 +1,8 @@
 <div id="<%= modelName %>" ng-controller="<%= modelName %> as <%= modelName %>">
     <div class="panel panel-flat">
-        <%- include('table/header',{modelName:modelName}); %>
+        <%- include('../templates/table/header',{modelName:modelName}); %>
         <div class="subcontent">
-            <%- include('table/base',{modelName:modelName}); %>
+            <%- include('../templates/table/base',{modelName:modelName}); %>
         </div>
     </div>
-    <%- include('../templates/modalpool',{modelName:modelName}); %>
 </div><!--end-->

@@ -1,6 +1,7 @@
 {
   "id": "[int] IDENTITY(1,1) NOT NULL",
   "name": "NVARCHAR(50) NOT NULL",
+  "lastName": "NVARCHAR(50) NULL",
   "description": "NVARCHAR(200) NULL",
   "biography": "ntext NULL",
   "average": "numeric( 18, 2) NULL",

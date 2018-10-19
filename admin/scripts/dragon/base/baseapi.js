@@ -1,4 +1,32 @@
 BASEAPI = {
+    ajax: {
+        post: function (method, parameters, callBack) {
+            SWEETALERT.loading({message: "Loading..."});
+            $http = angular.injector(["ng"]).get("$http");
+            $http.post(method, parameters).then(function (data) {
+                SWEETALERT.stop();
+                callBack(data);
+            }, function (data) {
+                SWEETALERT.stop();
+                console.log('Error: ' + data);
+            });
+        },
+        get: function (method, parameters, callBack) {
+            SWEETALERT.loading({message: "Loading..."});
+            $http = angular.injector(["ng"]).get("$http");
+            $http.get(method).then(function (data) {
+                SWEETALERT.stop();
+                callBack(data);
+            }, function (data) {
+                SWEETALERT.stop();
+                console.log('Error: ' + data);
+            });
+        },
+    },
+    msCsv:function(method,tableName, paramenters){
+        var rootPath = '/api/' + model;
+        BASEAPI.ajax.post()
+    },
     list: function (model, parameters, callBack) {
         $http = angular.injector(["ng"]).get("$http");
         var rootPath = '/api/' + model;
@@ -6,7 +34,7 @@ BASEAPI = {
             parameters.limit = Number.MAX_SAFE_INTEGER;
         }
 
-        $http.post($scope.rootPath + '/list', parameters).then(function (data) {
+        $http.post(rootPath + '/list', parameters).then(function (data) {
             callBack(data.data);
         }, function (data) {
             console.log('Error: ' + data);

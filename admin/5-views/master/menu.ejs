@@ -1,40 +1,149 @@
 <!-- Main sidebar -->
-<div class="sidebar sidebar-main custom sidebar-<%= COLOR.sidebar %> sidebar-fixed">
+<div class="sidebar sidebar-main custom sidebar-<%= COLOR.sidebar %>">
     <div class="sidebar-content">
         <!-- Main navigation -->
         <div class="sidebar-category sidebar-category-visible">
             <div class="category-content no-padding">
                 <ul class="navigation navigation-main navigation-accordion dragon-menu">
-                    <li>
-                        <a data-function="menu" href="/"><i class="icon-home"></i> <span>Home</span></a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="icon-tree5"></i> <span>Grant Parent</span></a>
-                        <ul>
+
+                    <% /*1*/ for(var menu of CONFIG.menus) { %>
+                        <% if(!menu.class){ %>
                             <li>
-                                <a href="#"><i class="icon-graduation2"></i> <span>Parent</span></a>
-                                <ul>
-                                    <li>
-                                        <a data-function="menu" href="#ms_all"><i class="icon-user"></i>
-                                            <span>Tutorial</span></a>
-                                    </li>
-                                    <li>
-                                        <a data-function="menu" href="#ms_child"><i class="icon-archive"></i> <span>Child</span></a>
-                                    </li>
-                                    <li>
-                                        <a data-function="menu" href="#ms_other"><i class="icon-cube"></i> <span>Other</span></a>
-                                    </li>
-                                </ul>
+                                <a data-function="menu" href="<%= menu.href %>">
+                                    <i class="icon-<%= menu.icon %>"></i>
+                                    <span><%= menu.text %></span>
+                                </a>
+                                <% if(menu.menus){ %>
+                                    <ul>
+
+                                        <% /*2*/ for(var menu2 of menu.menus) { %>
+                                            <% if(!menu2.class){ %>
+                                                <li>
+                                                    <a data-function="menu" href="<%= menu2.href %>">
+                                                        <i class="icon-<%= menu2.icon %>"></i>
+                                                        <span><%= menu2.text %></span>
+                                                    </a>
+                                                    <% if(menu2.menus){ %>
+                                                        <ul>
+
+                                                            <% /*3*/ for(var menu3 of menu2.menus) { %>
+                                                                <% if(!menu3.class){ %>
+                                                                    <li>
+                                                                        <a data-function="menu"
+                                                                           href="<%= menu3.href %>">
+                                                                            <i class="icon-<%= menu3.icon %>"></i>
+                                                                            <span><%= menu3.text %></span>
+                                                                        </a>
+                                                                        <% if(menu3.menus){ %>
+                                                                            <ul>
+
+                                                                                <% /*4*/ for(var menu4 of menu3.menus) { %>
+                                                                                    <% if(!menu4.class){ %>
+                                                                                        <li>
+                                                                                            <a data-function="menu"
+                                                                                               href="<%= menu4.href %>">
+                                                                                                <i class="icon-<%= menu4.icon %>"></i>
+                                                                                                <span><%= menu4.text %></span>
+                                                                                            </a>
+                                                                                            <% if(menu4.menus){ %>
+                                                                                                <ul>
+
+                                                                                                    <% /*5*/ for(var menu5 of menu4.menus) { %>
+                                                                                                        <% if(!menu5.class){ %>
+                                                                                                            <li>
+                                                                                                                <a data-function="menu"
+                                                                                                                   href="<%= menu5.href %>">
+                                                                                                                    <i class="icon-<%= menu5.icon %>"></i>
+                                                                                                                    <span><%= menu5.text %></span>
+                                                                                                                </a>
+                                                                                                                <% if(menu5.menus){ %>
+                                                                                                                    <ul>
+
+                                                                                                                        <% /*6*/ for(var menu6 of menu5.menus) { %>
+                                                                                                                            <% if(!menu6.class){ %>
+                                                                                                                                <li>
+                                                                                                                                    <a data-function="menu"
+                                                                                                                                       href="<%= menu6.href %>">
+                                                                                                                                        <i class="icon-<%= menu6.icon %>"></i>
+                                                                                                                                        <span><%= menu6.text %></span>
+                                                                                                                                    </a>
+                                                                                                                                    <% if(menu6.menus){ %>
+                                                                                                                                        <ul>
+
+
+                                                                                                                                        </ul>
+                                                                                                                                    <% } %>
+                                                                                                                                </li>
+                                                                                                                            <% } else { %>
+                                                                                                                                <li class="navigation-header">
+                                                                                                                                    <span><%= menu6.text %></span><i
+                                                                                                                                            class="icon-<%= menu6.icon %>"
+                                                                                                                                            title=""
+                                                                                                                                            data-original-title="CRUD's"></i>
+                                                                                                                                </li>
+                                                                                                                            <% } %>
+                                                                                                                        <% } %>
+
+                                                                                                                    </ul>
+                                                                                                                <% } %>
+                                                                                                            </li>
+                                                                                                        <% } else { %>
+                                                                                                            <li class="navigation-header">
+                                                                                                                <span><%= menu5.text %></span><i
+                                                                                                                        class="icon-<%= menu5.icon %>"
+                                                                                                                        title=""
+                                                                                                                        data-original-title="CRUD's"></i>
+                                                                                                            </li>
+                                                                                                        <% } %>
+                                                                                                    <% } %>
+
+                                                                                                </ul>
+                                                                                            <% } %>
+                                                                                        </li>
+                                                                                    <% } else { %>
+                                                                                        <li class="navigation-header">
+                                                                                            <span><%= menu4.text %></span><i
+                                                                                                    class="icon-<%= menu4.icon %>"
+                                                                                                    title=""
+                                                                                                    data-original-title="CRUD's"></i>
+                                                                                        </li>
+                                                                                    <% } %>
+                                                                                <% } %>
+
+                                                                            </ul>
+                                                                        <% } %>
+                                                                    </li>
+                                                                <% } else { %>
+                                                                    <li class="navigation-header">
+                                                                        <span><%= menu3.text %></span><i
+                                                                                class="icon-<%= menu3.icon %>"
+                                                                                title=""
+                                                                                data-original-title="CRUD's"></i>
+                                                                    </li>
+                                                                <% } %>
+                                                            <% } %>
+
+                                                        </ul>
+                                                    <% } %>
+                                                </li>
+                                            <% } else { %>
+                                                <li class="navigation-header">
+                                                    <span><%= menu2.text %></span><i class="icon-<%= menu2.icon %>"
+                                                                                     title=""
+                                                                                     data-original-title="CRUD's"></i>
+                                                </li>
+                                            <% } %>
+                                        <% } %>
+
+                                    </ul>
+                                <% } %>
                             </li>
-                        </ul>
-                    </li>
-                    <li class="navigation-header">
-                        <span>Extra</span><i class="icon-menu" title="" data-original-title="CRUD's"></i>
-                    </li>
-                    <% for(var i = 1;i <= 30;i++) { %>
-                        <li>
-                            <a data-function="menu" href="#ms_user"><i class="icon-eye"></i> <span>Menu <%= i %></span></a>
-                        </li>
+                        <% } else { %>
+                            <li class="navigation-header">
+                                <span><%= menu.text %></span><i class="icon-<%= menu.icon %>" title=""
+                                                                data-original-title="<%= menu.text %>"></i>
+                            </li>
+                        <% } %>
                     <% } %>
                 </ul>
             </div>

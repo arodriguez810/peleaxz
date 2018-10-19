@@ -2,9 +2,32 @@ TABLEFORMAT = {
     run: function ($scope) {
 
         $scope.cellValue = function (key, column, row) {
+
             var value = eval("row." + key);
+
+
+            if (column.multilink !== undefined) {
+                column.sortable = false;
+                return String.format("<a class='btn btn-" + TAG.table + "'>{0}</a>", ICON.i('list'));
+            }
             if (column.link !== undefined) {
-                return "<a class='btn btn-" + TAG.table + "'>" + value + "</a>";
+                if (value === null)
+                    return "<span class='text-grey'>[N/A]</span>";
+                if (column.shorttext) {
+                    var shorttext = value;
+                    if (shorttext !== undefined) {
+                        if (shorttext.length > column.shorttext) {
+                            shorttext = String.format(
+                                "<a>{0}</a>",
+                                shorttext.substring(0, column.shorttext) + "..."
+                            );
+                        }
+                        return "<a class='btn btn-" + TAG.table + "'>" + shorttext + "</a>";
+                    } else {
+                        return `<span class='text-grey'>${key}</span>`;
+                    }
+                } else
+                    return "<a class='btn btn-" + TAG.table + "'>" + value + "</a>";
             }
             value = $scope.formatByType(column, row, key);
             if (typeof column.format === "function")
@@ -50,6 +73,14 @@ TABLEFORMAT = {
         $scope.formatByType = function (column, row, key) {
             var value = eval("row." + key);
 
+            if (column.anonymous === true) {
+                column.sortable = false;
+                data = {
+                    $scope: $scope,
+                    row: row
+                };
+                value = DSON.iffunction(column.value) ? column.value(data) : column.value;
+            }
 
             if (column.formattype !== undefined) {
                 if (column.formattype.indexOf("datetime") !== -1) {
@@ -101,17 +132,17 @@ TABLEFORMAT = {
                     format = format.length > 1 ? format[1] : "";
                     if (DSON.oseaX(value))
                         return DSON.noset();
-                    var fileUrl = String.format("{0}/{1}/{2}", CONFIG.filePath, $scope.modelName, value);
+                    var fileUrl = String.format("{0}/{1}", CONFIG.filePath, value);
                     switch (format) {
                         case "image": {
-                            return String.format("<a class='btn bg-" + COLOR.info + "'>{0}</a>", FILE.fileToIcon(value), fileUrl);
+                            return String.format("<a class='btn btn-" + TAG.table + "'>{0}</a>", FILE.fileToIcon(value), fileUrl);
                         }
                         case "all": {
                             if (FILE.noSupport(value)) {
                                 return "<a download href='" + fileUrl + "' class='btn btn-" + TAG.table + "'>" + FILE.fileToIcon(value) + "</a>";
                             }
                             if (FILE.isImage(value))
-                                return String.format("<a class='btn bg-" + COLOR.info + "'>{0}</a>", FILE.fileToIcon(value), fileUrl);
+                                return String.format("<a class='btn btn-" + TAG.table + "'>{0}</a>", FILE.fileToIcon(value), fileUrl);
                             else
                                 return "<a class='btn btn-" + TAG.table + "'>" + FILE.fileToIcon(value) + "</a>";
                         }

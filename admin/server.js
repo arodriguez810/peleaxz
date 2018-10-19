@@ -45,6 +45,9 @@ for (var i in CONFIG.modules) {
     eval("var " + module.var + " = require('" + module.module + "');");
 }
 
+var jsoncsv = require('express-json-csv')(express);
+localModulesVars.push("jsoncsv");
+
 //******* Load Custom Modules********//
 fs.readdir("./" + folders.modules + "/", function (err, files) {
     for (var i in files) {

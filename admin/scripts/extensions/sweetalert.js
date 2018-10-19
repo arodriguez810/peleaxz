@@ -53,6 +53,17 @@ SWEETALERT = {
         }).then(result => {
             if (typeof data.confirm === "function") data.close();
         });
+    },
+    loading: function (data) {
+        swal({
+            title: data.title || "",
+            html: data.message || "",
+            showConfirmButton: false
+        });
+        swal.showLoading()
+    },
+    stop: function () {
+        swal.close()
     }
 };
 

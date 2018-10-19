@@ -8,7 +8,6 @@ exports.createTable = function (model, object, params) {
     tsql += ");";
     return tsql;
 };
-
 exports.alterBlackList = ["DEFAULT", "GETDATE()", "IDENTITY(1,1)", "IDENTITY"];
 exports.addColumns = function (model, object, params) {
 
@@ -231,7 +230,7 @@ exports.defaultRequests = function (Model, params) {
         params.modules.views.LoadEJS(files, params);
     });
 
-    params.app.get('/api/ms_list', function (req, res) {
+    params.app.post('/api/ms_list', function (req, res) {
         if (req.query.limit === undefined)
             req.query.limit = 10;
         if (req.query.page === undefined)
@@ -256,6 +255,33 @@ exports.defaultRequests = function (Model, params) {
         Model.all(req.body, function (data) {
             if (data.error !== false) res.send(data.error);
             res.json(data);
+        });
+    });
+
+    params.app.post('/api/ms_csv', function (req, res) {
+        if (req.body.limit === undefined)
+            req.body.limit = 10;
+        if (req.body.page === undefined)
+            req.body.page = 1;
+        if (req.body.orderby === undefined)
+            req.body.orderby = "id";
+
+        Model.all(req.body, function (data) {
+            if (data.error !== false) res.send(data.error);
+            res.setHeader('Content-type', 'text/csv');
+
+            var exports = [];
+            if (data.data.length > 0) {
+                for (var i in data.data[0])
+                    exports.push(i);
+            }
+            res.csv(data.data, {fields: exports});
+            // res.download(csvExporter);
+            // res.setHeader('Content-disposition', 'attachment; filename=' + Model.tableName + ".csv");
+            // res.setHeader('Content-type', 'text/csv');
+            // res.charset = 'UTF-8';
+            // res.write(csvExporter.generateCsv(data.data));
+            // res.end();
         });
     });
 

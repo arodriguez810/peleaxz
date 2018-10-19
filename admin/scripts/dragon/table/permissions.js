@@ -1,41 +1,49 @@
 PERMISSIONS = {
     run: function ($scope) {
-        $scope.allow = function (permisionName, or) {
-            if ($scope.table.crud.table.allow !== undefined && permisionName !== "") {
+        $scope.allow = function (permisionName, or, isModal) {
+            var finalCrud = $scope.table.crud;
+            if (isModal)
+                if (!DSON.oseaX(ARRAY.last(MODAL.historyObject)))
+                    finalCrud = ARRAY.last(MODAL.historyObject).viewData.crud;
+            if (finalCrud.table.allow !== undefined && permisionName !== "") {
                 or = DSON.ifundefined(or, true);
                 if (Array.isArray(permisionName)) {
                     for (const permisionNameElement of permisionName) {
                         if (or) {
-                            if (eval("$scope.table.crud.table.allow." + permisionNameElement + " !== false;") === true)
+                            if (eval("finalCrud.table.allow." + permisionNameElement + " !== false;") === true)
                                 return true;
                         } else {
-                            if (eval("$scope.table.crud.table.allow." + permisionNameElement + " !== false;") === false)
+                            if (eval("finalCrud.table.allow." + permisionNameElement + " !== false;") === false)
                                 return false;
                         }
                     }
                 }
                 else
-                    return eval("$scope.table.crud.table.allow." + permisionName + " !== false;");
+                    return eval("finalCrud.table.allow." + permisionName + " !== false;");
                 return !or;
             }
             return true;
         };
-        $scope.characterist = function (characterist, or) {
-            if ($scope.table.crud.table !== undefined && characterist !== "") {
+        $scope.characterist = function (characterist, or, isModal) {
+            var finalCrud = $scope.table.crud;
+            if (isModal)
+                if (!DSON.oseaX(ARRAY.last(MODAL.historyObject)))
+                    finalCrud = ARRAY.last(MODAL.historyObject).viewData.crud;
+            if (finalCrud.table !== undefined && characterist !== "") {
                 or = DSON.ifundefined(or, true);
                 if (Array.isArray(characterist)) {
                     for (const permisionNameElement of characterist) {
                         if (or) {
-                            if (eval("$scope.table.crud.table." + permisionNameElement + " !== false;") === true)
+                            if (eval("finalCrud.table." + permisionNameElement + " !== false;") === true)
                                 return true;
                         } else {
-                            if (eval("$scope.table.crud.table." + permisionNameElement + " !== false;") === false)
+                            if (eval("finalCrud.table." + permisionNameElement + " !== false;") === false)
                                 return false;
                         }
                     }
                 }
                 else
-                    return eval("$scope.table.crud.table." + characterist + " !== false;");
+                    return eval("finalCrud.table." + characterist + " !== false;");
                 return !or;
             }
             return true;

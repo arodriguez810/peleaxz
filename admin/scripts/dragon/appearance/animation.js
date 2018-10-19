@@ -9,7 +9,7 @@ ANIMATION = {
             element.removeClass("animated " + animation);
         });
     },
-    loading: function (customBlock, text, spinner) {
+    loading: function (customBlock, text, spinner, size) {
         if (customBlock === undefined) customBlock = "#content";
         if (text === undefined) text = "Loading...";
         if (spinner !== undefined) {
