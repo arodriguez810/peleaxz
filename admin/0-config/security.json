@@ -1,0 +1,10 @@
+{
+  "users": {
+    "model": "ms_user",
+    "fields": {
+      "username": "username",
+      "password": "password"
+    },
+    "hash": "md5"
+  }
+}

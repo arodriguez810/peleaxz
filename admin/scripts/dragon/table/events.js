@@ -76,6 +76,8 @@ TABLEEVENT = {
             }
             if (data.column.link) {
                 if (!DSON.oseaX(data.value)) {
+                    $scope.unCheckAll();
+                    data.row.selected = true;
                     var mylink = data.column.link;
                     var id = eval("data.row." + mylink.from);
                     SWEETALERT.loading({message: mylink.modal.content.loadingContentText});
@@ -112,6 +114,7 @@ TABLEEVENT = {
                 }
             }
 
+
             if (data.column.shorttext) {
                 var shorttext = data.value;
                 if (!DSON.oseaX(shorttext))
@@ -122,7 +125,11 @@ TABLEEVENT = {
                     }
             } else {
                 if (!DSON.oseaX(data.column.formattype)) {
-                    if (data.column.formattype.indexOf("location") !== -1) {
+                    if (data.column.formattype.indexOf("html") !== -1) {
+                        $scope.modal.simpleModal(data.value, {
+                            header: {title: "HTML content of " + data.column.label}
+                        });
+                    } else if (data.column.formattype.indexOf("location") !== -1) {
                         console.log(data.column.formattype);
                         if (!DSON.oseaX(data.value)) {
                             var location = data.value.split(',');

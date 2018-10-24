@@ -1,0 +1,54 @@
+<div class="row" style="overflow: hidden">
+    <div class="col-lg-9 hidden-xs">
+        <img style="width: 109%" src="assets/images/login_cover.png">
+    </div>
+    <div class="col-lg-3 col-xs-12">
+        <form action="index.html" style="">
+            <div class="panel panel-body">
+                <div class="form-group has-feedback has-feedback-left text-center">
+                    <div class="icon-object border-<%= COLOR.primary %>-700 text-slate-300"><i
+                                class="text-<%= TAG.table %> icon-user-lock"></i></div>
+                    <h5 class="content-group">Login to <%= CONFIG.appName %>
+                        <small class="display-block">Enter your credentials below</small>
+                    </h5>
+                </div>
+
+                <div class="form-group has-feedback has-feedback-left">
+                    <input type="text" class="form-control" placeholder="Username">
+                    <div class="form-control-feedback">
+                        <i class="icon-user text-muted"></i>
+                    </div>
+                </div>
+
+                <div class="form-group has-feedback has-feedback-left">
+                    <input type="password" class="form-control" placeholder="Password">
+                    <div class="form-control-feedback">
+                        <i class="icon-lock2 text-muted"></i>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn bg-pink-400 btn-block legitRipple">Sign in <i
+                                class="icon-circle-right2 position-right"></i></button>
+                </div>
+
+
+                <div class="form-group login-options">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <%- include('../templates/form/checkbox',{name:'remember',text: "Remember"}) %>
+                        </div>
+
+                        <div class="col-sm-6 text-right">
+                            <a href="login_password_recover.html">Forgot password?</a>
+                        </div>
+                    </div>
+                </div>
+                <% for(var i = 1;i < 13;i++){ %>
+                    <br>
+                <% } %>
+            </div>
+        </form>
+        <!-- /simple login form -->
+    </div>
+</div>

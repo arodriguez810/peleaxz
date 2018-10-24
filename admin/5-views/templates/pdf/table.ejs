@@ -1,0 +1,64 @@
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Global stylesheets -->
+    <style>
+        <% include ../../../assets/css/icons/icomoon/styles.css %>
+    </style>
+    <style>
+        <% include ../../../assets/css/bootstrap.css %>
+    </style>
+    <style>
+        <% include ../../../assets/css/style.css %>
+    </style>
+    <style>
+        <% include ../../../assets/css/colors.css %>
+    </style>
+    <!-- /global stylesheets -->
+
+
+</head>
+<body>
+<% DATA.content = eval("(" + DATA.content + ")"); %>
+<% DATA.firstrow = eval("(" + DATA.firstrow + ")"); %>
+<% DATA.columns = eval("(" + DATA.columns + ")"); %>
+<div id="baseController">
+    <div class="page-container">
+        <div class="page-content">
+            <table class="table table-bordered">
+                <thead class="bg-<%= TAG.table %>">
+                <tr>
+                    <% for(var i in DATA.columns) { %>
+                        <th><%= DATA.columns[i] %></th>
+                    <% } %>
+                </tr>
+                </thead>
+                <tbody>
+                <% DATA.content.forEach(function (row) { %>
+                    <tr>
+                        <% for(var i in row) { %>
+                            <td><%= row[i] %></td>
+                        <% } %>
+                    </tr>
+                <% }); %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script id="extrapdf">
+        runnings =
+            {
+                header: {
+                    height: '1cm',
+                    contents: function (pageNumber, totalPages) {
+                        return '<%- include('header',{DATA:DATA}); %>'.replace(/pageNumber/g, pageNumber).replace(/totalPages/g, totalPages);
+                    }
+                },
+                footer: {
+                    height: '1cm',
+                    contents: function (pageNumber, totalPages) {
+                        return '<%- include('footer',{DATA:DATA}); %>'.replace(/pageNumber/g, pageNumber).replace(/totalPages/g, totalPages);
+                    }
+                }
+            }
+    </script>
+</div>

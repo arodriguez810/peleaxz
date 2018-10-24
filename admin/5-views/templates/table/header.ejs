@@ -23,7 +23,8 @@
                 </a>
                 <a
                         ng-show="!<%= modelName %>.menu.already(baseController,'#<%= modelName %>')"
-                        ng-click="<%= modelName %>.favorite(baseController);" class="text-danger-700 legitRipple"
+                        ng-click="<%= modelName %>.favorite(baseController);"
+                        class="text-<%= COLOR.primary %>-700 legitRipple"
                         title="Add To Favorite">
                     <i title="Add To Favorite"
                        class="icon-heart5"></i> 
@@ -73,13 +74,29 @@
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">
-                    <li><a href="#"><i class="icon-copy3"></i>Clipboard</a></li>
-                    <li><a href="#"><i class="icon-file-pdf"></i>PDF</a></li>
-                    <li><a href="#"><i class="icon-file-excel"></i>CSV</a></li>
-                    <li><a href="#"><i class="icon-file-excel"></i>XLSX</a></li>
-                    <li><a href="#"><i class="icon-file-word"></i>DOC</a></li>
+                    <li>
+                        <a ng-click="<%= modelName %>.export.go('Clipboard')"><i class="icon-copy3"></i>Clipboard</a>
+                    </li>
+                    <li><a ng-click="<%= modelName %>.export.go('PDF')"> <i class="icon-file-pdf"></i>PDF</a></li>
+                    <li><a ng-click="<%= modelName %>.export.go('CSV')"> <i class="icon-libreoffice"></i>CSV</a></li>
+                    <li><a ng-click="<%= modelName %>.export.go('XLS')"><i class="icon-file-excel"></i>XLS</a></li>
+                    <li><a ng-click="<%= modelName %>.export.go('DOC')"> <i class="icon-file-word"></i>DOC</a></li>
+
                 </ul>
             </li>
+
+            <li class="dropdown" ng-show="<%= modelName %>.allow('export')">
+                <a title="Import" href="#" class="dropdown-toggle legitRipple" data-toggle="dropdown"
+                   aria-expanded="false">
+                    <i title="Import" class="icon-database-upload"></i>
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a ng-click=""><i class="icon-file-download"></i>Donwload CSV Example</a></li>
+                    <li><a ng-click=""> <i class="icon-import"></i>Import</a></li>
+                </ul>
+            </li>
+
             <li class="dropdown" ng-show="<%= modelName %>.characterist('batch')">
                 <a title="Batch Actions" href="#" class="dropdown-toggle legitRipple" data-toggle="dropdown"
                    aria-expanded="false">

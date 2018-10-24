@@ -6,6 +6,11 @@ HTTP = {
                 str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
             }
         return str.join("&");
+    },
+    path: function (pathsarray) {
+        var formurl = [];
+        formurl.push(`http${CONFIG.ssl ? "s" : ""}://${CONFIG.subdomain !== "" ? (CONFIG.subdomain + ".") : ""}${CONFIG.domain}:${CONFIG.port === 80 ? "" : CONFIG.port}`);
+        return formurl.concat(pathsarray).join("/");
     }
 };
 $(document).ready(function () {

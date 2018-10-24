@@ -1,0 +1,19 @@
+<%
+var name = name || "";
+var text = text || "";
+var checked = checked || false;
+%>
+<div class="checkbox checkbox-switchery">
+    <label>
+        <input type="checkbox" name="<%= name %>" class="switchery" <%= checked ? "checked" : "" %>/>
+        <%= text %>
+    </label>
+</div>
+<script>
+    var elems = Array.prototype.slice.call(document.getElementsByName("<%= name %>"));
+    console.log(elems);
+    elems.forEach(function (html) {
+        console.log(html);
+        var formform<%= name %> = new Switchery(html, {});
+    });
+</script>

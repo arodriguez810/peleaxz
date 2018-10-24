@@ -1,11 +1,11 @@
 {
   "ui": {
     "colors": {
-      "primary": "orange",
+      "primary": "blue",
       "danger": "danger",
       "success": "success",
       "warning": "warning",
-      "info": "orange",
+      "info": "blue",
       "default": "default",
       "sidebar": "", //"default",
       "tag": {

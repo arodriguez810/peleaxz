@@ -244,6 +244,8 @@ exports.defaultRequests = function (Model, params) {
         });
     });
 
+
+
     params.app.post(params.util.format('/api/%s/list', Model.tableName), function (req, res) {
         if (req.body.limit === undefined)
             req.body.limit = 10;
@@ -258,32 +260,6 @@ exports.defaultRequests = function (Model, params) {
         });
     });
 
-    params.app.post('/api/ms_csv', function (req, res) {
-        if (req.body.limit === undefined)
-            req.body.limit = 10;
-        if (req.body.page === undefined)
-            req.body.page = 1;
-        if (req.body.orderby === undefined)
-            req.body.orderby = "id";
-
-        Model.all(req.body, function (data) {
-            if (data.error !== false) res.send(data.error);
-            res.setHeader('Content-type', 'text/csv');
-
-            var exports = [];
-            if (data.data.length > 0) {
-                for (var i in data.data[0])
-                    exports.push(i);
-            }
-            res.csv(data.data, {fields: exports});
-            // res.download(csvExporter);
-            // res.setHeader('Content-disposition', 'attachment; filename=' + Model.tableName + ".csv");
-            // res.setHeader('Content-type', 'text/csv');
-            // res.charset = 'UTF-8';
-            // res.write(csvExporter.generateCsv(data.data));
-            // res.end();
-        });
-    });
 
     params.app.get(params.util.format('/api/%s/all', Model.tableName), function (req, res) {
         Model.all(req.query, function (data) {

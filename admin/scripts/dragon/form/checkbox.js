@@ -9,5 +9,12 @@ CHECKBOX = {
         $("input[type='checkbox']").change(function () {
 
         });
+    },
+    run_switchery: function () {
+        var elems = Array.prototype.slice.call(document.querySelectorAll('.switchery'));
+        elems.forEach(function (html) {
+            console.log(html);
+            var switchery = new Switchery(html, {});
+        });
     }
 };

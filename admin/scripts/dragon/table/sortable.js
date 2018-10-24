@@ -42,19 +42,12 @@ SORTABLE = {
         };
 
         $scope.resetSort = function () {
-            var first = true;
-            var firstColumn = "";
+            var firstColumn = $scope.table.crud.table.key || "id";
             for (var i in $scope.table.crud.table.columns) {
-                if (first) {
-                    firstColumn = i;
-                    $scope.table.crud.table.columns[i].sorted = true;
-                    $scope.table.crud.table.columns[i].order = "desc";
-                    first = false;
-                } else {
-                    $scope.table.crud.table.columns[i].sorted = false;
-                    $scope.table.crud.table.columns[i].order = "asc";
-                }
+                $scope.table.crud.table.columns[i].sorted = false;
+                $scope.table.crud.table.columns[i].order = "asc";
             }
+            $scope.table.crud.table.columns[firstColumn].order = "desc";
             $scope.sort($scope.table.crud.table.columns[firstColumn], firstColumn);
         };
 

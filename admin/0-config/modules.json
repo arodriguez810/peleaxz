@@ -67,6 +67,26 @@
     {
       "var": "sleep",
       "module": "system-sleep"
+    },
+    {
+      "var": "PDF",
+      "module": "phantom-html2pdf"
+    },
+    {
+      "var": "HtmlDocx",
+      "module": "html-docx-js"
+    },
+    {
+      "var": "docxConverter",
+      "module": "docx-pdf"
+    },
+    {
+      "var": "HTMLPDF",
+      "module": "html-pdf"
+    },
+    {
+      "var": "chokidar",
+      "module": "chokidar"
     }
   ]
 }

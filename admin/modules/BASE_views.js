@@ -127,12 +127,123 @@ exports.loadEJSSimple = function (folder, prefix, params) {
                     FOLDERS: params.folders,
                     DATA: req.query
                 };
-                console.log('send.DATA :', send.DATA);
+                if (send.DATA.pdf) {
+                    var pdfOptions = {
+                        html: '<!DOCTYPE html><html lang="en"><body><h1>Hello</h1><p>World</p></body></html>',
+                        paperSize: {
+                            format: 'A4',
+                            orientation: 'landscape', // portrait
+                            border: '1cm'
+                        }
+                    };
+                    params.PDF.convert(pdfOptions, function (err, result) {
+                        result.toFile("./preview.pdf", function () {
+                            res.download("./file.pdf", send.DATA.pdf);
+                        });
+                    });
+                } else {
+                    res.render("." + folder + "/" + viewN[viewN.length - 1], send);
+                }
+            });
 
-                res.render("." + folder + "/" + viewN[viewN.length - 1], send);
+
+            params.app.post(params.util.format("/post/%s/%s/", prefix, viewName), function (req, res) {
+                var path = req.originalUrl;
+
+                var realPath = path.split("?");
+                var viewN = realPath[0].split("/");
+
+                var models = params.models
+                    .concat(params.modelsql)
+                    .concat(params.modelmysql);
+                var tags = params.CONFIG.ui.colors.tag;
+                var newtags = {};
+                for (var tag in tags) {
+                    var itag = tags[tag];
+                    var largeVar = "params.CONFIG.ui.colors." + tags[tag];
+                    eval(
+                        "newtags." + tag + " = " + largeVar + '===undefined ? "' + itag + '" : ' + largeVar + ";"
+                    );
+                }
+
+                var send = {
+                    modelName: params.modelName,
+                    session: params.session,
+                    localjs: params.localjs,
+                    localStyles: params.localStyles,
+                    crudjs: params.crudjs,
+                    CONFIG: params.CONFIG,
+                    COLOR: params.CONFIG.ui.colors,
+                    TAG: newtags,
+                    models: models,
+                    FOLDERS: params.folders,
+                    DATA: req.body
+                };
+
+                if (send.DATA.pdf) {
+                    // params.app.render("." + folder + "/" + viewN[viewN.length - 1], send, function (err, html) {
+                    //     params.HTMLPDF.create(html).toFile("./preview.pdf", function (err, res) {
+                    //         res.download("./preview.pdf", send.DATA.pdf);
+                    //     });
+                    // });
+                    params.app.render("." + folder + "/" + viewN[viewN.length - 1], send, function (err, html) {
+                        if (err) {
+                            res.json(err);
+                            return;
+                        }
+                        var runnings = html.split('<script id="extrapdf">');
+
+                        if (runnings.length > 1) {
+                            runnings = runnings[1];
+                            runnings = runnings.split('</script>')[0];
+                            runnings = runnings.replace('runnings =', '');
+                            runnings = (params.S(runnings).replaceAll('\r\n', '').s);
+                            runnings = "module.exports =" + runnings + ";";
+                        } else
+                            runnings = "";
+                        var pdfOptions = {
+                            html: html,
+                            paperSize: {
+                                format: 'A4',
+                                orientation: 'landscape', // portrait
+                                border: '1cm'
+                            },
+                            runnings: runnings
+                        };
+
+                        params.PDF.convert(pdfOptions, function (err, result) {
+                            result.toFile("./preview.pdf", function () {
+                                res.download("./preview.pdf", send.DATA.pdf);
+                            });
+                        });
+                    });
+                } else if (send.DATA.docx) {
+                    params.app.render("." + folder + "/" + viewN[viewN.length - 1], send, function (err, html) {
+                        if (err) {
+                            res.json(err);
+                            return;
+                        }
+                        var docx = params.HtmlDocx.asBlob(html, {
+                            orientation: 'landscape',
+                            margins: {top: 200, right: 200, left: 200, header: 200, footer: 200, bottom: 200}
+                        });
+                        params.fs.writeFile("./preview.docx", docx, function (err) {
+                            if (err) {
+                                res.json(err);
+                                return;
+                            }
+
+                            res.download("./preview.docx", send.DATA.docx);
+                        });
+                    });
+                } else {
+                    res.render("." + folder + "/" + viewN[viewN.length - 1], send);
+                }
             });
         }
     });
+
+
 };
 
 exports.init = function (params) {

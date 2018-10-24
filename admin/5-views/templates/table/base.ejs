@@ -1,10 +1,7 @@
-<script>
-
-</script>
-<div class="" id="<%= modelName %>TablePanel" style="{{<%= modelName %>.scrollable()}}">
+<div class="" id="<%= modelName %>TablePanel" style="overflow-x: scroll;overflow-y: visible;">
     <!--Table List -->
     <div
-            ng-show="<%= modelName %>.records.data.length<=0"
+            ng-if="<%= modelName %>.records.data.length<=0"
             class="alert alpha-<%= TAG.table %> border-<%= TAG.table %> alert-styled-left">
         There is no data to show in this table.
     </div>
@@ -13,7 +10,7 @@
            class="table table-togglable table-framed sindu-table dragon-table <%= modelName %>-drag"
            data-animation="bounceInUp"
            id="<%= modelName %>Table"
-           style="{{<%= modelName %>.width()}}"
+           style="{{<%= modelName %>.funcWidth}}"
            data-scope="<%= modelName %>">
         <thead class="bg-<%= TAG.table %>" id="<%= modelName %>head">
         <!--Columns-->
@@ -21,7 +18,6 @@
             <th ng-repeat="(key, value) in <%= modelName %>.columns()"
                 ng-show="<%= modelName %>.columnVisible(value)"
                 data-column="{{key}}"
-
                 ng-dblclick="<%= modelName %>.cell.dblColumnSelect($event)"
                 class="handle"
             >

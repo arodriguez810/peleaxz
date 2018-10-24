@@ -3,19 +3,24 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Master</title>
+    <title><%= CONFIG.appName %></title>
 
     <!-- Global stylesheets -->
+    <link rel="shortcut icon" type="image/svg" href="/assets/images/logo.svg"/>
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet"
           type="text/css">
     <link href="assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
     <link href="assets/css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="assets/css/core.css" rel="stylesheet" type="text/css">
     <link href="assets/css/components.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/colors.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/style.css" rel="stylesheet" type="text/css">
     <link href="assets/css/extras/animate.min.css" rel="stylesheet" type="text/css">
     <link href="assets/css/sweetalert2.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/colors.css" rel="stylesheet" type="text/css">
+
+    <% localStyles.forEach(function(item){ %>
+        <link href="<%= FOLDERS.styles %>/<%= item %>" rel="stylesheet" type="text/css">
+    <% }); %>
+
     <!-- /global stylesheets -->
 
     <!-- Core JS files -->
@@ -50,6 +55,8 @@
     <script type="text/javascript" src="assets/js/core/libraries/angular.min.js"></script>
     <script type="text/javascript" src="assets/js/core/libraries/angular-sanitize.js"></script>
     <script type="text/javascript" src="node_modules/table-dragger/dist/table-dragger.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/excel/excelexportjs.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/docx/html-docx.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=<%= CONFIG.googlemap %>"></script>
 
     <script src="<%= FOLDERS.controllers %>/CO_BASE.js"></script>
@@ -90,8 +97,8 @@
     <div id="modalpool">
 
     </div>
-    <button class=" upButtom btn bg-<%= COLOR.primary %>" title="Go to top"><i style="font-size: 30px;"
-                                                                               class="icon-square-up"></i></button>
+    <button class=" upButtom btn bg-<%= COLOR.primary %>" title="Go to top">
+        <i style="font-size: 30px;" class="icon-square-up"></i></button>
     <% include navbar %>
     <!-- Page container -->
     <div class="page-container">
@@ -101,10 +108,11 @@
             <!-- Main content -->
             <div class="content-wrapper">
                 <!-- Content area -->
-                <div class="content" id="content">
+                <div class="content" id="content" style="overflow: hidden">
                     <!-- Error title -->
-                    <div class="text-center content-group">
-                        <h1 class="error-title text-<%= COLOR.primary %>" style="font-size: 140px">
+                    <div class="text-center content-group"
+                         style="background-image: url('assets/images/logo.svg');background-repeat: no-repeat;background-position: center;">
+                        <h1 class="error-title" style="font-size: 140px">
                             Welcome to <%= CONFIG.appName %>
                         </h1>
                     </div>

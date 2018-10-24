@@ -5,10 +5,7 @@ TABLE = {
         $scope.table.loading = false;
         $scope.table.is = {};
         $scope.table.is.loading = true;
-
-        $scope.scrollable = function () {
-            return $scope.width() !== "" ? "overflow-x: scroll;overflow-y: visible;" : "";
-        };
+        $scope.funcWidth = "";
         $scope.width = function () {
             var count = $scope.columnsCount();
             var width = "";
@@ -17,9 +14,9 @@ TABLE = {
                 width = (margen * $scope.table.crud.table.width) + $scope.table.crud.table.baseWidth;
             }
             if (width !== "")
-                return $scope.table.crud.table.width !== undefined ? "width:" + width + "px;" : "";
+                $scope.funcWidth = $scope.table.crud.table.width !== undefined ? "width:" + width + "px;" : "";
             else
-                return "";
+                $scope.funcWidth = "";
         };
         $scope.columnVisible = function (value) {
             return value.visible !== false;
@@ -27,6 +24,7 @@ TABLE = {
 
         $scope.hideColumn = function (key) {
             $scope.pushModel("hideColumns", key);
+            $scope.width();
         };
 
         $scope.columnsCount = function () {
@@ -112,7 +110,7 @@ TABLE = {
                 ".loadingButton"
             );
             $scope.table.is.loading = false;
-            CHECKBOX.run();
+            $scope.width();
         };
 
         $scope.refresh = function () {

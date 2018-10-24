@@ -7,7 +7,7 @@ CRUDDEFAULTS = {
         offWidth: 5,
         baseWidth: 1000,
         columnsalign: "center",
-        limits: [5, 10, 50, 100],
+        limits: [10, 50, 100, 0],
         activeColumn: "active",
         contextMenu: true,
         sorteable: true,
@@ -115,7 +115,7 @@ CRUDDEFAULTS = {
                 menus: [
                     {
                         text: (data) => {
-                            return "Export to Clipboard";
+                            return "Clipboard";
                         },
                         icon: (data) => {
                             return "copy3";
@@ -127,13 +127,15 @@ CRUDDEFAULTS = {
                             return "";
                         },
                         click: function (data) {
-                            alert(data.row.name);
+                            data.$scope.unCheckAll();
+                            data.row.selected = true;
+                            data.$scope.export.go('Clipboard', true);
                             return false;
                         }
                     },
                     {
                         text: (data) => {
-                            return "Export to PDF";
+                            return "PDF";
                         },
                         icon: (data) => {
                             return "file-pdf";
@@ -145,13 +147,35 @@ CRUDDEFAULTS = {
                             return "";
                         },
                         click: function (data) {
-                            alert(data.row.name);
+                            data.$scope.unCheckAll();
+                            data.row.selected = true;
+                            data.$scope.export.go('PDF', true);
                             return false;
                         }
                     },
                     {
                         text: (data) => {
-                            return "Export to CSV";
+                            return "CSV";
+                        },
+                        icon: (data) => {
+                            return "libreoffice";
+                        },
+                        permission: (data) => {
+                            return '';
+                        },
+                        characterist: (data) => {
+                            return "";
+                        },
+                        click: function (data) {
+                            data.$scope.unCheckAll();
+                            data.row.selected = true;
+                            data.$scope.export.go('CSV', true);
+                            return false;
+                        }
+                    },
+                    {
+                        text: (data) => {
+                            return "XLS";
                         },
                         icon: (data) => {
                             return "file-excel";
@@ -163,31 +187,15 @@ CRUDDEFAULTS = {
                             return "";
                         },
                         click: function (data) {
-                            alert(data.row.name);
+                            data.$scope.unCheckAll();
+                            data.row.selected = true;
+                            data.$scope.export.go('XLS', true);
                             return false;
                         }
                     },
                     {
                         text: (data) => {
-                            return "Export to XLSX";
-                        },
-                        icon: (data) => {
-                            return "file-excel";
-                        },
-                        permission: (data) => {
-                            return '';
-                        },
-                        characterist: (data) => {
-                            return "";
-                        },
-                        click: function (data) {
-                            alert(data.row.name);
-                            return false;
-                        }
-                    },
-                    {
-                        text: (data) => {
-                            return "Export to DOC";
+                            return "DOCX";
                         },
                         icon: (data) => {
                             return "file-word";
@@ -199,7 +207,9 @@ CRUDDEFAULTS = {
                             return "";
                         },
                         click: function (data) {
-                            alert(data.row.name);
+                            data.$scope.unCheckAll();
+                            data.row.selected = true;
+                            data.$scope.export.go('DOC', true);
                             return false;
                         }
                     }

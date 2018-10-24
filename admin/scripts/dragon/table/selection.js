@@ -40,9 +40,15 @@ TABLESELECTION = {
         $scope.checkAll = function () {
             $("tr").removeClass("alpha-" + COLOR.info);
             if ($scope.stopInteraction()) return false;
-            $scope.checkall = !$scope.checkall;
+            $scope.checkall =  !$scope.checkall;
             for (const row of $scope.records.data) {
                 $scope.check(row, $scope.checkall);
+            }
+        };
+        $scope.unCheckAll = function () {
+            $("tr").removeClass("alpha-" + COLOR.info);
+            for (const row of $scope.records.data) {
+                $scope.check(row, false);
             }
         };
         $scope.trCheck = function (row) {

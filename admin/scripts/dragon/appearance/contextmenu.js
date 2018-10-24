@@ -4,7 +4,7 @@ $(document).ready(function () {
 
     $(document).on('mouseover', '.dragon-rows', function () {
         var lastRow = $(this).data('object');
-        if (ANGULARJS.tableScope !== null) {
+        if (!DSON.oseaX(ANGULARJS.tableScope)) {
             eval(String.format("{0}.lastRow = {1}", ANGULARJS.tableScope, JSON.stringify(lastRow)));
         }
     });

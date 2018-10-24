@@ -30,7 +30,8 @@ MENU = {
     setActive: function (link) {
         $(".dragon-menu li").removeClass('active');
         var a = $('.dragon-menu a[href="#' + link + '"]:eq(0)');
-        if(a.length>0) {
+        document.title = `${CONFIG.appName} - ${a.find('span:eq(0)').html()}`;
+        if (a.length > 0) {
             MENU.setLast(a);
             MENU.expand(a);
         }

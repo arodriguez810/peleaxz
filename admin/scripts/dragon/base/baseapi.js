@@ -1,5 +1,24 @@
 BASEAPI = {
     ajax: {
+        formpost: function (method, parameters, callBack) {
+            SWEETALERT.loading({message: "Loading..."});
+            var newForm = $('<form>', {
+                'action': method,
+                'method': 'post'
+            });
+
+            for (var i in parameters) {
+                newForm.append($('<input>', {
+                    'name': i,
+                    'value': parameters[i],
+                    'type': 'hidden'
+                }));
+            }
+            newForm.appendTo(document.body).submit();
+            newForm.remove();
+            SWEETALERT.stop();
+            callBack();
+        },
         post: function (method, parameters, callBack) {
             SWEETALERT.loading({message: "Loading..."});
             $http = angular.injector(["ng"]).get("$http");
@@ -8,7 +27,7 @@ BASEAPI = {
                 callBack(data);
             }, function (data) {
                 SWEETALERT.stop();
-                console.log('Error: ' + data);
+                console.log(data);
             });
         },
         get: function (method, parameters, callBack) {
@@ -23,9 +42,13 @@ BASEAPI = {
             });
         },
     },
-    msCsv:function(method,tableName, paramenters){
+    csv: function (engine, tableName, paramenters) {
         var rootPath = '/api/' + model;
-        BASEAPI.ajax.post()
+        BASEAPI.ajax.post(`${engine}_csv`, {
+            "tableName": tableName
+        }, function (data) {
+            console.log(data);
+        });
     },
     list: function (model, parameters, callBack) {
         $http = angular.injector(["ng"]).get("$http");

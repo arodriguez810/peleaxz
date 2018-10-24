@@ -1,0 +1,15 @@
+
+.navbar-brand > img {
+    margin: -9px 0px 0px 0px;
+    height: 37px;
+    float:left !important;
+}
+
+.navbar-brand > img {
+    display: inline;
+}
+
+a.navbar-brand {
+    width: 100%;
+    text-align: center;
+}

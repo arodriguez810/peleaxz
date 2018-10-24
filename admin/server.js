@@ -1,5 +1,8 @@
 var lines = process.stdout.getWindowSize()[1];
 for (var i = 0; i < lines; i++) console.log("\r\n");
+
+
+
 var folders = {
     models: "1-models",
     service: "2-service",
@@ -10,7 +13,8 @@ var folders = {
     systems: "6-systems",
     scripts: "scripts",
     modules: "modules",
-    config: "0-config"
+    config: "0-config",
+    styles: "styles",
 };
 var modules = {}, localjs = [], localModules = [], localModulesVars = [], modulesList = [], developer = {};
 var fs = require("fs");
@@ -45,6 +49,18 @@ for (var i in CONFIG.modules) {
     eval("var " + module.var + " = require('" + module.module + "');");
 }
 
+var watcher = chokidar.watch('./');
+
+watcher.on('ready', function() {
+    watcher.on('all', function() {
+        for (var i = 0; i < lines; i++) console.log("\r\n");
+        console.log("Clearing /dist/ module cache from server")
+        Object.keys(require.cache).forEach(function(id) {
+            delete require.cache[id];
+        })
+    })
+});
+
 var jsoncsv = require('express-json-csv')(express);
 localModulesVars.push("jsoncsv");
 
@@ -65,7 +81,7 @@ fs.readdir("./" + folders.modules + "/", function (err, files) {
     }
 });
 
-
+localStyles = getFiles("./" + folders.styles + "/");
 localjs = getFiles("./" + folders.scripts + "/");
 crudjs = getFiles("./" + folders.crud + "/");
 //******* Load Custom Modules********//
@@ -110,6 +126,7 @@ allparams += "      modelName: '@model@',";
 allparams += "      modules:modules,";
 allparams += "      fs:fs,";
 allparams += "      localjs:localjs,";
+allparams += "      localStyles:localStyles,";
 allparams += "      crudjs:crudjs,";
 allparams += "      models:models,";
 allparams += "      mssql:mssql,";
@@ -117,6 +134,7 @@ allparams += "      mysql:mysql,";
 allparams += "      CONFIG:CONFIG,";
 allparams += "      catalogs:catalogs,";
 allparams += "      folders:folders,";
+allparams += "      app:app,";
 if (CONFIG.mongo) allparams += "  mongoose:mongoose,";
 if (CONFIG.mssql) allparams += "  modelsql:modelsql,";
 if (CONFIG.mysql) allparams += "  modelmysql:modelmysql,";

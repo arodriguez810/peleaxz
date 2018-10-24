@@ -1,6 +1,10 @@
 {
   "appName": "Dragon Framework",
-  "googlemap": "AIzaSyA1bqu9XeTPlHdyKuneWCZ5PEYyCHpuiXk",
+  "logo": "Dragon Framework",
+  "googlemap": "AIzaSyB-T9ki1Z2Sw--ri0IB1solkM1cF_RENWE",
   "filePath": "files",
+  "domain": "localhost",
+  "subdomain": "",
+  "ssl": false,
   "port": "8090"
 }

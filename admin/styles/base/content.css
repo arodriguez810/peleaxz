@@ -1,0 +1,21 @@
+.content:first-child {
+    padding-top: 0;
+}
+
+.content {
+    padding: 0 0 0 0;
+}
+
+
+.subcontent {
+    padding: 0 20px 0 20px;
+    min-height: 480px;
+}
+
+.disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+
+body { padding-right: 0 !important }

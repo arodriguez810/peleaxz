@@ -22,6 +22,7 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
             baseController.favorites = newarray;
         }
     };
+    baseController.SESSION = SESSION;
 });
 
 RUNCONTROLLER = function (conrollerName, inside, $scope, $http, $compile) {
@@ -48,5 +49,6 @@ RUNCONTROLLER = function (conrollerName, inside, $scope, $http, $compile) {
     LOAD.run(inside, $http);
     PERMISSIONS.run(inside);
     MENU.run(inside);
+    EXPORT.run(inside);
     inside.refresh();
 };

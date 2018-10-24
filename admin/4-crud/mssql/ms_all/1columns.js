@@ -90,7 +90,8 @@ DSON.keepmerge(CRUD_ms_all,
                 biography: {
                     label: "biography",
                     sortable: false,
-                    shorttext: 1
+                    formattype: "html",
+                    export: false
                 },
                 average: {
                     label: function () {
@@ -142,7 +143,8 @@ DSON.keepmerge(CRUD_ms_all,
                     formattype: "datetime:12"
                 },
                 updated: {
-                    visible: false
+                    visible: false,
+                    export: false
                 },
                 deleted: {
                     visible: false,

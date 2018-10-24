@@ -18,9 +18,11 @@ MODAL = {
             data.backMode = data.backMode === undefined ? true : data.backMode;
             data.header.closeButton = data.closeButton === undefined ? true : data.closeButton;
             data.content.sameController = data.content.sameController === undefined ? false : data.content.sameController;
+            var indexb = 0;
             for (var i in data.footer.buttons) {
                 var item = data.footer.buttons[i];
-                buttonsHtml += String.format('<button type="button" class="btn bg-{0}" ng-click=\'{2}\'>{1}</button>', item.color, item.title, item.func);
+                buttonsHtml += String.format('<button id="modalButton{2}{3}" type="button" class="btn bg-{0}">{1}</button>', item.color, item.title, indexb, data.id);
+                indexb++;
             }
 
             if ($("#modal" + data.id).length > 0) $("#modal" + data.id).remove();
@@ -48,7 +50,7 @@ MODAL = {
                 "    <" + h + ' class="modal-title">' + icon + " " + title + "</" + h + ">" +
                 "   </div>" +
                 '   <div class="modal-body" id=\'modalcontent' + data.id + "'>" + "" + content + "   </div>" +
-                '   <div class="modal-footer">' + cancelButton + buttonsHtml + "   </div>" +
+                '   <div class="modal-footer">' + buttonsHtml + cancelButton + "   </div>" +
                 "  </div>" +
                 " </div>" +
                 "</div>";
@@ -99,6 +101,8 @@ MODAL = {
             });
             data.viewData = $scope.viewData;
             MODAL.historyObject.push(data);
+
+
             return data.id;
         };
         $scope.modal.refreshViewData = function () {
@@ -109,8 +113,24 @@ MODAL = {
                 var last = ARRAY.last(MODAL.history);
                 $(last).modal("hide");
             }
-            $scope.modal.viewData = ARRAY.last(MODAL.historyObject).viewData;
+            var data = ARRAY.last(MODAL.historyObject);
+            $scope.modal.viewData = data.viewData;
             $("#modal" + id).modal("show");
+
+
+            var indexb = 0;
+            for (var i in data.footer.buttons) {
+                var item = data.footer.buttons[i];
+                $(`#modalButton${indexb}${data.id}`).click(function () {
+                    if (DSON.iffunction(item.action)) {
+                        item.action();
+                    } else {
+                        alert('This modal customButton don\'t have an action!');
+                    }
+                });
+                indexb++;
+            }
+
             MODAL.history.push("#modal" + id);
         };
         $scope.modal.reopen = function (id) {
@@ -153,7 +173,7 @@ MODAL = {
                     //     {
                     //         color: "success",
                     //         title: "Save",
-                    //         func: "ms_all.openFilters2();"
+                    //         action: function(){}
                     //     }
                     // ]
                 },
@@ -205,6 +225,7 @@ MODAL = {
                 content: {
                     data: html,
                     loadingContentText: "Loading..."
+
                 },
                 event: {
                     show: {

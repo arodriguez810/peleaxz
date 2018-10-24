@@ -19,48 +19,38 @@ KEY = {
             KEY.repeat.count = 1;
         },
         run: function (key) {
-            switch (KEY.repeat.key) {
-                case "1": {
-                    if (ANGULARJS.tableScope !== null) {
+            if (!DSON.oseaX(ANGULARJS.tableScope)) {
+                switch (KEY.repeat.key) {
+                    case "1": {
                         eval(ANGULARJS.tableScope + ".firstPage()");
                         eval(ANGULARJS.tableScope + ".resetSort()");
+                        break;
                     }
-                    break;
-                }
-                case "R":
-                case "r": {
-                    if (ANGULARJS.tableScope !== null) {
+                    case "R":
+                    case "r": {
                         eval(ANGULARJS.tableScope + ".refresh()");
+                        break;
                     }
-                    break;
-                }
-                case "P":
-                case "p": {
-                    if (ANGULARJS.tableScope !== null) {
+                    case "P":
+                    case "p": {
                         eval(ANGULARJS.tableScope + ".goPageModal()");
+                        break;
                     }
-                    break;
-                }
-                case "t":
-                case "T": {
-                    if (ANGULARJS.tableScope !== null) {
+                    case "t":
+                    case "T": {
                         eval(ANGULARJS.tableScope + ".restoreStorage()");
+                        break;
                     }
-                    break;
-                }
-                case "f":
-                case "F": {
-                    if (ANGULARJS.tableScope !== null) {
+                    case "f":
+                    case "F": {
                         eval(ANGULARJS.tableScope + ".openFilters()");
+                        break;
                     }
-                    break;
-                }
-                case "a":
-                case "A": {
-                    if (ANGULARJS.tableScope !== null) {
+                    case"a":
+                    case"A": {
                         eval(ANGULARJS.tableScope + ".add()");
+                        break;
                     }
-                    break;
                 }
             }
             KEY.repeat.clear();
@@ -78,14 +68,15 @@ KEY = {
             KEY.repeat.current = key;
         }
     },
-};
+}
+;
 
 $(document).ready(function () {
 
 
     $(document).on('keyup', 'body', function (e) {
         KEY.repeat.make(e.key);
-        if (ANGULARJS.tableScope !== null)
+        if (!DSON.oseaX(ANGULARJS.tableScope))
             eval(String.format("{0}.pageKey('{1}')", ANGULARJS.tableScope, e.key));
     });
 
