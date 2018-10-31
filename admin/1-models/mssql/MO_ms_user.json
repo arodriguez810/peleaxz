@@ -1,8 +1,9 @@
 {
   "id": "[int] IDENTITY(1,1) NOT NULL",
-  "username": "NVARCHAR(50) NOT NULL",
+  "username": "NVARCHAR(15) NOT NULL",
   "name": "NVARCHAR(50) NOT NULL",
   "lastname": "NVARCHAR(50) NOT NULL",
+  "email": "NVARCHAR(50) NULL",
   "password": "NVARCHAR(200) NULL",
   "active": "BIT NOT NULL",
   "created": "DATETIME NOT NULL DEFAULT GETDATE()",

@@ -11,10 +11,13 @@ LOAD = {
 
             $http.get(view, {}).then(
                 function (data) {
-                    var key = view.split("/")[0];
+                    var paths = view.split("/");
+                    paths[paths.length - 1] = `CO_${ARRAY.last(paths)}.js`;
+                    var key = paths.join('/');
+                    var url = `${FOLDERS.controllers}/${key}`;
                     var html = data.data;
                     JQUERY.loadScript(
-                        String.format(FOLDERS.controllers + "/CO_{0}.js", key),
+                        url,
                         key,
                         function (data) {
                             var htmlfinal = html;
@@ -50,7 +53,8 @@ LOAD = {
     loadContent: function ($scope, $http, $compile) {
         ANIMATION.loading();
         var view = window.location.href.split("#");
-        if (view.length > 1) view = view[1];
+        if (view.length > 1)
+            view = view[1];
         else {
             ANIMATION.stoploading();
             return;
@@ -65,10 +69,13 @@ LOAD = {
     loadContentView: function (view, $scope, $http, $compile) {
         $http.get(view, {}).then(
             function (data) {
-                var key = view.split("/")[0];
+                var paths = view.split("/");
+                paths[paths.length - 1] = `CO_${ARRAY.last(paths)}.js`;
+                var key = paths.join('/');
                 var html = data.data;
+                var url = `${FOLDERS.controllers}/${key}`;
                 JQUERY.loadScript(
-                    String.format(FOLDERS.controllers + "/CO_{0}.js", key),
+                    url,
                     key,
                     function (data) {
                         $("#content").html($compile(html)($scope));

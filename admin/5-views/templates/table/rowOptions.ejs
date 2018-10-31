@@ -1,24 +1,24 @@
 <td class="text-center dragon-actions"
-    ng-show="(<%= modelName %>.allow('actions') && <%= modelName %>.allow(['edit','remove','active']))">
+    ng-show="(<%= scope %>.allow('actions') && <%= scope %>.allow(['edit','remove','active']))">
     <ul class="icons-list" style="z-index: 99999">
-        <li ng-repeat="(min, option) in <%= modelName %>.getOptions(false)"
-            ng-show="<%= modelName %>.allow(<%= modelName %>.option.permission(option,row)) && <%= modelName %>.option.show(option,row)">
+        <li ng-repeat="(min, option) in <%= scope %>.getOptions(false)"
+            ng-show="<%= scope %>.allow(<%= scope %>.option.permission(option,row)) && <%= scope %>.option.show(option,row)">
             <a
-                    data-action="{{<%= modelName %>.option.action(option,row)}}"
-                    title="{{<%= modelName %>.option.title(option,row)}}"
-                    ng-click="<%= modelName %>.option.click(option,row,false)" class="dropdown-toggle"
+                    data-action="{{<%= scope %>.option.action(option,row)}}"
+                    title="{{<%= scope %>.option.title(option,row)}}"
+                    ng-click="<%= scope %>.option.click(option,row,false)" class="dropdown-toggle"
                     data-toggle="dropdown">
-                <i class=" icon-{{<%= modelName %>.option.icon(option,row)}}"></i>
+                <i class=" icon-{{<%= scope %>.option.icon(option,row)}}"></i>
             </a>
             <ul class="dropdown-menu dropdown-menu-right dragon-menu" ng-show="option.menus">
                 <li ng-repeat="(item, menu) in option.menus"
-                    ng-show="<%= modelName %>.allow(<%= modelName %>.option.permission(menu,row)) && <%= modelName %>.option.show(menu,row)">
+                    ng-show="<%= scope %>.allow(<%= scope %>.option.permission(menu,row)) && <%= scope %>.option.show(menu,row)">
                     <a
-                            title="{{<%= modelName %>.option.text(menu,row)}}"
-                            data-action="{{<%= modelName %>.option.action(menu,row)}}"
-                            ng-click="<%= modelName %>.option.click(menu,row)">
-                        <i class="icon-{{<%= modelName %>.option.icon(menu,row)}}"></i>
-                        {{<%= modelName %>.option.text(menu,row)}}
+                            title="{{<%= scope %>.option.text(menu,row)}}"
+                            data-action="{{<%= scope %>.option.action(menu,row)}}"
+                            ng-click="<%= scope %>.option.click(menu,row)">
+                        <i class="icon-{{<%= scope %>.option.icon(menu,row)}}"></i>
+                        {{<%= scope %>.option.text(menu,row)}}
                     </a>
                 </li>
             </ul>

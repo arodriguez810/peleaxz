@@ -9,13 +9,13 @@ exports.run = function (_params) {
 };
 exports.api = {
     gets: {
-        getAppName: function (request) {
+        getAppName: async function (request) {
             var name = params.CONFIG.appName + " " + (request.name || "Nada");
             return {name: name};
         }
     },
     posts: {
-        post: function (request) {
+        post: async function (request) {
             var name = params.CONFIG.appName + " " + (request.name || "Nada");
             return {name: name};
         }

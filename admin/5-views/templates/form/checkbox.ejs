@@ -1,19 +1,35 @@
 <%
 var name = name || "";
-var text = text || "";
-var checked = checked || false;
+var options = {
+    text: name + "?",
+    checked: false
+};
+options = OBJECT.merge(options, opts);
+var toclient = JSON.stringify(options);
 %>
+<script>
+    <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
+</script>
 <div class="checkbox checkbox-switchery">
     <label>
-        <input type="checkbox" name="<%= name %>" class="switchery" <%= checked ? "checked" : "" %>/>
-        <%= text %>
+        <input ng-model="<%= options.model || model + "." + name %>"
+               type="checkbox"
+               name="<%= name %>"
+               class="switchery"
+        />
+        {{<%= model %>.form.options.<%= name %>.text}}
     </label>
 </div>
 <script>
     var elems = Array.prototype.slice.call(document.getElementsByName("<%= name %>"));
-    console.log(elems);
+    var checkbox<%= name %> = null;
     elems.forEach(function (html) {
-        console.log(html);
-        var formform<%= name %> = new Switchery(html, {});
+        checkbox<%= name %> = new Switchery(html, {size: "small"});
+        checkbox<%= name %>.setPosition(<%= model + "." + name %>);
     });
+    <!--$(document).ready(function () {-->
+        <!--$('[name="<%= name %>"]').change(function () {-->
+            <!--checkbox<%= name %>.setPosition($(this).is(':checked'));-->
+        <!--});-->
+    <!--});-->
 </script>

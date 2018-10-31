@@ -1,8 +1,5 @@
 var lines = process.stdout.getWindowSize()[1];
 for (var i = 0; i < lines; i++) console.log("\r\n");
-
-
-
 var folders = {
     models: "1-models",
     service: "2-service",
@@ -15,6 +12,7 @@ var folders = {
     modules: "modules",
     config: "0-config",
     styles: "styles",
+    server: "server",
 };
 var modules = {}, localjs = [], localModules = [], localModulesVars = [], modulesList = [], developer = {};
 var fs = require("fs");
@@ -34,7 +32,6 @@ var getFiles = function (dir, filelist, prefix) {
 };
 var CONFIG = {};
 configs = getFiles("./" + folders.config + "/");
-
 configs = configs.filter(function (file) {
     return file.indexOf('.disabled') === -1;
 });
@@ -48,41 +45,31 @@ for (var i in CONFIG.modules) {
     localModulesVars.push(module.var);
     eval("var " + module.var + " = require('" + module.module + "');");
 }
-
-var watcher = chokidar.watch('./');
-
-watcher.on('ready', function() {
-    watcher.on('all', function() {
+var watcher = chokidar.watch('');
+watcher.on('ready', function () {
+    console.log(1);
+    watcher.on('all', function () {
         for (var i = 0; i < lines; i++) console.log("\r\n");
         console.log("Clearing /dist/ module cache from server")
-        Object.keys(require.cache).forEach(function(id) {
+        Object.keys(require.cache).forEach(function (id) {
             delete require.cache[id];
         })
     })
 });
-
 var jsoncsv = require('express-json-csv')(express);
 localModulesVars.push("jsoncsv");
-
 //******* Load Custom Modules********//
 fs.readdir("./" + folders.modules + "/", function (err, files) {
     for (var i in files) {
         var file = files[i];
         modulesList.push(file.replace(".js", "").replace("BASE_", ""));
-        eval(
-            "modules." +
-            file.replace(".js", "").replace("BASE_", "") +
-            " = require('./" +
-            folders.modules +
-            "/" +
-            file +
-            "');"
-        );
+        eval("modules." + file.replace(".js", "").replace("BASE_", "") + " = require('./" + folders.modules + "/" + file + "');");
     }
 });
-
 localStyles = getFiles("./" + folders.styles + "/");
 localjs = getFiles("./" + folders.scripts + "/");
+localserver = getFiles("./" + folders.server + "/");
+controllersjs = getFiles("./" + folders.controllers + "/");
 crudjs = getFiles("./" + folders.crud + "/");
 //******* Load Custom Modules********//
 
@@ -97,7 +84,6 @@ app.use(bodyParser.json({type: "application/vnd.api+json"}));
 app.use(methodOverride());
 app.set("view engine", "ejs");
 app.set("layouts", "./" + folders.master);
-
 colors.setTheme({
     pxz: ["red", "bgYellow"],
     error: ["red", "underline"],
@@ -106,8 +92,6 @@ colors.setTheme({
     warning: ["yellow", "bgRed"]
 });
 //******* App Configuration ********//
-
-
 //******* Params To Services********//
 var allparams = "{";
 allparams += "      app: app,";
@@ -127,6 +111,8 @@ allparams += "      modules:modules,";
 allparams += "      fs:fs,";
 allparams += "      localjs:localjs,";
 allparams += "      localStyles:localStyles,";
+allparams += "      controllersjs:controllersjs,";
+allparams += "      localserver:localserver,";
 allparams += "      crudjs:crudjs,";
 allparams += "      models:models,";
 allparams += "      mssql:mssql,";
@@ -134,6 +120,7 @@ allparams += "      mysql:mysql,";
 allparams += "      CONFIG:CONFIG,";
 allparams += "      catalogs:catalogs,";
 allparams += "      folders:folders,";
+allparams += "      servicesFunctions:servicesFunctions,";
 allparams += "      app:app,";
 if (CONFIG.mongo) allparams += "  mongoose:mongoose,";
 if (CONFIG.mssql) allparams += "  modelsql:modelsql,";
@@ -198,7 +185,6 @@ if (CONFIG.mongo !== undefined) {
 } else {
     loadedMotors++;
 }
-
 if (CONFIG.mssql !== undefined) {
     fs.readdir("./" + folders.models + "/mssql", function (err, files) {
         for (var i in files) {
@@ -219,15 +205,13 @@ if (CONFIG.mssql !== undefined) {
             var create = modules.mssql.createTable(model, object, eval("(" + allparams + ")"));
             var add = modules.mssql.addColumns(model, object, eval("(" + allparams + ")"));
             var alter = modules.mssql.alterColumns(model, object, eval("(" + allparams + ")"));
-
-
             var removes = modules.mssql.deleteColumns(model, object, eval("(" + allparams + ")"));
             removes.forEach(function (item) {
                 console.log(item.error);
             });
             modules.mssql.executeNonQuery(create, eval("(" + allparams + ")"));
-            modules.mssql.executeNonQuery(alter, eval("(" + allparams + ")"));
             modules.mssql.executeNonQuery(add, eval("(" + allparams + ")"));
+            modules.mssql.executeNonQuery(alter, eval("(" + allparams + ")"));
             var stringModel = S(allparams).replaceAll("@model@", model).s;
         }
         var MSSQLDB = {};
@@ -244,7 +228,6 @@ if (CONFIG.mssql !== undefined) {
 } else {
     loadedMotors++;
 }
-
 if (CONFIG.mysql !== undefined) {
     fs.readdir("./" + folders.models + "/mysql", function (err, files) {
         for (var i in files) {
@@ -285,14 +268,24 @@ if (CONFIG.mysql !== undefined) {
     });
 } else loadedMotors++;
 
-
 while (loadedMotors < 3) {
     sleep(1);
 }
-services = getFiles("./" + folders.service + "/");
+servicesFiles = getFiles("./" + folders.service + "/");
 var catalogs = [];
-services.forEach(function (item) {
+var servicesFunctions = [];
+servicesFiles.forEach(function (item) {
     var model = item.replace(".js", "").replace("SE_", "");
+    model = S(model).replaceAll('/', '_').s;
+    eval(util.format("%sService = require('" + "./" + folders.service + "/%s');", model, item));
+    var stringModel = S(allparams).replaceAll("@model@", model).s;
+    eval(model + "Service.run(" + stringModel + ");");
+    eval("services = " + model + "Service.api");
+    servicesFunctions[model] = services;
+});
+servicesFiles.forEach(function (item) {
+    var model = item.replace(".js", "").replace("SE_", "");
+    model = S(model).replaceAll('/', '_').s;
     eval(util.format("%sService = require('" + "./" + folders.service + "/%s');", model, item));
     var stringModel = S(allparams).replaceAll("@model@", model).s;
     eval(model + "Service.run(" + stringModel + ");");
@@ -302,19 +295,14 @@ services.forEach(function (item) {
         catalogs.push(item);
     });
 });
-
 modules.tools.init(eval("(" + allparams + ")"));
 modules.views.init(eval("(" + allparams + ")"));
 app.listen(CONFIG.port);
-console.log(
-    "******************Dragon Server*************************************".pxz
-);
+console.log("******************".pxz + CONFIG.appName.pxz + " Server*************************************".pxz);
 console.log("Server : ".pxz + CONFIG.port);
 if (CONFIG.mongo !== undefined) console.log("Mongo  : ".pxz + models);
 if (CONFIG.mssql !== undefined) console.log("MSSQL  : ".pxz + modelsql);
 if (CONFIG.mysql !== undefined) console.log("MYSQL  : ".pxz + modelmysql);
 console.log("Custom : ".pxz + modulesList);
 console.log("Modules: ".pxz + localModules);
-console.log(
-    "**********************************************************************".pxz
-);
+console.log("**********************************************************************".pxz);

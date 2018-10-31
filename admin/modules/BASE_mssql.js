@@ -1,3 +1,4 @@
+exports.alterBlackList = ["DEFAULT", "GETDATE()", "IDENTITY(1,1)", "IDENTITY"];
 exports.createTable = function (model, object, params) {
     var tsql = params.util.format("IF NOT EXISTS(SELECT [name] FROM sys.tables WHERE [name] = '%s') CREATE TABLE [%s] (", model, model);
     for (var property in object) {
@@ -8,9 +9,7 @@ exports.createTable = function (model, object, params) {
     tsql += ");";
     return tsql;
 };
-exports.alterBlackList = ["DEFAULT", "GETDATE()", "IDENTITY(1,1)", "IDENTITY"];
 exports.addColumns = function (model, object, params) {
-
     var tsql = "";
     var deleteColumns = [];
     exports.data("select COLUMN_NAME from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME='" + model + "'", params, function (data) {
@@ -80,22 +79,16 @@ exports.alterColumns = function (model, object, params) {
         tsql = params.S(tsql).replaceAll(exports.alterBlackList[black], '').s;
     return tsql;
 };
-exports.executeNonQuery = function (query, params, callback) {
-    var connection = new params.mssql.ConnectionPool(params.CONFIG.mssql);
-    connection.connect().then(function () {
-        var request = new params.mssql.Request(connection);
-        request.query(query).then(function (recordset) {
-            if (callback)
-                callback({query: query, error: false, recordset: recordset});
-        }).catch(function (err) {
-            console.log(err.originalError.message.error);
-            if (callback)
-                callback({query: query, error: err.originalError.message});
-        });
+exports.executeNonQuery = async function (query, params) {
+    return await new params.mssql.ConnectionPool(params.CONFIG.mssql).connect().then(
+        pool => {
+            return pool.request().query(query);
+        }).then(recordset => {
+        params.mssql.close();
+        return {query: query, error: false, recordset: recordset};
     }).catch(function (err) {
-        console.log(err.originalError.message.error);
-        if (callback)
-            callback({query: query, error: err.originalError.message});
+        console.log(err);
+        return {query: query, error: err.originalError.message};
     });
 };
 exports.insert = function (table, data, params) {
@@ -200,28 +193,21 @@ exports.delete = function (table, data, params) {
     }
     return queries;
 };
-exports.data = function (query, params, callback, index) {
-    var connection = new params.mssql.ConnectionPool(params.CONFIG.mssql);
-    connection.connect().then(function () {
-        var request = new params.mssql.Request(connection);
-        request.query(query).then(function (recordset) {
-            if (callback)
-                callback({
-                    query: query,
-                    error: false,
-                    data: recordset.recordset,
-                    count: recordset.rowsAffected,
-                    index: index
-                });
-        }).catch(function (err) {
-            console.log(err.originalError.message.error);
-            if (callback)
-                callback({query: query, error: err.originalError.message});
-        });
+exports.data = async function (query, params, index) {
+    return await new params.mssql.ConnectionPool(params.CONFIG.mssql).connect().then(
+        pool => {
+            return pool.request().query(query);
+        }).then(recordset => {
+        params.mssql.close();
+        return {
+            query: query,
+            error: false,
+            data: recordset.recordset,
+            count: recordset.rowsAffected,
+            index: index
+        };
     }).catch(function (err) {
-        console.log(err.originalError.message.error);
-        if (callback)
-            callback({query: query, error: err.originalError.message});
+        return {query: query, error: err.originalError.message};
     });
 };
 exports.defaultRequests = function (Model, params) {
@@ -229,7 +215,6 @@ exports.defaultRequests = function (Model, params) {
     params.fs.readdir(params.util.format('./' + params.folders.views + '/%s', params.modelName), function (err, files) {
         params.modules.views.LoadEJS(files, params);
     });
-
     params.app.post('/api/ms_list', function (req, res) {
         if (req.query.limit === undefined)
             req.query.limit = 10;
@@ -243,9 +228,6 @@ exports.defaultRequests = function (Model, params) {
             res.json(data);
         });
     });
-
-
-
     params.app.post(params.util.format('/api/%s/list', Model.tableName), function (req, res) {
         if (req.body.limit === undefined)
             req.body.limit = 10;
@@ -259,8 +241,6 @@ exports.defaultRequests = function (Model, params) {
             res.json(data);
         });
     });
-
-
     params.app.get(params.util.format('/api/%s/all', Model.tableName), function (req, res) {
         Model.all(req.query, function (data) {
             if (data.error !== false) res.send(data.error);
@@ -291,71 +271,67 @@ exports.defaultRequests = function (Model, params) {
             res.json(data);
         });
     });
-
 };
 exports.Model = function (tableName, params) {
     this.tableName = tableName;
     this.mssql = params.mssql;
     this.config = params.config;
     //search
-    this.all = function (options, callback) {
-        this.search(options, callback);
+    this.all = async function (options) {
+        return await this.search(options);
     };
-    this.find = function (id, callback) {
-        this.search({where: [{value: id}]}, callback);
+    this.find = async function (id) {
+        return await this.search({where: [{value: id}]});
     };
-    this.where = function (where, callback) {
-        var finalwhere = [];
-        for (var property in where) {
-            finalwhere.push({value: eval("where." + property), field: property});
-        }
-        this.search({where: finalwhere}, callback);
+    this.where = async function (where) {
+        return await this.search({where: where});
     };
     //update
-    this.update = function (id, data, callback) {
+    this.update = async function (id, data) {
         data.where = [{value: id}];
-        exports.data(exports.update(tableName, data, params), params, function (data) {
-            callback(data);
+        return await exports.data(exports.update(tableName, data, params), params).then(result => {
+            return result;
         });
     };
-    this.updateAll = function (data, callback) {
-        exports.data(exports.update(tableName, data, params), params, function (data) {
-            callback(data);
+    this.updateAll = async function (data) {
+        return await exports.data(exports.update(tableName, data, params), params).then(result => {
+            return result;
         });
     };
-    this.updateWhere = function (where, data, callback) {
+    this.updateWhere = async function (where, data) {
         var finalwhere = [];
         for (var property in where) {
             finalwhere.push({value: eval("where." + property), field: property});
         }
         data.where = finalwhere;
-        exports.data(exports.update(tableName, data, params), params, function (data) {
-            callback(data);
+        return await exports.data(exports.update(tableName, data, params), params).then((result) => {
+            return result;
         });
     };
     //insert
-    this.insert = function (data, callback) {
-        exports.data(exports.insert(tableName, data, params), params, function (data) {
-            callback(data);
+    this.insert = async function (data) {
+        return await exports.data(exports.insert(tableName, data, params), params).then((result) => {
+            return result;
         });
     };
     //delete
-    this.deleteAll = function (callback) {
-        this.search({}, callback, 'DELETE');
+    this.deleteAll = async function () {
+        return await this.search({}, 'DELETE');
     };
-    this.delete = function (id, callback) {
-        this.search({where: [{value: id}]}, callback, "DELETE");
+    this.delete = async function (id) {
+        return await this.search({where: [{value: id}]}, "DELETE");
     };
-    this.deleteWhere = function (where, callback) {
+    this.deleteWhere = async function (where) {
         var finalwhere = [];
         for (var property in where) {
             finalwhere.push({value: eval("where." + property), field: property});
         }
-        this.search({where: finalwhere}, callback, "DELETE");
+        return await this.search({where: finalwhere}, "DELETE");
     };
-    this.searchAndDelete = function (options, callback) {
-        this.search(options, callback, 'DELETE');
+    this.searchAndDelete = async function (options) {
+        return await this.search(options, 'DELETE');
     };
+    //functions
     this.clearQuotes = function (data) {
         var newstr = params.S(data).replaceAll("[", "").s;
         newstr = params.S(newstr).replaceAll("]", "").s;
@@ -394,7 +370,6 @@ exports.Model = function (tableName, params) {
             }
         }
     };
-
     this.makeWhere = function (where, whereWord) {
         whereWord = whereWord === undefined ? true : whereWord;
         var options = {};
@@ -428,8 +403,8 @@ exports.Model = function (tableName, params) {
         }
         return "";
     };
-
-    this.search = function (options, callback, prefix) {
+    //master
+    this.search = async function (options, prefix) {
         var offTableName = options.tableName || tableName;
         var sentence = prefix || "SELECT";
         var where = this.makeWhere(options.where);
@@ -587,7 +562,6 @@ exports.Model = function (tableName, params) {
                 page: $page
             }
         );
-
         console.log(query);
         var queryCount = params.format("SELECT count(*) count FROM [{table}] BASE {join} {where} {groupby}",
             {
@@ -597,9 +571,12 @@ exports.Model = function (tableName, params) {
                 groupby: groupby
             }
         );
-
-        exports.data(queryCount, params, function (countData) {
-            exports.data(query, params, function (data) {
+        return await exports.data(queryCount, params).then(countData => {
+            return exports.data(query, params, {
+                limitvalue: $limitvalue,
+                pagec: $pagec,
+                limit: options.limit
+            }).then((data) => {
                 if (options.limit !== undefined)
                     if (data.index !== undefined) {
                         data.totalPage = Math.ceil(countData.data[0].count / data.index.limitvalue);
@@ -610,17 +587,9 @@ exports.Model = function (tableName, params) {
                         data.index = {};
                 else
                     data.index = {};
-                callback(data);
-            }, {
-                limitvalue: $limitvalue,
-                pagec: $pagec,
-                limit: options.limit
+                return data;
             });
         });
-
-
     };
-
-
 };
 

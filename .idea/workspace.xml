@@ -13343,135 +13343,63 @@
     <session id="-1886836537">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="4" />
-          <entry key="project.open.time.10" value="2" />
+          <entry key="project.closed" value="9" />
+          <entry key="project.open.time.10" value="5" />
+          <entry key="project.open.time.107" value="1" />
+          <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.20" value="1" />
           <entry key="project.open.time.21" value="1" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="6" />
+          <entry key="project.opened" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="css" value="29" />
+          <entry key="css" value="30" />
           <entry key="disabled" value="2" />
-          <entry key="ejs" value="258" />
-          <entry key="html" value="10" />
-          <entry key="js" value="698" />
-          <entry key="json" value="84" />
+          <entry key="ejs" value="318" />
+          <entry key="html" value="12" />
+          <entry key="js" value="776" />
+          <entry key="json" value="104" />
           <entry key="ts" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CSS" value="29" />
-          <entry key="EJS" value="258" />
-          <entry key="HTML" value="10" />
-          <entry key="JSON" value="84" />
-          <entry key="JavaScript" value="698" />
+          <entry key="CSS" value="30" />
+          <entry key="EJS" value="318" />
+          <entry key="HTML" value="12" />
+          <entry key="JSON" value="104" />
+          <entry key="JavaScript" value="776" />
           <entry key="PLAIN_TEXT" value="2" />
           <entry key="TypeScript" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="css" value="148" />
+          <entry key="css" value="153" />
           <entry key="disabled" value="2" />
-          <entry key="ejs" value="5973" />
+          <entry key="ejs" value="9758" />
           <entry key="html" value="1" />
-          <entry key="js" value="31176" />
-          <entry key="json" value="740" />
+          <entry key="js" value="38024" />
+          <entry key="json" value="889" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="CSS" value="148" />
-          <entry key="EJS" value="5973" />
+          <entry key="CSS" value="153" />
+          <entry key="EJS" value="9758" />
           <entry key="HTML" value="43" />
-          <entry key="JSON" value="740" />
-          <entry key="JavaScript" value="31134" />
+          <entry key="JSON" value="889" />
+          <entry key="JavaScript" value="37982" />
           <entry key="PLAIN_TEXT" value="2" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/table/export.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="325" column="16" selection-start-line="325" selection-start-column="16" selection-end-line="325" selection-end-column="16" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/5-views/auth/login.ejs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="63" lean-forward="true" selection-start-line="2" selection-start-column="63" selection-end-line="2" selection-end-column="63" />
-              <folding>
-                <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/server.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="52">
-              <caret line="81" column="3" selection-start-line="81" selection-start-column="3" selection-end-line="81" selection-end-column="3" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/modules/BASE_views.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="179" column="34" selection-start-line="179" selection-start-column="34" selection-end-line="179" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/form/checkbox.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" column="8" selection-start-line="13" selection-start-column="8" selection-end-line="17" selection-end-column="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/admin/5-views/templates/form/checkbox.ejs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="8" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/3-controllers/CO_auth.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="10" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -13485,39 +13413,38 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>excelData</find>
-      <find>if</find>
-      <find>blue</find>
-      <find>table</find>
-      <find>forea</find>
-      <find>ima</find>
-      <find>json</find>
-      <find>firstrow</find>
-      <find>columns</find>
-      <find>labels</find>
-      <find>dataToExport</find>
-      <find>jsonToTable</find>
-      <find>$scope.export.json</find>
-      <find>extra</find>
-      <find>data</find>
-      <find>return</find>
-      <find>one</find>
-      <find>CSV&quot;, &quot;Clipboard</find>
-      <find>if ([&quot;XLS&quot;, &quot;CSV&quot;, &quot;Clipboard&quot;].indexOf(extra.type))</find>
-      <find>formatByTypeClean</find>
-      <find>$scope.export.json(</find>
-      <find>console</find>
-      <find>preparing</find>
-      <find>fileUrl</find>
-      <find>simpleModal</find>
-      <find>localjs</find>
-      <find>login</find>
-      <find>check</find>
-      <find>switchery()</find>
-      <find>CHECKBOX.switchery()</find>
+      <find>rules</find>
+      <find>select2</find>
+      <find>bootstrap_multiselect</find>
+      <find>bootstrap_select</find>
+      <find>uniform</find>
+      <find>core</find>
+      <find>selectboxit</find>
+      <find>typeahead.bundle.</find>
+      <find>tagsinput</find>
+      <find>tokenfield</find>
+      <find>touchspin</find>
+      <find>formatter</find>
+      <find>value</find>
+      <find>validation</find>
+      <find>message</find>
+      <find>messageusernam</find>
+      <find>showClass</find>
+      <find>format-date</find>
+      <find>jquery_ui</find>
+      <find>maxlength</find>
+      <find>Other inputs</find>
+      <find>mask</find>
+      <find>mas</find>
+      <find>max</find>
+      <find>limit</find>
+      <find>$scope</find>
+      <find>.A</find>
+      <find>format</find>
+      <find>sess</find>
+      <find>SESSION</find>
     </findStrings>
     <replaceStrings>
-      <replace>','</replace>
       <replace>ms_tipo</replace>
       <replace>ms_hola</replace>
       <replace>&quot;+conrollerName+&quot;</replace>
@@ -13547,6 +13474,7 @@
       <replace>href=&quot;../../</replace>
       <replace>$scope.export.json</replace>
       <replace>if ([&quot;XLS&quot;, &quot;CSV&quot;, &quot;Clipboard&quot;].indexOf(extra.type)!==-1)</replace>
+      <replace>&lt;%= scope %&gt;</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -13555,35 +13483,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/admin/5-views/templates/pdf/full.ejs" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/base/baseapi.js" />
-        <option value="$PROJECT_DIR$/admin/modules/BASE_mssql.js" />
-        <option value="$PROJECT_DIR$/admin/5-views/templates/pdf/footer.ejs" />
-        <option value="$PROJECT_DIR$/admin/5-views/templates/pdf/header.ejs" />
-        <option value="$PROJECT_DIR$/admin/5-views/templates/table/header.ejs" />
-        <option value="$PROJECT_DIR$/admin/assets/js/plugins/excel/excelexportjs.js" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/data/download.js" />
-        <option value="$PROJECT_DIR$/admin/5-views/templates/docx/footer.ejs" />
-        <option value="$PROJECT_DIR$/admin/5-views/templates/docx/header.ejs" />
-        <option value="$PROJECT_DIR$/admin/5-views/templates/table/base.ejs" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/appearance/contextmenu.js" />
-        <option value="$PROJECT_DIR$/admin/assets/css/colors.css" />
-        <option value="$PROJECT_DIR$/admin/5-views/templates/pdf/table.ejs" />
-        <option value="$PROJECT_DIR$/admin/5-views/templates/docx/table.ejs" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/table/selection.js" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/table/options.js" />
-        <option value="$PROJECT_DIR$/admin/5-views/templates/pdf/clean.ejs" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/base/http.js" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/table/format.js" />
-        <option value="$PROJECT_DIR$/admin/4-crud/mssql/a.defautls/defaults.js" />
-        <option value="$PROJECT_DIR$/admin/5-views/templates/docx/clean.ejs" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/table/events.js" />
-        <option value="$PROJECT_DIR$/admin/1-models/mssql/MO_ms_user.json" />
-        <option value="$PROJECT_DIR$/admin/0-config/security.json" />
-        <option value="$PROJECT_DIR$/admin/3-controllers/CO_BASE_LOGIN.js" />
-        <option value="$PROJECT_DIR$/admin/5-views/base/login.ejs" />
-        <option value="$PROJECT_DIR$/admin/3-controllers/CO_ms_user.js" />
-        <option value="$PROJECT_DIR$/admin/styles/pagination.css" />
         <option value="$PROJECT_DIR$/admin/styles/content.css" />
         <option value="$PROJECT_DIR$/admin/styles/pages/footer.css" />
         <option value="$PROJECT_DIR$/admin/styles/components/tables.css" />
@@ -13591,21 +13490,50 @@
         <option value="$PROJECT_DIR$/admin/styles/components/navbar.css" />
         <option value="$PROJECT_DIR$/admin/assets/css/style.css" />
         <option value="$PROJECT_DIR$/admin/styles/base/content.css" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/auth/SESSION.js" />
-        <option value="$PROJECT_DIR$/admin/3-controllers/CO_BASE.js" />
         <option value="$PROJECT_DIR$/admin/5-views/master/menu.ejs" />
         <option value="$PROJECT_DIR$/admin/styles/pages/login.css" />
-        <option value="$PROJECT_DIR$/admin/5-views/master/navbar.ejs" />
-        <option value="$PROJECT_DIR$/admin/5-views/master/head.ejs" />
-        <option value="$PROJECT_DIR$/admin/0-config/app.json" />
-        <option value="$PROJECT_DIR$/admin/3-controllers/CO_auth.js" />
+        <option value="$PROJECT_DIR$/admin/assets/css/core.css" />
+        <option value="$PROJECT_DIR$/admin/5-views/master/proxyfunctions/form/toTemplates.ejs" />
         <option value="$PROJECT_DIR$/admin/scripts/dragon/table/export.js" />
+        <option value="$PROJECT_DIR$/admin/0-config/security/auth.json" />
+        <option value="$PROJECT_DIR$/admin/scripts/dragon/components/menu.js" />
+        <option value="$PROJECT_DIR$/admin/2-service/SE_example.js" />
+        <option value="$PROJECT_DIR$/admin/scripts/dragon/base/service.js" />
+        <option value="$PROJECT_DIR$/admin/1-models/mssql/MO_ms_user.json" />
+        <option value="$PROJECT_DIR$/admin/modules/BASE_mssql.js" />
+        <option value="$PROJECT_DIR$/admin/scripts/dragon/form/checkbox.js" />
+        <option value="$PROJECT_DIR$/admin/5-views/templates/form/inputicon.ejs" />
+        <option value="$PROJECT_DIR$/admin/0-config/google.json" />
+        <option value="$PROJECT_DIR$/admin/0-config/network.json" />
+        <option value="$PROJECT_DIR$/admin/0-config/app.json" />
+        <option value="$PROJECT_DIR$/admin/5-views/master/proxyfunctions/scripts/json.ejs" />
+        <option value="$PROJECT_DIR$/admin/5-views/master/proxyfunctions/form/templates.ejs" />
+        <option value="$PROJECT_DIR$/admin/3-controllers/CO_BASE.js" />
+        <option value="$PROJECT_DIR$/admin/3-controllers/CO_auth.js" />
+        <option value="$PROJECT_DIR$/admin/scripts/dragon/base/load.js" />
         <option value="$PROJECT_DIR$/admin/0-config/modules.json" />
-        <option value="$PROJECT_DIR$/admin/5-views/auth/login.ejs" />
         <option value="$PROJECT_DIR$/admin/server.js" />
         <option value="$PROJECT_DIR$/admin/modules/BASE_views.js" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/form/checkbox.js" />
+        <option value="$PROJECT_DIR$/admin/server/templates/form/input.ejs" />
+        <option value="$PROJECT_DIR$/admin/0-config/appearance/theme.json" />
+        <option value="$PROJECT_DIR$/admin/5-views/master/head.ejs" />
+        <option value="$PROJECT_DIR$/admin/scripts/dragon/appearance/floating_labels.js" />
+        <option value="$PROJECT_DIR$/admin/scripts/dragon/form/form.js" />
+        <option value="$PROJECT_DIR$/admin/5-views/templates/form/input.ejs" />
+        <option value="$PROJECT_DIR$/admin/5-views/templates/form/readonly.ejs" />
+        <option value="$PROJECT_DIR$/admin/5-views/templates/form/inputview.ejs" />
+        <option value="$PROJECT_DIR$/admin/server/form/templates.ejs" />
         <option value="$PROJECT_DIR$/admin/5-views/templates/form/checkbox.ejs" />
+        <option value="$PROJECT_DIR$/admin/5-views/templates/form/formbutton.ejs" />
+        <option value="$PROJECT_DIR$/admin/scripts/dragon/form/validation.js" />
+        <option value="$PROJECT_DIR$/admin/5-views/auth/login.ejs" />
+        <option value="$PROJECT_DIR$/admin/5-views/templates/form/button.ejs" />
+        <option value="$PROJECT_DIR$/admin/2-service/base/SE_auth.js" />
+        <option value="$PROJECT_DIR$/admin/scripts/dragon/base/http.js" />
+        <option value="$PROJECT_DIR$/admin/3-controllers/auth/CO_login.js" />
+        <option value="$PROJECT_DIR$/admin/5-views/master/navbar.ejs" />
+        <option value="$PROJECT_DIR$/admin/scripts/dragon/auth/SESSION.js" />
+        <option value="$PROJECT_DIR$/admin/3-controllers/abase/CO_BASE.js" />
       </list>
     </option>
   </component>
@@ -13625,7 +13553,6 @@
     <packageJsonPaths>
       <path value="$PROJECT_DIR$/admin/assets/js/plugins/iziToast/iziToast-master/package.json" />
       <path value="$PROJECT_DIR$/admin/package.json" />
-      <path value="$PROJECT_DIR$/admin/pdfserver/package.json" />
       <path value="$PROJECT_DIR$/tools/c/package.json" />
     </packageJsonPaths>
   </component>
@@ -13663,7 +13590,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -13676,17 +13602,79 @@
               <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
               <item name="admin" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="peleaxz" type="b2602c69:ProjectViewProjectNode" />
+              <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="0-config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="peleaxz" type="b2602c69:ProjectViewProjectNode" />
+              <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="0-config" type="462c0819:PsiDirectoryNode" />
+              <item name="appearance" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="peleaxz" type="b2602c69:ProjectViewProjectNode" />
+              <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="5-views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="peleaxz" type="b2602c69:ProjectViewProjectNode" />
+              <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="5-views" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="peleaxz" type="b2602c69:ProjectViewProjectNode" />
+              <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="5-views" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="form" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="peleaxz" type="b2602c69:ProjectViewProjectNode" />
+              <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="scripts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="peleaxz" type="b2602c69:ProjectViewProjectNode" />
+              <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="scripts" type="462c0819:PsiDirectoryNode" />
+              <item name="dragon" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="peleaxz" type="b2602c69:ProjectViewProjectNode" />
+              <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="scripts" type="462c0819:PsiDirectoryNode" />
+              <item name="dragon" type="462c0819:PsiDirectoryNode" />
+              <item name="base" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="peleaxz" type="b2602c69:ProjectViewProjectNode" />
+              <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
-    <property name="SearchEverywhereHistoryKey" value="Base&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/modules/BASE_views.js&#10;modu&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/0-config/modules.json&#10;ser&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/server.js&#10;mod&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/0-config/modules.json&#10;expor&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/export.js&#10;CO&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/3-controllers/CO_auth.js&#10;chec&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/form/checkbox.js&#10;LOGIN&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/auth/login.ejs&#10;he&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/master/head.ejs&#10;na&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/master/navbar.ejs&#10;menu.e&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/master/menu.ejs&#10;navbar&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/master/navbar.ejs&#10;nvar&#9;null&#9;null&#10;hea&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/master/head.ejs&#10;BASE_&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/modules/BASE_views.js&#10;serv&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/server.js&#10;styl&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/assets/css/style.css&#10;head&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/master/head.ejs&#10;eve&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/events.js&#10;header&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/templates/table/header.ejs&#10;even&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/events.js&#10;BASE&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/modules/BASE_views.js&#10;option&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/options.js&#10;select&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/selection.js&#10;defaul&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/4-crud/mssql/a.defautls/defaults.js&#10;colum&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/4-crud/mssql/ms_all/1columns.js&#10;options&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/options.js&#10;BAS&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/modules/BASE_views.js&#10;server&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/server.js&#10;base&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/templates/table/base.ejs&#10;theme&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/0-config/theme.json&#10;modul&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/0-config/modules.json&#10;conte&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/appearance/contextmenu.js&#10;ex&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/export.js&#10;heade&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/templates/docx/header.ejs&#10;base.e&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/templates/table/base.ejs&#10;context&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/appearance/contextmenu.js&#10;defa&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/4-crud/mssql/a.defautls/defaults.js&#10;down&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/data/download.js&#10;excel&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/assets/js/plugins/excel/excelexportjs.js&#10;colors_blue&#9;FILE&#9;file://C:/wamp/www/peleaxz/tools/c/assets/js/pages/colors_blue.js&#10;colors.h&#9;FILE&#9;file://C:/wamp/www/peleaxz/tools/c/colors_blue.html&#10;modules&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/0-config/modules.json&#10;modal&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/components/modal.js&#10;for&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/format.js&#10;BASE_v&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/modules/BASE_views.js&#10;html2&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/assets/js/plugins/html2canvas/html2canvas.js&#10;moda&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/components/modal.js&#10;bas&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/templates/table/base.ejs&#10;re&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/events/repeatkey.js" />
+    <property name="SearchEverywhereHistoryKey" value="BASE_vi&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/modules/BASE_views.js&#10;base&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/3-controllers/abase/CO_BASE.js&#10;navbar&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/master/navbar.ejs&#10;SESSion&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/auth/SESSION.js&#10;BASE&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/modules/BASE_mssql.js&#10;CO&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/3-controllers/abase/CO_BASE.js&#10;table.js&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/table.js&#10;table&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/templates/pdf/table.ejs&#10;head&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/master/head.ejs&#10;base.e&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/templates/table/base.ejs&#10;hea&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/master/head.ejs&#10;form_floating_labels&#9;FILE&#9;file://C:/wamp/www/peleaxz/tools/c/form_floating_labels.html&#10;theme.jso&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/0-config/appearance/theme.json&#10;form_checkboxes_radios&#9;FILE&#9;file://C:/wamp/www/peleaxz/tools/c/assets/js/pages/form_checkboxes_radios.js&#10;he&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/master/head.ejs&#10;BAS&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/3-controllers/abase/CO_BASE.js&#10;che&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/server/templates/form/checkbox.ejs&#10;login&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/auth/login.ejs&#10;base_v&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/modules/BASE_views.js&#10;server&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/server.js&#10;h&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/master/head.ejs&#10;modules&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/0-config/modules.json&#10;BASE_v&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/modules/BASE_views.js&#10;load&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/base/load.js&#10;BASE_Vi&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/modules/BASE_views.js&#10;ser&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/server.js&#10;mod&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/0-config/modules.json&#10;BASE_my&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/modules/BASE_mysql.js&#10;modu&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/0-config/modules.json&#10;service&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/base/service.js&#10;BASE_m&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/modules/BASE_mssql.js&#10;serv&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/server.js&#10;aut&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/0-config/security/auth.json&#10;BASE_M&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/modules/BASE_mssql.js&#10;mss&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/0-config/db/mssql.json&#10;app&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/0-config/app.json&#10;Base&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/modules/BASE_views.js&#10;expor&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/export.js&#10;chec&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/form/checkbox.js&#10;LOGIN&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/auth/login.ejs&#10;na&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/master/navbar.ejs&#10;menu.e&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/master/menu.ejs&#10;nvar&#9;null&#9;null&#10;BASE_&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/modules/BASE_views.js&#10;styl&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/assets/css/style.css&#10;eve&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/events.js&#10;header&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/templates/table/header.ejs&#10;even&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/events.js&#10;option&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/options.js&#10;select&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/selection.js" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="8.10.0" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -13705,19 +13693,19 @@
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\wamp\www\peleaxz\admin\styles\base" />
-      <recent name="C:\wamp\www\peleaxz\admin\styles\components" />
-      <recent name="C:\wamp\www\peleaxz\admin\styles\pages" />
-      <recent name="C:\wamp\www\peleaxz\admin\5-views\templates\form" />
-      <recent name="C:\wamp\www\peleaxz\admin\0-config\db" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\wamp\www\peleaxz\admin\5-views\templates\form" />
-      <recent name="C:\wamp\www\peleaxz\admin\3-controllers" />
-      <recent name="C:\wamp\www\peleaxz\admin\5-views\auth" />
+      <recent name="C:\wamp\www\peleaxz\admin\scripts\dragon\form" />
+      <recent name="C:\wamp\www\peleaxz\admin\4-crud\auth\login" />
+      <recent name="C:\wamp\www\peleaxz\admin\5-views\master\proxyfunctions\scripts" />
       <recent name="C:\wamp\www\peleaxz\admin\0-config" />
-      <recent name="C:\wamp\www\peleaxz\admin\1-models\mssql" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\wamp\www\peleaxz\admin\4-crud" />
+      <recent name="C:\wamp\www\peleaxz\admin\5-views\templates\form" />
+      <recent name="C:\wamp\www\peleaxz\admin\server\templates\form" />
+      <recent name="C:\wamp\www\peleaxz\admin\server" />
+      <recent name="C:\wamp\www\peleaxz\admin" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -13792,16 +13780,20 @@
       <workItem from="1538722195691" duration="218724000" />
       <workItem from="1539869141259" duration="1280000" />
       <workItem from="1539872245370" duration="139194000" />
-      <workItem from="1540224648350" duration="41767000" />
+      <workItem from="1540224648350" duration="57079000" />
+      <workItem from="1540575957395" duration="1831000" />
+      <workItem from="1540578097670" duration="32000" />
+      <workItem from="1540578521795" duration="204000" />
+      <workItem from="1540578834274" duration="2000" />
+      <workItem from="1540579002588" duration="102827000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1048757000" />
+    <option name="totallyTimeSpent" value="1168965000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="32" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -13819,7 +13811,7 @@
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info active="true" anchor="right" content_ui="combo" id="Project" order="3" visible="true" weight="0.18910742" />
+      <window_info active="true" anchor="right" content_ui="combo" id="Project" order="3" visible="true" weight="0.204236" />
     </layout>
     <layout-to-restore>
       <window_info id="Favorites" order="0" side_tool="true" />
@@ -13848,364 +13840,358 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/admin/5-views/templates/table/base.ejs">
+    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/base/service.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="14" column="42" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="42" />
-          <folding>
-            <element signature="e#588#626#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/base/load.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="86" column="53" selection-start-line="86" selection-start-column="47" selection-end-line="86" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/templates/docx/header.ejs">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/ms_all/detail.ejs">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/4-crud/mssql/ms_all/1columns.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="92" column="39" selection-start-line="92" selection-start-column="39" selection-end-line="92" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/base/http.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="82" selection-start-line="11" selection-start-column="82" selection-end-line="11" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/templates/table/header.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="82" column="68" selection-start-line="82" selection-start-column="68" selection-end-line="82" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/templates/pdf/clean.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="7" lean-forward="true" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/templates/docx/clean.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="3" selection-start-line="26" selection-start-column="3" selection-end-line="26" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/table/selection.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="47" column="25" selection-start-line="47" selection-start-column="15" selection-end-line="47" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/table/options.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-527">
-          <caret line="2" column="57" selection-start-line="2" selection-start-column="57" selection-end-line="2" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/table/format.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1625">
-          <caret line="83" column="32" selection-start-line="83" selection-start-column="32" selection-end-line="83" selection-end-column="32" />
-          <folding>
-            <element signature="n#style#0;n#object#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/templates/form/detail.ejs">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/templates/docx/table.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="33" column="20" selection-end-line="47" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/4-crud/mssql/a.defautls/defaults.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="211" column="46" selection-start-line="211" selection-start-column="40" selection-end-line="211" selection-end-column="46" />
-          <folding>
-            <element signature="e#1136#3413#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/table/events.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="78" column="40" selection-start-line="78" selection-start-column="40" selection-end-line="78" selection-end-column="40" />
-          <folding>
-            <element signature="e#1530#3473#0" />
-            <element signature="n#style#0;n#object#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/templates/pdf/header.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="75" selection-start-column="75" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/templates/pdf/footer.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="62" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/templates/pdf/table.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="20" column="52" lean-forward="true" selection-start-line="20" selection-start-column="52" selection-end-line="20" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/1-models/mssql/MO_ms_category.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/0-config/theme.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="11" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/0-config/db/mssql.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="1" lean-forward="true" selection-end-line="8" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/1-models/mssql/MO_ms_user.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/3-controllers/CO_BASE_LOGIN.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/0-config/security.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="1" lean-forward="true" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/base/index.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" selection-start-line="1" selection-end-line="1" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/3-controllers/CO_ms_user.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="36" selection-start-line="2" selection-start-column="36" selection-end-line="2" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/base/login.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="18" lean-forward="true" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
-          <folding>
-            <element signature="n#style#0;n#form#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/styles/components/pagination.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/styles/pages/footer.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/styles/components/buttons.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/styles/components/tables.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/styles/base/content.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/assets/css/style.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/assets/js/plugins/editors/ace/worker-html.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret column="173677" selection-start-column="173677" selection-end-column="173677" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/styles/components/navbar.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/master/navbar.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="14" lean-forward="true" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/master/head.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1904">
-          <caret line="112" column="2" lean-forward="true" selection-start-line="112" selection-start-column="2" selection-end-line="112" selection-end-column="2" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#body#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/0-config/app.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/styles/pages/login.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/auth/SESSION.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="12" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/3-controllers/CO_BASE.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/master/menu.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="111" selection-start-line="1" selection-start-column="111" selection-end-line="1" selection-end-column="111" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/3-controllers/CO_auth.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="10" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/table/export.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="325" column="16" selection-start-line="325" selection-start-column="16" selection-end-line="325" selection-end-column="16" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/0-config/modules.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="87" column="22" selection-start-line="87" selection-start-column="14" selection-end-line="87" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="81" column="3" selection-start-line="81" selection-start-column="3" selection-end-line="81" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/modules/BASE_views.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="179" column="34" selection-start-line="179" selection-start-column="34" selection-end-line="179" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/auth/login.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="63" lean-forward="true" selection-start-line="2" selection-start-column="63" selection-end-line="2" selection-end-column="63" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="276">
+          <caret line="21" column="73" selection-start-line="21" selection-start-column="73" selection-end-line="21" selection-end-column="73" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/form/checkbox.js">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="39" selection-start-line="14" selection-start-column="39" selection-end-line="14" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/0-config/security/google.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="1" selection-start-column="1" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/0-config/network.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/0-config/app.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="22" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/data/json.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/server/scripts/json.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="27" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/scripts/extensions/jquery.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="34" selection-start-line="1" selection-start-column="31" selection-end-line="1" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/5-views/ms_all/index.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="7" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/0-config/modules.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="55" column="21" selection-start-line="55" selection-start-column="21" selection-end-line="55" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="114" column="31" selection-start-line="114" selection-start-column="31" selection-end-line="114" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dragon/app.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/5-views/ms_other/index.ejs">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/4-crud/auth/login/1columns.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="5" lean-forward="true" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/4-crud/mssql/ms_all/1columns.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="30" lean-forward="true" selection-end-line="154" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/3-controllers/crud/CO_ms_all.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="49" lean-forward="true" selection-start-column="35" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tools/c/assets/js/pages/form_checkboxes_radios.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="106" column="4" selection-start-line="106" selection-start-column="4" selection-end-line="106" selection-end-column="35" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/0-config/appearance/theme.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="21" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/data/string.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/appearance/actheme.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/appearance/html.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/appearance/floating_labels.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/5-views/master/head.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="51" column="73" selection-start-line="51" selection-start-column="71" selection-end-line="51" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tools/c/form_floating_labels.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="119" column="104" selection-start-line="119" selection-start-column="101" selection-end-line="119" selection-end-column="104" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/5-views/templates/pdf/table.ejs">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
-          <caret line="13" column="8" selection-start-line="13" selection-start-column="8" selection-end-line="17" selection-end-column="11" />
+          <caret line="13" column="52" lean-forward="true" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/table/table.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="126" column="38" selection-start-line="126" selection-start-column="33" selection-end-line="126" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/5-views/templates/form/inputview.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="30" column="12" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="50" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/5-views/templates/form/checkbox.ejs">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="511">
+          <caret line="33" column="11" selection-start-line="29" selection-start-column="8" selection-end-line="33" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/5-views/templates/form/input.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="61" column="4" selection-start-line="61" selection-start-column="4" selection-end-line="61" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/5-views/templates/table/base.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-357">
+          <folding>
+            <element signature="e#42#89#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/5-views/templates/form/formbutton.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="6" lean-forward="true" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/base/compile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="4" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/table/crud.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="4" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/form/form.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="4" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/base/load.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="4" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tools/c/assets/js/pages/form_floating_labels.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="154" column="18" selection-start-line="154" selection-start-column="18" selection-end-line="154" selection-end-column="40" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/server/form/templates.ejs">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
-          <caret line="14" column="8" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
+          <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/5-views/templates/form/button.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="2" lean-forward="true" selection-start-line="14" selection-start-column="2" selection-end-line="14" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/modules/BASE_mssql.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2108">
+          <caret line="274" column="45" selection-start-line="274" selection-start-column="45" selection-end-line="274" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/2-service/base/SE_auth.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="31" column="18" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/data/localStorage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-561" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/auth/SESSION.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="11" selection-start-line="3" selection-start-column="11" selection-end-line="3" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/0-config/appearance/menu.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/5-views/master/navbar.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="901">
+          <caret line="53" column="59" lean-forward="true" selection-start-line="53" selection-start-column="59" selection-end-line="53" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/3-controllers/abase/CO_BASE.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="35" lean-forward="true" selection-start-line="3" selection-start-column="35" selection-end-line="3" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/3-controllers/auth/CO_login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="62" column="26" selection-start-line="62" selection-start-column="26" selection-end-line="62" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/5-views/auth/login.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="38" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="38" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/base/http.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="58" selection-start-line="15" selection-start-column="58" selection-end-line="15" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/modules/BASE_views.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="42" column="44" lean-forward="true" selection-start-line="42" selection-start-column="44" selection-end-line="42" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/scripts/extensions/sweetalert.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="36" column="29" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="29" />
+          <folding>
+            <element signature="n#style#0;n#button#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/form/validation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="38" column="7" lean-forward="true" selection-start-line="38" selection-start-column="7" selection-end-line="38" selection-end-column="31" />
         </state>
       </provider>
     </entry>

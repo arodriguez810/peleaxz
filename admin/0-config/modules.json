@@ -65,6 +65,10 @@
       "module": "pluralize"
     },
     {
+      "var": "capitalize",
+      "module": "capitalize"
+    },
+    {
       "var": "sleep",
       "module": "system-sleep"
     },
@@ -87,6 +91,14 @@
     {
       "var": "chokidar",
       "module": "chokidar"
+    },
+    {
+      "var": "md5",
+      "module": "md5"
+    },
+    {
+      "var": "deepmerge",
+      "module": "deepmerge"
     }
   ]
 }

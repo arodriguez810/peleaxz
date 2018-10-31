@@ -36,18 +36,23 @@ exports.LoadEJS = function (files, params) {
                     eval("newtags." + tag + " = " + largeVar + '===undefined ? "' + itag + '" : ' + largeVar + ";");
                 }
 
+
                 var send = {
-                    modelName: params.modelName,
+                    scope: params.modelName,
                     session: params.session,
                     localjs: params.localjs,
+                    controllersjs: params.controllersjs,
+                    localStyles: params.localStyles,
                     crudjs: params.crudjs,
                     CONFIG: params.CONFIG,
                     COLOR: params.CONFIG.ui.colors,
                     TAG: newtags,
                     models: models,
                     FOLDERS: params.folders,
-                    DATA: req.query,
-                    SERVICES: params.catalogs
+                    DATA: req.body,
+                    SERVICES: params.catalogs,
+                    params: params,
+                    localserver: localserver
                 };
                 res.render("../" + params.folders.views + "/" + realPath, send);
             }
@@ -59,29 +64,53 @@ exports.runServices = function (services, prefix, params) {
     for (var i in services.gets) {
         var func = services.gets[i];
         catalogs.push("get*" + prefix + "." + func.name);
-        params.app.get(params.util.format("/service/%s/%s", prefix, i), function (req, res) {
-            res.json(func(req.query));
+        params.app.get(params.util.format("/service/%s/%s", prefix, i), async function (req, res) {
+            var config = req.originalUrl.split('?')[0].replace('/service/', '').split('/');
+            var service = config[0];
+            var functionR = config[1];
+            eval(`var serviceFunction = params.servicesFunctions["${service}"].gets.${functionR}`);
+            return await serviceFunction(req.query).then(result => {
+                res.json(result);
+            });
         });
     }
     for (var i in services.posts) {
         var func = services.posts[i];
         catalogs.push("post*" + prefix + "." + func.name);
-        params.app.post(params.util.format("/service/%s/%s", prefix, i), function (req, res) {
-            res.json(func(req.body));
+        params.app.post(params.util.format("/service/%s/%s", prefix, i), async function (req, res) {
+            var config = req.originalUrl.replace('/service/', '').split('/');
+            var service = config[0];
+            var functionR = config[1];
+            eval(`var serviceFunction = params.servicesFunctions["${service}"].posts.${functionR}`);
+            return await serviceFunction(req.body).then(result => {
+                res.json(result);
+            });
         });
     }
     for (var i in services.puts) {
         var func = services.puts[i];
         catalogs.push("put*" + prefix + "." + func.name);
-        params.app.post(params.util.format("/service/%s/%s", prefix, i), function (req, res) {
-            res.json(func(req.body));
+        params.app.post(params.util.format("/service/%s/%s", prefix, i), async function (req, res) {
+            var config = req.originalUrl.replace('/service/', '').split('/');
+            var service = config[0];
+            var functionR = config[1];
+            eval(`var serviceFunction = params.servicesFunctions["${service}"].puts.${functionR}`);
+            return await serviceFunction(req.body).then(result => {
+                res.json(result);
+            });
         });
     }
     for (var i in services.deletes) {
         var func = services.deletes[i];
         catalogs.push("delete*" + prefix + "." + func.name);
-        params.app.post(params.util.format("/service/%s/%s", prefix, i), function (req, res) {
-            res.json(func(req.body));
+        params.app.post(params.util.format("/service/%s/%s", prefix, i), async function (req, res) {
+            var config = req.originalUrl.replace('/service/', '').split('/');
+            var service = config[0];
+            var functionR = config[1];
+            eval(`var serviceFunction = params.servicesFunctions["${service}"].deletes.${functionR}`);
+            return await serviceFunction(req.body).then(result => {
+                res.json(result);
+            });
         });
     }
     return catalogs;
@@ -90,14 +119,8 @@ exports.loadEJSSimple = function (folder, prefix, params) {
     params.fs.readdir(folder, function (err, files) {
         for (var i in files) {
             var file = files[i];
-            var viewName = params.S(file).contains("index.ejs")
-                ? ""
-                : file.replace(".ejs", "");
-
-            params.app.get(params.util.format("/%s/%s/", prefix, viewName), function (
-                req,
-                res
-            ) {
+            var viewName = params.S(file).contains("index.ejs") ? "" : file.replace(".ejs", "");
+            params.app.get(params.util.format("/%s/%s/", prefix, viewName), function (req, res) {
                 var path = req.originalUrl;
                 var realPath = path.split("?");
                 var viewN = realPath[0].split("/");
@@ -114,36 +137,29 @@ exports.loadEJSSimple = function (folder, prefix, params) {
                         "newtags." + tag + " = " + largeVar + '===undefined ? "' + itag + '" : ' + largeVar + ";"
                     );
                 }
+                var modelName = viewN.filter(function (item) {
+                    return item !== '';
+                });
 
                 var send = {
-                    modelName: params.modelName,
+                    scope: modelName.join("_"),
                     session: params.session,
                     localjs: params.localjs,
+                    controllersjs: params.controllersjs,
+                    localStyles: params.localStyles,
                     crudjs: params.crudjs,
                     CONFIG: params.CONFIG,
                     COLOR: params.CONFIG.ui.colors,
                     TAG: newtags,
                     models: models,
                     FOLDERS: params.folders,
-                    DATA: req.query
+                    DATA: req.body,
+                    SERVICES: params.catalogs,
+                    params: params
                 };
-                if (send.DATA.pdf) {
-                    var pdfOptions = {
-                        html: '<!DOCTYPE html><html lang="en"><body><h1>Hello</h1><p>World</p></body></html>',
-                        paperSize: {
-                            format: 'A4',
-                            orientation: 'landscape', // portrait
-                            border: '1cm'
-                        }
-                    };
-                    params.PDF.convert(pdfOptions, function (err, result) {
-                        result.toFile("./preview.pdf", function () {
-                            res.download("./file.pdf", send.DATA.pdf);
-                        });
-                    });
-                } else {
-                    res.render("." + folder + "/" + viewN[viewN.length - 1], send);
-                }
+
+                res.render("." + folder + "/" + viewN[viewN.length - 1], send);
+
             });
 
 
@@ -170,6 +186,7 @@ exports.loadEJSSimple = function (folder, prefix, params) {
                     modelName: params.modelName,
                     session: params.session,
                     localjs: params.localjs,
+                    controllersjs: params.controllersjs,
                     localStyles: params.localStyles,
                     crudjs: params.crudjs,
                     CONFIG: params.CONFIG,
@@ -245,7 +262,6 @@ exports.loadEJSSimple = function (folder, prefix, params) {
 
 
 };
-
 exports.init = function (params) {
     var excludes = [
         params.folders.views + "//base",

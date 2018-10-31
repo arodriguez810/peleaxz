@@ -13,7 +13,12 @@ CHECKBOX = {
     run_switchery: function () {
         var elems = Array.prototype.slice.call(document.querySelectorAll('.switchery'));
         elems.forEach(function (html) {
-            console.log(html);
+            var switchery = new Switchery(html, {});
+        });
+    },
+    run_oneswitchery: function (query) {
+        var elems = Array.prototype.slice.call(document.querySelectorAll(query));
+        elems.forEach(function (html) {
             var switchery = new Switchery(html, {});
         });
     }

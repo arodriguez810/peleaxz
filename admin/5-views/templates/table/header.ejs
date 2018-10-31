@@ -2,15 +2,15 @@
     <!--Breadcrumb and Table Options-->
     <div class="breadcrumb-line"><a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
 
-        <ul class="breadcrumb" ng-show="!<%= modelName %>.modal.isOpen()">
-            <li ng-repeat="(key, menu) in <%= modelName %>.MENU.parents">
+        <ul class="breadcrumb" ng-show="!<%= scope %>.modal.isOpen()">
+            <li ng-repeat="(key, menu) in <%= scope %>.MENU.parents">
                 <a data-function="menu" href="javascript:void(0)">
                     <i class="{{menu.icon}} position-left"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-left" ng-show="menu.childs.length>0">
                     <li ng-repeat="(subkey, submenu) in menu.childs">
-                        <a href="{{<%= modelName %>.sameHref(submenu,'javascript:void(0)')||submenu.href}}"
-                           class="{{<%= modelName %>.sameHref(submenu,'text-<%= COLOR.primary %>')||''}}">
+                        <a href="{{<%= scope %>.sameHref(submenu,'javascript:void(0)')||submenu.href}}"
+                           class="{{<%= scope %>.sameHref(submenu,'text-<%= COLOR.primary %>')||''}}">
                             <i class="{{submenu.icon}}"></i>{{submenu.text}}
                         </a>
                     </li>
@@ -18,12 +18,12 @@
             </li>
             <li class="active">
                 <a data-function="menu" href="javascript:void(0)">
-                    <i class="{{<%= modelName %>.MENU.menu.icon}} position-left"></i>
-                    {{<%= modelName %>.MENU.menu.text}}
+                    <i class="{{<%= scope %>.MENU.menu.icon}} position-left"></i>
+                    {{<%= scope %>.MENU.menu.text}}
                 </a>
                 <a
-                        ng-show="!<%= modelName %>.menu.already(baseController,'#<%= modelName %>')"
-                        ng-click="<%= modelName %>.favorite(baseController);"
+                        ng-show="!<%= scope %>.menu.already(baseController,'#<%= scope %>')"
+                        ng-click="<%= scope %>.favorite(baseController);"
                         class="text-<%= COLOR.primary %>-700 legitRipple"
                         title="Add To Favorite">
                     <i title="Add To Favorite"
@@ -34,8 +34,8 @@
         <ul class="breadcrumb-elements">
 
             <li>
-                <a title="Restore configuration for this table" ng-click="<%= modelName %>.restoreStorage()"
-                   ng-show="<%= modelName %>.characterist('persist')"
+                <a title="Restore configuration for this table" ng-click="<%= scope %>.restoreStorage()"
+                   ng-show="<%= scope %>.characterist('persist')"
                    class="legitRipple">
                     <i title="Restore configuration for this table" class="icon-loop"></i> 
                 </a>
@@ -44,30 +44,30 @@
                 <a title="Records Per Page" href="#" class="dropdown-toggle legitRipple" data-toggle="dropdown"
                    aria-expanded="false">
                     <i title="Records Per Page" class="icon-list"></i>
-                    ({{<%= modelName %>.table.currentLimit===0?'All':<%= modelName %>.table.currentLimit}})
-                    <span ng-show="<%= modelName %>.getLimits().length>1" class="caret"></span>
+                    ({{<%= scope %>.table.currentLimit===0?'All':<%= scope %>.table.currentLimit}})
+                    <span ng-show="<%= scope %>.getLimits().length>1" class="caret"></span>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-right" ng-show="<%= modelName %>.getLimits().length>1">
-                    <li title="Show {{row==0?'All':row}} Records Per Page" class="{{<%= modelName %>.limitActive(row)}}"
-                        ng-repeat="(key, row) in <%= modelName %>.getLimits()">
-                        <a ng-click="<%= modelName %>.goLimit(row)">{{row==0?'All':row}}</a>
+                <ul class="dropdown-menu dropdown-menu-right" ng-show="<%= scope %>.getLimits().length>1">
+                    <li title="Show {{row==0?'All':row}} Records Per Page" class="{{<%= scope %>.limitActive(row)}}"
+                        ng-repeat="(key, row) in <%= scope %>.getLimits()">
+                        <a ng-click="<%= scope %>.goLimit(row)">{{row==0?'All':row}}</a>
                     </li>
                 </ul>
             </li>
-            <li ng-show="<%= modelName %>.allow('add')">
-                <a href="#<%= modelName %>" class="legitRipple">
+            <li ng-show="<%= scope %>.allow('add')">
+                <a href="#<%= scope %>" class="legitRipple">
                     <i title="Add" class="icon-plus-circle2 "></i> 
                 </a>
             </li>
 
 
-            <li ng-show="<%= modelName %>.allow('filter')">
-                <a ng-click="<%= modelName %>.openFilters();" class="legitRipple" title="Filter">
+            <li ng-show="<%= scope %>.allow('filter')">
+                <a ng-click="<%= scope %>.openFilters();" class="legitRipple" title="Filter">
                     <i title="Filter" class="icon-filter4"></i> 
                 </a>
             </li>
 
-            <li class="dropdown" ng-show="<%= modelName %>.allow('export')">
+            <li class="dropdown" ng-show="<%= scope %>.allow('export')">
                 <a title="Export as" href="#" class="dropdown-toggle legitRipple" data-toggle="dropdown"
                    aria-expanded="false">
                     <i title="Export as" class=" icon-database-export "></i>
@@ -75,17 +75,17 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">
                     <li>
-                        <a ng-click="<%= modelName %>.export.go('Clipboard')"><i class="icon-copy3"></i>Clipboard</a>
+                        <a ng-click="<%= scope %>.export.go('Clipboard')"><i class="icon-copy3"></i>Clipboard</a>
                     </li>
-                    <li><a ng-click="<%= modelName %>.export.go('PDF')"> <i class="icon-file-pdf"></i>PDF</a></li>
-                    <li><a ng-click="<%= modelName %>.export.go('CSV')"> <i class="icon-libreoffice"></i>CSV</a></li>
-                    <li><a ng-click="<%= modelName %>.export.go('XLS')"><i class="icon-file-excel"></i>XLS</a></li>
-                    <li><a ng-click="<%= modelName %>.export.go('DOC')"> <i class="icon-file-word"></i>DOC</a></li>
+                    <li><a ng-click="<%= scope %>.export.go('PDF')"> <i class="icon-file-pdf"></i>PDF</a></li>
+                    <li><a ng-click="<%= scope %>.export.go('CSV')"> <i class="icon-libreoffice"></i>CSV</a></li>
+                    <li><a ng-click="<%= scope %>.export.go('XLS')"><i class="icon-file-excel"></i>XLS</a></li>
+                    <li><a ng-click="<%= scope %>.export.go('DOC')"> <i class="icon-file-word"></i>DOC</a></li>
 
                 </ul>
             </li>
 
-            <li class="dropdown" ng-show="<%= modelName %>.allow('export')">
+            <li class="dropdown" ng-show="<%= scope %>.allow('export')">
                 <a title="Import" href="#" class="dropdown-toggle legitRipple" data-toggle="dropdown"
                    aria-expanded="false">
                     <i title="Import" class="icon-database-upload"></i>
@@ -97,7 +97,7 @@
                 </ul>
             </li>
 
-            <li class="dropdown" ng-show="<%= modelName %>.characterist('batch')">
+            <li class="dropdown" ng-show="<%= scope %>.characterist('batch')">
                 <a title="Batch Actions" href="#" class="dropdown-toggle legitRipple" data-toggle="dropdown"
                    aria-expanded="false">
                     <i title="Batch Actions" class="icon-stack-check "></i>
@@ -105,14 +105,14 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">
                     <li><a href="#"><i class="icon-trash"></i>Remove</a></li>
-                    <li ng-show="<%= modelName %>.activeColumn()"><a href="#"><i class="icon-checkmark-circle"></i>Enable</a>
+                    <li ng-show="<%= scope %>.activeColumn()"><a href="#"><i class="icon-checkmark-circle"></i>Enable</a>
                     </li>
-                    <li ng-show="<%= modelName %>.activeColumn()"><a href="#"><i class="icon-circle"></i>Disable</a>
+                    <li ng-show="<%= scope %>.activeColumn()"><a href="#"><i class="icon-circle"></i>Disable</a>
                     </li>
                 </ul>
             </li>
             <li>
-                <a ng-click="<%= modelName %>.refresh()" class="legitRipple">
+                <a ng-click="<%= scope %>.refresh()" class="legitRipple">
                     <i title="Refresh" class="icon-rotate-cw3 loadingButton"></i> 
                 </a>
             </li>

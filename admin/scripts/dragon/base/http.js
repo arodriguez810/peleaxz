@@ -11,6 +11,9 @@ HTTP = {
         var formurl = [];
         formurl.push(`http${CONFIG.ssl ? "s" : ""}://${CONFIG.subdomain !== "" ? (CONFIG.subdomain + ".") : ""}${CONFIG.domain}:${CONFIG.port === 80 ? "" : CONFIG.port}`);
         return formurl.concat(pathsarray).join("/");
+    },
+    redirect: function (path) {
+        document.location.href = HTTP.path(path.split('/'));
     }
 };
 $(document).ready(function () {

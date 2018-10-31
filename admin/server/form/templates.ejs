@@ -1,0 +1,19 @@
+<%
+FORM = {
+    template: function (view, data) {
+        return include('../../5-views/templates/' + view, data);
+    },
+    checkbox: function (name, model, options) {
+        return FORM.template('form/checkbox', {name: name, model: model, opts: options});
+    },
+    input: function (name, model, options) {
+        return FORM.template('form/input', {name: name, model: model, opts: options});
+    },
+    inputview: function (name, model, options) {
+        return FORM.template('form/inputview', {name: name, model: model, opts: options});
+    },
+    button: function (name, model, options) {
+        return FORM.template('form/button', {name: name, model: model, opts: options});
+    }
+};
+%>

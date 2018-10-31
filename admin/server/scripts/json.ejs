@@ -1,0 +1,22 @@
+<%
+OBJECT = {
+    merge: function (target, ...sources) {
+        if (!sources.length) return target;
+        const source = sources.shift();
+        if (OBJECT.isObject(target) && OBJECT.isObject(source)) {
+            for (const key in source) {
+                if (OBJECT.isObject(source[key])) {
+                    if (!target[key]) Object.assign(target, {[key]: {}});
+                    OBJECT.merge(target[key], source[key]);
+                } else {
+                    Object.assign(target, {[key]: source[key]});
+                }
+            }
+        }
+        return OBJECT.merge(target, ...sources);
+    },
+    isObject: function (item) {
+        return (item && typeof item === 'object' && !Array.isArray(item));
+    }
+};
+%>

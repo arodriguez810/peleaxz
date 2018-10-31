@@ -324,7 +324,6 @@ EXPORT = {
                 $("#sweetalertbutton0").click();
             }
             CHECKBOX.run_switchery();
-
         };
         $scope.export.json = function (parameters, type, callback) {
             $scope.list(parameters, function (data) {

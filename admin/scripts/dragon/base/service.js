@@ -19,7 +19,7 @@ SERVICE = {
                         "                        $http.get(String.format(\"{0}/{1}/{2}?{3}\", '" + rootPath + "', '" + parent + "', '" + functionName + "', $queryString)).then(function (data) {\n" +
                         "                            callBack(data);\n" +
                         "                        }, function (data) {\n" +
-                        "                            console.log('Error: ' + data);\n" +
+                        "                            console.log('error',data);\n" +
                         "                        });\n" +
                         "                    };";
                     eval(String.format("SERVICE.{0}.{1} = {2}", parent, functionName, functioner));
@@ -35,7 +35,7 @@ SERVICE = {
                         "                        $http." + method + "(String.format(\"{0}/{1}/{2}\", '" + rootPath + "', '" + parent + "', '" + functionName + "'),parameters).then(function (data) {\n" +
                         "                            callBack(data);\n" +
                         "                        }, function (data) {\n" +
-                        "                            console.log('Error: ' + data);\n" +
+                        "                            console.log('error',data);\n" +
                         "                        });\n" +
                         "                    };";
                     eval(String.format("SERVICE.{0}.{1} = {2}", parent, functionName, functioner));

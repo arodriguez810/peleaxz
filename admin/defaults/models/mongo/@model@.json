@@ -1,8 +1,0 @@
-{
-  name: String,
-  description: String,
-  active: Boolean,
-  created:{ type: Date, default: Date.now },
-  updated:{ type: Date, default: Date.now },
-  deleted:{ type: Date, default: Date.now }
-}

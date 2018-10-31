@@ -1,25 +1,25 @@
-<td ng-repeat="(key, value) in <%= modelName %>.columns()"
+<td ng-repeat="(key, value) in <%= scope %>.columns()"
     ng-show="value.visible!=false"
     class="{{::value.class || ''}} context-control"
     style="{{::value.style || ''}}"
     data-column="{{::key}}"
-    ng-click="<%= modelName %>.cell.select($event,row)"
-    ng-dblclick="<%= modelName %>.cell.dblselect($event)"
+    ng-click="<%= scope %>.cell.select($event,row)"
+    ng-dblclick="<%= scope %>.cell.dblselect($event)"
 >
 
     <span
-            ng-bind-html="<%= modelName %>.drawCheck(key,row)"
-            ng-click="<%= modelName %>.check(row)"
+            ng-bind-html="<%= scope %>.drawCheck(key,row)"
+            ng-click="<%= scope %>.check(row)"
     >
     </span>
-    <span ng-bind-html="<%= modelName %>.cellValue(key,value,row)"
-          ng-click="<%= modelName %>.cell.click(key,value,row)"
-          ng-dblclick="<%= modelName %>.cell.dblclick(key,value,row)"
-          ng-mousedown="<%= modelName %>.cell.mousedown(key,value,row)"
-          ng-mouseenter="<%= modelName %>.cell.mouseenter(key,value,row)"
-          ng-mouseleave="<%= modelName %>.cell.mouseleave(key,value,row)"
-          ng-mousemove="<%= modelName %>.cell.mousemove(key,value,row)"
-          ng-mouseover="<%= modelName %>.cell.mouseover(key,value,row)"
-          ng-mouseup="<%= modelName %>.cell.mouseup(key,value,row)"
+    <span ng-bind-html="<%= scope %>.cellValue(key,value,row)"
+          ng-click="<%= scope %>.cell.click(key,value,row)"
+          ng-dblclick="<%= scope %>.cell.dblclick(key,value,row)"
+          ng-mousedown="<%= scope %>.cell.mousedown(key,value,row)"
+          ng-mouseenter="<%= scope %>.cell.mouseenter(key,value,row)"
+          ng-mouseleave="<%= scope %>.cell.mouseleave(key,value,row)"
+          ng-mousemove="<%= scope %>.cell.mousemove(key,value,row)"
+          ng-mouseover="<%= scope %>.cell.mouseover(key,value,row)"
+          ng-mouseup="<%= scope %>.cell.mouseup(key,value,row)"
     ></span>
 </td>

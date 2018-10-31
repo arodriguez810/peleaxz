@@ -1,0 +1,27 @@
+<%
+var name = name || "";
+var options = {
+    text: params.capitalize(name),
+    icon: {
+        class: "none",
+        position: "left",
+        color: COLOR.primary
+    },
+    type: "normal"
+};
+options = OBJECT.merge(options, opts);
+options.color = options.type === "form" ? "{{" + model + ".validation.stateDefault()}}" : COLOR.primary;
+var toclient = JSON.stringify(options);
+%>
+<script>
+    <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
+</script>
+<div class="form-group">
+    <button type="button" role="button"
+            ng-click="<%= model %>.<%= name %>_click()"
+            class="btn bg-<%= options.color  %>-800 btn-block legitRipple">
+        <%= options.model ? "{{" + options.model + "}}" : options.text %>
+        <i class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} position-{{<%= model %>.form.options.<%= name %>.icon.position}}"></i>
+    </button>
+</div>
+

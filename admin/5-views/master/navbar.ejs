@@ -51,7 +51,7 @@
             </li>
         </ul>
         <div class="navbar-right" ng-if="baseController.SESSION.isLogged()">
-            <p class="navbar-text">Hi, <%= session.fullName() %></p>
+            <p class="navbar-text">{{baseController.SESSION.current().fullName()}}</p>
         </div>
     </div>
 </div>
