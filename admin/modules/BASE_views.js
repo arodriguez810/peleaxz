@@ -1,15 +1,8 @@
 exports.LoadEJS = function (files, params) {
     for (var i in files) {
         var file = files[i];
-        var viewName = params.S(file).contains("index.ejs")
-            ? ""
-            : file.replace(".ejs", "");
-        params.app.get(
-            params.util.format(
-                "/%s%s",
-                params.modelName === "base" ? "" : params.modelName + "/",
-                viewName
-            ),
+        var viewName = params.S(file).contains("index.ejs") ? "" : file.replace(".ejs", "");
+        params.app.get(params.util.format("/%s%s", params.modelName === "base" ? "" : params.modelName + "/", viewName),
             function (req, res) {
                 var path = req.originalUrl;
                 var realPath = path.split("?");
@@ -49,7 +42,7 @@ exports.LoadEJS = function (files, params) {
                     TAG: newtags,
                     models: models,
                     FOLDERS: params.folders,
-                    DATA: req.body,
+                    DATA: req.query,
                     SERVICES: params.catalogs,
                     params: params,
                     localserver: localserver
@@ -153,7 +146,7 @@ exports.loadEJSSimple = function (folder, prefix, params) {
                     TAG: newtags,
                     models: models,
                     FOLDERS: params.folders,
-                    DATA: req.body,
+                    DATA: req.query,
                     SERVICES: params.catalogs,
                     params: params
                 };
@@ -183,7 +176,7 @@ exports.loadEJSSimple = function (folder, prefix, params) {
                 }
 
                 var send = {
-                    modelName: params.modelName,
+                    scope: params.modelName,
                     session: params.session,
                     localjs: params.localjs,
                     controllersjs: params.controllersjs,
@@ -310,6 +303,79 @@ exports.init = function (params) {
             params
         );
     });
+
+    params.app.get("/files/api/", function (req, res) {
+        var fs = params.fs || require("fs");
+        var folder = req.query.folder;
+        var realPath = params.folders.files + "/" + folder;
+        try {
+            if (fs.statSync(realPath).isDirectory()) {
+                var files = fs.readdirSync(realPath);
+                files = files.filter(function (file) {
+                    return file.indexOf(".zip") === -1;
+                });
+                res.json({root: realPath, files: files, count: files.length});
+            } else {
+                res.json({root: realPath, files: [], count: 0, error: "Is Not Directory"});
+            }
+        } catch (err) {
+            console.log(err);
+            res.json({root: realPath, files: [], count: 0, error: {catch: err}});
+        }
+        res.json({root: realPath, files: [], count: 0});
+    });
+
+    params.app.post("/files/api/delete", async function (req, res) {
+        var fs = params.fs || require("fs");
+        var files = req.body.filename;
+        var info = {deleted: [], error: []};
+        for (var file of files) {
+            try {
+                await fs.unlinkSync(__dirname + '/..' + params.S(file).replaceAll('/', '\\'));
+                info.deleted.push(file);
+            } catch (err) {
+                info.error.push(file);
+            }
+        }
+        res.json(info);
+    });
+
+    params.app.get("/files/api/download", async function (req, res) {
+        var fs = params.fs || require("fs");
+        var folder = req.query.folder;
+        var name = req.query.name;
+        var file = params.folders.files + "/" + folder + "/" + name;
+        try {
+            await fs.unlinkSync(file);
+        } catch (err) {
+
+        }
+        params.zipdir(params.folders.files + "/" + folder + "/", {saveTo: file}, function (err, buffer) {
+            if (err) {
+                res.json({zipped: err});
+            }
+            res.json({zipped: true});
+        });
+    });
+
+    params.app.post("/files/api/upload", params.upload.array('toupload', 100), function (req, res, next) {
+        var fs = params.fs || require("fs");
+        var uploaded = [];
+        for (var file of req.files) {
+            var ext = file.originalname.split('.');
+            ext = "." + ext[ext.length - 1];
+            var dir = __dirname + '/../' + params.folders.files + '/' + req.body.folder;
+            var filename = dir + "/" + (file.originalname + '___' + file.filename) + ext;
+            uploaded.push(filename);
+            if (!fs.existsSync(dir))
+                params.shelljs.mkdir('-p', dir);
+
+            fs.renameSync(file.path, filename);
+        }
+        res.json({uploaded: uploaded});
+
+    });
+
     exports.loadEJSSimple(
         "./" + params.folders.views + "/master/error",
         "error",

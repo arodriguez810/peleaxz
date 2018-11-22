@@ -2739,7 +2739,7 @@ label.checkbox-switch.checkbox-inline {
   cursor: pointer;
   outline: 0;
   display: block;
-  height: 38px;
+  height: 32px;
   padding: 8px 0;
   line-height: 1.5384616;
   position: relative;
@@ -3030,7 +3030,7 @@ label.checkbox-switch.checkbox-inline {
 .select2-results__option[role=group] {
   padding: 0;
 }
-.select2-results__option.select2-results__option--highlighted {
+.select2-results__option.select2-results__option--highlighted[aria-selected=false] {
   background-color: #f5f5f5;
 }
 .select2-results__option[aria-disabled=true] {
@@ -3041,7 +3041,6 @@ label.checkbox-switch.checkbox-inline {
   color: rgba(255, 255, 255, 0.6);
 }
 .select2-results__option[aria-selected=true] {
-  background-color: #26A69A;
   color: #fff;
 }
 .select2-results__options--nested > .select2-results__option {
@@ -14967,7 +14966,6 @@ a.plupload_disabled:focus {
 .dropzone .dz-preview .dz-details .dz-filename,
 .dropzone-previews .dz-preview .dz-details .dz-filename {
   overflow: hidden;
-  height: 100%;
 }
 .dropzone .dz-preview .dz-details img,
 .dropzone-previews .dz-preview .dz-details img {

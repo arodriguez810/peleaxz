@@ -1,6 +1,7 @@
 SWEETALERT = {
+    lastLaert: null,
     goPage: function ($scope) {
-        myswal({
+        SWEETALERT.lastLaert = myswal({
             title: String.format(
                 "Enter Page Number between {0} to {1}",
                 1,
@@ -29,7 +30,7 @@ SWEETALERT = {
         });
     },
     confirm: function (data) {
-        myswal({
+        SWEETALERT.lastLaert = myswal({
             type: data.type || "warning",
             title: data.title || "",
             html: data.message || "¿Are you sure?",
@@ -52,7 +53,7 @@ SWEETALERT = {
             id++;
         });
         buttonsHtml += '</div> </div>';
-        myswal({
+        SWEETALERT.lastLaert = myswal({
             type: data.type || "info",
             title: data.title || "",
             html: (data.message || "") + buttonsHtml,
@@ -73,7 +74,7 @@ SWEETALERT = {
         });
     },
     show: function (data) {
-        myswal({
+        SWEETALERT.lastLaert = myswal({
             type: data.type || "info",
             title: data.title || "",
             html: data.message || "",
@@ -82,11 +83,12 @@ SWEETALERT = {
             if (typeof data.confirm === "function") data.close();
         });
     },
-    loading: function (data) {
-        swal({
+    loading: function (data, animation) {
+        SWEETALERT.lastLaert = swal({
             title: data.title || "",
             html: data.message || "",
-            showConfirmButton: false
+            showConfirmButton: false,
+            animation: animation === undefined
         });
         swal.showLoading();
     },

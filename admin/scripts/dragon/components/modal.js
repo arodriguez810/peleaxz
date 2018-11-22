@@ -2,6 +2,32 @@ MODAL = {
     historyObject: [],
     history: [],
     viewData: [],
+    getViewData: function () {
+        return ARRAY.last(MODAL.historyObject).viewData;
+    },
+    current: function () {
+        return ARRAY.last(MODAL.historyObject);
+    },
+    closeAll: function () {
+        var last = ARRAY.last(MODAL.history);
+        $(last).modal("hide");
+        for (const item of MODAL.history) {
+            $(item).remove();
+        }
+        MODAL.history = [];
+    },
+    close: function ($scope) {
+        var last = ARRAY.last(MODAL.history);
+        $(last).modal("hide");
+        ARRAY.removeLast(MODAL.history);
+        ARRAY.removeLast(MODAL.historyObject);
+        $(last).remove();
+        if (MODAL.history.length > 0) {
+            last = ARRAY.last(MODAL.history);
+            baseController.viewData = ARRAY.last(MODAL.historyObject).viewData;
+            $(last).modal("show");
+        }
+    },
     run: function ($scope) {
         $scope.modal = {};
         $scope.modal.DOMID = "modalpool";
@@ -29,7 +55,7 @@ MODAL = {
 
             var backMode = MODAL.history.length > 0 && data.backMode;
             var closeModal = String.format(
-                'ng-click="{0}.modal.close()"', $scope.modelName
+                'onclick="MODAL.close({0})"', $scope.modelName
             );
             var animation = data.animation || "";
             var bgheader = data.header.bg || "primary";
@@ -66,21 +92,21 @@ MODAL = {
                         "modalcontent" + data.id,
                         data.content.loadingContentText || "Loading...",
                         function (success) {
-                            $scope.build("modal" + data.id);
                         }
                     );
                 }
-                else
+                else {
+
                     $scope.loadContentClean(
                         data.content.data.replaceAll("->", ""),
                         "modalcontent" + data.id,
                         data.content.loadingContentText || "Loading...",
                         function (success) {
-                            $scope.build("modal" + data.id);
                         }
                     );
+                }
             } else {
-                $scope.build("modal" + data.id);
+                // $scope.build("modal" + data.id);
             }
 
             $("#modal" + data.id).on("show.bs.modal", function () {
@@ -99,7 +125,7 @@ MODAL = {
                 if (typeof data.event.show.end === "function")
                     data.event.show.end($scope);
             });
-            data.viewData = $scope.viewData;
+            data.viewData = baseController.viewData;
             MODAL.historyObject.push(data);
 
 
@@ -114,7 +140,7 @@ MODAL = {
                 $(last).modal("hide");
             }
             var data = ARRAY.last(MODAL.historyObject);
-            $scope.modal.viewData = data.viewData;
+            baseController.viewData = data.viewData;
             $("#modal" + id).modal("show");
 
 
@@ -130,7 +156,6 @@ MODAL = {
                 });
                 indexb++;
             }
-
             MODAL.history.push("#modal" + id);
         };
         $scope.modal.reopen = function (id) {
@@ -142,27 +167,32 @@ MODAL = {
             $(last).modal("hide");
             ARRAY.removeLast(MODAL.history);
             ARRAY.removeLast(MODAL.historyObject);
+            $(last).remove();
             if (MODAL.history.length > 0) {
                 last = ARRAY.last(MODAL.history);
-                $scope.modal.viewData = ARRAY.last(MODAL.historyObject).viewData;
+                baseController.viewData = ARRAY.last(MODAL.historyObject).viewData;
                 $(last).modal("show");
             }
         };
         $scope.modal.closeAll = function () {
             var last = ARRAY.last(MODAL.history);
             $(last).modal("hide");
+            for (const item of MODAL.history) {
+                $(item).remove();
+            }
             MODAL.history = [];
         };
         $scope.modal.modalView = function (view, options) {
-            var id = view.replaceAll("/", "_").replaceAll("#", "_");
+
+            var id = view.replaceAll("/", "_").replaceAll("#", "_").replaceAll(".", "_");
             var properties = {
                 id: id,
                 animation: "",
-                width: "modal-lg", //modal-xs modal-sm modal-lg modal-full
+                width: ENUM.modal.width.large,
                 backMode: true,
                 header: {
                     title: "Test Modal",
-                    icon: "law",
+                    icon: ICON.classes.law,
                     bg: TAG.table,
                     closeButton: true,
                     h: "h6"
@@ -179,7 +209,7 @@ MODAL = {
                 },
                 content: {
                     data: "->" + view,
-                    loadingContentText: "Loading Filters"
+                    loadingContentText: "Loading..."
                 },
                 event: {
                     show: {
@@ -201,7 +231,6 @@ MODAL = {
                 }
             };
             var merge = DSON.merge(properties, options);
-
             id = $scope.modal.add(merge);
             $scope.modal.open(id);
         };
@@ -210,7 +239,7 @@ MODAL = {
             var properties = {
                 id: id,
                 animation: "",
-                width: "modal-lg",
+                width: ENUM.modal.width.large,
                 backMode: true,
                 header: {
                     title: "",

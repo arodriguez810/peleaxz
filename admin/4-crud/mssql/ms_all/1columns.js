@@ -15,12 +15,14 @@ DSON.keepmerge(CRUD_ms_all,
             contextMenu: true,
             sorteable: true,
             key: 'id',
+            deletekeys: ['id'],
             engine: 'ms',
             columns: {
                 id: {
                     label: "ID",
                     sorttype: "numeric",//numeric,amount,time
-                    class: "text-left"
+                    class: "text-left",
+                    exportExample: false,
                 },
                 name: {
                     label: "name",
@@ -28,11 +30,11 @@ DSON.keepmerge(CRUD_ms_all,
                     //["click", "dblclick", "mousedown", "mouseenter", "mouseleave", "mousemove", "mouseover", "mouseup"]
                     click: function (data) {
                         alert(data.row.name);
-                    }
+                    },
                 },
                 lastName: {
                     label: "lastName",
-                    shorttext: 20
+                    shorttext: 20,
                 },
                 products: {
                     label: "Products",
@@ -52,10 +54,35 @@ DSON.keepmerge(CRUD_ms_all,
                                 cancelButton: true
                             },
                             content: {
-                                loadingContentText: "Loading Products"
+                                loadingContentText: "Loading Products..."
                             },
                         }
-                    }
+                    },
+                    exportExample: "id separated by ';'",
+                },
+                users: {
+                    label: "Users",
+                    multilink: {
+                        table: "ms_allusers",
+                        from: "id",
+                        to: "all",
+                        getList: "user",
+                        list: "ms_allusers",
+                        wherelist: "user",
+                        modal: {
+                            header: {
+                                title: "Users Category Opinions of ${this.name}",
+                                icon: "user"
+                            },
+                            footer: {
+                                cancelButton: true
+                            },
+                            content: {
+                                loadingContentText: "Loading Users..."
+                            },
+                        }
+                    },
+                    exportExample: false
                 },
                 ms_child_name: {
                     label: "child",
@@ -75,11 +102,28 @@ DSON.keepmerge(CRUD_ms_all,
                                 loadingContentText: "Loading Child Info"
                             },
                         }
-                    }
+                    },
+                    exportExample: "id from master table",
                 },
                 ms_other_description: {
                     label: "other",
-                    shorttext: 20
+                    shorttext: 20,
+                    link: {
+                        table: "ms_other",
+                        from: "other",
+                        modal: {
+                            header: {
+                                title: "Detail of Other ${this.ms_other_name}",
+                                icon: "cube"
+                            },
+                            footer: {
+                                cancelButton: true
+                            },
+                            content: {
+                                loadingContentText: "Loading Other Info"
+                            },
+                        }
+                    }
                 },
                 description: {
                     label: "description",
@@ -91,7 +135,8 @@ DSON.keepmerge(CRUD_ms_all,
                     label: "biography",
                     sortable: false,
                     formattype: "html",
-                    export: false
+                    export: false,
+                    exportExample: false
                 },
                 average: {
                     label: function () {
@@ -100,13 +145,15 @@ DSON.keepmerge(CRUD_ms_all,
                     format: function (value) {
                         return value === null ? '' : value + ICON.i("percent");
                     },
-                    sorttype: "numeric"
+                    sorttype: "numeric",
+                    exportExample: "[numeric 1 to 100]",
                 },
                 salary: {
                     label: "salary",
                     formattype: "numeric:0,0.00",
                     sorttype: "numeric",
-                    class: "text-right"
+                    class: "text-right",
+                    exportExample: "[money]",
                 },
                 salaryNeto: {
                     label: "Salary Neto",
@@ -115,40 +162,115 @@ DSON.keepmerge(CRUD_ms_all,
                     class: "text-right text-red",
                     value: function (data) {
                         return (data.row.salary * data.row.average) / 100;
-                    }
+                    },
+                    exportExample: false
                 },
                 location: {
                     label: "location",
                     formattype: "location:name",
                     sortable: false,
+                    exportExample: "[latitude],[longitud]",
                 },
                 image: {
                     label: "image",
                     formattype: "file:image",
                     sortable: false,
+                    exportExample: false
+                },
+                images: {
+                    label: "Gallery",
+                    folder: "galleries/ms_all/${this.id}",
+                    files: {
+                        maxsize: 20,
+                        maxfiles: 4,
+                        columns: 2,
+                        acceptedFiles: null,
+                        modal: {
+                            width: 'modal-full',
+                            header: {
+                                title: "Gallery of ${this.name}",
+                                icon: "images3"
+                            },
+                            footer: {
+                                cancelButton: true
+                            },
+                            content: {
+                                loadingContentText: "Loading Images"
+                            },
+                        }
+                    },
+                    sortable: false,
+                    exportExample: false
                 },
                 file: {
                     label: "file",
                     formattype: "file:all",
                     sortable: false,
+                    exportExample: false
+                },
+                color: {
+                    formattype: "color",
+                    sortable: false,
+                    exportExample: "[Hexadecimal Color]",
+                },
+                hashtags: {
+                    formattype: "tags",
+                    sortable: false
+                },
+                birthDate: {
+                    sorttype: "time",
+                    formattype: "datetime>DD-MM-YYYY",
+                    exportExample: "[Date DD-MM-YYYY]"
+                },
+                lastLogin: {
+                    sorttype: "time",
+                    formattype: "datetime>DD-MM-YYYY hh:mm a",
+                    exportExample: "[Date DD-MM-YYYY hh:mm a]"
+                },
+                record: {
+                    sorttype: "time",
+                    formattype: "datetime>hh:mm a",
+                    exportExample: "[Time hh:mm a]"
                 },
                 active: {
                     visible: true,
                     sorttype: "bool",
-                    formattype: "bool"
+                    formattype: "bool",
+                    exportExample: "[0 or 1]"
                 },
                 created: {
                     visible: true,
                     sorttype: "time",
-                    formattype: "datetime:12"
+                    formattype: "datetime>DD-MM-YYYY hh:mm a",
+                    exportExample: false
                 },
                 updated: {
                     visible: false,
-                    export: false
+                    export: false,
+                    exportExample: false
                 },
                 deleted: {
                     visible: false,
-                    visibleDetail: false
+                    visibleDetail: false,
+                    exportExample: false
+                },
+                user_created: {
+                    visible: false,
+                    visibleDetail: false,
+                    export: false,
+                    exportExample: false
+                },
+                user_updated: {
+                    visible: false,
+                    visibleDetail: false,
+                    export: false,
+                    exportExample: false
+                },
+                user_deleted: {
+                    visible: false,
+                    visibleDetail: false,
+                    export: false,
+                    exportExample: false
                 }
             }
         }

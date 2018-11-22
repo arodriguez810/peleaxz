@@ -1,0 +1,106 @@
+<%
+var name = name || "";
+var options = {
+    placeholder: params.capitalize(name),
+    model: 1,
+    icon: {
+        class: "location4",
+        position: "left",
+        color: COLOR.primary
+    },
+    helptext: '',
+    readonly: false,
+    disabled: false,
+    posttype: "location"
+
+};
+options = OBJECT.merge(options, opts);
+var toclient = JSON.stringify(options);
+%>
+<script>
+    <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
+    <%= model %>.form.registerField("<%= name %>Lat", "<%= toclient %>");
+    <%= model %>.form.registerField("<%= name %>Lon", "<%= toclient %>");
+    <%= model %>.form.registerField("<%= name %>Address", "<%= toclient %>");
+    <%= model %>.form.registerField("<%= name %>Filter", "<%= toclient %>");
+</script>
+<div class="form-group-material form-group has-feedback has-{{<%= model %>.validation.getType('<%= name %>')}}  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
+     id="input<%= name %>">
+    <label
+            class="control-label {{<%= model %>.form.LabelVisible('<%= name %>Filter')?'is-visible animate':''}}">
+        {{<%= model %>.form.options.<%= name %>.placeholder}}
+    </label>
+
+    <input
+            ng-readonly="<%= model %>.form.options.<%= name %>.readonly"
+            ng-disabled="<%= model %>.form.options.<%= name %>.disabled"
+            placeholder="{{<%= model %>.form.options.<%= name %>.placeholder}}"
+            name="<%= name %>AddressFilter"
+            ng-model="<%= model + "." + name %>Filter"
+            class="form-control typeahead" type="text" placeholder="Enter an address">
+
+    <i onclick="$(" #<%= name %>_map").hide();" class="icon-close"></i>
+    <div id="<%= name %>_map" class="map-wrapper " style="display: none"></div>
+    <input type="hidden" ng-model="<%= model + "." + name %>Lat" name="<%= name %>Lat">
+    <input type="hidden" ng-model="<%= model + "." + name %>Lon" name="<%= name %>Lon">
+    <input type="hidden" ng-model="<%= model + "." + name %>Address" name="<%= name %>Address">
+    <input type="hidden" ng-model="<%= model + "." + name %>" name="<%= name %>">
+
+    <div class="form-control-feedback">
+        <i class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} text-{{<%= model %>.validation.getColor('<%= name %>',<%= model %>.form.options.<%= name %>.icon.color)}}">
+
+        </i>
+    </div>
+
+    <span ng-show="<%= model %>.form.options.<%= name %>.helptext!=''"
+          class="help-block text-muted">
+        {{<%= model %>.form.options.<%= name %>.helptext}}
+    </span>
+
+    <span ng-show="<%= model %>.validation.getMessages('<%= name %>').length>0" class="help-block">
+        <p class="text-{{$eval(validation).type}}"
+           ng-repeat="validation in <%= model %>.validation.getMessages('<%= name %>')">
+               <i class="{{$eval(validation).icon}}"></i> {{$eval(validation).message}}
+        </p>
+    </span>
+</div>
+<script>
+    $(document).ready(function () {
+        var addressPicker = new AddressPicker({
+            map: {
+                id: '#<%= name %>_map',
+                zoom: 10,
+                center: new google.maps.LatLng(53.5510846, 9.99368179999999)
+            },
+            reverseGeocoding: true,
+        });
+
+        $('[name="<%= name %>AddressFilter"]').focus(function () {
+            $("#<%= name %>_map").show();
+        });
+
+        $('[name="<%= name %>AddressFilter"]').dblclick(function () {
+            $("#<%= name %>_map").hide();
+        });
+
+        $('[name="<%= name %>AddressFilter"]').focusout(function () {
+            $('[name="<%= name %>AddressFilter"]').val(<%= model + "." + name %>Address);
+        });
+
+        $('[name="<%= name %>AddressFilter"]').typeahead(null, {
+            displayKey: 'description',
+            limit: 20,
+            source: addressPicker.ttAdapter()
+        });
+        addressPicker.bindDefaultTypeaheadEvent($('[name="<%= name %>AddressFilter"]'));
+        $(addressPicker).on('addresspicker:selected', function (event, result) {
+            Prism.highlightAll();
+            <%= model + "." + name %>Address = result.address();
+            $('[name="<%= name %>AddressFilter"]').val(result.address());
+            <%= model + "." + name %>Lat = result.lat();
+            <%= model + "." + name %>Lon = result.lng();
+            <%= model + "." + name %> = result.lat() + "," + result.lng();
+
+        });
+    });
+</script>

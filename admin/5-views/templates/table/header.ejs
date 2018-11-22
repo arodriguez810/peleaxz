@@ -1,4 +1,7 @@
-<div class="page-header-lg page-header-sm  page-header-xs page-header page-header-default border-bottom-lg border-bottom-<%= TAG.border %>">
+<div
+
+
+        class="page-header-lg page-header-sm  page-header-xs page-header page-header-default border-bottom-lg border-bottom-<%= TAG.border %>">
     <!--Breadcrumb and Table Options-->
     <div class="breadcrumb-line"><a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
 
@@ -33,14 +36,14 @@
         </ul>
         <ul class="breadcrumb-elements">
 
-            <li>
+            <li ng-show="<%= scope %>.records.data.length>1">
                 <a title="Restore configuration for this table" ng-click="<%= scope %>.restoreStorage()"
                    ng-show="<%= scope %>.characterist('persist')"
                    class="legitRipple">
                     <i title="Restore configuration for this table" class="icon-loop"></i> 
                 </a>
             </li>
-            <li class="dropdown">
+            <li class="dropdown" ng-show="<%= scope %>.records.data.length>1">
                 <a title="Records Per Page" href="#" class="dropdown-toggle legitRipple" data-toggle="dropdown"
                    aria-expanded="false">
                     <i title="Records Per Page" class="icon-list"></i>
@@ -55,59 +58,65 @@
                 </ul>
             </li>
             <li ng-show="<%= scope %>.allow('add')">
-                <a href="#<%= scope %>" class="legitRipple">
+                <a ng-click="<%= scope %>.pages.form({},'new')" class="legitRipple">
                     <i title="Add" class="icon-plus-circle2 "></i> 
                 </a>
             </li>
-
-
-            <li ng-show="<%= scope %>.allow('filter')">
+            <li ng-if="<%= scope %>.allow('filter') && <%= scope %>.filters!==undefined">
                 <a ng-click="<%= scope %>.openFilters();" class="legitRipple" title="Filter">
                     <i title="Filter" class="icon-filter4"></i> 
+                    <span ng-show="<%= scope %>.filters.blocks.length"
+                          class="label bg-<%= TAG.table %>-400">{{<%= scope %>.filters.blocks.length}}</span>
                 </a>
             </li>
-
-            <li class="dropdown" ng-show="<%= scope %>.allow('export')">
+            <li class="dropdown" ng-show="<%= scope %>.records.data.length>1">
                 <a title="Export as" href="#" class="dropdown-toggle legitRipple" data-toggle="dropdown"
                    aria-expanded="false">
                     <i title="Export as" class=" icon-database-export "></i>
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">
-                    <li>
+                    <li ng-show="<%= scope %>.allow('export.Clipboard')">
                         <a ng-click="<%= scope %>.export.go('Clipboard')"><i class="icon-copy3"></i>Clipboard</a>
                     </li>
-                    <li><a ng-click="<%= scope %>.export.go('PDF')"> <i class="icon-file-pdf"></i>PDF</a></li>
-                    <li><a ng-click="<%= scope %>.export.go('CSV')"> <i class="icon-libreoffice"></i>CSV</a></li>
-                    <li><a ng-click="<%= scope %>.export.go('XLS')"><i class="icon-file-excel"></i>XLS</a></li>
-                    <li><a ng-click="<%= scope %>.export.go('DOC')"> <i class="icon-file-word"></i>DOC</a></li>
+                    <li ng-show="<%= scope %>.allow('export.PDF')">
+                        <a ng-click="<%= scope %>.export.go('PDF')"> <i class="icon-file-pdf"></i>PDF</a></li>
+                    <li ng-show="<%= scope %>.allow('export.CSV')">
+                        <a ng-click="<%= scope %>.export.go('CSV')"> <i class="icon-libreoffice"></i>CSV</a></li>
+                    <li ng-show="<%= scope %>.allow('export.XLS')">
+                        <a ng-click="<%= scope %>.export.go('XLS')"><i class="icon-file-excel"></i>XLS</a></li>
+                    <li ng-show="<%= scope %>.allow('export.DOC')">
+                        <a ng-click="<%= scope %>.export.go('DOC')"> <i class="icon-file-word"></i>DOC</a></li>
 
                 </ul>
             </li>
-
-            <li class="dropdown" ng-show="<%= scope %>.allow('export')">
+            <li class="dropdown" ng-show="<%= scope %>.allow('import') && <%= scope %>.records.data.length>1">
                 <a title="Import" href="#" class="dropdown-toggle legitRipple" data-toggle="dropdown"
                    aria-expanded="false">
                     <i title="Import" class="icon-database-upload"></i>
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">
-                    <li><a ng-click=""><i class="icon-file-download"></i>Donwload CSV Example</a></li>
+                    <li><a ng-click="<%= scope %>.export.downloadExample()"><i class="icon-file-download"></i>Donwload
+                            Example</a></li>
                     <li><a ng-click=""> <i class="icon-import"></i>Import</a></li>
                 </ul>
             </li>
-
-            <li class="dropdown" ng-show="<%= scope %>.characterist('batch')">
+            <li class="dropdown" ng-show="<%= scope %>.characterist('batch') && <%= scope %>.records.data.length>1">
                 <a title="Batch Actions" href="#" class="dropdown-toggle legitRipple" data-toggle="dropdown"
                    aria-expanded="false">
                     <i title="Batch Actions" class="icon-stack-check "></i>
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">
-                    <li><a href="#"><i class="icon-trash"></i>Remove</a></li>
-                    <li ng-show="<%= scope %>.activeColumn()"><a href="#"><i class="icon-checkmark-circle"></i>Enable</a>
+                    <li><a ng-click="<%= scope %>.deleteSelected()"><i class="icon-trash"></i>Remove</a></li>
+                    <li ng-show="<%= scope %>.activeColumn()">
+                        <a ng-click="<%= scope %>.activeSelected(1)">
+                            <i class="icon-checkmark-circle"></i>Enable
+                        </a>
                     </li>
-                    <li ng-show="<%= scope %>.activeColumn()"><a href="#"><i class="icon-circle"></i>Disable</a>
+                    <li ng-show="<%= scope %>.activeColumn()">
+                        <a ng-click="<%= scope %>.activeSelected(0)"><i class="icon-circle"></i>Disable</a>
                     </li>
                 </ul>
             </li>
@@ -116,7 +125,6 @@
                     <i title="Refresh" class="icon-rotate-cw3 loadingButton"></i> 
                 </a>
             </li>
-
         </ul>
     </div>
     <!--Breadcrumb and Table Options-->

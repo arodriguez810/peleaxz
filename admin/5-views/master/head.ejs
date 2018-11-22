@@ -15,7 +15,9 @@
     <link href="assets/css/components.css" rel="stylesheet" type="text/css">
     <link href="assets/css/extras/animate.min.css" rel="stylesheet" type="text/css">
     <link href="assets/css/sweetalert2.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/js/plugins/date/jquery.datetimepicker.min.css" rel="stylesheet" type="text/css">
     <link href="assets/css/colors.css" rel="stylesheet" type="text/css">
+
 
     <% localStyles.forEach(function(item){ %>
         <link href="<%= FOLDERS.styles %>/<%= item %>" rel="stylesheet" type="text/css">
@@ -36,8 +38,10 @@
     <script type="text/javascript" src="assets/js/plugins/extensions/contextmenu.js"></script>
     <script type="text/javascript" src="assets/js/plugins/visualization/d3/d3.min.js"></script>
     <script type="text/javascript" src="assets/js/plugins/visualization/d3/d3_tooltip.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/uploaders/dropzone.min.js"></script>
 
     <!-- FORM JS files -->
+    <script type="text/javascript" src="assets/js/plugins/forms/wizards/steps.min.js"></script>
     <script type="text/javascript" src="assets/js/plugins/forms/styling/uniform.min.js"></script>
     <script type="text/javascript" src="assets/js/plugins/forms/styling/switchery.min.js"></script>
     <script type="text/javascript" src="assets/js/plugins/forms/styling/switch.min.js"></script>
@@ -51,11 +55,11 @@
     <script type="text/javascript" src="assets/js/plugins/forms/inputs/touchspin.min.js"></script>
     <script type="text/javascript" src="assets/js/plugins/forms/inputs/maxlength.min.js"></script>
     <script type="text/javascript" src="assets/js/plugins/forms/inputs/formatter.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/forms/inputs/jquery.mask.min.js"></script>
     <!-- FORM JS files -->
 
     <script type="text/javascript" src="assets/js/plugins/ui/moment/moment.min.js"></script>
-    <script type="text/javascript" src="assets/js/plugins/pickers/daterangepicker.js"></script>
-    <script type="text/javascript" src="assets/js/core/app.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/media/fancybox.min.js"></script>
     <script type="text/javascript" src="assets/js/plugins/ui/ripple.min.js"></script>
     <script type="text/javascript" src="assets/js/plugins/velocity/velocity.min.js"></script>
     <script type="text/javascript" src="assets/js/plugins/velocity/velocity.ui.min.js"></script>
@@ -64,27 +68,34 @@
     <script type="text/javascript" src="assets/js/plugins/numeral/numeral.min.js"></script>
     <script type="text/javascript" src="assets/js/plugins/media/cropper.min.js"></script>
     <script type="text/javascript" src="assets/js/core/libraries/jquery_ui/interactions.min.js"></script>
+
     <!-- /theme JS files -->
+
     <script type="text/javascript" src="assets/js/core/libraries/angular.min.js"></script>
     <script type="text/javascript" src="assets/js/core/libraries/angular-sanitize.js"></script>
     <script type="text/javascript" src="node_modules/table-dragger/dist/table-dragger.min.js"></script>
     <script type="text/javascript" src="assets/js/plugins/excel/excelexportjs.js"></script>
     <script type="text/javascript" src="assets/js/plugins/docx/html-docx.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=<%= CONFIG.googlemap %>"></script>
+    <script type="text/javascript" src="assets/js/plugins/pickers/color/spectrum.js"></script>
+
+
+
+    <script type="text/javascript" src="assets/js/core/app.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/date/jquery.datetimepicker.full.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= CONFIG.googlemap %>&amp;sensor=false&amp;libraries=places"></script>
+    <script type="text/javascript" src="assets/js/core/libraries/jquery_ui/widgets.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/pickers/location/typeahead_addresspicker.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/pickers/location/autocomplete_addresspicker.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/pickers/location/location.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/editors/summernote/summernote.min.js"></script>
+
 
     <% localjs.forEach(function(item){ %>
         <script src="<%= FOLDERS.scripts %>/<%= item %>"></script>
     <% }); %>
 
-    <% crudjs.forEach(function(item){ %>
-        <script src="<%= FOLDERS.crud %>/<%= item %>"></script>
-    <% }); %>
-
-    <% controllersjs.forEach(function(item){ if(item != undefined){ %>
-        <script src="<%= FOLDERS.controllers %>/<%= item %>"></script>
-    <% }}); %>
-
     <script>
+        Dropzone.autoDiscover = false;
         CONFIG = "<%= JSON.stringify(CONFIG) %>";
         CONFIG = eval("(" + CONFIG.replaceAll("&#34;", '"') + ")");
         COLOR = "<%= JSON.stringify(COLOR) %>";
@@ -100,7 +111,16 @@
         SERVICES = eval("(" + SERVICES.replaceAll("&#34;", '"') + ")");
         SERVICE.run(SERVICES);
         MODEL = {};
+        SESSION.ifLogoffRedirec();
     </script>
+
+    <% crudjs.forEach(function(item){ %>
+        <script src="<%= FOLDERS.crud %>/<%= item %>"></script>
+    <% }); %>
+
+    <% controllersjs.forEach(function(item){ if(item != undefined){ %>
+        <script src="<%= FOLDERS.controllers %>/<%= item %>"></script>
+    <% }}); %>
 
     <% localserver.forEach(function (item) {
         if (item != undefined) {

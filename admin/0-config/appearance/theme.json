@@ -1,13 +1,15 @@
 {
   "ui": {
     "colors": {
-      "primary": "indigo",
+      "primary": "slate",
       "danger": "danger",
       "success": "success",
       "warning": "warning",
-      "info": "indigo",
+      "info": "danger",
+      //slate, grey, brown, orange, green, teal, blue, indigo, purple, violet, pink, info, warning, success, danger
       "default": "default",
-      "sidebar": "", //"default",
+      "sidebar": "",
+      //"default",
       "tag": {
         "table": "info",
         "navbar": "primary",

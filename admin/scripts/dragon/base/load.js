@@ -1,6 +1,7 @@
 LOAD = {
     run: function ($scope, $http) {
         $scope.loadContent = function (view, id, loadingText, callback, baseDiv) {
+
             baseDiv = baseDiv === undefined ? true : baseDiv;
             var thisid = "#" + id;
             ANIMATION.loading(thisid, loadingText);
@@ -9,34 +10,15 @@ LOAD = {
                 return;
             }
 
-            $http.get(view, {}).then(
-                function (data) {
-                    var paths = view.split("/");
-                    paths[paths.length - 1] = `CO_${ARRAY.last(paths)}.js`;
-                    var key = paths.join('/');
-                    var url = `${FOLDERS.controllers}/${key}`;
-                    var html = data.data;
-                    JQUERY.loadScript(
-                        url,
-                        key,
-                        function (data) {
-                            var htmlfinal = html;
-                            if (baseDiv) {
-                                htmlfinal = html.replace(
-                                    String.format(
-                                        '<div id="{0}" ng-controller="{0} as {0}">',
-                                        key
-                                    ),
-                                    ""
-                                );
-                                htmlfinal = htmlfinal.replace("</div><!--end-->", "");
-                            }
+            if (SESSION.ifLogoffRedirec(view))
+                return;
 
-                            $(thisid).html(htmlfinal);
-                            ANIMATION.stoploading(thisid);
-                            callback(true);
-                        }
-                    );
+
+            $http.get(view + "?scope=" + $scope.modelName, {}).then(
+                function (data) {
+                    $(thisid).html($scope.returnBuild(data.data));
+                    ANIMATION.stoploading(thisid);
+                    callback(true);
                 },
                 function (data) {
                     $(thisid).load("error/" + data.status, function () {
@@ -63,25 +45,16 @@ LOAD = {
             ANIMATION.stoploading();
             return;
         }
+        if (SESSION.ifLogoffRedirec(view))
+            return;
         MENU.setActive(view);
         LOAD.loadContentView(view, $scope, $http, $compile);
     },
     loadContentView: function (view, $scope, $http, $compile) {
         $http.get(view, {}).then(
             function (data) {
-                var paths = view.split("/");
-                paths[paths.length - 1] = `CO_${ARRAY.last(paths)}.js`;
-                var key = paths.join('/');
-                var html = data.data;
-                var url = `${FOLDERS.controllers}/${key}`;
-                JQUERY.loadScript(
-                    url,
-                    key,
-                    function (data) {
-                        $("#content").html($compile(html)($scope));
-                        ANIMATION.stoploading();
-                    }
-                );
+                $("#content").html($compile(data.data)($scope));
+                ANIMATION.stoploading();
             },
             function (data) {
                 $("#content").load("error/" + data.status);

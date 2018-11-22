@@ -6,8 +6,10 @@ CRUD = {
 
         $scope.lastRow = {};
         $scope.active = function (row) {
+            if (DSON.oseaX(row))
+                return false;
             var value = eval("row." + $scope.activeColumn());
-            return value;
+            return value == 1;
         };
         $scope.isActiveColumn = function (key) {
             var acColumn = $scope.table.crud.table.activeColumn;

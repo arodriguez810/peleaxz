@@ -12,7 +12,8 @@ var options = {
     format: '',
     readonly: false,
     disabled: false,
-    autocomplete: ''
+    autocomplete: '',
+    posttype: "text"
     //maxlength: 10,
 
 };
@@ -32,7 +33,7 @@ var toclient = JSON.stringify(options);
             class="control-label {{<%= model %>.form.LabelVisible('<%= name %>')?'is-visible animate':''}}">
         {{<%= model %>.form.options.<%= name %>.placeholder}}
     </label>
-    <input
+    <textarea
             ng-model="<%= model + "." + name %>" name="<%= name %>"
             ng-readonly="<%= model %>.form.options.<%= name %>.readonly"
             ng-disabled="<%= model %>.form.options.<%= name %>.disabled"
@@ -40,7 +41,7 @@ var toclient = JSON.stringify(options);
             type="{{<%= model %>.form.options.<%= name %>.type}}"
             <%= options.model ? "value='{{" + options.model + "}}'" : "" %>
             class="form-control"
-            placeholder="{{<%= model %>.form.options.<%= name %>.placeholder}}">
+            placeholder="{{<%= model %>.form.options.<%= name %>.placeholder}}"></textarea>
 
     <div class="form-control-feedback">
         <i class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} text-{{<%= model %>.validation.getColor('<%= name %>',<%= model %>.form.options.<%= name %>.icon.color)}}">
@@ -53,8 +54,9 @@ var toclient = JSON.stringify(options);
     </span>
 
     <span ng-show="<%= model %>.validation.getMessages('<%= name %>').length>0" class="help-block">
-        <p ng-repeat="message in <%= model %>.validation.getMessages('<%= name %>')">
-                {{message}}
+       <p class="text-{{$eval(validation).type}}"
+          ng-repeat="validation in <%= model %>.validation.getMessages('<%= name %>')">
+               <i class="{{$eval(validation).icon}}"></i> {{$eval(validation).message}}
         </p>
     </span>
 </div>

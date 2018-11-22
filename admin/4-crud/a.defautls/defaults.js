@@ -12,6 +12,7 @@ CRUDDEFAULTS = {
         contextMenu: true,
         sorteable: true,
         key: 'id',
+        deletekeys: ['id'],
         engine: 'ms',
         batch: true,
         persist: true,
@@ -19,11 +20,19 @@ CRUDDEFAULTS = {
         allow: {
             add: true,
             edit: true,
+            view: true,
             remove: true,
             active: true,
             filter: true,
-            export: true,
-            actions: true
+            import: true,
+            export: {
+                Clipboard: true,
+                PDF: true,
+                CSV: true,
+                XLS: true,
+                DOC: true
+            },
+            actions: true,
         },
         options: [
             {
@@ -60,6 +69,39 @@ CRUDDEFAULTS = {
                     },
                     {
                         text: (data) => {
+                            return "View";
+                        },
+                        icon: (data) => {
+                            return "eye";
+                        },
+                        permission: (data) => {
+                            return 'view';
+                        },
+                        characterist: (data) => {
+                            return "";
+                        },
+                        click: function (data) {
+                            if (!DSON.oseaX(data.row)) {
+                                data.$scope.dataForView = data.row;
+
+                                data.$scope.modal.modalView(String.format("{0}/view", data.$scope.modelName), {
+                                    header: {
+                                        title: "View of " + data.$scope.plural,
+                                        icon: "user"
+                                    },
+                                    footer: {
+                                        cancelButton: true
+                                    },
+                                    content: {
+                                        loadingContentText: "Loading Child Info",
+                                        sameController: true
+                                    },
+                                });
+                            }
+                        }
+                    },
+                    {
+                        text: (data) => {
                             return "Remove";
                         },
                         icon: (data) => {
@@ -72,16 +114,24 @@ CRUDDEFAULTS = {
                             return "";
                         },
                         click: function (data) {
-                            alert(data.row.name);
+                            SWEETALERT.confirm({
+                                message: "¿Are you sure you want delete this record?",
+                                confirm: function () {
+                                    SWEETALERT.loading({message: "Deleting Row..."});
+                                    data.$scope.deleteRow(data.row).then(function () {
+                                        SWEETALERT.stop();
+                                    });
+                                }
+                            });
                             return false;
                         }
                     },
                     {
                         text: (data) => {
-                            return !data.$scope.active(data.row) ? "Enable" : "Disable";
+                            return "Enable";
                         },
                         icon: (data) => {
-                            return !data.$scope.active(data.row) ? "checkmark-circle" : "circle";
+                            return "checkmark-circle";
                         },
                         permission: (data) => {
                             return 'active';
@@ -90,13 +140,50 @@ CRUDDEFAULTS = {
                             return "";
                         },
                         click: function (data) {
-                            alert(data.row.name);
+                            SWEETALERT.confirm({
+                                message: "¿Are you sure you want " + "Enable" + " this record?",
+                                confirm: function () {
+                                    SWEETALERT.loading({message: "Procesing Row..."});
+                                    data.$scope.activeRow(data.row, 1).then(function () {
+                                        SWEETALERT.stop();
+                                    });
+                                }
+                            });
                             return false;
                         },
                         show: function (data) {
                             return data.$scope.activeColumn();
                         }
-                    }
+                    },
+                    {
+                        text: (data) => {
+                            return "Disable";
+                        },
+                        icon: (data) => {
+                            return "circle";
+                        },
+                        permission: (data) => {
+                            return 'active';
+                        },
+                        characterist: (data) => {
+                            return "";
+                        },
+                        click: function (data) {
+                            SWEETALERT.confirm({
+                                message: "¿Are you sure you want " + "Disable" + " this record?",
+                                confirm: function () {
+                                    SWEETALERT.loading({message: "Procesing Row..."});
+                                    data.$scope.activeRow(data.row, 0).then(function () {
+                                        SWEETALERT.stop();
+                                    });
+                                }
+                            });
+                            return false;
+                        },
+                        show: function (data) {
+                            return data.$scope.activeColumn();
+                        }
+                    },
                 ]
             },
             {
@@ -107,7 +194,7 @@ CRUDDEFAULTS = {
                     return "file-download2";
                 },
                 permission: (data) => {
-                    return 'export';
+                    return '';
                 },
                 characterist: (data) => {
                     return '';
@@ -121,7 +208,7 @@ CRUDDEFAULTS = {
                             return "copy3";
                         },
                         permission: (data) => {
-                            return '';
+                            return 'export.Clipboard';
                         },
                         characterist: (data) => {
                             return "";
@@ -141,7 +228,7 @@ CRUDDEFAULTS = {
                             return "file-pdf";
                         },
                         permission: (data) => {
-                            return '';
+                            return 'export.PDF';
                         },
                         characterist: (data) => {
                             return "";
@@ -161,7 +248,7 @@ CRUDDEFAULTS = {
                             return "libreoffice";
                         },
                         permission: (data) => {
-                            return '';
+                            return 'export.CSV';
                         },
                         characterist: (data) => {
                             return "";
@@ -175,13 +262,13 @@ CRUDDEFAULTS = {
                     },
                     {
                         text: (data) => {
-                            return "XLS";
+                            return ENUM.file.formats.XLS;
                         },
                         icon: (data) => {
                             return "file-excel";
                         },
                         permission: (data) => {
-                            return '';
+                            return 'export.XLS';
                         },
                         characterist: (data) => {
                             return "";
@@ -201,7 +288,7 @@ CRUDDEFAULTS = {
                             return "file-word";
                         },
                         permission: (data) => {
-                            return '';
+                            return 'export.DOC';
                         },
                         characterist: (data) => {
                             return "";

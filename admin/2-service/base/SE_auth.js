@@ -9,9 +9,7 @@ exports.run = function (_params) {
 };
 exports.api = {
     gets: {
-        papa: async function (request) {
-            return {papa: 1};
-        }
+
     },
     posts: {
         login: async function (request) {

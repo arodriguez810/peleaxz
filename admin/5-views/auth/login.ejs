@@ -1,3 +1,6 @@
+<script>
+    auth_login;
+</script>
 <div id="<%= scope %>" ng-controller="<%= scope %> as <%= scope %>">
     <div class="row" style="overflow: hidden">
         <div class="col-lg-9 hidden-xs hidden-sm">
@@ -7,7 +10,8 @@
             <div class="panel panel-body">
                 <div class="form-group has-feedback has-feedback-left text-center">
                     <div class="icon-object border-<%= COLOR.primary %>-800 text-slate-300"><i
-                                class="text-<%= COLOR.info %> icon-user-{{<%= scope %>.validation.state()==='success'?'check animation':'lock'}}"></i></div>
+                                class="text-<%= COLOR.info %> icon-user-{{<%= scope %>.validation.state()==='success'?'check animation':'lock'}}"></i>
+                    </div>
                     <h5 class="content-group">Login to <%= CONFIG.appName %>
                         <small class="display-block">Enter your credentials below
                         </small>

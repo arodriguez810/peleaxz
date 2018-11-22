@@ -55,3 +55,7 @@ tr.dragon-columns.dragon-column-hide th {
 .table {
     max-width: 9999999px;
 }
+
+.dragon-row-deleted {
+    color: red;
+}

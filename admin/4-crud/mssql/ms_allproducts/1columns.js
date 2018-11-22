@@ -2,6 +2,7 @@ CRUD_ms_allproducts = {};
 DSON.keepmerge(CRUD_ms_allproducts, CRUDDEFAULTS);
 DSON.keepmerge(CRUD_ms_allproducts, {
     table: {
+        engine: 'ms',
         key: "ms_all_name",
         columns: {
             ms_all_name: {

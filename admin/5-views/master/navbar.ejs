@@ -1,5 +1,5 @@
 <!-- Main navbar -->
-<div class="navbar navbar-inverse  bg-<%= TAG.navbar %>-800"  ng-if="baseController.SESSION.isLogged()">
+<div class="navbar navbar-inverse  bg-<%= TAG.navbar %>-800"  ng-show="baseController.SESSION.isLogged()">
     <div class="navbar-header">
         <a class="navbar-brand" href="/">
             <img style="float: left !important;" src="assets/images/logo.svg" alt="">
@@ -29,7 +29,7 @@
                     <i class="icon-loop"></i>
                 </a>
             </li>
-            <li class="dropdown">
+            <li class="dropdown" ng-show="baseController.favorites.length">
                 <a href="#" class="dropdown-toggle legitRipple" data-toggle="dropdown" aria-expanded="false">
                     <i class="icon-heart5"></i>
                 </a>
@@ -49,8 +49,17 @@
                     </ul>
                 </div>
             </li>
+            <li>
+                <a class="sidebar-control" onclick="SESSION.logoff()" data-popup="tooltip" title=""
+                   data-placement="bottom" data-container="body" data-original-title="End Session">
+                    <i class="icon-switch"></i>
+                </a>
+            </li>
         </ul>
-        <div class="navbar-right" ng-if="baseController.SESSION.isLogged()">
+
+        <div class="navbar-right" ng-show="baseController.SESSION.isLogged()">
+
+
             <p class="navbar-text">{{baseController.SESSION.current().fullName()}}</p>
         </div>
     </div>

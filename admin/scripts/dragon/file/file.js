@@ -11,7 +11,7 @@ FILE = {
     },
     noSupport: function (filename) {
         var extension = FILE.extension(filename);
-        if (ARRAY.contains(["doc", "docx"], extension))
+        if (ARRAY.contains(["doc", "docx", "xls", "xlsx"], extension))
             return true;
         return false;
     },
@@ -19,6 +19,11 @@ FILE = {
         switch (extension) {
             case "pdf": {
                 return ICON.i('file-pdf');
+            }
+            case "xlsx":
+            case "csv":
+            case "xls": {
+                return ICON.i('file-excel');
             }
             case "gif":
             case "jpeg":

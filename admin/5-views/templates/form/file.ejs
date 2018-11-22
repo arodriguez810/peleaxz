@@ -1,0 +1,106 @@
+<%
+var name = name || "";
+var options = {
+    text: params.capitalize(name),
+    title: `Upload ${params.capitalize(name)}`,
+    icon: {
+        class: "upload",
+        position: "left",
+        color: COLOR.primary
+    },
+    type: "normal",
+    folder: `uploads/temp/${name}/${model}/` + new Date().getTime(),
+    maxsize_mb: 10,
+    maxfiles: 1,
+    acceptedFiles: null,
+    width: "modal-full",
+    columns: 1,
+    posttype: "file"
+};
+options = OBJECT.merge(options, opts);
+options.color = options.type === "form" ? "{{" + model + ".validation.stateDefault()}}" : COLOR.primary;
+var toclient = JSON.stringify(options);
+%>
+<script>
+    <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
+    <%= model %>.form.registerField("<%= name %>Count", "<%= toclient %>");
+    <%= model %>.<%= name %>Count = 0;
+</script>
+<div class="form-group-material form-group has-feedback has-{{<%= model %>.validation.getType('<%= name %>')}}  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
+     id="input<%= name %>">
+    <label
+            class="control-label {{<%= model %>.form.LabelVisible('<%= name %>')?'is-visible animate':''}}">
+        {{<%= model %>.form.options.<%= name %>.title}}
+    </label>
+
+    <button name="<%= name %>"
+            type="button"
+            role="button"
+            class="btn bg-<%= options.color %>-800 btn-block legitRipple">
+        <%= options.model ? "{{" + options.model + "}}" : "" %>
+        {{<%= model %>.<%= name %>Count>0? <%= model %>.<%= name %>Count + " Files" :""}}
+        <i class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} position-{{<%= model %>.form.options.<%= name %>.icon.position}}"></i>
+    </button>
+
+    <span ng-show="<%= model %>.form.options.<%= name %>.helptext!=''"
+          class="help-block text-muted">
+        {{<%= model %>.form.options.<%= name %>.helptext}}
+    </span>
+
+    <span ng-show="<%= model %>.validation.getMessages('<%= name %>').length>0" class="help-block">
+
+        <p class="text-{{$eval(validation).type}}"
+           ng-repeat="validation in <%= model %>.validation.getMessages('<%= name %>')">
+               <i class="{{$eval(validation).icon}}"></i> {{$eval(validation).message}}
+        </p>
+    </span>
+
+</div>
+<script>
+    var amLoad<%= name %> = false;
+    function ShowCount<%= name %>() {
+        if(amLoad<%= name %>){
+            BASEAPI.ajax.get(HTTP.path(["files", "api"]), {folder: <%= model %>.form.options.<%= name %>.folder}, function (data) {
+                <%= model %>.
+                <%= name %>Count = data.data.files.length;
+                <%= model %>.
+                $scope.$digest();
+            });
+            amLoad<%= name %> = false;
+        }
+    }
+    <%= model %>.form.beginFunctions.push("ShowCount<%= name %>()");
+
+    $(document).ready(function () {
+
+        <%= model %>.<%= name %> = "upload:" + <%= model %>.form.options.<%= name %>.folder;
+        $('[name="<%= name %>"]').click(function () {
+            amLoad<%= name %> = true;
+            var root = <%= model %>.form.options.<%= name %>.folder;
+            baseController.viewData = {
+                root: root,
+                scope: <%= model %>,
+                maxsize: <%= model %>.form.options.<%= name %>.maxsize_mb,
+                maxfiles: <%= model %>.form.options.<%= name %>.maxfiles,
+                acceptedFiles: <%= model %>.form.options.<%= name %>.acceptedFiles,
+                columns: <%= model %>.form.options.<%= name %>.columns
+            };
+            var modal = {
+                width: <%= model %>.form.options.<%= name %>.width,
+                header: {
+                    title: <%= model %>.form.options.<%= name %>.title,
+                    icon: <%= model %>.form.options.<%= name %>.icon.class
+                },
+                footer: {
+                    cancelButton: true
+                },
+                content: {
+                    loadingContentText: "Loading..."
+                },
+            };
+            <%= model %>.
+            modal.modalView("../templates/components/gallery", modal);
+        });
+    });
+</script>
+

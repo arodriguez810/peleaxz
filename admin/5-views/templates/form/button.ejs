@@ -7,7 +7,8 @@ var options = {
         position: "left",
         color: COLOR.primary
     },
-    type: "normal"
+    type: "normal",
+    posttype:"button"
 };
 options = OBJECT.merge(options, opts);
 options.color = options.type === "form" ? "{{" + model + ".validation.stateDefault()}}" : COLOR.primary;

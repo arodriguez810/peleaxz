@@ -1,12 +1,18 @@
 <div class="" id="<%= scope %>TablePanel" style="overflow-x: scroll;overflow-y: visible;">
     <!--Table List -->
     <div
-            ng-if="<%= scope %>.records.data.length<=0"
+            ng-show="<%= scope %>.records.data.length<=0"
             class="alert alpha-<%= TAG.table %> border-<%= TAG.table %> alert-styled-left">
         There is no data to show in this table.
     </div>
 
-    <table ng-show="<%= scope %>.records.data.length>0"
+    <div
+            ng-show="<%= scope %>.filters.lastFilter.length>0"
+            ng-bind-html="<%= scope %>.filters.description()"
+            class="alert alpha-<%= TAG.table %> border-<%= TAG.table %> alert-styled-left">
+    </div>
+
+    <table ng-show="<%= scope %>.records.data.length>1"
            class="table table-togglable table-framed sindu-table dragon-table <%= scope %>-drag"
            data-animation="bounceInUp"
            id="<%= scope %>Table"
@@ -21,31 +27,40 @@
                 ng-dblclick="<%= scope %>.cell.dblColumnSelect($event)"
                 class="handle"
             >
-                <%- include('columns',{modelName:modelName}); %>
+                <%- include('columns',{scope:scope}); %>
             </th>
-            <%- include('columnOption',{modelName:modelName}); %>
+            <%- include('columnOption',{scope:scope}); %>
         </tr>
         </thead>
         <tbody id="<%= scope %>TableBody">
         <!--Rows-->
         <tr ng-repeat="(key, row) in <%= scope %>.records.data" data-object="{{row}}"
-            class="dragon-rows {{<%= scope %>.rowClass(row)}} {{<%= scope %>.trCheck(row)}}">
-            <%- include('rows',{modelName:modelName}); %>
+            class="dragon-rows {{<%= scope %>.rowClass(row)}}  {{<%= scope %>.rowDeleted(row)}} {{<%= scope %>.trCheck(row)}}">
+            <%- include('rows',{scope:scope}); %>
             <!--Options-->
-            <%- include('rowOptions',{modelName:modelName}); %>
+            <%- include('rowOptions',{scope:scope}); %>
         </tr>
+        </tbody>
+    </table>
+
+    <table ng-show="<%= scope %>.records.data.length===1" class="table table-togglable table-framed">
+        <tbody>
+        <%- include('rowOptionsSimple',{scope:scope}); %>
+        <%- include('rowsSimple',{scope:scope}); %>
         </tbody>
     </table>
     <!--Table List-->
 </div>
 <div class="context-menu" ng-show="<%= scope %>.characterist('contextMenu')">
     <ul class="dropdown-menu" ng-show="<%= scope %>.options.length>0">
-        <li>
+        <li >
             <a
+                    ng-show="<%= scope %>.allow(menu.permission())"
                     data-action="{{<%= scope %>.option.action(menu,{},true,true)}}"
                     ng-repeat="(key, menu) in <%= scope %>.currentOptionsContext().menus"
             >
                 <i
+
                         data-action="{{<%= scope %>.option.action(menu,{},true,true)}}"
                         class="icon-{{<%= scope %>.option.icon(menu,{},true)}}">
                 </i>
@@ -54,4 +69,4 @@
         </li>
     </ul>
 </div>
-<%- include('paginator',{modelName:modelName}); %>
+<%- include('paginator',{scope:scope}); %>

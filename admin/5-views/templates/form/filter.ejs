@@ -1,0 +1,262 @@
+<div class="modal-footer">
+    <button type="button" class="btn btn-link" ng-click="<%= scope %>.filters.apply()">Apply</button>
+    <button type="button" class="btn btn-link" ng-click="<%= scope %>.filters.clear()">Clear</button>
+    <button type="button" class="btn btn-link" ng-click="<%= scope %>.filters.close()">Close</button>
+</div>
+<div class="row {{<%= scope %>.filters.colored(block)}}"
+     ng-repeat="(key,block) in <%= scope %>.filters.blocks"
+     value="{{block}}">
+    <div class="col-sm-1 col-md-1">
+        <button type="button" role="button"
+                ng-click="<%= scope %>.filters.toggleGroup(block)"
+                class="btn text-<%= COLOR.primary %>-800 {{<%= scope %>.filters.colored(block)}} text-bold  btn-block legitRipple text-right">
+            {{block.group?'(':' '}}
+        </button>
+    </div>
+    <div class="col-sm-4 col-md-2 ">
+        <div class="form-group-material form-group has-feedback  has-feedback-left">
+            <select
+                    ng-change="<%= scope %>.filters.changeType(block)"
+                    style="display: inline;"
+                    ng-model="block.column"
+                    class="form-control bootstrap-select columnFilter"
+                    ng-options="column.label for column in <%= scope %>.filters.fields track by column.key"
+            >
+
+            </select>
+        </div>
+    </div>
+    <div class="col-sm-4 col-md-2">
+        <div class="form-group-material form-group has-feedback  has-feedback-left">
+            <select
+                    style="display: inline;"
+                    ng-model="block.operator"
+                    class="form-control bootstrap-select operatorFilter"
+                    ng-options="operator.text for operator in <%= scope %>.filters.operatorByType(block.column) track by operator.text"
+            >
+            </select>
+        </div>
+    </div>
+    <div class="col-sm-8 col-md-4">
+        <div class="form-group-material form-group has-feedback  has-feedback-left">
+
+            <input ng-model="block.finalValue" class="real" type="hidden">
+
+            <input
+                    ng-click="event = $event" ng-change="<%= scope %>.filters.setReal(block,event)"
+                    ng-show="<%= scope %>.filters.showControl(['string'],block.column) && block.operator.disabled!==true"
+                    ng-model="block.value"
+                    data-scope="<%= scope %>"
+                    maxlength="{{block.column.maxlength || 999999}}"
+                    type="text"
+                    class="form-control stringFilter"
+                    placeholder="{{block.column.placeHolder || block.column.label}}">
+
+            <input
+                    ng-click="event = $event" ng-change="<%= scope %>.filters.setReal(block,event)"
+                    ng-show="<%= scope %>.filters.showControl(['integer'],block.column) && block.operator.disabled!==true"
+                    ng-model="block.value"
+                    data-scope="<%= scope %>"
+                    type="text"
+                    class="form-control numberFilter"
+                    placeholder="{{block.column.placeHolder || block.column.label}}">
+
+            <input
+                    ng-click="event = $event" ng-change="<%= scope %>.filters.setReal(block,event)"
+                    ng-show="<%= scope %>.filters.showControl(['decimal'],block.column) && block.operator.disabled!==true"
+                    ng-model="block.value"
+                    data-scope="<%= scope %>"
+                    type="text"
+                    class="form-control decimalFilter"
+                    placeholder="{{block.column.placeHolder || block.column.label}}">
+
+            <input
+                    ng-click="event = $event" ng-change="<%= scope %>.filters.setReal(block,event)"
+                    ng-show="<%= scope %>.filters.showControl(['color'],block.column) && block.operator.disabled!==true"
+                    ng-model="block.value"
+                    data-scope="<%= scope %>"
+                    type="text"
+                    class="form-control colorFilter"
+                    placeholder="{{block.column.placeHolder || block.column.label}}">
+
+            <input
+                    ng-click="event = $event" ng-change="<%= scope %>.filters.setReal(block,event)"
+                    ng-show="<%= scope %>.filters.showControl(['tags'],block.column) && block.operator.disabled!==true"
+                    ng-model="block.value"
+                    data-scope="<%= scope %>"
+                    type="text"
+                    class="form-control tagsFilter"
+                    placeholder="{{block.column.placeHolder || block.column.label}}">
+
+            <input
+                    ng-click="event = $event" ng-change="<%= scope %>.filters.setReal(block,event)"
+                    ng-show="<%= scope %>.filters.showControl(['time'],block.column) && block.operator.disabled!==true"
+                    ng-model="block.value"
+                    data-scope="<%= scope %>"
+                    type="text"
+                    class="form-control timeFilter"
+                    placeholder="{{block.column.placeHolder || block.column.label}}">
+
+            <input
+                    ng-click="event = $event" ng-change="<%= scope %>.filters.setReal(block,event)"
+                    ng-show="<%= scope %>.filters.showControl(['date'],block.column) && block.operator.disabled!==true"
+                    ng-model="block.value"
+                    data-scope="<%= scope %>"
+                    type="text"
+                    class="form-control dateFilter"
+                    placeholder="{{block.column.placeHolder || block.column.label}}">
+
+            <input
+                    ng-click="event = $event" ng-change="<%= scope %>.filters.setReal(block,event)"
+                    ng-show="<%= scope %>.filters.showControl(['datetime'],block.column) && block.operator.disabled!==true"
+                    ng-model="block.value"
+                    data-scope="<%= scope %>"
+                    type="text"
+                    class="form-control datetimeFilter"
+                    placeholder="{{block.column.placeHolder || block.column.label}}">
+
+            <select
+                    multiple
+                    ng-click="event = $event" ng-change="<%= scope %>.filters.setReal(block,event)"
+                    ng-show="<%= scope %>.filters.showControl(['relation'],block.column) && block.operator.disabled!==true"
+                    style="display: inline;"
+                    ng-model="block.value"
+                    class="form-control bootstrap-select relationFilter"
+
+            >
+                <option ng-repeat="(key,item) in <%= scope %>.filters.getSelect(block)"
+                        value="{{$eval('item.'+block.column.value)}}">
+                    {{$eval(block.column.text)}}
+                </option>
+            </select>
+
+        </div>
+    </div>
+    <div class="col-sm-1 col-md-1">
+        <button type="button" role="button"
+                ng-click="<%= scope %>.filters.toggleEndGroup(block)"
+                class="btn text-<%= COLOR.primary %>-800 {{<%= scope %>.filters.colored(block)}} text-bold bg-white btn-block legitRipple text-left">
+            {{block.endgroup?')':' '}}
+        </button>
+    </div>
+    <div class="col-sm-1 col-md-1">
+        <button type="button" role="button" ng-if="<%= scope %>.filters.visibleConnector(block)"
+                ng-click="<%= scope %>.filters.toggleConnector(block)"
+                class="btn {{<%= scope %>.filters.colorConnector(block)}} text-bold btn-block legitRipple text-left">
+            {{block.connector}}
+        </button>
+    </div>
+    <div class="col-sm-4 col-md-1">
+        <a title="Remove This Filter" ng-click="<%= scope %>.filters.remove(block)">
+            <i class=" icon-trash"></i>
+        </a>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group">
+        <button type="button" role="button"
+                ng-click="<%= scope %>.filters.add()"
+                class="btn bg-<%= COLOR.primary %>-800 btn-block legitRipple">
+            Add
+            <i class="icon-plus-circle2 position-left"></i>
+        </button>
+    </div>
+</div>
+<div class="row">
+    <p ng-bind-html="<%= scope %>.filters.description()">
+    </p>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-link" ng-click="<%= scope %>.filters.apply()">Apply</button>
+    <button type="button" class="btn btn-link" ng-click="<%= scope %>.filters.clear()">Clear</button>
+    <button type="button" class="btn btn-link" ng-click="<%= scope %>.filters.close()">Close</button>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $(".numberFilter").mask('####');
+        $('.decimalFilter').mask("#,##0.00", {reverse: true});
+        $(document).on("click", ".relationFilter", function () {
+
+        });
+        $(document).on("click", ".colorFilter", function () {
+            $(this).spectrum({
+                showInitial: true,
+                showInput: true,
+                showAlpha: true,
+                allowEmpty: true,
+                showPalette: true,
+                palette: [
+                    ["#000", "#444", "#666", "#999", "#ccc", "#eee", "#f3f3f3", "#fff"],
+                    ["#f00", "#f90", "#ff0", "#0f0", "#0ff", "#00f", "#90f", "#f0f"],
+                    ["#f4cccc", "#fce5cd", "#fff2cc", "#d9ead3", "#d0e0e3", "#cfe2f3", "#d9d2e9", "#ead1dc"],
+                    ["#ea9999", "#f9cb9c", "#ffe599", "#b6d7a8", "#a2c4c9", "#9fc5e8", "#b4a7d6", "#d5a6bd"],
+                    ["#e06666", "#f6b26b", "#ffd966", "#93c47d", "#76a5af", "#6fa8dc", "#8e7cc3", "#c27ba0"],
+                    ["#c00", "#e69138", "#f1c232", "#6aa84f", "#45818e", "#3d85c6", "#674ea7", "#a64d79"],
+                    ["#900", "#b45f06", "#bf9000", "#38761d", "#134f5c", "#0b5394", "#351c75", "#741b47"],
+                    ["#600", "#783f04", "#7f6000", "#274e13", "#0c343d", "#073763", "#20124d", "#4c1130"]
+                ]
+            });
+            $(this).trigger("click");
+        });
+
+        $(document).on("click", ".tagsFilter", function () {
+            $(this).tagsinput({
+                maxTags: 99999,
+                allowDuplicates: false,
+                tagClass: function (item) {
+                    return 'label bg-' + TAG.table;
+                }
+            });
+            $(this).focus();
+        });
+
+        $(document).on("click", ".datetimeFilter", function () {
+            var $me = $(this);
+            $me.datetimepicker({
+                format: 'd/m/Y h:i:s a',
+                timepicker: true,
+                datepicker: true,
+                lang: "es",
+                inline: false,
+                mask: false,
+                onChangeDateTime: function (currentDateTime) {
+                    $me.data('realValue', moment(currentDateTime).format("YYYY-MM-DD H:mm:s"));
+                }
+            });
+        });
+        $(document).on("click", ".dateFilter", function () {
+            var $me = $(this);
+            $me.datetimepicker({
+                format: 'd/m/Y',
+                timepicker: false,
+                datepicker: true,
+                lang: "es",
+                inline: false,
+                mask: false,
+                onChangeDateTime: function (currentDateTime) {
+                    $me.data('realValue', moment(currentDateTime).format("YYYY-MM-DD"));
+                }
+            });
+        });
+        $(document).on("click", ".timeFilter", function () {
+            var $me = $(this);
+            $me.datetimepicker({
+                format: 'h:i a',
+                timepicker: true,
+                datepicker: false,
+                lang: "es",
+                inline: false,
+                mask: false,
+                onChangeDateTime: function (currentDateTime) {
+                    $me.data('realValue', moment(currentDateTime).format("H:mm"));
+                }
+            });
+        });
+
+    });
+</script>
+
+
+
+

@@ -2,6 +2,9 @@
  * DSON
  */
 DSON = {
+    substringif: function (str, len) {
+        return str.length >= len ? str.substring(0, len) : str;
+    },
     template: function (templatestring, t) {
         return new Function("return `" + templatestring + "`;").call(t);
     },
@@ -28,6 +31,11 @@ DSON = {
     },
     iffunction: function (obj) {
         return typeof obj === "function";
+    },
+    cleanNumber: function (number) {
+        if (DSON.oseaX(number))
+            return 0;
+        return number.replace(/[^\d.-]/g, '');
     },
     noset: function (text) {
         return "";

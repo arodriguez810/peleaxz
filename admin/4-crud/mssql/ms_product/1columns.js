@@ -2,6 +2,7 @@ CRUD_ms_product = {};
 DSON.keepmerge(CRUD_ms_product, CRUDDEFAULTS);
 DSON.keepmerge(CRUD_ms_product, {
     table: {
+        engine: 'ms',
         columns: {
             id: {
                 label: "ID",
@@ -52,7 +53,7 @@ DSON.keepmerge(CRUD_ms_product, {
             created: {
                 visible: false,
                 sorttype: "time",
-                formattype: "datetime:12"
+                formattype: "datetime>DD-MM-YYYY hh:mm a"
             },
             updated: {
                 visible: false
@@ -60,6 +61,21 @@ DSON.keepmerge(CRUD_ms_product, {
             deleted: {
                 visible: false,
                 visibleDetail: false
+            },
+            user_created: {
+                visible: false,
+                visibleDetail: false,
+                export: false
+            },
+            user_updated: {
+                visible: false,
+                visibleDetail: false,
+                export: false
+            },
+            user_deleted: {
+                visible: false,
+                visibleDetail: false,
+                export: false
             }
         },
     }

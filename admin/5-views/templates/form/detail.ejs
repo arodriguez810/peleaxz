@@ -1,31 +1,32 @@
-<div ng-repeat="(d_key, d_row) in <%= modelName %>.modal.viewData.data"
-     class="form-horizontal {{<%= modelName %>.rowClass(d_row)}}">
+
+<div ng-repeat="(d_key, d_row) in <%= scope %>.records.data[0]"
+     class="form-horizontal {{<%= scope %>.rowClass(d_row)}}">
 
     <form>
         <div class="panel-body">
             <div class="form-group">
                 <div class="col-lg-12 text-center dragon-actions"
-                     ng-show="(<%= modelName %>.allow('actions',true,true) && <%= modelName %>.allow(['edit','remove','active'],true,true))">
+                     ng-show="(<%= scope %>.allow('actions',true,true) && <%= scope %>.allow(['edit','remove','active'],true,true))">
                     <ul class="icons-list" style="z-index: 99999">
-                        <li ng-repeat="(min, option) in <%= modelName %>.getOptions(true)"
-                            ng-show="<%= modelName %>.allow(<%= modelName %>.option.permission(option,d_row,true)) && <%= modelName %>.option.show(option,d_row,true)">
+                        <li ng-repeat="(min, option) in <%= scope %>.getOptions(true)"
+                            ng-show="<%= scope %>.allow(<%= scope %>.option.permission(option,d_row,true)) && <%= scope %>.option.show(option,d_row,true)">
                             <a
-                                    data-action="{{<%= modelName %>.option.action(option,d_row,true)}}"
-                                    title="{{<%= modelName %>.option.title(option,d_row,true)}}"
-                                    ng-click="<%= modelName %>.option.click(option,d_row,false,false,true)"
+                                    data-action="{{<%= scope %>.option.action(option,d_row,true)}}"
+                                    title="{{<%= scope %>.option.title(option,d_row,true)}}"
+                                    ng-click="<%= scope %>.option.click(option,d_row,false,false,true)"
                                     class="dropdown-toggle"
                                     data-toggle="dropdown">
-                                <i class=" icon-{{<%= modelName %>.option.icon(option,d_row,true)}}"></i>
+                                <i class=" icon-{{<%= scope %>.option.icon(option,d_row,true)}}"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-right dragon-menu" ng-show="option.menus">
                                 <li ng-repeat="(item, menu) in option.menus"
-                                    ng-show="<%= modelName %>.allow(<%= modelName %>.option.permission(menu,d_row,true)) && <%= modelName %>.option.show(menu,d_row,true)">
+                                    ng-show="<%= scope %>.allow(<%= scope %>.option.permission(menu,d_row,true)) && <%= scope %>.option.show(menu,d_row,true)">
                                     <a
-                                            title="{{<%= modelName %>.option.text(menu,d_row,true)}}"
-                                            data-action="{{<%= modelName %>.option.action(menu,d_row,true)}}"
-                                            ng-click="<%= modelName %>.option.click(menu,d_row,true,false,true)">
-                                        <i class="icon-{{<%= modelName %>.option.icon(menu,d_row,true)}}"></i>
-                                        {{<%= modelName %>.option.text(menu,d_row,true)}}
+                                            title="{{<%= scope %>.option.text(menu,d_row,true)}}"
+                                            data-action="{{<%= scope %>.option.action(menu,d_row,true)}}"
+                                            ng-click="<%= scope %>.option.click(menu,d_row,true,false,true)">
+                                        <i class="icon-{{<%= scope %>.option.icon(menu,d_row,true)}}"></i>
+                                        {{<%= scope %>.option.text(menu,d_row,true)}}
                                     </a>
                                 </li>
                             </ul>
@@ -34,27 +35,27 @@
                 </div>
             </div>
             <div
-                    ng-repeat="(d_index, d_column) in <%= modelName %>.modal.viewData.crud.table.columns"
+                    ng-repeat="(d_index, d_column) in <%= scope %>.crud.table.columns"
                     class="form-group {{d_column.class || ''}} "
                     ng-show="d_column.visibleDetail!=false"
                     style="{{d_column.style || ''}}"
                     data-column="{{d_key}}"
-                    ng-click="<%= modelName %>.cell.select($event,d_row)"
-                    ng-dblclick="<%= modelName %>.cell.dblselect($event)"
+                    ng-click="<%= scope %>.cell.select($event,d_row)"
+                    ng-dblclick="<%= scope %>.cell.dblselect($event)"
             >
                 <label class="col-lg-2 control-label text-bold"
-                       ng-bind-html="<%= modelName %>.columnLabel(d_column,d_index)"></label>
+                       ng-bind-html="<%= scope %>.columnLabel(d_column,d_index)"></label>
                 <div class="col-lg-10">
                     <span class="form-control"
-                          ng-bind-html="<%= modelName %>.cellValue(d_index,d_column,d_row)"
-                          ng-click="<%= modelName %>.cell.click(d_index,d_column,d_row)"
-                          ng-dblclick="<%= modelName %>.cell.dblclick(d_index,d_column,d_row)"
-                          ng-mousedown="<%= modelName %>.cell.mousedown(d_index,d_column,d_row)"
-                          ng-mouseenter="<%= modelName %>.cell.mouseenter(d_index,d_column,d_row)"
-                          ng-mouseleave="<%= modelName %>.cell.mouseleave(d_index,d_column,d_row)"
-                          ng-mousemove="<%= modelName %>.cell.mousemove(d_index,d_column,d_row)"
-                          ng-mouseover="<%= modelName %>.cell.mouseover(d_index,d_column,d_row)"
-                          ng-mouseup="<%= modelName %>.cell.mouseup(d_index,d_column,d_row)"
+                          ng-bind-html="<%= scope %>.cellValue(d_index,d_column,d_row)"
+                          ng-click="<%= scope %>.cell.click(d_index,d_column,d_row)"
+                          ng-dblclick="<%= scope %>.cell.dblclick(d_index,d_column,d_row)"
+                          ng-mousedown="<%= scope %>.cell.mousedown(d_index,d_column,d_row)"
+                          ng-mouseenter="<%= scope %>.cell.mouseenter(d_index,d_column,d_row)"
+                          ng-mouseleave="<%= scope %>.cell.mouseleave(d_index,d_column,d_row)"
+                          ng-mousemove="<%= scope %>.cell.mousemove(d_index,d_column,d_row)"
+                          ng-mouseover="<%= scope %>.cell.mouseover(d_index,d_column,d_row)"
+                          ng-mouseup="<%= scope %>.cell.mouseup(d_index,d_column,d_row)"
                     ></span>
                 </div>
             </div>
@@ -62,5 +63,3 @@
     </form>
 
 </div>
-
-

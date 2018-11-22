@@ -1,0 +1,118 @@
+<%
+var name = name || "";
+var options = {
+    text: params.capitalize(name),
+    icon: {
+        class: "upload",
+        position: "left",
+        color: COLOR.primary
+    },
+    type: "normal",
+    tempId: Math.ceil(new Date().getTime()/100000),
+    width: "modal-full",
+    posttype: "relations",
+    title: "Add Multiple",
+    master: null
+    //table:""
+};
+if (options.master === null) {
+    options.field = "tempid";
+} else {
+    options.tempId = options.master;
+}
+options = OBJECT.merge(options, opts);
+options.color = options.type === "form" ? "{{" + model + ".validation.stateDefault()}}" : COLOR.primary;
+var toclient = JSON.stringify(options);
+%>
+<script>
+    <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
+</script>
+<div class="form-group-material form-group has-feedback has-{{<%= model %>.validation.getType('<%= name %>')}}  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
+     id="input<%= name %>">
+    <label
+            class="control-label">
+        {{<%= model %>.form.options.<%= name %>.title}}
+    </label>
+
+    <button name="<%= name %>"
+            type="button"
+            role="button"
+            class="btn bg-<%= options.color %>-800 btn-block legitRipple">
+        <%= options.model ? "{{" + options.model + "}}" : "" %>
+        {{<%= model %>.<%= name %>Count>0? <%= model %>.<%= name %>Count + " Files" :""}}
+        <i class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} position-{{<%= model %>.form.options.<%= name %>.icon.position}}"></i>
+        {{<%= model %>.form.options.<%= name %>.title}}
+    </button>
+
+    <span ng-show="<%= model %>.form.options.<%= name %>.helptext!=''"
+          class="help-block text-muted">
+        {{<%= model %>.form.options.<%= name %>.helptext}}
+    </span>
+
+    <span ng-show="<%= model %>.validation.getMessages('<%= name %>').length>0" class="help-block">
+
+        <p class="text-{{$eval(validation).type}}"
+           ng-repeat="validation in <%= model %>.validation.getMessages('<%= name %>')">
+               <i class="{{$eval(validation).icon}}"></i> {{$eval(validation).message}}
+        </p>
+    </span>
+
+</div>
+<script>
+
+
+    $(document).ready(function () {
+
+
+        $('[name="<%= name %>"]').click(function () {
+
+            var id<%= name %> = <%= options.tempId %>;
+            SWEETALERT.loading({message: "Loading..."});
+            var linkCrud<%= name %> = eval("CRUD_<%= options.table %>");
+            BASEAPI.list("<%= options.table %>",
+                {
+                    limit: 0,
+                    page: 1,
+                    orderby: linkCrud<%= name %>.table.key || "id",
+                    order: "asc",
+                    join: linkCrud<%= name %>.table.single,
+                    where: [
+                        {
+                            field: "<%= options.field %>",
+                            value: id<%= name %>
+                        }
+                    ]
+                }
+                , function (info) {
+                    SWEETALERT.stop();
+
+                    baseController.viewData = {
+                        from: "<%= model %>",
+                        to: "<%= options.table %>",
+                        data: [
+                            {
+                                field: "<%= options.field %>",
+                                value: id<%= name %>
+                            }
+                        ],
+                        crud: linkCrud<%= name %>
+                    };
+                        <%= model %>.
+                    modal.modalView("<%= options.table %>", {
+                        header: {
+                            title: "<%= options.title %>",
+                            icon: "<%= options.icon.class %>"
+                        },
+                        footer: {
+                            cancelButton: true
+                        },
+                        content: {
+                            loadingContentText: "Loading..."
+                        },
+                    });
+                });
+
+        });
+    });
+</script>
+

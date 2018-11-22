@@ -13,6 +13,7 @@ var folders = {
     config: "0-config",
     styles: "styles",
     server: "server",
+    files: "files",
 };
 var modules = {}, localjs = [], localModules = [], localModulesVars = [], modulesList = [], developer = {};
 var fs = require("fs");
@@ -45,17 +46,21 @@ for (var i in CONFIG.modules) {
     localModulesVars.push(module.var);
     eval("var " + module.var + " = require('" + module.module + "');");
 }
-var watcher = chokidar.watch('');
-watcher.on('ready', function () {
-    console.log(1);
-    watcher.on('all', function () {
-        for (var i = 0; i < lines; i++) console.log("\r\n");
-        console.log("Clearing /dist/ module cache from server")
-        Object.keys(require.cache).forEach(function (id) {
-            delete require.cache[id];
-        })
-    })
-});
+
+var upload = multer({dest: folders.files + '/uploads/'});
+
+// var watcher = chokidar.watch('');
+// watcher.on('ready', function () {
+//     console.log(1);
+//     watcher.on('all', function () {
+//         for (var i = 0; i < lines; i++) console.log("\r\n");
+//         console.log("Clearing /dist/ module cache from server")
+//         Object.keys(require.cache).forEach(function (id) {
+//             delete require.cache[id];
+//         })
+//     })
+// });
+
 var jsoncsv = require('express-json-csv')(express);
 localModulesVars.push("jsoncsv");
 //******* Load Custom Modules********//
@@ -106,13 +111,14 @@ for (var i in localModulesVars) {
     allparams += "      " + name + ":" + name + ",";
 }
 allparams += "      collections: collections,";
-allparams += "      modelName: '@model@',";
+allparams += "      scope: '@model@',";
 allparams += "      modules:modules,";
 allparams += "      fs:fs,";
 allparams += "      localjs:localjs,";
 allparams += "      localStyles:localStyles,";
 allparams += "      controllersjs:controllersjs,";
 allparams += "      localserver:localserver,";
+allparams += "      upload:upload,";
 allparams += "      crudjs:crudjs,";
 allparams += "      models:models,";
 allparams += "      mssql:mssql,";

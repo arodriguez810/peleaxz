@@ -2,7 +2,6 @@ SERVICEINDEXS = [];
 SERVICE = {
     run: function (services) {
         for (const service of services) {
-            var rootPath = "service";
             var data = service.split("*");
             var method = data[0];
             var functionName = data[1];
@@ -16,7 +15,7 @@ SERVICE = {
                     var functioner = "function (parameters, callBack) {\n" +
                         "                        var $queryString = $.param(parameters);\n" +
                         "                        $http = angular.injector([\"ng\"]).get(\"$http\");\n" +
-                        "                        $http.get(String.format(\"{0}/{1}/{2}?{3}\", '" + rootPath + "', '" + parent + "', '" + functionName + "', $queryString)).then(function (data) {\n" +
+                        "                        $http.get(String.format(\"service/{1}/{2}?{3}\", '', '" + parent + "', '" + functionName + "', $queryString)).then(function (data) {\n" +
                         "                            callBack(data);\n" +
                         "                        }, function (data) {\n" +
                         "                            console.log('error',data);\n" +
@@ -32,7 +31,7 @@ SERVICE = {
                 case "delete": {
                     var functioner = "function (parameters, callBack) {\n" +
                         "                        $http = angular.injector([\"ng\"]).get(\"$http\");\n" +
-                        "                        $http." + method + "(String.format(\"{0}/{1}/{2}\", '" + rootPath + "', '" + parent + "', '" + functionName + "'),parameters).then(function (data) {\n" +
+                        "                        $http." + method + "(String.format(\"service/{1}/{2}\", 'service', '" + parent + "', '" + functionName + "'),parameters).then(function (data) {\n" +
                         "                            callBack(data);\n" +
                         "                        }, function (data) {\n" +
                         "                            console.log('error',data);\n" +

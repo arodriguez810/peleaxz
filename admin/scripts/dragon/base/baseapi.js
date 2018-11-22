@@ -33,12 +33,13 @@ BASEAPI = {
         get: function (method, parameters, callBack) {
             SWEETALERT.loading({message: "Loading..."});
             $http = angular.injector(["ng"]).get("$http");
-            $http.get(method).then(function (data) {
+            var query = HTTP.objToQuery(parameters);
+            $http.get(method + "?" + query).then(function (data) {
                 SWEETALERT.stop();
                 callBack(data);
             }, function (data) {
                 SWEETALERT.stop();
-                console.log('Error: ' + data);
+                console.log(data);
             });
         },
     },

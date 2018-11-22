@@ -2,13 +2,14 @@ TABLEFORMAT = {
     run: function ($scope) {
 
         $scope.cellValue = function (key, column, row) {
-
+            if (DSON.oseaX(row))
+                return "";
             var value = eval("row." + key);
 
 
             if (column.multilink !== undefined) {
                 column.sortable = false;
-                return String.format("<a class='btn btn-" + TAG.table + "'>{0}</a>", ICON.i('list'));
+                return String.format("<a class='btn bg-" + TAG.table + "'>{0}</a>", ICON.i('list'));
             }
             if (column.link !== undefined) {
                 if (value === null)
@@ -22,12 +23,12 @@ TABLEFORMAT = {
                                 shorttext.substring(0, column.shorttext) + "..."
                             );
                         }
-                        return "<a class='btn btn-" + TAG.table + "'>" + shorttext + "</a>";
+                        return "<a class='btn bg-" + TAG.table + "'>" + shorttext + "</a>";
                     } else {
                         return `<span class='text-grey'>${key}</span>`;
                     }
                 } else
-                    return "<a class='btn btn-" + TAG.table + "'>" + value + "</a>";
+                    return "<a class='btn bg-" + TAG.table + "'>" + value + "</a>";
             }
             value = $scope.formatByType(column, row, key);
             if (typeof column.format === "function")
@@ -46,7 +47,6 @@ TABLEFORMAT = {
 
             return value;
         };
-
         $scope.tableStatus = function () {
             var currentShow =
                 $scope.table.currentPage * $scope.table.currentLimit -
@@ -63,11 +63,15 @@ TABLEFORMAT = {
 
             return result;
         };
-
         $scope.columnLabel = function (value, key) {
             var label = value.label || key;
             if (typeof value.label === "function") return value.label();
             return capitalize(label);
+        };
+        $scope.columnLabelStrip = function (value, key) {
+            var label = value.label || key;
+            if (typeof value.label === "function") return HTML.strip(value.label());
+            return HTML.strip(capitalize(label)) ;
         };
         $scope.formatData = function (data, extra) {
             var formatedData = [];
@@ -95,7 +99,7 @@ TABLEFORMAT = {
                         eval(`goValue = row.${column};`);
                         goValue = $scope.formatByTypeClean($scope.table.crud.table.columns[column], row, column, extra);
                         if (extra.onerow)
-                            if (["CSV"].indexOf(extra.type) !== -1)
+                            if ([ENUM.file.formats.CSV].indexOf(extra.type) !== -1)
                                 goValue = `"${goValue}"`;
                         eval(`newRow.${column} = goValue;`);
                     }
@@ -104,7 +108,6 @@ TABLEFORMAT = {
             });
             return formatedData;
         };
-
         $scope.formatByTypeClean = function (column, row, key, extra) {
             var value = eval("row." + key);
 
@@ -151,7 +154,7 @@ TABLEFORMAT = {
                     else return 'No';
                 } else if (column.formattype.indexOf("numeric") !== -1) {
                     if (DSON.oseaX(value)) return "";
-                    if (["XLS", "CSV", "Clipboard"].indexOf(extra.type) !== -1)
+                    if ([ENUM.file.formats.XLS, ENUM.file.formats.CSV, ENUM.file.formats.Clipboard].indexOf(extra.type) !== -1)
                         return value;
                     var format = column.formattype.split(":");
                     format = format.length > 1 ? format[1] : "";
@@ -159,7 +162,7 @@ TABLEFORMAT = {
                 } else if (column.formattype.indexOf("location") !== -1) {
                     if (DSON.oseaX(value))
                         return DSON.noset();
-                    if (["XLS", "CSV", "Clipboard"].indexOf(extra.type) !== -1)
+                    if ([ENUM.file.formats.XLS, ENUM.file.formats.CSV, ENUM.file.formats.Clipboard].indexOf(extra.type) !== -1)
                         return value;
                     if (extra.onerow) {
                         return `<img src="https://maps.googleapis.com/maps/api/staticmap?center=${value}&zoom=16&size=600x300&maptype=roadmap&markers=color:red|label:C|${value}&key=AIzaSyB-T9ki1Z2Sw--ri0IB1solkM1cF_RENWE"/>`;
@@ -172,7 +175,7 @@ TABLEFORMAT = {
                         if (DSON.oseaX(value))
                             return DSON.noset();
                         var fileUrl = HTTP.path([CONFIG.filePath, value]);
-                        if (["XLS", "CSV", "Clipboard"].indexOf(extra.type) !== -1)
+                        if ([ENUM.file.formats.XLS, ENUM.file.formats.CSV, ENUM.file.formats.Clipboard].indexOf(extra.type) !== -1)
                             return fileUrl;
                         switch (format) {
                             case "image": {
@@ -207,10 +210,21 @@ TABLEFORMAT = {
             if (value === null || value === undefined) return column.null || "";
             return HTML.strip(value);
         };
-
         $scope.formatByType = function (column, row, key) {
             var value = eval("row." + key);
-
+            if (column.folder) {
+                switch (column.files) {
+                    case "image": {
+                        return String.format("<a class='btn bg-" + TAG.table + "'>{0}</a>", ICON.i('images3'));
+                    }
+                    case "all": {
+                        return String.format("<a class='btn bg-" + TAG.table + "'>{0}</a>", ICON.i('files-empty'));
+                    }
+                    default: {
+                        return String.format("<a class='btn bg-" + TAG.table + "'>{0}</a>", ICON.i('files-empty'));
+                    }
+                }
+            }
             if (column.anonymous === true) {
                 column.sortable = false;
                 data = {
@@ -219,36 +233,16 @@ TABLEFORMAT = {
                 };
                 value = DSON.iffunction(column.value) ? column.value(data) : column.value;
             }
-
             if (column.formattype !== undefined) {
                 if (column.formattype.indexOf("datetime") !== -1) {
                     if (DSON.oseaX(value)) return DSON.noset();
-                    var format = column.formattype.split(":");
+                    var format = column.formattype.split(">");
                     format = format.length > 1 ? format[1] : "";
-                    var date = new Date(value);
-                    var hours = date.getHours();
-                    var minutes = date.getMinutes();
-                    var ampm = "";
-                    var strTime = hours + ":" + minutes + " " + ampm;
-                    if (format === "12") {
-                        ampm = hours >= 12 ? "pm" : "am";
-                        hours = hours % 12;
-                        hours = hours ? hours : 12;
-                        minutes = minutes < 10 ? "0" + minutes : minutes;
-                        strTime = hours + ":" + minutes + " " + ampm;
-                    }
-                    return (
-                        date.getDate() +
-                        1 +
-                        "/" +
-                        date.getMonth() +
-                        "/" +
-                        date.getFullYear() +
-                        " " +
-                        strTime
-                    );
+                    value = value.replace('T', ' ').split('.')[0];
+                    return moment(value).format(format);
+
                 } else if (column.formattype === "bool") {
-                    if (DSON.oseaX(value)) return DSON.noset();
+                    if (DSON.oseaX(value)) return '<i class="icon-checkbox-unchecked"></i>';
                     if (value) return '<i class="icon-checkbox-checked"></i>';
                     else return '<i class="icon-checkbox-unchecked"></i>';
                 } else if (column.formattype.indexOf("numeric") !== -1) {
@@ -263,11 +257,14 @@ TABLEFORMAT = {
                     if (location.length > 1) {
                         var lat = location[0];
                         var lng = location[1];
-                        return "<a class='btn btn-" + TAG.table + "'>" + ICON.i("location4") + "</a>";
+                        return "<a class='btn bg-" + TAG.table + "'>" + ICON.i("location4") + "</a>";
                     }
                 }
                 else if (column.formattype === "html") {
-                    return String.format("<a class='btn btn-" + TAG.table + "'>{0}</a>", ICON.i("html5"));
+                    return String.format("<a class='btn bg-" + TAG.table + "'>{0}</a>", ICON.i("html5"));
+                }
+                else if (column.formattype === "color") {
+                    return String.format("<a class='btn ' style='background-color: {1}' >{0}</a>", ICON.i("brush"), value);
                 }
                 else if (column.formattype.indexOf("file") !== -1) {
                     var format = column.formattype.split(":");
@@ -277,28 +274,37 @@ TABLEFORMAT = {
                     var fileUrl = String.format("{0}/{1}", CONFIG.filePath, value);
                     switch (format) {
                         case "image": {
-                            return String.format("<a class='btn btn-" + TAG.table + "'>{0}</a>", FILE.fileToIcon(value), fileUrl);
+                            if (column.folder) {
+                                return String.format("<a class='btn bg-" + TAG.table + "'>{0}</a>", ICON.i('images3'), fileUrl);
+                            } else
+                                return String.format("<a class='btn bg-" + TAG.table + "'>{0}</a>", FILE.fileToIcon(value), fileUrl);
                         }
                         case "all": {
-                            if (FILE.noSupport(value)) {
-                                return "<a download href='" + fileUrl + "' class='btn btn-" + TAG.table + "'>" + FILE.fileToIcon(value) + "</a>";
+                            if (column.folder) {
+                                return String.format("<a class='btn bg-" + TAG.table + "'>{0}</a>", ICON.i(' files-empty'), fileUrl);
+                            } else {
+                                if (FILE.noSupport(value)) {
+                                    return "<a download href='" + fileUrl + "' class='btn bg-" + TAG.table + "'>" + FILE.fileToIcon(value) + "</a>";
+                                }
+                                if (FILE.isImage(value))
+                                    return String.format("<a class='btn bg-" + TAG.table + "'>{0}</a>", FILE.fileToIcon(value), fileUrl);
+                                else
+                                    return "<a class='btn bg-" + TAG.table + "'>" + FILE.fileToIcon(value) + "</a>";
                             }
-                            if (FILE.isImage(value))
-                                return String.format("<a class='btn btn-" + TAG.table + "'>{0}</a>", FILE.fileToIcon(value), fileUrl);
-                            else
-                                return "<a class='btn btn-" + TAG.table + "'>" + FILE.fileToIcon(value) + "</a>";
                         }
                     }
                 }
             }
-
-
             return value;
         };
-
         $scope.rowClass = function (row) {
             if (typeof $scope.table.crud.table.rowClass === "function")
                 return $scope.table.crud.table.rowClass(row, $scope);
+            return "";
+        };
+        $scope.rowDeleted = function (row) {
+            if (row.rowdeleted === true)
+                return "dragon-row-deleted";
             return "";
         };
     }

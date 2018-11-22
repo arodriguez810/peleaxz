@@ -1,0 +1,14 @@
+.sp-container{
+    z-index: 9998999999999;
+}
+.sp-replacer{
+    width: 100%;
+    padding-left: 35px;
+}
+.sp-preview{
+    width: 93%;
+}
+
+.xdsoft_datetimepicker {
+    z-index: 999999999999;
+}

@@ -95,6 +95,6 @@ MENU = {
 };
 $(document).ready(function () {
     $(document).on('click', '.dragon-menu a', function () {
-        MENU.setLast($(this));
+        //MENU.setLast($(this));
     });
 });

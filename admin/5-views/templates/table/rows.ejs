@@ -8,6 +8,7 @@
 >
 
     <span
+            ng-show="<%= scope %>.rowDeleted(row)===''"
             ng-bind-html="<%= scope %>.drawCheck(key,row)"
             ng-click="<%= scope %>.check(row)"
     >

@@ -1,4 +1,4 @@
-app.controller("ms_allproducts", function ($scope, $http, $compile) {
-    ms_allproducts = this;
-    RUNCONTROLLER("ms_allproducts", ms_allproducts, $scope, $http, $compile);
+app.controller("ms_allusers", function ($scope, $http, $compile) {
+    ms_allusers = this;
+    RUNCONTROLLER("ms_allusers", ms_allusers, $scope, $http, $compile);
 });

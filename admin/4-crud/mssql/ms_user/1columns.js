@@ -1,6 +1,6 @@
-CRUD_ms_child = {};
-DSON.keepmerge(CRUD_ms_child, CRUDDEFAULTS);
-DSON.keepmerge(CRUD_ms_child, {
+CRUD_ms_user = {};
+DSON.keepmerge(CRUD_ms_user, CRUDDEFAULTS);
+DSON.keepmerge(CRUD_ms_user, {
     table: {
         engine: 'ms',
         columns: {
@@ -9,15 +9,17 @@ DSON.keepmerge(CRUD_ms_child, {
                 sorttype: "numeric",
                 class: "text-left"
             },
+            username: {
+                label: "name",
+                shorttext: 20
+            },
             name: {
                 label: "name",
                 shorttext: 20
             },
-            description: {
-                label: "description",
-                sortable: false,
-                shorttext: 20,
-                null: "<span class='text-grey'>[NULL]</span>"
+            lastname: {
+                label: "name",
+                shorttext: 20
             },
             active: {
                 visible: true,
@@ -27,7 +29,7 @@ DSON.keepmerge(CRUD_ms_child, {
             created: {
                 visible: false,
                 sorttype: "time",
-                formattype: "datetime:12"
+                formattype: "datetime>DD-MM-YYYY hh:mm a"
             },
             updated: {
                 visible: false

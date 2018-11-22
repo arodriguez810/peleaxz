@@ -1,4 +1,4 @@
-CRUD_ms_allproducts = DSON.merge(CRUD_ms_allproducts,
+CRUD_ms_allusers = DSON.merge(CRUD_ms_allusers,
     {
         table: {
             single: [
@@ -9,8 +9,14 @@ CRUD_ms_allproducts = DSON.merge(CRUD_ms_allproducts,
                     "columns": ["id", "name"]
                 },
                 {
-                    "table": "ms_product",
-                    "base": "product",
+                    "table": "ms_user",
+                    "base": "user",
+                    "field": "id",
+                    "columns": ["id", "name"]
+                },
+                {
+                    "table": "ms_category",
+                    "base": "category",
                     "field": "id",
                     "columns": ["id", "name"]
                 }

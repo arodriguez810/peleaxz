@@ -1,0 +1,173 @@
+<ul class="nav nav-tabs bg-<%= COLOR.primary %>-800 nav-tabs-component nav-justified">
+    "nav nav-lg nav-tabs nav-tabs-solid nav-tabs-component"
+    <li class="active">
+        <a href="#basic" data-toggle="tab">
+            <i class="icon-menu7 position-left"></i>
+            Basic Information
+            <i class="border-white {{<%= scope %>.form.rulesGroup.basic() }} position-right"></i>
+
+        </a>
+    </li>
+    <li>
+        <a href="#products" data-toggle="tab">
+            <i class="icon-archive position-left"></i>
+            Products
+            <i class="border-white {{<%= scope %>.form.rulesGroup.products()}} position-right"></i>
+        </a>
+    </li>
+    <li>
+        <a href="#biography" data-toggle="tab">
+            <i class="icon-html5 position-left"></i>
+            Biography
+            <i class="border-white position-right"></i>
+        </a>
+    </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane active" id="basic">
+        <div class="row">
+            <div class="col-sm-6 col-md-4">
+                <%- FORM.datetime("record", scope, {
+                    timepicker: true,
+                    datepicker: false,
+                    format: 'h:i a'
+                }) %>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <%- FORM.datetime("birthDate", scope, {
+                    placeHolder: 'Birth Date',
+                    timepicker: false,
+                    format: 'd/m/Y'
+                }) %>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <%- FORM.datetime("lastLogin", scope, {placeHolder: 'Last Login'}) %>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-md-4">
+                <%- FORM.input("name", scope, {maxlength: 50}) %>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <%- FORM.input("lastName", scope, {maxlength: 50}) %>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <%- FORM.select("child", scope, {
+                    column: "ms_child_name",
+                    table: "ms_child",
+                    icon: {class: "archive"}
+                }) %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-md-4">
+                <%- FORM.input("average", scope, {
+                    icon: {class: "percent", position: "right"},
+                    format: {mask: "###%", options: {reverse: true}}
+                }) %>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <%- FORM.input("salary", scope, {
+                    icon: {class: "cash3"},
+                    format: {mask: "000,000,000,000,000.00", options: {reverse: true}}
+                }) %>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <%- FORM.inputview("salaryNeto", scope, {
+                    placeholder: "Salary Neto",
+                    icon: {class: "cash3"},
+                    format: {mask: "000,000,000,000,000.00", options: {reverse: true}}
+                }) %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-md-4">
+                <%- FORM.select("other", scope, {
+                    column: "ms_other_description",
+                    table: "ms_other",
+                    icon: {class: "cube"}
+                }) %>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <%- FORM.location("location", scope) %>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <%- FORM.color("color", scope, {icon: {class: "brush"}}) %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-md-4">
+                <%- FORM.file("image", scope) %>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <%- FORM.file("gallery", scope, {maxfiles: 4, columns: 2}) %>
+            </div>
+            <div class="col-sm-6 col-md-4">
+                <%- FORM.file("file", scope) %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-9 col-md-9">
+                <%- FORM.textarea("description", scope, {maxlength: 200}) %>
+            </div>
+            <div class="col-sm-3 col-md-3">
+                <%- FORM.checkbox("rowactive", scope, {text: 'Active?'}) %>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="tab-pane" id="products">
+        <div class="row">
+            <div class="col-sm-6 col-md-12">
+                <%- FORM.select("products", scope, {
+                    table: "ms_product", multiple: true, icon: {class: "archive"}
+                }) %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-md-12">
+                <%- FORM.tags("tags", scope) %>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-pane" id="biography">
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <%- FORM.html("biography", scope) %>
+            </div>
+            <div class="col-sm-12 col-md-12">
+                <%- FORM.relation("ms_allusers", scope, {
+                    table: "ms_allusers",
+                    field: "all",
+                    master: null,
+                    title: "Add Somes User Descriptions",
+                    icon: {class: "archive"}
+                }) %>
+            </div>
+            <div class="col-sm-12 col-md-12">
+                <%- FORM.checkboxlist("option", scope, {
+                    values: [
+                        {id: 1, text: "Masculino"},
+                        {id: 2, text: "Femenino"}
+                    ],
+                    selecteds: [1]
+                }) %>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-link" ng-click="<%= scope %>.pages.form.close()">Save</button>
+    <button type="button" class="btn btn-link" ng-click="<%= scope %>.pages.form.close()">Close</button>
+</div>
+
+
+
+
+

@@ -5,35 +5,13 @@ app.controller("auth_login", function ($scope, $http, $compile) {
         username: function () {
             var rules = [];
             var value = auth_login.username;
-            rules.push(VALIDATION.required(value));
-            if (value !== undefined) {
-                rules.push({
-                    valid: value.toLowerCase() !== "angel",
-                    message: "Le recomiendo que no use angel",
-                    type: "warning"
-                });
-            }
+            rules.push(VALIDATION.general.required(value));
             return VALIDATION.process(auth_login, "username", rules)
         },
         password: function () {
             var rules = [];
             var value = auth_login.password;
-            rules.push(VALIDATION.required(value));
-            if (value !== undefined) {
-                if (value.length >= 16)
-                    rules.push({
-                        valid: false,
-                        message: "Is too long",
-                        type: "error"
-                    });
-                if (value.length > 0 && value.length < 5)
-                    rules.push({
-                        valid: false,
-                        message: "",
-                        type: "error"
-                    });
-            }
-
+            rules.push(VALIDATION.general.required(value));
             var validation = VALIDATION.process(auth_login, "username", rules);
             if (value !== undefined) {
                 if (value.length >= 5)
@@ -44,15 +22,6 @@ app.controller("auth_login", function ($scope, $http, $compile) {
             return validation;
         }
     };
-
-    auth_login.sumAB = function (...values) {
-        var total = 0;
-        values.forEach(function (item) {
-            total += parseInt(item || 0);
-        });
-        return total;
-    };
-
     auth_login.makeLogin = function () {
         SWEETALERT.loading("Validating credentials");
         SERVICE.base_auth.login({username: auth_login.username, password: auth_login.password}, function (data) {
@@ -93,5 +62,4 @@ app.controller("auth_login", function ($scope, $http, $compile) {
             message: "Please complete the form before continue."
         });
     };
-
 });

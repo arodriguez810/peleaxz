@@ -134,5 +134,6 @@ PAGINATOR = {
                 class: ""
             });
         }
+        $scope.checkall = false;
     }
 };

@@ -1,14 +1,14 @@
 <div class="text-right">
-    <ul class="pagination" ng-show="<%= modelName %>.table.totalPages>1">
-        <li><a>{{<%= modelName %>.tableStatus()}}</a></li>
-        <li><a data-popup="tooltip" title="First" ng-click="<%= modelName %>.firstPage()">‹‹</a></li>
-        <li><a data-popup="tooltip" title="Back" ng-click="<%= modelName %>.backPage()">‹</a></li>
-        <li class="{{row.current}} {{row.class}}" ng-repeat="(key, row) in <%= modelName %>.table.pages">
+    <ul class="pagination" ng-show="<%= scope %>.table.totalPages>1">
+        <li><a>{{<%= scope %>.tableStatus()}}</a></li>
+        <li><a data-popup="tooltip" title="First" ng-click="<%= scope %>.firstPage()">‹‹</a></li>
+        <li><a data-popup="tooltip" title="Back" ng-click="<%= scope %>.backPage()">‹</a></li>
+        <li class="{{row.current}} {{row.class}}" ng-repeat="(key, row) in <%= scope %>.table.pages">
             <a data-popup="tooltip" title="Page {{row.number}}" class="{{row.current}}"
-               ng-dblclick="<%= modelName %>.goPageModal()" ng-click="<%= modelName %>.goPage(row.number)">{{row.number}}
+               ng-dblclick="<%= scope %>.goPageModal()" ng-click="<%= scope %>.goPage(row.number)">{{row.number}}
             </a>
         </li>
-        <li><a data-popup="tooltip" title="Next" ng-click="<%= modelName %>.nextPage()">›</a></li>
-        <li><a data-popup="tooltip" title="Last" ng-click="<%= modelName %>.lastPage()">››</a></li>
+        <li><a data-popup="tooltip" title="Next" ng-click="<%= scope %>.nextPage()">›</a></li>
+        <li><a data-popup="tooltip" title="Last" ng-click="<%= scope %>.lastPage()">››</a></li>
     </ul>
 </div>

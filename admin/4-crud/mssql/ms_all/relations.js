@@ -21,6 +21,11 @@ CRUD_ms_all = DSON.merge(CRUD_ms_all,
                     "table": "ms_product",
                     "base": "product",
                     "field": "id"
+                },
+                ms_all_users: {
+                    "table": "ms_user",
+                    "base": "user",
+                    "field": "id"
                 }
             }
         }

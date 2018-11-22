@@ -6,11 +6,44 @@ FORM = {
     checkbox: function (name, model, options) {
         return FORM.template('form/checkbox', {name: name, model: model, opts: options});
     },
+    checkboxlist: function (name, model, options) {
+        return FORM.template('form/checkboxlist', {name: name, model: model, opts: options});
+    },
+    datetime: function (name, model, options) {
+        return FORM.template('form/datetime', {name: name, model: model, opts: options});
+    },
+    datetimerange: function (name, model, options) {
+        return FORM.template('form/datetimerange', {name: name, model: model, opts: options});
+    },
     input: function (name, model, options) {
         return FORM.template('form/input', {name: name, model: model, opts: options});
     },
+    color: function (name, model, options) {
+        return FORM.template('form/color', {name: name, model: model, opts: options});
+    },
+    textarea: function (name, model, options) {
+        return FORM.template('form/textarea', {name: name, model: model, opts: options});
+    },
+    html: function (name, model, options) {
+        return FORM.template('form/html', {name: name, model: model, opts: options});
+    },
+    select: function (name, model, options) {
+        return FORM.template('form/select', {name: name, model: model, opts: options});
+    },
+    relation: function (name, model, options) {
+        return FORM.template('form/relation', {name: name, model: model, opts: options});
+    },
+    tags: function (name, model, options) {
+        return FORM.template('form/tags', {name: name, model: model, opts: options});
+    },
+    file: function (name, model, options) {
+        return FORM.template('form/file', {name: name, model: model, opts: options});
+    },
     inputview: function (name, model, options) {
         return FORM.template('form/inputview', {name: name, model: model, opts: options});
+    },
+    location: function (name, model, options) {
+        return FORM.template('form/location', {name: name, model: model, opts: options});
     },
     button: function (name, model, options) {
         return FORM.template('form/button', {name: name, model: model, opts: options});

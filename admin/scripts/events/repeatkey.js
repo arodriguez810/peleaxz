@@ -31,6 +31,11 @@ KEY = {
                         eval(ANGULARJS.tableScope + ".refresh()");
                         break;
                     }
+                    case "C":
+                    case "c": {
+                        eval(ANGULARJS.tableScope + ".pages.form.close()");
+                        break;
+                    }
                     case "P":
                     case "p": {
                         eval(ANGULARJS.tableScope + ".goPageModal()");

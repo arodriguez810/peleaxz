@@ -1,0 +1,31 @@
+<td ng-show="<%= scope %>.allow('actions') && <%= scope %>.allow(['edit','remove','active'])"
+    class="text-center bg-<%= COLOR.primary %>">
+    Actions
+</td>
+<td class="text-center"
+    ng-show="(<%= scope %>.allow('actions') && <%= scope %>.allow(['edit','remove','active']))">
+    <ul class="icons-list" style="z-index: 99999">
+        <li ng-repeat="(min, option) in <%= scope %>.getOptions(false)"
+            ng-show="<%= scope %>.allow(<%= scope %>.option.permission(option,<%= scope %>.records.data[0])) && <%= scope %>.option.show(option,<%= scope %>.records.data[0])">
+            <a
+                    data-action="{{<%= scope %>.option.action(option,<%= scope %>.records.data[0])}}"
+                    title="{{<%= scope %>.option.title(option,<%= scope %>.records.data[0])}}"
+                    ng-click="<%= scope %>.option.click(option,<%= scope %>.records.data[0],false)" class="dropdown-toggle"
+                    data-toggle="dropdown">
+                <i class=" icon-{{<%= scope %>.option.icon(option,<%= scope %>.records.data[0])}}"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right dragon-menu" ng-show="option.menus">
+                <li ng-repeat="(item, menu) in option.menus"
+                    ng-show="<%= scope %>.allow(<%= scope %>.option.permission(menu,<%= scope %>.records.data[0])) && <%= scope %>.option.show(menu,<%= scope %>.records.data[0])">
+                    <a
+                            title="{{<%= scope %>.option.text(menu,<%= scope %>.records.data[0])}}"
+                            data-action="{{<%= scope %>.option.action(menu,<%= scope %>.records.data[0])}}"
+                            ng-click="<%= scope %>.option.click(menu,<%= scope %>.records.data[0])">
+                        <i class="icon-{{<%= scope %>.option.icon(menu,<%= scope %>.records.data[0])}}"></i>
+                        {{<%= scope %>.option.text(menu,<%= scope %>.records.data[0])}}
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</td>

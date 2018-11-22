@@ -2,13 +2,14 @@
 var name = name || "";
 var options = {
     placeholder: params.capitalize(name),
-    model:1,
+    model: 1,
     icon: {
         class: "none",
         position: "left",
         color: COLOR.primary
     },
-    helptext: ''
+    helptext: '',
+    posttype: "view"
 
 };
 options = OBJECT.merge(options, opts);
@@ -20,15 +21,13 @@ var toclient = JSON.stringify(options);
 <div class="form-group-material form-group has-feedback has-{{<%= model %>.validation.getType('<%= name %>')}}  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
      id="input<%= name %>">
     <label
-            class="control-label {{(<%= options.model %>)?'is-visible animate':''}}">
+            class="control-label {{<%= model %>.form.LabelVisible('<%= name %>')?'is-visible animate':''}}">
         {{<%= model %>.form.options.<%= name %>.placeholder}}
     </label>
     <input
-            name="<%= name %>"
+            ng-model="<%= model + "." + name %>" name="<%= name %>"
             readonly
-            ng-disabled="<%= model %>.form.options.<%= name %>.disabled"
             type="text"
-            value="<%= "{{"+options.model+"}}" %>"
             class="form-control"
             placeholder="{{<%= model %>.form.options.<%= name %>.placeholder}}">
 
@@ -43,8 +42,18 @@ var toclient = JSON.stringify(options);
     </span>
 
     <span ng-show="<%= model %>.validation.getMessages('<%= name %>').length>0" class="help-block">
-        <p ng-repeat="message in <%= model %>.validation.getMessages('<%= name %>')">
-                {{message}}
+        <p class="text-{{$eval(validation).type}}"
+           ng-repeat="validation in <%= model %>.validation.getMessages('<%= name %>')">
+               <i class="{{$eval(validation).icon}}"></i> {{$eval(validation).message}}
         </p>
     </span>
 </div>
+<script>
+    $(document).ready(function () {
+        <% if(options.format){ %>
+        var formaty =<%= model %>.form.options.<%= name %>.format;
+        $('[name="<%= name %>"]').mask(formaty.mask, formaty.options);
+        <% } %>
+
+    });
+</script>

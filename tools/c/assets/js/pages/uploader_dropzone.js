@@ -9,7 +9,7 @@
 *
 * ---------------------------------------------------------------------------- */
 
-$(function() {
+$(function () {
 
     // Defaults
     Dropzone.autoDiscover = false;
@@ -22,11 +22,11 @@ $(function() {
         maxFiles: 1,
         dictDefaultMessage: 'Drop file to upload <span>or CLICK</span>',
         autoProcessQueue: false,
-        init: function() {
-            this.on('addedfile', function(file){
+        init: function () {
+            this.on('addedfile', function (file) {
                 if (this.fileTracker) {
-                this.removeFile(this.fileTracker);
-            }
+                    this.removeFile(this.fileTracker);
+                }
                 this.fileTracker = file;
             });
         }
@@ -68,5 +68,5 @@ $(function() {
         maxThumbnailFilesize: 1,
         addRemoveLinks: true
     });
-    
+
 });

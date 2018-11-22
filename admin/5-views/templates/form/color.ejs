@@ -1,0 +1,69 @@
+<%
+var name = name || "";
+var options = {
+    placeholder: params.capitalize(name),
+    icon: {
+        class: "none",
+        position: "left",
+        color: COLOR.primary
+    },
+    helptext: '',
+    posttype: "color"
+
+};
+options = OBJECT.merge(options, opts);
+var toclient = JSON.stringify(options);
+%>
+<script>
+    <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
+</script>
+<div class="form-group-material form-group has-feedback has-{{<%= model %>.validation.getType('<%= name %>')}}  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
+     id="input<%= name %>">
+    <label
+            class="control-label {{<%= model %>.form.LabelVisible('<%= name %>')?'is-visible animate':''}}">
+        {{<%= model %>.form.options.<%= name %>.placeholder}}
+    </label>
+    <input
+            ng-model="<%= model + "." + name %>"
+            name="<%= name %>"
+            type="text"
+            class="form-control">
+
+    <div style="margin: 10px;" class="form-control-feedback">
+        <i class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} text-{{<%= model %>.validation.getColor('<%= name %>',<%= model %>.form.options.<%= name %>.icon.color)}}">
+
+        </i>
+    </div>
+    <span ng-show="<%= model %>.form.options.<%= name %>.helptext!=''"
+          class="help-block text-muted">
+        {{<%= model %>.form.options.<%= name %>.helptext}}
+    </span>
+
+    <span ng-show="<%= model %>.validation.getMessages('<%= name %>').length>0" class="help-block">
+        <p class="text-{{$eval(validation).type}}"
+           ng-repeat="validation in <%= model %>.validation.getMessages('<%= name %>')">
+               <i class="{{$eval(validation).icon}}"></i> {{$eval(validation).message}}
+        </p>
+    </span>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('[name="<%= name %>"]').spectrum({
+            showInitial: true,
+            showInput: true,
+            showAlpha: true,
+            allowEmpty: true,
+            showPalette: true,
+            palette: [
+                ["#000", "#444", "#666", "#999", "#ccc", "#eee", "#f3f3f3", "#fff"],
+                ["#f00", "#f90", "#ff0", "#0f0", "#0ff", "#00f", "#90f", "#f0f"],
+                ["#f4cccc", "#fce5cd", "#fff2cc", "#d9ead3", "#d0e0e3", "#cfe2f3", "#d9d2e9", "#ead1dc"],
+                ["#ea9999", "#f9cb9c", "#ffe599", "#b6d7a8", "#a2c4c9", "#9fc5e8", "#b4a7d6", "#d5a6bd"],
+                ["#e06666", "#f6b26b", "#ffd966", "#93c47d", "#76a5af", "#6fa8dc", "#8e7cc3", "#c27ba0"],
+                ["#c00", "#e69138", "#f1c232", "#6aa84f", "#45818e", "#3d85c6", "#674ea7", "#a64d79"],
+                ["#900", "#b45f06", "#bf9000", "#38761d", "#134f5c", "#0b5394", "#351c75", "#741b47"],
+                ["#600", "#783f04", "#7f6000", "#274e13", "#0c343d", "#073763", "#20124d", "#4c1130"]
+            ]
+        });
+    });
+</script>

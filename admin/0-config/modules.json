@@ -99,6 +99,23 @@
     {
       "var": "deepmerge",
       "module": "deepmerge"
+    },
+    {
+      "var": "JSZip",
+      "module": "jszip"
+    },
+    {
+      "var": "zipdir",
+      "module": "zip-dir"
+    },
+    {
+      "var": "multer",
+      "module": "multer"
+    },
+    {
+      "var": "shelljs",
+      "module": "shelljs"
     }
+
   ]
 }

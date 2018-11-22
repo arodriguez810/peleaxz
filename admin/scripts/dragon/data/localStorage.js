@@ -3,9 +3,16 @@ STORAGE = {
         $scope.saveModel = function (name, value) {
             return STORAGE.basesaveModel($scope, name, value);
         };
+        $scope.saveModelObject = function (name, value) {
+            return STORAGE.basesaveModelObject($scope, name, JSON.stringify(value));
+        };
         $scope.getModel = function (name) {
             return STORAGE.basegetModel($scope, name);
         };
+        $scope.getModelObject = function (name) {
+            return STORAGE.basegetModelObject($scope, name);
+        };
+
         $scope.getModelSimple = function (name) {
             return STORAGE.basegetModelSimple($scope, name);
         };
@@ -42,8 +49,11 @@ STORAGE = {
                 message:
                     "This option removes all persisted configuration data for all system, sorting, columns reorder, current page, limit per page, filters, hide menu, fonts, are you sure?",
                 confirm: function () {
+                    var session = SESSION.current();
                     localStorage.clear();
+                    SESSION.register(session);
                     location.reload();
+
                 }
             });
         else
@@ -70,8 +80,14 @@ STORAGE = {
     basesaveModel: function ($scope, name, value) {
         return STORAGE.add($scope.modelName + "." + name, eval("$scope." + value));
     },
+    basesaveModelObject: function ($scope, name, value) {
+        return STORAGE.add($scope.modelName + "." + name, value);
+    },
     basegetModel: function ($scope, name) {
         return STORAGE.get($scope.modelName + "." + name);
+    },
+    basegetModelObject: function ($scope, name) {
+        return eval("(" + STORAGE.get($scope.modelName + "." + name) + ")");
     },
     basegetModelSimple: function ($scope, name) {
         return STORAGE.getSimple($scope.modelName + "." + name);

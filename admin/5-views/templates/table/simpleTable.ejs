@@ -1,10 +1,4 @@
-<div class="" id="<%= scope %>TablePanel" style="overflow-x: scroll;overflow-y: visible;">
-    <!--Table List -->
-    <div
-            ng-show="<%= scope %>.records.data.length<=0"
-            class="alert alpha-<%= TAG.table %> border-<%= TAG.table %> alert-styled-left">
-        There is no data to show in this table.
-    </div>
+
 
     <table ng-show="<%= scope %>.records.data.length>1"
            class="table table-togglable table-framed sindu-table dragon-table <%= scope %>-drag"
@@ -36,31 +30,3 @@
         </tr>
         </tbody>
     </table>
-
-    <table ng-show="<%= scope %>.records.data.length===1" class="table table-togglable table-framed">
-        <tbody>
-        <%- include('rowOptionsSimple',{scope:scope}); %>
-        <%- include('rowsSimple',{scope:scope}); %>
-        </tbody>
-    </table>
-    <!--Table List-->
-</div>
-<div class="context-menu" ng-show="<%= scope %>.characterist('contextMenu')">
-    <ul class="dropdown-menu" ng-show="<%= scope %>.options.length>0">
-        <li >
-            <a
-                    ng-show="<%= scope %>.allow(menu.permission())"
-                    data-action="{{<%= scope %>.option.action(menu,{},true,true)}}"
-                    ng-repeat="(key, menu) in <%= scope %>.currentOptionsContext().menus"
-            >
-                <i
-
-                        data-action="{{<%= scope %>.option.action(menu,{},true,true)}}"
-                        class="icon-{{<%= scope %>.option.icon(menu,{},true)}}">
-                </i>
-                {{<%= scope %>.option.text(menu,{},true,true)}}
-            </a>
-        </li>
-    </ul>
-</div>
-<%- include('paginator',{scope:scope}); %>

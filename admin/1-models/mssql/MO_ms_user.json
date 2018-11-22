@@ -8,5 +8,8 @@
   "active": "BIT NOT NULL",
   "created": "DATETIME NOT NULL DEFAULT GETDATE()",
   "updated": "DATETIME NOT NULL DEFAULT GETDATE()",
-  "deleted": "DATETIME NULL"
+  "deleted": "DATETIME NULL",
+  "user_created": "INT NULL",
+  "user_updated": "INT NULL",
+  "user_deleted": "INT NULL"
 }

@@ -223,7 +223,7 @@ exports.defaultRequests = function (Model, params) {
         if (req.query.orderby === undefined)
             req.query.orderby = "id";
 
-        Model.all(req.query, function (data) {
+        Model.all(req.query).then((data) => {
             if (data.error !== false) res.send(data.error);
             res.json(data);
         });
@@ -236,37 +236,37 @@ exports.defaultRequests = function (Model, params) {
         if (req.body.orderby === undefined)
             req.body.orderby = "id";
 
-        Model.all(req.body, function (data) {
+        Model.all(req.body).then((data) => {
             if (data.error !== false) res.send(data.error);
             res.json(data);
         });
     });
     params.app.get(params.util.format('/api/%s/all', Model.tableName), function (req, res) {
-        Model.all(req.query, function (data) {
+        Model.all(req.query).then((data) => {
             if (data.error !== false) res.send(data.error);
             res.json(data);
         });
     });
     params.app.get(params.util.format('/api/%s/get/:id', Model.tableName), function (req, res) {
-        Model.find(req.params.id, function (data) {
+        Model.find(req.params.id).then((data) => {
             if (data.error !== false) res.send(data.error);
             res.json(data);
         });
     });
     params.app.post('/api/' + Model.tableName + '/insert', function (req, res) {
-        Model.insert(req.body, function (data) {
+        Model.insert(req.body).then((data) => {
             if (data.error !== false) res.send(data.error);
             res.json(data);
         });
     });
-    params.app.put('/api/' + Model.tableName + '/update/:id', function (req, res) {
-        Model.update(req.params.id, req.body, function (data) {
+    params.app.post('/api/' + Model.tableName + '/update/', function (req, res) {
+        Model.update(req.body).then((data) => {
             if (data.error !== false) res.send(data.error);
             res.json(data);
         });
     });
-    params.app.delete('/api/' + Model.tableName + '/delete/:id', function (req, res) {
-        Model.delete(req.params.id, function (data) {
+    params.app.post('/api/' + Model.tableName + '/delete', function (req, res) {
+        Model.delete(req.body).then((data) => {
             if (data.error !== false) res.send(data.error);
             res.json(data);
         });
@@ -287,8 +287,7 @@ exports.Model = function (tableName, params) {
         return await this.search({where: where});
     };
     //update
-    this.update = async function (id, data) {
-        data.where = [{value: id}];
+    this.update = async function (data) {
         return await exports.data(exports.update(tableName, data, params), params).then(result => {
             return result;
         });
@@ -318,8 +317,8 @@ exports.Model = function (tableName, params) {
     this.deleteAll = async function () {
         return await this.search({}, 'DELETE');
     };
-    this.delete = async function (id) {
-        return await this.search({where: [{value: id}]}, "DELETE");
+    this.delete = async function (where) {
+        return await this.search({where: where}, "DELETE");
     };
     this.deleteWhere = async function (where) {
         var finalwhere = [];
@@ -370,8 +369,9 @@ exports.Model = function (tableName, params) {
             }
         }
     };
-    this.makeWhere = function (where, whereWord) {
+    this.makeWhere = function (where, whereWord, prefix) {
         whereWord = whereWord === undefined ? true : whereWord;
+        prefix = prefix === undefined ? "BASE" : "";
         var options = {};
         options.where = where;
         if (options.where !== undefined) {
@@ -384,12 +384,14 @@ exports.Model = function (tableName, params) {
                     field = field[0] === '$' ? field.replace('$', '') : this.colPointer(field);
                     var operator = obj.operator !== undefined ? obj.operator : "=";
                     var connector = obj.connector !== undefined ? obj.connector : "AND";
+                    var open = obj.open !== undefined ? obj.open : "";
+                    var close = obj.close !== undefined ? obj.close : "";
                     if (Array.isArray(obj.value)) {
                         operator = obj.operator !== undefined ? obj.operator : "in";
-                        where.push(params.format(" {0} {1} ('{2}') {3}", field, operator, obj.value.join("','"), connector));
+                        where.push(params.format(open + " {0} {1} ('{2}') {4} {3}", field, operator, obj.value.join("','"), connector, close));
                         connectors.push(connector);
                     } else {
-                        where.push(params.format(" {0} {1} {2} {3}", field, operator, obj.value[0] === '$' ? obj.value.replace('$', '') : "'" + obj.value + "'", connector));
+                        where.push(params.format(open + " {0} {1} {2} {4} {3}", field, operator, obj.value[0] === '$' ? obj.value.replace('$', '') : "'" + obj.value + "'", connector, close));
                         connectors.push(connector);
                     }
                 }
@@ -398,7 +400,7 @@ exports.Model = function (tableName, params) {
                     var strtoreplace = connectors[i] + "<<**>>";
                     where = params.S(where).replaceAll(strtoreplace, "").s;
                 }
-                return where;
+                return prefix === "" ? params.S(where).replaceAll('BASE.', '').s : where;
             }
         }
         return "";
@@ -407,7 +409,7 @@ exports.Model = function (tableName, params) {
     this.search = async function (options, prefix) {
         var offTableName = options.tableName || tableName;
         var sentence = prefix || "SELECT";
-        var where = this.makeWhere(options.where);
+        var where = this.makeWhere(options.where, true, prefix);
 
         var join = "";
         var joinColumns = [];
@@ -443,7 +445,6 @@ exports.Model = function (tableName, params) {
                             var inner = spliter[1];
                             var baseField = spliter[2];
                             var Jcolumns = this.colPointer("[" + inner + "].[name]", true);
-                            console.log("Jcolumns:", Jcolumns);
                             if (spliter.length > 3) {
                                 Jcolumns = spliter[3].split(',');
                                 for (const jco of Jcolumns)
@@ -474,6 +475,7 @@ exports.Model = function (tableName, params) {
         }
 
         var selectfinal = sentence === "SELECT" ? "BASE.*" : "";
+        var nickName = sentence === "SELECT" ? "BASE" : "";
         if (options.columns !== undefined) {
             if (options.columns.length > 0) {
                 selectfinal = [];
@@ -546,7 +548,7 @@ exports.Model = function (tableName, params) {
                 }
             }
         }
-        var query = params.format("{sentence} {distinct} {selectfinal} FROM [{table}] BASE {join} {where} {groupby} {orderby} {order} {limit} {page}",
+        var query = params.format("{sentence} {distinct} {selectfinal} FROM [{table}] " + nickName + " {join} {where} {groupby} {orderby} {order} {limit} {page}",
             {
                 sentence: sentence,
                 distinct: distinct,
@@ -563,7 +565,7 @@ exports.Model = function (tableName, params) {
             }
         );
         console.log(query);
-        var queryCount = params.format("SELECT count(*) count FROM [{table}] BASE {join} {where} {groupby}",
+        var queryCount = params.format("SELECT count(*) count FROM [{table}] " + nickName + " {join} {where} {groupby}",
             {
                 table: offTableName,
                 join: join,

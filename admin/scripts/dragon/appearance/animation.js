@@ -9,7 +9,7 @@ ANIMATION = {
             element.removeClass("animated " + animation);
         });
     },
-    loading: function (customBlock, text, spinner, size) {
+    loading: function (customBlock, text, spinner, size, icon) {
         if (customBlock === undefined) customBlock = "#content";
         if (text === undefined) text = "Loading...";
         if (spinner !== undefined) {
@@ -17,7 +17,7 @@ ANIMATION = {
         }
         var block = $(customBlock);
         $(block).block({
-            message: text + '<br><i class="icon-spinner2 spinner" style="font-size: 140px"></i>',
+            message: text + '<br><i class="icon-' + (icon || "spinner2") + ' spinner" style="font-size: ' + (size || "50") + 'px"></i>',
             overlayCSS: {
                 backgroundColor: '#fff',
                 opacity: 0.8,

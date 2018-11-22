@@ -18,22 +18,26 @@
     "express-json-csv": "0.0.3",
     "express-layout": "^0.1.0",
     "html-docx-js": "^0.3.1",
+    "jszip": "^3.1.5",
     "md5": "^2.2.1",
     "method-override": "~2.1.2",
     "mongoose": "~3.6.2",
     "morgan": "~1.2.2",
     "mssql": "^4.2.1",
+    "multer": "^1.4.1",
     "mysql": "^2.16.0",
     "node-mssql": "0.0.1",
     "office-to-pdf": "^4.0.0",
     "phantom-html2pdf": "^4.0.1",
     "phantomjs": "^2.1.7",
     "pluralize": "^7.0.0",
+    "shelljs": "^0.8.2",
     "string": "^3.3.3",
     "string-format": "^2.0.0",
     "sweetalert2": "^7.28.4",
     "system-sleep": "^1.3.6",
-    "table-dragger": "^1.0.2"
+    "table-dragger": "^1.0.2",
+    "zip-dir": "^1.0.2"
   },
   "devDependencies": {
     "nodemon": "^1.18.4"

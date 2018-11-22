@@ -1,6 +1,6 @@
 <td class="text-center dragon-actions"
     ng-show="(<%= scope %>.allow('actions') && <%= scope %>.allow(['edit','remove','active']))">
-    <ul class="icons-list" style="z-index: 99999">
+    <ul class="icons-list" style="z-index: 99999" ng-show="<%= scope %>.rowDeleted(row)===''">
         <li ng-repeat="(min, option) in <%= scope %>.getOptions(false)"
             ng-show="<%= scope %>.allow(<%= scope %>.option.permission(option,row)) && <%= scope %>.option.show(option,row)">
             <a

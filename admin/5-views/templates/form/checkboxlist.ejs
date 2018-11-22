@@ -1,0 +1,53 @@
+<%
+var name = name || "";
+var options = {
+    text: name + "?",
+    posttype:"checkboxlist",
+    selecteds:[]
+};
+options = OBJECT.merge(options, opts);
+var toclient = JSON.stringify(options);
+%>
+<script>
+    <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
+    <%= model %>.<%= name %> = <%= model %>.form.options.<%= name %>.selecteds;
+    var thec<%= name %> = [];
+    <%= model %>.ends<%= name %> = function(){
+        setTimeout(function () {
+            for (const elem of <%= model %>.form.options.<%= name %>.values) {
+                thec<%= name %>[elem.id] = new Switchery(document.getElementById("<%= name %>"+elem.id), {size: "small"});
+                //checkbox<%= name %>.setPosition(<%= model + "." + name %>);
+            }
+        },1);
+    };
+</script>
+<div class="checkbox checkbox-switchery" ng-repeat="item in <%= model %>.form.options.<%= name %>.values" repeat-end="<%= model %>.ends<%= name %>()">
+
+    <label>
+        <input
+               type="checkbox"
+               id="<%= name %>{{item.id}}"
+               name="<%= name %>[]"
+               value="{{item.id}}"
+               class="switchery"
+               ng-checked="<%= model %>.<%= name %>.indexOf(item.id) > -1"
+               ng-click="<%= model %>.toggleSelection<%= name %>(item.id)"
+        />
+        {{item.text}}
+    </label>
+</div>
+<script>
+    <%= model %>.toggleSelection<%= name %> = function (item) {
+            var idx = <%= model %>.<%= name %>.indexOf(item);
+
+            // Is currently selected
+            if (idx > -1) {
+                <%= model %>.<%= name %>.splice(idx, 1);
+            }
+
+            // Is newly selected
+            else {
+                <%= model %>.<%= name %>.push(item);
+            }
+        };
+</script>

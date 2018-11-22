@@ -12,7 +12,8 @@ var options = {
     format: '',
     readonly: false,
     disabled: false,
-    autocomplete: ''
+    autocomplete: '',
+    posttype: "text"
     //maxlength: 10,
 
 };
@@ -53,17 +54,20 @@ var toclient = JSON.stringify(options);
     </span>
 
     <span ng-show="<%= model %>.validation.getMessages('<%= name %>').length>0" class="help-block">
-        <p ng-repeat="message in <%= model %>.validation.getMessages('<%= name %>')">
-                {{message}}
+
+        <p class="text-{{$eval(validation).type}}"
+           ng-repeat="validation in <%= model %>.validation.getMessages('<%= name %>')">
+               <i class="{{$eval(validation).icon}}"></i> {{$eval(validation).message}}
         </p>
     </span>
 </div>
+
 <script>
     $(document).ready(function () {
         <% if(options.format){ %>
-        $('[name="<%= name %>"]').formatter({
-            pattern: '<%= options.format %>'
-        });
+        var formaty =<%= model %>.
+        form.options.<%= name %>.format;
+        $('[name="<%= name %>"]').mask(formaty.mask, formaty.options);
         <% } %>
         <% if(options.maxlength){ %>
         $('[name="<%= name %>"]').maxlength();
@@ -71,5 +75,6 @@ var toclient = JSON.stringify(options);
         $('[name="<%= name %>"]').keyup(function () {
             $(this).trigger("change");
         });
+        $('[name="<%= name %>"]').trigger("change");
     });
 </script>

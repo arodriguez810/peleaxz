@@ -2,7 +2,8 @@
 var name = name || "";
 var options = {
     text: name + "?",
-    checked: false
+    checked: false,
+    posttype:"checkbox"
 };
 options = OBJECT.merge(options, opts);
 var toclient = JSON.stringify(options);
@@ -27,9 +28,4 @@ var toclient = JSON.stringify(options);
         checkbox<%= name %> = new Switchery(html, {size: "small"});
         checkbox<%= name %>.setPosition(<%= model + "." + name %>);
     });
-    <!--$(document).ready(function () {-->
-        <!--$('[name="<%= name %>"]').change(function () {-->
-            <!--checkbox<%= name %>.setPosition($(this).is(':checked'));-->
-        <!--});-->
-    <!--});-->
 </script>

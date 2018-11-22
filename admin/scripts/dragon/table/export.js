@@ -1,6 +1,33 @@
 EXPORT = {
     run: function ($scope) {
         $scope.export = {};
+        $scope.export.downloadExample = function () {
+            $scope.export.Preview = $scope.export.jsonToTableExample();
+            $scope.modal.simpleModal(`<div style="overflow: auto;height: 500px;width: 100%">${$scope.export.Preview}</div>`,
+                {
+                    width: "modal-full",
+                    header: {title: `Example to import records`},
+                    footer: {
+                        buttons: [
+                            {
+                                color: "success",
+                                title: "Download",
+                                action: function () {
+                                    var fileName = `Example to import ${$scope.plural}.xls`;
+                                    var url = $("#dataexport").excelexportjs({
+                                        containerid: "dataexport",
+                                        datatype: 'table',
+                                        worksheetName: `${$scope.plural}`,
+                                        returnUri: true
+                                    });
+                                    DOWNLOAD.excel(fileName, url);
+                                    swal.close();
+                                }
+                            }
+                        ]
+                    }
+                });
+        };
         $scope.export.go = function (type, direct) {
             var parameters = {
                 limit: $scope.table.currentLimit,
@@ -134,7 +161,6 @@ EXPORT = {
                             });
                             SWEETALERT.loading({title: `Preparing ${type} File`});
                             $scope.export.json(parameters, type, function (data) {
-                                debugger;
                                 var dataToExport = $scope.formatData(data.data, {
                                     orderColumn: orderColumn,
                                     selected: selected,
@@ -175,7 +201,7 @@ EXPORT = {
                                         $scope.unCheckAll();
                                     }
                                 }
-                                if (type === "CSV") {
+                                if (type === ENUM.file.formats.CSV) {
                                     swal.close();
                                     $scope.export.Content = $scope.export.jsonToCSV(dataToExport, columsAllow, firstrow);
                                     $scope.export.Preview = $scope.export.jsonToTable(dataToExport, columsAllow, firstrow);
@@ -237,7 +263,7 @@ EXPORT = {
                                             }
                                         });
                                 }
-                                if (type === "XLS") {
+                                if (type === ENUM.file.formats.XLS) {
                                     swal.close();
                                     $scope.export.Preview = $scope.export.jsonToTable(dataToExport, columsAllow, firstrow);
                                     $scope.modal.simpleModal(`<div style="overflow: auto;height: 500px;width: 100%">${$scope.export.Preview}</div>`,
@@ -337,6 +363,24 @@ EXPORT = {
                 labels.push(HTML.strip($scope.columnLabel($scope.table.crud.table.columns[key], key)));
             }
             return labels;
+        };
+        $scope.export.jsonToTableExample = function (width, classes) {
+            var preview = `<table id="dataexport" class="tabla-pagina-5 ${classes || "table"} table-togglable table-framed table-bordered" style="${width || $scope.funcWidth}">`;
+            var labels = [];
+            var previewColums = "";
+            var oneRow = "";
+            for (var i in $scope.table.crud.table.columns) {
+                var key = i;
+                if ($scope.table.crud.table.columns[key].exportExample !== false) {
+                    labels.push(HTML.strip($scope.columnLabel($scope.table.crud.table.columns[key], key)));
+                    previewColums += `<th>${ARRAY.last(labels)}</th>`;
+                    var exampleText = $scope.table.crud.table.columns[key].exportExample;
+                    exampleText = exampleText === undefined ? "[string]" : exampleText;
+                    oneRow += `<td>${exampleText}</td>`;
+                }
+            }
+            preview += `<thead class="bg-${COLOR.info}"  ><tr>${previewColums}</tr></thead><tbody><tr>${oneRow}</tr></tbody>`;
+            return preview;
         };
         $scope.export.jsonToTable = function (json, columns, first, width, classes) {
             if (json.length > 1) {
