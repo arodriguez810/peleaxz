@@ -1,0 +1,76 @@
+<%
+var name = name || "";
+var options = {
+    placeholder: params.capitalize(name),
+    type: "text",
+    icon: {
+        class: "none",
+        position: "left",
+        color: COLOR.primary
+    },
+    helptext: '',
+    format: '',
+    readonly: false,
+    disabled: false,
+    autocomplete: ''
+    //maxlength: 10,
+
+};
+options = OBJECT.merge(options, opts);
+options.autocomplete = options.autocomplete ? "autocomplete='Off'" : '';
+options.format = options.format ? options.format : false;
+options.model = options.model ? options.model : false;
+var toclient = JSON.stringify(options);
+%>
+<script>
+    <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
+</script>
+<div class="form-group-material form-group has-feedback has-{{<%= model %>.validation.getType('<%= name %>')}}  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
+     id="input<%= name %>">
+    <label
+
+            class="control-label {{<%= model %>.form.LabelVisible('<%= name %>')?'is-visible animate':''}}">
+        {{<%= model %>.form.options.<%= name %>.placeholder}}
+    </label>
+    <input
+            ng-model="<%= model + "." + name %>" name="<%= name %>"
+            ng-readonly="<%= model %>.form.options.<%= name %>.readonly"
+            ng-disabled="<%= model %>.form.options.<%= name %>.disabled"
+            maxlength="{{<%= model %>.form.options.<%= name %>.maxlength}}"
+            type="{{<%= model %>.form.options.<%= name %>.type}}"
+            <%= options.model ? "value='{{" + options.model + "}}'" : "" %>
+            class="form-control"
+            placeholder="{{<%= model %>.form.options.<%= name %>.placeholder}}">
+
+    <div class="form-control-feedback">
+        <i class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} text-{{<%= model %>.validation.getColor('<%= name %>',<%= model %>.form.options.<%= name %>.icon.color)}}">
+
+        </i>
+    </div>
+    <span ng-show="<%= model %>.form.options.<%= name %>.helptext!=''"
+          class="help-block text-muted">
+        {{<%= model %>.form.options.<%= name %>.helptext}}
+    </span>
+
+    <span ng-show="<%= model %>.validation.getMessages('<%= name %>').length>0" class="help-block">
+        <p ng-repeat="message in <%= model %>.validation.getMessages('<%= name %>')">
+                {{message}}
+        </p>
+    </span>
+</div>
+<script>
+    $(document).ready(function () {
+        <% if(options.format){ %>
+        $('[name="<%= name %>"]').formatter({
+            pattern: '<%= options.format %>'
+        });
+        <% } %>
+        <% if(options.maxlength){ %>
+        $('[name="<%= name %>"]').maxlength();
+        <% } %>
+        $('[name="<%= name %>"]').keyup(function () {
+            $(this).trigger("change");
+        });
+        $('[name="<%= name %>"]').trigger("change");
+    });
+</script>
