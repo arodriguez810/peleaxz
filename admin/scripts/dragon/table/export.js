@@ -1,7 +1,61 @@
 EXPORT = {
     run: function ($scope) {
         $scope.export = {};
+        $scope.export.importModal = function () {
+
+            var root = `imports/${$scope.modelName}/`;
+            baseController.viewData = {
+                root: root,
+                scope: $scope,
+                maxfiles: 8,
+                acceptedFiles: 'text/csv,application/vnd.ms-excel',
+                columns: 4,
+            };
+            $scope.modal.modalView("../templates/components/import", {
+                width: 'modal-full',
+                header: {
+                    title: `Import files of ${$scope.modelName}`,
+                    icon: "file-excel"
+                },
+                footer: {
+                    cancelButton: true
+                },
+                content: {
+                    loadingContentText: "Loading Files.."
+                },
+            });
+
+        };
         $scope.export.downloadExample = function () {
+
+            var data = [];
+            for (var i in $scope.table.crud.table.columns) {
+                var column = $scope.table.crud.table.columns[i];
+                var key = i;
+                var alter = column.exportKey !== undefined ? column.exportKey : i;
+                if ($scope.table.crud.table.columns[key].exportExample !== false) {
+                    var exampleText = $scope.table.crud.table.columns[key].exportExample;
+                    exampleText = exampleText === undefined ? "[string]" : exampleText;
+                    data.push({
+                        column: alter,
+                        value: exampleText
+                    });
+                }
+            }
+
+
+            var csv = '';
+            var labels = [];
+            var values = [];
+            for (var i in data) {
+                var item = data[i];
+                labels.push(item.column);
+                values.push(item.value);
+            }
+            csv += labels.join(",") + "\r\n";
+            csv += `"${values.join('","')}"\r\n`;
+
+
             $scope.export.Preview = $scope.export.jsonToTableExample();
             $scope.modal.simpleModal(`<div style="overflow: auto;height: 500px;width: 100%">${$scope.export.Preview}</div>`,
                 {
@@ -10,17 +64,11 @@ EXPORT = {
                     footer: {
                         buttons: [
                             {
-                                color: "success",
+                                color: COLOR.primary + '-600',
                                 title: "Download",
                                 action: function () {
-                                    var fileName = `Example to import ${$scope.plural}.xls`;
-                                    var url = $("#dataexport").excelexportjs({
-                                        containerid: "dataexport",
-                                        datatype: 'table',
-                                        worksheetName: `${$scope.plural}`,
-                                        returnUri: true
-                                    });
-                                    DOWNLOAD.excel(fileName, url);
+                                    SWEETALERT.loading({title: `Preparing    File`});
+                                    DOWNLOAD.csv(`Example to import ${$scope.plural}.csv`, csv);
                                     swal.close();
                                 }
                             }
@@ -66,6 +114,20 @@ EXPORT = {
                 if (item.id === "firstrow") {
                     goChecked = true;
                 }
+                if (item.id === "currentPage") {
+                    if ($scope.table.currentPage > 1)
+                        goChecked = true;
+                }
+
+
+                if (item.id === "filter") {
+                    if (!DSON.oseaX($scope.filters))
+                        if (!DSON.oseaX($scope.filters.lastFilter))
+                            if ($scope.filters.lastFilter.length > 0)
+                                goChecked = true;
+                }
+
+
                 var checked = goChecked ? 'checked="checked"' : "";
                 optionsHtml +=
                     `
@@ -167,7 +229,8 @@ EXPORT = {
                                     orginalformat: orginalformat,
                                     columsAllow: columsAllow,
                                     onerow: direct,
-                                    type: type
+                                    type: type,
+                                    filter: filter
                                 });
 
                                 if (type === "Clipboard") {
@@ -181,7 +244,7 @@ EXPORT = {
                                             footer: {
                                                 buttons: [
                                                     {
-                                                        color: "success",
+                                                        color: COLOR.primary + '-600',
                                                         title: "Copy",
                                                         action: function () {
                                                             DOWNLOAD.clipboard($scope.export.Content);
@@ -212,7 +275,7 @@ EXPORT = {
                                             footer: {
                                                 buttons: [
                                                     {
-                                                        color: "success",
+                                                        color: COLOR.primary + '-600',
                                                         title: "Download",
                                                         action: function () {
                                                             DOWNLOAD.csv(`${$scope.plural} with ${dataToExport.length} rows ${new Date().getTime()}.csv`, $scope.export.Content);
@@ -234,7 +297,7 @@ EXPORT = {
                                             footer: {
                                                 buttons: [
                                                     {
-                                                        color: "success",
+                                                        color: COLOR.primary + '-600',
                                                         title: `${ICON.i('file-pdf')} Download`,
                                                         action: function () {
                                                             SWEETALERT.loading({title: "Building PDF..."});
@@ -273,7 +336,7 @@ EXPORT = {
                                             footer: {
                                                 buttons: [
                                                     {
-                                                        color: "success",
+                                                        color: COLOR.primary + '-600',
                                                         title: "Download",
                                                         action: function () {
                                                             var fileName = `${$scope.plural} with ${dataToExport.length} rows ${new Date().getTime()}.xls`;
@@ -302,7 +365,7 @@ EXPORT = {
                                             footer: {
                                                 buttons: [
                                                     {
-                                                        color: "success",
+                                                        color: COLOR.primary + '-600',
                                                         title: "Download",
                                                         action: function () {
                                                             SWEETALERT.loading({title: "Building DOC..."});
@@ -352,6 +415,19 @@ EXPORT = {
             CHECKBOX.run_switchery();
         };
         $scope.export.json = function (parameters, type, callback) {
+            if (!DSON.oseaX(ARRAY.last(MODAL.historyObject))) {
+                if (!DSON.oseaX(ARRAY.last(MODAL.historyObject).viewData))
+                    parameters.where = ARRAY.last(MODAL.historyObject).viewData.data;
+            }
+            if (!DSON.oseaX($scope.filters))
+                if (!DSON.oseaX($scope.filters.lastFilter))
+                    if ($scope.filters.lastFilter.length > 0) {
+                        if (DSON.oseaX(parameters.where))
+                            parameters.where = [];
+                        for (const item of $scope.filters.lastFilter) {
+                            parameters.where.push(item);
+                        }
+                    }
             $scope.list(parameters, function (data) {
                 callback(data);
             });

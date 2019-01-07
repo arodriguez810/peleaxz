@@ -47,6 +47,7 @@ FILTER = {
             $scope.filters.blocks = [];
             $scope.filters.lastFilter = [];
             $scope.filters.options = {};
+            $scope.filters.originals = 0;
             $scope.filters.queryToBlocks = function () {
                 var idplus = 1;
                 for (const filter of $scope.filters.lastFilter) {
@@ -56,7 +57,7 @@ FILTER = {
                     })[0];
                     var newbloack = {
                         applied: true,
-                        id: new Date().getTime()+idplus,
+                        id: new Date().getTime() + idplus,
                         group: !DSON.oseaX(filter.open),
                         column: column,
                         operator: FILTER.operators.filter(function (item) {
@@ -74,6 +75,7 @@ FILTER = {
             if ($scope.hasModel('filters')) {
                 $scope.filters.lastFilter = $scope.getModelObject('filters');
                 $scope.filters.queryToBlocks();
+                $scope.filters.originals = $scope.filters.blocks.length;
             }
             $scope.filters.default_block = {
                 applied: false,
@@ -86,6 +88,7 @@ FILTER = {
                 connector: 'AND'
             };
             $scope.openFilters = function () {
+                $scope.filters.originals = $scope.filters.blocks.length;
                 $scope.modal.modalView($scope.modelName + '/filter', {
                     width: ENUM.modal.width.full,
                     header: {
@@ -255,12 +258,15 @@ FILTER = {
             $scope.filters.applyText = function (block) {
                 return !block.applied ? '*' : '';
             };
-            $scope.filters.apply = function () {
+
+
+            $scope.filters.apply = function (close) {
                 for (var item of $scope.filters.blocks)
                     item.applied = true;
                 $scope.filters.lastFilter = $scope.filters.query();
                 $scope.saveModelObject("filters", $scope.filters.lastFilter);
-                $scope.filters.close();
+                if (DSON.oseaX(close))
+                    $scope.filters.close();
                 $scope.refresh();
             };
             $scope.filters.clear = function () {
@@ -315,7 +321,7 @@ FILTER = {
                         if (Array.isArray(showvalue)) {
                             if (item.column.type === FILTER.types.relation) {
                                 var itemsElements = $scope.filters.getSelect(item);
-                                if (itemsElements!=undefined) {
+                                if (itemsElements != undefined) {
 
                                     var selecteds = itemsElements.filter(function (it) {
                                         return eval(`showvalue.indexOf(it.${item.column.value}.toString())!==-1`);

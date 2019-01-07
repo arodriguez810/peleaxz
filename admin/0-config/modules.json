@@ -115,7 +115,16 @@
     {
       "var": "shelljs",
       "module": "shelljs"
+    },
+    {
+      "var": "XLSX",
+      "module": "xlsx"
+    },
+    {
+      "var": "csvtojson",
+      "module": "csvtojson"
     }
+
 
   ]
 }

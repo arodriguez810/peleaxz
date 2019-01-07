@@ -47,6 +47,7 @@ exports.LoadEJS = function (files, params) {
                     params: params,
                     localserver: localserver
                 };
+
                 res.render("../" + params.folders.views + "/" + realPath, send);
             }
         );
@@ -135,7 +136,7 @@ exports.loadEJSSimple = function (folder, prefix, params) {
                 });
 
                 var send = {
-                    scope: modelName.join("_"),
+                    scope: req.query.scope,
                     session: params.session,
                     localjs: params.localjs,
                     controllersjs: params.controllersjs,
@@ -150,7 +151,7 @@ exports.loadEJSSimple = function (folder, prefix, params) {
                     SERVICES: params.catalogs,
                     params: params
                 };
-
+                console.log(send.scope, viewN[viewN.length - 1]);
                 res.render("." + folder + "/" + viewN[viewN.length - 1], send);
 
             });
@@ -358,6 +359,52 @@ exports.init = function (params) {
         });
     });
 
+    params.app.post("/files/api/import", async function (req, res) {
+        var fs = params.fs || require("fs");
+        var files = req.body.filename;
+        var dirfile = __dirname + '/..' + params.S(files[0]).replaceAll('/', '\\');
+
+        params.csvtojson().fromFile(dirfile).then((jsonObj) => {
+            res.json(jsonObj);
+        });
+        // var workbook = params.XLSX.readFileSync(dirfile);
+        // var sheet_name_list = workbook.SheetNames;
+        // var json = params.XLSX.utils.sheet_to_json(workbook.Sheets[0]);
+        // res.json(json);
+    });
+
+    params.app.post("/files/api/move", async function (req, res) {
+        var fs = params.fs || require("fs");
+        var from = req.body.fromFolder;
+        var to = req.body.toFolder;
+        fs.renameSync(file.path, filename);
+        res.json(info);
+    });
+
+
+    params.app.post("/files/api/move", async function (req, res) {
+        var fs = params.fs || require("fs");
+        var from = req.body.fromFolder;
+        var to = req.body.toFolder;
+        var verarray = [];
+        try {
+            if (fs.statSync(from).isDirectory()) {
+                var files = fs.readdirSync(from);
+                for (const file of files) {
+                    verarray.push({from: file, to: to});
+                    //fs.renameSync(file.path, to);
+                }
+                res.json({success: true, arr: verarray});
+            } else {
+                res.json({root: realPath, files: [], count: 0, error: "Is Not Directory"});
+            }
+        } catch (err) {
+            console.log(err);
+            res.json({success: false});
+        }
+        res.json({success: false});
+    });
+
     params.app.post("/files/api/upload", params.upload.array('toupload', 100), function (req, res, next) {
         var fs = params.fs || require("fs");
         var uploaded = [];
@@ -373,7 +420,6 @@ exports.init = function (params) {
             fs.renameSync(file.path, filename);
         }
         res.json({uploaded: uploaded});
-
     });
 
     exports.loadEJSSimple(

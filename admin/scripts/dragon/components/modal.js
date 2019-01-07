@@ -58,7 +58,7 @@ MODAL = {
                 'onclick="MODAL.close({0})"', $scope.modelName
             );
             var animation = data.animation || "";
-            var bgheader = data.header.bg || "primary";
+            var bgheader = data.header.bg || COLOR.primary;
             var closeText = backMode ? "<=" + ARRAY.last(MODAL.historyObject).header.title : "&times;";
             var headercloseButton = data.header.closeButton ?
                 '    <button type="button" id=\'closeModal\' class="close cancelmodal" ' + closeModal + ">" + closeText + "</button>" : "";
@@ -193,7 +193,7 @@ MODAL = {
                 header: {
                     title: "Test Modal",
                     icon: ICON.classes.law,
-                    bg: TAG.table,
+                    bg: COLOR.primary+"-600",
                     closeButton: true,
                     h: "h6"
                 },
@@ -244,7 +244,7 @@ MODAL = {
                 header: {
                     title: "",
                     icon: "",
-                    bg: TAG.table,
+                    bg: COLOR.primary+"-600",
                     closeButton: true,
                     h: "h6"
                 },
@@ -282,7 +282,6 @@ MODAL = {
         };
         $scope.modal.jsonDetail = function (method, paramenters, crud, modaloptions) {
             BASEAPI.ajax.post(method, paramenters, function (data) {
-                console.log(data);
                 $scope.currentDetail = {
                     from: $scope.modelName,
                     to: method,

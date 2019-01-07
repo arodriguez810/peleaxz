@@ -91,15 +91,15 @@ exports.executeNonQuery = async function (query, params) {
         return {query: query, error: err.originalError.message};
     });
 };
-exports.insert = function (table, data, params) {
+exports.insertQuery = function (table, data, params, get) {
     var datas = (Array.isArray(data)) ? data : [data];
     var queries = "";
     for (var m in datas) {
-        var data = datas[m];
+        var row = datas[m];
         var columns = [];
         var values = [];
-        for (var property in data) {
-            var value = data[property];
+        for (var property in row) {
+            var value = row[property];
             if (property[0] === "$")
                 columns.push(property.replace('$', ''));
             else
@@ -107,10 +107,14 @@ exports.insert = function (table, data, params) {
             if (value[0] === "$")
                 values.push(value.replace('$', ''));
             else
-                values.push("'" + value + "'");
+                values.push("'" + value.replace("'", "''") + "'");
         }
-        values = values.replace("'", "''");
-        queries += params.format("INSERT INTO [{0}]({1}) VALUES({2});\n", table, columns.join(", "), values.join(", "));
+        if (get === true) {
+            queries += params.format("INSERT INTO [{0}]({1}) VALUES({2}); SELECT * FROM [{0}] where id=IDENT_CURRENT('{0}')", table, columns.join(", "), values.join(", "));
+            break;
+        }
+        else
+            queries += params.format("INSERT INTO [{0}]({1}) VALUES({2});", table, columns.join(", "), values.join(", "));
     }
     return queries;
 };
@@ -259,6 +263,12 @@ exports.defaultRequests = function (Model, params) {
             res.json(data);
         });
     });
+    params.app.post('/api/' + Model.tableName + '/insertID', function (req, res) {
+        Model.insertID(req.body).then((data) => {
+            if (data.error !== false) res.send(data.error);
+            res.json(data);
+        });
+    });
     params.app.post('/api/' + Model.tableName + '/update/', function (req, res) {
         Model.update(req.body).then((data) => {
             if (data.error !== false) res.send(data.error);
@@ -309,7 +319,12 @@ exports.Model = function (tableName, params) {
     };
     //insert
     this.insert = async function (data) {
-        return await exports.data(exports.insert(tableName, data, params), params).then((result) => {
+        return await exports.data(exports.insertQuery(tableName, data, params), params).then((result) => {
+            return result;
+        });
+    };
+    this.insertID = async function (data) {
+        return await exports.data(exports.insertQuery(tableName, data, params, true), params).then((result) => {
             return result;
         });
     };

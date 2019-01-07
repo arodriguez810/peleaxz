@@ -39,11 +39,6 @@ CRUD_ms_all = DSON.merge(CRUD_ms_all,
                         type: FILTER.types.decimal,
                     },
                     {
-                        key: 'color',
-                        label: 'Color',
-                        type: FILTER.types.color,
-                    },
-                    {
                         key: 'hashtags',
                         label: 'Hashtags',
                         type: FILTER.types.string,

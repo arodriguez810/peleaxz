@@ -8,7 +8,7 @@ var options = {
         color: COLOR.primary
     },
     helptext: '',
-    format: 'd/m/Y h:i:s',
+    format: 'd/m/Y h:i',
     posttype: "datetime",
     timepicker: true,
     datepicker: true,
@@ -71,17 +71,18 @@ var toclient = JSON.stringify(options);
             datepicker: <%= options.datepicker %>,
             lang: "<%= options.lang %>",
             inline: <%= options.inline %>,
+            validateOnBlur: false,
             <%= options.allowTimes.length > 0 ? "allowTimes :" + JSON.stringify(options.allowTimes) + "," : "" %>
             <%= options.maxDate !== "" ? "maxDate:'" + options.maxDate + "'," : "" %>
             <%= options.minDate !== "" ? "minDate:'" + options.minDate + "'," : "" %>
             mask: <%= options.mask %>,
             onChangeDateTime: function (currentDateTime) {
                 if(<%= model %>.form.options.<%= name %>.datepicker===false){
-                    <%= model %>.<%= name %>Clean = moment(currentDateTime).format("H:mm:s");
+                    <%= model %>.<%= name %>Clean = moment(currentDateTime).format("H:mm");
                 }else if(<%= model %>.form.options.<%= name %>.timepicker===false){
                         <%= model %>.<%= name %>Clean = moment(currentDateTime).format("YYYY-MM-DD");
                 }else{
-                    <%= model %>.<%= name %>Clean = moment(currentDateTime).format("YYYY-MM-DD H:mm:s");
+                    <%= model %>.<%= name %>Clean = moment(currentDateTime).format("YYYY-MM-DD H:mm");
                 }
 
             }

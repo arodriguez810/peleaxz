@@ -188,7 +188,7 @@ TABLEEVENT = {
             } else {
                 if (!DSON.oseaX(data.column.formattype)) {
                     if (data.column.formattype.indexOf("html") !== -1) {
-                        $scope.modal.simpleModal(data.value, {
+                        $scope.modal.simpleModal(data.value||"", {
                             header: {title: "HTML content of " + data.column.label}
                         });
                     } else if (data.column.formattype.indexOf("color") !== -1) {
@@ -386,5 +386,50 @@ TABLEEVENT = {
                 }
             });
         };
+
+        $scope.importing = function (data) {
+
+            $scope.procesingRow = 0;
+            $scope.procesingRowFor = data.length;
+            SWEETALERT.loading({message: `Importing Multiple Rows ${$scope.procesingRow} of ${$scope.procesingRowFor}`});
+            for (const item of data) {
+                $scope.importRow(item);
+            }
+        };
+
+
+        $scope.importRow = async function (item) {
+            $scope.insertID(item.row, function (result) {
+                if(result.data.error===false) {
+                    var savedRow = result.data.data[0];
+                    $scope.procesingRow++;
+                    if ($scope.procesingRowFor !== 0)
+                        SWEETALERT.loading({
+                            message: `Importing Multiple Rows ${$scope.procesingRow} of ${$scope.procesingRowFor}`
+                        }, false);
+
+                    if ($scope.procesingRow === $scope.procesingRowFor || $scope.procesingRowFor === 0) {
+                        $scope.procesingRow = 0;
+                        $scope.procesingRowFor = 0;
+                        SWEETALERT.stop();
+                    }
+                    for (const relation of item.relations) {
+                        for (const value of relation.values) {
+                            var relaRow = {};
+                            eval(`relaRow.${relation.to} = '${savedRow.id}';`);
+                            eval(`relaRow.${relation.from} = '${value}';`);
+                            console.log(relaRow);
+                            $scope.insertFrom(relation.table, relaRow, function (relResult) {
+
+                            });
+                        }
+                    }
+                    return true;
+                }else{
+
+                }
+            });
+        };
+
     }
 };

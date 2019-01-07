@@ -20,7 +20,6 @@ SWEETALERT = {
                         showCancelButton: true,
                         confirmButtonText: "Try Again"
                     }).then(result => {
-                        console.log(result);
                         if (result.dismiss === undefined) SWEETALERT.goPage($scope);
                     });
                 } else {

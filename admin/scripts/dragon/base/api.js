@@ -33,13 +33,31 @@ API = {
         eval("$scope" + "" + ".get = func;");
 
         var func = function (dataToInsert, callback) {
-            $http.post($scope.rootPath + '/insert', dataToInsert).then(function (data) {
+            $http.post($scope.rootPath + '/insert/', dataToInsert).then(function (data) {
                 callback(data);
             }, function (data) {
                 console.log('Error: ' + data);
             });
         };
         eval("$scope" + "" + ".insert = func;");
+
+        var func = function (table, dataToInsert, callback) {
+            $http.post('/api/' + table + '/insert/', dataToInsert).then(function (data) {
+                callback(data);
+            }, function (data) {
+                console.log('Error: ' + data);
+            });
+        };
+        eval("$scope" + "" + ".insertFrom = func;");
+
+        var func = function (dataToInsert, callback) {
+            $http.post($scope.rootPath + '/insertID/', dataToInsert).then(function (data) {
+                callback(data);
+            }, function (data) {
+                console.log('Error: ' + data);
+            });
+        };
+        eval("$scope" + "" + ".insertID = func;");
 
         var func = function (dataToUpdate, callback) {
             $http.post($scope.rootPath + '/update/', dataToUpdate).then(function (data) {
@@ -49,6 +67,7 @@ API = {
             });
         };
         eval("$scope" + "" + ".update = func;");
+
 
         var func = function (where, callback) {
             $http.post($scope.rootPath + '/delete', where).then(function (data) {

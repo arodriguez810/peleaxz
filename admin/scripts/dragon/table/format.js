@@ -19,11 +19,11 @@ TABLEFORMAT = {
                     if (shorttext !== undefined) {
                         if (shorttext.length > column.shorttext) {
                             shorttext = String.format(
-                                "<a>{0}</a>",
+                                "{0}",
                                 shorttext.substring(0, column.shorttext) + "..."
                             );
                         }
-                        return "<a class='btn bg-" + TAG.table + "'>" + shorttext + "</a>";
+                        return "<a class=' ver btn bg-" + TAG.table + "'>" + shorttext + "</a>";
                     } else {
                         return `<span class='text-grey'>${key}</span>`;
                     }

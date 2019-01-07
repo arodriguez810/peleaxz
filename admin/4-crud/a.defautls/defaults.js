@@ -25,6 +25,8 @@ CRUDDEFAULTS = {
             active: true,
             filter: true,
             import: true,
+            copy: true,
+            clone: true,
             export: {
                 Clipboard: true,
                 PDF: true,
@@ -83,7 +85,6 @@ CRUDDEFAULTS = {
                         click: function (data) {
                             if (!DSON.oseaX(data.row)) {
                                 data.$scope.dataForView = data.row;
-
                                 data.$scope.modal.modalView(String.format("{0}/view", data.$scope.modelName), {
                                     header: {
                                         title: "View of " + data.$scope.plural,
@@ -184,6 +185,71 @@ CRUDDEFAULTS = {
                             return data.$scope.activeColumn();
                         }
                     },
+                    {
+                        text: (data) => {
+                            return "Copy";
+                        },
+                        icon: (data) => {
+                            return "copy3";
+                        },
+                        permission: (data) => {
+                            return 'copy';
+                        },
+                        characterist: (data) => {
+                            return "";
+                        },
+                        click: function (data) {
+
+                            var formatRow = {};
+
+                            for (var i in data.$scope.table.crud.table.columns) {
+                                var column = data.$scope.table.crud.table.columns[i];
+                                var key = i;
+                                var alter = column.exportKey !== undefined ? column.exportKey : i;
+                                if (data.$scope.table.crud.table.columns[key].exportExample !== false) {
+                                    var exampleText = data.$scope.table.crud.table.columns[key].exportExample;
+                                    exampleText = exampleText === undefined ? "[string]" : exampleText;
+                                    var realValue = eval(`data.row.${key};`);
+                                    if (!DSON.oseaX(realValue)) {
+                                        if (column.link !== undefined) {
+                                            realValue = eval(`data.row.${key.split('_')[0]}_${key.split('_')[1]}_id;`);
+                                        }
+                                        eval(`formatRow.${alter} = '${realValue}';`);
+                                    }
+                                }
+                            }
+                            console.log(formatRow);
+                            SWEETALERT.confirm({
+                                title: 'Copy Records',
+                                message: "This option copy this record without relations and paste in a new one with last ID. <br> ¿Are you sure you want copy this record?",
+                                confirm: function () {
+                                    SWEETALERT.loading({message: "Copyng Record..."});
+                                    var records = [formatRow];
+                                    var columns = data.$scope.table.crud.table.columns;
+                                    var inserts = [];
+                                    for (var i in records) {
+                                        var record = records[i];
+                                        var row = {};
+                                        for (var i in record) {
+                                            var key = i;
+                                            var value = record[i];
+                                            for (var c in columns) {
+                                                var column = false;
+                                                if (c === key || key === columns[c].exportKey)
+                                                    column = columns[c];
+                                                if (column === false) continue;
+                                                eval(`row.${key} = '${value}';`);
+                                                break;
+                                            }
+                                        }
+                                        inserts.push({row: row, relations: []});
+                                    }
+                                    data.$scope.importing(inserts);
+                                }
+                            });
+                            return false;
+                        }
+                    }
                 ]
             },
             {

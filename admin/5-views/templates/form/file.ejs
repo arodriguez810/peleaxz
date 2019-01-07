@@ -6,7 +6,7 @@ var options = {
     icon: {
         class: "upload",
         position: "left",
-        color: COLOR.primary
+        color: TAG.table
     },
     type: "normal",
     folder: `uploads/temp/${name}/${model}/` + new Date().getTime(),
@@ -18,13 +18,13 @@ var options = {
     posttype: "file"
 };
 options = OBJECT.merge(options, opts);
-options.color = options.type === "form" ? "{{" + model + ".validation.stateDefault()}}" : COLOR.primary;
+options.color = options.type === "form" ? "{{" + model + ".validation.stateDefault()}}" : options.icon.color;
 var toclient = JSON.stringify(options);
 %>
 <script>
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
-    <%= model %>.form.registerField("<%= name %>Count", "<%= toclient %>");
-    <%= model %>.<%= name %>Count = 0;
+    <%= model %>.form.registerField("<%= name %>CountFile", "<%= toclient %>");
+    <%= model %>.<%= name %>CountFile = 0;
 </script>
 <div class="form-group-material form-group has-feedback has-{{<%= model %>.validation.getType('<%= name %>')}}  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
      id="input<%= name %>">
@@ -36,9 +36,9 @@ var toclient = JSON.stringify(options);
     <button name="<%= name %>"
             type="button"
             role="button"
-            class="btn bg-<%= options.color %>-800 btn-block legitRipple">
+            class="btn bg-<%= options.color %>-600 btn-block legitRipple">
         <%= options.model ? "{{" + options.model + "}}" : "" %>
-        {{<%= model %>.<%= name %>Count>0? <%= model %>.<%= name %>Count + " Files" :""}}
+        {{<%= model %>.<%= name %>CountFile>0? <%= model %>.<%= name %>CountFile + " Files" :""}}
         <i class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} position-{{<%= model %>.form.options.<%= name %>.icon.position}}"></i>
     </button>
 
@@ -62,7 +62,7 @@ var toclient = JSON.stringify(options);
         if(amLoad<%= name %>){
             BASEAPI.ajax.get(HTTP.path(["files", "api"]), {folder: <%= model %>.form.options.<%= name %>.folder}, function (data) {
                 <%= model %>.
-                <%= name %>Count = data.data.files.length;
+                <%= name %>CountFile = data.data.files.length;
                 <%= model %>.
                 $scope.$digest();
             });

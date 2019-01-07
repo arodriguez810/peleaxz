@@ -33,6 +33,26 @@ FORM = {
             eval(`$scope.form.options.${name} = ${properties.replaceAll("&#34;", '"')}`);
         };
 
+        $scope.form.pushInsert = function (obj, name) {
+            if ($scope.form.fileds.indexOf(name) !== -1) {
+                var finalValue = eval(`$scope.${name}`);
+                if (finalValue != null && finalValue !== undefined && finalValue !== '[NULL]') {
+                    if ($scope.form.fileds.indexOf(name + 'Clean') !== -1) {
+                        finalValue = eval(`$scope.${name}Clean`);
+                    }
+                    eval(`obj.${name} = '${finalValue}'`);
+                }
+            }
+        };
+
+        $scope.form.lastPrepare = {};
+        $scope.form.prepareInsert = function (exclude) {
+            for (const field of $scope.form.fileds) {
+                if (exclude.indexOf(field) === -1)
+                    $scope.form.pushInsert($scope.form.lastPrepare, field);
+            }
+        };
+
         $scope.form.masked = function (name, value) {
             if (!DSON.oseaX(value))
                 return $(`[name="${name}"]`).masked(value);
@@ -75,7 +95,7 @@ FORM = {
                 });
         };
 
-        $scope.form.loadOutDropDown = function (options,id) {
+        $scope.form.loadOutDropDown = function (options, id) {
             ANIMATION.loading(`#input${name}`, "", `#icon${name}`, '30');
             BASEAPI.list(options.table, options.query,
                 function (info) {
@@ -141,10 +161,6 @@ FORM = {
             };
 
 
-            $scope.pages.form.save = function (pre, post) {
-
-            };
-
             $scope.pages.form.beforeOpen();
             var icon = "";
             if (mode === FORM.modes.new) icon = "file-plus";
@@ -157,7 +173,7 @@ FORM = {
                 header: {
                     title: capitalize(`${mode} ${$scope.singular}`),
                     icon: icon,
-                    bg: mode !== FORM.modes.view ? TAG.table : `alpha-${TAG.table}`,
+                    bg: mode !== FORM.modes.view ? COLOR.primary + '-600' : `alpha-${COLOR.primary}-600`,
                     closeButton: true,
                     h: "h6"
                 },

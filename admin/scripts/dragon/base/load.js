@@ -7,6 +7,15 @@ LOAD = {
             ANIMATION.loading(thisid, loadingText);
             if (view === "") {
                 $("#" + id).load("error/" + "404");
+                $http.get("error/error", {}).then(
+                    function (error) {
+                        error.status = 404;
+                        $scope.httpError = error;
+                        $("#" + id).html($scope.returnBuild(data.data));
+                        ANIMATION.stoploading(thisid);
+                        callback(true);
+                    },
+                );
                 return;
             }
 
@@ -21,10 +30,14 @@ LOAD = {
                     callback(true);
                 },
                 function (data) {
-                    $(thisid).load("error/" + data.status, function () {
-                        ANIMATION.stoploading(thisid);
-                        callback(false);
-                    });
+                    $http.get("error/error" + "?scope=" + $scope.modelName, {}).then(
+                        function (template) {
+                            $scope.httpError = data;
+                            $(thisid).html($scope.returnBuild(template.data));
+                            ANIMATION.stoploading(thisid);
+                            callback(true);
+                        },
+                    );
                 }
             );
         };
@@ -51,13 +64,24 @@ LOAD = {
         LOAD.loadContentView(view, $scope, $http, $compile);
     },
     loadContentView: function (view, $scope, $http, $compile) {
-        $http.get(view, {}).then(
+        var scope = $scope.modelName;
+        if (DSON.oseaX(scope))
+            scope = view.replaceAll('/', '_');
+        $http.get(view + "?scope=" + scope, {}).then(
             function (data) {
                 $("#content").html($compile(data.data)($scope));
                 ANIMATION.stoploading();
             },
             function (data) {
-                $("#content").load("error/" + data.status);
+                console.log($scope.modelName);
+                $http.get("error/error" + "?scope=" + $scope.modelName, {}).then(
+                    function (template) {
+                        $scope.httpError = data;
+                        $("#content").html($scope.returnBuild(template.data));
+                        ANIMATION.stoploading();
+                        callback(true);
+                    },
+                );
                 ANIMATION.stoploading();
             }
         );

@@ -2,11 +2,48 @@
   "ui": {
     "colors": {
       "primary": "slate",
+      "info": "indigo",
+      //slate, grey, brown, orange, green, teal, blue, indigo, purple, violet, pink, info, warning, success, danger
+
+      //my dry, slate-grey
+      //elegant, slate-blue
+      //favorite, slate-danger
+
+      //lightdry, grey-grey
+      //soft, gray-info
+      //menta, gray-teal
+
+      //ground, brown-slate
+      //potato, brown-orange
+      //BomBom, brown-pink
+
+      //spark, orange-blue
+      //orange, orange-warning
+
+      //emerald, teal-green
+      //leaf, green-success
+      //Chiristmas, green-danger
+
+      //ocean, blue-info
+      //revelde, blue-danger
+      //mora, blue-indigo, purple, violet
+
+      //violet, indigo-violet
+      //pulp, purple-indigo
+      //indigo, indigo-purple
+
+      //rose, pink-danger
+      //strawberry, pink-pink
+      //woman, pink-violet
+      //LonelyToons, pink-info
+
+      //sun, danger-orange
+      //blod, danger-danger
+
+
       "danger": "danger",
       "success": "success",
       "warning": "warning",
-      "info": "danger",
-      //slate, grey, brown, orange, green, teal, blue, indigo, purple, violet, pink, info, warning, success, danger
       "default": "default",
       "sidebar": "",
       //"default",

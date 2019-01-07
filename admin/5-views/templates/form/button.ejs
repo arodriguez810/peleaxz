@@ -11,7 +11,7 @@ var options = {
     posttype:"button"
 };
 options = OBJECT.merge(options, opts);
-options.color = options.type === "form" ? "{{" + model + ".validation.stateDefault()}}" : COLOR.primary;
+options.color = options.type === "form" ? "{{" + model + ".validation.stateDefault()}}" : TAG.table;
 var toclient = JSON.stringify(options);
 %>
 <script>

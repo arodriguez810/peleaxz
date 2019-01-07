@@ -1,7 +1,10 @@
 <div class="modal-footer">
-    <button type="button" class="btn btn-link" ng-click="<%= scope %>.filters.apply()">Apply</button>
-    <button type="button" class="btn btn-link" ng-click="<%= scope %>.filters.clear()">Clear</button>
-    <button type="button" class="btn btn-link" ng-click="<%= scope %>.filters.close()">Close</button>
+    <button type="button" class="btn  bg-<%= TAG.table %>-600" ng-click="<%= scope %>.filters.apply()">Apply
+    </button>
+    <button type="button" class="btn  bg-<%= TAG.table %>-600" ng-click="<%= scope %>.filters.clear()">Clear
+    </button>
+    <button type="button" class="btn  bg-<%= TAG.table %>-600" ng-click="<%= scope %>.filters.close()">Close
+    </button>
 </div>
 <div class="row {{<%= scope %>.filters.colored(block)}}"
      ng-repeat="(key,block) in <%= scope %>.filters.blocks"
@@ -9,7 +12,7 @@
     <div class="col-sm-1 col-md-1">
         <button type="button" role="button"
                 ng-click="<%= scope %>.filters.toggleGroup(block)"
-                class="btn text-<%= COLOR.primary %>-800 {{<%= scope %>.filters.colored(block)}} text-bold  btn-block legitRipple text-right">
+                class="btn text-<%= COLOR.primary %>-600 {{<%= scope %>.filters.colored(block)}} text-bold  btn-block legitRipple text-right">
             {{block.group?'(':' '}}
         </button>
     </div>
@@ -46,6 +49,7 @@
                     ng-click="event = $event" ng-change="<%= scope %>.filters.setReal(block,event)"
                     ng-show="<%= scope %>.filters.showControl(['string'],block.column) && block.operator.disabled!==true"
                     ng-model="block.value"
+                    data-column="{{block.column}}"
                     data-scope="<%= scope %>"
                     maxlength="{{block.column.maxlength || 999999}}"
                     type="text"
@@ -56,6 +60,7 @@
                     ng-click="event = $event" ng-change="<%= scope %>.filters.setReal(block,event)"
                     ng-show="<%= scope %>.filters.showControl(['integer'],block.column) && block.operator.disabled!==true"
                     ng-model="block.value"
+                    data-column="{{block.column}}"
                     data-scope="<%= scope %>"
                     type="text"
                     class="form-control numberFilter"
@@ -65,6 +70,7 @@
                     ng-click="event = $event" ng-change="<%= scope %>.filters.setReal(block,event)"
                     ng-show="<%= scope %>.filters.showControl(['decimal'],block.column) && block.operator.disabled!==true"
                     ng-model="block.value"
+                    data-column="{{block.column}}"
                     data-scope="<%= scope %>"
                     type="text"
                     class="form-control decimalFilter"
@@ -74,6 +80,7 @@
                     ng-click="event = $event" ng-change="<%= scope %>.filters.setReal(block,event)"
                     ng-show="<%= scope %>.filters.showControl(['color'],block.column) && block.operator.disabled!==true"
                     ng-model="block.value"
+                    data-column="{{block.column}}"
                     data-scope="<%= scope %>"
                     type="text"
                     class="form-control colorFilter"
@@ -83,6 +90,7 @@
                     ng-click="event = $event" ng-change="<%= scope %>.filters.setReal(block,event)"
                     ng-show="<%= scope %>.filters.showControl(['tags'],block.column) && block.operator.disabled!==true"
                     ng-model="block.value"
+                    data-column="{{block.column}}"
                     data-scope="<%= scope %>"
                     type="text"
                     class="form-control tagsFilter"
@@ -92,6 +100,7 @@
                     ng-click="event = $event" ng-change="<%= scope %>.filters.setReal(block,event)"
                     ng-show="<%= scope %>.filters.showControl(['time'],block.column) && block.operator.disabled!==true"
                     ng-model="block.value"
+                    data-column="{{block.column}}"
                     data-scope="<%= scope %>"
                     type="text"
                     class="form-control timeFilter"
@@ -101,6 +110,7 @@
                     ng-click="event = $event" ng-change="<%= scope %>.filters.setReal(block,event)"
                     ng-show="<%= scope %>.filters.showControl(['date'],block.column) && block.operator.disabled!==true"
                     ng-model="block.value"
+                    data-column="{{block.column}}"
                     data-scope="<%= scope %>"
                     type="text"
                     class="form-control dateFilter"
@@ -110,6 +120,7 @@
                     ng-click="event = $event" ng-change="<%= scope %>.filters.setReal(block,event)"
                     ng-show="<%= scope %>.filters.showControl(['datetime'],block.column) && block.operator.disabled!==true"
                     ng-model="block.value"
+                    data-column="{{block.column}}"
                     data-scope="<%= scope %>"
                     type="text"
                     class="form-control datetimeFilter"
@@ -121,6 +132,7 @@
                     ng-show="<%= scope %>.filters.showControl(['relation'],block.column) && block.operator.disabled!==true"
                     style="display: inline;"
                     ng-model="block.value"
+                    data-column="{{block.column}}"
                     class="form-control bootstrap-select relationFilter"
 
             >
@@ -135,7 +147,7 @@
     <div class="col-sm-1 col-md-1">
         <button type="button" role="button"
                 ng-click="<%= scope %>.filters.toggleEndGroup(block)"
-                class="btn text-<%= COLOR.primary %>-800 {{<%= scope %>.filters.colored(block)}} text-bold bg-white btn-block legitRipple text-left">
+                class="btn text-<%= COLOR.primary %>-600 {{<%= scope %>.filters.colored(block)}} text-bold bg-white btn-block legitRipple text-left">
             {{block.endgroup?')':' '}}
         </button>
     </div>
@@ -156,7 +168,7 @@
     <div class="form-group">
         <button type="button" role="button"
                 ng-click="<%= scope %>.filters.add()"
-                class="btn bg-<%= COLOR.primary %>-800 btn-block legitRipple">
+                class="btn bg-<%= COLOR.primary %>-600 btn-block legitRipple">
             Add
             <i class="icon-plus-circle2 position-left"></i>
         </button>
@@ -167,9 +179,12 @@
     </p>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-link" ng-click="<%= scope %>.filters.apply()">Apply</button>
-    <button type="button" class="btn btn-link" ng-click="<%= scope %>.filters.clear()">Clear</button>
-    <button type="button" class="btn btn-link" ng-click="<%= scope %>.filters.close()">Close</button>
+    <button type="button" class="btn  bg-<%= TAG.table %>-600" ng-click="<%= scope %>.filters.apply()">Apply
+    </button>
+    <button type="button" class="btn  bg-<%= TAG.table %>-600" ng-click="<%= scope %>.filters.clear()">Clear
+    </button>
+    <button type="button" class="btn  bg-<%= TAG.table %>-600" ng-click="<%= scope %>.filters.close()">Close
+    </button>
 </div>
 
 <script>
@@ -210,13 +225,13 @@
             });
             $(this).focus();
         });
-
         $(document).on("click", ".datetimeFilter", function () {
             var $me = $(this);
             $me.datetimepicker({
-                format: 'd/m/Y h:i:s a',
+                format: 'd/m/Y h:i a',
                 timepicker: true,
                 datepicker: true,
+                validateOnBlur: false,
                 lang: "es",
                 inline: false,
                 mask: false,
@@ -224,12 +239,14 @@
                     $me.data('realValue', moment(currentDateTime).format("YYYY-MM-DD H:mm:s"));
                 }
             });
+            $me.datetimepicker("show");
         });
         $(document).on("click", ".dateFilter", function () {
             var $me = $(this);
             $me.datetimepicker({
                 format: 'd/m/Y',
                 timepicker: false,
+                validateOnBlur: false,
                 datepicker: true,
                 lang: "es",
                 inline: false,
@@ -238,12 +255,14 @@
                     $me.data('realValue', moment(currentDateTime).format("YYYY-MM-DD"));
                 }
             });
+            $me.datetimepicker("show");
         });
         $(document).on("click", ".timeFilter", function () {
             var $me = $(this);
             $me.datetimepicker({
                 format: 'h:i a',
                 timepicker: true,
+                validateOnBlur: false,
                 datepicker: false,
                 lang: "es",
                 inline: false,
@@ -252,6 +271,7 @@
                     $me.data('realValue', moment(currentDateTime).format("H:mm"));
                 }
             });
+            $me.datetimepicker("show");
         });
 
     });

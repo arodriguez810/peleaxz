@@ -148,23 +148,15 @@
                     icon: {class: "archive"}
                 }) %>
             </div>
-            <div class="col-sm-12 col-md-12">
-                <%- FORM.checkboxlist("option", scope, {
-                    values: [
-                        {id: 1, text: "Masculino"},
-                        {id: 2, text: "Femenino"}
-                    ],
-                    selecteds: [1]
-                }) %>
-            </div>
+
         </div>
     </div>
 
 </div>
 
 <div class="modal-footer">
-    <button type="button" class="btn btn-link" ng-click="<%= scope %>.pages.form.close()">Save</button>
-    <button type="button" class="btn btn-link" ng-click="<%= scope %>.pages.form.close()">Close</button>
+    <button type="button" class="btn bg-<%=TAG.table%>-600" ng-click="<%= scope %>.pages.form.save()">Save</button>
+    <button type="button" class="btn bg-<%=TAG.table%>-600" ng-click="<%= scope %>.pages.form.close()">Close</button>
 </div>
 
 

@@ -45,7 +45,7 @@ app.controller("ms_all", function ($scope, $http, $compile) {
             },
             image: function () {
                 var rules = [];
-                var value = ms_all.imageCount;
+                var value = ms_all.imageCountFile;
                 rules.push(VALIDATION.file.count(value, 1));
                 return VALIDATION.process(ms_all, "image", rules)
             },
@@ -67,6 +67,45 @@ app.controller("ms_all", function ($scope, $http, $compile) {
             all: function () {
                 return ms_all.validation.stateIcon(ms_all.form.fileds);
             },
+        };
+
+        ms_all.pages.form.save = function (pre, post) {
+            var newRecord = {};
+            ms_all.form.prepareInsert(['products']);
+            console.log(ms_all.form.lastPrepare);
+            // $scope.insertID({
+            //     name: ms_all.name,
+            //     description: ms_all.name,
+            // }, function (result) {
+            //     if (result.data.error === false) {
+            //         var savedRow = result.data.data[0];
+            //         $scope.procesingRow++;
+            //         if ($scope.procesingRowFor !== 0)
+            //             SWEETALERT.loading({
+            //                 message: `Importing Multiple Rows ${$scope.procesingRow} of ${$scope.procesingRowFor}`
+            //             }, false);
+            //
+            //         if ($scope.procesingRow === $scope.procesingRowFor || $scope.procesingRowFor === 0) {
+            //             $scope.procesingRow = 0;
+            //             $scope.procesingRowFor = 0;
+            //             SWEETALERT.stop();
+            //         }
+            //         for (const relation of item.relations) {
+            //             for (const value of relation.values) {
+            //                 var relaRow = {};
+            //                 eval(`relaRow.${relation.to} = '${savedRow.id}';`);
+            //                 eval(`relaRow.${relation.from} = '${value}';`);
+            //                 console.log(relaRow);
+            //                 $scope.insertFrom(relation.table, relaRow, function (relResult) {
+            //
+            //                 });
+            //             }
+            //         }
+            //         return true;
+            //     } else {
+            //
+            //     }
+            // });
         };
 
 

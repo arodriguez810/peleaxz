@@ -57,11 +57,7 @@
                     </li>
                 </ul>
             </li>
-            <li ng-show="<%= scope %>.allow('add')">
-                <a ng-click="<%= scope %>.pages.form({},'new')" class="legitRipple">
-                    <i title="Add" class="icon-plus-circle2 "></i> 
-                </a>
-            </li>
+
             <li ng-if="<%= scope %>.allow('filter') && <%= scope %>.filters!==undefined">
                 <a ng-click="<%= scope %>.openFilters();" class="legitRipple" title="Filter">
                     <i title="Filter" class="icon-filter4"></i> 
@@ -99,7 +95,7 @@
                 <ul class="dropdown-menu dropdown-menu-right">
                     <li><a ng-click="<%= scope %>.export.downloadExample()"><i class="icon-file-download"></i>Donwload
                             Example</a></li>
-                    <li><a ng-click=""> <i class="icon-import"></i>Import</a></li>
+                    <li><a ng-click="<%= scope %>.export.importModal()"> <i class="icon-import"></i>Import</a></li>
                 </ul>
             </li>
             <li class="dropdown" ng-show="<%= scope %>.characterist('batch') && <%= scope %>.records.data.length>1">
@@ -123,6 +119,11 @@
             <li>
                 <a ng-click="<%= scope %>.refresh()" class="legitRipple">
                     <i title="Refresh" class="icon-rotate-cw3 loadingButton"></i> 
+                </a>
+            </li>
+            <li ng-show="<%= scope %>.allow('add')">
+                <a ng-click="<%= scope %>.pages.form({},'new')" class="legitRipple">
+                    <i title="Add" class="icon-plus-circle2 "></i> 
                 </a>
             </li>
         </ul>

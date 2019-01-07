@@ -80,7 +80,7 @@ var toclient = JSON.stringify(options);
         });
 
         $('[name="<%= name %>AddressFilter"]').dblclick(function () {
-            $("#<%= name %>_map").hide();
+            $("#<%= name %>_map").toggle();
         });
 
         $('[name="<%= name %>AddressFilter"]').focusout(function () {

@@ -37,6 +37,7 @@ DSON.keepmerge(CRUD_ms_all,
                     shorttext: 20,
                 },
                 products: {
+                    exportKey: '$$products',
                     label: "Products",
                     multilink: {
                         table: "ms_allproducts",
@@ -85,6 +86,7 @@ DSON.keepmerge(CRUD_ms_all,
                     exportExample: false
                 },
                 ms_child_name: {
+                    exportKey: 'child',
                     label: "child",
                     shorttext: 20,
                     link: {
@@ -106,6 +108,7 @@ DSON.keepmerge(CRUD_ms_all,
                     exportExample: "id from master table",
                 },
                 ms_other_description: {
+                    exportKey: 'other',
                     label: "other",
                     shorttext: 20,
                     link: {
@@ -220,17 +223,17 @@ DSON.keepmerge(CRUD_ms_all,
                 birthDate: {
                     sorttype: "time",
                     formattype: "datetime>DD-MM-YYYY",
-                    exportExample: "[Date DD-MM-YYYY]"
+                    exportExample: "\"\"[Date YYYY-MM-DD]\"\""
                 },
                 lastLogin: {
                     sorttype: "time",
                     formattype: "datetime>DD-MM-YYYY hh:mm a",
-                    exportExample: "[Date DD-MM-YYYY hh:mm a]"
+                    exportExample: "\"\"[Date YYYY-MM-DD hh:mm am/pm]\"\""
                 },
                 record: {
                     sorttype: "time",
                     formattype: "datetime>hh:mm a",
-                    exportExample: "[Time hh:mm a]"
+                    exportExample: "\"\"[Time hh:mm am/pm]\"\""
                 },
                 active: {
                     visible: true,

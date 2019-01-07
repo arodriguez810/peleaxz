@@ -305,7 +305,7 @@ modules.tools.init(eval("(" + allparams + ")"));
 modules.views.init(eval("(" + allparams + ")"));
 app.listen(CONFIG.port);
 console.log("******************".pxz + CONFIG.appName.pxz + " Server*************************************".pxz);
-console.log("Server : ".pxz + CONFIG.port);
+console.log("Server : ".pxz + `${CONFIG.ssl === true ? 'https://' : 'http://'}${CONFIG.subdomain !== '' ? CONFIG.subdomain + '.' : ''}${CONFIG.domain}:${CONFIG.port === 80 ? '' : CONFIG.port}`);
 if (CONFIG.mongo !== undefined) console.log("Mongo  : ".pxz + models);
 if (CONFIG.mssql !== undefined) console.log("MSSQL  : ".pxz + modelsql);
 if (CONFIG.mysql !== undefined) console.log("MYSQL  : ".pxz + modelmysql);
