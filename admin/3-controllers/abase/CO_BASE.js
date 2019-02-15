@@ -11,12 +11,34 @@ app.directive("repeatEnd", function () {
     };
 });
 
+app.factory('logTimeTaken', [function () {
+    var logTimeTaken = {
+        request: function (config) {
+            config.requestTimestamp = new Date().getTime();
+            return config;
+        },
+        response: function (response) {
+            response.config.responseTimestamp = new Date().getTime();
+            return response;
+        }
+    };
+    return logTimeTaken;
+}]);
+
+app.config(['$httpProvider', function ($httpProvider) {
+    $httpProvider.interceptors.push('logTimeTaken');
+}]);
+
+
 app.controller('baseController', function ($scope, $http, $compile, $controller) {
     var baseController = this;
     baseController.SESSION = SESSION;
     baseController.menus = CONFIG.menus;
     baseController.favorites = [];
     baseController.$scope = $scope;
+    baseController.CONFIG = CONFIG;
+
+
     baseController.refreshAngular = function () {
         baseController.$scope.$digest();
     };
@@ -40,8 +62,37 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
             baseController.favorites = newarray;
         }
     };
-
 });
+
+CHILDSCOPES = [];
+REMOVELASTCHILDSCOPE = function () {
+    ARRAY.last(CHILDSCOPES).$destroy();
+    ARRAY.removeLast(CHILDSCOPES);
+};
+REMOVEALLCHILDSCOPE = function () {
+    CHILDSCOPES.forEach((scopy) => {
+        scopy.$destroy();
+    });
+    CHILDSCOPES = [];
+};
+
+GARBAGECOLECTOR = function (exclude) {
+    if (MODAL.history.length === 0)
+        MODELLIST.forEach((item) => {
+            if (!DSON.oseaX(item)) {
+                if (exclude !== item) {
+                    eval(`
+                    if((typeof ${item})!=='undefined'){
+                        if(${item}!==null){   
+                          ${item}.$scope.$destroy();
+                          ${item} = null;
+                        }
+                    }`);
+                }
+            }
+        });
+};
+
 RUN_A = function (conrollerName, inside, $scope, $http, $compile) {
     API.run(inside, $http);
     COMPILE.run(inside, $scope, $compile);
@@ -56,10 +107,11 @@ RUN_A = function (conrollerName, inside, $scope, $http, $compile) {
 RUN_B = function (conrollerName, inside, $scope, $http, $compile) {
     FORM.run(inside, $http);
     VALIDATION.run(inside);
-
 };
 
 RUNCONTROLLER = function (conrollerName, inside, $scope, $http, $compile) {
+
+    GARBAGECOLECTOR(conrollerName);
     inside.MENU = MENU.current;
     inside.modelName = conrollerName;
     inside.singular = inside.modelName.split('_')[1];
@@ -90,4 +142,10 @@ RUNCONTROLLER = function (conrollerName, inside, $scope, $http, $compile) {
         inside.$scope.$digest();
     };
     inside.refresh();
+    $scope.$on('$destroy', function () {
+
+    });
+    if (MODAL.history.length === 0) {
+        baseController.currentModel = inside;
+    }
 };

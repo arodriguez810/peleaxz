@@ -8,7 +8,8 @@ var options = {
         color: COLOR.primary
     },
     helptext: '',
-    posttype: "color"
+    posttype: "color",
+    disabled: false
 
 };
 options = OBJECT.merge(options, opts);
@@ -16,6 +17,14 @@ var toclient = JSON.stringify(options);
 %>
 <script>
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
+    var isReadProgram = <%= model %>.form.isReadOnly('<%= name %>');
+    if (isReadProgram !== false) {
+        <%= model %>.
+        form.options.<%= name %>.disabled = true;
+        if (isReadProgram !== undefined) {
+            <%= model %>.<%= name %> = isReadProgram;
+        }
+    }
 </script>
 <div class="form-group-material form-group has-feedback has-{{<%= model %>.validation.getType('<%= name %>')}}  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
      id="input<%= name %>">
@@ -25,35 +34,38 @@ var toclient = JSON.stringify(options);
     </label>
     <input
             ng-model="<%= model + "." + name %>"
-            name="<%= name %>"
+            name="<%= model %>_<%= name %>"
             type="text"
             class="form-control">
 
-    <div style="margin: 10px;" class="form-control-feedback">
+    <div style="margin: 10px;" class="form-control-feedback" ng-if="<%= model %>.form.options.<%= name %>.icon.class!=='none'">
         <i class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} text-{{<%= model %>.validation.getColor('<%= name %>',<%= model %>.form.options.<%= name %>.icon.color)}}">
 
         </i>
     </div>
-    <span ng-show="<%= model %>.form.options.<%= name %>.helptext!=''"
+    <span ng-if="<%= model %>.form.options.<%= name %>.helptext!=''"
           class="help-block text-muted">
         {{<%= model %>.form.options.<%= name %>.helptext}}
     </span>
 
     <span ng-show="<%= model %>.validation.getMessages('<%= name %>').length>0" class="help-block">
         <p class="text-{{$eval(validation).type}}"
-           ng-repeat="validation in <%= model %>.validation.getMessages('<%= name %>')">
+           ng-repeat="(key,validation) in <%= model %>.validation.getMessages('<%= name %>') track by key">
                <i class="{{$eval(validation).icon}}"></i> {{$eval(validation).message}}
         </p>
     </span>
 </div>
 <script type="text/javascript">
+
     $(document).ready(function () {
-        $('[name="<%= name %>"]').spectrum({
+
+        $('[name="<%= model %>_<%= name %>"]').spectrum({
             showInitial: true,
             showInput: true,
             showAlpha: true,
             allowEmpty: true,
             showPalette: true,
+            disabled: (isReadProgram !== false),
             palette: [
                 ["#000", "#444", "#666", "#999", "#ccc", "#eee", "#f3f3f3", "#fff"],
                 ["#f00", "#f90", "#ff0", "#0f0", "#0ff", "#00f", "#90f", "#f0f"],
@@ -65,5 +77,9 @@ var toclient = JSON.stringify(options);
                 ["#600", "#783f04", "#7f6000", "#274e13", "#0c343d", "#073763", "#20124d", "#4c1130"]
             ]
         });
+        if (isReadProgram !== false) {
+            if (isReadProgram !== undefined)
+                $('.sp-preview-inner').css('background-color', isReadProgram)
+        }
     });
 </script>

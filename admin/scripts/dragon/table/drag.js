@@ -11,7 +11,6 @@ DRAG = {
                     onlyBody: true,
                     animation: 300
                 }).on('drop', function (from, to) {
-                    console.log(goModalName);
                     STORAGE.saveColumns(goModalName,element);
                 });
             });

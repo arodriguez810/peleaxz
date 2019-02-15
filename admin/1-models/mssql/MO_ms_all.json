@@ -6,7 +6,7 @@
   "biography": "ntext NULL",
   "average": "numeric( 18, 2) NULL",
   "salary": "money NULL",
-  "location": "NVARCHAR(100) NULL",
+  "location": "NVARCHAR(MAX) NULL",
   "image": "NVARCHAR(50) NULL",
   "file": "ntext NULL",
   "child": "int NULL",

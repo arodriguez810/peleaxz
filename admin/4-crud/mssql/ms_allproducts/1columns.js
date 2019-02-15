@@ -13,7 +13,7 @@ DSON.keepmerge(CRUD_ms_allproducts, {
                     modal: {
                         header: {
                             title: "Detail of All",
-                            icon: "archive"
+                            icon: ICON.classes.archive
                         },
                         footer: {
                             cancelButton: true
@@ -32,7 +32,7 @@ DSON.keepmerge(CRUD_ms_allproducts, {
                     modal: {
                         header: {
                             title: "Detail of Product",
-                            icon: "archive"
+                            icon: ICON.classes.archive
                         },
                         footer: {
                             cancelButton: true

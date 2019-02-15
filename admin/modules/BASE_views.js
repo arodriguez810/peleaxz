@@ -151,7 +151,6 @@ exports.loadEJSSimple = function (folder, prefix, params) {
                     SERVICES: params.catalogs,
                     params: params
                 };
-                console.log(send.scope, viewN[viewN.length - 1]);
                 res.render("." + folder + "/" + viewN[viewN.length - 1], send);
 
             });
@@ -373,36 +372,52 @@ exports.init = function (params) {
         // res.json(json);
     });
 
-    params.app.post("/files/api/move", async function (req, res) {
+    params.app.post("/files/api/moveone", async function (req, res) {
         var fs = params.fs || require("fs");
         var from = req.body.fromFolder;
         var to = req.body.toFolder;
-        fs.renameSync(file.path, filename);
+        fs.renameSync(from, to);
         res.json(info);
     });
 
 
+    params.app.post("/files/api/exist", async function (req, res) {
+        var fs = params.fs || require("fs");
+        if (!fs.existsSync(req.body.path))
+            res.json({success: true});
+        res.json({success: false});
+    });
+
     params.app.post("/files/api/move", async function (req, res) {
         var fs = params.fs || require("fs");
-        var from = req.body.fromFolder;
-        var to = req.body.toFolder;
         var verarray = [];
+        var errors = [];
+        var success = [];
         try {
-            if (fs.statSync(from).isDirectory()) {
-                var files = fs.readdirSync(from);
-                for (const file of files) {
-                    verarray.push({from: file, to: to});
-                    //fs.renameSync(file.path, to);
+            for (var transfer of req.body.moves) {
+                if (fs.statSync(transfer.from).isDirectory()) {
+
+                    if (!fs.existsSync(transfer.from))
+                        params.shelljs.mkdir('-p', transfer.from);
+
+                    if (!fs.existsSync(transfer.to))
+                        params.shelljs.mkdir('-p', transfer.to);
+
+                    var files = fs.readdirSync(transfer.from);
+                    for (const file of files) {
+                        verarray.push({from: file, to: transfer.to});
+                        fs.renameSync(transfer.from + "/" + file, transfer.to + "/" + file);
+                    }
+                    success.push({success: true, arr: verarray});
+                } else {
+                    errors.push({root: realPath, files: [], count: 0, error: "Is Not Directory"});
                 }
-                res.json({success: true, arr: verarray});
-            } else {
-                res.json({root: realPath, files: [], count: 0, error: "Is Not Directory"});
             }
         } catch (err) {
             console.log(err);
-            res.json({success: false});
+            res.json({success: false, errors: errors, fines: success});
         }
-        res.json({success: false});
+        res.json({success: true});
     });
 
     params.app.post("/files/api/upload", params.upload.array('toupload', 100), function (req, res, next) {

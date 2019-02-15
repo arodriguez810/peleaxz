@@ -10,5 +10,5 @@ DDD DDDD	1..365	Day of year
 X	1410715640.579	Unix timestamp
 x	1410715640579	Unix ms timestamp
 
-
+cd C:\wamp\www\peleaxz\admin
 nodemon --watch 0-config --watch 1-models --watch 2-service --watch modules --watch server.js server.js

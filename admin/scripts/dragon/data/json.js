@@ -1,6 +1,3 @@
-/**
- * DSON
- */
 DSON = {
     substringif: function (str, len) {
         return str.length >= len ? str.substring(0, len) : str;
@@ -39,6 +36,16 @@ DSON = {
     },
     noset: function (text) {
         return "";
+    },
+    jsonToArray: function (json) {
+        var newarray = [];
+        json.forEach((item) => {
+            var rowArray = [];
+            for (var i in item)
+                rowArray.push(item[i]);
+            newarray.push(rowArray);
+        });
+        return newarray;
     },
     viewData: {},
     setViewData(obj) {

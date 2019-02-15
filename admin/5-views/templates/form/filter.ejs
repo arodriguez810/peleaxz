@@ -7,7 +7,7 @@
     </button>
 </div>
 <div class="row {{<%= scope %>.filters.colored(block)}}"
-     ng-repeat="(key,block) in <%= scope %>.filters.blocks"
+     ng-repeat="(key,block) in <%= scope %>.filters.blocks track by key"
      value="{{block}}">
     <div class="col-sm-1 col-md-1">
         <button type="button" role="button"
@@ -136,7 +136,7 @@
                     class="form-control bootstrap-select relationFilter"
 
             >
-                <option ng-repeat="(key,item) in <%= scope %>.filters.getSelect(block)"
+                <option ng-repeat="(key,item) in <%= scope %>.filters.getSelect(block) track by key"
                         value="{{$eval('item.'+block.column.value)}}">
                     {{$eval(block.column.text)}}
                 </option>

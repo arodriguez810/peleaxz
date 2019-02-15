@@ -1,5 +1,10 @@
-<div class="" id="<%= scope %>TablePanel" style="overflow-x: scroll;overflow-y: visible;">
+<div class="dragon-panel" id="<%= scope %>TablePanel" style="overflow-x: scroll;overflow-y: visible">
     <!--Table List -->
+    <div ng-show="$$watchersCount>=baseController.CONFIG.performance.angular.table && baseController.CONFIG.mode!=='production'"
+         class="alert alpha-warning border-warning alert-styled-left">
+        This window is consuming more memory than established({{baseController.CONFIG.performance.angular.table}}), this could cause the application to go slow sometime. ({{$$watchersCount}}).
+    </div>
+
     <div
             ng-show="<%= scope %>.records.data.length<=0"
             class="alert alpha-<%= TAG.table %> border-<%= TAG.table %> alert-styled-left">
@@ -12,16 +17,18 @@
             class="alert alpha-<%= TAG.table %> border-<%= TAG.table %> alert-styled-left">
     </div>
 
+    <%- include('paginator',{scope:scope}); %>
+
     <table ng-show="<%= scope %>.records.data.length>1"
            class="table table-togglable table-framed sindu-table dragon-table <%= scope %>-drag"
            data-animation="bounceInUp"
            id="<%= scope %>Table"
-           style="{{<%= scope %>.funcWidth}}"
+           style="{{<%= scope %>.funcWidth}};margin-bottom: {{<%= scope %>.firstCountOption(false)*40}}px"
            data-scope="<%= scope %>">
         <thead class="bg-<%= TAG.table %>" id="<%= scope %>head">
         <!--Columns-->
         <tr class="bg-<%= TAG.table %> dragon-columns">
-            <th ng-repeat="(key, value) in <%= scope %>.columns()"
+            <th ng-repeat="(key, value) in <%= scope %>.columns() track by key"
                 ng-show="<%= scope %>.columnVisible(value)"
                 data-column="{{key}}"
                 ng-dblclick="<%= scope %>.cell.dblColumnSelect($event)"
@@ -34,7 +41,7 @@
         </thead>
         <tbody id="<%= scope %>TableBody">
         <!--Rows-->
-        <tr ng-repeat="(key, row) in <%= scope %>.records.data" data-object="{{row}}"
+        <tr ng-repeat="(key, row) in <%= scope %>.records.data track by key" data-object="{{row}}"
             class="dragon-rows {{<%= scope %>.rowClass(row)}}  {{<%= scope %>.rowDeleted(row)}} {{<%= scope %>.trCheck(row)}}">
             <%- include('rows',{scope:scope}); %>
             <!--Options-->
@@ -50,23 +57,5 @@
         </tbody>
     </table>
     <!--Table List-->
-</div>
-<div class="context-menu" ng-show="<%= scope %>.characterist('contextMenu')">
-    <ul class="dropdown-menu" ng-show="<%= scope %>.options.length>0">
-        <li >
-            <a
-                    ng-show="<%= scope %>.allow(menu.permission())"
-                    data-action="{{<%= scope %>.option.action(menu,{},true,true)}}"
-                    ng-repeat="(key, menu) in <%= scope %>.currentOptionsContext().menus"
-            >
-                <i
-
-                        data-action="{{<%= scope %>.option.action(menu,{},true,true)}}"
-                        class="icon-{{<%= scope %>.option.icon(menu,{},true)}}">
-                </i>
-                {{<%= scope %>.option.text(menu,{},true,true)}}
-            </a>
-        </li>
-    </ul>
 </div>
 <%- include('paginator',{scope:scope}); %>

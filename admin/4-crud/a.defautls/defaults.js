@@ -1,7 +1,7 @@
 CRUDDEFAULTS = {
     table: {
         rowClass: function (row, $scope) {
-            return $scope.active(row) === false ? "bg-" + COLOR.danger + "-300" : "";
+            return $scope.activeSET(row) === false ? "bg-" + COLOR.danger + "-300" : "";
         },
         width: 200,
         offWidth: 5,
@@ -65,7 +65,12 @@ CRUDDEFAULTS = {
                             return "";
                         },
                         click: function (data) {
-                            alert(data.row.name);
+                            data.$scope.formulary({
+                                where: [{
+                                    field: data.$scope.table.crud.table.key,
+                                    value: eval(`data.row.${data.$scope.table.crud.table.key}`)
+                                }]
+                            }, FORM.modes.edit, {});
                             return false;
                         }
                     },
@@ -88,7 +93,7 @@ CRUDDEFAULTS = {
                                 data.$scope.modal.modalView(String.format("{0}/view", data.$scope.modelName), {
                                     header: {
                                         title: "View of " + data.$scope.plural,
-                                        icon: "user"
+                                        icon: ICON.classes.user
                                     },
                                     footer: {
                                         cancelButton: true
@@ -218,7 +223,6 @@ CRUDDEFAULTS = {
                                     }
                                 }
                             }
-                            console.log(formatRow);
                             SWEETALERT.confirm({
                                 title: 'Copy Records',
                                 message: "This option copy this record without relations and paste in a new one with last ID. <br> ¿Are you sure you want copy this record?",

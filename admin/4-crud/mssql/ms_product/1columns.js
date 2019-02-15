@@ -10,7 +10,7 @@ DSON.keepmerge(CRUD_ms_product, {
                 class: "text-left"
             },
             name: {
-                label: "name",
+                label: "Nombraso",
                 shorttext: 20
             },
             price: {
@@ -28,7 +28,7 @@ DSON.keepmerge(CRUD_ms_product, {
                     modal: {
                         header: {
                             title: "Detail of Category",
-                            icon: "archive"
+                            icon: ICON.classes.archive
                         },
                         footer: {
                             cancelButton: true

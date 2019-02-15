@@ -3,9 +3,10 @@ CRUD = {
         $scope.table = {};
         $scope.crud = crud;
         $scope.table.crud = crud;
-
         $scope.lastRow = {};
-        $scope.active = function (row) {
+        $scope.activeSET = function (row) {
+            if (eval("row." + $scope.activeColumn()) === undefined)
+                return true;
             if (DSON.oseaX(row))
                 return false;
             var value = eval("row." + $scope.activeColumn());

@@ -2,5 +2,6 @@
   "appName": "Dragon Framework",
   "logo": "Dragon Framework",
   "filePath": "files",
-  "appKey": "d94g0nf94m3w09k"
+  "appKey": "d94g0nf94m3w09k",
+  "mode": "developer"
 }

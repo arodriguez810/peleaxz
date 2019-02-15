@@ -33,7 +33,7 @@ $(function() {
         autoWidth: false,
 
         // Set a custom down arrow icon by adding new CSS class(s)
-        downArrowIcon: "icon-three-bars"
+        downArrowIcon: ICON.classes.three_bars
     });
 
 

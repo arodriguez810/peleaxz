@@ -1,8 +1,8 @@
 {
   "ui": {
     "colors": {
-      "primary": "slate",
-      "info": "indigo",
+      "primary": "brown",
+      "info": "teal",
       //slate, grey, brown, orange, green, teal, blue, indigo, purple, violet, pink, info, warning, success, danger
 
       //my dry, slate-grey
@@ -21,7 +21,7 @@
       //orange, orange-warning
 
       //emerald, teal-green
-      //leaf, green-success
+      //leaf, success-green
       //Chiristmas, green-danger
 
       //ocean, blue-info

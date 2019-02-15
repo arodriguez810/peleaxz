@@ -9,7 +9,7 @@ var options = {
         color: TAG.table
     },
     type: "normal",
-    folder: `uploads/temp/${name}/${model}/` + new Date().getTime(),
+    folder: `${model}/temp_files/${name}/` + new Date().getTime(),
     maxsize_mb: 10,
     maxfiles: 1,
     acceptedFiles: null,
@@ -22,9 +22,12 @@ options.color = options.type === "form" ? "{{" + model + ".validation.stateDefau
 var toclient = JSON.stringify(options);
 %>
 <script>
+    var keyColumn = <%= model %>.table.crud.table.key;
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
-    <%= model %>.form.registerField("<%= name %>CountFile", "<%= toclient %>");
-    <%= model %>.<%= name %>CountFile = 0;
+    <%= model %>.form.registerField("<%= name %>_DragonCountFile", "<%= toclient %>");
+    <%= model %>.<%= name %>_DragonCountFile = 0;
+    var thisID = eval(`<%= model %>.${keyColumn}`);
+
 </script>
 <div class="form-group-material form-group has-feedback has-{{<%= model %>.validation.getType('<%= name %>')}}  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
      id="input<%= name %>">
@@ -33,16 +36,16 @@ var toclient = JSON.stringify(options);
         {{<%= model %>.form.options.<%= name %>.title}}
     </label>
 
-    <button name="<%= name %>"
+    <button name="<%= model %>_<%= name %>"
             type="button"
             role="button"
             class="btn bg-<%= options.color %>-600 btn-block legitRipple">
         <%= options.model ? "{{" + options.model + "}}" : "" %>
-        {{<%= model %>.<%= name %>CountFile>0? <%= model %>.<%= name %>CountFile + " Files" :""}}
+        {{<%= model %>.<%= name %>_DragonCountFile>0? <%= model %>.<%= name %>_DragonCountFile + " Files" :""}}
         <i class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} position-{{<%= model %>.form.options.<%= name %>.icon.position}}"></i>
     </button>
 
-    <span ng-show="<%= model %>.form.options.<%= name %>.helptext!=''"
+    <span ng-if="<%= model %>.form.options.<%= name %>.helptext!=''"
           class="help-block text-muted">
         {{<%= model %>.form.options.<%= name %>.helptext}}
     </span>
@@ -50,7 +53,7 @@ var toclient = JSON.stringify(options);
     <span ng-show="<%= model %>.validation.getMessages('<%= name %>').length>0" class="help-block">
 
         <p class="text-{{$eval(validation).type}}"
-           ng-repeat="validation in <%= model %>.validation.getMessages('<%= name %>')">
+           ng-repeat="(key,validation) in <%= model %>.validation.getMessages('<%= name %>') track by key">
                <i class="{{$eval(validation).icon}}"></i> {{$eval(validation).message}}
         </p>
     </span>
@@ -58,35 +61,61 @@ var toclient = JSON.stringify(options);
 </div>
 <script>
     var amLoad<%= name %> = false;
-    function ShowCount<%= name %>() {
-        if(amLoad<%= name %>){
-            BASEAPI.ajax.get(HTTP.path(["files", "api"]), {folder: <%= model %>.form.options.<%= name %>.folder}, function (data) {
+
+
+    function ShowCount<%= name %>(direct) {
+        if (amLoad<%= name %> || direct===true) {
+            BASEAPI.ajax.get(HTTP.path(["files", "api"]), {folder: <%= model %>.form.options.<%= name %>.folder
+        },
+
+            function (data) {
                 <%= model %>.
-                <%= name %>CountFile = data.data.files.length;
+                <%= name %>_DragonCountFile = data.data.files.length;
                 <%= model %>.
                 $scope.$digest();
-            });
+            }
+
+        )
+            ;
             amLoad<%= name %> = false;
         }
     }
+
+    if (!DSON.oseaX(thisID)) {
+        <%= model %>.
+        form.options.<%= name %>.folder = `<%= model %>/<%= name %>/${thisID}`;
+        ShowCount<%= name %>(true);
+    }
+
     <%= model %>.form.beginFunctions.push("ShowCount<%= name %>()");
 
     $(document).ready(function () {
 
-        <%= model %>.<%= name %> = "upload:" + <%= model %>.form.options.<%= name %>.folder;
-        $('[name="<%= name %>"]').click(function () {
+        <%= model %>.<%= name %> = "upload:" + <%= model %>.
+        form.options.<%= name %>.folder;
+
+
+        $('[name="<%= model %>_<%= name %>"]').click(function () {
             amLoad<%= name %> = true;
-            var root = <%= model %>.form.options.<%= name %>.folder;
+            var root = <%= model %>.
+            form.options.<%= name %>.folder;
             baseController.viewData = {
                 root: root,
                 scope: <%= model %>,
                 maxsize: <%= model %>.form.options.<%= name %>.maxsize_mb,
-                maxfiles: <%= model %>.form.options.<%= name %>.maxfiles,
-                acceptedFiles: <%= model %>.form.options.<%= name %>.acceptedFiles,
-                columns: <%= model %>.form.options.<%= name %>.columns
-            };
+                maxfiles
+        : <%= model %>.
+            form.options.<%= name %>.maxfiles,
+                acceptedFiles
+        : <%= model %>.
+            form.options.<%= name %>.acceptedFiles,
+                columns
+        : <%= model %>.
+            form.options.<%= name %>.columns
+        }
+            ;
             var modal = {
-                width: <%= model %>.form.options.<%= name %>.width,
+                    width: <%= model %>.form.options.<%= name %>.width,
                 header: {
                     title: <%= model %>.form.options.<%= name %>.title,
                     icon: <%= model %>.form.options.<%= name %>.icon.class
@@ -97,7 +126,7 @@ var toclient = JSON.stringify(options);
                 content: {
                     loadingContentText: "Loading..."
                 },
-            };
+                };
             <%= model %>.
             modal.modalView("../templates/components/gallery", modal);
         });

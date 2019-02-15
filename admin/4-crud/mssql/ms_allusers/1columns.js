@@ -3,18 +3,24 @@ DSON.keepmerge(CRUD_ms_allusers, CRUDDEFAULTS);
 DSON.keepmerge(CRUD_ms_allusers, {
     table: {
         engine: 'ms',
-        key: "ms_all_name",
+        key: "id",
         columns: {
+            id: {
+                visible: false,
+                visibleDetail: false,
+                export: false,
+                exportExample: false
+            },
             ms_all_name: {
                 label: "All",
-                reference:false,
+                reference: false,
                 link: {
                     table: "ms_all",
                     from: "all",
                     modal: {
                         header: {
                             title: "Detail of All",
-                            icon: "archive"
+                            icon: ICON.classes.archive
                         },
                         footer: {
                             cancelButton: true
@@ -33,7 +39,7 @@ DSON.keepmerge(CRUD_ms_allusers, {
                     modal: {
                         header: {
                             title: "User",
-                            icon: "user"
+                            icon: ICON.classes.user
                         },
                         footer: {
                             cancelButton: true
@@ -52,7 +58,7 @@ DSON.keepmerge(CRUD_ms_allusers, {
                     modal: {
                         header: {
                             title: "Category",
-                            icon: "category"
+                            icon: ICON.classes.category
                         },
                         footer: {
                             cancelButton: true

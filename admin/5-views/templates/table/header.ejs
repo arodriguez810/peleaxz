@@ -6,12 +6,12 @@
     <div class="breadcrumb-line"><a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
 
         <ul class="breadcrumb" ng-show="!<%= scope %>.modal.isOpen()">
-            <li ng-repeat="(key, menu) in <%= scope %>.MENU.parents">
+            <li ng-repeat="(key, menu) in <%= scope %>.MENU.parents track by key">
                 <a data-function="menu" href="javascript:void(0)">
                     <i class="{{menu.icon}} position-left"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-left" ng-show="menu.childs.length>0">
-                    <li ng-repeat="(subkey, submenu) in menu.childs">
+                    <li ng-repeat="(subkey, submenu) in menu.childs track by subkey">
                         <a href="{{<%= scope %>.sameHref(submenu,'javascript:void(0)')||submenu.href}}"
                            class="{{<%= scope %>.sameHref(submenu,'text-<%= COLOR.primary %>')||''}}">
                             <i class="{{submenu.icon}}"></i>{{submenu.text}}
@@ -52,7 +52,7 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right" ng-show="<%= scope %>.getLimits().length>1">
                     <li title="Show {{row==0?'All':row}} Records Per Page" class="{{<%= scope %>.limitActive(row)}}"
-                        ng-repeat="(key, row) in <%= scope %>.getLimits()">
+                        ng-repeat="(key, row) in <%= scope %>.getLimits() track by key">
                         <a ng-click="<%= scope %>.goLimit(row)">{{row==0?'All':row}}</a>
                     </li>
                 </ul>
@@ -122,7 +122,7 @@
                 </a>
             </li>
             <li ng-show="<%= scope %>.allow('add')">
-                <a ng-click="<%= scope %>.pages.form({},'new')" class="legitRipple">
+                <a ng-click="<%= scope %>.formulary(null,'new')" class="legitRipple">
                     <i title="Add" class="icon-plus-circle2 "></i> 
                 </a>
             </li>

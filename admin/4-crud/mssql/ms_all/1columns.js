@@ -4,7 +4,7 @@ DSON.keepmerge(CRUD_ms_all,
     {
         table: {
             rowClass: function (row, $scope) {
-                return $scope.active(row) === false ? "bg-" + COLOR.danger + "-300" : "";
+                return $scope.activeSET(row) === false ? "bg-" + COLOR.danger + "-300" : "";
             },
             width: 200,
             offWidth: 5,
@@ -49,7 +49,7 @@ DSON.keepmerge(CRUD_ms_all,
                         modal: {
                             header: {
                                 title: "Products of ${this.name}",
-                                icon: "archive"
+                                icon:  ICON.classes.archive
                             },
                             footer: {
                                 cancelButton: true
@@ -67,13 +67,13 @@ DSON.keepmerge(CRUD_ms_all,
                         table: "ms_allusers",
                         from: "id",
                         to: "all",
-                        getList: "user",
+                        getList: "all",
                         list: "ms_allusers",
-                        wherelist: "user",
+                        wherelist: "all",
                         modal: {
                             header: {
                                 title: "Users Category Opinions of ${this.name}",
-                                icon: "user"
+                                icon: ICON.classes.user
                             },
                             footer: {
                                 cancelButton: true
@@ -95,7 +95,7 @@ DSON.keepmerge(CRUD_ms_all,
                         modal: {
                             header: {
                                 title: "Detail of Child ${this.ms_child_name}",
-                                icon: "archive"
+                                icon: ICON.classes.archive
                             },
                             footer: {
                                 cancelButton: true
@@ -117,7 +117,7 @@ DSON.keepmerge(CRUD_ms_all,
                         modal: {
                             header: {
                                 title: "Detail of Other ${this.ms_other_name}",
-                                icon: "cube"
+                                icon: ICON.classes.cube
                             },
                             footer: {
                                 cancelButton: true
@@ -176,13 +176,32 @@ DSON.keepmerge(CRUD_ms_all,
                 },
                 image: {
                     label: "image",
-                    formattype: "file:image",
+                    folder: "ms_all/image/${this.id}",
+                    files: {
+                        maxsize: 20,
+                        maxfiles: 1,
+                        columns: 1,
+                        acceptedFiles: null,
+                        modal: {
+                            width: 'modal-full',
+                            header: {
+                                title: "Image of ${this.name}",
+                                icon: ICON.classes.images3
+                            },
+                            footer: {
+                                cancelButton: true
+                            },
+                            content: {
+                                loadingContentText: "Loading Image"
+                            },
+                        }
+                    },
                     sortable: false,
                     exportExample: false
                 },
                 images: {
                     label: "Gallery",
-                    folder: "galleries/ms_all/${this.id}",
+                    folder: "ms_all/gallery/${this.id}",
                     files: {
                         maxsize: 20,
                         maxfiles: 4,
@@ -192,7 +211,7 @@ DSON.keepmerge(CRUD_ms_all,
                             width: 'modal-full',
                             header: {
                                 title: "Gallery of ${this.name}",
-                                icon: "images3"
+                                icon: ICON.classes.images3
                             },
                             footer: {
                                 cancelButton: true
@@ -207,7 +226,26 @@ DSON.keepmerge(CRUD_ms_all,
                 },
                 file: {
                     label: "file",
-                    formattype: "file:all",
+                    folder: "ms_all/file/${this.id}",
+                    files: {
+                        maxsize: 20,
+                        maxfiles: 1,
+                        columns: 1,
+                        acceptedFiles: null,
+                        modal: {
+                            width: 'modal-full',
+                            header: {
+                                title: "File of ${this.name}",
+                                icon: ICON.classes.archive
+                            },
+                            footer: {
+                                cancelButton: true
+                            },
+                            content: {
+                                loadingContentText: "Loading File"
+                            },
+                        }
+                    },
                     sortable: false,
                     exportExample: false
                 },

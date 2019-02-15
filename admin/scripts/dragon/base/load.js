@@ -25,6 +25,7 @@ LOAD = {
 
             $http.get(view + "?scope=" + $scope.modelName, {}).then(
                 function (data) {
+                    HTTP.evaluate(data);
                     $(thisid).html($scope.returnBuild(data.data));
                     ANIMATION.stoploading(thisid);
                     callback(true);
@@ -69,11 +70,11 @@ LOAD = {
             scope = view.replaceAll('/', '_');
         $http.get(view + "?scope=" + scope, {}).then(
             function (data) {
+                HTTP.evaluate(data);
                 $("#content").html($compile(data.data)($scope));
                 ANIMATION.stoploading();
             },
             function (data) {
-                console.log($scope.modelName);
                 $http.get("error/error" + "?scope=" + $scope.modelName, {}).then(
                     function (template) {
                         $scope.httpError = data;
@@ -90,6 +91,7 @@ LOAD = {
         $http = angular.injector(["ng"]).get("$http");
         $http.get(view + "?" + HTTP.objToQuery(params), {}).then(
             function (data) {
+                HTTP.evaluate(data);
                 callback(data.data);
             },
             function (data) {

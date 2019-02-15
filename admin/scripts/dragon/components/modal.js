@@ -19,6 +19,8 @@ MODAL = {
     close: function ($scope) {
         var last = ARRAY.last(MODAL.history);
         $(last).modal("hide");
+        if (MODAL.current().content.data.startsWith("->"))
+            REMOVELASTCHILDSCOPE();
         ARRAY.removeLast(MODAL.history);
         ARRAY.removeLast(MODAL.historyObject);
         $(last).remove();
@@ -82,7 +84,6 @@ MODAL = {
                 "</div>";
 
             $("#" + $scope.modal.DOMID).append(html);
-
 
             if (data.content.data.startsWith("->")) {
                 if (data.content.sameController) {
@@ -167,6 +168,7 @@ MODAL = {
             $(last).modal("hide");
             ARRAY.removeLast(MODAL.history);
             ARRAY.removeLast(MODAL.historyObject);
+
             $(last).remove();
             if (MODAL.history.length > 0) {
                 last = ARRAY.last(MODAL.history);
@@ -193,7 +195,7 @@ MODAL = {
                 header: {
                     title: "Test Modal",
                     icon: ICON.classes.law,
-                    bg: COLOR.primary+"-600",
+                    bg: COLOR.primary + "-600",
                     closeButton: true,
                     h: "h6"
                 },
@@ -244,7 +246,7 @@ MODAL = {
                 header: {
                     title: "",
                     icon: "",
-                    bg: COLOR.primary+"-600",
+                    bg: COLOR.primary + "-600",
                     closeButton: true,
                     h: "h6"
                 },

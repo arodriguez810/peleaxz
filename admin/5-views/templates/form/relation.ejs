@@ -8,24 +8,32 @@ var options = {
         color: COLOR.primary
     },
     type: "normal",
-    tempId: Math.ceil(new Date().getTime()/100000),
+    tempId: Math.ceil(new Date().getTime() / 100000),
     width: "modal-full",
     posttype: "relations",
     title: "Add Multiple",
-    master: null
+    master: null,
+    originalField: "id"
     //table:""
 };
+
+options = OBJECT.merge(options, opts);
+options.color = options.type === "form" ? "{{" + model + ".validation.stateDefault()}}" : COLOR.primary;
+var toclient = JSON.stringify(options);
+
+options.originalField = options.field;
 if (options.master === null) {
     options.field = "tempid";
 } else {
     options.tempId = options.master;
 }
-options = OBJECT.merge(options, opts);
-options.color = options.type === "form" ? "{{" + model + ".validation.stateDefault()}}" : COLOR.primary;
-var toclient = JSON.stringify(options);
 %>
 <script>
+    var keyColumn = <%= model %>.table.crud.table.key;
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
+    <%= model %>.<%= name %> = '<%= model %><%= options.tempId %>';
+    var thisID = eval(`<%= model %>.${keyColumn}`);
+
 </script>
 <div class="form-group-material form-group has-feedback has-{{<%= model %>.validation.getType('<%= name %>')}}  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
      id="input<%= name %>">
@@ -34,7 +42,7 @@ var toclient = JSON.stringify(options);
         {{<%= model %>.form.options.<%= name %>.title}}
     </label>
 
-    <button name="<%= name %>"
+    <button name="<%= model %>_<%= name %>"
             type="button"
             role="button"
             class="btn bg-<%= options.color %>-800 btn-block legitRipple">
@@ -44,7 +52,7 @@ var toclient = JSON.stringify(options);
         {{<%= model %>.form.options.<%= name %>.title}}
     </button>
 
-    <span ng-show="<%= model %>.form.options.<%= name %>.helptext!=''"
+    <span ng-if="<%= model %>.form.options.<%= name %>.helptext!=''"
           class="help-block text-muted">
         {{<%= model %>.form.options.<%= name %>.helptext}}
     </span>
@@ -52,7 +60,7 @@ var toclient = JSON.stringify(options);
     <span ng-show="<%= model %>.validation.getMessages('<%= name %>').length>0" class="help-block">
 
         <p class="text-{{$eval(validation).type}}"
-           ng-repeat="validation in <%= model %>.validation.getMessages('<%= name %>')">
+           ng-repeat="(key,validation) in <%= model %>.validation.getMessages('<%= name %>') track by key">
                <i class="{{$eval(validation).icon}}"></i> {{$eval(validation).message}}
         </p>
     </span>
@@ -64,9 +72,15 @@ var toclient = JSON.stringify(options);
     $(document).ready(function () {
 
 
-        $('[name="<%= name %>"]').click(function () {
+        $('[name="<%= model %>_<%= name %>"]').click(function () {
 
-            var id<%= name %> = <%= options.tempId %>;
+            var id<%= name %> = '<%= model %><%= options.tempId %>';
+            var field<%= name %> = "<%= options.field %>";
+            if (!DSON.oseaX(thisID)) {
+                id<%= name %> = thisID;
+                var field<%= name %> = '<%= options.originalField %>';
+            }
+
             SWEETALERT.loading({message: "Loading..."});
             var linkCrud<%= name %> = eval("CRUD_<%= options.table %>");
             BASEAPI.list("<%= options.table %>",
@@ -78,7 +92,7 @@ var toclient = JSON.stringify(options);
                     join: linkCrud<%= name %>.table.single,
                     where: [
                         {
-                            field: "<%= options.field %>",
+                            field: field<%= name %>,
                             value: id<%= name %>
                         }
                     ]
@@ -91,12 +105,16 @@ var toclient = JSON.stringify(options);
                         to: "<%= options.table %>",
                         data: [
                             {
-                                field: "<%= options.field %>",
+                                field: field<%= name %>,
                                 value: id<%= name %>
                             }
                         ],
                         crud: linkCrud<%= name %>
                     };
+
+                    baseController.viewData.readonly = eval(`({${field<%= name %>}:'${id<%= name %>}'})`);
+                    baseController.viewData.fieldKey = field<%= name %>;
+
                         <%= model %>.
                     modal.modalView("<%= options.table %>", {
                         header: {

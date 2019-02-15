@@ -28,7 +28,6 @@ FIXELEMENT = {
 };
 
 $(document).ready(function () {
-    
     $(document).on("scroll", function () {
         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
             $(".upButtom").show();
@@ -37,7 +36,6 @@ $(document).ready(function () {
         }
         FIXELEMENT.run();
     });
-
     $(document).on('click', '.upButtom', function () {
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;

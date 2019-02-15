@@ -23,6 +23,7 @@ BASEAPI = {
             SWEETALERT.loading({message: "Loading..."});
             $http = angular.injector(["ng"]).get("$http");
             $http.post(method, parameters).then(function (data) {
+                HTTP.evaluate(data);
                 SWEETALERT.stop();
                 callBack(data);
             }, function (data) {
@@ -35,6 +36,7 @@ BASEAPI = {
             $http = angular.injector(["ng"]).get("$http");
             var query = HTTP.objToQuery(parameters);
             $http.get(method + "?" + query).then(function (data) {
+                HTTP.evaluate(data);
                 SWEETALERT.stop();
                 callBack(data);
             }, function (data) {
@@ -59,7 +61,22 @@ BASEAPI = {
         }
 
         $http.post(rootPath + '/list', parameters).then(function (data) {
+            HTTP.evaluate(data);
             callBack(data.data);
+        }, function (data) {
+            console.log('Error: ' + data);
+        });
+    },
+    first: function (model, parameters, callBack) {
+        $http = angular.injector(["ng"]).get("$http");
+        var rootPath = '/api/' + model;
+        if (parameters.limit === 0) {
+            parameters.limit = Number.MAX_SAFE_INTEGER;
+        }
+
+        $http.post(rootPath + '/list', parameters).then(function (data) {
+            HTTP.evaluate(data);
+            callBack(data.data.data[0]);
         }, function (data) {
             console.log('Error: ' + data);
         });
@@ -68,6 +85,7 @@ BASEAPI = {
         $http = angular.injector(["ng"]).get("$http");
         var rootPath = '/api/' + model;
         $http.get(rootPath + '/get/' + id).then(function (data) {
+            HTTP.evaluate(data);
             callBack(data.data);
         }, function (data) {
             console.log('Error: ' + data);
@@ -77,6 +95,7 @@ BASEAPI = {
         $http = angular.injector(["ng"]).get("$http");
         var rootPath = '/api/' + model;
         $http.post(rootPath + '/insert', dataToInsert).then(function (data) {
+            HTTP.evaluate(data);
             callback(data);
         }, function (data) {
             console.log('Error: ' + data);
@@ -86,6 +105,27 @@ BASEAPI = {
         $http = angular.injector(["ng"]).get("$http");
         var rootPath = '/api/' + model;
         $http.post(rootPath + '/update/' + id, dataToUpdate).then(function (data) {
+            HTTP.evaluate(data);
+            callback(data);
+        }, function (data) {
+            console.log('Error: ' + data);
+        });
+    },
+    updateall: function (model, dataToUpdate, callback) {
+        $http = angular.injector(["ng"]).get("$http");
+        var rootPath = '/api/' + model;
+        $http.post(rootPath + '/update', dataToUpdate).then(function (data) {
+            HTTP.evaluate(data);
+            callback(data);
+        }, function (data) {
+            console.log('Error: ' + data);
+        });
+    },
+    deleteall: function (model, dataToDelete, callback) {
+        $http = angular.injector(["ng"]).get("$http");
+        var rootPath = '/api/' + model;
+        $http.post(rootPath + '/delete', dataToDelete).then(function (data) {
+            HTTP.evaluate(data);
             callback(data);
         }, function (data) {
             console.log('Error: ' + data);

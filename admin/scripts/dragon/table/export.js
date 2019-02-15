@@ -2,8 +2,7 @@ EXPORT = {
     run: function ($scope) {
         $scope.export = {};
         $scope.export.importModal = function () {
-
-            var root = `imports/${$scope.modelName}/`;
+            var root = `${$scope.modelName}/imports_files/`;
             baseController.viewData = {
                 root: root,
                 scope: $scope,
@@ -15,7 +14,7 @@ EXPORT = {
                 width: 'modal-full',
                 header: {
                     title: `Import files of ${$scope.modelName}`,
-                    icon: "file-excel"
+                    icon: ICON.classes.file_excel
                 },
                 footer: {
                     cancelButton: true
@@ -24,7 +23,6 @@ EXPORT = {
                     loadingContentText: "Loading Files.."
                 },
             });
-
         };
         $scope.export.downloadExample = function () {
 
@@ -254,7 +252,7 @@ EXPORT = {
                                                                 close: function () {
                                                                     swal.close();
                                                                 }
-                                                            })
+                                                            });
                                                         }
                                                     }
                                                 ]
@@ -551,5 +549,4 @@ EXPORT = {
             return result;
         }
     },
-
 };

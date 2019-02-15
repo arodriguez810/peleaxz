@@ -7,7 +7,6 @@ pluralizar = function (str) {
     //some things are conflicting though so there might be some issues.
 
     var plural;
-
     var last_letter = str[str.length - 1], // Last letter of str
         last_2_letters = str.slice(-2), // Last 3 letters of str
         last_3_letters = str.slice(-3);
@@ -78,7 +77,6 @@ pluralizar = function (str) {
         var radical = str.substring(0, str.length - 2);
         plural = radical + 'ines';
     }
-
     else {
         plural = str + 'es';
     }

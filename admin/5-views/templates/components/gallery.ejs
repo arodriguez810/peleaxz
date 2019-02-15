@@ -225,7 +225,7 @@
 
 
     <div class="col-md-{{<%= DATA.scope %>.galleryFiles.columns}}"
-         ng-repeat="(key,file) in <%= DATA.scope %>.galleryFiles.data.files">
+         ng-repeat="(key,file) in <%= DATA.scope %>.galleryFiles.data.files track by key">
         <div class="panel panel-flat">
             <div class="panel-body">
                 <div class="thumbnail" style="width: 100%">

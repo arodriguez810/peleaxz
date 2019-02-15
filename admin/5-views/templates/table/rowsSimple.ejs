@@ -1,7 +1,7 @@
 
 
 
-<tr ng-repeat="(keycolum, value) in <%= scope %>.columns()" ng-show="value.visibleDetail!=false">
+<tr ng-repeat="(keycolum, value) in <%= scope %>.columns() track by keycolum" ng-show="value.visibleDetail!=false">
     <td class="text-white bg-<%= TAG.table %>">
         <span ng-bind-html="<%= scope %>.columnLabel(value,keycolum)"></span>
     </td>

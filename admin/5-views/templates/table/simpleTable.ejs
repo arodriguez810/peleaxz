@@ -9,7 +9,7 @@
         <thead class="bg-<%= TAG.table %>" id="<%= scope %>head">
         <!--Columns-->
         <tr class="bg-<%= TAG.table %> dragon-columns">
-            <th ng-repeat="(key, value) in <%= scope %>.columns()"
+            <th ng-repeat="(key, value) in <%= scope %>.columns() track by key"
                 ng-show="<%= scope %>.columnVisible(value)"
                 data-column="{{key}}"
                 ng-dblclick="<%= scope %>.cell.dblColumnSelect($event)"
@@ -22,7 +22,7 @@
         </thead>
         <tbody id="<%= scope %>TableBody">
         <!--Rows-->
-        <tr ng-repeat="(key, row) in <%= scope %>.records.data" data-object="{{row}}"
+        <tr ng-repeat="(key, row) in <%= scope %>.records.data track by key" data-object="{{row}}"
             class="dragon-rows {{<%= scope %>.rowClass(row)}} {{<%= scope %>.trCheck(row)}}">
             <%- include('rows',{scope:scope}); %>
             <!--Options-->

@@ -35,8 +35,6 @@ TABLESELECTION = {
             }
             return (value === true ? "icon-checkmark4" : icon);
         };
-
-
         $scope.checkAll = function () {
             $("tr").removeClass("alpha-" + COLOR.info);
             if ($scope.stopInteraction()) return false;
@@ -67,7 +65,6 @@ TABLESELECTION = {
                     $scope.checkall = true;
             }
         };
-
         $scope.atLeastOneCheck = function () {
             if ($scope.records.data !== undefined)
                 for (const row of $scope.records.data) {
@@ -84,6 +81,5 @@ TABLESELECTION = {
             }
             return true;
         };
-
     }
 };

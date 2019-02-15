@@ -23,6 +23,7 @@ var toclient = JSON.stringify(options);
 %>
 <script>
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
+
 </script>
 <div class="form-group-material form-group has-feedback has-{{<%= model %>.validation.getType('<%= name %>')}}  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
      id="input<%= name %>">
@@ -32,7 +33,7 @@ var toclient = JSON.stringify(options);
         {{<%= model %>.form.options.<%= name %>.placeholder}}
     </label>
     <textarea
-            ng-model="<%= model + "." + name %>" name="<%= name %>"
+            ng-model="<%= model + "." + name %>" name="<%= model %>_<%= name %>"
             ng-readonly="<%= model %>.form.options.<%= name %>.readonly"
             ng-disabled="<%= model %>.form.options.<%= name %>.disabled"
             maxlength="{{<%= model %>.form.options.<%= name %>.maxlength}}"
@@ -46,21 +47,31 @@ var toclient = JSON.stringify(options);
 
         </i>
     </div>
-    <span ng-show="<%= model %>.form.options.<%= name %>.helptext!=''"
+    <span ng-if="<%= model %>.form.options.<%= name %>.helptext!=''"
           class="help-block text-muted">
         {{<%= model %>.form.options.<%= name %>.helptext}}
     </span>
 
     <span ng-show="<%= model %>.validation.getMessages('<%= name %>').length>0" class="help-block">
        <p class="text-{{$eval(validation).type}}"
-          ng-repeat="validation in <%= model %>.validation.getMessages('<%= name %>')">
+          ng-repeat="(key,validation) in <%= model %>.validation.getMessages('<%= name %>') track by key">
                <i class="{{$eval(validation).icon}}"></i> {{$eval(validation).message}}
         </p>
     </span>
 </div>
 <script>
     $(document).ready(function () {
-        $('[name="<%= name %>"]').summernote({
+
+        var isReadProgram = <%= model %>.form.isReadOnly('<%= name %>');
+        if(isReadProgram!==false){
+            <%= model %>.form.options.<%= name %>.disabled = true;
+            if(isReadProgram!==undefined){
+                <%= model %>.<%= name %> = isReadProgram;
+                $('[name="<%= model %>_<%= name %>"]').val(isReadProgram);
+            }
+        }
+
+        $('[name="<%= model %>_<%= name %>"]').summernote({
             callbacks: {
                 onKeydown: function(e) {
                     <%= model %>.<%= name %> = $(this).val();
@@ -68,7 +79,16 @@ var toclient = JSON.stringify(options);
             }
         });
 
-        $('[name="<%= name %>"]').on('summernote.change', function(we, contents, $editable) {
+        if(isReadProgram!==false){
+            <%= model %>.form.options.<%= name %>.disabled = true;
+            if(isReadProgram!==undefined){
+                $('[name="<%= model %>_<%= name %>"]').summernote('disable');
+            }
+        }
+
+
+
+        $('[name="<%= model %>_<%= name %>"]').on('summernote.change', function(we, contents, $editable) {
             <%= model %>.<%= name %> = $(this).val();
         });
 
@@ -78,6 +98,8 @@ var toclient = JSON.stringify(options);
         $(".note-image-input").uniform({
             fileButtonClass: 'action btn bg-warning-400'
         });
+
+
 
     });
 </script>

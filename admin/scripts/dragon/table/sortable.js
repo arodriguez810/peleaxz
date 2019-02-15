@@ -40,7 +40,6 @@ SORTABLE = {
             }
             return icon;
         };
-
         $scope.resetSort = function () {
             var firstColumn = $scope.table.crud.table.key || "id";
             for (var i in $scope.table.crud.table.columns) {
@@ -50,7 +49,6 @@ SORTABLE = {
             $scope.table.crud.table.columns[firstColumn].order = "desc";
             $scope.sort($scope.table.crud.table.columns[firstColumn], firstColumn);
         };
-
         $scope.sort = function (column, columnName) {
             column.sorted = true;
             column.order = column.order === "asc" ? "desc" : "asc";

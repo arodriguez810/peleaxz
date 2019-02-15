@@ -19,10 +19,24 @@ var toclient = JSON.stringify(options);
 %>
 <script>
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
-    <%= model %>.form.registerField("<%= name %>Lat", "<%= toclient %>");
-    <%= model %>.form.registerField("<%= name %>Lon", "<%= toclient %>");
-    <%= model %>.form.registerField("<%= name %>Address", "<%= toclient %>");
-    <%= model %>.form.registerField("<%= name %>Filter", "<%= toclient %>");
+    <%= model %>.form.registerField("<%= name %>_DragonLat", "<%= toclient %>");
+    <%= model %>.form.registerField("<%= name %>_DragonLon", "<%= toclient %>");
+    <%= model %>.form.registerField("<%= name %>_DragonAddress", "<%= toclient %>");
+    <%= model %>.form.registerField("<%= name %>_DragonFilter", "<%= toclient %>");
+    var isReadProgram = <%= model %>.form.isReadOnly('<%= name %>');
+    if(isReadProgram!==false){
+        <%= model %>.form.options.<%= name %>.disabled = true;
+        if(isReadProgram!==undefined){
+            var locationLoaded =isReadProgram.split(';');
+            if(locationLoaded.length===3){
+                <%= model %>.<%= name %>_DragonLat = locationLoaded[0];
+                <%= model %>.<%= name %>_DragonLon = locationLoaded[1];
+                <%= model %>.<%= name %>_DragonAddress = locationLoaded[2];
+                <%= model %>.<%= name %>_DragonFilter = locationLoaded[2];
+                $("#<%= name %>_map").show();
+            }
+        }
+    }
 </script>
 <div class="form-group-material form-group has-feedback has-{{<%= model %>.validation.getType('<%= name %>')}}  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
      id="input<%= name %>">
@@ -35,16 +49,16 @@ var toclient = JSON.stringify(options);
             ng-readonly="<%= model %>.form.options.<%= name %>.readonly"
             ng-disabled="<%= model %>.form.options.<%= name %>.disabled"
             placeholder="{{<%= model %>.form.options.<%= name %>.placeholder}}"
-            name="<%= name %>AddressFilter"
+            name="<%= model %>_<%= name %>_DragonAddressFilter"
             ng-model="<%= model + "." + name %>Filter"
             class="form-control typeahead" type="text" placeholder="Enter an address">
 
     <i onclick="$(" #<%= name %>_map").hide();" class="icon-close"></i>
     <div id="<%= name %>_map" class="map-wrapper " style="display: none"></div>
-    <input type="hidden" ng-model="<%= model + "." + name %>Lat" name="<%= name %>Lat">
-    <input type="hidden" ng-model="<%= model + "." + name %>Lon" name="<%= name %>Lon">
-    <input type="hidden" ng-model="<%= model + "." + name %>Address" name="<%= name %>Address">
-    <input type="hidden" ng-model="<%= model + "." + name %>" name="<%= name %>">
+    <input type="hidden" ng-model="<%= model + "." + name %>_DragonLat" name="<%= model %>_<%= name %>_DragonLat">
+    <input type="hidden" ng-model="<%= model + "." + name %>_DragonLon" name="<%= model %>_<%= name %>_DragonLon">
+    <input type="hidden" ng-model="<%= model + "." + name %>_DragonAddress" name="<%= model %>_<%= name %>_DragonAddress">
+    <input type="hidden" ng-model="<%= model + "." + name %>" name="<%= model %>_<%= name %>">
 
     <div class="form-control-feedback">
         <i class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} text-{{<%= model %>.validation.getColor('<%= name %>',<%= model %>.form.options.<%= name %>.icon.color)}}">
@@ -52,55 +66,65 @@ var toclient = JSON.stringify(options);
         </i>
     </div>
 
-    <span ng-show="<%= model %>.form.options.<%= name %>.helptext!=''"
+    <span ng-if="<%= model %>.form.options.<%= name %>.helptext!=''"
           class="help-block text-muted">
         {{<%= model %>.form.options.<%= name %>.helptext}}
     </span>
 
     <span ng-show="<%= model %>.validation.getMessages('<%= name %>').length>0" class="help-block">
         <p class="text-{{$eval(validation).type}}"
-           ng-repeat="validation in <%= model %>.validation.getMessages('<%= name %>')">
+           ng-repeat="(key,validation) in <%= model %>.validation.getMessages('<%= name %>') track by key">
                <i class="{{$eval(validation).icon}}"></i> {{$eval(validation).message}}
         </p>
     </span>
 </div>
 <script>
     $(document).ready(function () {
+        var defaultLocation = {
+            lat: <%= model + "." + name + "_DragonLat" %>,
+            lon: <%= model + "." + name + "_DragonLon" %>
+        };
         var addressPicker = new AddressPicker({
             map: {
                 id: '#<%= name %>_map',
                 zoom: 10,
-                center: new google.maps.LatLng(53.5510846, 9.99368179999999)
+                center: new google.maps.LatLng(defaultLocation.lat, defaultLocation.lon)
             },
             reverseGeocoding: true,
         });
 
-        $('[name="<%= name %>AddressFilter"]').focus(function () {
+        $('[name="<%= model %>_<%= name %>_DragonAddressFilter"]').focus(function () {
             $("#<%= name %>_map").show();
         });
 
-        $('[name="<%= name %>AddressFilter"]').dblclick(function () {
+        $('[name="<%= model %>_<%= name %>_DragonAddressFilter"]').dblclick(function () {
             $("#<%= name %>_map").toggle();
         });
 
-        $('[name="<%= name %>AddressFilter"]').focusout(function () {
-            $('[name="<%= name %>AddressFilter"]').val(<%= model + "." + name %>Address);
+        $('[name="<%= model %>_<%= name %>_DragonAddressFilter"]').focusout(function () {
+            $('[name="<%= model %>_<%= name %>_DragonAddressFilter"]').typeahead('val', <%= model + "." + name + "_DragonAddress" %>);
         });
 
-        $('[name="<%= name %>AddressFilter"]').typeahead(null, {
+        $('[name="<%= model %>_<%= name %>_DragonAddressFilter"]').typeahead(null, {
             displayKey: 'description',
             limit: 20,
             source: addressPicker.ttAdapter()
         });
-        addressPicker.bindDefaultTypeaheadEvent($('[name="<%= name %>AddressFilter"]'));
+        addressPicker.bindDefaultTypeaheadEvent($('[name="<%= model %>_<%= name %>_DragonAddressFilter"]'));
         $(addressPicker).on('addresspicker:selected', function (event, result) {
             Prism.highlightAll();
-            <%= model + "." + name %>Address = result.address();
-            $('[name="<%= name %>AddressFilter"]').val(result.address());
-            <%= model + "." + name %>Lat = result.lat();
-            <%= model + "." + name %>Lon = result.lng();
-            <%= model + "." + name %> = result.lat() + "," + result.lng();
+            <%= model + "." + name %>_DragonAddress = result.address();
+            $('[name="<%= model %>_<%= name %>_DragonAddressFilter"]').val(result.address());
+            <%= model + "." + name %>_DragonLat = result.lat();
+            <%= model + "." + name %>_DragonLon = result.lng();
+            <%= model + "." + name %> = result.lat() + ";" + result.lng() + ";" + result.address();
 
         });
+        $('[name="<%= model %>_<%= name %>_DragonAddressFilter"]').typeahead('val', <%= model + "." + name + "_DragonAddress" %>);
+        $('[name="<%= model %>_<%= name %>__DragonAddressFilter"]').trigger('focusout');
+        setTimeout(() => {
+            $('[name="<%= model %>_<%= name %>_DragonAddressFilter"]').trigger('focusout');
+            $(addressPicker).trigger('selected');
+        }, 1000);
     });
 </script>

@@ -11,6 +11,20 @@ TABLEOPTIONS = {
             }
             else return $scope.options;
         };
+        $scope.firstCountOption = function (isModal) {
+            if (isModal === true) {
+                if (!DSON.oseaX(ARRAY.last(MODAL.historyObject))) {
+                    if (ARRAY.last(MODAL.historyObject).viewData.crud.table.options !== null) {
+                        return ARRAY.last(MODAL.historyObject).viewData.crud.table.options[0].menus.length
+                    }
+                }
+            }
+            else {
+                if ($scope.options !== null)
+                    return $scope.options[0].menus.length;
+            }
+            return 0;
+        };
         $scope.currentOptionsContext = function () {
             if (!DSON.oseaX($scope.options)) {
                 if (!DSON.oseaX($scope.options[$scope.lastMenu])) {
@@ -122,5 +136,4 @@ TABLEOPTIONS = {
                 return option.show;
         };
     },
-
 };

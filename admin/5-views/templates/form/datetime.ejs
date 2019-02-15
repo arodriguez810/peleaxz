@@ -9,6 +9,7 @@ var options = {
     },
     helptext: '',
     format: 'd/m/Y h:i',
+    callformat: 'DD/MM/YYYY hh:mm a',
     posttype: "datetime",
     timepicker: true,
     datepicker: true,
@@ -17,7 +18,8 @@ var options = {
     allowTimes: [],
     minDate: "",
     maxDate: "",
-    mask: false
+    mask: false,
+    disabled: false,
 
 };
 if (options.timepicker === false)
@@ -26,12 +28,27 @@ if (options.datepicker === false)
     options.posttype = 'time';
 options = OBJECT.merge(options, opts);
 var toclient = JSON.stringify(options);
+
 %>
 <script>
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
-    <%= model %>.form.registerField("<%= name %>Clean", "<%= toclient %>");
+    <%= model %>.form.registerField("<%= name %>_DragonClean", "<%= toclient %>");
+    var isReadProgram = <%= model %>.form.isReadOnly('<%= name %>');
+    if(isReadProgram!==false){
+        <%= model %>.form.options.<%= name %>.disabled = true;
+        if(isReadProgram!==undefined){
+            <%= model %>.<%= name %>_DragonClean = isReadProgram;
+            if(<%= model %>.form.options.<%= name %>.datepicker===false){
+                <%= model %>.<%= name %> = moment(new Date(isReadProgram)).format("hh:mm a");
+            }else if(<%= model %>.form.options.<%= name %>.timepicker===false){
+                <%= model %>.<%= name %> = moment(new Date(isReadProgram)).format("DD/MM/YYYY");
+            }else{
+                <%= model %>.<%= name %> = moment(new Date(isReadProgram)).format("DD/MM/YYYY hh:mm a");
+            }
+        }
+    }
 </script>
-<div class="form-group-material form-group has-feedback has-{{<%= model %>.validation.getType('<%= name %>')}}  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
+<div class="form-group-material form-group has-feedback  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
      id="input<%= name %>">
     <label
             class="control-label {{<%= model %>.form.LabelVisible('<%= name %>')?'is-visible animate':''}}">
@@ -39,10 +56,11 @@ var toclient = JSON.stringify(options);
     </label>
     <input
             ng-model="<%= model + "." + name %>"
-            id="<%= name %>"
-            name="<%= name %>"
+            id="<%= model %>_<%= name %>"
+            name="<%= model %>_<%= name %>"
             type="text"
             class="form-control"
+            ng-disabled="<%= model %>.form.options.<%= name %>.disabled"
             placeholder="{{<%= model %>.form.options.<%= name %>.placeholder}}"
     >
 
@@ -51,21 +69,21 @@ var toclient = JSON.stringify(options);
 
         </i>
     </div>
-    <span ng-show="<%= model %>.form.options.<%= name %>.helptext!=''"
+    <span ng-if="<%= model %>.form.options.<%= name %>.helptext!=''"
           class="help-block text-muted">
         {{<%= model %>.form.options.<%= name %>.helptext}}
     </span>
 
     <span ng-show="<%= model %>.validation.getMessages('<%= name %>').length>0" class="help-block">
         <p class="text-{{$eval(validation).type}}"
-           ng-repeat="validation in <%= model %>.validation.getMessages('<%= name %>')">
+           ng-repeat="(key,validation) in <%= model %>.validation.getMessages('<%= name %>') track by key">
                <i class="{{$eval(validation).icon}}"></i> {{$eval(validation).message}}
         </p>
     </span>
 </div>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#<%= name %>').datetimepicker({
+        $('#<%= model %>_<%= name %>').datetimepicker({
             format: '<%= options.format %>',
             timepicker: <%= options.timepicker %>,
             datepicker: <%= options.datepicker %>,
@@ -78,14 +96,19 @@ var toclient = JSON.stringify(options);
             mask: <%= options.mask %>,
             onChangeDateTime: function (currentDateTime) {
                 if(<%= model %>.form.options.<%= name %>.datepicker===false){
-                    <%= model %>.<%= name %>Clean = moment(currentDateTime).format("H:mm");
+                    <%= model %>.<%= name %>_DragonClean = moment(currentDateTime).format("H:mm");
                 }else if(<%= model %>.form.options.<%= name %>.timepicker===false){
-                        <%= model %>.<%= name %>Clean = moment(currentDateTime).format("YYYY-MM-DD");
+                        <%= model %>.<%= name %>_DragonClean = moment(currentDateTime).format("YYYY-MM-DD");
                 }else{
-                    <%= model %>.<%= name %>Clean = moment(currentDateTime).format("YYYY-MM-DD H:mm");
+                    <%= model %>.<%= name %>_DragonClean = moment(currentDateTime).format("YYYY-MM-DD H:mm a");
                 }
 
+                $("#input<%= name %>").removeClass('has-warning has-error has-success');
+                $("#input<%= name %>").addClass('has-' + <%= model %>.validation.getType('<%= name %>'));
             }
         });
+        setTimeout(function () {
+            $("#input<%= name %>").addClass('has-' + <%= model %>.validation.getType('<%= name %>'));
+        }, 100);
     });
 </script>

@@ -2,38 +2,26 @@ CONTTEXTMENU = {};
 
 $(document).ready(function () {
 
-    $(document).on('mouseover', '.dragon-rows', function () {
-        var lastRow = $(this).data('object');
-        if (!DSON.oseaX(ANGULARJS.tableScope)) {
-            eval(String.format("{0}.lastRow = {1}", ANGULARJS.tableScope, JSON.stringify(lastRow)));
+    $(document).on('mousedown', '.context-control, .dragon-actions', function (event) {
+        var myTD = $(this);
+        var currentRowMenu = myTD.parent().find('.icons-list:eq(0)');
+        switch (event.which) {
+            case 1: {
+                break;
+            }
+            case 2: {
+                break;
+            }
+            case 3: {
+                myTD.append(currentRowMenu);
+                currentRowMenu.find('.dropdown-toggle:eq(0)').click();
+                break;
+            }
         }
     });
 
-    var lastTD = -1;
-    $(document).on('mouseover', '.context-control:not(.already-context)', function () {
-        $(".context-control").addClass('already-context');
-        $(".context-control").contextmenu({
-            target: '.context-menu',
-            before: function (e, element, target) {
-                var row = element.parent().parent().children().index(element.parent());
-                if (lastTD === row) {
-                    eval(String.format("{0}.lastMenu = ({0}.lastMenu === ({0}.options.length-1) ? 0 : ({0}.lastMenu+({0}.currentOptionsContext().count))) {1}", ANGULARJS.tableScope));
-                } else {
-                    eval(String.format("{0}.lastMenu = 0", ANGULARJS.tableScope));
-                }
-                element.trigger('click');
-                lastTD = row;
-                return true;
-            },
-            onItem: function (context, e) {
-                var tr = context.parent();
-                var td = tr.find('.dragon-actions').eq(0);
-                var row = context.parent().data('object');
-                var action = $(e.target).data('action');
-                var link = tr.find('[data-action=' + action + ']').eq(0);
-                link.trigger('click');
-            }
-        });
+    $(document).on('click', '.breadcrumb-elements-toggle', function (event) {
+        $(this).parent().children(".breadcrumb-elements").toggleClass("visible-elements");
     });
 
 

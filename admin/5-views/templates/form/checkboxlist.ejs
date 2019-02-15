@@ -21,7 +21,7 @@ var toclient = JSON.stringify(options);
         },1);
     };
 </script>
-<div class="checkbox checkbox-switchery" ng-repeat="item in <%= model %>.form.options.<%= name %>.values" repeat-end="<%= model %>.ends<%= name %>()">
+<div class="checkbox checkbox-switchery" ng-repeat="(key,item) in <%= model %>.form.options.<%= name %>.values track by key" repeat-end="<%= model %>.ends<%= name %>()">
 
     <label>
         <input

@@ -6,16 +6,12 @@ PAGINATOR = {
                 return [10];
             else return limits;
         };
-
         $scope.table.currentPage = 1;
         $scope.table.currentLimit = $scope.getLimits()[0];
         $scope.table.pages = [];
         $scope.table.totalPags = 0;
         $scope.table.totalCount = 0;
         $scope.table.currentCount = 0;
-
-
-
         $scope.goLimit = function (limit) {
             if ($scope.stopInteraction()) return false;
             if ($scope.table.currentLimit !== limit) {
@@ -29,20 +25,16 @@ PAGINATOR = {
                 $scope.pageNotChanged();
             }
         };
-
         $scope.limitActive = function (limit) {
             return $scope.table.currentLimit === limit ? String.format("bg-{0}", TAG.navbar) : '';
         };
-
         $scope.pageChanged = function () {
             STORAGE.savePage($scope);
             $scope.refresh();
         };
-
         $scope.pageNotChanged = function () {
 
         };
-
         $scope.nextPage = function () {
             if ($scope.stopInteraction()) return false;
             if ($scope.table.currentPage < $scope.table.totalPages) {
@@ -52,14 +44,12 @@ PAGINATOR = {
                 $scope.pageNotChanged();
             }
         };
-
         $scope.pageKey = function (key) {
             if (key === "ArrowLeft")
                 $scope.backPage();
             if (key === "ArrowRight")
                 $scope.nextPage();
         };
-
         $scope.backPage = function () {
             if ($scope.stopInteraction()) return false;
             if ($scope.table.currentPage > 1) {
@@ -69,7 +59,6 @@ PAGINATOR = {
                 $scope.pageNotChanged();
             }
         };
-
         $scope.lastPage = function () {
             if ($scope.stopInteraction()) return false;
             if ($scope.table.currentPage !== $scope.table.totalPages) {
@@ -79,14 +68,12 @@ PAGINATOR = {
                 $scope.pageNotChanged();
             }
         };
-
         $scope.isFirstPage = function () {
             return $scope.table.currentPage === 1;
         };
         $scope.isLastPage = function () {
             return $scope.table.currentPage === $scope.table.totalPages;
         };
-
         $scope.firstPage = function () {
             if ($scope.stopInteraction()) return false;
             if ($scope.table.currentPage !== 1) {
@@ -96,11 +83,9 @@ PAGINATOR = {
                 $scope.pageNotChanged();
             }
         };
-
         $scope.goPageModal = function () {
             SWEETALERT.goPage($scope);
         };
-
         $scope.goPage = function (page) {
             if ($scope.stopInteraction()) return false;
             if (page < $scope.table.totalPages + 1) {

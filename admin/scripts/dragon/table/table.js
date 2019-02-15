@@ -21,12 +21,10 @@ TABLE = {
         $scope.columnVisible = function (value) {
             return value.visible !== false;
         };
-
         $scope.hideColumn = function (key) {
             $scope.pushModel("hideColumns", key);
             $scope.width();
         };
-
         $scope.columnsCount = function () {
             var reorded = 0;
             if (STORAGE.hasColumns($scope)) {
@@ -51,8 +49,6 @@ TABLE = {
             }
             return count;
         };
-
-
         $scope.columns = function () {
 
             if (STORAGE.hasColumns($scope)) {
@@ -70,7 +66,6 @@ TABLE = {
                 return $scope.table.crud.table.columns;
             }
         };
-
         $scope.restoreStorage = function () {
             if (!$scope.hasAnyModel()) {
                 SWEETALERT.show({message: "There is not persisted data to restore."});
@@ -84,7 +79,6 @@ TABLE = {
                     }
                 });
         };
-
         $scope.reorderColumn = function (storage_columns) {
             var ordered = {};
             var hides = $scope.getModel("hideColumns");
@@ -96,13 +90,11 @@ TABLE = {
             }
             return ordered;
         };
-
         /*Validation******************************/
         $scope.stopInteraction = function () {
             return $scope.table.is.loading;
         };
         /*Validation******************************/
-
         $scope.afterData = function (data) {
             PAGINATOR.make($scope, data);
             ANIMATION.stoploading(
@@ -112,7 +104,6 @@ TABLE = {
             $scope.table.is.loading = false;
             $scope.width();
         };
-
         $scope.refresh = function () {
             ANIMATION.loading(
                 "#" + $scope.modelName + "TablePanel",

@@ -1,0 +1,40 @@
+<script>
+    var viewModel = MODAL.getViewData();
+    <%= DATA.scope %>.WARNINGREQUESTS = WARNINGREQUESTS;
+
+</script>
+<div
+        ng-show="WARNINGREQUESTS.length<=0"
+        class="alert alpha-<%= TAG.table %> border-<%= TAG.table %> alert-styled-left">
+    There is no request that jeopardizes the performance of the application
+</div>
+<table class="table table-bordered table-hover datatable-highlight">
+    <thead>
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Job Title</th>
+        <th>DOB</th>
+        <th>Status</th>
+        <th class="text-center">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+<script>
+    $(document).ready(function () {
+        var table = $('.datatable-highlight').DataTable();
+
+        $('.datatable-highlight tbody').on('mouseover', 'td', function () {
+            var colIdx = table.cell(this).index().column;
+
+            if (colIdx !== lastIdx) {
+                $(table.cells().nodes()).removeClass('active');
+                $(table.column(colIdx).nodes()).addClass('active');
+            }
+        }).on('mouseleave', function () {
+            $(table.cells().nodes()).removeClass('active');
+        });
+    });
+</script>

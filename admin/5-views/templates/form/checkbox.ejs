@@ -3,29 +3,52 @@ var name = name || "";
 var options = {
     text: name + "?",
     checked: false,
-    posttype:"checkbox"
+    posttype:"checkbox",
+    disabled: false
 };
 options = OBJECT.merge(options, opts);
 var toclient = JSON.stringify(options);
 %>
 <script>
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
+
 </script>
-<div class="checkbox checkbox-switchery">
+<div class="checkbox checkbox-switchery" ng-show="!<%= model %>.form.options.<%= name %>.disabled">
     <label>
         <input ng-model="<%= options.model || model + "." + name %>"
                type="checkbox"
-               name="<%= name %>"
+               name="<%= model %>_<%= name %>"
                class="switchery"
         />
         {{<%= model %>.form.options.<%= name %>.text}}
     </label>
 </div>
+<div class="checkbox checkbox-switchery" ng-show="<%= model %>.form.options.<%= name %>.disabled">
+    <label>
+        {{<%= model %>.form.options.<%= name %>.text}}
+        <input ng-model="<%= options.model || model + "." + name %>"
+               type="checkbox"
+               class="switchery"
+               readonly="readonly"
+               disabled="disabled"
+        />
+    </label>
+</div>
 <script>
-    var elems = Array.prototype.slice.call(document.getElementsByName("<%= name %>"));
-    var checkbox<%= name %> = null;
+    var elems = Array.prototype.slice.call(document.getElementsByName("<%= model %>_<%= name %>"));
+    var checkbox<%= model %>_<%= name %> = false;
+    var isReadProgram = <%= model %>.form.isReadOnly('<%= name %>');
+    if(isReadProgram!==false){
+        <%= model %>.form.options.<%= name %>.disabled = true;
+        if(isReadProgram!==undefined){
+            <%= model %>.<%= name %> = isReadProgram;
+            checkbox<%= model %>_<%= name %> = isReadProgram;
+        }
+    }
+    <%= model %>.<%= name %> = <%= model %>.<%= name %>===null?false:<%= model %>.<%= name %>;
+    <%= model %>.<%= name %> = eval(<%= model %>.<%= name %>);
     elems.forEach(function (html) {
-        checkbox<%= name %> = new Switchery(html, {size: "small"});
-        checkbox<%= name %>.setPosition(<%= model + "." + name %>);
+        checkbox<%= model %>_<%= name %> = new Switchery(html, {size: "small"});
+        checkbox<%= model %>_<%= name %>.setPosition(<%= model + "." + name %>);
     });
 </script>

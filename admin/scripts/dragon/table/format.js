@@ -1,6 +1,5 @@
 TABLEFORMAT = {
     run: function ($scope) {
-
         $scope.cellValue = function (key, column, row) {
             if (DSON.oseaX(row))
                 return "";

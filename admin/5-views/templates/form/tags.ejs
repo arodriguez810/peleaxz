@@ -8,6 +8,7 @@ var options = {
          {value: 'angel'},
     ],
     maxtags: 100,
+    disabled: false,
     allowDuplicates: false
 
 };
@@ -16,6 +17,7 @@ var toclient = JSON.stringify(options);
 %>
 <script>
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
+
 </script>
 <div class="form-group-material form-group has-feedback has-{{<%= model %>.validation.getType('<%= name %>')}}  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
      id="input<%= name %>">
@@ -25,20 +27,21 @@ var toclient = JSON.stringify(options);
     </label>
     <input
             ng-model="<%= model + "." + name %>"
-            name="<%= name %>"
+            name="<%= model %>_<%= name %>"
             type="text"
+            ng-disabled="<%= model %>.form.options.<%= name %>.disabled"
             placeholder="<%= options.placeholder %>"
             class="form-control">
 
 
-    <span ng-show="<%= model %>.form.options.<%= name %>.helptext!=''"
+    <span ng-if="<%= model %>.form.options.<%= name %>.helptext!=''"
           class="help-block text-muted">
         {{<%= model %>.form.options.<%= name %>.helptext}}
     </span>
 
     <span ng-show="<%= model %>.validation.getMessages('<%= name %>').length>0" class="help-block">
         <p class="text-{{$eval(validation).type}}"
-           ng-repeat="validation in <%= model %>.validation.getMessages('<%= name %>')">
+           ng-repeat="(key,validation) in <%= model %>.validation.getMessages('<%= name %>') track by key">
                <i class="{{$eval(validation).icon}}"></i> {{$eval(validation).message}}
         </p>
     </span>
@@ -54,13 +57,22 @@ var toclient = JSON.stringify(options);
         });
         engine.initialize();
         // Initialize tokenfield
-        <!--$('[name="<%= name %>"]').tokenfield({-->
+        <!--$('[name="<%= model %>_<%= name %>"]').tokenfield({-->
             <!--typeahead: [null, {-->
                 <!--displayKey: 'value',-->
                 <!--source: engine.ttAdapter()-->
             <!--}]-->
         <!--});-->
-        $('[name="<%= name %>"]').tagsinput({
+        var isReadProgram = <%= model %>.form.isReadOnly('<%= name %>');
+        if(isReadProgram!==false){
+            <%= model %>.form.options.<%= name %>.disabled = true;
+            if(isReadProgram!==undefined){
+                <%= model %>.<%= name %> = isReadProgram;
+                $('[name="<%= model %>_<%= name %>"]').val(isReadProgram);
+            }
+        }
+
+        $('[name="<%= model %>_<%= name %>"]').tagsinput({
             maxTags: <%= model %>.form.options.<%= name %>.maxtags,
             allowDuplicates: <%= model %>.form.options.<%= name %>.allowDuplicates,
             tagClass: function(item){
@@ -71,5 +83,6 @@ var toclient = JSON.stringify(options);
                 source: engine.ttAdapter()
             }]
         });
+
     });
 </script>

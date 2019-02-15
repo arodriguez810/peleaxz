@@ -70,7 +70,6 @@
     <script type="text/javascript" src="assets/js/core/libraries/jquery_ui/interactions.min.js"></script>
 
     <!-- /theme JS files -->
-
     <script type="text/javascript" src="assets/js/core/libraries/angular.min.js"></script>
     <script type="text/javascript" src="assets/js/core/libraries/angular-sanitize.js"></script>
     <script type="text/javascript" src="node_modules/table-dragger/dist/table-dragger.min.js"></script>
@@ -95,6 +94,7 @@
     <% }); %>
 
     <script>
+        WARNINGREQUESTS = [];
         Dropzone.autoDiscover = false;
         CONFIG = "<%= JSON.stringify(CONFIG) %>";
         CONFIG = eval("(" + CONFIG.replaceAll("&#34;", '"') + ")");
@@ -111,9 +111,11 @@
         SERVICES = eval("(" + SERVICES.replaceAll("&#34;", '"') + ")");
         SERVICE.run(SERVICES);
         MODEL = {};
+        MODELLIST = "<%= JSON.stringify(models) %>";
+        MODELLIST = eval("(" + MODELLIST.replaceAll("&#34;", '"') + ")");
         SESSION.ifLogoffRedirec();
     </script>
-
+    <script type="text/javascript" src="assets/js/plugins/tables/datatables/datatables.min.js"></script>
     <% crudjs.forEach(function(item){ %>
         <script src="<%= FOLDERS.crud %>/<%= item %>"></script>
     <% }); %>

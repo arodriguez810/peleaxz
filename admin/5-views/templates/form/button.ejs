@@ -22,7 +22,8 @@ var toclient = JSON.stringify(options);
             ng-click="<%= model %>.<%= name %>_click()"
             class="btn bg-<%= options.color  %>-800 btn-block legitRipple">
         <%= options.model ? "{{" + options.model + "}}" : options.text %>
-        <i class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} position-{{<%= model %>.form.options.<%= name %>.icon.position}}"></i>
+        <i ng-if="icon-{{<%= model %>.form.options.<%= name %>.icon.class!=='none'"
+                class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} position-{{<%= model %>.form.options.<%= name %>.icon.position}}"></i>
     </button>
 </div>
 

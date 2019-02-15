@@ -49,18 +49,6 @@ for (var i in CONFIG.modules) {
 
 var upload = multer({dest: folders.files + '/uploads/'});
 
-// var watcher = chokidar.watch('');
-// watcher.on('ready', function () {
-//     console.log(1);
-//     watcher.on('all', function () {
-//         for (var i = 0; i < lines; i++) console.log("\r\n");
-//         console.log("Clearing /dist/ module cache from server")
-//         Object.keys(require.cache).forEach(function (id) {
-//             delete require.cache[id];
-//         })
-//     })
-// });
-
 var jsoncsv = require('express-json-csv')(express);
 localModulesVars.push("jsoncsv");
 //******* Load Custom Modules********//
@@ -277,6 +265,7 @@ if (CONFIG.mysql !== undefined) {
 while (loadedMotors < 3) {
     sleep(1);
 }
+
 servicesFiles = getFiles("./" + folders.service + "/");
 var catalogs = [];
 var servicesFunctions = [];
@@ -289,6 +278,8 @@ servicesFiles.forEach(function (item) {
     eval("services = " + model + "Service.api");
     servicesFunctions[model] = services;
 });
+
+
 servicesFiles.forEach(function (item) {
     var model = item.replace(".js", "").replace("SE_", "");
     model = S(model).replaceAll('/', '_').s;

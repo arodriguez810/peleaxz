@@ -292,7 +292,7 @@
         </thead>
         <tbody>
 
-        <tr ng-repeat="(key,file) in <%= DATA.scope %>.galleryFiles.data.files">
+        <tr ng-repeat="(key,file) in <%= DATA.scope %>.galleryFiles.data.files track by key">
             <td>
                 <a title="{{file.original}}">{{file.originalCrop}}</a>
             </td>

@@ -1,5 +1,5 @@
 <!-- Main navbar -->
-<div class="navbar navbar-inverse  bg-<%= TAG.navbar %>-800"  ng-show="baseController.SESSION.isLogged()">
+<div class="navbar navbar-inverse  bg-<%= TAG.navbar %>-800" ng-show="baseController.SESSION.isLogged()">
     <div class="navbar-header">
         <a class="navbar-brand" href="/">
             <img style="float: left !important;" src="assets/images/logo.svg" alt="">
@@ -10,32 +10,32 @@
         </ul>
     </div>
     <div class="navbar-collapse collapse" id="navbar-mobile">
-        <ul class="nav navbar-nav" >
+        <ul class="nav navbar-nav">
             <li>
-                <a class="sidebar-control sidebar-main-toggle hidden-xs" data-popup="tooltip" title=""
-                   data-placement="bottom" data-container="body" data-original-title="Lite Menu">
+                <a class="sidebar-control sidebar-main-toggle hidden-xs" data-popup="tooltip"
+                   data-placement="bottom" data-container="body" title="Lite Menu">
                     <i class="icon-paragraph-justify3"></i>
                 </a>
             </li>
             <li>
-                <a class="sidebar-control sidebar-main-hide hidden-xs legitRipple" data-popup="tooltip" title=""
-                   data-placement="bottom" data-container="body" data-original-title="Hide Menu">
+                <a class="sidebar-control sidebar-main-hide hidden-xs legitRipple" data-popup="tooltip"
+                   data-placement="bottom" data-container="body" title="Hide Menu">
                     <i class="icon-lan3"></i>
                 </a>
             </li>
             <li>
-                <a class="sidebar-control" onclick="STORAGE.clearAll()" data-popup="tooltip" title=""
-                   data-placement="bottom" data-container="body" data-original-title="Restore all Configuration">
+                <a class="sidebar-control" onclick="STORAGE.clearAll()" data-popup="tooltip"
+                   data-placement="bottom" data-container="body" title="Restore all Configuration">
                     <i class="icon-loop"></i>
                 </a>
             </li>
             <li class="dropdown" ng-show="baseController.favorites.length">
-                <a href="#" class="dropdown-toggle legitRipple" data-toggle="dropdown" aria-expanded="false">
+                <a href="#" class="dropdown-toggle legitRipple" data-toggle="dropdown" title="Favorites" aria-expanded="false">
                     <i class="icon-heart5"></i>
                 </a>
                 <div class="dropdown-menu dropdown-content">
                     <ul class="media-list dropdown-content-body width-100">
-                        <li ng-repeat="(key,menu) in baseController.favorites" class="media">
+                        <li ng-repeat="(key,menu) in baseController.favorites track by key" class="media">
                             <div class="">
                                 <a href="{{menu.href}}"
                                    class="btn border-<%= COLOR.primary %> text-<%= COLOR.info %> btn-flat btn-rounded btn-icon btn-sm legitRipple">
@@ -49,18 +49,31 @@
                     </ul>
                 </div>
             </li>
-            <li>
-                <a class="sidebar-control" onclick="SESSION.logoff()" data-popup="tooltip" title=""
-                   data-placement="bottom" data-container="body" data-original-title="End Session">
-                    <i class="icon-switch"></i>
+            <li ng-if="baseController.CONFIG.mode==='developer'">
+                <a class="sidebar-control" onclick="HTTP.openManager()" data-popup="tooltip"
+                   data-placement="bottom" data-container="body" title="Request Manager">
+                    <i class="icon-git-pull-request"></i>
+                    <span class="badge bg-<%= TAG.table %>" ng-model="baseController.WARNINGREQUESTS.length"></span>
                 </a>
             </li>
+
         </ul>
 
         <div class="navbar-right" ng-show="baseController.SESSION.isLogged()">
+            <p class="navbar-text">
+
+                {{baseController.SESSION.current().fullName()}}
+            <ul class="nav navbar-nav">
+                <li>
+                    <a class="sidebar-control" onclick="SESSION.logoff()" data-popup="tooltip"
+                       data-placement="bottom" data-container="body" title="End Session">
+                        <i class="icon-switch"></i>
+                    </a>
+                </li>
+            </ul>
+            </p>
 
 
-            <p class="navbar-text">{{baseController.SESSION.current().fullName()}}</p>
         </div>
     </div>
 </div>

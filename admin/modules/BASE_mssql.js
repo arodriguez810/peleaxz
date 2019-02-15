@@ -91,7 +91,7 @@ exports.executeNonQuery = async function (query, params) {
         return {query: query, error: err.originalError.message};
     });
 };
-exports.insertQuery = function (table, data, params, get) {
+exports.insertQuery = function (table, data, params, get, getvalue) {
     var datas = (Array.isArray(data)) ? data : [data];
     var queries = "";
     for (var m in datas) {
@@ -109,13 +109,14 @@ exports.insertQuery = function (table, data, params, get) {
             else
                 values.push("'" + value.replace("'", "''") + "'");
         }
-        if (get === true) {
-            queries += params.format("INSERT INTO [{0}]({1}) VALUES({2}); SELECT * FROM [{0}] where id=IDENT_CURRENT('{0}')", table, columns.join(", "), values.join(", "));
+        if (get !== undefined) {
+            queries += params.format("INSERT INTO [{0}]({1}) VALUES({2}); SELECT * FROM [{0}] where [" + get + "]=" + getvalue, table, columns.join(", "), values.join(", "));
             break;
         }
         else
             queries += params.format("INSERT INTO [{0}]({1}) VALUES({2});", table, columns.join(", "), values.join(", "));
     }
+    console.log(queries);
     return queries;
 };
 exports.update = function (table, data, params) {
@@ -264,7 +265,7 @@ exports.defaultRequests = function (Model, params) {
         });
     });
     params.app.post('/api/' + Model.tableName + '/insertID', function (req, res) {
-        Model.insertID(req.body).then((data) => {
+        Model.insertID(req.body.insertData, req.body.field, req.body.value).then((data) => {
             if (data.error !== false) res.send(data.error);
             res.json(data);
         });
@@ -323,8 +324,8 @@ exports.Model = function (tableName, params) {
             return result;
         });
     };
-    this.insertID = async function (data) {
-        return await exports.data(exports.insertQuery(tableName, data, params, true), params).then((result) => {
+    this.insertID = async function (data, field, value) {
+        return await exports.data(exports.insertQuery(tableName, data, params, field || "id", value !== '' ? ("'" + value + "'") : ("IDENT_CURRENT('" + tableName + "')")), params).then((result) => {
             return result;
         });
     };
@@ -488,7 +489,6 @@ exports.Model = function (tableName, params) {
                 }
             }
         }
-
         var selectfinal = sentence === "SELECT" ? "BASE.*" : "";
         var nickName = sentence === "SELECT" ? "BASE" : "";
         if (options.columns !== undefined) {
@@ -504,10 +504,7 @@ exports.Model = function (tableName, params) {
                 selectfinal = selectfinal.join(", ");
             }
         }
-
-
         selectfinal = joinColumns.length > 0 ? (selectfinal + ("," + joinColumns.join(","))) : selectfinal;
-
         var groupby = "";
         if (options.groupby) {
             if (Array.isArray(options.groupby)) {
@@ -520,35 +517,38 @@ exports.Model = function (tableName, params) {
             else
                 groupby = " GROUP BY " + options.groupby;
         }
-
         var order = "";
         var orderby = "";
         if (options.orderby) {
             if (Array.isArray(options.orderby)) {
                 orderbyarray = [];
-                for (const grby of options.orderby) {
-                    orderbyarray.push(grby);
+                for (var i in options.orderby) {
+                    var column = options.orderby[i];
+                    if (column[0] === "$")
+                        orderbyarray.push(column.replace('$', ''));
+                    else
+                        orderbyarray.push(params.format("[{0}]", column));
                 }
                 orderby = " ORDER BY " + orderbyarray.join(",");
             }
-            else
-                orderby = " ORDER BY " + options.orderby;
-
+            else {
+                if (options.orderby[0] === "$")
+                    orderby = " ORDER BY " + options.orderby.replace('$', '');
+                else
+                    orderby = " ORDER BY " + params.format("[{0}]", options.orderby);
+            }
             if (options.order) {
                 order = options.order;
             } else {
                 order = "asc"
             }
         }
-
-
         var distinct = '';
         if (options.distinct !== undefined) {
             if (options.distinct) {
                 distinct = "distinct";
             }
         }
-
         var $limit = '';
         var $limitvalue = 10;
         var $pagec = 1;
@@ -579,6 +579,7 @@ exports.Model = function (tableName, params) {
                 page: $page
             }
         );
+
         console.log(query);
         var queryCount = params.format("SELECT count(*) count FROM [{table}] " + nickName + " {join} {where} {groupby}",
             {

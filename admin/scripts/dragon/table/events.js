@@ -2,6 +2,8 @@ TABLEEVENT = {
     run: function ($scope, $http, $compile) {
         $scope.cell = {};
         $scope.cell.selected = [];
+        $scope.procesingRow = 0;
+        $scope.procesingRowFor = 0;
         $scope.events = ["click", "dblclick", "mousedown", "mouseenter", "mouseleave", "mousemove", "mouseover", "mouseup"];
         $scope.events.forEach(function (obj) {
             eval(
@@ -27,7 +29,6 @@ TABLEEVENT = {
                 "        };"
             );
         });
-
         $scope.cell.openLink = function (data) {
             data.column = eval("$scope.table.crud.table.columns." + data.column);
             if (data.column.link && data.column.reference !== false) {
@@ -177,6 +178,7 @@ TABLEEVENT = {
                     return;
                 }
             }
+
             if (data.column.shorttext) {
                 var shorttext = data.value;
                 if (!DSON.oseaX(shorttext))
@@ -188,7 +190,7 @@ TABLEEVENT = {
             } else {
                 if (!DSON.oseaX(data.column.formattype)) {
                     if (data.column.formattype.indexOf("html") !== -1) {
-                        $scope.modal.simpleModal(data.value||"", {
+                        $scope.modal.simpleModal(data.value || "", {
                             header: {title: "HTML content of " + data.column.label}
                         });
                     } else if (data.column.formattype.indexOf("color") !== -1) {
@@ -197,7 +199,7 @@ TABLEEVENT = {
                         });
                     } else if (data.column.formattype.indexOf("location") !== -1) {
                         if (!DSON.oseaX(data.value)) {
-                            var location = data.value.split(',');
+                            var location = data.value.split(';');
                             if (location.length > 1) {
                                 var lat = parseFloat(location[0]);
                                 var lng = parseFloat(location[1]);
@@ -266,9 +268,6 @@ TABLEEVENT = {
                 $(event.currentTarget).removeClass("bg-" + COLOR.info);
             else $(event.currentTarget).addClass("bg-" + COLOR.info);
         };
-
-        $scope.procesingRow = 0;
-        $scope.procesingRowFor = 0;
         $scope.deleteRow = async function (row) {
             var where = [];
             for (const deletekey of $scope.table.crud.table.deletekeys)
@@ -324,7 +323,6 @@ TABLEEVENT = {
                 $scope.deleteRow(item);
             }
         };
-
         $scope.activeRow = async function (row, active) {
             var where = [];
             for (const deletekey of $scope.table.crud.table.deletekeys)
@@ -386,7 +384,6 @@ TABLEEVENT = {
                 }
             });
         };
-
         $scope.importing = function (data) {
 
             $scope.procesingRow = 0;
@@ -396,11 +393,9 @@ TABLEEVENT = {
                 $scope.importRow(item);
             }
         };
-
-
         $scope.importRow = async function (item) {
-            $scope.insertID(item.row, function (result) {
-                if(result.data.error===false) {
+            $scope.insertID(item.row, '', '', function (result) {
+                if (result.data.error === false) {
                     var savedRow = result.data.data[0];
                     $scope.procesingRow++;
                     if ($scope.procesingRowFor !== 0)
@@ -412,24 +407,23 @@ TABLEEVENT = {
                         $scope.procesingRow = 0;
                         $scope.procesingRowFor = 0;
                         SWEETALERT.stop();
+                        SWEETALERT.show({message: "All files was imported successfully, please close this window and refresh the list to see the imported records."});
                     }
                     for (const relation of item.relations) {
                         for (const value of relation.values) {
                             var relaRow = {};
                             eval(`relaRow.${relation.to} = '${savedRow.id}';`);
                             eval(`relaRow.${relation.from} = '${value}';`);
-                            console.log(relaRow);
                             $scope.insertFrom(relation.table, relaRow, function (relResult) {
 
                             });
                         }
                     }
                     return true;
-                }else{
+                } else {
 
                 }
             });
         };
-
     }
 };

@@ -93,7 +93,7 @@ FILTER = {
                     width: ENUM.modal.width.full,
                     header: {
                         title: capitalize(`Filter ${$scope.singular}`),
-                        icon: "filter4",
+                        icon: ICON.classes.filter4,
                         closeButton: true,
                         h: "h6"
                     },
@@ -258,9 +258,24 @@ FILTER = {
             $scope.filters.applyText = function (block) {
                 return !block.applied ? '*' : '';
             };
-
-
+            $scope.filters.validateParentesis = function () {
+                var opens = 0;
+                var closes = 0;
+                for (var item of $scope.filters.blocks) {
+                    opens += item.group ? 1 : 0;
+                    closes += item.endgroup ? 1 : 0;
+                }
+                return opens === closes;
+            };
             $scope.filters.apply = function (close) {
+                if (!$scope.filters.validateParentesis()) {
+                    SWEETALERT.show({
+                        type: "error",
+                        title: "Missing parentheses",
+                        message: `It is necessary to close some of the opened parentheses, to find the indicated one in the shading of each filter.`
+                    });
+                    return;
+                }
                 for (var item of $scope.filters.blocks)
                     item.applied = true;
                 $scope.filters.lastFilter = $scope.filters.query();

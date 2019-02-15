@@ -4,7 +4,7 @@
         <a href="#basic" data-toggle="tab">
             <i class="icon-menu7 position-left"></i>
             Basic Information
-            <i class="border-white {{<%= scope %>.form.rulesGroup.basic() }} position-right"></i>
+            <i class="border-white  position-right"></i>
 
         </a>
     </li>
@@ -12,7 +12,7 @@
         <a href="#products" data-toggle="tab">
             <i class="icon-archive position-left"></i>
             Products
-            <i class="border-white {{<%= scope %>.form.rulesGroup.products()}} position-right"></i>
+            <i class="border-white  position-right"></i>
         </a>
     </li>
     <li>
@@ -31,14 +31,17 @@
                 <%- FORM.datetime("record", scope, {
                     timepicker: true,
                     datepicker: false,
-                    format: 'h:i a'
+                    format: 'h:i a',
+                    callformat: 'hh:mm a'
+
                 }) %>
             </div>
             <div class="col-sm-6 col-md-4">
                 <%- FORM.datetime("birthDate", scope, {
                     placeHolder: 'Birth Date',
                     timepicker: false,
-                    format: 'd/m/Y'
+                    format: 'd/m/Y',
+                    callformat: 'DD/MM/YYYY'
                 }) %>
             </div>
             <div class="col-sm-6 col-md-4">
@@ -64,12 +67,14 @@
         <div class="row">
             <div class="col-sm-6 col-md-4">
                 <%- FORM.input("average", scope, {
+                    isNumber: true,
                     icon: {class: "percent", position: "right"},
                     format: {mask: "###%", options: {reverse: true}}
                 }) %>
             </div>
             <div class="col-sm-6 col-md-4">
                 <%- FORM.input("salary", scope, {
+                    isNumber: true,
                     icon: {class: "cash3"},
                     format: {mask: "000,000,000,000,000.00", options: {reverse: true}}
                 }) %>
@@ -113,7 +118,7 @@
                 <%- FORM.textarea("description", scope, {maxlength: 200}) %>
             </div>
             <div class="col-sm-3 col-md-3">
-                <%- FORM.checkbox("rowactive", scope, {text: 'Active?'}) %>
+                <%- FORM.checkbox("active", scope, {text: 'Active?'}) %>
             </div>
         </div>
 
@@ -123,13 +128,16 @@
         <div class="row">
             <div class="col-sm-6 col-md-12">
                 <%- FORM.select("products", scope, {
-                    table: "ms_product", multiple: true, icon: {class: "archive"}
+                    table: "ms_product",
+                    get: {table: 'ms_allproducts', fieldFrom: 'id', fieldTo: 'all', field: 'product'},
+                    multiple: true,
+                    icon: {class: "archive"}
                 }) %>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-6 col-md-12">
-                <%- FORM.tags("tags", scope) %>
+                <%- FORM.tags("hashtags", scope, {placeholder: 'Tags'}) %>
             </div>
         </div>
     </div>
@@ -155,8 +163,16 @@
 </div>
 
 <div class="modal-footer">
-    <button type="button" class="btn bg-<%=TAG.table%>-600" ng-click="<%= scope %>.pages.form.save()">Save</button>
-    <button type="button" class="btn bg-<%=TAG.table%>-600" ng-click="<%= scope %>.pages.form.close()">Close</button>
+     <span class="label label-white text-<%= TAG.table %>-300 label-rounded label-icon">
+            <i class="position-right"></i>
+        </span>
+    <button type="button" class="btn bg-<%= TAG.table %>-600" ng-click="<%= scope %>.pages.form.save()">
+        Save
+    </button>
+
+    <button type="button" class="btn bg-<%= TAG.table %>-600" ng-click="<%= scope %>.pages.form.close()">
+        Close
+    </button>
 </div>
 
 
