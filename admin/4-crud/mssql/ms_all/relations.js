@@ -14,6 +14,18 @@ CRUD_ms_all = DSON.merge(CRUD_ms_all,
                     "base": "other",
                     "field": "id",
                     "columns": ["id", "description"]
+                },
+                {
+                    "table": "ms_category",
+                    "base": "category",
+                    "field": "id",
+                    "columns": ["id", "name"]
+                },
+                {
+                    "table": "ms_product",
+                    "base": "product",
+                    "field": "id",
+                    "columns": ["id", "name"]
                 }
             ],
             multiple: {

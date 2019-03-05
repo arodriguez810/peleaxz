@@ -5,24 +5,78 @@ TABLE = {
         $scope.table.loading = false;
         $scope.table.is = {};
         $scope.table.is.loading = true;
-        $scope.funcWidth = "";
+        $scope.funcWidth = $scope.table.crud.table.width;
+        $scope.report = $scope.table.crud.table.report;
         $scope.width = function () {
-            var count = $scope.columnsCount();
-            var width = "";
-            if (count > $scope.table.crud.table.offWidth) {
-                var margen = count - $scope.table.crud.table.offWidth;
-                width = (margen * $scope.table.crud.table.width) + $scope.table.crud.table.baseWidth;
+            if (!DSON.oseaX($scope.table.crud.table.width)) {
+                return "";
             }
-            if (width !== "")
-                $scope.funcWidth = $scope.table.crud.table.width !== undefined ? "width:" + width + "px;" : "";
             else
-                $scope.funcWidth = "";
+                for (const key in $scope.columns()) {
+                    var index = 1;
+                    var column = {};
+                    for (var i in $scope.columns()) {
+                        column = $scope.columns()[i];
+                        if (!$scope.columnVisible(column)) {
+                            if (i === key)
+                                column.responsive = "hidden";
+                            continue;
+                        }
+                        if (i === key) {
+                            break;
+                        }
+                        index++;
+                    }
+                    for (var r in $scope.table.crud.table.responsive) {
+                        var number = r.substr(1, r.length - 1);
+                        if (index >= number) {
+                            column.responsive = $scope.table.crud.table.responsive[r];
+                            break;
+                        } else {
+                            continue;
+                        }
+                    }
+                }
         };
+
+        $scope.responsive = function (key) {
+
+        };
+
         $scope.columnVisible = function (value) {
             return value.visible !== false;
         };
         $scope.hideColumn = function (key) {
+            STEP.register({
+                scope: $scope.modelName, action: "Hide Column",
+                field: key
+            });
             $scope.pushModel("hideColumns", key);
+            $scope.width();
+            $('.dragon-table th').trigger('click');
+        };
+        $scope.hideColumnsCount = function () {
+            for (const key in $scope.table.crud.table.columns) {
+                if ($scope.table.crud.table.columns[key].visible === false)
+                    return true;
+            }
+            return false;
+        };
+        $scope.showColumn = function (key) {
+            var hides = $scope.getModel("hideColumns");
+            if (!DSON.oseaX(hides))
+                hides = hides.filter((hide) => {
+                    return hide !== key;
+                });
+            $scope.table.crud.table.columns[key].visible = true;
+            STORAGE.add($scope.modelName + "." + 'hideColumns', hides);
+            $scope.width();
+        };
+        $scope.showallColumn = function () {
+            for (const key in $scope.table.crud.table.columns) {
+                $scope.table.crud.table.columns[key].visible = true;
+            }
+            STORAGE.add($scope.modelName + "." + 'hideColumns', []);
             $scope.width();
         };
         $scope.columnsCount = function () {
@@ -66,7 +120,10 @@ TABLE = {
                 return $scope.table.crud.table.columns;
             }
         };
+
+
         $scope.restoreStorage = function () {
+
             if (!$scope.hasAnyModel()) {
                 SWEETALERT.show({message: "There is not persisted data to restore."});
             } else
@@ -74,6 +131,10 @@ TABLE = {
                     message:
                         "This option removes all persisted configuration data for this table, sorting, columns reorder, current page, limit per page, filters, are you sure?",
                     confirm: function () {
+                        STEP.register({
+                            scope: $scope.modelName, action: "Restore Configuration",
+                            field: "Local " + $scope.modelName
+                        });
                         $scope.clearModel();
                         location.reload();
                     }

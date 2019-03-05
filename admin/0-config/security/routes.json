@@ -1,0 +1,13 @@
+{
+  "routes": {
+    "notoken": [
+      "/",
+      "/error/error",
+      "/error/base",
+      "/auth/login",
+      "/service/base_auth/login",
+      "/post/templates/pdf/table",
+      "/post/templates/pdf/table"
+    ]
+  }
+}

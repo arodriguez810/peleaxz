@@ -1,0 +1,136 @@
+{
+  "modules": [
+    {
+      "var": "express",
+      "module": "express"
+    },
+    {
+      "var": "mongoose",
+      "module": "mongoose"
+    },
+    {
+      "var": "morgan",
+      "module": "morgan"
+    },
+    {
+      "var": "bodyParser",
+      "module": "body-parser"
+    },
+    {
+      "var": "methodOverride",
+      "module": "method-override"
+    },
+    {
+      "var": "S",
+      "module": "string"
+    },
+    {
+      "var": "util",
+      "module": "util"
+    },
+    {
+      "var": "layout",
+      "module": "express-layout"
+    },
+    {
+      "var": "mssql",
+      "module": "mssql"
+    },
+    {
+      "var": "nodemssql",
+      "module": "node-mssql"
+    },
+    {
+      "var": "colors",
+      "module": "colors"
+    },
+    {
+      "var": "co",
+      "module": "co"
+    },
+    {
+      "var": "format",
+      "module": "string-format"
+    },
+    {
+      "var": "mysql",
+      "module": "mysql"
+    },
+    {
+      "var": "child_process",
+      "module": "child_process"
+    },
+    {
+      "var": "pluralize",
+      "module": "pluralize"
+    },
+    {
+      "var": "capitalize",
+      "module": "capitalize"
+    },
+    {
+      "var": "sleep",
+      "module": "system-sleep"
+    },
+    {
+      "var": "PDF",
+      "module": "phantom-html2pdf"
+    },
+    {
+      "var": "HtmlDocx",
+      "module": "html-docx-js"
+    },
+    {
+      "var": "docxConverter",
+      "module": "docx-pdf"
+    },
+    {
+      "var": "HTMLPDF",
+      "module": "html-pdf"
+    },
+    {
+      "var": "chokidar",
+      "module": "chokidar"
+    },
+    {
+      "var": "md5",
+      "module": "md5"
+    },
+    {
+      "var": "deepmerge",
+      "module": "deepmerge"
+    },
+    {
+      "var": "JSZip",
+      "module": "jszip"
+    },
+    {
+      "var": "zipdir",
+      "module": "zip-dir"
+    },
+    {
+      "var": "multer",
+      "module": "multer"
+    },
+    {
+      "var": "shelljs",
+      "module": "shelljs"
+    },
+    {
+      "var": "XLSX",
+      "module": "xlsx"
+    },
+    {
+      "var": "csvtojson",
+      "module": "csvtojson"
+    },
+    {
+      "var": "rimraf",
+      "module": "rimraf"
+    },
+    {
+      "var": "jwt ",
+      "module": "jsonwebtoken"
+    }
+  ]
+}

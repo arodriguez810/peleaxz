@@ -1,0 +1,64 @@
+<div class="containerLading">
+    <h1 class="ml4">
+        <span class="letters letters-1 text-<%= COLOR.primary %>-800 border-<%= COLOR.menu %>" ><%= CONFIG.appName %></span>
+
+        <span class="letters letters-3 text-<%= TAG.table %>-800">Please Wait</span>
+    </h1>
+    <div class="item item-1 bg-<%= COLOR.primary %>-300 border-<%= COLOR.primary %>-800"></div>
+    <div class="item item-2 bg-<%= TAG.table %>-300 border-<%= TAG.table %>-800"></div>
+    <div class="item item-3 bg-<%= COLOR.menu %>-300 border-<%= COLOR.menu %>-800"></div>
+    <div class="item item-4 bg-<%= TAG.table %>-800 border-<%= TAG.table %>-300"></div>
+</div>
+<script>
+    var ml4 = {};
+    ml4.opacityIn = [0,1];
+    ml4.scaleIn = [0.2, 1];
+    ml4.scaleOut = 3;
+    ml4.durationIn = 800;
+    ml4.durationOut = 600;
+    ml4.delay = 200;
+
+    anime.timeline({loop: true})
+        .add({
+            targets: '.ml4 .letters-1',
+            opacity: ml4.opacityIn,
+            scale: ml4.scaleIn,
+            duration: ml4.durationIn
+        }).add({
+        targets: '.ml4 .letters-1',
+        opacity: 0,
+        scale: ml4.scaleOut,
+        duration: ml4.durationOut,
+        easing: "easeInExpo",
+        delay: ml4.delay
+    }).add({
+        targets: '.ml4 .letters-2',
+        opacity: ml4.opacityIn,
+        scale: ml4.scaleIn,
+        duration: ml4.durationIn
+    }).add({
+        targets: '.ml4 .letters-2',
+        opacity: 0,
+        scale: ml4.scaleOut,
+        duration: ml4.durationOut,
+        easing: "easeInExpo",
+        delay: ml4.delay
+    }).add({
+        targets: '.ml4 .letters-3',
+        opacity: ml4.opacityIn,
+        scale: ml4.scaleIn,
+        duration: ml4.durationIn
+    }).add({
+        targets: '.ml4 .letters-3',
+        opacity: 0,
+        scale: ml4.scaleOut,
+        duration: ml4.durationOut,
+        easing: "easeInExpo",
+        delay: ml4.delay
+    }).add({
+        targets: '.ml4',
+        opacity: 0,
+        duration: 500,
+        delay: 500
+    });
+</script>

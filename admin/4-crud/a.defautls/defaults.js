@@ -3,7 +3,14 @@ CRUDDEFAULTS = {
         rowClass: function (row, $scope) {
             return $scope.activeSET(row) === false ? "bg-" + COLOR.danger + "-300" : "";
         },
-        width: 200,
+        responsive: {
+            "_7": "hidden",
+            "_5": "visible-md visible-lg",
+            "_3": "visible-sm visible-md visible-lg",
+            "_1": "visible-xs visible-sm visible-md visible-lg"
+        },
+        report: false,
+        width: "",
         offWidth: 5,
         baseWidth: 1000,
         columnsalign: "center",
@@ -45,7 +52,7 @@ CRUDDEFAULTS = {
                     return "cog2";
                 },
                 permission: (data) => {
-                    return ['edit', 'remove', 'active'];
+                    return ['edit', 'remove', 'active', 'view', 'copy'];
                 },
                 characterist: (data) => {
                     return '';

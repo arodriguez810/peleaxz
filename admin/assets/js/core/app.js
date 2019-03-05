@@ -32,9 +32,9 @@ $(function() {
 
     // Calculate min height
     function containerHeight() {
-        var availableHeight = $(window).height() - $('.page-container').offset().top - $('.navbar-fixed-bottom').outerHeight();
-
-        $('.page-container').attr('style', 'min-height:' + availableHeight + 'px');
+        // var availableHeight = $(window).height() - $('.page-container').offset().top - $('.navbar-fixed-bottom').outerHeight();
+        //
+        // $('.page-container').attr('style', 'min-height:' + availableHeight + 'px');
     }
 
     // Initialize
@@ -395,6 +395,11 @@ $(function() {
         e.preventDefault();
         $('body').toggleClass('sidebar-main-hidden');
         var hasClass = $('body').hasClass('sidebar-main-hidden');
+        if(hasClass)
+            $(".sidebar-main-toggle").hide();
+        else
+            $(".sidebar-main-toggle").show();
+
         STORAGE.add('app.sidebar-main-ishide',hasClass)
     });
 

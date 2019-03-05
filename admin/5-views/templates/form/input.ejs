@@ -6,7 +6,7 @@ var options = {
     icon: {
         class: "none",
         position: "left",
-        color: COLOR.primary
+        color: TAG.table+"-800"
     },
     helptext: '',
     format: '',
@@ -29,7 +29,10 @@ var toclient = JSON.stringify(options);
     <% if(options.format || options.isNumber){ %>
     <%= model %>.form.registerField("<%= name %>_DragonClean", "<%= toclient %>");
     <% } %>
-
+if(ICON.classes.<%=  name.toLowerCase() %>!==undefined){
+    if( <%= model %>.form.options.<%= name %>.icon.class==='none')
+    <%= model %>.form.options.<%= name %>.icon.class =ICON.classes.<%=  name.toLowerCase() %>;
+}
 </script>
 <div class="form-group-material form-group has-feedback  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
      id="input<%= name %>">
@@ -87,6 +90,17 @@ var toclient = JSON.stringify(options);
     <% if(options.maxlength){ %>
     $('[name="<%= model %>_<%= name %>"]').maxlength();
     <% } %>
+
+    $('[name="<%= model %>_<%= name %>"]').blur(function () {
+        $(".map-wrapper").hide();
+        STEP.register({
+                scope: "<%= model %>",
+                action: "Change Text",
+                field: "<%= name %>",
+                value: <%= model %>.<%= name %>
+        });
+    });
+
     $('[name="<%= model %>_<%= name %>"]').keyup(function () {
         $(this).trigger("change");
         $("#input<%= name %>").removeClass('has-warning has-error has-success');

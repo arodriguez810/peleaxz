@@ -1,4 +1,5 @@
 {
   "all": "int NOT NULL",
-  "product": "int NOT NULL"
+  "product": "int NOT NULL",
+  "id": "uniqueidentifier NOT NULL"
 }

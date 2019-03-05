@@ -130,6 +130,9 @@ TABLEEVENT = {
                             ],
                             crud: linkCrud
                         };
+
+                        baseController.viewData.readonly = eval(`({${mylink.to}:'${id}'})`);
+                        baseController.viewData.fieldKey = mylink.to;
                         $scope.modal.modalView(String.format("{0}", mylink.list), mylink.modal);
                         mylink.modal.header.title = oldTitle;
                     });
@@ -259,43 +262,74 @@ TABLEEVENT = {
             var classElement = "bg-" + COLOR.info;
             if (!$(event.currentTarget).parent().hasClass(classElement))
                 if (row.selected !== true)
-                    $(event.currentTarget).parent().addClass("alpha-" + COLOR.info);
+                    if ($scope.activeSET(row) !== false)
+                        $(event.currentTarget).parent().addClass("alpha-" + COLOR.info);
         };
-        $scope.cell.dblselect = function (event) {
-            $("td").removeClass("alpha-" + COLOR.info);
-            var classElement = "bg-" + COLOR.info;
-            if ($(event.currentTarget).hasClass(classElement))
-                $(event.currentTarget).removeClass("bg-" + COLOR.info);
-            else $(event.currentTarget).addClass("bg-" + COLOR.info);
+        $scope.cell.dblselect = function (row) {
+            if (!DSON.oseaX(row)) {
+                $scope.dataForView = row;
+                $scope.modal.modalView(String.format("{0}/view", $scope.modelName), {
+                    header: {
+                        title: "View of " + $scope.plural,
+                        icon: ICON.classes.list
+                    },
+                    footer: {
+                        cancelButton: true
+                    },
+                    content: {
+                        loadingContentText: "Loading...",
+                        sameController: true
+                    },
+                });
+            }
+        };
+        $scope.beforeDelete = function (data) {
+
+        };
+        $scope.afterDelete = function (data) {
+
         };
         $scope.deleteRow = async function (row) {
             var where = [];
             for (const deletekey of $scope.table.crud.table.deletekeys)
                 where.push({field: deletekey, value: eval("row." + deletekey)});
+            $scope.beforeDelete(row);
             $scope.delete(where, function (result) {
-                $scope.procesingRow++;
-                if ($scope.procesingRowFor !== 0)
-                    SWEETALERT.loading({
-                        message: `Deleting Multiple Rows ${$scope.procesingRow} of ${$scope.procesingRowFor}`
-                    }, false);
+                if (result.data.error === false) {
+                    $scope.afterDelete(row);
+                    $scope.procesingRow++;
+                    if ($scope.procesingRowFor !== 0)
+                        SWEETALERT.loading({
+                            message: `Deleting Multiple Rows ${$scope.procesingRow} of ${$scope.procesingRowFor}`
+                        }, false);
 
-                if ($scope.procesingRow === $scope.procesingRowFor || $scope.procesingRowFor === 0) {
-                    $scope.procesingRow = 0;
-                    $scope.procesingRowFor = 0;
-                    SWEETALERT.stop();
-                }
-                $scope.records.data = $scope.records.data.filter(function (item) {
-                    var goOut = 0;
-                    for (const deletekey of $scope.table.crud.table.deletekeys) {
-                        if (eval("item." + deletekey) === eval("row." + deletekey))
-                            goOut++;
+                    if ($scope.procesingRow === $scope.procesingRowFor || $scope.procesingRowFor === 0) {
+                        $scope.procesingRow = 0;
+                        $scope.procesingRowFor = 0;
+                        SWEETALERT.stop();
                     }
-                    if (goOut === $scope.table.crud.table.deletekeys.length) {
-                        item.rowdeleted = true;
+                    $scope.records.data = $scope.records.data.filter(function (item) {
+                        var goOut = 0;
+                        for (const deletekey of $scope.table.crud.table.deletekeys) {
+                            if (eval("item." + deletekey) === eval("row." + deletekey))
+                                goOut++;
+                        }
+                        if (goOut === $scope.table.crud.table.deletekeys.length) {
+                            item.rowdeleted = true;
+                            return true;
+                        }
                         return true;
+                    });
+                } else {
+                    $scope.procesingRow++;
+                    $scope.procesingRowErrors.push(result.data, ERROR.category.database);
+                    if ($scope.procesingRow === $scope.procesingRowFor || $scope.procesingRowFor === 0) {
+                        $scope.procesingRow = 0;
+                        $scope.procesingRowFor = 0;
+                        SWEETALERT.stop();
+                        ERROR.multiAlert($scope.procesingRowErrors, ERROR.category.database);
                     }
-                    return true;
-                });
+                }
 
             });
         };
@@ -324,6 +358,8 @@ TABLEEVENT = {
             }
         };
         $scope.activeRow = async function (row, active) {
+            $("tr").removeClass("alpha-" + COLOR.info);
+            $("td").removeClass("alpha-" + COLOR.info);
             var where = [];
             for (const deletekey of $scope.table.crud.table.deletekeys)
                 where.push({field: deletekey, value: eval("row." + deletekey)});
@@ -332,30 +368,40 @@ TABLEEVENT = {
             data.where = where;
             var actionText = active ? 'Activing' : 'Disabling';
             $scope.update(data, function (result) {
-                $scope.procesingRow++;
-                if ($scope.procesingRowFor !== 0)
-                    SWEETALERT.loading({
-                        message: `${actionText} Multiple Rows ${$scope.procesingRow} of ${$scope.procesingRowFor}`
-                    }, false);
+                if (result.data.error === false) {
+                    $scope.procesingRow++;
+                    if ($scope.procesingRowFor !== 0)
+                        SWEETALERT.loading({
+                            message: `${actionText} Multiple Rows ${$scope.procesingRow} of ${$scope.procesingRowFor}`
+                        }, false);
 
-                if ($scope.procesingRow === $scope.procesingRowFor || $scope.procesingRowFor === 0) {
-                    $scope.procesingRow = 0;
-                    $scope.procesingRowFor = 0;
-                    SWEETALERT.stop();
-                }
-                $scope.records.data = $scope.records.data.filter(function (item) {
-                    var goOut = 0;
-                    for (const deletekey of $scope.table.crud.table.deletekeys) {
-                        if (eval("item." + deletekey) === eval("row." + deletekey))
-                            goOut++;
+                    if ($scope.procesingRow === $scope.procesingRowFor || $scope.procesingRowFor === 0) {
+                        $scope.procesingRow = 0;
+                        $scope.procesingRowFor = 0;
+                        SWEETALERT.stop();
                     }
-                    if (goOut === $scope.table.crud.table.deletekeys.length) {
-                        eval(`item.${$scope.activeColumn()} = ${active}`);
+                    $scope.records.data = $scope.records.data.filter(function (item) {
+                        var goOut = 0;
+                        for (const deletekey of $scope.table.crud.table.deletekeys) {
+                            if (eval("item." + deletekey) === eval("row." + deletekey))
+                                goOut++;
+                        }
+                        if (goOut === $scope.table.crud.table.deletekeys.length) {
+                            eval(`item.${$scope.activeColumn()} = ${active}`);
+                            return true;
+                        }
                         return true;
+                    });
+                } else {
+                    $scope.procesingRow++;
+                    $scope.procesingRowErrors.push(result.data, ERROR.category.database);
+                    if ($scope.procesingRow === $scope.procesingRowFor || $scope.procesingRowFor === 0) {
+                        $scope.procesingRow = 0;
+                        $scope.procesingRowFor = 0;
+                        SWEETALERT.stop();
+                        ERROR.multiAlert($scope.procesingRowErrors, ERROR.category.database);
                     }
-                    return true;
-                });
-
+                }
             });
         };
         $scope.activeRows = function (forDelte, active) {
@@ -380,15 +426,21 @@ TABLEEVENT = {
                     $scope.procesingRow = 0;
                     $scope.procesingRowFor = forDelte.length;
                     SWEETALERT.loading({message: `${actionTextMultiple} Multiple Rows ${$scope.procesingRow} of ${$scope.procesingRowFor}`});
+                    STEP.register({
+                        scope: $scope.modelName, action: `Active ${forDelte.length} Rows`
+                    });
                     $scope.activeRows(forDelte, value);
                 }
             });
         };
         $scope.importing = function (data) {
-
             $scope.procesingRow = 0;
             $scope.procesingRowFor = data.length;
             SWEETALERT.loading({message: `Importing Multiple Rows ${$scope.procesingRow} of ${$scope.procesingRowFor}`});
+            $scope.procesingRowErrors = [];
+            STEP.register({
+                scope: $scope.modelName, action: `Importing ${data.length} Rows`
+            });
             for (const item of data) {
                 $scope.importRow(item);
             }
@@ -421,8 +473,104 @@ TABLEEVENT = {
                     }
                     return true;
                 } else {
-
+                    $scope.procesingRow++;
+                    $scope.procesingRowErrors.push(result.data, ERROR.category.database);
+                    if ($scope.procesingRow === $scope.procesingRowFor || $scope.procesingRowFor === 0) {
+                        $scope.procesingRow = 0;
+                        $scope.procesingRowFor = 0;
+                        SWEETALERT.stop();
+                        ERROR.multiAlert($scope.procesingRowErrors, ERROR.category.database);
+                    }
                 }
+            });
+        };
+        $scope.copyMultiple = async function () {
+
+            var forCopy = $scope.records.data.filter(function (item) {
+                return item.selected === true;
+            });
+            if (forCopy.length === 0) {
+                SWEETALERT.show({message: "You must select any row for copy."});
+                return;
+            }
+
+            var formatRows = [];
+
+            forCopy.forEach(function (data) {
+                var formatRow = {};
+                for (var i in $scope.table.crud.table.columns) {
+                    var column = $scope.table.crud.table.columns[i];
+                    var key = i;
+                    var alter = column.exportKey !== undefined ? column.exportKey : i;
+                    if ($scope.table.crud.table.columns[key].exportExample !== false) {
+                        var exampleText = $scope.table.crud.table.columns[key].exportExample;
+                        exampleText = exampleText === undefined ? "[string]" : exampleText;
+                        var realValue = eval(`data.${key};`);
+                        if (!DSON.oseaX(realValue)) {
+                            if (column.link !== undefined) {
+                                realValue = eval(`data.${key.split('_')[0]}_${key.split('_')[1]}_id;`);
+                            }
+                            eval(`formatRow.${alter} = '${realValue}';`);
+                        }
+                    }
+                }
+                formatRows.push(formatRow);
+            });
+
+            SWEETALERT.confirm({
+                title: 'Copy Records',
+                message: "This option copy all record selected without relations and paste in news rows with last ID. <br> ¿Are you sure you want copy selected records?",
+                confirm: function () {
+                    SWEETALERT.loading({message: "Copyng Records..."});
+                    var records = formatRows;
+                    var columns = $scope.table.crud.table.columns;
+                    var inserts = [];
+                    for (var i in records) {
+                        var record = records[i];
+                        var row = {};
+                        for (var i in record) {
+                            var key = i;
+                            var value = record[i];
+                            for (var c in columns) {
+                                var column = false;
+                                if (c === key || key === columns[c].exportKey)
+                                    column = columns[c];
+                                if (column === false) continue;
+                                eval(`row.${key} = '${value}';`);
+                                break;
+                            }
+                        }
+                        inserts.push({row: row, relations: []});
+                    }
+                    STEP.register({
+                        scope: $scope.modelName, action: `Copy ${inserts.length} Rows`
+                    });
+                    $scope.importing(inserts);
+                }
+            });
+            return false;
+        };
+        $scope.fileManager = function () {
+            var root = `${$scope.modelName}/imports_files/`;
+            baseController.viewData = {
+                root: root,
+                scope: $scope,
+                maxfiles: 8,
+                acceptedFiles: 'text/csv,application/vnd.ms-excel',
+                columns: 4,
+            };
+            $scope.modal.modalView("../templates/components/import", {
+                width: 'modal-full',
+                header: {
+                    title: `Import files of ${$scope.modelName}`,
+                    icon: ICON.classes.file_excel
+                },
+                footer: {
+                    cancelButton: true
+                },
+                content: {
+                    loadingContentText: "Loading Files.."
+                },
             });
         };
     }

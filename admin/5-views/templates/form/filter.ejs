@@ -1,18 +1,11 @@
-<div class="modal-footer">
-    <button type="button" class="btn  bg-<%= TAG.table %>-600" ng-click="<%= scope %>.filters.apply()">Apply
-    </button>
-    <button type="button" class="btn  bg-<%= TAG.table %>-600" ng-click="<%= scope %>.filters.clear()">Clear
-    </button>
-    <button type="button" class="btn  bg-<%= TAG.table %>-600" ng-click="<%= scope %>.filters.close()">Close
-    </button>
-</div>
+
 <div class="row {{<%= scope %>.filters.colored(block)}}"
      ng-repeat="(key,block) in <%= scope %>.filters.blocks track by key"
      value="{{block}}">
     <div class="col-sm-1 col-md-1">
         <button type="button" role="button"
                 ng-click="<%= scope %>.filters.toggleGroup(block)"
-                class="btn text-<%= COLOR.primary %>-600 {{<%= scope %>.filters.colored(block)}} text-bold  btn-block legitRipple text-right">
+                class="btn {{<%= scope %>.filters.colored(block)}} text-bold  bg-<%= COLOR.primary %>-300 legitRipple text-right">
             {{block.group?'(':' '}}
         </button>
     </div>
@@ -147,7 +140,7 @@
     <div class="col-sm-1 col-md-1">
         <button type="button" role="button"
                 ng-click="<%= scope %>.filters.toggleEndGroup(block)"
-                class="btn text-<%= COLOR.primary %>-600 {{<%= scope %>.filters.colored(block)}} text-bold bg-white btn-block legitRipple text-left">
+                class="btn bg-<%= COLOR.primary %>-300 {{<%= scope %>.filters.colored(block)}} text-bold legitRipple text-left">
             {{block.endgroup?')':' '}}
         </button>
     </div>
@@ -178,13 +171,34 @@
     <p ng-bind-html="<%= scope %>.filters.description()">
     </p>
 </div>
-<div class="modal-footer">
+<div class="modal-footer visible-xs">
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-xs-4">
+            <button type="button" class="btn  bg-<%= TAG.table %>-600" ng-click="<%= scope %>.filters.apply()">Apply
+            </button>
+        </div>
+        <div class="col-lg-4 col-md-4 col-xs-4">
+            <button type="button" class="btn  bg-<%= TAG.table %>-600" ng-click="<%= scope %>.filters.clear()">Clear
+            </button>
+        </div>
+        <div class="col-lg-4 col-md-4 col-xs-4">
+            <button type="button" class="btn  bg-<%= TAG.table %>-600" ng-click="<%= scope %>.filters.close()">Close
+            </button>
+        </div>
+    </div>
+</div>
+<div class="modal-footer visible-lg visible-md">
+
     <button type="button" class="btn  bg-<%= TAG.table %>-600" ng-click="<%= scope %>.filters.apply()">Apply
     </button>
+
     <button type="button" class="btn  bg-<%= TAG.table %>-600" ng-click="<%= scope %>.filters.clear()">Clear
     </button>
+
     <button type="button" class="btn  bg-<%= TAG.table %>-600" ng-click="<%= scope %>.filters.close()">Close
     </button>
+
+
 </div>
 
 <script>

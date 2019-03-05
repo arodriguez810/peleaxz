@@ -12,24 +12,10 @@ DSON.keepmerge(CRUD_ms_allusers, {
                 exportExample: false
             },
             ms_all_name: {
-                label: "All",
-                reference: false,
-                link: {
-                    table: "ms_all",
-                    from: "all",
-                    modal: {
-                        header: {
-                            title: "Detail of All",
-                            icon: ICON.classes.archive
-                        },
-                        footer: {
-                            cancelButton: true
-                        },
-                        content: {
-                            loadingContentText: "Loading.."
-                        },
-                    }
-                }
+                visible: false,
+                visibleDetail: false,
+                export: false,
+                exportExample: false
             },
             ms_user_name: {
                 label: "user",

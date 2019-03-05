@@ -72,11 +72,6 @@ FILTER = {
                     idplus++;
                 }
             };
-            if ($scope.hasModel('filters')) {
-                $scope.filters.lastFilter = $scope.getModelObject('filters');
-                $scope.filters.queryToBlocks();
-                $scope.filters.originals = $scope.filters.blocks.length;
-            }
             $scope.filters.default_block = {
                 applied: false,
                 group: false,
@@ -255,6 +250,10 @@ FILTER = {
                     return item.id !== block.id;
                 });
             };
+            $scope.filters.removeApply = function (block) {
+                $scope.filters.remove(block);
+                $scope.filters.apply();
+            };
             $scope.filters.applyText = function (block) {
                 return !block.applied ? '*' : '';
             };
@@ -267,6 +266,13 @@ FILTER = {
                 }
                 return opens === closes;
             };
+            $scope.filters.clear = function () {
+                $scope.filters.blocks = [];
+            };
+            $scope.filters.clearApply = function () {
+                $scope.filters.clear();
+                $scope.filters.apply();
+            };
             $scope.filters.apply = function (close) {
                 if (!$scope.filters.validateParentesis()) {
                     SWEETALERT.show({
@@ -276,6 +282,12 @@ FILTER = {
                     });
                     return;
                 }
+
+                STEP.register({
+                    scope: baseController.currentModel.modelName,
+                    action: `Apply Filters`,
+                    field: $scope.filters.descriptionNoHtml()
+                });
                 for (var item of $scope.filters.blocks)
                     item.applied = true;
                 $scope.filters.lastFilter = $scope.filters.query();
@@ -284,8 +296,12 @@ FILTER = {
                     $scope.filters.close();
                 $scope.refresh();
             };
-            $scope.filters.clear = function () {
+            $scope.filters.clearApply = function () {
+                STEP.register({
+                    scope: $scope.modelName, action: `Clear All Filters`
+                });
                 $scope.filters.blocks = [];
+                $scope.filters.apply();
             };
             $scope.filters.add = function () {
                 if ($scope.filters.blocks.length === 0) {
@@ -324,6 +340,35 @@ FILTER = {
                     $scope.$scope.$digest();
                 });
 
+            };
+            $scope.filters.blocksDescription = function () {
+                var where = [];
+                for (const item of $scope.filters.blocks) {
+                    if (!DSON.oseaX(item.column) &&
+                        !DSON.oseaX(item.operator) &&
+                        !DSON.oseaX(item.connector)) {
+                        var danger = `${!item.applied ? 'text-danger' : ''}`;
+                        var showvalue = item.value;
+                        if (Array.isArray(showvalue)) {
+                            if (item.column.type === FILTER.types.relation) {
+                                var itemsElements = $scope.filters.getSelect(item);
+                                if (itemsElements !== undefined) {
+                                    var selecteds = itemsElements.filter(function (it) {
+                                        return eval(`showvalue.indexOf(it.${item.column.value}.toString())!==-1`);
+                                    });
+                                    var descriptions = [];
+                                    for (const sel of selecteds) {
+                                        descriptions.push(eval(`${item.column.text.replace('item', 'sel')}`));
+                                    }
+                                    showvalue = descriptions;
+                                }
+                            }
+                        }
+                        item.showvalue = showvalue;
+                        where.push(item);
+                    }
+                }
+                return where;
             };
             $scope.filters.description = function () {
                 var where = [];
@@ -366,6 +411,49 @@ FILTER = {
                     description.push(`<b class="text-${TAG.table}-800">${realColumn.label}:</b> ` + (items.join(' ') + "*****").replace(`<b class="text-${TAG.table}-800">AND</b>*****`, '').replace(`<b class="text-${TAG.table}-800">OR</b>*****`, ''));
                 }
                 return "<b>Filters:</b> " + description.join('');
+            };
+            $scope.filters.descriptionPlane = function () {
+                var where = [];
+                for (const item of $scope.filters.blocks) {
+                    if (!DSON.oseaX(item.column) &&
+                        !DSON.oseaX(item.operator) &&
+                        !DSON.oseaX(item.connector)) {
+                        var danger = `${!item.applied ? 'text-danger' : ''}`;
+                        var showvalue = item.value;
+                        if (Array.isArray(showvalue)) {
+                            if (item.column.type === FILTER.types.relation) {
+                                var itemsElements = $scope.filters.getSelect(item);
+                                if (itemsElements != undefined) {
+
+                                    var selecteds = itemsElements.filter(function (it) {
+                                        return eval(`showvalue.indexOf(it.${item.column.value}.toString())!==-1`);
+                                    });
+
+                                    var descriptions = [];
+                                    for (const sel of selecteds) {
+                                        descriptions.push(`<span class="label bg-${TAG.table} label-rounded">${eval(`${item.column.text.replace('item', 'sel')}`)}</span>`);
+                                    }
+                                    showvalue = descriptions;
+                                }
+                            }
+                        }
+                        var whe = `<span class="${danger}">${item.operator.text}</span> <b class="${danger}">${showvalue}</b> <b class="text-${TAG.table}-800">${item.connector}</b>`;
+                        if (DSON.oseaX(where[item.column.key]))
+                            where[item.column.key] = [];
+                        where[item.column.key].push(whe);
+                    }
+                }
+                var description = [];
+
+                for (var i in where) {
+                    var items = where[i];
+                    var realColumn = $scope.filters.fields.filter(function (item) {
+                        return item.key === i;
+                    })[0];
+                    realColumn.items = items;
+                    description.push(realColumn);
+                }
+                return description;
             };
             $scope.filters.descriptionNoHtml = function () {
                 var where = [];
@@ -457,6 +545,13 @@ FILTER = {
                 else
                     block.finalValue = block.value;
             };
+            if ($scope.hasModel('filters')) {
+                $scope.filters.lastFilter = $scope.getModelObject('filters');
+                $scope.filters.queryToBlocks();
+                $scope.filters.originals = $scope.filters.blocks.length;
+                $scope.openFilters();
+                $scope.filters.close();
+            }
         }
     }
 };

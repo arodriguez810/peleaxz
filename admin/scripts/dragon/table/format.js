@@ -70,7 +70,7 @@ TABLEFORMAT = {
         $scope.columnLabelStrip = function (value, key) {
             var label = value.label || key;
             if (typeof value.label === "function") return HTML.strip(value.label());
-            return HTML.strip(capitalize(label)) ;
+            return HTML.strip(capitalize(label));
         };
         $scope.formatData = function (data, extra) {
             var formatedData = [];
@@ -214,10 +214,10 @@ TABLEFORMAT = {
             if (column.folder) {
                 switch (column.files) {
                     case "image": {
-                        return String.format("<a class='btn bg-" + TAG.table + "'>{0}</a>", ICON.i('images3'));
+                        return String.format("<a data-dragonfile='/" + (column.folder + `/${value}`) + "' class='btn gallerybtn bg-" + TAG.table + "'>{0}</a>", ICON.i('images3'));
                     }
                     case "all": {
-                        return String.format("<a class='btn bg-" + TAG.table + "'>{0}</a>", ICON.i('files-empty'));
+                        return String.format("<a data-dragonfile='/" + (column.folder + `/${value}`) + "' class='btn gallerybtn bg-" + TAG.table + "'>{0}</a>", ICON.i('images3'));
                     }
                     default: {
                         return String.format("<a class='btn bg-" + TAG.table + "'>{0}</a>", ICON.i('files-empty'));

@@ -3,7 +3,7 @@ VALIDATION = DSON.merge(VALIDATION, {
         range: function (value, from, to) {
             return {
                 valid: (value >= from && value <= to),
-                message: `The number must be between ${from} and ${to}`,
+                message: `Number must be between ${from} and ${to}`,
                 type: VALIDATION.types.error
             };
         }

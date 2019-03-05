@@ -5,7 +5,7 @@ var options = {
     icon: {
         class: "calendar",
         position: "left",
-        color: COLOR.primary
+        color: TAG.table+"-800"
     },
     helptext: '',
     format: 'd/m/Y h:i',
@@ -16,11 +16,16 @@ var options = {
     lang: 'en',
     inline: false,
     allowTimes: [],
-    minDate: "",
-    maxDate: "",
+    minTime: !1,
+    minDate: !1,
+    minDateTime: !1,
+    maxTime: !1,
+    maxDate: !1,
+    maxDateTime: !1,
     mask: false,
     disabled: false,
-
+    dynamic: false,
+    verify: []
 };
 if (options.timepicker === false)
     options.posttype = 'date';
@@ -28,21 +33,32 @@ if (options.datepicker === false)
     options.posttype = 'time';
 options = OBJECT.merge(options, opts);
 var toclient = JSON.stringify(options);
-
 %>
 <script>
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
     <%= model %>.form.registerField("<%= name %>_DragonClean", "<%= toclient %>");
     var isReadProgram = <%= model %>.form.isReadOnly('<%= name %>');
-    if(isReadProgram!==false){
-        <%= model %>.form.options.<%= name %>.disabled = true;
-        if(isReadProgram!==undefined){
-            <%= model %>.<%= name %>_DragonClean = isReadProgram;
-            if(<%= model %>.form.options.<%= name %>.datepicker===false){
+    if (isReadProgram !== false) {
+        <%= model %>.
+        form.options.<%= name %>.disabled = true;
+        if (isReadProgram !== undefined) {
+            <%= model %>.
+            <%= name %>_DragonClean = isReadProgram;
+            if (<%= model %>.
+            form.options.<%= name %>.datepicker === false
+        )
+            {
                 <%= model %>.<%= name %> = moment(new Date(isReadProgram)).format("hh:mm a");
-            }else if(<%= model %>.form.options.<%= name %>.timepicker===false){
+            }
+        else
+            if (<%= model %>.
+            form.options.<%= name %>.timepicker === false
+        )
+            {
                 <%= model %>.<%= name %> = moment(new Date(isReadProgram)).format("DD/MM/YYYY");
-            }else{
+            }
+        else
+            {
                 <%= model %>.<%= name %> = moment(new Date(isReadProgram)).format("DD/MM/YYYY hh:mm a");
             }
         }
@@ -83,6 +99,8 @@ var toclient = JSON.stringify(options);
 </div>
 <script type="text/javascript">
     $(document).ready(function () {
+        var jsOptions = <%= model %>.
+        form.options.<%= name %>;
         $('#<%= model %>_<%= name %>').datetimepicker({
             format: '<%= options.format %>',
             timepicker: <%= options.timepicker %>,
@@ -91,24 +109,73 @@ var toclient = JSON.stringify(options);
             inline: <%= options.inline %>,
             validateOnBlur: false,
             <%= options.allowTimes.length > 0 ? "allowTimes :" + JSON.stringify(options.allowTimes) + "," : "" %>
-            <%= options.maxDate !== "" ? "maxDate:'" + options.maxDate + "'," : "" %>
-            <%= options.minDate !== "" ? "minDate:'" + options.minDate + "'," : "" %>
+            minTime: jsOptions.dynamic ? $('#<%= model %>_' + jsOptions.minTime).val() : jsOptions.minTime,
+            minDate: jsOptions.dynamic ? $('#<%= model %>_' + jsOptions.minDate).val() : jsOptions.minDate,
+            minDateTime: jsOptions.dynamic ? $('#<%= model %>_' + jsOptions.minDateTime).val() : jsOptions.minDateTime,
+            maxTime: jsOptions.dynamic ? $('#<%= model %>_' + jsOptions.maxTime).val() : jsOptions.maxTime,
+            maxDate: jsOptions.dynamic ? $('#<%= model %>_' + jsOptions.maxDate).val() : jsOptions.maxDate,
+            maxDateTime: jsOptions.dynamic ? $('#<%= model %>_' + jsOptions.maxDateTime).val() : jsOptions.maxDateTime,
             mask: <%= options.mask %>,
             onChangeDateTime: function (currentDateTime) {
-                if(<%= model %>.form.options.<%= name %>.datepicker===false){
-                    <%= model %>.<%= name %>_DragonClean = moment(currentDateTime).format("H:mm");
-                }else if(<%= model %>.form.options.<%= name %>.timepicker===false){
-                        <%= model %>.<%= name %>_DragonClean = moment(currentDateTime).format("YYYY-MM-DD");
-                }else{
-                    <%= model %>.<%= name %>_DragonClean = moment(currentDateTime).format("YYYY-MM-DD H:mm a");
+
+                $(".map-wrapper").hide();
+                if (<%= model %>.
+                form.options.<%= name %>.datepicker === false
+            )
+                {
+                    <%= model %>.
+                    <%= name %>_DragonClean = moment(currentDateTime).format("H:mm");
+                }
+            else
+                if (<%= model %>.
+                form.options.<%= name %>.timepicker === false
+            )
+                {
+                    <%= model %>.
+                    <%= name %>_DragonClean = moment(currentDateTime).format("YYYY-MM-DD");
+                }
+            else
+                {
+                    <%= model %>.
+                    <%= name %>_DragonClean = moment(currentDateTime).format("YYYY-MM-DD H:mm a");
                 }
 
                 $("#input<%= name %>").removeClass('has-warning has-error has-success');
-                $("#input<%= name %>").addClass('has-' + <%= model %>.validation.getType('<%= name %>'));
+                $("#input<%= name %>").addClass('has-' + <%= model %>.validation.getType('<%= name %>')
+            )
+                ;
+
+                STEP.register({
+                    scope: "<%= model %>",
+                    action: "Change Date",
+                    field: "<%= name %>",
+                    value: <%= model %>.<%= name %>_DragonClean
+                });
+
+            },
+            onShow: function (ct) {
+                if (jsOptions.dynamic) {
+                    if (jsOptions.minTime)
+                        this.setOptions({minTime: eval(`<%= model %>.${jsOptions.minTime}_DragonClean`)});
+                    if (jsOptions.minDate)
+                        this.setOptions({minDate: eval(`<%= model %>.${jsOptions.minDate}_DragonClean`)});
+                    if (jsOptions.minDateTime)
+                        this.setOptions({minDateTime: eval(`<%= model %>.${jsOptions.minDateTime}_DragonClean`)});
+
+                    if (jsOptions.maxTime)
+                        this.setOptions({maxTime: eval(`<%= model %>.${jsOptions.maxTime}_DragonClean`)});
+                    if (jsOptions.maxDate)
+                        this.setOptions({maxDate: eval(`<%= model %>.${jsOptions.maxDate}_DragonClean`)});
+                    if (jsOptions.maxDateTime)
+                        this.setOptions({maxDateTime: eval(`<%= model %>.${jsOptions.maxDateTime}_DragonClean`)});
+
+                }
             }
         });
         setTimeout(function () {
-            $("#input<%= name %>").addClass('has-' + <%= model %>.validation.getType('<%= name %>'));
+            $("#input<%= name %>").addClass('has-' + <%= model %>.validation.getType('<%= name %>')
+        )
+            ;
         }, 100);
     });
 </script>

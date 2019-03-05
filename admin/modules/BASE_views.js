@@ -4,51 +4,54 @@ exports.LoadEJS = function (files, params) {
         var viewName = params.S(file).contains("index.ejs") ? "" : file.replace(".ejs", "");
         params.app.get(params.util.format("/%s%s", params.modelName === "base" ? "" : params.modelName + "/", viewName),
             function (req, res) {
-                var path = req.originalUrl;
-                var realPath = path.split("?");
-                var query = "";
-                if (realPath.length > 1) {
-                    query = realPath[1];
-                    realPath = realPath[0];
-                } else {
-                    if (realPath[0] === "/") realPath = realPath[0] + "/base";
-                    else {
-                        if (realPath[0].split("/").length > 1) realPath = realPath[0];
-                        else realPath = realPath[0] + "/index";
+                params.secure.check(req, res, function () {
+                    var path = req.originalUrl;
+                    var realPath = path.split("?");
+                    var query = "";
+                    if (realPath.length > 1) {
+                        query = realPath[1];
+                        realPath = realPath[0];
+                    } else {
+                        if (realPath[0] === "/") realPath = realPath[0] + "/base";
+                        else {
+                            if (realPath[0].split("/").length > 1) realPath = realPath[0];
+                            else realPath = realPath[0] + "/index";
+                        }
                     }
-                }
 
-                var models = params.models
-                    .concat(params.modelsql)
-                    .concat(params.modelmysql);
-                var tags = params.CONFIG.ui.colors.tag;
-                var newtags = {};
-                for (var tag in tags) {
-                    var itag = tags[tag];
-                    var largeVar = "params.CONFIG.ui.colors." + tags[tag];
-                    eval("newtags." + tag + " = " + largeVar + '===undefined ? "' + itag + '" : ' + largeVar + ";");
-                }
+                    var models = params.models
+                        .concat(params.modelsql)
+                        .concat(params.modelmysql);
+                    var tags = params.CONFIG.ui.colors.tag;
+                    var newtags = {};
+                    for (var tag in tags) {
+                        var itag = tags[tag];
+                        var largeVar = "params.CONFIG.ui.colors." + tags[tag];
+                        eval("newtags." + tag + " = " + largeVar + '===undefined ? "' + itag + '" : ' + largeVar + ";");
+                    }
 
 
-                var send = {
-                    scope: params.modelName,
-                    session: params.session,
-                    localjs: params.localjs,
-                    controllersjs: params.controllersjs,
-                    localStyles: params.localStyles,
-                    crudjs: params.crudjs,
-                    CONFIG: params.CONFIG,
-                    COLOR: params.CONFIG.ui.colors,
-                    TAG: newtags,
-                    models: models,
-                    FOLDERS: params.folders,
-                    DATA: req.query,
-                    SERVICES: params.catalogs,
-                    params: params,
-                    localserver: localserver
-                };
+                    var send = {
+                        scope: params.modelName,
+                        session: params.session,
+                        localjs: params.localjs,
+                        controllersjs: params.controllersjs,
+                        localStyles: params.localStyles,
+                        crudjs: params.crudjs,
+                        CONFIG: params.CONFIG,
+                        LANGUAGE: params.LANGUAGE,
+                        COLOR: params.CONFIG.ui.colors,
+                        TAG: newtags,
+                        models: models,
+                        FOLDERS: params.folders,
+                        DATA: req.query,
+                        SERVICES: params.catalogs,
+                        params: params,
+                        localserver: localserver
+                    };
 
-                res.render("../" + params.folders.views + "/" + realPath, send);
+                    res.render("../" + params.folders.views + "/" + realPath, send);
+                });
             }
         );
     }
@@ -64,7 +67,9 @@ exports.runServices = function (services, prefix, params) {
             var functionR = config[1];
             eval(`var serviceFunction = params.servicesFunctions["${service}"].gets.${functionR}`);
             return await serviceFunction(req.query).then(result => {
-                res.json(result);
+                params.secure.check(req, res, function () {
+                    res.json(result);
+                });
             });
         });
     }
@@ -77,7 +82,9 @@ exports.runServices = function (services, prefix, params) {
             var functionR = config[1];
             eval(`var serviceFunction = params.servicesFunctions["${service}"].posts.${functionR}`);
             return await serviceFunction(req.body).then(result => {
-                res.json(result);
+                params.secure.check(req, res, function () {
+                    res.json(result);
+                });
             });
         });
     }
@@ -90,7 +97,9 @@ exports.runServices = function (services, prefix, params) {
             var functionR = config[1];
             eval(`var serviceFunction = params.servicesFunctions["${service}"].puts.${functionR}`);
             return await serviceFunction(req.body).then(result => {
-                res.json(result);
+                params.secure.check(req, res, function () {
+                    res.json(result);
+                });
             });
         });
     }
@@ -103,7 +112,9 @@ exports.runServices = function (services, prefix, params) {
             var functionR = config[1];
             eval(`var serviceFunction = params.servicesFunctions["${service}"].deletes.${functionR}`);
             return await serviceFunction(req.body).then(result => {
-                res.json(result);
+                params.secure.check(req, res, function () {
+                    res.json(result);
+                });
             });
         });
     }
@@ -115,48 +126,49 @@ exports.loadEJSSimple = function (folder, prefix, params) {
             var file = files[i];
             var viewName = params.S(file).contains("index.ejs") ? "" : file.replace(".ejs", "");
             params.app.get(params.util.format("/%s/%s/", prefix, viewName), function (req, res) {
-                var path = req.originalUrl;
-                var realPath = path.split("?");
-                var viewN = realPath[0].split("/");
+                params.secure.check(req, res, function () {
+                    var path = req.originalUrl;
+                    var realPath = path.split("?");
+                    var viewN = realPath[0].split("/");
 
-                var models = params.models
-                    .concat(params.modelsql)
-                    .concat(params.modelmysql);
-                var tags = params.CONFIG.ui.colors.tag;
-                var newtags = {};
-                for (var tag in tags) {
-                    var itag = tags[tag];
-                    var largeVar = "params.CONFIG.ui.colors." + tags[tag];
-                    eval(
-                        "newtags." + tag + " = " + largeVar + '===undefined ? "' + itag + '" : ' + largeVar + ";"
-                    );
-                }
-                var modelName = viewN.filter(function (item) {
-                    return item !== '';
+                    var models = params.models
+                        .concat(params.modelsql)
+                        .concat(params.modelmysql);
+                    var tags = params.CONFIG.ui.colors.tag;
+                    var newtags = {};
+                    for (var tag in tags) {
+                        var itag = tags[tag];
+                        var largeVar = "params.CONFIG.ui.colors." + tags[tag];
+                        eval(
+                            "newtags." + tag + " = " + largeVar + '===undefined ? "' + itag + '" : ' + largeVar + ";"
+                        );
+                    }
+                    var modelName = viewN.filter(function (item) {
+                        return item !== '';
+                    });
+
+                    var send = {
+                        scope: req.query.scope,
+                        session: params.session,
+                        localjs: params.localjs,
+                        controllersjs: params.controllersjs,
+                        localStyles: params.localStyles,
+                        crudjs: params.crudjs,
+                        CONFIG: params.CONFIG,
+                        LANGUAGE: params.LANGUAGE,
+                        COLOR: params.CONFIG.ui.colors,
+                        TAG: newtags,
+                        models: models,
+                        FOLDERS: params.folders,
+                        DATA: req.query,
+                        SERVICES: params.catalogs,
+                        params: params
+                    };
+                    res.render("." + folder + "/" + viewN[viewN.length - 1], send);
                 });
-
-                var send = {
-                    scope: req.query.scope,
-                    session: params.session,
-                    localjs: params.localjs,
-                    controllersjs: params.controllersjs,
-                    localStyles: params.localStyles,
-                    crudjs: params.crudjs,
-                    CONFIG: params.CONFIG,
-                    COLOR: params.CONFIG.ui.colors,
-                    TAG: newtags,
-                    models: models,
-                    FOLDERS: params.folders,
-                    DATA: req.query,
-                    SERVICES: params.catalogs,
-                    params: params
-                };
-                res.render("." + folder + "/" + viewN[viewN.length - 1], send);
-
             });
-
-
             params.app.post(params.util.format("/post/%s/%s/", prefix, viewName), function (req, res) {
+
                 var path = req.originalUrl;
 
                 var realPath = path.split("?");
@@ -183,6 +195,7 @@ exports.loadEJSSimple = function (folder, prefix, params) {
                     localStyles: params.localStyles,
                     crudjs: params.crudjs,
                     CONFIG: params.CONFIG,
+                    LANGUAGE: params.LANGUAGE,
                     COLOR: params.CONFIG.ui.colors,
                     TAG: newtags,
                     models: models,
@@ -252,8 +265,6 @@ exports.loadEJSSimple = function (folder, prefix, params) {
             });
         }
     });
-
-
 };
 exports.init = function (params) {
     var excludes = [
@@ -266,13 +277,11 @@ exports.init = function (params) {
     });
     params.modelName = "base";
     params.fs.readdir(
-        params.util.format("./" + params.folders.views + "/%s", params.modelName),
-        function (err, files) {
+        params.util.format("./" + params.folders.views + "/%s", params.modelName), function (err, files) {
             params.modelName = "base";
             exports.LoadEJS(files, params);
         }
     );
-
     var getFiles = function (exclude, dir, filelist, prefix) {
         var fs = params.fs || require("fs"),
             files = fs.readdirSync(dir);
@@ -294,7 +303,6 @@ exports.init = function (params) {
         });
         return filelist;
     };
-
     var autroute = getFiles(excludes, params.folders.views + "/");
     autroute.forEach(element => {
         exports.loadEJSSimple(
@@ -303,143 +311,188 @@ exports.init = function (params) {
             params
         );
     });
-
+    deleteFolderRecursive = function (path) {
+        var files = [];
+        if (fs.existsSync(path)) {
+            files = fs.readdirSync(path);
+            files.forEach(function (file, index) {
+                var curPath = path + "/" + file;
+                if (fs.lstatSync(curPath).isDirectory()) { // recurse
+                    deleteFolderRecursive(curPath);
+                } else { // delete file
+                    fs.unlinkSync(curPath);
+                }
+            });
+            fs.rmdirSync(path);
+        }
+    };
+    params.app.get("/test/token/", function (req, res) {
+        params.secure.check(req, res, function () {
+            res.json({all: "Good"});
+        });
+    });
     params.app.get("/files/api/", function (req, res) {
-        var fs = params.fs || require("fs");
-        var folder = req.query.folder;
-        var realPath = params.folders.files + "/" + folder;
-        try {
-            if (fs.statSync(realPath).isDirectory()) {
-                var files = fs.readdirSync(realPath);
-                files = files.filter(function (file) {
-                    return file.indexOf(".zip") === -1;
-                });
-                res.json({root: realPath, files: files, count: files.length});
-            } else {
-                res.json({root: realPath, files: [], count: 0, error: "Is Not Directory"});
-            }
-        } catch (err) {
-            console.log(err);
-            res.json({root: realPath, files: [], count: 0, error: {catch: err}});
-        }
-        res.json({root: realPath, files: [], count: 0});
-    });
-
-    params.app.post("/files/api/delete", async function (req, res) {
-        var fs = params.fs || require("fs");
-        var files = req.body.filename;
-        var info = {deleted: [], error: []};
-        for (var file of files) {
+        params.secure.check(req, res, function () {
+            var fs = params.fs || require("fs");
+            var folder = req.query.folder;
+            var realPath = params.folders.files + "/" + folder;
             try {
-                await fs.unlinkSync(__dirname + '/..' + params.S(file).replaceAll('/', '\\'));
-                info.deleted.push(file);
-            } catch (err) {
-                info.error.push(file);
-            }
-        }
-        res.json(info);
-    });
-
-    params.app.get("/files/api/download", async function (req, res) {
-        var fs = params.fs || require("fs");
-        var folder = req.query.folder;
-        var name = req.query.name;
-        var file = params.folders.files + "/" + folder + "/" + name;
-        try {
-            await fs.unlinkSync(file);
-        } catch (err) {
-
-        }
-        params.zipdir(params.folders.files + "/" + folder + "/", {saveTo: file}, function (err, buffer) {
-            if (err) {
-                res.json({zipped: err});
-            }
-            res.json({zipped: true});
-        });
-    });
-
-    params.app.post("/files/api/import", async function (req, res) {
-        var fs = params.fs || require("fs");
-        var files = req.body.filename;
-        var dirfile = __dirname + '/..' + params.S(files[0]).replaceAll('/', '\\');
-
-        params.csvtojson().fromFile(dirfile).then((jsonObj) => {
-            res.json(jsonObj);
-        });
-        // var workbook = params.XLSX.readFileSync(dirfile);
-        // var sheet_name_list = workbook.SheetNames;
-        // var json = params.XLSX.utils.sheet_to_json(workbook.Sheets[0]);
-        // res.json(json);
-    });
-
-    params.app.post("/files/api/moveone", async function (req, res) {
-        var fs = params.fs || require("fs");
-        var from = req.body.fromFolder;
-        var to = req.body.toFolder;
-        fs.renameSync(from, to);
-        res.json(info);
-    });
-
-
-    params.app.post("/files/api/exist", async function (req, res) {
-        var fs = params.fs || require("fs");
-        if (!fs.existsSync(req.body.path))
-            res.json({success: true});
-        res.json({success: false});
-    });
-
-    params.app.post("/files/api/move", async function (req, res) {
-        var fs = params.fs || require("fs");
-        var verarray = [];
-        var errors = [];
-        var success = [];
-        try {
-            for (var transfer of req.body.moves) {
-                if (fs.statSync(transfer.from).isDirectory()) {
-
-                    if (!fs.existsSync(transfer.from))
-                        params.shelljs.mkdir('-p', transfer.from);
-
-                    if (!fs.existsSync(transfer.to))
-                        params.shelljs.mkdir('-p', transfer.to);
-
-                    var files = fs.readdirSync(transfer.from);
-                    for (const file of files) {
-                        verarray.push({from: file, to: transfer.to});
-                        fs.renameSync(transfer.from + "/" + file, transfer.to + "/" + file);
-                    }
-                    success.push({success: true, arr: verarray});
+                if (fs.statSync(realPath).isDirectory()) {
+                    var files = fs.readdirSync(realPath);
+                    files = files.filter(function (file) {
+                        return file.indexOf(".zip") === -1 && file.indexOf("dragonfile.zip") === -1;
+                    });
+                    res.json({root: realPath, files: files, count: files.length});
                 } else {
-                    errors.push({root: realPath, files: [], count: 0, error: "Is Not Directory"});
+                    res.json({root: realPath, files: [], count: 0, error: "Is Not Directory"});
+                }
+            } catch (err) {
+                console.log(err);
+                res.json({root: realPath, files: [], count: 0, error: {catch: err}});
+            }
+            res.json({root: realPath, files: [], count: 0});
+        });
+    });
+    params.app.get("/generalfiles/api/", function (req, res) {
+        params.secure.check(req, res, function () {
+            var fs = params.fs || require("fs");
+            var folder = req.query.folder;
+            var realPath = params.folders.files + "/" + folder;
+            try {
+                if (fs.statSync(realPath).isDirectory()) {
+                    var files = fs.readdirSync(realPath);
+                    files = files.filter(function (file) {
+                        return file.indexOf("dragonfile.zip") === -1;
+                    });
+                    res.json({root: realPath, files: files, count: files.length});
+                } else {
+                    res.json({root: realPath, files: [], count: 0, error: "Is Not Directory"});
+                }
+            } catch (err) {
+                console.log(err);
+                res.json({root: realPath, files: [], count: 0, error: {catch: err}});
+            }
+            res.json({root: realPath, files: [], count: 0});
+        });
+    });
+    params.app.post("/files/api/delete", async function (req, res) {
+        params.secure.check(req, res, async function () {
+            var fs = params.fs || require("fs");
+            var files = req.body.filename;
+            var info = {deleted: [], error: []};
+            for (var file of files) {
+                try {
+                    var filename = __dirname + '/..' + params.S(file).replaceAll('/', '\\');
+                    if (fs.lstatSync(filename).isDirectory()) {
+                        params.rimraf.sync(filename);
+                    } else {
+                        await fs.unlinkSync(filename);
+                    }
+                    info.deleted.push(file);
+                } catch (err) {
+                    info.error.push(file);
                 }
             }
-        } catch (err) {
-            console.log(err);
-            res.json({success: false, errors: errors, fines: success});
-        }
-        res.json({success: true});
+            res.json(info);
+        });
     });
+    params.app.get("/files/api/download", async function (req, res) {
+        params.secure.check(req, res, async function () {
+            var fs = params.fs || require("fs");
+            var folder = req.query.folder;
+            var name = req.query.name;
+            var file = params.folders.files + "/" + folder + "/" + name;
+            try {
+                await fs.unlinkSync(file);
+            } catch (err) {
 
+            }
+            params.zipdir(params.folders.files + "/" + folder + "/", {saveTo: file}, function (err, buffer) {
+                if (err) {
+                    res.json({zipped: err});
+                }
+                res.json({zipped: true});
+            });
+        });
+    });
+    params.app.post("/files/api/import", async function (req, res) {
+        params.secure.check(req, res, function () {
+            var fs = params.fs || require("fs");
+            var files = req.body.filename;
+            var dirfile = __dirname + '/..' + params.S(files[0]).replaceAll('/', '\\');
+
+            params.csvtojson().fromFile(dirfile).then((jsonObj) => {
+                res.json(jsonObj);
+            });
+        });
+    });
+    params.app.post("/files/api/moveone", async function (req, res) {
+        params.secure.check(req, res, function () {
+            var fs = params.fs || require("fs");
+            var from = req.body.fromFolder;
+            var to = req.body.toFolder;
+            fs.renameSync(from, to);
+            res.json(info);
+        });
+    });
+    params.app.post("/files/api/exist", async function (req, res) {
+        params.secure.check(req, res, function () {
+            var fs = params.fs || require("fs");
+            if (!fs.existsSync(req.body.path))
+                res.json({success: true});
+            res.json({success: false});
+        });
+    });
+    params.app.post("/files/api/move", async function (req, res) {
+        params.secure.check(req, res, function () {
+            var fs = params.fs || require("fs");
+            var verarray = [];
+            var errors = [];
+            var success = [];
+            try {
+                for (var transfer of req.body.moves) {
+                    if (fs.statSync(transfer.from).isDirectory()) {
+
+                        if (!fs.existsSync(transfer.from))
+                            params.shelljs.mkdir('-p', transfer.from);
+
+                        if (!fs.existsSync(transfer.to))
+                            params.shelljs.mkdir('-p', transfer.to);
+
+                        var files = fs.readdirSync(transfer.from);
+                        for (const file of files) {
+                            verarray.push({from: file, to: transfer.to});
+                            fs.renameSync(transfer.from + "/" + file, transfer.to + "/" + file);
+                        }
+                        success.push({success: true, arr: verarray});
+                    } else {
+                        errors.push({root: realPath, files: [], count: 0, error: "Is Not Directory"});
+                    }
+                }
+            } catch (err) {
+                console.log(err);
+                res.json({success: false, errors: errors, fines: success});
+            }
+            res.json({success: true});
+        });
+    });
     params.app.post("/files/api/upload", params.upload.array('toupload', 100), function (req, res, next) {
-        var fs = params.fs || require("fs");
-        var uploaded = [];
-        for (var file of req.files) {
-            var ext = file.originalname.split('.');
-            ext = "." + ext[ext.length - 1];
-            var dir = __dirname + '/../' + params.folders.files + '/' + req.body.folder;
-            var filename = dir + "/" + (file.originalname + '___' + file.filename) + ext;
-            uploaded.push(filename);
-            if (!fs.existsSync(dir))
-                params.shelljs.mkdir('-p', dir);
+        params.secure.check(req, res, function () {
+            var fs = params.fs || require("fs");
+            var uploaded = [];
+            for (var file of req.files) {
+                var ext = file.originalname.split('.');
+                ext = "." + ext[ext.length - 1];
+                var dir = __dirname + '/../' + params.folders.files + '/' + req.body.folder;
+                var filename = dir + "/" + (file.originalname + '___' + file.filename) + ext;
+                uploaded.push(filename);
+                if (!fs.existsSync(dir))
+                    params.shelljs.mkdir('-p', dir);
 
-            fs.renameSync(file.path, filename);
-        }
-        res.json({uploaded: uploaded});
+                fs.renameSync(file.path, filename);
+            }
+            res.json({uploaded: uploaded});
+        });
     });
-
-    exports.loadEJSSimple(
-        "./" + params.folders.views + "/master/error",
-        "error",
-        params
-    );
+    exports.loadEJSSimple("./" + params.folders.views + "/master/error", "error", params);
 };

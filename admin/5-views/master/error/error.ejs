@@ -6,7 +6,8 @@
     <div class="col-lg-4 col-lg-offset-4 col-sm-6 col-sm-offset-3">
         <form action="#" class="main-search panel panel-body">
             <div class="text-center">
-                <a ng-click="<%= scope %>.modal.close();" class="btn bg-pink-400"><i class="icon-circle-left2 position-left"></i> Back</a>
+                <a ng-click="<%= scope %>.modal.close();" class="btn bg-<%= COLOR.primary %>-400"><i
+                            class="icon-circle-left2 position-left"></i> Back1</a>
             </div>
         </form>
     </div>
@@ -16,7 +17,8 @@
 
 <div class="text-center content-group" ng-show="<%= scope %>.httpError.hideError">
     <h1 class="error-title">{{<%= scope %>.httpError.status}}</h1>
-    <h5 ng-dblclick="<%= scope %>.httpError.hideError=false;">Oops, an error has occurred. {{<%= scope %>.httpError.statusText}}!</h5>
+    <h5 ng-dblclick="<%= scope %>.httpError.hideError=false;">
+        Oops, an error has occurred. {{<%= scope %>.httpError.statusText}}!</h5>
 </div>
 <div ng-show="!<%= scope %>.httpError.hideError" ng-bind-html="<%= scope %>.httpError.data">
 
@@ -29,7 +31,8 @@
     <div class="col-lg-4 col-lg-offset-4 col-sm-6 col-sm-offset-3">
         <form action="#" class="main-search panel panel-body">
             <div class="text-center">
-                <a  ng-click="<%= scope %>.modal.close();" class="btn bg-pink-400"><i class="icon-circle-left2 position-left"></i> Back</a>
+                <a ng-click="<%= scope %>.modal.close();" class="btn bg-<%= COLOR.primary %>-400"><i
+                            class="icon-circle-left2 position-left"></i> Back2</a>
             </div>
         </form>
     </div>

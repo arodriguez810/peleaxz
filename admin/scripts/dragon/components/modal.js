@@ -15,19 +15,27 @@ MODAL = {
             $(item).remove();
         }
         MODAL.history = [];
+        if (typeof  baseController !== "undefined")
+            baseController.viewData = undefined;
     },
     close: function ($scope) {
         var last = ARRAY.last(MODAL.history);
+        STEP.register({
+            scope: $scope.modelName,
+            windows: `${ARRAY.last(MODAL.historyObject).header.title} Modal`, action: "Close Modal",
+        });
         $(last).modal("hide");
-        if (MODAL.current().content.data.startsWith("->"))
-            REMOVELASTCHILDSCOPE();
         ARRAY.removeLast(MODAL.history);
         ARRAY.removeLast(MODAL.historyObject);
+        if (MODAL.historyObject.length < 1)
+            REMOVEALLCHILDSCOPE();
         $(last).remove();
         if (MODAL.history.length > 0) {
             last = ARRAY.last(MODAL.history);
             baseController.viewData = ARRAY.last(MODAL.historyObject).viewData;
             $(last).modal("show");
+        } else {
+            baseController.viewData = undefined;
         }
     },
     run: function ($scope) {
@@ -63,7 +71,7 @@ MODAL = {
             var bgheader = data.header.bg || COLOR.primary;
             var closeText = backMode ? "<=" + ARRAY.last(MODAL.historyObject).header.title : "&times;";
             var headercloseButton = data.header.closeButton ?
-                '    <button type="button" id=\'closeModal\' class="close cancelmodal" ' + closeModal + ">" + closeText + "</button>" : "";
+                '    <button type="button" id=\'closeModal\' class="bg-' + bgheader + ' close cancelmodal" ' + closeModal + ">" + closeText + "</button>" : "";
             var h = data.header.h || "h6";
             var icon = data.header.icon ? '<i class="icon-' + data.header.icon + '"></i>' : "";
             var title = data.header.title || "";
@@ -157,6 +165,10 @@ MODAL = {
                 });
                 indexb++;
             }
+            STEP.register({
+                scope: $scope.modelName,
+                windows: `${data.header.title} Modal`, action: "Open Modal"
+            });
             MODAL.history.push("#modal" + id);
         };
         $scope.modal.reopen = function (id) {
@@ -165,24 +177,37 @@ MODAL = {
         };
         $scope.modal.close = function () {
             var last = ARRAY.last(MODAL.history);
+            STEP.register({
+                scope: $scope.modelName,
+                windows: `${ARRAY.last(MODAL.historyObject).header.title} Modal`, action: "Close Modal",
+            });
             $(last).modal("hide");
             ARRAY.removeLast(MODAL.history);
             ARRAY.removeLast(MODAL.historyObject);
+            if (MODAL.historyObject.length < 1)
+                REMOVEALLCHILDSCOPE();
 
             $(last).remove();
             if (MODAL.history.length > 0) {
                 last = ARRAY.last(MODAL.history);
                 baseController.viewData = ARRAY.last(MODAL.historyObject).viewData;
                 $(last).modal("show");
+            } else {
+                baseController.viewData = undefined;
             }
         };
         $scope.modal.closeAll = function () {
             var last = ARRAY.last(MODAL.history);
+            STEP.register({
+                scope: $scope.modelName,
+                windows: `All Modal`, action: "Close All Modal",
+            });
             $(last).modal("hide");
             for (const item of MODAL.history) {
                 $(item).remove();
             }
             MODAL.history = [];
+            baseController.viewData = undefined;
         };
         $scope.modal.modalView = function (view, options) {
 

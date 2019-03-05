@@ -1,8 +1,8 @@
 
 .navbar-brand > img {
-    margin: -9px 0px 0px 0px;
-    height: 37px;
-    float:left !important;
+    margin: -5px 0px 0px 0px;
+    height: 32px;
+    float: left !important;
 }
 
 .navbar-brand > img {
@@ -10,6 +10,21 @@
 }
 
 a.navbar-brand {
-    width: 100%;
+    /*width: 100%;*/
     text-align: center;
 }
+
+.sidebar-xs .navbar-brand-text {
+    display: none;
+}
+
+.sidebar-xs .navbar-header  {
+    min-width: 0;
+}
+
+.sidebar-xs .navbar-brand  {
+    padding: 15px 12px;
+}
+
+
+

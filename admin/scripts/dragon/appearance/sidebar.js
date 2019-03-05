@@ -9,5 +9,8 @@ SIDEBAR ={
 };
 $(document).ready(function () {
     SIDEBAR.apply('app.sidebar-main-ishide','sidebar-main-hidden');
+    if (STORAGE.getSimple('app.sidebar-main-ishide') === "true"){
+        $(".sidebar-main-toggle").hide();
+    }
     SIDEBAR.apply('app.sidebar-xs','sidebar-xs');
 });

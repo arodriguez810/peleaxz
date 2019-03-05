@@ -4510,7 +4510,7 @@ select[multiple].input-group-xs > .input-group-btn > .btn {
 .navbar-nav > .dropdown-user img {
     max-height: 34px;
     margin-top: -3.5px;
-    border-radius: 50%;
+    /*border-radius: 50%;*/
 }
 
 .navbar-lg .navbar-nav > .dropdown-user img {

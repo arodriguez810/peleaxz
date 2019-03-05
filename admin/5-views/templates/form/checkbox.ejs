@@ -51,4 +51,14 @@ var toclient = JSON.stringify(options);
         checkbox<%= model %>_<%= name %> = new Switchery(html, {size: "small"});
         checkbox<%= model %>_<%= name %>.setPosition(<%= model + "." + name %>);
     });
+
+    $('[name="<%= model %>_<%= name %>"]').change(function () {
+        $(".map-wrapper").hide();
+        STEP.register({
+                scope: "<%= model %>",
+                action: "Change Checkbox",
+                field: "<%= name %>",
+                value: <%= model %>.<%= name %>
+        });
+    });
 </script>

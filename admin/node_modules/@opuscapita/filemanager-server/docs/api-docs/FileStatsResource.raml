@@ -1,0 +1,38 @@
+#%RAML 1.0 Library
+types:
+  FileStatsResource:
+    type: object
+    properties:
+      id: string
+      name: string
+      type:
+        type: string
+        required: true
+        pattern: ^dir|file$
+        example:dir
+      createdTime: string
+      modifiedTime: string
+      size:
+        description: for files only
+        type: string
+        required: false
+      parentId:
+        description: for non-root only
+        type: string
+        required: false
+      ancestors:
+        description: starting with the root and ending with the parent, empty for root.
+        type: FileStatsResource[]
+        required: true
+      md5Checksum: string
+      capabilities:
+        type: object
+        properties:
+          canListChildren: boolean
+          canAddChildren: boolean
+          canRemoveChildren: boolean
+          canDelete: boolean
+          canRename: boolean
+          canCopy: boolean
+          canEdit: boolean
+          canDownload: boolean

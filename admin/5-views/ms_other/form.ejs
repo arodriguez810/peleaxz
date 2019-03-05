@@ -1,5 +1,5 @@
 <ul class="nav nav-tabs bg-<%= COLOR.primary %>-800 nav-tabs-component nav-justified">
-    "nav nav-lg nav-tabs nav-tabs-solid nav-tabs-component"
+
     <li class="active">
         <a href="#basic" data-toggle="tab">
             <i class="icon-menu7 position-left"></i>
@@ -18,6 +18,8 @@
             <div class="col-sm-6 col-md-6">
                 <%- FORM.checkbox("active", scope, {text: 'Active?'}) %>
             </div>
+        </div>
+        <div class="row">
             <div class="col-sm-12 col-md-12">
                 <%- FORM.textarea("description", scope, {maxlength: 200}) %>
             </div>

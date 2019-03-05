@@ -8,9 +8,7 @@ exports.run = function (_params) {
     params = _params;
 };
 exports.api = {
-    gets: {
-
-    },
+    gets: {},
     posts: {
         login: async function (request) {
             var config = params.CONFIG.users;
@@ -29,8 +27,18 @@ exports.api = {
                 }
             ]).then(data => {
                 data.query = "[HIDE]";
+
                 if (data.count[0] > 0) {
-                    data.data[0].password = "[HIDE]";
+                    eval(`data.data[0].${config.fields.password} = "[HIDE]"`);
+                    data.data[0].token = params.jwt.sign(
+                        {
+                            username: eval(`data.data[0].${config.fields.username}`),
+                        },
+                        params.CONFIG.appKey,
+                        {
+                            expiresIn: config.expire
+                        }
+                    );
                 }
                 return data;
             });

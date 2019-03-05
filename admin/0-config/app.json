@@ -3,5 +3,11 @@
   "logo": "Dragon Framework",
   "filePath": "files",
   "appKey": "d94g0nf94m3w09k",
-  "mode": "developer"
+  "mode": "developer",
+  "language": "en",
+  "features": {
+    "fileManager": true,
+    "stepManager": true,
+    "token": true
+  }
 }

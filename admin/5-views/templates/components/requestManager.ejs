@@ -1,7 +1,7 @@
 <script>
     var viewModel = MODAL.getViewData();
     <%= DATA.scope %>.WARNINGREQUESTS = WARNINGREQUESTS;
-    DSON
+    <%= DATA.scope %>.generalAverage = 0;
 </script>
 <div
         ng-show="WARNINGREQUESTS.length<=0"
@@ -11,28 +11,31 @@
 <button onclick="HTTP.resetManager();" type="button" class="btn bg-<%= TAG.table %>-600 btn-icon">
     <span class="icon-reset"></span> Reset Report
 </button>
-<table class="table thistable table-togglable table-framed datatable">
-    <thead class="bg-<%= TAG.table %>">
-    <tr>
-        <th>URL</th>
-        <th>Method</th>
-        <th>Time</th>
-        <th>Params</th>
-    </tr>
-    </thead>
-    <tbody>
-    </tbody>
-    <tfoot>
-    <tr>
-        <th colspan="3" style="text-align:right">Total:</th>
-        <th></th>
-    </tr>
-    </tfoot>
-</table>
+<span class="badge badge-flat border-<%= TAG.table %> text-<%= TAG.table %>-800" style="font-size: 26px">
+    {{<%= DATA.scope %>.generalAverage}}
+</span>
+<div class="dragon-panel" id="TablePanel" style="overflow-x: scroll;overflow-y: visible">
+    <table class="table thistable table-togglable table-framed datatable">
+        <thead class="bg-<%= TAG.table %>">
+        <tr>
+            <th>URL</th>
+            <th>Method</th>
+            <th>Time</th>
+            <th>Date</th>
+            <th>Params</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
 <script>
     $(document).ready(function () {
+
+
         var table = $('.thistable').DataTable({
             data: DSON.jsonToArray(WARNINGREQUESTS),
+            responsive:true,
             "footerCallback": function (row, data, start, end, display) {
                 var api = this.api(), data;
 
@@ -55,9 +58,15 @@
                 }, 0);
 
                 var count = api.column(2, {page: 'current'}).data().length;
+                var countAll = api.column(2).data().length;
 
                 // Update footer
-                $(api.column(2).footer()).html('Average: ' + Number(pageTotal / count).toFixed(2) );
+                var averagePage = numeral(Number(pageTotal / count)).format("0,0");
+                var averageAll = numeral(Number(total / countAll)).format("0,0");
+
+                <%= DATA.scope %>.
+                generalAverage = averageAll;
+
             }
         });
 

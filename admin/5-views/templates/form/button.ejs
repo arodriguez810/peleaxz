@@ -5,7 +5,7 @@ var options = {
     icon: {
         class: "none",
         position: "left",
-        color: COLOR.primary
+        color: TAG.table+"-800"
     },
     type: "normal",
     posttype:"button"
@@ -19,10 +19,10 @@ var toclient = JSON.stringify(options);
 </script>
 <div class="form-group">
     <button type="button" role="button"
-            ng-click="<%= model %>.<%= name %>_click()"
+            ng-click="STEP.register({scope: '<%= model %>', action: 'Click <%= name %>'});<%= model %>.<%= name %>_click()"
             class="btn bg-<%= options.color  %>-800 btn-block legitRipple">
         <%= options.model ? "{{" + options.model + "}}" : options.text %>
-        <i ng-if="icon-{{<%= model %>.form.options.<%= name %>.icon.class!=='none'"
+        <i ng-if="<%= model %>.form.options.<%= name %>.icon.class!=='none'"
                 class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} position-{{<%= model %>.form.options.<%= name %>.icon.position}}"></i>
     </button>
 </div>

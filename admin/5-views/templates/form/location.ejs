@@ -6,7 +6,7 @@ var options = {
     icon: {
         class: "location4",
         position: "left",
-        color: COLOR.primary
+        color: TAG.table+"-800"
     },
     helptext: '',
     readonly: false,
@@ -24,15 +24,20 @@ var toclient = JSON.stringify(options);
     <%= model %>.form.registerField("<%= name %>_DragonAddress", "<%= toclient %>");
     <%= model %>.form.registerField("<%= name %>_DragonFilter", "<%= toclient %>");
     var isReadProgram = <%= model %>.form.isReadOnly('<%= name %>');
-    if(isReadProgram!==false){
-        <%= model %>.form.options.<%= name %>.disabled = true;
-        if(isReadProgram!==undefined){
-            var locationLoaded =isReadProgram.split(';');
-            if(locationLoaded.length===3){
-                <%= model %>.<%= name %>_DragonLat = locationLoaded[0];
-                <%= model %>.<%= name %>_DragonLon = locationLoaded[1];
-                <%= model %>.<%= name %>_DragonAddress = locationLoaded[2];
-                <%= model %>.<%= name %>_DragonFilter = locationLoaded[2];
+    if (isReadProgram !== false) {
+        <%= model %>.
+        form.options.<%= name %>.disabled = true;
+        if (isReadProgram !== undefined) {
+            var locationLoaded = isReadProgram.split(';');
+            if (locationLoaded.length === 3) {
+                <%= model %>.
+                <%= name %>_DragonLat = locationLoaded[0];
+                <%= model %>.
+                <%= name %>_DragonLon = locationLoaded[1];
+                <%= model %>.
+                <%= name %>_DragonAddress = locationLoaded[2];
+                <%= model %>.
+                <%= name %>_DragonFilter = locationLoaded[2];
                 $("#<%= name %>_map").show();
             }
         }
@@ -57,7 +62,8 @@ var toclient = JSON.stringify(options);
     <div id="<%= name %>_map" class="map-wrapper " style="display: none"></div>
     <input type="hidden" ng-model="<%= model + "." + name %>_DragonLat" name="<%= model %>_<%= name %>_DragonLat">
     <input type="hidden" ng-model="<%= model + "." + name %>_DragonLon" name="<%= model %>_<%= name %>_DragonLon">
-    <input type="hidden" ng-model="<%= model + "." + name %>_DragonAddress" name="<%= model %>_<%= name %>_DragonAddress">
+    <input type="hidden" ng-model="<%= model + "." + name %>_DragonAddress"
+           name="<%= model %>_<%= name %>_DragonAddress">
     <input type="hidden" ng-model="<%= model + "." + name %>" name="<%= model %>_<%= name %>">
 
     <div class="form-control-feedback">
@@ -80,51 +86,73 @@ var toclient = JSON.stringify(options);
 </div>
 <script>
     $(document).ready(function () {
-        var defaultLocation = {
-            lat: <%= model + "." + name + "_DragonLat" %>,
-            lon: <%= model + "." + name + "_DragonLon" %>
-        };
-        var addressPicker = new AddressPicker({
-            map: {
-                id: '#<%= name %>_map',
-                zoom: 10,
-                center: new google.maps.LatLng(defaultLocation.lat, defaultLocation.lon)
-            },
-            reverseGeocoding: true,
-        });
+        if (typeof google !== "undefined") {
+            var defaultLocation = {
+                lat: <%= model + "." + name + "_DragonLat" %>,
+                lon: <%= model + "." + name + "_DragonLon" %>
+            };
+            var addressPicker = new AddressPicker({
+                map: {
+                    id: '#<%= name %>_map',
+                    zoom: 10,
+                    center: new google.maps.LatLng(defaultLocation.lat, defaultLocation.lon)
+                },
+                reverseGeocoding: true,
+            });
 
-        $('[name="<%= model %>_<%= name %>_DragonAddressFilter"]').focus(function () {
-            $("#<%= name %>_map").show();
-        });
+            $('[name="<%= model %>_<%= name %>_DragonAddressFilter"]').focus(function () {
+                $("#<%= name %>_map").show();
+            });
 
-        $('[name="<%= model %>_<%= name %>_DragonAddressFilter"]').dblclick(function () {
-            $("#<%= name %>_map").toggle();
-        });
+            $('[name="<%= model %>_<%= name %>_DragonAddressFilter"]').dblclick(function () {
+                $("#<%= name %>_map").toggle();
+            });
 
-        $('[name="<%= model %>_<%= name %>_DragonAddressFilter"]').focusout(function () {
+            $('[name="<%= model %>_<%= name %>_DragonAddressFilter"]').focusout(function () {
+                $('[name="<%= model %>_<%= name %>_DragonAddressFilter"]').typeahead('val', <%= model + "." + name + "_DragonAddress" %>);
+                STEP.register({
+                        scope: "<%= model %>",
+                        action: "Change Location",
+                        field: "<%= name %>",
+                        value: <%= model %>.<%= name %>
+                });
+            });
+
+            $('[name="<%= model %>_<%= name %>_DragonAddressFilter"]').typeahead(null, {
+                displayKey: 'description',
+                limit: 20,
+                source: addressPicker.ttAdapter()
+            });
+            addressPicker.bindDefaultTypeaheadEvent($('[name="<%= model %>_<%= name %>_DragonAddressFilter"]'));
+            $(addressPicker).on('addresspicker:selected', function (event, result) {
+                Prism.highlightAll();
+                <%= model + "." + name %>_DragonAddress = result.address();
+                $('[name="<%= model %>_<%= name %>_DragonAddressFilter"]').val(result.address());
+                <%= model + "." + name %>_DragonLat = result.lat();
+                <%= model + "." + name %>_DragonLon = result.lng();
+                <%= model + "." + name %> = result.lat() + ";" + result.lng() + ";" + result.address();
+
+            });
             $('[name="<%= model %>_<%= name %>_DragonAddressFilter"]').typeahead('val', <%= model + "." + name + "_DragonAddress" %>);
-        });
-
-        $('[name="<%= model %>_<%= name %>_DragonAddressFilter"]').typeahead(null, {
-            displayKey: 'description',
-            limit: 20,
-            source: addressPicker.ttAdapter()
-        });
-        addressPicker.bindDefaultTypeaheadEvent($('[name="<%= model %>_<%= name %>_DragonAddressFilter"]'));
-        $(addressPicker).on('addresspicker:selected', function (event, result) {
-            Prism.highlightAll();
-            <%= model + "." + name %>_DragonAddress = result.address();
-            $('[name="<%= model %>_<%= name %>_DragonAddressFilter"]').val(result.address());
-            <%= model + "." + name %>_DragonLat = result.lat();
-            <%= model + "." + name %>_DragonLon = result.lng();
-            <%= model + "." + name %> = result.lat() + ";" + result.lng() + ";" + result.address();
-
-        });
-        $('[name="<%= model %>_<%= name %>_DragonAddressFilter"]').typeahead('val', <%= model + "." + name + "_DragonAddress" %>);
-        $('[name="<%= model %>_<%= name %>__DragonAddressFilter"]').trigger('focusout');
-        setTimeout(() => {
-            $('[name="<%= model %>_<%= name %>_DragonAddressFilter"]').trigger('focusout');
-            $(addressPicker).trigger('selected');
-        }, 1000);
+            $('[name="<%= model %>_<%= name %>__DragonAddressFilter"]').trigger('focusout');
+            setTimeout(() => {
+                $('[name="<%= model %>_<%= name %>_DragonAddressFilter"]').trigger('focusout');
+                $(addressPicker).trigger('selected');
+            }, 1000);
+        } else {
+            setTimeout(() => {
+                if ($('[name="<%= model %>_<%= name %>_DragonAddressFilter"]').val() === "")
+                    $('[name="<%= model %>_<%= name %>_DragonAddressFilter"]').val("Latitude;Longitude;Google Not Load");
+                else
+                    $('[name="<%= model %>_<%= name %>_DragonAddressFilter"]').val(<%= model + "." + name %>);
+                $('[name="<%= model %>_<%= name %>_DragonAddressFilter"]').change(function () {
+                    var props = $(this).val().split(';');
+                    var lat = props.length === 3 ? props[0] : "0";
+                    var lng = props.length === 3 ? props[1] : "0";
+                    var address = props.length === 3 ? props[2] : "Google Not Load";
+                    <%= model + "." + name %> = lat + ";" + lng + ";" + address;
+                });
+            }, 500);
+        }
     });
 </script>

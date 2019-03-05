@@ -6,7 +6,7 @@ var options = {
     icon: {
         class: "none",
         position: "left",
-        color: COLOR.primary
+        color: TAG.table+"-800"
     },
     helptext: '',
     format: '',
@@ -75,6 +75,15 @@ var toclient = JSON.stringify(options);
             $(this).trigger("change");
         });
         $('[name="<%= model %>_<%= name %>"]').trigger("change");
+        $('[name="<%= model %>_<%= name %>"]').blur(function () {
+            STEP.register({
+                    scope: "<%= model %>",
+                    action: "Change TextArea",
+                    field: "<%= name %>",
+                    value: <%= model %>.<%= name %>
+            });
+            $(".map-wrapper").hide();
+        });
         var isReadProgram = <%= model %>.form.isReadOnly('<%= name %>');
         if(isReadProgram!==false){
             <%= model %>.form.options.<%= name %>.disabled = true;

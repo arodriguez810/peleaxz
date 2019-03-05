@@ -42,6 +42,14 @@ STORAGE = {
             }
             STORAGE.add($scope.modelName + "." + name, currentHides);
         };
+        $scope.sliceModel = function (name, value) {
+            var currentHides = [];
+            if ($scope.hasModel(name)) currentHides = $scope.getModel(name);
+            if (ARRAY.contains(currentHides, value)) {
+                currentHides.push(value);
+            }
+            STORAGE.add($scope.modelName + "." + name, currentHides);
+        };
     },
     clearAll: function () {
         if (localStorage.length)

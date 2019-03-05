@@ -16,7 +16,7 @@ SERVICE = {
                         "                        var $queryString = $.param(parameters);\n" +
                         "                        $http = angular.injector([\"ng\"]).get(\"$http\");\n" +
                         "                        $http.get(String.format(\"service/{1}/{2}?{3}\", '', '" + parent + "', '" + functionName + "', $queryString)).then(function (data) {\n" +
-                        "                            HTTP.evaluate(data); callBack(data);\n" +
+                        "                            HTTP.evaluate(data); if (!HTTP.evaluateTokenHTML(data)) callBack(data);\n" +
                         "                        }, function (data) {\n" +
                         "                            console.log('error',data);\n" +
                         "                        });\n" +

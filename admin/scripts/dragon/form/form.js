@@ -4,6 +4,9 @@ FORM = {
         edit: "edit",
         view: "view"
     },
+    config: {
+        password: '[Encrypted]'
+    },
     schemasType: {
         upload: "upload",
         selectMultiple: "selectMultiple",
@@ -13,7 +16,8 @@ FORM = {
         date: "date",
         datetime: "datetime",
         decimal: "decimal",
-        location: "location"
+        location: "location",
+        password: "password",
     },
     run: function ($scope, $http) {
         $scope.form = {};
@@ -43,6 +47,20 @@ FORM = {
         $scope.pages.form = {};
         $scope.form.lastPrepare = {};
         $scope.form.beginFunctions = [];
+        $scope.form.before = {};
+        $scope.form.after = {};
+        $scope.form.before.insert = function (data) {
+            return false;
+        };
+        $scope.form.before.update = function (data) {
+            return false;
+        };
+        $scope.form.after.insert = function (data) {
+            return false;
+        };
+        $scope.form.after.update = function (data) {
+            return false;
+        };
         $scope.form.isReadOnly = function (name) {
             if ($scope.form.readonly !== undefined) {
                 if ($scope.form.readonly.hasOwnProperty(name)) {
@@ -70,7 +88,7 @@ FORM = {
         };
         $scope.form.registerField = function (name, properties, alterval) {
             $scope.form.fileds.push(name);
-            eval(`$scope.form.options.${name} = ${properties.replaceAll("&#34;", '"')}`);
+            eval(`$scope.form.options.${name} = ${properties.replaceAll("&#34;", '"').replaceAll("&#39", "'")}`);
             if ($scope.form.mode === FORM.modes.new) {
                 eval(`$scope.${name}=${alterval || 'null'};`);
             } else {
@@ -111,6 +129,13 @@ FORM = {
                     newValue = Number(newValue).toFixed(2);
                     return newValue;
                 }
+                case FORM.schemasType.password: {
+                    var newValue = value;
+                    if (DSON.oseaX(newValue))
+                        return newValue;
+                    newValue = FORM.config.password;
+                    return newValue;
+                }
                 case FORM.schemasType.location: {
                     var newValue = value;
                     if (DSON.oseaX(newValue))
@@ -143,10 +168,28 @@ FORM = {
         $scope.form.saveAction = function () {
             $scope.form.hasChanged = true;
             $scope.form.makeInsert();
+
             SWEETALERT.loading({message: `Saving...`});
             if ($scope.form.mode === FORM.modes.new) {
+                for (var i in CONFIG.audit.insert) {
+                    var audit = CONFIG.audit.insert[i];
+                    if ($scope.table.crud.table.columns[i] !== undefined)
+                        eval(`$scope.form.inserting.${i} = '${eval(audit)}';`);
+                }
+                $scope.form.before.insert({
+                    inserting: $scope.form.inserting,
+                    uploading: $scope.form.uploading,
+                    multipleRelations: $scope.form.multipleRelations,
+                    relations: $scope.form.relations,
+                });
                 $scope.insertID($scope.form.inserting, $scope.form.fieldExGET, $scope.form.valueExGET, function (result) {
                     if (result.data.error === false) {
+                        $scope.form.after.insert({
+                            inserting: $scope.form.inserting,
+                            uploading: $scope.form.uploading,
+                            multipleRelations: $scope.form.multipleRelations,
+                            relations: $scope.form.relations,
+                        });
                         SWEETALERT.loading({message: `Preparing files and relations...`});
                         var savedRow = result.data.data[0];
                         var firstColumn = $scope.table.crud.table.key || "id";
@@ -219,8 +262,25 @@ FORM = {
                 var dataToWhere = [{field: firstColumn, value: eval(`$scope.${firstColumn}`)}];
                 var dataToUpdate = $scope.form.inserting;
                 dataToUpdate.where = dataToWhere;
+                for (var i in CONFIG.audit.update) {
+                    var audit = CONFIG.audit.update[i];
+                    if ($scope.table.crud.table.columns[i] !== undefined)
+                        eval(`$scope.form.inserting.${i} = '${eval(audit)}';`);
+                }
+                $scope.form.before.update({
+                    updating: $scope.form.inserting,
+                    uploading: $scope.form.uploading,
+                    multipleRelations: $scope.form.multipleRelations,
+                    relations: $scope.form.relations,
+                });
                 BASEAPI.updateall($scope.modelName, dataToUpdate, function (result) {
                     if (result.data.error === false) {
+                        $scope.form.after.update({
+                            updating: $scope.form.inserting,
+                            uploading: $scope.form.uploading,
+                            multipleRelations: $scope.form.multipleRelations,
+                            relations: $scope.form.relations,
+                        });
                         SWEETALERT.loading({message: `Preparing files and relations...`});
                         var firstColumn = $scope.table.crud.table.key || "id";
                         var DRAGONID = eval(`$scope.${firstColumn}`);
@@ -285,6 +345,7 @@ FORM = {
                     $scope.form.pushInsert(field);
             }
 
+
             for (const fieldy of $scope.form.fileds) {
                 var field = fieldy;
                 var badwords = [
@@ -298,6 +359,7 @@ FORM = {
                 badwords.forEach((item) => {
                     field = field.replace(item, '');
                 });
+
                 if (eval(`$scope.form.schemas.insert.${field}`) === undefined) {
                     if (exclude.indexOf(field) === -1) {
                         if (eval(`$scope.form.lastPrepare.${field}`) !== undefined) {
@@ -308,6 +370,8 @@ FORM = {
                         }
                     }
                 }
+
+
                 else {
                     var typeField = eval(`$scope.form.schemas.insert.${field}`);
                     switch (typeField) {
@@ -348,6 +412,11 @@ FORM = {
                             });
                             break;
                         }
+                        case FORM.schemasType.password: {
+                            if (eval(`$scope.form.lastPrepare.${field}`) !== FORM.config.password)
+                                eval(`$scope.form.inserting.${field} = '#${eval(`$scope.form.lastPrepare.${field}`)}'`);
+                            break;
+                        }
                     }
                 }
             }
@@ -368,7 +437,24 @@ FORM = {
             eval(`var crud = CRUD_${options.table}`);
             if (crud.table.single)
                 options.query.join = crud.table.single;
-            BASEAPI.list(options.table, options.query,
+            var toquery = DSON.merge(options.query, {});
+            if (options.parent !== false) {
+                if (DSON.oseaX(toquery.where))
+                    toquery.where = [];
+                var exist = toquery.where.filter((item) => {
+                    return item.field === options.parent.model;
+                });
+                if (exist.length) {
+                    exist[0].value = eval(`$scope.${options.parent.model}`)
+                }
+                else {
+                    toquery.where.push({
+                        field: options.parent.model,
+                        value: eval(`$scope.${options.parent.model}`)
+                    });
+                }
+            }
+            BASEAPI.list(options.table, toquery,
                 function (info) {
                     if (!DSON.oseaX(options.groupby)) {
                         var newData = {};
@@ -387,69 +473,63 @@ FORM = {
                     if (!options.multiple)
                         ANIMATION.stoploading(`#input${name}`, `#icon${name}`);
                     if (options.multiple) {
-                        eval(`$scope.${name}=[];`);
+                        if (eval(`$scope.${name}.length<=0`))
+                            eval(`$scope.${name}=[];`);
                         if (!$scope.form.isReadOnly(name)) {
+                            var lastWhere = [];
+                            lastWhere.push({
+                                field: options.get.fieldTo,
+                                value: eval(`$scope.${options.get.fieldFrom}`)
+                            });
                             BASEAPI.list(options.get.table, {
                                 limit: 99999,
                                 page: 1,
                                 orderby: options.get.fieldTo,
                                 order: "asc",
-                                where: [
-                                    {
-                                        field: options.get.fieldTo,
-                                        value: eval(`$scope.${options.get.fieldFrom}`)
-                                    }
-                                ]
+                                where: lastWhere
                             }, function (selectedy) {
-                                selectedy.data.forEach((item) => {
-                                    eval(`$scope.${name}.push('${eval(`item.${options.get.field}`)}')`);
-                                });
+                                if (eval(`$scope.${name} ==='[NULL]'`))
+                                    eval(`$scope.${name}=[];`);
+                                if (eval(`$scope.${name}.length<=0`))
+                                    selectedy.data.forEach((item) => {
+                                        eval(`$scope.${name}.push('${eval(`item.${options.get.field}`)}')`);
+                                    });
                                 ANIMATION.stoploading(`#input${name}`, `#icon${name}`);
-                                $('[name="' + $scope.modelName + "_" + name + '"]').select2({
-                                    placeholder:
-                                        capitalize('Select ' + eval(`${options.table}.${!options.multiple ? 'singular' : 'plural'}`)),
-                                    templateSelection: DROPDOWN.iformat,
-                                    templateResult: DROPDOWN.iformat,
-                                    allowHtml: true
-                                });
-                                $('[name="' + $scope.modelName + "_" + name + '"]').on('change', function (e) {
-                                    $scope.$scope.$digest();
-                                });
-                                $scope.$scope.$digest();
-                                $('[name="' + $scope.modelName + "_" + name + '"]').trigger('change.select2');
+                                $scope.form.callSelect2(name, options);
                             });
                         } else {
-                            eval(`$scope.${name}=$scope.form.isReadOnly('${name}');`);
+                            if (eval(`$scope.${name}.length<=0`))
+                                eval(`$scope.${name}=$scope.form.isReadOnly('${name}');`);
                             ANIMATION.stoploading(`#input${name}`, `#icon${name}`);
-                            $('[name="' + $scope.modelName + "_" + name + '"]').select2({
-                                placeholder:
-                                    capitalize('Select ' + eval(`${options.table}.${!options.multiple ? 'singular' : 'plural'}`)),
-                                templateSelection: DROPDOWN.iformat,
-                                templateResult: DROPDOWN.iformat,
-                                allowHtml: true
-                            });
-                            $('[name="' + $scope.modelName + "_" + name + '"]').on('change', function (e) {
-                                $scope.$scope.$digest();
-                            });
-                            $scope.$scope.$digest();
-                            $('[name="' + $scope.modelName + "_" + name + '"]').trigger('change.select2');
+                            $scope.form.callSelect2(name, options);
                         }
                     } else {
-                        $('[name="' + $scope.modelName + "_" + name + '"]').select2({
-                            placeholder:
-                                capitalize('Select ' + eval(`${options.table}.${!options.multiple ? 'singular' : 'plural'}`)),
-                            templateSelection: DROPDOWN.iformat,
-                            templateResult: DROPDOWN.iformat,
-                            allowHtml: true
-                        });
-                        $('[name="' + $scope.modelName + "_" + name + '"]').on('change', function (e) {
-                            $scope.$scope.$digest();
-                        });
-                        $scope.$scope.$digest();
+                        $scope.form.callSelect2(name, options);
                     }
-
-
                 });
+        };
+        $scope.form.callSelect2 = function (name, options) {
+            $('[name="' + $scope.modelName + "_" + name + '"]').select2({
+                placeholder:
+                    capitalize('Select ' + eval(`${options.table}.${!options.multiple ? 'singular' : 'plural'}`)),
+                templateSelection: DROPDOWN.iformat,
+                templateResult: DROPDOWN.iformat,
+                allowHtml: true
+            });
+            $('[name="' + $scope.modelName + "_" + name + '"]').on('change', function (e) {
+                if (options.childs !== false) {
+                    options.childs.forEach((child) => {
+                        if (eval(`$scope.form.options.${child.model}.multiple`))
+                            eval(`$scope.${child.model} = []`);
+                        else
+                            eval(`$scope.${child.model} = '[NULL]'`);
+                        $scope.form.loadDropDown(child.model);
+                    });
+                }
+                $scope.$scope.$digest();
+            });
+            $scope.$scope.$digest();
+            $('[name="' + $scope.modelName + "_" + name + '"]').trigger('change.select2');
         };
         $scope.form.loadOutDropDown = function (options, id) {
             ANIMATION.loading(`#input${name}`, "", `#icon${name}`, '30');
@@ -470,17 +550,7 @@ FORM = {
                     eval(`options.data = info.data`);
 
                     ANIMATION.stoploading(`#input${name}`, `#icon${name}`);
-                    $('[name="' + $scope.modelName + "_" + name + '"]').select2({
-                        placeholder:
-                            capitalize('Select ' + eval(`${options.table}.${!options.multiple ? 'singular' : 'plural'}`)),
-                        templateSelection: DROPDOWN.iformat,
-                        templateResult: DROPDOWN.iformat,
-                        allowHtml: true
-                    });
-                    $('[name="' + $scope.modelName + "_" + name + '"]').on('change', function (e) {
-                        $scope.$scope.$digest();
-                    });
-                    $scope.$scope.$digest();
+                    $scope.form.callSelect2(name, options);
                 });
         };
         $scope.form.LabelVisible = function (name) {
@@ -520,11 +590,27 @@ FORM = {
                     } else {
                         SWEETALERT.show({
                             type: "error",
-                            message: "this form contains errors so it will not allow you to save."
+                            message: "this form contains errors so it will not allow you to save.",
+                            confirm: function () {
+                                $scope.pages.form.focusFirstValidation();
+                            }
                         });
+
                     }
                 }
             };
+            $scope.pages.form.focusFirstValidation = function () {
+                setTimeout(function () {
+                    var firstFieldWithError = $(".help-block:has('p'):eq(0)").closest('.form-group-material');
+                    firstFieldWithError.find('.form-control').focus();
+                    var tab = firstFieldWithError.closest('.tab-pane');
+                    $(`[href='#${tab.attr('id')}']`).trigger('click');
+                    ANIMATION.playPure(firstFieldWithError, "shake", function () {
+                        firstFieldWithError.find('.form-control').focus();
+                    });
+                }, 500);
+            };
+
             $scope.pages.form.subRequestComplete = function () {
                 $scope.pages.form.subRequestCompleteProgress++;
                 if ($scope.pages.form.subRequestCompleteProgress === $scope.pages.form.subRequestCompleteVar) {
@@ -538,6 +624,7 @@ FORM = {
 
             };
             $scope.pages.form.onClose = function () {
+
                 $scope.pages.form.isOpen = false;
                 $scope.form.destroy();
                 if ($scope.form.hasChanged)
@@ -545,7 +632,6 @@ FORM = {
             };
             $scope.pages.form.close = function (pre, post) {
                 if ($scope.form.hasChanged) {
-                    console.log("must refresh");
                     $scope.refresh();
                 }
                 if (DSON.iffunction(pre)) pre();

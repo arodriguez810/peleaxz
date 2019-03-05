@@ -18,6 +18,9 @@ FORM = {
     input: function (name, model, options) {
         return FORM.template('form/input', {name: name, model: model, opts: options});
     },
+    password: function (name, model, options) {
+        return FORM.template('form/password', {name: name, model: model, opts: options});
+    },
     color: function (name, model, options) {
         return FORM.template('form/color', {name: name, model: model, opts: options});
     },

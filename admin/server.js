@@ -7,7 +7,7 @@ var folders = {
     crud: "4-crud",
     views: "5-views",
     master: "views/master",
-    systems: "6-systems",
+    language: "6-language",
     scripts: "scripts",
     modules: "modules",
     config: "0-config",
@@ -40,6 +40,18 @@ configs.forEach(function (config) {
     var file = eval("(" + fs.readFileSync(folders.config + "/" + config) + ")");
     Object.assign(CONFIG, file);
 });
+
+
+var LANGUAGE = {};
+languages = getFiles("./" + folders.language + "/");
+languages = languages.filter(function (file) {
+    return file.indexOf('.disabled') === -1;
+});
+languages.forEach(function (languages) {
+    var file = eval("(" + fs.readFileSync(folders.language + "/" + languages) + ")");
+    Object.assign(LANGUAGE, file);
+});
+
 for (var i in CONFIG.modules) {
     var module = CONFIG.modules[i];
     localModules.push(module.module);
@@ -94,6 +106,41 @@ for (var i in modulesList) {
     allparams += "      " + name + ":" + name + ",";
 }
 
+var secure = {};
+secure.check = (req, res, next) => {
+    if (!CONFIG.features.token) {
+        next();
+        return;
+    }
+    var path = req.originalUrl;
+    var realPath = path.split("?")[0];
+    if (CONFIG.routes.notoken.indexOf(realPath) !== -1)
+        next();
+    let token = req.headers['x-access-token'] || req.headers['authorization'] || "";
+    if (token) {
+        jwt.verify(token, CONFIG.appKey, (err, decoded) => {
+            if (err) {
+                return res.json({
+                    apptoken: false,
+                    message: 'Token is not valid',
+                    url: realPath,
+                    code: "2"
+                });
+            } else {
+                req.decoded = decoded;
+                next();
+            }
+        });
+    } else {
+        return res.json({
+            apptoken: false,
+            message: 'Auth token is not supplied',
+            url: realPath,
+            code: "1"
+        });
+    }
+};
+
 for (var i in localModulesVars) {
     var name = localModulesVars[i];
     allparams += "      " + name + ":" + name + ",";
@@ -101,7 +148,10 @@ for (var i in localModulesVars) {
 allparams += "      collections: collections,";
 allparams += "      scope: '@model@',";
 allparams += "      modules:modules,";
+allparams += "      secure:secure,";
 allparams += "      fs:fs,";
+allparams += "      jwt:jwt,";
+allparams += "      rimraf:rimraf,";
 allparams += "      localjs:localjs,";
 allparams += "      localStyles:localStyles,";
 allparams += "      controllersjs:controllersjs,";
@@ -112,6 +162,7 @@ allparams += "      models:models,";
 allparams += "      mssql:mssql,";
 allparams += "      mysql:mysql,";
 allparams += "      CONFIG:CONFIG,";
+allparams += "      LANGUAGE:LANGUAGE,";
 allparams += "      catalogs:catalogs,";
 allparams += "      folders:folders,";
 allparams += "      servicesFunctions:servicesFunctions,";
@@ -119,7 +170,6 @@ allparams += "      app:app,";
 if (CONFIG.mongo) allparams += "  mongoose:mongoose,";
 if (CONFIG.mssql) allparams += "  modelsql:modelsql,";
 if (CONFIG.mysql) allparams += "  modelmysql:modelmysql,";
-allparams += "      session:session";
 allparams += "}";
 
 //******* Load Models********//
@@ -128,16 +178,6 @@ var models = [],
     modelmysql = [];
 var collections = {},
     collectionsql = {};
-var session = {
-    name: "Angel",
-    lastName: "Rodriguez",
-    id: "1",
-    fullName: function () {
-        return this.name + " " + this.lastName;
-    }
-};
-var sessions = [];
-sessions.push(session);
 
 
 loadedMotors = 0;
@@ -183,11 +223,7 @@ if (CONFIG.mssql !== undefined) {
     fs.readdir("./" + folders.models + "/mssql", function (err, files) {
         for (var i in files) {
             var file = files[i];
-            modelsql.push(
-                S(file)
-                    .replaceAll(".json", "")
-                    .replaceAll("MO_", "").s
-            );
+            modelsql.push(S(file).replaceAll(".json", "").replaceAll("MO_", "").s);
         }
 
         for (var i in modelsql) {
@@ -195,17 +231,20 @@ if (CONFIG.mssql !== undefined) {
             var content = fs.readFileSync(
                 util.format("./" + folders.models + "/mssql/MO_%s.json", model)
             );
-            var object = eval("(" + util.format("%s", content) + ")");
-            var create = modules.mssql.createTable(model, object, eval("(" + allparams + ")"));
-            var add = modules.mssql.addColumns(model, object, eval("(" + allparams + ")"));
-            var alter = modules.mssql.alterColumns(model, object, eval("(" + allparams + ")"));
-            var removes = modules.mssql.deleteColumns(model, object, eval("(" + allparams + ")"));
-            removes.forEach(function (item) {
-                console.log(item.error);
-            });
-            modules.mssql.executeNonQuery(create, eval("(" + allparams + ")"));
-            modules.mssql.executeNonQuery(add, eval("(" + allparams + ")"));
-            modules.mssql.executeNonQuery(alter, eval("(" + allparams + ")"));
+            if (content.indexOf('"view": "view"') === -1) {
+                var object = eval("(" + util.format("%s", content) + ")");
+                var create = modules.mssql.createTable(model, object, eval("(" + allparams + ")"));
+                var add = modules.mssql.addColumns(model, object, eval("(" + allparams + ")"));
+                var alter = modules.mssql.alterColumns(model, object, eval("(" + allparams + ")"));
+
+                var removes = modules.mssql.deleteColumns(model, object, eval("(" + allparams + ")"));
+                removes.forEach(function (item) {
+                    console.log(item.error);
+                });
+                modules.mssql.executeNonQuery(create, eval("(" + allparams + ")"));
+                modules.mssql.executeNonQuery(add, eval("(" + allparams + ")"));
+                modules.mssql.executeNonQuery(alter, eval("(" + allparams + ")"));
+            }
             var stringModel = S(allparams).replaceAll("@model@", model).s;
         }
         var MSSQLDB = {};
@@ -237,15 +276,19 @@ if (CONFIG.mysql !== undefined) {
             var content = fs.readFileSync(
                 util.format("./" + folders.models + "/mysql/MO_%s.json", model)
             );
-            var object = eval("(" + util.format("%s", content) + ")");
-            var create = modules.mysql.createTable(model, object, eval("(" + allparams + ")"));
-            var add = modules.mysql.addColumns(model, object, eval("(" + allparams + ")"));
-            var alter = modules.mysql.alterColumns(model, object, eval("(" + allparams + ")"));
-
-            modules.mysql.deleteColumns(model, object, eval("(" + allparams + ")"));
-            modules.mysql.executeNonQuery(create, eval("(" + allparams + ")"));
-            modules.mysql.executeNonQuery(alter, eval("(" + allparams + ")"));
-            modules.mysql.executeNonQuery(add, eval("(" + allparams + ")"));
+            if (content.indexOf('"view": "view"') === -1) {
+                var object = eval("(" + util.format("%s", content) + ")");
+                var create = modules.mysql.createTable(model, object, eval("(" + allparams + ")"));
+                var add = modules.mysql.addColumns(model, object, eval("(" + allparams + ")"));
+                var alter = modules.mysql.alterColumns(model, object, eval("(" + allparams + ")"));
+                modules.mysql.deleteColumns(model, object, eval("(" + allparams + ")"), function (item) {
+                    if (item.length > 0)
+                        console.log('delete this', item);
+                });
+                modules.mysql.executeNonQuery(create, eval("(" + allparams + ")"));
+                modules.mysql.executeNonQuery(alter, eval("(" + allparams + ")"));
+                modules.mysql.executeNonQuery(add, eval("(" + allparams + ")"));
+            }
             var stringModel = S(allparams).replaceAll("@model@", model).s;
         }
 
@@ -292,6 +335,7 @@ servicesFiles.forEach(function (item) {
         catalogs.push(item);
     });
 });
+
 modules.tools.init(eval("(" + allparams + ")"));
 modules.views.init(eval("(" + allparams + ")"));
 app.listen(CONFIG.port);

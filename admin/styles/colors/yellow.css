@@ -29,7 +29,7 @@
     color: #000 !important;
 }
 .alpha-yellow {
-    background-color: #FCE4EC;
+    background-color: #fcf8f1;
     border-color: #ffe15a;
 }
 .border-yellow {
@@ -152,3 +152,24 @@
 .text-yellow-800:focus {
     color: #ffe100 !important;
 }
+
+.bg-yellow-800.navbar-inverse a {
+    color: #000 !important;
+}
+
+.bg-yellow-800.navbar-inverse a:hover {
+    color: #000 !important;
+}
+
+.bg-yellow-800.navbar-inverse .navbar-text {
+    color: #000 !important;
+}
+
+.nav-tabs.bg-yellow-800 > .active > a, .nav-tabs.bg-yellow-800 > .active > a:hover, .nav-tabs.bg-yellow-800 > .active > a:focus {
+    color: #000 !important;;
+}
+
+.nav-tabs.bg-yellow-800 > li > a {
+    color: #000 !important;
+}
+

@@ -3,17 +3,6 @@ DSON.keepmerge(CRUD_ms_all, CRUDDEFAULTS);
 DSON.keepmerge(CRUD_ms_all,
     {
         table: {
-            rowClass: function (row, $scope) {
-                return $scope.activeSET(row) === false ? "bg-" + COLOR.danger + "-300" : "";
-            },
-            width: 200,
-            offWidth: 5,
-            baseWidth: 1000,
-            columnsalign: "center",
-            limits: [5, 10, 50, 100],
-            activeColumn: "active",
-            contextMenu: true,
-            sorteable: true,
             key: 'id',
             deletekeys: ['id'],
             engine: 'ms',
@@ -43,9 +32,9 @@ DSON.keepmerge(CRUD_ms_all,
                         table: "ms_allproducts",
                         from: "id",
                         to: "all",
-                        getList: "product",
-                        list: "ms_product",
-                        wherelist: "id",
+                        getList: "all",
+                        list: "ms_allproducts",
+                        wherelist: "all",
                         modal: {
                             header: {
                                 title: "Products of ${this.name}",
@@ -102,6 +91,50 @@ DSON.keepmerge(CRUD_ms_all,
                             },
                             content: {
                                 loadingContentText: "Loading Child Info"
+                            },
+                        }
+                    },
+                    exportExample: "id from master table",
+                },
+                ms_category_name: {
+                    exportKey: 'category',
+                    label: "category",
+                    shorttext: 20,
+                    link: {
+                        table: "ms_category",
+                        from: "category",
+                        modal: {
+                            header: {
+                                title: "Detail of Child ${this.ms_child_name}",
+                                icon: ICON.classes.archive
+                            },
+                            footer: {
+                                cancelButton: true
+                            },
+                            content: {
+                                loadingContentText: "Loading Category Info"
+                            },
+                        }
+                    },
+                    exportExample: "id from master table",
+                },
+                ms_product_name: {
+                    exportKey: 'product',
+                    label: "product",
+                    shorttext: 20,
+                    link: {
+                        table: "ms_product",
+                        from: "product",
+                        modal: {
+                            header: {
+                                title: "Detail of Product ${this.ms_child_name}",
+                                icon: ICON.classes.archive
+                            },
+                            footer: {
+                                cancelButton: true
+                            },
+                            content: {
+                                loadingContentText: "Loading Product Info"
                             },
                         }
                     },

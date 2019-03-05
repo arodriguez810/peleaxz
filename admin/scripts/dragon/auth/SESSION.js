@@ -2,9 +2,10 @@ SESSION = {
     current: function () {
         var obj = STORAGE.get("APPSESSION");
         if (!DSON.oseaX(obj)) {
-            obj.fullName = function () {
-                return capitalize(this.name + " " + this.lastname);
-            };
+            for (var i in CONFIG.users.addFields) {
+                var calc = CONFIG.users.addFields[i];
+                eval(`obj.${i} = function () { return ${calc};}`);
+            }
         }
         return obj;
     },
@@ -32,6 +33,18 @@ SESSION = {
         SWEETALERT.confirm({
             message: "¿Are you sure you want to close session?",
             confirm: function () {
+                SESSION.destroy();
+                HTTP.redirecttag('auth/login');
+            }
+        });
+    },
+    terminated: function () {
+        SWEETALERT.show({
+            type: ENUM.modal.type.warning,
+            title: "Session",
+            message: `Your session has been terminated, to access the ${CONFIG.appName} please login`,
+            confirm: function () {
+                MODAL.closeAll();
                 SESSION.destroy();
                 HTTP.redirecttag('auth/login');
             }

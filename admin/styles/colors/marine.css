@@ -1,0 +1,154 @@
+.bg-marine {
+    background-color: #3643f4;
+    border-color: #3643f4;
+    color: #fff;
+}
+.bg-marine-300 {
+    background-color: #9b9be5;
+    border-color: #9b9be5;
+    color: #fff;
+}
+.bg-marine-400 {
+    background-color: #5053ef;
+    border-color: #5053ef;
+    color: #fff;
+}
+.bg-marine-600 {
+    background-color: #3539e5;
+    border-color: #3539e5;
+    color: #fff;
+}
+.bg-marine-700 {
+    background-color: #2f2fd3;
+    border-color: #2f2fd3;
+    color: #fff;
+}
+.bg-marine-800 {
+    background-color: #2828c6;
+    border-color: #2828c6;
+    color: #fff;
+}
+.alpha-marine {
+    background-color: #d1cffc;
+    border-color: #3539e5;
+}
+.border-marine {
+    border-color: #3643f4;
+}
+.border-marine-300 {
+    border-color: #9b9be5;
+}
+.border-marine-400 {
+    border-color: #5053ef;
+}
+.border-marine-600 {
+    border-color: #3539e5;
+}
+.border-marine-700 {
+    border-color: #2f2fd3;
+}
+.border-marine-800 {
+    border-color: #2828c6;
+}
+.border-top-marine {
+    border-top-color: #3643f4;
+}
+.border-top-marine-300 {
+    border-top-color: #9b9be5;
+}
+.border-top-marine-400 {
+    border-top-color: #5053ef;
+}
+.border-top-marine-600 {
+    border-top-color: #3539e5;
+}
+.border-top-marine-700 {
+    border-top-color: #2f2fd3;
+}
+.border-top-marine-800 {
+    border-top-color: #2828c6;
+}
+.border-bottom-marine {
+    border-bottom-color: #3643f4;
+}
+.border-bottom-marine-300 {
+    border-bottom-color: #9b9be5;
+}
+.border-bottom-marine-400 {
+    border-bottom-color: #5053ef;
+}
+.border-bottom-marine-600 {
+    border-bottom-color: #3539e5;
+}
+.border-bottom-marine-700 {
+    border-bottom-color: #2f2fd3;
+}
+.border-bottom-marine-800 {
+    border-bottom-color: #2828c6;
+}
+.border-left-marine {
+    border-left-color: #3643f4;
+}
+.border-left-marine-300 {
+    border-left-color: #9b9be5;
+}
+.border-left-marine-400 {
+    border-left-color: #5053ef;
+}
+.border-left-marine-600 {
+    border-left-color: #3539e5;
+}
+.border-left-marine-700 {
+    border-left-color: #2f2fd3;
+}
+.border-left-marine-800 {
+    border-left-color: #2828c6;
+}
+.border-right-marine {
+    border-right-color: #3643f4;
+}
+.border-right-marine-300 {
+    border-right-color: #9b9be5;
+}
+.border-right-marine-400 {
+    border-right-color: #5053ef;
+}
+.border-right-marine-600 {
+    border-right-color: #3539e5;
+}
+.border-right-marine-700 {
+    border-right-color: #2f2fd3;
+}
+.border-right-marine-800 {
+    border-right-color: #2828c6;
+}
+.text-marine,
+.text-marine:hover,
+.text-marine:focus {
+    color: #3643f4 !important;
+}
+.text-marine-300,
+.text-marine-300:hover,
+.text-marine-300:focus {
+    color: #9b9be5 !important;
+}
+.text-marine-400,
+.text-marine-400:hover,
+.text-marine-400:focus {
+    color: #5053ef !important;
+}
+.text-marine-600,
+.text-marine-600:hover,
+.text-marine-600:focus {
+    color: #3539e5 !important;
+}
+.text-marine-700,
+.text-marine-700:hover,
+.text-marine-700:focus {
+    color: #2f2fd3 !important;
+}
+.text-marine-800,
+.text-marine-800:hover,
+.text-marine-800:focus {
+    color: #2828c6 !important;
+}

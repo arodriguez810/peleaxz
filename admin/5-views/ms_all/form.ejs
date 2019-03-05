@@ -1,5 +1,4 @@
 <ul class="nav nav-tabs bg-<%= COLOR.primary %>-800 nav-tabs-component nav-justified">
-    "nav nav-lg nav-tabs nav-tabs-solid nav-tabs-component"
     <li class="active">
         <a href="#basic" data-toggle="tab">
             <i class="icon-menu7 position-left"></i>
@@ -27,7 +26,7 @@
 <div class="tab-content">
     <div class="tab-pane active" id="basic">
         <div class="row">
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-4 col-md-4">
                 <%- FORM.datetime("record", scope, {
                     timepicker: true,
                     datepicker: false,
@@ -36,7 +35,7 @@
 
                 }) %>
             </div>
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-4 col-md-4">
                 <%- FORM.datetime("birthDate", scope, {
                     placeHolder: 'Birth Date',
                     timepicker: false,
@@ -44,19 +43,23 @@
                     callformat: 'DD/MM/YYYY'
                 }) %>
             </div>
-            <div class="col-sm-6 col-md-4">
-                <%- FORM.datetime("lastLogin", scope, {placeHolder: 'Last Login'}) %>
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.datetime("lastLogin", scope, {
+                    placeHolder: 'Last Login',
+                    minDate: 'birthDate',
+                    minTime: 'record',
+                    dynamic: true
+                }) %>
             </div>
-
         </div>
         <div class="row">
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-4 col-md-4">
                 <%- FORM.input("name", scope, {maxlength: 50}) %>
             </div>
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-4 col-md-4">
                 <%- FORM.input("lastName", scope, {maxlength: 50}) %>
             </div>
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-4 col-md-4">
                 <%- FORM.select("child", scope, {
                     column: "ms_child_name",
                     table: "ms_child",
@@ -65,21 +68,21 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-4 col-md-4">
                 <%- FORM.input("average", scope, {
                     isNumber: true,
                     icon: {class: "percent", position: "right"},
                     format: {mask: "###%", options: {reverse: true}}
                 }) %>
             </div>
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-4 col-md-4">
                 <%- FORM.input("salary", scope, {
                     isNumber: true,
                     icon: {class: "cash3"},
                     format: {mask: "000,000,000,000,000.00", options: {reverse: true}}
                 }) %>
             </div>
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-4 col-md-4">
                 <%- FORM.inputview("salaryNeto", scope, {
                     placeholder: "Salary Neto",
                     icon: {class: "cash3"},
@@ -88,28 +91,28 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-4 col-md-4">
                 <%- FORM.select("other", scope, {
                     column: "ms_other_description",
                     table: "ms_other",
                     icon: {class: "cube"}
                 }) %>
             </div>
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-4 col-md-4">
                 <%- FORM.location("location", scope) %>
             </div>
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-4 col-md-4">
                 <%- FORM.color("color", scope, {icon: {class: "brush"}}) %>
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-4 col-md-4">
                 <%- FORM.file("image", scope) %>
             </div>
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-4 col-md-4">
                 <%- FORM.file("gallery", scope, {maxfiles: 4, columns: 2}) %>
             </div>
-            <div class="col-sm-6 col-md-4">
+            <div class="col-sm-4 col-md-4">
                 <%- FORM.file("file", scope) %>
             </div>
         </div>
@@ -126,17 +129,53 @@
 
     <div class="tab-pane" id="products">
         <div class="row">
-            <div class="col-sm-6 col-md-12">
+            <div class="col-sm-6 col-md-6">
+                <%- FORM.select("category", scope, {
+                    column: "ms_category_name",
+                    table: "ms_category",
+                    icon: {class: "archive"},
+                    childs: [
+                        {
+                            model: 'product',
+                            field: 'category'
+                        },
+                        {
+                            model: 'products',
+                            field: 'category'
+                        }
+                    ]
+                }) %>
+            </div>
+
+            <div class="col-sm-6 col-md-6">
+                <%- FORM.select("product", scope, {
+                    column: "ms_product_name",
+                    label: "Main Product",
+                    table: "ms_product",
+                    icon: {class: "archive"},
+                    parent: {
+                        model: 'category',
+                        field: 'id'
+                    }
+                }) %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
                 <%- FORM.select("products", scope, {
                     table: "ms_product",
                     get: {table: 'ms_allproducts', fieldFrom: 'id', fieldTo: 'all', field: 'product'},
                     multiple: true,
+                    parent: {
+                        model: 'category',
+                        field: 'id'
+                    },
                     icon: {class: "archive"}
                 }) %>
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-6 col-md-12">
+            <div class="col-sm-12 col-md-12">
                 <%- FORM.tags("hashtags", scope, {placeholder: 'Tags'}) %>
             </div>
         </div>
@@ -147,6 +186,8 @@
             <div class="col-sm-12 col-md-12">
                 <%- FORM.html("biography", scope) %>
             </div>
+        </div>
+        <div class="row">
             <div class="col-sm-12 col-md-12">
                 <%- FORM.relation("ms_allusers", scope, {
                     table: "ms_allusers",
@@ -156,7 +197,6 @@
                     icon: {class: "archive"}
                 }) %>
             </div>
-
         </div>
     </div>
 

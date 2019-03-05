@@ -73,20 +73,20 @@ app.controller("ms_all", function ($scope, $http, $compile) {
                     ms_all.salaryNeto =
                         (DSON.cleanNumber(ms_all.salary) * DSON.cleanNumber(ms_all.average)) / 100;
                     ms_all.salaryNeto = ms_all.form.masked("salaryNeto", Number(ms_all.salaryNeto).toFixed(2));
-                    // rules.push(VALIDATION.general.required(value));
-                    // rules.push(VALIDATION.number.range(value, 1, 100));
+                    rules.push(VALIDATION.general.required(value));
+                    rules.push(VALIDATION.number.range(value, 1, 100));
                     return VALIDATION.process(ms_all, "average", rules);
                 },
                 salary: function () {
                     var rules = [];
                     var value = DSON.cleanNumber((ms_all.salary || ""));
-                    // rules.push(VALIDATION.general.required(value));
+                    rules.push(VALIDATION.general.required(value));
                     return VALIDATION.process(ms_all, "salary", rules);
                 },
                 image: function () {
                     var rules = [];
                     var value = ms_all.image_DragonCountFile;
-                    // rules.push(VALIDATION.file.count(value, 1));
+                    rules.push(VALIDATION.file.count(value, 1));
                     return VALIDATION.process(ms_all, "image", rules);
                 },
                 color: function () {

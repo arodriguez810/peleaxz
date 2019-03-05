@@ -1,7 +1,19 @@
 BASEAPI = {
     ajax: {
+        loading: function (element) {
+            if (element)
+                ANIMATION.loadingPure(element, "", element, '30');
+            else
+                SWEETALERT.loading({message: "Loading..."});
+        },
+        stop: function (element) {
+            if (element)
+                ANIMATION.stoploadingPure(element, element);
+            else
+                SWEETALERT.stop();
+        },
         formpost: function (method, parameters, callBack) {
-            SWEETALERT.loading({message: "Loading..."});
+            BASEAPI.ajax.loading();
             var newForm = $('<form>', {
                 'action': method,
                 'method': 'post'
@@ -16,31 +28,34 @@ BASEAPI = {
             }
             newForm.appendTo(document.body).submit();
             newForm.remove();
-            SWEETALERT.stop();
+            BASEAPI.ajax.stop();
             callBack();
         },
-        post: function (method, parameters, callBack) {
-            SWEETALERT.loading({message: "Loading..."});
+        post: function (method, parameters, callBack, element) {
+            BASEAPI.ajax.loading(element);
             $http = angular.injector(["ng"]).get("$http");
+            HTTP.setToken($http);
             $http.post(method, parameters).then(function (data) {
                 HTTP.evaluate(data);
-                SWEETALERT.stop();
+                BASEAPI.ajax.stop(element);
                 callBack(data);
             }, function (data) {
-                SWEETALERT.stop();
+                BASEAPI.ajax.stop(element);
                 console.log(data);
             });
         },
-        get: function (method, parameters, callBack) {
-            SWEETALERT.loading({message: "Loading..."});
+        get: function (method, parameters, callBack, element) {
+            BASEAPI.ajax.loading(element);
             $http = angular.injector(["ng"]).get("$http");
+            HTTP.setToken($http);
             var query = HTTP.objToQuery(parameters);
             $http.get(method + "?" + query).then(function (data) {
                 HTTP.evaluate(data);
-                SWEETALERT.stop();
-                callBack(data);
+                BASEAPI.ajax.stop(element);
+                if (!HTTP.evaluateTokenHTML(data))
+                    callBack(data);
             }, function (data) {
-                SWEETALERT.stop();
+                BASEAPI.ajax.stop(element);
                 console.log(data);
             });
         },
@@ -55,6 +70,7 @@ BASEAPI = {
     },
     list: function (model, parameters, callBack) {
         $http = angular.injector(["ng"]).get("$http");
+        HTTP.setToken($http);
         var rootPath = '/api/' + model;
         if (parameters.limit === 0) {
             parameters.limit = Number.MAX_SAFE_INTEGER;
@@ -62,13 +78,15 @@ BASEAPI = {
 
         $http.post(rootPath + '/list', parameters).then(function (data) {
             HTTP.evaluate(data);
-            callBack(data.data);
+            if (!HTTP.evaluateTokenHTML(data))
+                callBack(data.data);
         }, function (data) {
             console.log('Error: ' + data);
         });
     },
     first: function (model, parameters, callBack) {
         $http = angular.injector(["ng"]).get("$http");
+        HTTP.setToken($http);
         var rootPath = '/api/' + model;
         if (parameters.limit === 0) {
             parameters.limit = Number.MAX_SAFE_INTEGER;
@@ -76,63 +94,75 @@ BASEAPI = {
 
         $http.post(rootPath + '/list', parameters).then(function (data) {
             HTTP.evaluate(data);
-            callBack(data.data.data[0]);
+            if (!HTTP.evaluateTokenHTML(data))
+                callBack(data.data.data[0]);
         }, function (data) {
             console.log('Error: ' + data);
         });
     },
     get: function (model, id, callBack) {
         $http = angular.injector(["ng"]).get("$http");
+        HTTP.setToken($http);
         var rootPath = '/api/' + model;
         $http.get(rootPath + '/get/' + id).then(function (data) {
             HTTP.evaluate(data);
-            callBack(data.data);
+            if (!HTTP.evaluateTokenHTML(data))
+                callBack(data.data);
         }, function (data) {
             console.log('Error: ' + data);
         });
     },
     insert: function (model, dataToInsert, callback) {
         $http = angular.injector(["ng"]).get("$http");
+        HTTP.setToken($http);
         var rootPath = '/api/' + model;
         $http.post(rootPath + '/insert', dataToInsert).then(function (data) {
             HTTP.evaluate(data);
-            callback(data);
+            if (!HTTP.evaluateTokenHTML(data))
+                callback(data);
         }, function (data) {
             console.log('Error: ' + data);
         });
     },
     update: function (model, id, dataToUpdate, callback) {
         $http = angular.injector(["ng"]).get("$http");
+        HTTP.setToken($http);
         var rootPath = '/api/' + model;
         $http.post(rootPath + '/update/' + id, dataToUpdate).then(function (data) {
             HTTP.evaluate(data);
-            callback(data);
+            if (!HTTP.evaluateTokenHTML(data))
+                callback(data);
         }, function (data) {
             console.log('Error: ' + data);
         });
     },
     updateall: function (model, dataToUpdate, callback) {
         $http = angular.injector(["ng"]).get("$http");
+        HTTP.setToken($http);
         var rootPath = '/api/' + model;
         $http.post(rootPath + '/update', dataToUpdate).then(function (data) {
             HTTP.evaluate(data);
-            callback(data);
+            if (!HTTP.evaluateTokenHTML(data))
+                callback(data);
         }, function (data) {
             console.log('Error: ' + data);
         });
     },
     deleteall: function (model, dataToDelete, callback) {
         $http = angular.injector(["ng"]).get("$http");
+        HTTP.setToken($http);
         var rootPath = '/api/' + model;
         $http.post(rootPath + '/delete', dataToDelete).then(function (data) {
             HTTP.evaluate(data);
-            callback(data);
+            if (!HTTP.evaluateTokenHTML(data))
+                callback(data);
         }, function (data) {
             console.log('Error: ' + data);
         });
     },
     delete: function (model, id, callback) {
         $http = angular.injector(["ng"]).get("$http");
+        HTTP.setToken($http);
         var rootPath = '/api/' + model;
         $http.delete(rootPath + '/delete/' + id).then(function (data) {
             callback(data);

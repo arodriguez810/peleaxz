@@ -3,13 +3,17 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/.tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/admin/assets" />
       <excludeFolder url="file://$MODULE_DIR$/admin/defaults" />
       <excludeFolder url="file://$MODULE_DIR$/admin/files" />
       <excludeFolder url="file://$MODULE_DIR$/admin/node_modules" />
       <excludeFolder url="file://$MODULE_DIR$/db" />
+      <excludeFolder url="file://$MODULE_DIR$/mongo" />
       <excludeFolder url="file://$MODULE_DIR$/programs" />
       <excludeFolder url="file://$MODULE_DIR$/temp" />
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/tools" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/c" />
     </content>
     <content url="file://$MODULE_DIR$/tools/c" />
     <orderEntry type="inheritedJdk" />

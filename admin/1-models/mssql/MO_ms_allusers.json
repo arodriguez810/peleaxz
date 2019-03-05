@@ -1,7 +1,8 @@
 {
   "tempid": "NVARCHAR(200) NULL",
-  "all": "int NOT NULL",
+  "all": "int NULL",
   "user": "int NOT NULL",
   "category": "int NOT NULL",
   "description": "NVARCHAR(200) NULL",
+  "id": "uniqueidentifier NULL"
 }

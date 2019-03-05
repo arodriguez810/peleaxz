@@ -27,6 +27,19 @@ HTTP = {
     redirecttag: function (path) {
         document.location.href = HTTP.tagpath(path.split('/'));
     },
+    evaluateTokenHTML: function (data) {
+        if (SESSION.isLogged()) {
+            if (data.data.apptoken !== undefined) {
+                SESSION.terminated();
+                return true;
+            }
+        }
+        return false;
+    },
+    setToken: function ($http) {
+        if (SESSION.isLogged())
+            $http.defaults.headers.common['x-access-token'] = SESSION.current().token;
+    },
     evaluate: function (data) {
         if (STORAGE.exist('warningRequests')) {
             WARNINGREQUESTS = STORAGE.get('warningRequests');
@@ -37,6 +50,7 @@ HTTP = {
             url: data.config.url,
             method: data.config.method,
             time: data.config.responseTimestamp - data.config.requestTimestamp,
+            date: new Date(),
             params: data.config.paramSerializer()
         };
         if (analize.method === "GET") {
@@ -85,6 +99,7 @@ HTTP = {
 };
 $(document).ready(function () {
     $(window).bind('hashchange', function () { //detect hash change
+        $("body").removeClass("sidebar-mobile-main");
         FIXELEMENT.elements = [];
         ANGULARJS.get('baseController').base();
     });

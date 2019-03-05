@@ -12,7 +12,8 @@ API = {
 
             $http.post($scope.rootPath + '/list', parameters).then(function (data) {
                 HTTP.evaluate(data);
-                callBack(data.data);
+                if (!HTTP.evaluateTokenHTML(data))
+                    callBack(data.data);
             }, function (data) {
                 console.log('Error: ' + data);
             });
@@ -22,7 +23,8 @@ API = {
         var func = function (id, callBack) {
             $http.get($scope.rootPath + '/get/' + id).then(function (data) {
                 HTTP.evaluate(data);
-                callBack(data.data);
+                if (!HTTP.evaluateTokenHTML(data))
+                    callBack(data.data);
             }, function (data) {
                 console.log('Error: ' + data);
             });
@@ -32,7 +34,8 @@ API = {
         var func = function (dataToInsert, callback) {
             $http.post($scope.rootPath + '/insert/', dataToInsert).then(function (data) {
                 HTTP.evaluate(data);
-                callback(data);
+                if (!HTTP.evaluateTokenHTML(data))
+                    callback(data);
             }, function (data) {
                 console.log('Error: ' + data);
             });
@@ -42,21 +45,23 @@ API = {
         var func = function (table, dataToInsert, callback) {
             $http.post('/api/' + table + '/insert/', dataToInsert).then(function (data) {
                 HTTP.evaluate(data);
-                callback(data);
+                if (!HTTP.evaluateTokenHTML(data))
+                    callback(data);
             }, function (data) {
                 console.log('Error: ' + data);
             });
         };
         eval("$scope" + "" + ".insertFrom = func;");
 
-        var func = function (dataToInsert,field,value, callback) {
-            var postData  = {};
+        var func = function (dataToInsert, field, value, callback) {
+            var postData = {};
             postData.insertData = dataToInsert;
             postData.field = field;
             postData.value = value;
             $http.post($scope.rootPath + '/insertID/', postData).then(function (data) {
                 HTTP.evaluate(data);
-                callback(data);
+                if (!HTTP.evaluateTokenHTML(data))
+                    callback(data);
             }, function (data) {
                 console.log('Error: ' + data);
             });
@@ -66,7 +71,8 @@ API = {
         var func = function (dataToUpdate, callback) {
             $http.post($scope.rootPath + '/update/', dataToUpdate).then(function (data) {
                 HTTP.evaluate(data);
-                callback(data);
+                if (!HTTP.evaluateTokenHTML(data))
+                    callback(data);
             }, function (data) {
                 console.log('Error: ' + data);
             });
@@ -76,7 +82,8 @@ API = {
         var func = function (where, callback) {
             $http.post($scope.rootPath + '/delete', where).then(function (data) {
                 HTTP.evaluate(data);
-                callback(data);
+                if (!HTTP.evaluateTokenHTML(data))
+                    callback(data);
             }, function (data) {
                 console.log('Error: ' + data);
             });
@@ -86,7 +93,8 @@ API = {
         var func = function (callBack) {
             $http.get($scope.rootPath + '/crud/').then(function (data) {
                 HTTP.evaluate(data);
-                callBack(data.data.crud);
+                if (!HTTP.evaluateTokenHTML(data))
+                    callBack(data.data.crud);
             }, function (data) {
                 console.log('Error: ' + data);
             });

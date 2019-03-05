@@ -7,18 +7,48 @@ DSON.keepmerge(CRUD_ms_user, {
             id: {
                 label: "ID",
                 sorttype: "numeric",
-                class: "text-left"
+                class: "text-left",
+                exportExample: false
             },
             username: {
-                label: "name",
+                label: "Username",
                 shorttext: 20
             },
             name: {
-                label: "name",
+                label: "Name",
                 shorttext: 20
             },
             lastname: {
-                label: "name",
+                label: "Lastname",
+                shorttext: 20
+            },
+            image: {
+                label: "Profile Image",
+                folder: "ms_user/profileimage/${this.id}",
+                files: {
+                    maxsize: 20,
+                    maxfiles: 2,
+                    columns: 1,
+                    acceptedFiles: "image/*",
+                    modal: {
+                        width: 'modal-full',
+                        header: {
+                            title: "Profile Image of ${this.username}",
+                            icon: ICON.classes.images3
+                        },
+                        footer: {
+                            cancelButton: true
+                        },
+                        content: {
+                            loadingContentText: "Loading Profile Image"
+                        },
+                    }
+                },
+                sortable: false,
+                exportExample: false
+            },
+            email: {
+                label: "Email",
                 shorttext: 20
             },
             active: {
@@ -29,29 +59,38 @@ DSON.keepmerge(CRUD_ms_user, {
             created: {
                 visible: false,
                 sorttype: "time",
-                formattype: "datetime>DD-MM-YYYY hh:mm a"
+                formattype: "datetime>DD-MM-YYYY hh:mm a",
+                exportExample: false
             },
             updated: {
-                visible: false
+                visible: false,
+                visibleDetail: false,
+                export: false,
+                exportExample: false
             },
             deleted: {
                 visible: false,
-                visibleDetail: false
+                visibleDetail: false,
+                export: false,
+                exportExample: false
             },
             user_created: {
                 visible: false,
                 visibleDetail: false,
-                export: false
+                export: false,
+                exportExample: false
             },
             user_updated: {
                 visible: false,
                 visibleDetail: false,
-                export: false
+                export: false,
+                exportExample: false
             },
             user_deleted: {
                 visible: false,
                 visibleDetail: false,
-                export: false
+                export: false,
+                exportExample: false
             }
         },
     }

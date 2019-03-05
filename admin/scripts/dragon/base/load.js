@@ -6,27 +6,20 @@ LOAD = {
             var thisid = "#" + id;
             ANIMATION.loading(thisid, loadingText);
             if (view === "") {
-                $("#" + id).load("error/" + "404");
-                $http.get("error/error", {}).then(
-                    function (error) {
-                        error.status = 404;
-                        $scope.httpError = error;
-                        $("#" + id).html($scope.returnBuild(data.data));
-                        ANIMATION.stoploading(thisid);
-                        callback(true);
-                    },
-                );
+                LOAD.template('error/base', {status: "404", statusText: "Not Found!"}, function (html) {
+                    ANIMATION.stoploading(thisid);
+                    $("#" + id).html(html);
+                });
                 return;
             }
 
             if (SESSION.ifLogoffRedirec(view))
                 return;
-
-
-            $http.get(view + "?scope=" + $scope.modelName, {}).then(
+            $http.get(view + `?scope=${$scope.modelName}`, {}).then(
                 function (data) {
                     HTTP.evaluate(data);
-                    $(thisid).html($scope.returnBuild(data.data));
+                    if (!HTTP.evaluateTokenHTML(data))
+                        $(thisid).html($scope.returnBuild(data.data));
                     ANIMATION.stoploading(thisid);
                     callback(true);
                 },
@@ -34,6 +27,11 @@ LOAD = {
                     $http.get("error/error" + "?scope=" + $scope.modelName, {}).then(
                         function (template) {
                             $scope.httpError = data;
+                            STEP.register({
+                                scope: $scope.modelName,
+                                windows: `error ${data.status}`, action: "http error",
+                                description: view + `?scope=${$scope.modelName} ` + data.statusText,
+                            });
                             $(thisid).html($scope.returnBuild(template.data));
                             ANIMATION.stoploading(thisid);
                             callback(true);
@@ -68,31 +66,39 @@ LOAD = {
         var scope = $scope.modelName;
         if (DSON.oseaX(scope))
             scope = view.replaceAll('/', '_');
-        $http.get(view + "?scope=" + scope, {}).then(
+        STEP.clear();
+        STEP.register({
+            scope: scope,
+            windows: `${scope} Page`, action: "Open Page"
+        });
+
+        $http.get(view + `?scope=${scope}`, {}).then(
             function (data) {
                 HTTP.evaluate(data);
-                $("#content").html($compile(data.data)($scope));
+                if (!HTTP.evaluateTokenHTML(data))
+                    $("#content").html($compile(data.data)($scope));
                 ANIMATION.stoploading();
             },
             function (data) {
-                $http.get("error/error" + "?scope=" + $scope.modelName, {}).then(
-                    function (template) {
-                        $scope.httpError = data;
-                        $("#content").html($scope.returnBuild(template.data));
-                        ANIMATION.stoploading();
-                        callback(true);
-                    },
-                );
-                ANIMATION.stoploading();
+                STEP.register({
+                    windows: `error ${data.status}`, action: "http error",
+                    description: view + `?scope=${scope} ` + data.statusText,
+                });
+                LOAD.template('error/base', {status: data.status, statusText: data.statusText}, function (html) {
+                    ANIMATION.stoploading();
+                    $("#content").html(html);
+                });
             }
         );
     },
     template: function (view, params, callback) {
         $http = angular.injector(["ng"]).get("$http");
+        HTTP.setToken($http);
         $http.get(view + "?" + HTTP.objToQuery(params), {}).then(
             function (data) {
                 HTTP.evaluate(data);
-                callback(data.data);
+                if (!HTTP.evaluateTokenHTML(data))
+                    callback(data.data);
             },
             function (data) {
                 //"error/" + data.status

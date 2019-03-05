@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="4.486999999999999" tests="70" failures="0">
+  <testsuite name="Root Suite" timestamp="2019-01-11T12:29:11" tests="0" failures="0" time="0">
+  </testsuite>
+  <testsuite name="Get resources metadata" timestamp="2019-01-11T12:29:11" tests="9" file="/root/build/packages/server-nodejs/api-tests/api-tests.spec.js" failures="0" time="0.04500000000000001">
+    <testcase name="Get resources metadata Get rootId" time="0.02" classname="Get rootId">
+    </testcase>
+    <testcase name="Get resources metadata Get root children" time="0.009" classname="Get root children">
+    </testcase>
+    <testcase name="Get resources metadata Get root children with query params" time="0.003" classname="Get root children with query params">
+    </testcase>
+    <testcase name="Get resources metadata Get root children with incorrect orderBy" time="0.003" classname="Get root children with incorrect orderBy">
+    </testcase>
+    <testcase name="Get resources metadata Get root children with incorrect orderDirection" time="0.001" classname="Get root children with incorrect orderDirection">
+    </testcase>
+    <testcase name="Get resources metadata Get workChildDir children" time="0.002" classname="Get workChildDir children">
+    </testcase>
+    <testcase name="Get resources metadata Get children with incorrect id" time="0.003" classname="Get children with incorrect id">
+    </testcase>
+    <testcase name="Get resources metadata Get workChildDir metadata" time="0.002" classname="Get workChildDir metadata">
+    </testcase>
+    <testcase name="Get resources metadata Get workFile metadata" time="0.002" classname="Get workFile metadata">
+    </testcase>
+  </testsuite>
+  <testsuite name="Search for files/dirs" timestamp="2019-01-11T12:29:11" tests="3" file="/root/build/packages/server-nodejs/api-tests/api-tests.spec.js" failures="0" time="3.203">
+    <testcase name="Search for files/dirs Search in root directory by its first child name substring" time="0.195" classname="Search in root directory by its first child name substring">
+    </testcase>
+    <testcase name="Search for files/dirs Search with invalid id" time="0.004" classname="Search with invalid id">
+    </testcase>
+    <testcase name="Search for files/dirs Search in root directory for files with letter &quot;c&quot;" time="3.004" classname="Search in root directory for files with letter &quot;c&quot;">
+    </testcase>
+  </testsuite>
+  <testsuite name="Various itemNameCaseSensitive" timestamp="2019-01-11T12:29:14" tests="3" file="/root/build/packages/server-nodejs/api-tests/api-tests.spec.js" failures="0" time="0.259">
+    <testcase name="Search for files/dirs Various itemNameCaseSensitive Default params" time="0.128" classname="Default params">
+    </testcase>
+    <testcase name="Search for files/dirs Various itemNameCaseSensitive itemNameCaseSensitive equal false" time="0.063" classname="itemNameCaseSensitive equal false">
+    </testcase>
+    <testcase name="Search for files/dirs Various itemNameCaseSensitive itemNameCaseSensitive equal true" time="0.068" classname="itemNameCaseSensitive equal true">
+    </testcase>
+  </testsuite>
+  <testsuite name="Various itemType" timestamp="2019-01-11T12:29:15" tests="3" file="/root/build/packages/server-nodejs/api-tests/api-tests.spec.js" failures="0" time="0.203">
+    <testcase name="Search for files/dirs Various itemType itemType equal dir" time="0.075" classname="itemType equal dir">
+    </testcase>
+    <testcase name="Search for files/dirs Various itemType itemType equal file, resource is dir" time="0.049" classname="itemType equal file, resource is dir">
+    </testcase>
+    <testcase name="Search for files/dirs Various itemType itemType equal file, resource is file" time="0.079" classname="itemType equal file, resource is file">
+    </testcase>
+  </testsuite>
+  <testsuite name="Various recursive" timestamp="2019-01-11T12:29:15" tests="2" file="/root/build/packages/server-nodejs/api-tests/api-tests.spec.js" failures="0" time="0.069">
+    <testcase name="Search for files/dirs Various recursive recursive equal false" time="0.003" classname="recursive equal false">
+    </testcase>
+    <testcase name="Search for files/dirs Various recursive recursive equal true" time="0.066" classname="recursive equal true">
+    </testcase>
+  </testsuite>
+  <testsuite name="Various fileContentSubstring" timestamp="2019-01-11T12:29:15" tests="6" file="/root/build/packages/server-nodejs/api-tests/api-tests.spec.js" failures="0" time="0.525">
+    <testcase name="Search for files/dirs Various fileContentSubstring Case-insensitive content search by default" time="0.235" classname="Case-insensitive content search by default">
+    </testcase>
+    <testcase name="Search for files/dirs Various fileContentSubstring Case-insensitive content search" time="0.161" classname="Case-insensitive content search">
+    </testcase>
+    <testcase name="Search for files/dirs Various fileContentSubstring Case-insensitive content + filename search" time="0.004" classname="Case-insensitive content + filename search">
+    </testcase>
+    <testcase name="Search for files/dirs Various fileContentSubstring Case-sensitive content search" time="0.121" classname="Case-sensitive content search">
+    </testcase>
+    <testcase name="Search for files/dirs Various fileContentSubstring Invalid content search for a dirs" time="0.002" classname="Invalid content search for a dirs">
+    </testcase>
+    <testcase name="Search for files/dirs Various fileContentSubstring Invalid content search for a dirs/files" time="0.002" classname="Invalid content search for a dirs/files">
+    </testcase>
+  </testsuite>
+  <testsuite name="Rename resources" timestamp="2019-01-11T12:29:15" tests="8" file="/root/build/packages/server-nodejs/api-tests/api-tests.spec.js" failures="0" time="0.030000000000000006">
+    <testcase name="Rename resources Rename dir" time="0.014" classname="Rename dir">
+    </testcase>
+    <testcase name="Rename resources Rename resource with incorrect id" time="0.003" classname="Rename resource with incorrect id">
+    </testcase>
+    <testcase name="Rename resources Rename root dir" time="0.002" classname="Rename root dir">
+    </testcase>
+    <testcase name="Rename resources Rename dir (restore dir name)" time="0.002" classname="Rename dir (restore dir name)">
+    </testcase>
+    <testcase name="Rename resources Rename file" time="0.003" classname="Rename file">
+    </testcase>
+    <testcase name="Rename resources Rename file (restore file name)" time="0.002" classname="Rename file (restore file name)">
+    </testcase>
+    <testcase name="Rename resources Check root dir" time="0.002" classname="Check root dir">
+    </testcase>
+    <testcase name="Rename resources Check workChildDir" time="0.002" classname="Check workChildDir">
+    </testcase>
+  </testsuite>
+  <testsuite name="Create dirs" timestamp="2019-01-11T12:29:15" tests="9" file="/root/build/packages/server-nodejs/api-tests/api-tests.spec.js" failures="0" time="0.06600000000000002">
+    <testcase name="Create dirs Create child dir" time="0.038" classname="Create child dir">
+    </testcase>
+    <testcase name="Create dirs Create grandchild dir 1" time="0.003" classname="Create grandchild dir 1">
+    </testcase>
+    <testcase name="Create dirs Create grandchild dir 2" time="0.003" classname="Create grandchild dir 2">
+    </testcase>
+    <testcase name="Create dirs Create grandchild dir 3" time="0.003" classname="Create grandchild dir 3">
+    </testcase>
+    <testcase name="Create dirs Create dir with incorrect :id" time="0.002" classname="Create dir with incorrect :id">
+    </testcase>
+    <testcase name="Create dirs Create dir without parentId" time="0.002" classname="Create dir without parentId">
+    </testcase>
+    <testcase name="Create dirs Create dir without type" time="0.002" classname="Create dir without type">
+    </testcase>
+    <testcase name="Create dirs Create dir and attach file" time="0.011" classname="Create dir and attach file">
+    </testcase>
+    <testcase name="Create dirs Check newDir" time="0.002" classname="Check newDir">
+    </testcase>
+  </testsuite>
+  <testsuite name="Copy resouces" timestamp="2019-01-11T12:29:16" tests="9" file="/root/build/packages/server-nodejs/api-tests/api-tests.spec.js" failures="0" time="0.022">
+    <testcase name="Copy resouces Copy file" time="0.004" classname="Copy file">
+    </testcase>
+    <testcase name="Copy resouces Copy file with incorrect id-1" time="0.002" classname="Copy file with incorrect id-1">
+    </testcase>
+    <testcase name="Copy resouces Copy file with incorrect id-2" time="0.002" classname="Copy file with incorrect id-2">
+    </testcase>
+    <testcase name="Copy resouces Copy file with incorrect id-3" time="0.001" classname="Copy file with incorrect id-3">
+    </testcase>
+    <testcase name="Copy resouces Copy file with new name" time="0.003" classname="Copy file with new name">
+    </testcase>
+    <testcase name="Copy resouces Copy file to sibling dir" time="0.003" classname="Copy file to sibling dir">
+    </testcase>
+    <testcase name="Copy resouces Check workChildDir" time="0.002" classname="Check workChildDir">
+    </testcase>
+    <testcase name="Copy resouces Check newGrandchildId1" time="0.003" classname="Check newGrandchildId1">
+    </testcase>
+    <testcase name="Copy resouces Check newGrandchildId2" time="0.002" classname="Check newGrandchildId2">
+    </testcase>
+  </testsuite>
+  <testsuite name="Move resources" timestamp="2019-01-11T12:29:16" tests="6" file="/root/build/packages/server-nodejs/api-tests/api-tests.spec.js" failures="0" time="0.015">
+    <testcase name="Move resources Move file with incorrect id-1" time="0.002" classname="Move file with incorrect id-1">
+    </testcase>
+    <testcase name="Move resources Move file with incorrect id-2" time="0.003" classname="Move file with incorrect id-2">
+    </testcase>
+    <testcase name="Move resources Move file" time="0.003" classname="Move file">
+    </testcase>
+    <testcase name="Move resources Check newGrandchildId1" time="0.003" classname="Check newGrandchildId1">
+    </testcase>
+    <testcase name="Move resources Check newGrandchildId2" time="0.002" classname="Check newGrandchildId2">
+    </testcase>
+    <testcase name="Move resources Check newGrandchildId3" time="0.002" classname="Check newGrandchildId3">
+    </testcase>
+  </testsuite>
+  <testsuite name="Download" timestamp="2019-01-11T12:29:16" tests="3" file="/root/build/packages/server-nodejs/api-tests/api-tests.spec.js" failures="0" time="0.02">
+    <testcase name="Download Download file" time="0.005" classname="Download file">
+    </testcase>
+    <testcase name="Download Download folder" time="0.012" classname="Download folder">
+    </testcase>
+    <testcase name="Download Download file with incorrect id" time="0.003" classname="Download file with incorrect id">
+    </testcase>
+  </testsuite>
+  <testsuite name="Upload file" timestamp="2019-01-11T12:29:16" tests="2" file="/root/build/packages/server-nodejs/api-tests/api-tests.spec.js" failures="0" time="0.009000000000000001">
+    <testcase name="Upload file Upload file with incorrect id" time="0.004" classname="Upload file with incorrect id">
+    </testcase>
+    <testcase name="Upload file Upload file" time="0.005" classname="Upload file">
+    </testcase>
+  </testsuite>
+  <testsuite name="Remove resources" timestamp="2019-01-11T12:29:16" tests="7" file="/root/build/packages/server-nodejs/api-tests/api-tests.spec.js" failures="0" time="0.021">
+    <testcase name="Remove resources Remove file" time="0.003" classname="Remove file">
+    </testcase>
+    <testcase name="Remove resources Check newGrandchildId3" time="0.003" classname="Check newGrandchildId3">
+    </testcase>
+    <testcase name="Remove resources Remove resource with incorrect id" time="0.002" classname="Remove resource with incorrect id">
+    </testcase>
+    <testcase name="Remove resources Remove root dir" time="0.001" classname="Remove root dir">
+    </testcase>
+    <testcase name="Remove resources Remove dir" time="0.002" classname="Remove dir">
+    </testcase>
+    <testcase name="Remove resources Check newDir" time="0.004" classname="Check newDir">
+    </testcase>
+    <testcase name="Remove resources Remove not empty dir" time="0.006" classname="Remove not empty dir">
+    </testcase>
+  </testsuite>
+</testsuites>

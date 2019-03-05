@@ -1,0 +1,9 @@
+.dragon-welcome {
+    font-size: 140px
+}
+
+@media (max-width: 768px) {
+    .dragon-welcome {
+        font-size: 70px
+    }
+}

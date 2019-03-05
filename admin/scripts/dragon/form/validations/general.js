@@ -4,7 +4,7 @@ VALIDATION = DSON.merge(VALIDATION, {
             value = value || "";
             return {
                 valid: (!DSON.oseaX(value) && value !== "[NULL]"),
-                message: `This field is required!`,
+                message: `Field is required!`,
                 type: VALIDATION.types.error
             };
         }

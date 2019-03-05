@@ -6,7 +6,7 @@ var options = {
     icon: {
         class: "html5",
         position: "left",
-        color: COLOR.primary
+        color: TAG.table+"-800"
     },
     helptext: '',
     readonly: false,
@@ -89,6 +89,12 @@ var toclient = JSON.stringify(options);
 
 
         $('[name="<%= model %>_<%= name %>"]').on('summernote.change', function(we, contents, $editable) {
+            $(".map-wrapper").hide();
+            STEP.register({
+                    scope: "<%= model %>",
+                    action: "Change HTML",
+                    field: "<%= name %>"
+            });
             <%= model %>.<%= name %> = $(this).val();
         });
 

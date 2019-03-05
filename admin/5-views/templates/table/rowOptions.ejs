@@ -1,5 +1,5 @@
 <td class="text-center dragon-actions" oncontextmenu="return false;"
-    ng-show="(<%= scope %>.allow('actions') && <%= scope %>.allow(['edit','remove','active']))">
+    ng-show="(<%= scope %>.allow('actions') && <%= scope %>.allow(['edit','remove','active','view','copy']))">
     <ul class="icons-list" style="z-index: 99999" ng-show="<%= scope %>.rowDeleted(row)===''">
         <li ng-repeat="(min, option) in <%= scope %>.getOptions(false) track by min"
             ng-show="<%= scope %>.allow(<%= scope %>.option.permission(option,row)) && <%= scope %>.option.show(option,row)">

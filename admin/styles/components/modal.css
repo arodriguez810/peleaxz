@@ -1,0 +1,72 @@
+
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+    padding: 8px 20px;
+    line-height: 1.5384616;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+}
+
+.dragontable th {
+    width: auto !important;
+}
+
+.sindu_dragger table {
+    background: #cccccc !important;
+}
+
+.swal2-popup {
+    font-size: medium !important;
+}
+
+.show-tr {
+    visibility: hidden;
+}
+
+.show-td {
+    visibility: hidden;
+}
+
+th:hover .show-tr {
+    visibility: visible;
+}
+
+tr:hover .show-td {
+    visibility: visible;
+}
+
+.tableimage {
+    width: 30px;
+}
+
+tr.dragon-columns.dragon-column-hide i {
+    display: none;
+}
+
+tr.dragon-columns.dragon-column-hide th {
+    cursor: default;
+}
+
+.table {
+    max-width: 9999999px;
+}
+
+.dragon-row-deleted {
+    color: red;
+}
+
+.datatable {
+    margin-bottom: 20px
+}
+
+@media (max-width: 768px) {
+    .modal-dialog {
+        position: relative;
+        width: auto;
+        margin: 10px;
+    }
+}

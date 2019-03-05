@@ -96,6 +96,7 @@ var toclient = JSON.stringify(options);
 
 
         $('[name="<%= model %>_<%= name %>"]').click(function () {
+            $(".map-wrapper").hide();
             amLoad<%= name %> = true;
             var root = <%= model %>.
             form.options.<%= name %>.folder;

@@ -104,11 +104,15 @@ exports.insertQuery = function (table, data, params, get, getvalue) {
                 columns.push(property.replace('$', ''));
             else
                 columns.push("[" + property + "]");
+
             if (value[0] === "$")
                 values.push(value.replace('$', ''));
+            else if (value[0] === "#")
+                values.push(`CONVERT(VARCHAR(32), HashBytes('MD5', '${params.CONFIG.appKey}${value.replace('#', '')}'), 2)`);
             else
                 values.push("'" + value.replace("'", "''") + "'");
         }
+        console.log(values);
         if (get !== undefined) {
             queries += params.format("INSERT INTO [{0}]({1}) VALUES({2}); SELECT * FROM [{0}] where [" + get + "]=" + getvalue, table, columns.join(", "), values.join(", "));
             break;
@@ -137,6 +141,8 @@ exports.update = function (table, data, params) {
                     columns = ("[" + property + "]");
                 if (value[0] === "$")
                     values = (value.replace('$', ''));
+                else if (value[0] === "#")
+                    values = (`CONVERT(VARCHAR(32), HashBytes('MD5', '${params.CONFIG.appKey}${value.replace('#', '')}'), 2)`);
                 else
                     values = ("'" + value + "'");
                 sets.push(params.format("{0}={1}", columns, values))
@@ -221,65 +227,81 @@ exports.defaultRequests = function (Model, params) {
         params.modules.views.LoadEJS(files, params);
     });
     params.app.post('/api/ms_list', function (req, res) {
-        if (req.query.limit === undefined)
-            req.query.limit = 10;
-        if (req.query.page === undefined)
-            req.query.page = 1;
-        if (req.query.orderby === undefined)
-            req.query.orderby = "id";
+        params.secure.check(req, res, function () {
+            if (req.query.limit === undefined)
+                req.query.limit = 10;
+            if (req.query.page === undefined)
+                req.query.page = 1;
+            if (req.query.orderby === undefined)
+                req.query.orderby = "id";
 
-        Model.all(req.query).then((data) => {
-            if (data.error !== false) res.send(data.error);
-            res.json(data);
+            Model.all(req.query).then((data) => {
+                if (data.error !== false) res.send(data.error);
+                res.json(data);
+            });
         });
     });
     params.app.post(params.util.format('/api/%s/list', Model.tableName), function (req, res) {
-        if (req.body.limit === undefined)
-            req.body.limit = 10;
-        if (req.body.page === undefined)
-            req.body.page = 1;
-        if (req.body.orderby === undefined)
-            req.body.orderby = "id";
+        params.secure.check(req, res, function () {
+            if (req.body.limit === undefined)
+                req.body.limit = 10;
+            if (req.body.page === undefined)
+                req.body.page = 1;
+            if (req.body.orderby === undefined)
+                req.body.orderby = "id";
 
-        Model.all(req.body).then((data) => {
-            if (data.error !== false) res.send(data.error);
-            res.json(data);
+            Model.all(req.body).then((data) => {
+                if (data.error !== false) res.send(data.error);
+                res.json(data);
+            });
         });
     });
     params.app.get(params.util.format('/api/%s/all', Model.tableName), function (req, res) {
-        Model.all(req.query).then((data) => {
-            if (data.error !== false) res.send(data.error);
-            res.json(data);
+        params.secure.check(req, res, function () {
+            Model.all(req.query).then((data) => {
+                if (data.error !== false) res.send(data.error);
+                res.json(data);
+            });
         });
     });
     params.app.get(params.util.format('/api/%s/get/:id', Model.tableName), function (req, res) {
-        Model.find(req.params.id).then((data) => {
-            if (data.error !== false) res.send(data.error);
-            res.json(data);
+        params.secure.check(req, res, function () {
+            Model.find(req.params.id).then((data) => {
+                if (data.error !== false) res.send(data.error);
+                res.json(data);
+            });
         });
     });
     params.app.post('/api/' + Model.tableName + '/insert', function (req, res) {
-        Model.insert(req.body).then((data) => {
-            if (data.error !== false) res.send(data.error);
-            res.json(data);
+        params.secure.check(req, res, function () {
+            Model.insert(req.body).then((data) => {
+                if (data.error !== false) res.send(data.error);
+                res.json(data);
+            });
         });
     });
     params.app.post('/api/' + Model.tableName + '/insertID', function (req, res) {
-        Model.insertID(req.body.insertData, req.body.field, req.body.value).then((data) => {
-            if (data.error !== false) res.send(data.error);
-            res.json(data);
+        params.secure.check(req, res, function () {
+            Model.insertID(req.body.insertData, req.body.field, req.body.value).then((data) => {
+                if (data.error !== false) res.send(data.error);
+                res.json(data);
+            });
         });
     });
     params.app.post('/api/' + Model.tableName + '/update/', function (req, res) {
-        Model.update(req.body).then((data) => {
-            if (data.error !== false) res.send(data.error);
-            res.json(data);
+        params.secure.check(req, res, function () {
+            Model.update(req.body).then((data) => {
+                if (data.error !== false) res.send(data.error);
+                res.json(data);
+            });
         });
     });
     params.app.post('/api/' + Model.tableName + '/delete', function (req, res) {
-        Model.delete(req.body).then((data) => {
-            if (data.error !== false) res.send(data.error);
-            res.json(data);
+        params.secure.check(req, res, function () {
+            Model.delete(req.body).then((data) => {
+                if (data.error !== false) res.send(data.error);
+                res.json(data);
+            });
         });
     });
 };

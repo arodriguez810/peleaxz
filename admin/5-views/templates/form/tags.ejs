@@ -84,5 +84,15 @@ var toclient = JSON.stringify(options);
             }]
         });
 
+        $('[name="<%= model %>_<%= name %>"]').blur(function () {
+            STEP.register({
+                    scope: "<%= model %>",
+                    action: "Change Tag",
+                    field: "<%= name %>",
+                    value: <%= model %>.<%= name %>
+            });
+            $(".map-wrapper").hide();
+        });
+
     });
 </script>

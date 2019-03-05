@@ -7,7 +7,8 @@ DSON.keepmerge(CRUD_ms_product, {
             id: {
                 label: "ID",
                 sorttype: "numeric",
-                class: "text-left"
+                class: "text-left",
+                exportExample: false
             },
             name: {
                 label: "Nombraso",
@@ -53,29 +54,38 @@ DSON.keepmerge(CRUD_ms_product, {
             created: {
                 visible: false,
                 sorttype: "time",
-                formattype: "datetime>DD-MM-YYYY hh:mm a"
+                formattype: "datetime>DD-MM-YYYY hh:mm a",
+                exportExample: false
             },
             updated: {
-                visible: false
+                visible: false,
+                visibleDetail: false,
+                export: false,
+                exportExample: false
             },
             deleted: {
                 visible: false,
-                visibleDetail: false
+                visibleDetail: false,
+                export: false,
+                exportExample: false
             },
             user_created: {
                 visible: false,
                 visibleDetail: false,
-                export: false
+                export: false,
+                exportExample: false
             },
             user_updated: {
                 visible: false,
                 visibleDetail: false,
-                export: false
+                export: false,
+                exportExample: false
             },
             user_deleted: {
                 visible: false,
                 visibleDetail: false,
-                export: false
+                export: false,
+                exportExample: false
             }
         },
     }

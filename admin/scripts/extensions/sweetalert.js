@@ -77,9 +77,9 @@ SWEETALERT = {
             type: data.type || "info",
             title: data.title || "",
             html: data.message || "",
-            confirmButtonText: data.ok || "Ok",
+            confirmButtonText: data.ok || "Ok"
         }).then(result => {
-            if (typeof data.confirm === "function") data.close();
+            if (typeof data.confirm === "function") data.confirm();
         });
     },
     loading: function (data, animation) {
@@ -101,6 +101,7 @@ $(document).ready(function () {
         confirmButtonClass: "btn btn-" + COLOR.success,
         cancelButtonClass: "btn btn-" + COLOR.danger,
         buttonsStyling: false,
-        allowOutsideClick: true
+        allowOutsideClick: false,
+        closeOnClickOutside: false
     });
 });

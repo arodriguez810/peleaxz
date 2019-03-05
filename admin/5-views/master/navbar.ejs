@@ -1,9 +1,9 @@
 <!-- Main navbar -->
 <div class="navbar navbar-inverse  bg-<%= TAG.navbar %>-800" ng-show="baseController.SESSION.isLogged()">
-    <div class="navbar-header">
-        <a class="navbar-brand" href="/">
-            <img style="float: left !important;" src="assets/images/logo.svg" alt="">
-            <span style="float: left;padding-left: 6%;"> <%= CONFIG.logo %></span></a>
+    <div class="navbar-header  bg-<%= COLOR.menu %>-800">
+        <a class="navbar-brand bg-<%= COLOR.menu %>-800" href="/">
+            <img style="float: left !important;" src="assets/images/<%= COLOR.logo %>.svg" alt="">
+            <span class="navbar-brand-text" style="float: left;padding-left: 10px;"> <%= CONFIG.logo %></span></a>
         <ul class="nav navbar-nav visible-xs-block">
             <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
             <li><a class="sidebar-mobile-main-toggle"><i class="icon-paragraph-justify3"></i></a></li>
@@ -30,20 +30,21 @@
                 </a>
             </li>
             <li class="dropdown" ng-show="baseController.favorites.length">
-                <a href="#" class="dropdown-toggle legitRipple" data-toggle="dropdown" title="Favorites" aria-expanded="false">
+                <a href="#" class="dropdown-toggle legitRipple" data-toggle="dropdown" title="Favorites"
+                   aria-expanded="false">
                     <i class="icon-heart5"></i>
                 </a>
                 <div class="dropdown-menu dropdown-content">
                     <ul class="media-list dropdown-content-body width-100">
                         <li ng-repeat="(key,menu) in baseController.favorites track by key" class="media">
-                            <div class="">
-                                <a href="{{menu.href}}"
-                                   class="btn border-<%= COLOR.primary %> text-<%= COLOR.info %> btn-flat btn-rounded btn-icon btn-sm legitRipple">
+                            <div class="" style="width:220px">
+                                <a style="min-width: 200px;float: left;margin-bottom:10px" href="{{menu.href}}"
+                                   class="btn border-<%= COLOR.primary %> text-<%= COLOR.info %> btn-flat btn-icon btn-sm legitRipple">
                                     <i class="{{menu.icon}}"></i>
+                                    {{menu.text}}
                                 </a>
-
-                                <a href="{{menu.href}}">{{menu.text}}</a>
-                                <i ng-click="baseController.deleteFavorite(menu.href)" class="icon-trash"></i>
+                                <i style="float: right;margin-top:5%"
+                                   ng-click="baseController.deleteFavorite(menu.href)" class="icon-trash"></i>
                             </div>
                         </li>
                     </ul>
@@ -56,24 +57,42 @@
                     <span class="badge bg-<%= TAG.table %>" ng-model="baseController.WARNINGREQUESTS.length"></span>
                 </a>
             </li>
+            <li ng-if="baseController.CONFIG.features.fileManager===true">
+                <a class="sidebar-control" onclick="FILEMANAGER.OPEN(['/'])" data-popup="tooltip"
+                   data-placement="bottom" data-container="body" title="File Manager">
+                    <i class="icon-folder-open"></i>
+                </a>
+            </li>
+            <li ng-if="baseController.CONFIG.features.stepManager===true">
+                <a class="sidebar-control" onclick="STEP.OPEN()" data-popup="tooltip"
+                   data-placement="bottom" data-container="body" title="Step Manager">
+                    <i class=" icon-stack-text"></i>
+                </a>
+            </li>
 
         </ul>
 
         <div class="navbar-right" ng-show="baseController.SESSION.isLogged()">
-            <p class="navbar-text">
-
-                {{baseController.SESSION.current().fullName()}}
             <ul class="nav navbar-nav">
-                <li>
-                    <a class="sidebar-control" onclick="SESSION.logoff()" data-popup="tooltip"
-                       data-placement="bottom" data-container="body" title="End Session">
-                        <i class="icon-switch"></i>
+                <li class="dropdown dropdown-user">
+                    <a class="dropdown-toggle legitRipple" data-toggle="dropdown" aria-expanded="false">
+
+                        <img data-dragonfile="/my_user/profileimage/{{::baseController.SESSION.current().id}}"
+                             src="assets/images/placeholder.jpg" alt="">
+
+                        <span>{{::baseController.SESSION.current().fullName()}}</span>
+                        <i class="caret"></i>
                     </a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <!--<li><a href="#"><i class="icon-user-plus"></i> My profile</a></li>-->
+                        <!--<li><a href="#"><i class="icon-coins"></i> My balance</a></li>-->
+                        <!--<li><a href="#"><span class="badge badge-warning pull-right">58</span> <i class="icon-comment-discussion"></i> Messages</a></li>-->
+                        <!--<li class="divider"></li>-->
+                        <!--<li><a href="#"><i class="icon-cog5"></i> Account settings</a></li>-->
+                        <li><a onclick="SESSION.logoff()"><i class="icon-switch2"></i>Logout</a></li>
+                    </ul>
                 </li>
             </ul>
-            </p>
-
-
         </div>
     </div>
 </div>

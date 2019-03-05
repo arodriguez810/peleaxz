@@ -6,7 +6,7 @@ var options = {
     icon: {
         class: "none",
         position: "left",
-        color: COLOR.primary
+        color: TAG.table+"-800"
     },
     allownull: true,
     allownew: true,
@@ -20,10 +20,12 @@ var options = {
     value: "id",
     text: "item.name",
     //table: "",
-    get:{
-       table:'',
-       field:''
+    get: {
+        table: '',
+        field: ''
     },
+    parent: false,
+    childs: false,
     query: {
         limit: 0,
         page: 1,
@@ -53,9 +55,10 @@ var toclient = JSON.stringify(options);
             <%= model + "." + name %> = "[NULL]";
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>", "'[NULL]'");
     var isReadProgram = <%= model %>.form.isReadOnly('<%= name %>');
-    if(isReadProgram!==false){
-        <%= model %>.form.options.<%= name %>.disabled = true;
-        if(isReadProgram!==undefined){
+    if (isReadProgram !== false) {
+        <%= model %>.
+        form.options.<%= name %>.disabled = true;
+        if (isReadProgram !== undefined) {
             <%= model %>.<%= name %> = isReadProgram;
         }
     }
@@ -69,39 +72,37 @@ var toclient = JSON.stringify(options);
         </label>
 
         <% if(options.allowlist){ %>
-            <a title="List" id="list<%= name %>" class="label bg-<%= COLOR.primary %> label-icon"
+            <a title="List" id="list<%= model %>_<%= name %>" class="label bg-<%= TAG.table %> label-icon"
                style="float: right;">
                 <i class="icon-list"></i>
             </a>
         <% } %>
 
         <% if(options.allowview && !options.multiple){ %>
-            <a title="View item" ng-show="<%= model + "." + name %>!='[NULL]'" id="view<%= name %>"
-               class="label bg-<%= COLOR.primary %> label-icon"
+            <a title="View item" ng-show="<%= model + "." + name %>!='[NULL]'" id="view<%= model %>_<%= name %>"
+               class="label bg-<%= TAG.table %> label-icon"
                style="float: right;margin-right: 10px;">
                 <i class="icon-eye"></i>
             </a>
         <% } %>
 
         <% if(options.allowedit && !options.multiple){ %>
-            <a title="Edit item" ng-show="<%= model + "." + name %>!='[NULL]'" id="edit<%= name %>"
-               class="label bg-<%= COLOR.primary %> label-icon"
+            <a title="Edit item" ng-show="<%= model + "." + name %>!='[NULL]'" id="edit<%= model %>_<%= name %>"
+               class="label bg-<%= TAG.table %> label-icon"
                style="float: right;margin-right: 10px;">
                 <i class="icon-pencil"></i>
             </a>
         <% } %>
 
-
-
         <% if(options.allownew){ %>
-            <a title="Add item" id="new<%= name %>" class="label bg-<%= COLOR.primary %> label-icon"
+            <a title="Add item" id="new<%= model %>_<%= name %>" class="label bg-<%= TAG.table %> label-icon"
                style="float: right;margin-right: 10px;">
                 <i class="icon-plus-circle2"></i>
             </a>
         <% } %>
 
         <% if(options.refresh){ %>
-            <a title="Refresh List" id="reload<%= name %>" class="label bg-<%= COLOR.primary %> label-icon"
+            <a title="Refresh List" id="reload<%= model %>_<%= name %>" class="label bg-<%= TAG.table %> label-icon"
                style="float: right;margin-right: 10px;">
                 <i class="icon-reload-alt"></i>
             </a>
@@ -160,12 +161,12 @@ var toclient = JSON.stringify(options);
             <div
                     ng-show="<%= model + "." + name %>.length<=0 || <%= model + "." + name %>==='[NULL]' || <%= model + "." + name %>===null"
                     class="alert alpha-<%= TAG.table %>
-                 border-<%= TAG.table %> alert-styled-left">
+                 border-<%= TAG.table %> alert-styled-left visible-md visible-lg">
                 There is no {{<%= options.table %>.plural}} data selected.
             </div>
 
             <table ng-show="<%= model + "." + name %>.length>0 && <%= model + "." + name %>!=='[NULL]'"
-                   class="table table-togglable table-framed"
+                   class="table table-togglable table-framed visible-md visible-lg"
                    style="{{<%= options.table %>.funcWidth}}">
                 <thead class="bg-<%= TAG.table %>">
                 <tr class="bg-<%= TAG.table %>">
@@ -179,7 +180,8 @@ var toclient = JSON.stringify(options);
                 <tbody>
                 <tr
 
-                        ng-repeat="(key, row) in <%= model %>.form.options.<%= name %>.data track by key" data-object="{{row}}"
+                        ng-repeat="(key, row) in <%= model %>.form.options.<%= name %>.data track by key"
+                        data-object="{{row}}"
                         ng-show="<%= model + "." + name %>.indexOf(row.<%= options.value %>+'')!==-1"
                         class="{{<%= options.table %>.rowClass(row)}}">
 
@@ -205,19 +207,34 @@ var toclient = JSON.stringify(options);
 </div>
 <script>
     $(document).ready(function () {
-        <%= model %>.form.beginFunctions.push(`<%= model %>.form.loadDropDown("<%= name %>");`);
-        $('#reload<%= name %>').click(function () {
-            <%= model %>.form.loadDropDown("<%= name %>");
+        <%= model %>.
+        form.beginFunctions.push(`<%= model %>.form.loadDropDown("<%= name %>");`);
+
+        $('[name="<%= model %>_<%= name %>"]').change(function () {
+            STEP.register({
+                    scope: "<%= model %>",
+                    action: "Change DropDown",
+                    field: "<%= name %>",
+                    value: <%= model %>.<%= name %>
+            });
+            $(".map-wrapper").hide();
+        });
+
+        $('#reload<%= model %>_<%= name %>').click(function () {
+            <%= model %>.
+            form.loadDropDown("<%= name %>");
             return false;
         });
-        $('#new<%= name %>').click(function () {
-            <%= options.table %>.formulary(null,'new');
+        $('#new<%= model %>_<%= name %>').click(function () {
+            <%= options.table %>.
+            formulary(null, 'new');
             return false;
         });
-        $('#list<%= name %>').click(function () {
-            var modal ={
-                header: {
-                    title: "List of " + <%= options.table %>.plural,
+        $('#list<%= model %>_<%= name %>').click(function () {
+            baseController.viewData = {};
+            var modal = {
+                    header: {
+                        title: "List of " + <%= options.table %>.plural,
                     icon: ICON.classes.list
                 },
                 footer: {
@@ -226,26 +243,35 @@ var toclient = JSON.stringify(options);
                 content: {
                     loadingContentText: "Loading "+<%= options.table %>.plural,
                 }
-            }
-            <%= options.table %>.modal.modalView(String.format("{0}", "<%= options.table %>"), modal);
+        }
+            <%= options.table %>.
+            modal.modalView(String.format("{0}", "<%= options.table %>"), modal);
             return false;
         });
-        $('#edit<%= name %>').click(function () {
-            <%= options.table %>.formulary({
+        $('#edit<%= model %>_<%= name %>').click(function () {
+            <%= options.table %>.
+            formulary({
                 where: [{
                     field: <%= options.table %>.table.crud.table.key,
-                    value: <%= model %>.<%= name %>
-                }]
-            }, FORM.modes.edit, {});
+                    value
+        : <%= model %>.<%= name %>
+        }]
+        },
+            FORM.modes.edit, {}
+        )
+            ;
             return false;
         });
-        $('#view<%= name %>').click(function () {
+        $('#view<%= model %>_<%= name %>').click(function () {
             <%= model %>.
             cell.openLink({
-                column: "<%= options.column %>",
-                value: <%= model %>.<%= name %>,
-                field: "<%= name %>"
-            });
+                    column: "<%= options.column %>",
+                    value: <%= model %>.<%= name %>,
+                field
+        :
+            "<%= name %>"
+        })
+            ;
             return false;
         });
     });

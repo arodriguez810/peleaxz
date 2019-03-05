@@ -11,6 +11,8 @@
   "file": "ntext NULL",
   "child": "int NULL",
   "other": "int NULL",
+  "category": "int NULL",
+  "product": "int NULL",
   "birthDate": "DATE NULL",
   "lastLogin": "DATETIME NULL",
   "record": "TIME",

@@ -1,15 +1,16 @@
 <!-- Main sidebar -->
-<div class="sidebar sidebar-main custom sidebar-<%= COLOR.sidebar %>" ng-show="baseController.SESSION.isLogged()">
+<div class="sidebar sidebar-main custom sidebar-<%= COLOR.sidebar %> bg-<%= COLOR.menu %>-600"
+     ng-show="baseController.SESSION.isLogged()">
     <div class="sidebar-content">
         <!-- Main navigation -->
         <div class="sidebar-category sidebar-category-visible">
             <div class="category-content no-padding">
-                <ul class="navigation navigation-main navigation-accordion dragon-menu">
+                <ul class="navigation navigation-main navigation-accordion dragon-menu bg-<%= COLOR.menu %>-800">
 
                     <% /*1*/ for(var menu of CONFIG.menus) { %>
                         <% if(!menu.class){ %>
                             <li>
-                                <a href="<%= menu.href %>">
+                                <a href="<%= menu.href %>" class="bg-<%= COLOR.menu %>-800">
                                     <i class="icon-<%= menu.icon %>"></i>
                                     <span><%= menu.text %></span>
                                 </a>
@@ -19,7 +20,7 @@
                                         <% /*2*/ for(var menu2 of menu.menus) { %>
                                             <% if(!menu2.class){ %>
                                                 <li>
-                                                    <a href="<%= menu2.href %>">
+                                                    <a href="<%= menu2.href %>" class="bg-<%= COLOR.menu %>-800">
                                                         <i class="icon-<%= menu2.icon %>"></i>
                                                         <span><%= menu2.text %></span>
                                                     </a>
@@ -30,7 +31,8 @@
                                                                 <% if(!menu3.class){ %>
                                                                     <li>
                                                                         <a data-function="menu"
-                                                                           href="<%= menu3.href %>">
+                                                                           href="<%= menu3.href %>"
+                                                                           class="bg-<%= COLOR.menu %>-800">
                                                                             <i class="icon-<%= menu3.icon %>"></i>
                                                                             <span><%= menu3.text %></span>
                                                                         </a>
@@ -41,7 +43,8 @@
                                                                                     <% if(!menu4.class){ %>
                                                                                         <li>
                                                                                             <a data-function="menu"
-                                                                                               href="<%= menu4.href %>">
+                                                                                               href="<%= menu4.href %>"
+                                                                                               class="bg-<%= COLOR.menu %>-800">
                                                                                                 <i class="icon-<%= menu4.icon %>"></i>
                                                                                                 <span><%= menu4.text %></span>
                                                                                             </a>
@@ -52,7 +55,8 @@
                                                                                                         <% if(!menu5.class){ %>
                                                                                                             <li>
                                                                                                                 <a data-function="menu"
-                                                                                                                   href="<%= menu5.href %>">
+                                                                                                                   href="<%= menu5.href %>"
+                                                                                                                   class="bg-<%= COLOR.menu %>-800">
                                                                                                                     <i class="icon-<%= menu5.icon %>"></i>
                                                                                                                     <span><%= menu5.text %></span>
                                                                                                                 </a>
@@ -63,7 +67,8 @@
                                                                                                                             <% if(!menu6.class){ %>
                                                                                                                                 <li>
                                                                                                                                     <a data-function="menu"
-                                                                                                                                       href="<%= menu6.href %>">
+                                                                                                                                       href="<%= menu6.href %>"
+                                                                                                                                       class="bg-<%= COLOR.menu %>-800">
                                                                                                                                         <i class="icon-<%= menu6.icon %>"></i>
                                                                                                                                         <span><%= menu6.text %></span>
                                                                                                                                     </a>
@@ -152,4 +157,11 @@
 
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $(document).on('click', '.dragon-menu a:not(.has-ul)', function () {
+            $("body").removeClass("sidebar-mobile-main");
+        });
+    });
+</script>
 <!-- /main sidebar -->

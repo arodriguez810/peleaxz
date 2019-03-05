@@ -26,7 +26,7 @@ PAGINATOR = {
             }
         };
         $scope.limitActive = function (limit) {
-            return $scope.table.currentLimit === limit ? String.format("bg-{0}", TAG.navbar) : '';
+            return $scope.table.currentLimit === limit ? String.format("bg-{0}-300", TAG.table) : '';
         };
         $scope.pageChanged = function () {
             STORAGE.savePage($scope);

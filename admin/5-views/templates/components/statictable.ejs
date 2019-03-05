@@ -1,0 +1,24 @@
+<script>
+
+</script>
+<div class="dragon-panel" id="TablePanel" style="overflow-x: scroll;overflow-y: visible">
+    <table class="table thistable table-togglable table-framed datatable">
+
+    </table>
+</div>
+<script>
+    $(document).ready(function () {
+        if (baseController.viewData.staticdata.length > 0) {
+            var columns = [];
+            for (var i in baseController.viewData.staticdata[0]) {
+                columns.push({title: capitalize(i)});
+            }
+            var table = $('.thistable').DataTable({
+                data: DSON.jsonToArray(baseController.viewData.staticdata),
+                columns: columns,
+                responsive:true
+            });
+            $('.thistable thead th').addClass(`bg-${TAG.table}`);
+        }
+    });
+</script>

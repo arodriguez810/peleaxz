@@ -1,11 +1,8 @@
-<div
-
-
-        class="page-header-lg page-header-sm  page-header-xs page-header page-header-default border-bottom-lg border-bottom-<%= TAG.border %>">
+<div class="page-header-lg page-header-sm  page-header-xs page-header page-header-default border-bottom-lg border-bottom-<%= TAG.border %>">
     <!--Breadcrumb and Table Options-->
     <div class="breadcrumb-line"><a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
 
-        <ul class="breadcrumb" ng-show="!<%= scope %>.modal.isOpen()">
+        <ul class="breadcrumb visible-lg visible-md" ng-show="!<%= scope %>.modal.isOpen()">
             <li ng-repeat="(key, menu) in <%= scope %>.MENU.parents track by key">
                 <a data-function="menu" href="javascript:void(0)">
                     <i class="{{menu.icon}} position-left"></i>
@@ -35,13 +32,33 @@
             </li>
         </ul>
         <ul class="breadcrumb-elements">
-
             <li ng-show="<%= scope %>.records.data.length>1">
                 <a title="Restore configuration for this table" ng-click="<%= scope %>.restoreStorage()"
                    ng-show="<%= scope %>.characterist('persist')"
                    class="legitRipple">
                     <i title="Restore configuration for this table" class="icon-loop"></i> 
                 </a>
+            </li>
+            <li class="dropdown" ng-if="<%= scope %>.hideColumnsCount()">
+                <a title="Hide Columns" href="#" class="dropdown-toggle legitRipple" data-toggle="dropdown"
+                   aria-expanded="false">
+                    <i title="Hide Columns" class=" icon-list3 "></i>
+                    <span class="label bg-<%= TAG.table %>-400">{{<%= scope %>.hideColumns().length}}</span>
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li ng-repeat="(keyblock,item) in <%= scope %>.columns() track by keyblock"
+                        ng-if="item.visible===false">
+                        <a class="legitRipple" title="Column" ng-click="<%= scope %>.showColumn(keyblock);">
+                            {{item.label||keyblock}} <i title="Hide Columns"
+                                                                           class="icon-eye-plus"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a ng-click="<%= scope %>.showallColumn();" class="legitRipple" title="Show all Columns">Show
+                            All</a>
+                    </li>
+                </ul>
             </li>
             <li class="dropdown" ng-show="<%= scope %>.records.data.length>1">
                 <a title="Records Per Page" href="#" class="dropdown-toggle legitRipple" data-toggle="dropdown"
@@ -58,12 +75,35 @@
                 </ul>
             </li>
 
-            <li ng-if="<%= scope %>.allow('filter') && <%= scope %>.filters!==undefined">
-                <a ng-click="<%= scope %>.openFilters();" class="legitRipple" title="Filter">
-                    <i title="Filter" class="icon-filter4"></i> 
+            <li class="dropdown" ng-if="<%= scope %>.allow('filter') && <%= scope %>.filters!==undefined">
+
+                <a title="Filters" href="#" class="dropdown-toggle legitRipple" data-toggle="dropdown"
+                   aria-expanded="false">
+                    <i title="Filters" class=" icon-filter4 "></i>
                     <span ng-show="<%= scope %>.filters.blocks.length"
                           class="label bg-<%= TAG.table %>-400">{{<%= scope %>.filters.blocks.length}}</span>
+                    <span class="caret"></span>
                 </a>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li>
+                        <a ng-click="<%= scope %>.openFilters();" class="legitRipple" title="Filter">Open</a>
+                    </li>
+                    <li ng-repeat="(keyblock,item) in <%= scope %>.filters.blocksDescription() track by keyblock">
+                        <a class="legitRipple" title="Filter" ng-click="<%= scope %>.filters.removeApply(item);">
+                            <b>{{item.column.label}}</b> {{item.operator.text}}
+                            <b ng-if="!Array.isArray(item.showvalue)">{{item.showvalue}}</b>
+                            <span ng-if="Array.isArray(item.showvalue)" class="label bg-<%= TAG.table %> label-rounded"
+                                  ng-repeat="(id,sub) in item.showvalue track by id">
+                                {{sub}}
+                            </span>
+                            [remove]
+                        </a>
+                    </li>
+                    <li>
+                        <a ng-click="<%= scope %>.filters.clearApply();" class="legitRipple" title="Filter">Clear
+                            All</a>
+                    </li>
+                </ul>
             </li>
             <li class="dropdown" ng-show="<%= scope %>.records.data.length>1">
                 <a title="Export as" href="#" class="dropdown-toggle legitRipple" data-toggle="dropdown"
@@ -86,7 +126,7 @@
 
                 </ul>
             </li>
-            <li class="dropdown" ng-show="<%= scope %>.allow('import') && <%= scope %>.records.data.length>1">
+            <li class="dropdown" ng-show="!<%= scope %>.report && <%= scope %>.allow('import') && <%= scope %>.records.data.length>1">
                 <a title="Import" href="#" class="dropdown-toggle legitRipple" data-toggle="dropdown"
                    aria-expanded="false">
                     <i title="Import" class="icon-database-upload"></i>
@@ -98,7 +138,7 @@
                     <li><a ng-click="<%= scope %>.export.importModal()"> <i class="icon-import"></i>Import</a></li>
                 </ul>
             </li>
-            <li class="dropdown" ng-show="<%= scope %>.characterist('batch') && <%= scope %>.records.data.length>1">
+            <li class="dropdown" ng-show="!<%= scope %>.report && <%= scope %>.characterist('batch') && <%= scope %>.records.data.length>1">
                 <a title="Batch Actions" href="#" class="dropdown-toggle legitRipple" data-toggle="dropdown"
                    aria-expanded="false">
                     <i title="Batch Actions" class="icon-stack-check "></i>
@@ -114,6 +154,9 @@
                     <li ng-show="<%= scope %>.activeColumn()">
                         <a ng-click="<%= scope %>.activeSelected(0)"><i class="icon-circle"></i>Disable</a>
                     </li>
+                    <li>
+                        <a ng-click="<%= scope %>.copyMultiple()"><i class="icon-copy"></i>Copy Selected</a>
+                    </li>
                 </ul>
             </li>
             <li>
@@ -121,7 +164,7 @@
                     <i title="Refresh" class="icon-rotate-cw3 loadingButton"></i> 
                 </a>
             </li>
-            <li ng-show="<%= scope %>.allow('add')">
+            <li ng-show="!<%= scope %>.report && <%= scope %>.allow('add')">
                 <a ng-click="<%= scope %>.formulary(null,'new')" class="legitRipple">
                     <i title="Add" class="icon-plus-circle2 "></i> 
                 </a>

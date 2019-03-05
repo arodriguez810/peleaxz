@@ -5,7 +5,7 @@ var options = {
     icon: {
         class: "none",
         position: "left",
-        color: COLOR.primary
+        color: TAG.table+"-800"
     },
     helptext: '',
     posttype: "color",
@@ -81,5 +81,15 @@ var toclient = JSON.stringify(options);
             if (isReadProgram !== undefined)
                 $('.sp-preview-inner').css('background-color', isReadProgram)
         }
+
+        $('[name="<%= model %>_<%= name %>"]').change(function () {
+            $(".map-wrapper").hide();
+            STEP.register({
+                    scope: "<%= model %>",
+                    action: "Change Color",
+                    field: "<%= name %>",
+                    value: <%= model %>.<%= name %>
+            });
+        });
     });
 </script>

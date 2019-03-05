@@ -1,5 +1,4 @@
 var app = angular.module('app', ['ngSanitize']);
-
 app.directive("repeatEnd", function () {
     return {
         restrict: "A",
@@ -10,7 +9,6 @@ app.directive("repeatEnd", function () {
         }
     };
 });
-
 app.factory('logTimeTaken', [function () {
     var logTimeTaken = {
         request: function (config) {
@@ -24,11 +22,18 @@ app.factory('logTimeTaken', [function () {
     };
     return logTimeTaken;
 }]);
-
 app.config(['$httpProvider', function ($httpProvider) {
     $httpProvider.interceptors.push('logTimeTaken');
+    if (SESSION.isLogged())
+        $httpProvider.defaults.headers.common['x-access-token'] = SESSION.current().token;
 }]);
-
+$.ajaxSetup({
+    beforeSend: function (xhr) {
+        console.log('beforeSend');
+        if (SESSION.isLogged())
+            xhr.setRequestHeader("x-access-token", SESSION.current().token);
+    }
+});
 
 app.controller('baseController', function ($scope, $http, $compile, $controller) {
     var baseController = this;
@@ -37,8 +42,6 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
     baseController.favorites = [];
     baseController.$scope = $scope;
     baseController.CONFIG = CONFIG;
-
-
     baseController.refreshAngular = function () {
         baseController.$scope.$digest();
     };
@@ -62,6 +65,7 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
             baseController.favorites = newarray;
         }
     };
+
 });
 
 CHILDSCOPES = [];
@@ -94,6 +98,13 @@ GARBAGECOLECTOR = function (exclude) {
 };
 
 RUN_A = function (conrollerName, inside, $scope, $http, $compile) {
+    inside.MENU = MENU.current;
+    inside.modelName = conrollerName;
+    inside.singular = inside.modelName.split('_')[1];
+    inside.plural = pluralize(inside.singular);
+    inside.$http = $http;
+    inside.$compile = $compile;
+    inside.$scope = $scope;
     API.run(inside, $http);
     COMPILE.run(inside, $scope, $compile);
     LOAD.run(inside, $http);
@@ -102,6 +113,15 @@ RUN_A = function (conrollerName, inside, $scope, $http, $compile) {
     STORAGE.run(inside);
     FORM.run(inside, $http);
     VALIDATION.run(inside);
+    inside.refreshAngular = function () {
+        inside.$scope.$digest();
+    };
+    $scope.$on('$destroy', function () {
+        console.log('$destroy ' + inside.modelName);
+    });
+    if (MODAL.history.length === 0) {
+        baseController.currentModel = inside;
+    }
 };
 
 RUN_B = function (conrollerName, inside, $scope, $http, $compile) {
@@ -110,7 +130,6 @@ RUN_B = function (conrollerName, inside, $scope, $http, $compile) {
 };
 
 RUNCONTROLLER = function (conrollerName, inside, $scope, $http, $compile) {
-
     GARBAGECOLECTOR(conrollerName);
     inside.MENU = MENU.current;
     inside.modelName = conrollerName;
@@ -124,16 +143,16 @@ RUNCONTROLLER = function (conrollerName, inside, $scope, $http, $compile) {
     COMPILE.run(inside, $scope, $compile);
     CRUD.run(inside, inside.crudConfig);
     STORAGE.run(inside);
-    FILTER.run(inside);
     TABLE.run(inside, $http, $compile);
+    LOAD.run(inside, $http);
+    MODAL.run(inside, $compile);
+    FILTER.run(inside);
     TABLEOPTIONS.run(inside);
     TABLEEVENT.run(inside, $http, $compile);
     TABLEFORMAT.run(inside);
     PAGINATOR.run(inside);
     SORTABLE.run(inside);
-    MODAL.run(inside, $compile);
     TABLESELECTION.run(inside);
-    LOAD.run(inside, $http);
     PERMISSIONS.run(inside);
     MENU.run(inside);
     EXPORT.run(inside);
@@ -143,7 +162,7 @@ RUNCONTROLLER = function (conrollerName, inside, $scope, $http, $compile) {
     };
     inside.refresh();
     $scope.$on('$destroy', function () {
-
+        console.log('$destroy ' + inside.modelName);
     });
     if (MODAL.history.length === 0) {
         baseController.currentModel = inside;
