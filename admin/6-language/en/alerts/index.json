@@ -1,0 +1,14 @@
+{
+  "Edit": "Edit",
+  "View": "View",
+  "Loading": "Loading",
+  "Remove": "Remove",
+  "Enable": "Enable",
+  "Disable": "Disable",
+  "Copy": "Copy",
+  "CopyRecords": "Copy Records",
+  "CopyngRecord": "Copy Record",
+  "CopyngRecords": "Copy Records",
+  "CopyAlert": "This option copy this record without relations and paste in a new one with last ID. <br> ¿Are you sure you want copy this record?",
+  "Clipboard": "Clipboard"
+}

@@ -1,0 +1,15 @@
+{
+  "Child": "Child Page",
+  "GrantParent": "GrantParent",
+  "Parent": "Parent",
+  "Tutorial": "Tutorial",
+  "Other": "Other",
+  "Parent2": "Parent2",
+  "Product": "Product",
+  "Category": "Category",
+  "Administration": "Administration",
+  "Users": "Users",
+  "ExternalUsers": "ExternalUsers",
+  "UserReport": "UserReport",
+  "Extra": "Extra"
+}

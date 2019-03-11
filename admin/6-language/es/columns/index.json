@@ -1,0 +1,11 @@
+{
+  "ID": "ID",
+  "username": "Username",
+  "password": "Password",
+  "login": "Sing In",
+  "remember": "Remember",
+  "name": "Nombre",
+  "ms_product_name": "Product",
+  "ms_user_name": "User",
+  "ms_category_name": "Category"
+}
