@@ -6,13 +6,13 @@ VALIDATION = DSON.merge(VALIDATION, {
             if (!soft)
                 return {
                     valid: value.length >= count,
-                    message: `You must select at least ${count} elements`,
+                    message: `${MESSAGE.i('validations.Youmustselectatleast')} ${count} ${MESSAGE.i('mono.elements')}`,
                     type: VALIDATION.types.error
                 };
             else
                 return {
                     valid: value.length >= count,
-                    message: `We recommend that you select at least ${count} items`,
+                    message: `${MESSAGE.i('validations.Werecommendthatyouselectatleast')} ${count} ${MESSAGE.i('mono.items')}`,
                     type: VALIDATION.types.warning
                 };
         },
@@ -22,13 +22,13 @@ VALIDATION = DSON.merge(VALIDATION, {
             if (!soft)
                 return {
                     valid: value.length >= count,
-                    message: `You must select at least ${count} elements`,
+                    message: `${MESSAGE.i('validations.Youmustselectatleast')} ${count} ${MESSAGE.i('mono.elements')}`,
                     type: VALIDATION.types.error
                 };
             else
                 return {
                     valid: value.length >= count,
-                    message: `We recommend that you select at least ${count} items`,
+                    message: `${MESSAGE.i('validations.Werecommendthatyouselectatleast')} ${count} ${MESSAGE.i('mono.items')}`,
                     type: VALIDATION.types.warning
                 };
         }

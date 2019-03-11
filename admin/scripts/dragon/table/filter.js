@@ -20,27 +20,28 @@ FILTER = {
         group: 'group',
         bool: 'bool'
     },
-    operators: [
-        {text: 'Contains', operator: `LIKE`, value: '%{0}%', type: 'string'},
-        {text: 'Not contains', operator: `NOT LIKE`, value: '%{0}%', type: 'string'},
-        {text: 'Equal to', operator: `=`, value: '{0}', type: 'all'},
-        {text: 'Different to', operator: `!=`, value: '{0}', type: 'all'},
-        {text: 'Starts with', operator: `LIKE`, value: '{0}%', type: 'string'},
-        {text: 'Not starts with', operator: `NOT LIKE`, value: '{0}%', type: 'string'},
-        {text: 'Ends with', operator: `LIKE`, value: '%{0}', type: 'string'},
-        {text: 'Not ends with', operator: `NOT LIKE`, value: '%{0}', type: 'string'},
-        {text: 'Only not set', operator: `IS NULL`, value: '$', type: 'all', disabled: true},
-        {text: 'Less than', operator: `<`, value: '{0}', type: 'logic'},
-        {text: 'Less than or equal to', operator: `<=`, value: '{0}', type: 'logic'},
-        {text: 'Greater than', operator: `>`, value: '{0}', type: 'logic'},
-        {text: 'Greater than or equal to', operator: `>=`, value: '{0}', type: 'logic'},
-        {text: 'Exist in', operator: `in`, value: "", type: 'group'},
-        {text: 'Not Exist in', operator: `not in`, value: "", type: 'group'},
-        {text: 'Only not set', operator: `IS NULL`, value: '$', type: 'group', disabled: true},
-        {text: 'Is True', operator: `= '1'`, value: '$', type: 'bool'},
-        {text: 'Is False', operator: `= '0'`, value: '$', type: 'bool'},
-    ],
     run: function ($scope) {
+        FILTER.operators = [
+            {text: MESSAGE.i('mono.Contains'), operator: `LIKE`, value: '%{0}%', type: 'string'},
+            {text: MESSAGE.i('mono.Notcontains'), operator: `NOT LIKE`, value: '%{0}%', type: 'string'},
+            {text: MESSAGE.i('mono.Equalto'), operator: `=`, value: '{0}', type: 'all'},
+            {text: MESSAGE.i('mono.Differentto'), operator: `!=`, value: '{0}', type: 'all'},
+            {text: MESSAGE.i('mono.Startswith'), operator: `LIKE`, value: '{0}%', type: 'string'},
+            {text: MESSAGE.i('mono.Notstartswith'), operator: `NOT LIKE`, value: '{0}%', type: 'string'},
+            {text: MESSAGE.i('mono.Endswith'), operator: `LIKE`, value: '%{0}', type: 'string'},
+            {text: MESSAGE.i('mono.Notendswith'), operator: `NOT LIKE`, value: '%{0}', type: 'string'},
+            {text: MESSAGE.i('mono.Onlynotset'), operator: `IS NULL`, value: '$', type: 'all', disabled: true},
+            {text: MESSAGE.i('mono.Lessthan'), operator: `<`, value: '{0}', type: 'logic'},
+            {text: MESSAGE.i('mono.Lessthanorequalto'), operator: `<=`, value: '{0}', type: 'logic'},
+            {text: MESSAGE.i('mono.Greaterthan'), operator: `>`, value: '{0}', type: 'logic'},
+            {text: MESSAGE.i('mono.Greaterthanorequalto'), operator: `>=`, value: '{0}', type: 'logic'},
+            {text: MESSAGE.i('mono.Existin'), operator: `in`, value: "", type: 'group'},
+            {text: MESSAGE.i('mono.NotExistin'), operator: `not in`, value: "", type: 'group'},
+            {text: MESSAGE.i('mono.Onlynotset'), operator: `IS NULL`, value: '$', type: 'group', disabled: true},
+            {text: MESSAGE.i('mono.IsTrue'), operator: `= '1'`, value: '$', type: 'bool'},
+            {text: MESSAGE.i('mono.IsFalse'), operator: `= '0'`, value: '$', type: 'bool'},
+        ];
+
         if ($scope.crud.table.filters !== undefined) {
             $scope.filters = {};
             $scope.filters.fields = $scope.crud.table.filters.columns;
@@ -150,6 +151,14 @@ FILTER = {
                     });
                 }
             };
+
+            $scope.filters.label = function (column) {
+                if (MESSAGE.exist('columns.' + column.key)) {
+                    return MESSAGE.i('columns.' + column.key);
+                } else {
+                    return column.label;
+                }
+            };
             $scope.filters.getSelect = function (block) {
                 return eval(`$scope.filters.options.${block.column.key}`);
             };
@@ -203,7 +212,8 @@ FILTER = {
                 return type.indexOf(filterType) !== -1;
             };
             $scope.filters.close = function () {
-                MODAL.close($scope);
+                if (MODAL.history.length > 0)
+                    MODAL.close($scope);
             };
             $scope.filters.colored = function (block) {
                 var color = 'alpha-' + TAG.table;
@@ -274,13 +284,15 @@ FILTER = {
                 $scope.filters.apply();
             };
             $scope.filters.apply = function (close) {
-                if (!$scope.filters.validateParentesis()) {
-                    SWEETALERT.show({
-                        type: "error",
-                        title: "Missing parentheses",
-                        message: `It is necessary to close some of the opened parentheses, to find the indicated one in the shading of each filter.`
-                    });
-                    return;
+                if ($scope.filters.blocks.length > 0) {
+                    if (!$scope.filters.validateParentesis()) {
+                        SWEETALERT.show({
+                            type: "error",
+                            title: "Missing parentheses",
+                            message: `It is necessary to close some of the opened parentheses, to find the indicated one in the shading of each filter.`
+                        });
+                        return;
+                    }
                 }
 
                 STEP.register({
@@ -295,6 +307,7 @@ FILTER = {
                 if (DSON.oseaX(close))
                     $scope.filters.close();
                 $scope.refresh();
+                MESSAGE.run();
             };
             $scope.filters.clearApply = function () {
                 STEP.register({
@@ -408,9 +421,9 @@ FILTER = {
                     var realColumn = $scope.filters.fields.filter(function (item) {
                         return item.key === i;
                     })[0];
-                    description.push(`<b class="text-${TAG.table}-800">${realColumn.label}:</b> ` + (items.join(' ') + "*****").replace(`<b class="text-${TAG.table}-800">AND</b>*****`, '').replace(`<b class="text-${TAG.table}-800">OR</b>*****`, ''));
+                    description.push(`<b class="text-${TAG.table}-800">${$scope.filters.label(realColumn)}:</b> ` + (items.join(' ') + "*****").replace(`<b class="text-${TAG.table}-800">AND</b>*****`, '').replace(`<b class="text-${TAG.table}-800">OR</b>*****`, ''));
                 }
-                return "<b>Filters:</b> " + description.join('');
+                return "<b>" + MESSAGE.ic('mono.filters') + ":</b> " + description.join('');
             };
             $scope.filters.descriptionPlane = function () {
                 var where = [];
@@ -423,7 +436,7 @@ FILTER = {
                         if (Array.isArray(showvalue)) {
                             if (item.column.type === FILTER.types.relation) {
                                 var itemsElements = $scope.filters.getSelect(item);
-                                if (itemsElements != undefined) {
+                                if (itemsElements !== undefined) {
 
                                     var selecteds = itemsElements.filter(function (it) {
                                         return eval(`showvalue.indexOf(it.${item.column.value}.toString())!==-1`);
@@ -475,7 +488,7 @@ FILTER = {
                     var realColumn = $scope.filters.fields.filter(function (item) {
                         return item.key === i;
                     })[0];
-                    description.push(`${realColumn.label}: ` + (items.join(' ') + "*****").replace(`AND*****`, '').replace(`OR*****`, ''));
+                    description.push(`${$scope.filters.label(realColumn)}: ` + (items.join(' ') + "*****").replace(`AND*****`, '').replace(`OR*****`, ''));
                 }
                 return "Filters:\n" + description.join('\n');
             };

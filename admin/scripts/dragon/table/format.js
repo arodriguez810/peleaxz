@@ -51,7 +51,7 @@ TABLEFORMAT = {
                 $scope.table.currentPage * $scope.table.currentLimit -
                 ($scope.table.currentLimit - 1);
             var result = String.format(
-                "{0} sorted by {1} {2}ending, showing {3} to {4} of {5} entries",
+                MESSAGE.i('table.tableStatus'),
                 $scope.plural,
                 $scope.table.orderby,
                 $scope.table.order,
@@ -62,9 +62,12 @@ TABLEFORMAT = {
 
             return result;
         };
-        $scope.columnLabel = function (value, key) {
+        $scope.columnLabel = function (value, key, func) {
             var label = value.label || key;
-            if (typeof value.label === "function") return value.label();
+            if (func === undefined)
+                if (typeof value.label === "function") return value.label();
+            if (MESSAGE.exist(`columns.${key}`))
+                return capitalize(MESSAGE.i(`columns.${key}`));
             return capitalize(label);
         };
         $scope.columnLabelStrip = function (value, key) {
@@ -149,8 +152,8 @@ TABLEFORMAT = {
                     return (date.getDate() + 1 + "/" + date.getMonth() + "/" + date.getFullYear() + " " + strTime);
                 } else if (column.formattype === "bool") {
                     if (DSON.oseaX(value)) return DSON.noset();
-                    if (value) return 'Yes';
-                    else return 'No';
+                    if (value) return MESSAGE.ic('mono.yes');
+                    else return MESSAGE.ic('mono.no');
                 } else if (column.formattype.indexOf("numeric") !== -1) {
                     if (DSON.oseaX(value)) return "";
                     if ([ENUM.file.formats.XLS, ENUM.file.formats.CSV, ENUM.file.formats.Clipboard].indexOf(extra.type) !== -1)
@@ -182,7 +185,7 @@ TABLEFORMAT = {
                             }
                             case "all": {
                                 if (FILE.noSupport(value)) {
-                                    return "Not Support";
+                                    return MESSAGE.i('mono.NotSupport');
                                 }
                                 if (FILE.isImage(value))
                                     return String.format("<img src='{0}'/>", fileUrl);

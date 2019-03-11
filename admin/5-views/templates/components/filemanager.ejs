@@ -72,12 +72,12 @@
         if (FILE.isImage(file.fileName)) {
             LOAD.template('templates/components/crop', {src: file.url}, function (html) {
                 <%= DATA.scope %>.
-                modal.simpleModal(html, {header: {title: 'Image Full Preview'}});
+                modal.simpleModal(html, {header: {title: MESSAGE.i('mono.preview')}});
             });
         } else {
             LOAD.template('templates/components/object', {src: file.url}, function (html) {
                 <%= DATA.scope %>.
-                modal.simpleModal(html, {header: {title: 'File Preview'}});
+                modal.simpleModal(html, {header: {title: MESSAGE.ic('mono.preview')}});
             });
         }
     };
@@ -142,9 +142,9 @@
                 finalArray.push(files[i].cleanUrl);
             }
         SWEETALERT.confirm({
-            message: "¿Are you sure you want delete this files/folders?, if it is a folder all the files inside it will be deleted recursively",
+            message: MESSAGE.i('alerts.AYSDeleteFileFolder'),
             confirm: function () {
-                SWEETALERT.loading({message: "Deleting Files"});
+                SWEETALERT.loading({message: MESSAGE.i('mono.deleting')});
                 BASEAPI.ajax.post(HTTP.path(["files", "api", "delete"]), {filename: finalArray}, function (data) {
                     SWEETALERT.stop();
                     if (data.data.deleted) {
@@ -158,9 +158,9 @@
     <%= DATA.scope %>.galleryFiles.downloadAll = function () {
         var allFileName = new Date().getTime() + ".dragonfile";
         SWEETALERT.confirm({
-            message: "¿Are you sure you want download all files?",
+            message: MESSAGE.i('alerts.AYSDownloadAll'),
             confirm: function () {
-                SWEETALERT.loading({message: "Preparing download for files"});
+                SWEETALERT.loading({message: MESSAGE.i('mono.Preparingdownloadforfiles')});
                 BASEAPI.ajax.get(HTTP.path(["files", "api", "download"]), {
                     folder: viewModel.root,
                     name: allFileName + ".zip"
@@ -208,10 +208,10 @@
         galleryFiles.refresh();
     };
 </script>
-<div
+<div dragonlanguage=""
         ng-show="<%= DATA.scope %>.galleryFiles.columns && <%= DATA.scope %>.galleryFiles.data.files.length<=0"
         class="alert alpha-<%= TAG.table %> border-<%= TAG.table %> alert-styled-left">
-    There is no files to show.
+    <language>MESSAGE.i('mono.Thereisnofilestoshow')</language>
 </div>
 
 <div class="btn-group btn-group-justified">
@@ -258,7 +258,7 @@
 <div class="panel panel-flat"
      ng-show="(<%= DATA.scope %>.galleryFiles.upload && <%= DATA.scope %>.galleryFiles.columns) && <%= DATA.scope %>.galleryFiles.reachMaxFiles()">
     <div class="panel-heading">
-        <h5 class="panel-title">Select or Drop Files</h5>
+        <h5 dragonlanguage class="panel-title"><language>MESSAGE.i('alerts.SelectorDropFiles')</language></h5>
     </div>
     <div class="panel-body">
         <form class="dropzone" id="filesForm" method="post" enctype="multipart/form-data">
@@ -280,7 +280,7 @@
             <th class="col-lg-9">
 
             </th>
-            <th class="col-lg-3">Options</th>
+            <th dragonlanguage="" class="col-lg-3">MESSAGE.ic('mono.options')</th>
         </tr>
         </thead>
         <tbody>
@@ -327,7 +327,7 @@
         <tfoot>
         <tr class="bg-<%= TAG.table %>">
             <th class="col-lg-9">File/Folder</th>
-            <th class="col-lg-3">Options</th>
+            <th dragonlanguage="" class="col-lg-3">MESSAGE.ic('mono.options')</th>
         </tr>
         </tfoot>
     </table>
@@ -336,8 +336,8 @@
     $(document).ready(function () {
         $("#filesForm").attr('action', HTTP.path(["files", "api", "upload"]));
         $("#filesForm").dropzone({
-            paramName: "toupload", // The name that will be used to transfer the file
-            dictDefaultMessage: 'Drop files to upload <span>or CLICK</span>',
+            paramName: "toupload",
+            dictDefaultMessage: MESSAGE.i('alerts.upload'),
             maxFilesize: viewModel.maxsize || 20, // MB
             maxFiles: viewModel.maxfiles || 20,
             acceptedFiles: viewModel.acceptedFiles || null,

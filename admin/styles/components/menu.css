@@ -1,0 +1,32 @@
+.developerby {
+    font-size: 10px;
+    margin: 20px 0px 0px 0px;
+    text-align: center;
+}
+
+.sidebar-mobile-toggler.text-center.visible-xs {
+    height: 50px;
+    text-align: center;
+}
+
+.navbar-brand-mobile {
+    float: left;
+    padding: 15px 20px !important;
+    font-size: 14px;
+    line-height: 20px;
+    height: 50px;
+    width: 100%;
+}
+
+.navbar-brand-mobile > img {
+    display: inline;
+}
+.navbar-brand-mobile > img {
+    margin: -5px 0px 0px 0px;
+    height: 32px;
+    float: left !important;
+}
+
+.sidebar-xs .developerby{
+    display: none;
+}

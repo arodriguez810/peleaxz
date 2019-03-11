@@ -9,7 +9,7 @@ ERROR = {
                 case category.database: {
                     SWEETALERT.show({
                         type: "error",
-                        message: "An error occurred in the database, would you like to send this error?"
+                        message: MESSAGE.i('alerts.ClientDbError')
                     });
                     break;
                 }
@@ -28,7 +28,7 @@ ERROR = {
                 case category.database: {
                     SWEETALERT.show({
                         type: "error",
-                        message: "Some errors occurred in the database, would you like to send errors?"
+                        message:  MESSAGE.i('alerts.ClientDbError')
                     });
                     break;
                 }

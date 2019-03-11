@@ -8,7 +8,7 @@ DSON.keepmerge(CRUD_ms_all,
             engine: 'ms',
             columns: {
                 id: {
-                    label: "ID",
+                    label:  "ID",
                     sorttype: "numeric",//numeric,amount,time
                     class: "text-left",
                     exportExample: false,
@@ -37,14 +37,14 @@ DSON.keepmerge(CRUD_ms_all,
                         wherelist: "all",
                         modal: {
                             header: {
-                                title: "Products of ${this.name}",
+                                title: "${this.name}",
                                 icon:  ICON.classes.archive
                             },
                             footer: {
                                 cancelButton: true
                             },
                             content: {
-                                loadingContentText: "Loading Products..."
+                                loadingContentText: MESSAGE.i('actions.Loading')
                             },
                         }
                     },
@@ -61,14 +61,14 @@ DSON.keepmerge(CRUD_ms_all,
                         wherelist: "all",
                         modal: {
                             header: {
-                                title: "Users Category Opinions of ${this.name}",
+                                title: "${this.name}",
                                 icon: ICON.classes.user
                             },
                             footer: {
                                 cancelButton: true
                             },
                             content: {
-                                loadingContentText: "Loading Users..."
+                                loadingContentText: MESSAGE.i('actions.Loading')
                             },
                         }
                     },
@@ -83,14 +83,14 @@ DSON.keepmerge(CRUD_ms_all,
                         from: "child",
                         modal: {
                             header: {
-                                title: "Detail of Child ${this.ms_child_name}",
+                                title: "${this.ms_child_name}",
                                 icon: ICON.classes.archive
                             },
                             footer: {
                                 cancelButton: true
                             },
                             content: {
-                                loadingContentText: "Loading Child Info"
+                                loadingContentText: MESSAGE.i('actions.Loading')
                             },
                         }
                     },
@@ -105,14 +105,14 @@ DSON.keepmerge(CRUD_ms_all,
                         from: "category",
                         modal: {
                             header: {
-                                title: "Detail of Child ${this.ms_child_name}",
+                                title: "${this.ms_child_name}",
                                 icon: ICON.classes.archive
                             },
                             footer: {
                                 cancelButton: true
                             },
                             content: {
-                                loadingContentText: "Loading Category Info"
+                                loadingContentText: MESSAGE.i('actions.Loading')
                             },
                         }
                     },
@@ -127,14 +127,14 @@ DSON.keepmerge(CRUD_ms_all,
                         from: "product",
                         modal: {
                             header: {
-                                title: "Detail of Product ${this.ms_child_name}",
+                                title: "${this.ms_child_name}",
                                 icon: ICON.classes.archive
                             },
                             footer: {
                                 cancelButton: true
                             },
                             content: {
-                                loadingContentText: "Loading Product Info"
+                                loadingContentText: MESSAGE.i('actions.Loading')
                             },
                         }
                     },
@@ -149,14 +149,14 @@ DSON.keepmerge(CRUD_ms_all,
                         from: "other",
                         modal: {
                             header: {
-                                title: "Detail of Other ${this.ms_other_name}",
+                                title: "${this.ms_other_name}",
                                 icon: ICON.classes.cube
                             },
                             footer: {
                                 cancelButton: true
                             },
                             content: {
-                                loadingContentText: "Loading Other Info"
+                                loadingContentText: MESSAGE.i('actions.Loading')
                             },
                         }
                     }
@@ -218,14 +218,14 @@ DSON.keepmerge(CRUD_ms_all,
                         modal: {
                             width: 'modal-full',
                             header: {
-                                title: "Image of ${this.name}",
+                                title: "${this.name}",
                                 icon: ICON.classes.images3
                             },
                             footer: {
                                 cancelButton: true
                             },
                             content: {
-                                loadingContentText: "Loading Image"
+                                loadingContentText: MESSAGE.i('actions.Loading')
                             },
                         }
                     },
@@ -243,14 +243,14 @@ DSON.keepmerge(CRUD_ms_all,
                         modal: {
                             width: 'modal-full',
                             header: {
-                                title: "Gallery of ${this.name}",
+                                title: "${this.name}",
                                 icon: ICON.classes.images3
                             },
                             footer: {
                                 cancelButton: true
                             },
                             content: {
-                                loadingContentText: "Loading Images"
+                                loadingContentText: MESSAGE.i('actions.Loading')
                             },
                         }
                     },
@@ -268,14 +268,14 @@ DSON.keepmerge(CRUD_ms_all,
                         modal: {
                             width: 'modal-full',
                             header: {
-                                title: "File of ${this.name}",
+                                title: "${this.name}",
                                 icon: ICON.classes.archive
                             },
                             footer: {
                                 cancelButton: true
                             },
                             content: {
-                                loadingContentText: "Loading File"
+                                loadingContentText: MESSAGE.i('actions.Loading')
                             },
                         }
                     },

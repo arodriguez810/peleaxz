@@ -1,3 +1,7 @@
 {
-  "example": "Hello Dragon"
+  "ColumnsinFirstRow": "Columns in First Row",
+  "ColumnsPosition": "Columns Position",
+  "OriginalFormat": "Original Format",
+  "Exampletoimportrecords": "Example to import records",
+  "Importfilesof": "Import files of"
 }

@@ -16,7 +16,26 @@
             var table = $('.thistable').DataTable({
                 data: DSON.jsonToArray(baseController.viewData.staticdata),
                 columns: columns,
-                responsive:true
+                responsive: true,
+                language: {
+                    emptyTable: MESSAGE.i('table.emptyTable'),
+                    info: MESSAGE.i('table.info'),
+                    infoEmpty: MESSAGE.i('table.infoEmpty'),
+                    infoFiltered: MESSAGE.i('table.infoFiltered'),
+                    infoPostFix: MESSAGE.i('table.infoPostFix'),
+                    thousands: MESSAGE.i('table.thousands'),
+                    lengthMenu: MESSAGE.i('table.lengthMenu'),
+                    loadingRecords: MESSAGE.i('table.loadingRecords'),
+                    processing: MESSAGE.i('table.processing'),
+                    search: MESSAGE.i('table.search'),
+                    zeroRecords: MESSAGE.i('table.zeroRecords'),
+                    paginate: {
+                        "first": MESSAGE.i('table.paginatefirst'),
+                        "last": MESSAGE.i('table.paginatelast'),
+                        "next": MESSAGE.i('table.paginatenext'),
+                        "previous": MESSAGE.i('table.paginateprevious'),
+                    }
+                }
             });
             $('.thistable thead th').addClass(`bg-${TAG.table}`);
         }

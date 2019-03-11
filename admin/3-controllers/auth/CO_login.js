@@ -34,7 +34,7 @@ app.controller("auth_login", function ($scope, $http, $compile) {
             } else {
                 SWEETALERT.show({
                     type: 'error',
-                    message: "Invalid credentials, please try again",
+                    message: MESSAGE.i('login.invalid'),
                     close: function () {
                         auth_login.password = "";
                     }
@@ -47,7 +47,7 @@ app.controller("auth_login", function ($scope, $http, $compile) {
             SWEETALERT.confirm({
                 type: "warning",
                 title: "Warnings",
-                message: "¿There are warnings in your form, are you sure want continue?",
+                message: MESSAGE.i('alerts.preventClose'),
                 confirm: function () {
                     auth_login.makeLogin();
                 }
@@ -59,7 +59,7 @@ app.controller("auth_login", function ($scope, $http, $compile) {
             return;
         }
         SWEETALERT.show({
-            message: "Please complete the form before continue."
+            message: MESSAGE.i('alerts.ContainsError')
         });
     };
 });

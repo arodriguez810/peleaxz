@@ -1,11 +1,6 @@
 {
   "menus": [
     {
-      "text": "home",
-      "href": "/",
-      "icon": "home"
-    },
-    {
       "text": "Grant Parent",
       "href": "#",
       "icon": "tree5",

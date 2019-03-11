@@ -18,6 +18,8 @@
     <link href="assets/js/plugins/date/jquery.datetimepicker.min.css" rel="stylesheet" type="text/css">
     <link href="assets/css/colors.css" rel="stylesheet" type="text/css">
 
+
+
     <% localStyles.forEach(function(item){ %>
         <link href="<%= FOLDERS.styles %>/<%= item %>" rel="stylesheet" type="text/css">
     <% }); %>
@@ -29,6 +31,8 @@
     <script type="text/javascript" src="assets/js/core/libraries/jquery.min.js"></script>
     <script type="text/javascript" src="assets/js/core/libraries/jquery_ui/core.min.js"></script>
     <script type="text/javascript" src="assets/js/core/libraries/jquery_ui/widgets.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/tables/datatables/datatables.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/tables/datatables/extensions/responsive.min.js"></script>
     <script type="text/javascript" src="assets/js/core/libraries/bootstrap.min.js"></script>
     <script type="text/javascript" src="assets/js/plugins/loaders/blockui.min.js"></script>
 
@@ -78,11 +82,11 @@
     <script type="text/javascript" src="node_modules/table-dragger/dist/table-dragger.min.js"></script>
     <script type="text/javascript" src="assets/js/plugins/excel/excelexportjs.js"></script>
     <script type="text/javascript" src="assets/js/plugins/docx/html-docx.js"></script>
-    <script type="text/javascript" src="assets/js/plugins/pickers/color/spectrum.js"></script>
+
 
 
     <script type="text/javascript" src="assets/js/core/app.js"></script>
-    <script type="text/javascript" src="assets/js/plugins/date/jquery.datetimepicker.full.min.js"></script>
+
     <script src="https://maps.googleapis.com/maps/api/js?key=<%= CONFIG.googlemap %>&amp;sensor=false&amp;libraries=places"></script>
 
     <script type="text/javascript" src="assets/js/plugins/pickers/location/typeahead_addresspicker.js"></script>
@@ -94,6 +98,8 @@
         <script src="<%= FOLDERS.scripts %>/<%= item %>"></script>
     <% }); %>
 
+
+
     <script>
         WARNINGREQUESTS = [];
         Dropzone.autoDiscover = false;
@@ -101,6 +107,8 @@
         CONFIG = eval("(" + CONFIG.replaceAll("&#34;", '"') + ")");
         LANGUAGE = "<%= JSON.stringify(LANGUAGE) %>";
         LANGUAGE = eval("(" + LANGUAGE.replaceAll("&#34;", '"') + ")");
+        SHOWLANGS = "<%= JSON.stringify(SHOWLANGS) %>";
+        SHOWLANGS = eval("(" + SHOWLANGS.replaceAll("&#34;", '"') + ")");
         COLOR = "<%= JSON.stringify(COLOR) %>";
         COLOR = eval("(" + COLOR.replaceAll("&#34;", '"') + ")");
         TAG = "<%= JSON.stringify(TAG) %>";
@@ -120,9 +128,12 @@
         var space = " ";
         $(".sidebar, .navbar, .navbar-brand, .navbar-text, .navbar-nav > li, .page-header, .page-title, .page-header .heading-elements, .breadcrumb, .breadcrumb-elements > li, .content > .panel, .content .row > [class*=col-], .footer")
             .css('opacity', 0);
+        MESSAGE.run();
     </script>
-    <script type="text/javascript" src="assets/js/plugins/tables/datatables/datatables.min.js"></script>
-    <script type="text/javascript" src="assets/js/plugins/tables/datatables/extensions/responsive.min.js"></script>
+
+    <script type="text/javascript" src="assets/js/plugins/pickers/color/spectrum.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/date/jquery.datetimepicker.full.min.js"></script>
+
     <% crudjs.forEach(function(item){ %>
         <script src="<%= FOLDERS.crud %>/<%= item %>"></script>
     <% }); %>
@@ -146,7 +157,7 @@
     <div id="modalpool">
 
     </div>
-    <button class=" upButtom btn bg-<%= COLOR.primary %>" title="Go to top">
+    <button dragonlanguage="" class=" upButtom btn bg-<%= COLOR.primary %>" title="MESSAGE.i('mono.GoToUp')">
         <i style="font-size: 30px;" class="icon-square-up"></i></button>
     <% include navbar %>
     <!-- Page container -->
@@ -162,7 +173,12 @@
                     <div class="text-center content-group"
                          style="background-image: url('assets/images/<%= COLOR.logo %>.svg');background-repeat: no-repeat;background-position: center;">
                         <h1 class="error-title dragon-welcome">
-                            Welcome to <%= CONFIG.appName %>
+                            <%= CONFIG.appName %>
+                            <script>
+                                if (document.location.href.indexOf('#') === -1) {
+                                    HTTP.redirecttag(CONFIG.home);
+                                }
+                            </script>
                         </h1>
                     </div>
                     <!-- /error title -->

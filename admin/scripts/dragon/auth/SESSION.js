@@ -31,7 +31,7 @@ SESSION = {
     },
     logoff: function () {
         SWEETALERT.confirm({
-            message: "¿Are you sure you want to close session?",
+            message: MESSAGE.i('alerts.AYSCloseSession'),
             confirm: function () {
                 SESSION.destroy();
                 HTTP.redirecttag('auth/login');
@@ -41,8 +41,8 @@ SESSION = {
     terminated: function () {
         SWEETALERT.show({
             type: ENUM.modal.type.warning,
-            title: "Session",
-            message: `Your session has been terminated, to access the ${CONFIG.appName} please login`,
+            title: MESSAGE.ic('mono.session'),
+            message: MESSAGE.i('alerts.SessionEnd'),
             confirm: function () {
                 MODAL.closeAll();
                 SESSION.destroy();

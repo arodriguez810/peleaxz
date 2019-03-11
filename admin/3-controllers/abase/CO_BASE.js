@@ -42,6 +42,9 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
     baseController.favorites = [];
     baseController.$scope = $scope;
     baseController.CONFIG = CONFIG;
+    baseController.SHOWLANGS = SHOWLANGS;
+    baseController.currentLang = MESSAGE.current();
+    baseController.changeLanguage = MESSAGE.change;
     baseController.refreshAngular = function () {
         baseController.$scope.$digest();
     };

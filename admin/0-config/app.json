@@ -1,13 +1,20 @@
 {
   "appName": "Dragon Framework",
+  "developerBy": {
+    "name": "Angel Rodríguez",
+    "profile": "https://google.com",
+    "site": "https://google.com"
+  },
   "logo": "Dragon Framework",
   "filePath": "files",
   "appKey": "d94g0nf94m3w09k",
   "mode": "developer",
   "language": "en",
+  "home": "ms_all",
   "features": {
     "fileManager": true,
     "stepManager": true,
-    "token": true
+    "token": true,
+    "language": true
   }
 }

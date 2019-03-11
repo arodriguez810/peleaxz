@@ -1,84 +1,10 @@
-<script>
-    var viewModel = MODAL.getViewData();
-    <%= DATA.scope %>.WARNINGREQUESTS = WARNINGREQUESTS;
-    <%= DATA.scope %>.generalAverage = 0;
-</script>
-<div
-        ng-show="WARNINGREQUESTS.length<=0"
-        class="alert alpha-<%= TAG.table %> border-<%= TAG.table %> alert-styled-left">
-    There is no request that jeopardizes the performance of the application
-</div>
-<button onclick="HTTP.resetManager();" type="button" class="btn bg-<%= TAG.table %>-600 btn-icon">
-    <span class="icon-reset"></span> Reset Report
+<button onclick="DSON.jsonToCSV(WARNINGREQUESTS, true, `${CONFIG.appName} Requests`);" type="button" class="btn bg-<%= TAG.table %>-600 btn-icon"
+        style="margin-bottom: 15px">
+    <span class="icon-reset"></span> Download Requests
 </button>
-<span class="badge badge-flat border-<%= TAG.table %> text-<%= TAG.table %>-800" style="font-size: 26px">
-    {{<%= DATA.scope %>.generalAverage}}
-</span>
-<div class="dragon-panel" id="TablePanel" style="overflow-x: scroll;overflow-y: visible">
-    <table class="table thistable table-togglable table-framed datatable">
-        <thead class="bg-<%= TAG.table %>">
-        <tr>
-            <th>URL</th>
-            <th>Method</th>
-            <th>Time</th>
-            <th>Date</th>
-            <th>Params</th>
-        </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-</div>
-<script>
-    $(document).ready(function () {
 
-
-        var table = $('.thistable').DataTable({
-            data: DSON.jsonToArray(WARNINGREQUESTS),
-            responsive:true,
-            "footerCallback": function (row, data, start, end, display) {
-                var api = this.api(), data;
-
-                // Remove the formatting to get integer data for summation
-                var intVal = function (i) {
-                    return typeof i === 'string' ?
-                        i.replace(/[\$,]/g, '') * 1 :
-                        typeof i === 'number' ?
-                            i : 0;
-                };
-
-                // Total over all pages
-                total = api.column(2).data().reduce(function (a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0);
-
-                // Total over this page
-                pageTotal = api.column(2, {page: 'current'}).data().reduce(function (a, b) {
-                    return intVal(a) + intVal(b);
-                }, 0);
-
-                var count = api.column(2, {page: 'current'}).data().length;
-                var countAll = api.column(2).data().length;
-
-                // Update footer
-                var averagePage = numeral(Number(pageTotal / count)).format("0,0");
-                var averageAll = numeral(Number(total / countAll)).format("0,0");
-
-                <%= DATA.scope %>.
-                generalAverage = averageAll;
-
-            }
-        });
-
-        $('.thistable tbody').on('mouseover', 'td', function () {
-            var colIdx = table.cell(this).index().column;
-
-            if (colIdx !== lastIdx) {
-                $(table.cells().nodes()).removeClass('active');
-                $(table.column(colIdx).nodes()).addClass('active');
-            }
-        }).on('mouseleave', function () {
-            $(table.cells().nodes()).removeClass('active');
-        });
-    });
-</script>
+<button onclick="HTTP.resetManager();" type="button" class="btn bg-<%= TAG.table %>-600 btn-icon"
+        style="margin-bottom: 15px">
+    <span class="icon-reset"></span> Reset
+</button>
+<%- include('statictable',{scope:scope}); %>

@@ -4,13 +4,10 @@ app.controller("ms_category", function ($scope, $http, $compile) {
     ms_category.formulary = function (data, mode, defaultData) {
         if (ms_category !== undefined) {
             RUN_B("ms_category", ms_category, $scope, $http, $compile);
-            ms_category.form.schemas.insert = {
-
-            };
-            ms_category.form.schemas.select = {
-
-            };
+            ms_category.form.schemas.insert = {};
+            ms_category.form.schemas.select = {};
             ms_category.form.readonly = {};
+            ms_category.form.editCell = ["name"];
             ms_category.createForm(data, mode, defaultData);
             ms_category.form.rules = {
                 name: function () {

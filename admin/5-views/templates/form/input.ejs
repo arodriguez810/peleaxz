@@ -18,6 +18,7 @@ var options = {
     //maxlength: 10,
 
 };
+
 options = OBJECT.merge(options, opts);
 options.autocomplete = options.autocomplete ? "autocomplete='Off'" : '';
 options.format = options.format ? options.format : false;
@@ -25,10 +26,15 @@ options.model = options.model ? options.model : false;
 var toclient = JSON.stringify(options);
 %>
 <script>
+
+
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
     <% if(options.format || options.isNumber){ %>
     <%= model %>.form.registerField("<%= name %>_DragonClean", "<%= toclient %>");
     <% } %>
+    if(MESSAGE.exist('columns.<%= name %>')){
+        <%= model %>.form.options.<%= name %>.placeholder = MESSAGE.i('columns.<%= name %>');
+    }
 if(ICON.classes.<%=  name.toLowerCase() %>!==undefined){
     if( <%= model %>.form.options.<%= name %>.icon.class==='none')
     <%= model %>.form.options.<%= name %>.icon.class =ICON.classes.<%=  name.toLowerCase() %>;

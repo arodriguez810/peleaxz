@@ -1,9 +1,16 @@
 <!-- Main navbar -->
 <div class="navbar navbar-inverse  bg-<%= TAG.navbar %>-800" ng-show="baseController.SESSION.isLogged()">
     <div class="navbar-header  bg-<%= COLOR.menu %>-800">
-        <a class="navbar-brand bg-<%= COLOR.menu %>-800" href="/">
+        <a class="visible-lg visible-md visible-sm navbar-brand bg-<%= COLOR.menu %>-800 sidebar-mobile-main-toggle">
             <img style="float: left !important;" src="assets/images/<%= COLOR.logo %>.svg" alt="">
-            <span class="navbar-brand-text" style="float: left;padding-left: 10px;"> <%= CONFIG.logo %></span></a>
+            <span class="navbar-brand-text" style="float: left;padding-left: 10px;"> <%= CONFIG.logo %></span>
+        </a>
+        <a class="visible-xs navbar-brand bg-<%= COLOR.menu %>-800 sidebar-mobile-main-toggle">
+            <img style="float: left !important;" src="assets/images/<%= COLOR.logo %>.svg" alt="">
+            <span id="apptitle" class="navbar-brand-text" style="float: left;padding-left: 10px;">
+
+            </span>
+        </a>
         <ul class="nav navbar-nav visible-xs-block">
             <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
             <li><a class="sidebar-mobile-main-toggle"><i class="icon-paragraph-justify3"></i></a></li>
@@ -13,24 +20,28 @@
         <ul class="nav navbar-nav">
             <li>
                 <a class="sidebar-control sidebar-main-toggle hidden-xs" data-popup="tooltip"
-                   data-placement="bottom" data-container="body" title="Lite Menu">
+                   data-placement="bottom" data-container="body" dragonlanguage title="MESSAGE.i('navbar.LiteMenu')">
                     <i class="icon-paragraph-justify3"></i>
                 </a>
             </li>
             <li>
                 <a class="sidebar-control sidebar-main-hide hidden-xs legitRipple" data-popup="tooltip"
-                   data-placement="bottom" data-container="body" title="Hide Menu">
+                   data-placement="bottom" data-container="body" dragonlanguage title="MESSAGE.i('navbar.HideMenu')">
                     <i class="icon-lan3"></i>
                 </a>
             </li>
             <li>
                 <a class="sidebar-control" onclick="STORAGE.clearAll()" data-popup="tooltip"
-                   data-placement="bottom" data-container="body" title="Restore all Configuration">
+                   data-placement="bottom" data-container="body" dragonlanguage
+                   title="MESSAGE.i('navbar.RestoreallConfiguration')">
                     <i class="icon-loop"></i>
                 </a>
             </li>
             <li class="dropdown" ng-show="baseController.favorites.length">
-                <a href="#" class="dropdown-toggle legitRipple" data-toggle="dropdown" title="Favorites"
+                <a href="#" class="dropdown-toggle legitRipple" data-toggle="dropdown" dragonlanguage
+                   data-popup="tooltip"
+                   data-placement="bottom" data-container="body"
+                   title="MESSAGE.i('navbar.Favorites')"
                    aria-expanded="false">
                     <i class="icon-heart5"></i>
                 </a>
@@ -43,37 +54,61 @@
                                     <i class="{{menu.icon}}"></i>
                                     {{menu.text}}
                                 </a>
-                                <i style="float: right;margin-top:5%"
+                                <i style="float: right;margin-top:5%;cursor: pointer"
                                    ng-click="baseController.deleteFavorite(menu.href)" class="icon-trash"></i>
                             </div>
                         </li>
                     </ul>
                 </div>
             </li>
-            <li ng-if="baseController.CONFIG.mode==='developer'">
+            <li ng-if="baseController.CONFIG.features.language===true">
                 <a class="sidebar-control" onclick="HTTP.openManager()" data-popup="tooltip"
-                   data-placement="bottom" data-container="body" title="Request Manager">
+                   data-placement="bottom" data-container="body" dragonlanguage
+                   title="MESSAGE.i('navbar.RequestManager')">
                     <i class="icon-git-pull-request"></i>
                     <span class="badge bg-<%= TAG.table %>" ng-model="baseController.WARNINGREQUESTS.length"></span>
                 </a>
             </li>
             <li ng-if="baseController.CONFIG.features.fileManager===true">
                 <a class="sidebar-control" onclick="FILEMANAGER.OPEN(['/'])" data-popup="tooltip"
-                   data-placement="bottom" data-container="body" title="File Manager">
+                   data-placement="bottom" data-container="body" dragonlanguage title="MESSAGE.i('navbar.FileManager')">
                     <i class="icon-folder-open"></i>
                 </a>
             </li>
             <li ng-if="baseController.CONFIG.features.stepManager===true">
                 <a class="sidebar-control" onclick="STEP.OPEN()" data-popup="tooltip"
-                   data-placement="bottom" data-container="body" title="Step Manager">
+                   data-placement="bottom" data-container="body" dragonlanguage title="MESSAGE.i('navbar.StepManager')">
                     <i class=" icon-stack-text"></i>
                 </a>
             </li>
 
         </ul>
-
+        <ul class="nav navbar-nav">
+            <li ng-if="baseController.CONFIG.features.language===true && baseController.CONFIG.mode==='developer'">
+                <a class="sidebar-control" onclick="MESSAGE.OPEN()" data-popup="tooltip"
+                   data-placement="bottom" data-container="body" dragonlanguage
+                   title="MESSAGE.i('navbar.MessageManager')">
+                    <i class=" icon-sphere"></i>
+                </a>
+            </li>
+            <li class="dropdown language-switch" ng-if="baseController.CONFIG.features.language===true">
+                <a class="dropdown-toggle legitRipple" data-toggle="dropdown" aria-expanded="false"><img
+                            src="assets/images/flags/{{baseController.currentLang.flag}}.png" alt=""
+                            class="position-left"> {{baseController.currentLang.name}} <i class="caret"></i></a>
+                <ul class="dropdown-menu">
+                    <li
+                            ng-repeat="(key,lan) in baseController.SHOWLANGS track by key"
+                            class="{{baseController.currentLang.code===lan.code?'bg-<%= COLOR.primary %>':''}}">
+                        <a ng-click="baseController.changeLanguage(lan)">
+                            <img src="assets/images/flags/{{lan.flag}}.png" alt="">{{lan.name}}</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
         <div class="navbar-right" ng-show="baseController.SESSION.isLogged()">
+
             <ul class="nav navbar-nav">
+
                 <li class="dropdown dropdown-user">
                     <a class="dropdown-toggle legitRipple" data-toggle="dropdown" aria-expanded="false">
 
@@ -89,7 +124,9 @@
                         <!--<li><a href="#"><span class="badge badge-warning pull-right">58</span> <i class="icon-comment-discussion"></i> Messages</a></li>-->
                         <!--<li class="divider"></li>-->
                         <!--<li><a href="#"><i class="icon-cog5"></i> Account settings</a></li>-->
-                        <li><a onclick="SESSION.logoff()"><i class="icon-switch2"></i>Logout</a></li>
+                        <li><a onclick="SESSION.logoff()" dragonlanguage><i class="icon-switch2"></i>
+                                <language>MESSAGE.i('navbar.Logout')</language>
+                            </a></li>
                     </ul>
                 </li>
             </ul>

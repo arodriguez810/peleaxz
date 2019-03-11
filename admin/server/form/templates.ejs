@@ -50,6 +50,12 @@ FORM = {
     },
     button: function (name, model, options) {
         return FORM.template('form/button', {name: name, model: model, opts: options});
+    },
+    footer: function (model) {
+        return FORM.template('form/footer', {model: model});
+    },
+    tabs: function (model, tabs) {
+        return FORM.template('form/tabs', {model: model, tabs: tabs});
     }
 };
 %>

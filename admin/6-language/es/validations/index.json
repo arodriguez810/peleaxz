@@ -1,11 +1,11 @@
 {
-  "Youmustselectatleast": "You must select at least",
-  "Werecommendthatyouselectatleast": "We recommend that you select at least",
-  "Youmustuploadbetween": "You must upload between",
-  "Youmustuploadatleast": "You must upload at least",
-  "Fieldisrequired": "Field is required",
-  "Numbermustbebetween": "Number must be between",
-  "Valuemaynotbereal":"Value may not be real",
-  "`Colorisnotallowed":"Color is not allowed",
-  "Isnotavalidemail":"Is not a valid email"
+  "Youmustselectatleast": "Debes seleccionar por lo menos",
+  "Werecommendthatyouselectatleast": "Te recomendamos que por lo menos selecciones",
+  "Youmustuploadbetween": "Debes subir entre",
+  "Youmustuploadatleast": "Debes subir por lo menos",
+  "Fieldisrequired": "Campo requerido",
+  "Numbermustbebetween": "El número debe ser entre",
+  "Valuemaynotbereal": "El valor puede que no sea real",
+  "Colorisnotallowed": "Color no permitido",
+  "Isnotavalidemail": "Correo inválido"
 }

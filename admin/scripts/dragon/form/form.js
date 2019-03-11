@@ -169,7 +169,7 @@ FORM = {
             $scope.form.hasChanged = true;
             $scope.form.makeInsert();
 
-            SWEETALERT.loading({message: `Saving...`});
+            SWEETALERT.loading({message: MESSAGE.ic('mono.saving')});
             if ($scope.form.mode === FORM.modes.new) {
                 for (var i in CONFIG.audit.insert) {
                     var audit = CONFIG.audit.insert[i];
@@ -190,7 +190,7 @@ FORM = {
                             multipleRelations: $scope.form.multipleRelations,
                             relations: $scope.form.relations,
                         });
-                        SWEETALERT.loading({message: `Preparing files and relations...`});
+                        SWEETALERT.loading({message: MESSAGE.i('mono.Preparingfilesandrelations')});
                         var savedRow = result.data.data[0];
                         var firstColumn = $scope.table.crud.table.key || "id";
                         var DRAGONID = eval(`savedRow.${firstColumn}`);
@@ -281,7 +281,7 @@ FORM = {
                             multipleRelations: $scope.form.multipleRelations,
                             relations: $scope.form.relations,
                         });
-                        SWEETALERT.loading({message: `Preparing files and relations...`});
+                        SWEETALERT.loading({message: MESSAGE.i('mono.Preparingfilesandrelations')});
                         var firstColumn = $scope.table.crud.table.key || "id";
                         var DRAGONID = eval(`$scope.${firstColumn}`);
                         $scope.form.mode = FORM.modes.edit;
@@ -511,7 +511,7 @@ FORM = {
         $scope.form.callSelect2 = function (name, options) {
             $('[name="' + $scope.modelName + "_" + name + '"]').select2({
                 placeholder:
-                    capitalize('Select ' + eval(`${options.table}.${!options.multiple ? 'singular' : 'plural'}`)),
+                    capitalize(MESSAGE.i('mono.select') + ' ' + eval(`${options.table}.${!options.multiple ? 'singular' : 'plural'}`)),
                 templateSelection: DROPDOWN.iformat,
                 templateResult: DROPDOWN.iformat,
                 allowHtml: true
@@ -582,7 +582,7 @@ FORM = {
                     if (state === VALIDATION.types.warning) {
                         SWEETALERT.confirm({
                             message:
-                                "This form contains warnings but you can still save it, are you sure?",
+                                MESSAGE.i('alerts.preventClose'),
                             confirm: function () {
                                 $scope.form.saveAction();
                             }
@@ -590,7 +590,7 @@ FORM = {
                     } else {
                         SWEETALERT.show({
                             type: "error",
-                            message: "this form contains errors so it will not allow you to save.",
+                            message: MESSAGE.i('alerts.ContainsError'),
                             confirm: function () {
                                 $scope.pages.form.focusFirstValidation();
                             }
@@ -610,7 +610,6 @@ FORM = {
                     });
                 }, 500);
             };
-
             $scope.pages.form.subRequestComplete = function () {
                 $scope.pages.form.subRequestCompleteProgress++;
                 if ($scope.pages.form.subRequestCompleteProgress === $scope.pages.form.subRequestCompleteVar) {
@@ -638,7 +637,7 @@ FORM = {
                 if ($scope.form.mode === FORM.modes.new) {
                     if ($scope.validation.warningClose())
                         SWEETALERT.confirm({
-                            message: "¿You are close to completing the form, are you sure you want to close it?",
+                            message: MESSAGE.i('alerts.CloseToComplete'),
                             confirm: function () {
                                 MODAL.close($scope);
                                 if ($scope.pages.form)
@@ -672,7 +671,7 @@ FORM = {
             $scope.modal.modalView($scope.modelName + '/form', {
                 width: ENUM.modal.width.full,
                 header: {
-                    title: capitalize(`${mode} ${$scope.singular}`),
+                    title: capitalize(`${MESSAGE.i('mono.' + mode)} ${$scope.singular}`),
                     icon: icon,
                     bg: mode !== FORM.modes.view ? COLOR.primary + '-600' : `alpha-${COLOR.primary}-600`,
                     closeButton: true,

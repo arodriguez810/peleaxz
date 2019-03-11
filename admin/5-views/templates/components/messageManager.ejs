@@ -1,5 +1,41 @@
-<button onclick="STEP.send();" type="button" class="btn bg-<%= TAG.table %>-600 btn-icon"
-        style="margin-bottom: 15px">
-    <span class="icon-reset"></span> Download Steps
-</button>
-<%- include('statictable',{scope:scope}); %>
+<script>
+    <%= scope %>.MMessages = baseController.viewData.staticdata;
+</script>
+<div class="dragon-panel" id="TablePanel" style="overflow-x: scroll;overflow-y: visible">
+    <div class="panel-group content-group-lg" id="accordion1">
+        <div class="panel" ng-repeat="(key,message) in <%= scope %>.MMessages track by key">
+            <div class="panel-heading bg-<%= TAG.table %>">
+                <h6 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion1" href="#accordion-group{{key}}">{{key}}</a>
+                </h6>
+            </div>
+            <div id="accordion-group{{key}}" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <ul>
+                        <li ng-repeat="(index,obj) in message.messages track by index" >
+                            "{{obj}}":"{{obj}}",
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(".collapsible-sortable").sortable({
+        connectWith: '.collapsible-sortable',
+        items: '.panel',
+        helper: 'original',
+        cursor: 'move',
+        handle: '[data-action=move]',
+        revert: 100,
+        containment: '.content-wrapper',
+        forceHelperSize: true,
+        placeholder: 'sortable-placeholder',
+        forcePlaceholderSize: true,
+        tolerance: 'pointer',
+        start: function (e, ui) {
+            ui.placeholder.height(ui.item.outerHeight());
+        }
+    });
+</script>

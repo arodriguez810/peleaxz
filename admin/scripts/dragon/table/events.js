@@ -67,7 +67,7 @@ TABLEEVENT = {
                             };
                             mylink.modal.content.sameController = true;
                             var oldTitle = mylink.modal.header.title;
-                            mylink.modal.header.title = `Quick ${$scope.columnLabel(data.column, data.field)} view`;
+                            mylink.modal.header.title = `${MESSAGE.ic('mono.quick')} ${$scope.columnLabel(data.column, data.field)} ${MESSAGE.i('mono.view')}`;
                             $scope.modal.modalView(String.format("{0}", mylink.table), mylink.modal);
                             mylink.modal.header.title = oldTitle;
                         });
@@ -117,8 +117,7 @@ TABLEEVENT = {
                         info.data.forEach(function (item) {
                             multiarray.push(eval("item." + mylink.getList));
                         });
-                        var oldTitle = mylink.modal.header.title;
-                        mylink.modal.header.title = DSON.template(mylink.modal.header.title, data.row);
+                        mylink.modal.header.title = $scope.columnLabel(data.column, mylink.from);
                         baseController.viewData = {
                             from: $scope.modelName,
                             to: mylink.list,
@@ -134,7 +133,6 @@ TABLEEVENT = {
                         baseController.viewData.readonly = eval(`({${mylink.to}:'${id}'})`);
                         baseController.viewData.fieldKey = mylink.to;
                         $scope.modal.modalView(String.format("{0}", mylink.list), mylink.modal);
-                        mylink.modal.header.title = oldTitle;
                     });
                 return;
             }
@@ -173,8 +171,7 @@ TABLEEVENT = {
                                 crud: linkCrud
                             };
                             mylink.modal.content.sameController = true;
-                            var oldTitle = mylink.modal.header.title;
-                            mylink.modal.header.title = DSON.template(mylink.modal.header.title, data.row);
+                            mylink.modal.header.title = $scope.columnLabel(data.column, mylink.from);
                             $scope.modal.modalView(String.format("{0}", mylink.table), mylink.modal);
                             mylink.modal.header.title = oldTitle;
                         });
@@ -187,18 +184,18 @@ TABLEEVENT = {
                 if (!DSON.oseaX(shorttext))
                     if (shorttext.length > data.column.shorttext) {
                         $scope.modal.simpleModal(data.value, {
-                            header: {title: "Full text of " + data.column.label}
+                            header: {title: `${MESSAGE.ic('mono.full')} ${MESSAGE.i('mono.text')} ${MESSAGE.i('mono.of')} ` + data.column.label}
                         });
                     }
             } else {
                 if (!DSON.oseaX(data.column.formattype)) {
                     if (data.column.formattype.indexOf("html") !== -1) {
                         $scope.modal.simpleModal(data.value || "", {
-                            header: {title: "HTML content of " + data.column.label}
+                            header: {title: "HTML " + MESSAGE.i('mono.of') + " " + data.column.label}
                         });
                     } else if (data.column.formattype.indexOf("color") !== -1) {
                         LOAD.template('templates/components/color', {color: data.value}, function (html) {
-                            $scope.modal.simpleModal(html, {header: {title: 'Color Detail'}});
+                            $scope.modal.simpleModal(html, {header: {title: MESSAGE.ic('mono.color')}});
                         });
                     } else if (data.column.formattype.indexOf("location") !== -1) {
                         if (!DSON.oseaX(data.value)) {
@@ -207,7 +204,7 @@ TABLEEVENT = {
                                 var lat = parseFloat(location[0]);
                                 var lng = parseFloat(location[1]);
                                 var name = data.column.formattype.split(':');
-                                name = name.length > 1 ? (eval("data.row." + name[1]) + " location") : "Map View";
+                                name = name.length > 1 ? (eval("data.row." + name[1]) + MESSAGE.i('mono.location')) : MESSAGE.i('mono.MapView');
                                 $scope.modal.map({lat: lat, lng: lng}, name, {header: {title: name}});
                             }
                         }
@@ -221,7 +218,7 @@ TABLEEVENT = {
                             switch (format) {
                                 case "image": {
                                     LOAD.template('templates/components/crop', {src: fileUrl}, function (html) {
-                                        $scope.modal.simpleModal(html, {header: {title: 'Image Full Preview'}});
+                                        $scope.modal.simpleModal(html, {header: {title: MESSAGE.i('mono.preview')}});
                                     });
                                     break;
                                 }
@@ -231,10 +228,10 @@ TABLEEVENT = {
                                     }
                                     if (FILE.isImage(data.value)) {
                                         LOAD.template('templates/components/crop', {src: fileUrl}, function (html) {
-                                            $scope.modal.simpleModal(html, {header: {title: 'Image Full Preview'}});
+                                            $scope.modal.simpleModal(html, {header: {title: MESSAGE.i('mono.preview')}});
                                         });
                                     } else {
-                                        $scope.modal.simpleModal("<object style='width: 100%;height: 100%' data=\"" + fileUrl + "\"></object>", {header: {title: 'Preview'}});
+                                        $scope.modal.simpleModal("<object style='width: 100%;height: 100%' data=\"" + fileUrl + "\"></object>", {header: {title: MESSAGE.i('mono.preview')}});
                                     }
                                     break;
                                 }
@@ -270,14 +267,14 @@ TABLEEVENT = {
                 $scope.dataForView = row;
                 $scope.modal.modalView(String.format("{0}/view", $scope.modelName), {
                     header: {
-                        title: "View of " + $scope.plural,
+                        title: MESSAGE.i('mono.Viewof') + " " + $scope.plural,
                         icon: ICON.classes.list
                     },
                     footer: {
                         cancelButton: true
                     },
                     content: {
-                        loadingContentText: "Loading...",
+                        loadingContentText: MESSAGE.i('actions.Loading'),
                         sameController: true
                     },
                 });
@@ -300,7 +297,7 @@ TABLEEVENT = {
                     $scope.procesingRow++;
                     if ($scope.procesingRowFor !== 0)
                         SWEETALERT.loading({
-                            message: `Deleting Multiple Rows ${$scope.procesingRow} of ${$scope.procesingRowFor}`
+                            message: `${MESSAGE.ic('mono.DeletingMultipleRows')} ${$scope.procesingRow} ${MESSAGE.i('mono.of')} ${$scope.procesingRowFor}`
                         }, false);
 
                     if ($scope.procesingRow === $scope.procesingRowFor || $scope.procesingRowFor === 0) {
@@ -338,16 +335,16 @@ TABLEEVENT = {
                 return item.selected === true;
             });
             if (forDelte.length === 0) {
-                SWEETALERT.show({message: "You must select any row for delete."});
+                SWEETALERT.show({message: MESSAGE.i('alerts.YMDelete')});
                 return;
             }
             SWEETALERT.confirm({
-                message: "¿Are you sure you want delete this records?",
+                message: MESSAGE.i('alerts.AYSDeletes'),
                 confirm: async function () {
 
                     $scope.procesingRow = 0;
                     $scope.procesingRowFor = forDelte.length;
-                    SWEETALERT.loading({message: `Deleting Multiple Rows ${$scope.procesingRow} of ${$scope.procesingRowFor}`});
+                    SWEETALERT.loading({message: `${MESSAGE.ic('mono.DeletingMultipleRows')} ${$scope.procesingRow} ${MESSAGE.i('mono.of')} ${$scope.procesingRowFor}`});
                     $scope.deleteRows(forDelte);
                 }
             });
@@ -366,13 +363,13 @@ TABLEEVENT = {
             var data = {};
             eval(`data.${$scope.activeColumn()} = ${active}`);
             data.where = where;
-            var actionText = active ? 'Activing' : 'Disabling';
+            var actionText = active ? MESSAGE.i('mono.activing') : MESSAGE.i('mono.disabling');
             $scope.update(data, function (result) {
                 if (result.data.error === false) {
                     $scope.procesingRow++;
                     if ($scope.procesingRowFor !== 0)
                         SWEETALERT.loading({
-                            message: `${actionText} Multiple Rows ${$scope.procesingRow} of ${$scope.procesingRowFor}`
+                            message: `${actionText} ${MESSAGE.i('mono.multiple')} ${MESSAGE.ic('mono.rows')} ${$scope.procesingRow} ${MESSAGE.i('mono.of')} ${$scope.procesingRowFor}`
                         }, false);
 
                     if ($scope.procesingRow === $scope.procesingRowFor || $scope.procesingRowFor === 0) {
@@ -413,21 +410,24 @@ TABLEEVENT = {
             var forDelte = $scope.records.data.filter(function (item) {
                 return item.selected === true;
             });
-            var actionText = active ? 'active' : 'disable';
-            var actionTextMultiple = active ? 'Activing' : 'Disabling';
+            var actionTextMultiple = active ? MESSAGE.i('mono.activing') : MESSAGE.i('mono.disabling');
             var value = active ? 1 : 0;
             if (forDelte.length === 0) {
-                SWEETALERT.show({message: "You must select any row for " + actionText});
+                if (active)
+                    SWEETALERT.show({message: MESSAGE.i('alerts.YMEnable')});
+                else
+                    SWEETALERT.show({message: MESSAGE.i('alerts.YMDisable')});
                 return;
             }
             SWEETALERT.confirm({
-                message: "¿Are you sure you want " + actionText + " this records?",
+                message: active ? MESSAGE.i('alerts.AYSEnables') : MESSAGE.i('alerts.AYSDisables'),
                 confirm: async function () {
                     $scope.procesingRow = 0;
                     $scope.procesingRowFor = forDelte.length;
-                    SWEETALERT.loading({message: `${actionTextMultiple} Multiple Rows ${$scope.procesingRow} of ${$scope.procesingRowFor}`});
+                    SWEETALERT.loading({message: `${actionTextMultiple}  ${MESSAGE.ic('mono.multiple')}  ${MESSAGE.ic('mono.rows')} ${$scope.procesingRow}  ${MESSAGE.i('mono.of')} ${$scope.procesingRowFor}`});
                     STEP.register({
-                        scope: $scope.modelName, action: `Active ${forDelte.length} Rows`
+                        scope: $scope.modelName,
+                        action: ` ${MESSAGE.ic('mono.active')} ${forDelte.length}  ${MESSAGE.ic('mono.rows')}`
                     });
                     $scope.activeRows(forDelte, value);
                 }
@@ -436,10 +436,11 @@ TABLEEVENT = {
         $scope.importing = function (data) {
             $scope.procesingRow = 0;
             $scope.procesingRowFor = data.length;
-            SWEETALERT.loading({message: `Importing Multiple Rows ${$scope.procesingRow} of ${$scope.procesingRowFor}`});
+            SWEETALERT.loading({message: ` ${MESSAGE.ic('mono.importing')}  ${MESSAGE.ic('mono.multiple')}  ${MESSAGE.ic('mono.rows')} ${$scope.procesingRow}  ${MESSAGE.i('mono.of')} ${$scope.procesingRowFor}`});
             $scope.procesingRowErrors = [];
             STEP.register({
-                scope: $scope.modelName, action: `Importing ${data.length} Rows`
+                scope: $scope.modelName,
+                action: ` ${MESSAGE.ic('mono.importing')} ${data.length}  ${MESSAGE.i('mono.rows')}`
             });
             for (const item of data) {
                 $scope.importRow(item);
@@ -452,14 +453,14 @@ TABLEEVENT = {
                     $scope.procesingRow++;
                     if ($scope.procesingRowFor !== 0)
                         SWEETALERT.loading({
-                            message: `Importing Multiple Rows ${$scope.procesingRow} of ${$scope.procesingRowFor}`
+                            message: `${MESSAGE.ic('mono.importing')} ${MESSAGE.ic('mono.multiple')} ${MESSAGE.ic('mono.rows')} ${$scope.procesingRow} ${MESSAGE.i('mono.of')} ${$scope.procesingRowFor}`
                         }, false);
 
                     if ($scope.procesingRow === $scope.procesingRowFor || $scope.procesingRowFor === 0) {
                         $scope.procesingRow = 0;
                         $scope.procesingRowFor = 0;
                         SWEETALERT.stop();
-                        SWEETALERT.show({message: "All files was imported successfully, please close this window and refresh the list to see the imported records."});
+                        SWEETALERT.show({message: MESSAGE.i('alerts.ALLFILEIMPORT')});
                     }
                     for (const relation of item.relations) {
                         for (const value of relation.values) {
@@ -490,7 +491,7 @@ TABLEEVENT = {
                 return item.selected === true;
             });
             if (forCopy.length === 0) {
-                SWEETALERT.show({message: "You must select any row for copy."});
+                SWEETALERT.show({message: MESSAGE.i('alerts.YMCopy')});
                 return;
             }
 
@@ -518,10 +519,10 @@ TABLEEVENT = {
             });
 
             SWEETALERT.confirm({
-                title: 'Copy Records',
-                message: "This option copy all record selected without relations and paste in news rows with last ID. <br> ¿Are you sure you want copy selected records?",
+                title: MESSAGE.i('mono.CopyRecords'),
+                message: MESSAGE.i('alerts.Copys'),
                 confirm: function () {
-                    SWEETALERT.loading({message: "Copyng Records..."});
+                    SWEETALERT.loading({message: MESSAGE.ic('mono.copyng')});
                     var records = formatRows;
                     var columns = $scope.table.crud.table.columns;
                     var inserts = [];
@@ -543,7 +544,8 @@ TABLEEVENT = {
                         inserts.push({row: row, relations: []});
                     }
                     STEP.register({
-                        scope: $scope.modelName, action: `Copy ${inserts.length} Rows`
+                        scope: $scope.modelName,
+                        action: `${MESSAGE.ic('mono.copy')} ${inserts.length} ${MESSAGE.ic('mono.rows')}`
                     });
                     $scope.importing(inserts);
                 }
@@ -562,14 +564,14 @@ TABLEEVENT = {
             $scope.modal.modalView("../templates/components/import", {
                 width: 'modal-full',
                 header: {
-                    title: `Import files of ${$scope.modelName}`,
+                    title: `${MESSAGE.i('export.Importfilesof')} ${$scope.modelName}`,
                     icon: ICON.classes.file_excel
                 },
                 footer: {
                     cancelButton: true
                 },
                 content: {
-                    loadingContentText: "Loading Files.."
+                    loadingContentText: MESSAGE.i('actions.Loading')
                 },
             });
         };

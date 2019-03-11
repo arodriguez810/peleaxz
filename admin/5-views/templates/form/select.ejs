@@ -2,11 +2,11 @@
 var name = name || "";
 var options = {
     label: params.capitalize(name),
-    default: 'Select ' + params.capitalize(name),
+    default:  'Select ' + params.capitalize(name),
     icon: {
         class: "none",
         position: "left",
-        color: TAG.table+"-800"
+        color: TAG.table + "-800"
     },
     allownull: true,
     allownew: true,
@@ -51,9 +51,17 @@ options.model = options.model ? options.model : false;
 var toclient = JSON.stringify(options);
 %>
 <script>
+
     if (DSON.oseaX(<%= model + "." + name %>))
             <%= model + "." + name %> = "[NULL]";
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>", "'[NULL]'");
+    <%= model %>.form.options.<%= name %>.default = `${MESSAGE.ic('mono.select')} <%= name %>`;
+    if (MESSAGE.exist('columns.<%= name %>')) {
+        <%= model %>.form.options.<%= name %>.label = MESSAGE.i('columns.<%= name %>');
+        <%= model %>.form.options.<%= name %>.default = `${MESSAGE.ic('mono.select')} ` + MESSAGE.i('columns.<%= name %>');
+    }
+
+
     var isReadProgram = <%= model %>.form.isReadOnly('<%= name %>');
     if (isReadProgram !== false) {
         <%= model %>.
@@ -72,14 +80,16 @@ var toclient = JSON.stringify(options);
         </label>
 
         <% if(options.allowlist){ %>
-            <a title="List" id="list<%= model %>_<%= name %>" class="label bg-<%= TAG.table %> label-icon"
+            <a dragonlanguage="" title="MESSAGE.ic('mono.list')" id="list<%= model %>_<%= name %>"
+               class="label bg-<%= TAG.table %> label-icon"
                style="float: right;">
                 <i class="icon-list"></i>
             </a>
         <% } %>
 
         <% if(options.allowview && !options.multiple){ %>
-            <a title="View item" ng-show="<%= model + "." + name %>!='[NULL]'" id="view<%= model %>_<%= name %>"
+            <a dragonlanguage="" title="MESSAGE.i('mono.Viewitem')" ng-show="<%= model + "." + name %>!='[NULL]'"
+               id="view<%= model %>_<%= name %>"
                class="label bg-<%= TAG.table %> label-icon"
                style="float: right;margin-right: 10px;">
                 <i class="icon-eye"></i>
@@ -87,7 +97,8 @@ var toclient = JSON.stringify(options);
         <% } %>
 
         <% if(options.allowedit && !options.multiple){ %>
-            <a title="Edit item" ng-show="<%= model + "." + name %>!='[NULL]'" id="edit<%= model %>_<%= name %>"
+            <a dragonlanguage="" title="MESSAGE.i('mono.Edititem')" ng-show="<%= model + "." + name %>!='[NULL]'"
+               id="edit<%= model %>_<%= name %>"
                class="label bg-<%= TAG.table %> label-icon"
                style="float: right;margin-right: 10px;">
                 <i class="icon-pencil"></i>
@@ -95,14 +106,16 @@ var toclient = JSON.stringify(options);
         <% } %>
 
         <% if(options.allownew){ %>
-            <a title="Add item" id="new<%= model %>_<%= name %>" class="label bg-<%= TAG.table %> label-icon"
+            <a dragonlanguage="" title="MESSAGE.i('mono.Additem')" id="new<%= model %>_<%= name %>"
+               class="label bg-<%= TAG.table %> label-icon"
                style="float: right;margin-right: 10px;">
                 <i class="icon-plus-circle2"></i>
             </a>
         <% } %>
 
         <% if(options.refresh){ %>
-            <a title="Refresh List" id="reload<%= model %>_<%= name %>" class="label bg-<%= TAG.table %> label-icon"
+            <a dragonlanguage="" title="MESSAGE.i('mono.RefreshList')" id="reload<%= model %>_<%= name %>"
+               class="label bg-<%= TAG.table %> label-icon"
                style="float: right;margin-right: 10px;">
                 <i class="icon-reload-alt"></i>
             </a>
@@ -112,7 +125,6 @@ var toclient = JSON.stringify(options);
                 <%= options.multiple ? "multiple='multiple'" : "" %>
                 style="display: inline;"
                 ng-model="<%= model + "." + name %>"
-                title="double click to refresh"
                 name="<%= model %>_<%= name %>"
                 ng-disabled="<%= model %>.form.options.<%= name %>.disabled"
                 class="form-control bootstrap-select">
@@ -120,7 +132,7 @@ var toclient = JSON.stringify(options);
                 <option></option>
             <% }else{ %>
                 <% if(!options.multiple){ %>
-                    <option value="[NULL]" data-icon="blocked">Empty</option>
+                    <option  value="[NULL]" data-icon="blocked">---</option>
                 <% } %>
             <% } %>
 
@@ -158,11 +170,11 @@ var toclient = JSON.stringify(options);
         </p>
     </span>
         <% if(options.multiple){ %>
-            <div
-                    ng-show="<%= model + "." + name %>.length<=0 || <%= model + "." + name %>==='[NULL]' || <%= model + "." + name %>===null"
-                    class="alert alpha-<%= TAG.table %>
+            <div dragonlanguage=""
+                 ng-show="<%= model + "." + name %>.length<=0 || <%= model + "." + name %>==='[NULL]' || <%= model + "." + name %>===null"
+                 class="alert alpha-<%= TAG.table %>
                  border-<%= TAG.table %> alert-styled-left visible-md visible-lg">
-                There is no {{<%= options.table %>.plural}} data selected.
+                <language>MESSAGE.i('mono.Thereisnodataselected')</language>
             </div>
 
             <table ng-show="<%= model + "." + name %>.length>0 && <%= model + "." + name %>!=='[NULL]'"
@@ -212,11 +224,12 @@ var toclient = JSON.stringify(options);
 
         $('[name="<%= model %>_<%= name %>"]').change(function () {
             STEP.register({
-                    scope: "<%= model %>",
-                    action: "Change DropDown",
-                    field: "<%= name %>",
-                    value: <%= model %>.<%= name %>
-            });
+                scope: "<%= model %>",
+                action: "Change DropDown",
+                field: "<%= name %>",
+                value: <%= model %>.<%= name %>
+        })
+            ;
             $(".map-wrapper").hide();
         });
 
@@ -234,14 +247,14 @@ var toclient = JSON.stringify(options);
             baseController.viewData = {};
             var modal = {
                     header: {
-                        title: "List of " + <%= options.table %>.plural,
+                        title: MESSAGE.i('mono.Listof') + <%= options.table %>.plural,
                     icon: ICON.classes.list
                 },
                 footer: {
                     cancelButton: true
                 },
                 content: {
-                    loadingContentText: "Loading "+<%= options.table %>.plural,
+                    loadingContentText: MESSAGE.i('actions.Loading'),
                 }
         }
             <%= options.table %>.

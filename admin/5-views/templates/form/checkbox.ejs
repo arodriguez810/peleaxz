@@ -11,7 +11,9 @@ var toclient = JSON.stringify(options);
 %>
 <script>
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
-
+    if(MESSAGE.exist('columns.<%= name %>')){
+        <%= model %>.form.options.<%= name %>.text = MESSAGE.i('columns.<%= name %>');
+    }
 </script>
 <div class="checkbox checkbox-switchery" ng-show="!<%= model %>.form.options.<%= name %>.disabled">
     <label>

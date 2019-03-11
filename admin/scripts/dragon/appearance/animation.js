@@ -18,19 +18,26 @@ ANIMATION = {
     playPure: function (block, animation, callback) {
         block.addClass("animated " + animation).one("webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend", function () {
             block.removeClass("animated " + animation);
-            if (DSON.iffunction(callback))
-                callback();
+            callback();
         });
     },
     loading: function (customBlock, text, spinner, size, icon) {
         if (customBlock === undefined) customBlock = "#content";
-        if (text === undefined) text = "Loading...";
+        if (text === undefined) text = MESSAGE.i('actions.Loading');
         if (spinner !== undefined) {
             ANIMATION.spinner.on(spinner);
         }
+        var message = text + '<br><i class="icon-' + (icon || "spinner2") + ' spinner" style="font-size: ' + (size || "50") + 'px"></i>';
+        if (customBlock === "#content") {
+            message = `<div class="spinner222">
+                            <div class="double-bounce1 bg-<%= COLOR.primary %>-600"></div>
+                            <div class="double-bounce2 bg-<%= TAG.table %>-600"></div>
+                            <div class="double-bounce3 bg-<%= COLOR.menu %>-600"></div>
+                        </div>`;
+        }
         var block = $(customBlock);
         $(block).block({
-            message: text + '<br><i class="icon-' + (icon || "spinner2") + ' spinner" style="font-size: ' + (size || "50") + 'px"></i>',
+            message: message,
             overlayCSS: {
                 backgroundColor: '#fff',
                 opacity: 0.8,
@@ -47,7 +54,10 @@ ANIMATION = {
         });
     },
     stoploading: function (customBlock, spinner) {
-        if (customBlock === undefined) customBlock = "#content";
+        if (customBlock === undefined) {
+            customBlock = "#content";
+        }
+
         if (spinner !== undefined) {
             ANIMATION.spinner.off(spinner);
         }
@@ -55,7 +65,7 @@ ANIMATION = {
         $(block).unblock();
     },
     loadingPure: function (customBlock, text, spinner, size, icon) {
-        if (text === undefined) text = "Loading...";
+        if (text === undefined) text = MESSAGE.i('actions.Loading');
         if (spinner !== undefined) {
             ANIMATION.spinner.onPure(spinner);
         }
@@ -135,7 +145,7 @@ $(document).ready(function () {
         if (firstPeace) {
 
             setTimeout(function () {
-                $(".containerLading").remove();
+                $(".spinner222").addClass('afterSpinerLoad');
                 $('#baseController').show();
 
                 $(document).on('dblclick', '[data-dragonfile]', function () {
@@ -151,14 +161,14 @@ $(document).ready(function () {
                     baseController.currentModel.modal.modalView("../templates/components/gallery", {
                         width: 'modal-full',
                         header: {
-                            title: `Files of ${folder}`,
+                            title: `${MESSAGE.ic('mono.filesof')} ${folder}`,
                             icon: ICON.classes.file_stats
                         },
                         footer: {
                             cancelButton: true
                         },
                         content: {
-                            loadingContentText: "Loading Files"
+                            loadingContentText: MESSAGE.i('actions.Loading')
                         },
                     });
                 });

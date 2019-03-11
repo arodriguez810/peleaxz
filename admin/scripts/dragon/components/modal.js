@@ -75,8 +75,14 @@ MODAL = {
             var h = data.header.h || "h6";
             var icon = data.header.icon ? '<i class="icon-' + data.header.icon + '"></i>' : "";
             var title = data.header.title || "";
-            var content = data.content.data.startsWith("->") ? "" : data.content.data;
-            var cancelText = backMode ? "Back" : "Close";
+            var content = data.content.data.startsWith("->") ?
+                `<div class="spinner222Modal">
+                    <div class="double-bounce1 bg-${COLOR.primary}-600"></div>
+                    <div class="double-bounce2 bg-${TAG.table}-600"></div>
+                    <div class="double-bounce3 bg-${COLOR.menu}-600"></div>
+                </div>`
+                : data.content.data;
+            var cancelText = backMode ? MESSAGE.ic('mono.back') : MESSAGE.ic('mono.close');
             var cancelButton = data.footer.cancelButton
                 ? '    <button type="button" class="btn btn-link" ' + closeModal + " >" + cancelText + "</button>" : "";
             var html = String.format('<div id="modal' + data.id + '" class="modal {0}"  data-backdrop="false">', animation) +
@@ -99,7 +105,7 @@ MODAL = {
                     $scope.loadContent(
                         data.content.data.replaceAll("->", ""),
                         "modalcontent" + data.id,
-                        data.content.loadingContentText || "Loading...",
+                        data.content.loadingContentText || MESSAGE.i('actions.Loading'),
                         function (success) {
                         }
                     );
@@ -109,13 +115,11 @@ MODAL = {
                     $scope.loadContentClean(
                         data.content.data.replaceAll("->", ""),
                         "modalcontent" + data.id,
-                        data.content.loadingContentText || "Loading...",
+                        data.content.loadingContentText || MESSAGE.i('actions.Loading'),
                         function (success) {
                         }
                     );
                 }
-            } else {
-                // $scope.build("modal" + data.id);
             }
 
             $("#modal" + data.id).on("show.bs.modal", function () {
@@ -236,7 +240,7 @@ MODAL = {
                 },
                 content: {
                     data: "->" + view,
-                    loadingContentText: "Loading..."
+                    loadingContentText: MESSAGE.i('actions.Loading')
                 },
                 event: {
                     show: {
@@ -280,7 +284,7 @@ MODAL = {
                 },
                 content: {
                     data: html,
-                    loadingContentText: "Loading..."
+                    loadingContentText: MESSAGE.i('actions.Loading')
 
                 },
                 event: {

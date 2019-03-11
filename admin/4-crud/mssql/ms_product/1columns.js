@@ -28,14 +28,14 @@ DSON.keepmerge(CRUD_ms_product, {
                     from: "category",
                     modal: {
                         header: {
-                            title: "Detail of Category",
+                            title: MESSAGE.i(`columns.ms_category_name`,'Category'),
                             icon: ICON.classes.archive
                         },
                         footer: {
                             cancelButton: true
                         },
                         content: {
-                            loadingContentText: "Loading Category Info",
+                            loadingContentText: MESSAGE.i('actions.Loading'),
                         },
                     }
                 }

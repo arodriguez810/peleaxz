@@ -23,6 +23,9 @@ var toclient = JSON.stringify(options);
     <%= model %>.form.registerField("<%= name %>_DragonLon", "<%= toclient %>");
     <%= model %>.form.registerField("<%= name %>_DragonAddress", "<%= toclient %>");
     <%= model %>.form.registerField("<%= name %>_DragonFilter", "<%= toclient %>");
+    if(MESSAGE.exist('columns.<%= name %>')){
+        <%= model %>.form.options.<%= name %>.placeholder = MESSAGE.i('columns.<%= name %>');
+    }
     var isReadProgram = <%= model %>.form.isReadOnly('<%= name %>');
     if (isReadProgram !== false) {
         <%= model %>.

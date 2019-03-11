@@ -1,7 +1,3 @@
 {
-  "en": {
-    "restore": {
-      "example": "Hello Dragon"
-    }
-  }
+  "Restoreconfigurationforthistable": "Restore configuration for this table"
 }

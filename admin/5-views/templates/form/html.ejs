@@ -23,7 +23,9 @@ var toclient = JSON.stringify(options);
 %>
 <script>
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
-
+    if(MESSAGE.exist('columns.<%= name %>')){
+        <%= model %>.form.options.<%= name %>.placeholder = MESSAGE.i('columns.<%= name %>');
+    }
 </script>
 <div class="form-group-material form-group has-feedback has-{{<%= model %>.validation.getType('<%= name %>')}}  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
      id="input<%= name %>">

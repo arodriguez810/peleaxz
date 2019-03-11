@@ -1,26 +1,38 @@
 LOAD = {
+    outanimation: "BounceOutLeft",
+    inanimation: "BounceInRight",
     run: function ($scope, $http) {
         $scope.loadContent = function (view, id, loadingText, callback, baseDiv) {
 
             baseDiv = baseDiv === undefined ? true : baseDiv;
             var thisid = "#" + id;
-            ANIMATION.loading(thisid, loadingText);
             if (view === "") {
-                LOAD.template('error/base', {status: "404", statusText: "Not Found!"}, function (html) {
-                    ANIMATION.stoploading(thisid);
+                LOAD.template('error/base', {
+                    status: "404",
+                    statusText: MESSAGE.i('mono.NotFound') + "!"
+                }, function (html) {
+
                     $("#" + id).html(html);
+                    ANIMATION.playPure($("#" + id), LOAD.inanimation, function () {
+                    });
+                    $("#" + id).show();
+                    MESSAGE.run();
                 });
                 return;
             }
 
-            if (SESSION.ifLogoffRedirec(view))
+            if (SESSION.ifLogoffRedirec(view)) {
                 return;
+            }
             $http.get(view + `?scope=${$scope.modelName}`, {}).then(
                 function (data) {
                     HTTP.evaluate(data);
                     if (!HTTP.evaluateTokenHTML(data))
                         $(thisid).html($scope.returnBuild(data.data));
-                    ANIMATION.stoploading(thisid);
+                    ANIMATION.playPure($(thisid), LOAD.inanimation, function () {
+                    });
+                    $(thisid).show();
+                    MESSAGE.run();
                     callback(true);
                 },
                 function (data) {
@@ -33,7 +45,10 @@ LOAD = {
                                 description: view + `?scope=${$scope.modelName} ` + data.statusText,
                             });
                             $(thisid).html($scope.returnBuild(template.data));
-                            ANIMATION.stoploading(thisid);
+                            ANIMATION.playPure($(thisid), LOAD.inanimation, function () {
+                            });
+                            $(thisid).show();
+                            MESSAGE.run();
                             callback(true);
                         },
                     );
@@ -45,16 +60,13 @@ LOAD = {
         };
     },
     loadContent: function ($scope, $http, $compile) {
-        ANIMATION.loading();
         var view = window.location.href.split("#");
         if (view.length > 1)
             view = view[1];
         else {
-            ANIMATION.stoploading();
             return;
         }
         if (view === "") {
-            ANIMATION.stoploading();
             return;
         }
         if (SESSION.ifLogoffRedirec(view))
@@ -71,22 +83,33 @@ LOAD = {
             scope: scope,
             windows: `${scope} Page`, action: "Open Page"
         });
-
+        $("#content").hide();
         $http.get(view + `?scope=${scope}`, {}).then(
             function (data) {
                 HTTP.evaluate(data);
                 if (!HTTP.evaluateTokenHTML(data))
                     $("#content").html($compile(data.data)($scope));
-                ANIMATION.stoploading();
+                ANIMATION.playPure($('#content'), LOAD.inanimation, function () {
+
+                });
+                $("#content").show();
+                MESSAGE.run();
+
             },
             function (data) {
                 STEP.register({
                     windows: `error ${data.status}`, action: "http error",
                     description: view + `?scope=${scope} ` + data.statusText,
                 });
-                LOAD.template('error/base', {status: data.status, statusText: data.statusText}, function (html) {
-                    ANIMATION.stoploading();
+                LOAD.template('error/base', {
+                    status: data.status,
+                    statusText: MESSAGE.i('error.' + data.status)
+                }, function (html) {
                     $("#content").html(html);
+                    ANIMATION.playPure($('#content'), LOAD.inanimation, function () {
+                    });
+                    $("#content").show();
+                    MESSAGE.run();
                 });
             }
         );

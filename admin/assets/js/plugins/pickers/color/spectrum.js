@@ -26,7 +26,6 @@
         change: noop,
         show: noop,
         hide: noop,
-
         // Options
         color: false,
         flat: false,
@@ -43,12 +42,12 @@
         localStorageKey: false,
         appendTo: "body",
         maxSelectionSize: 7,
-        cancelText: "cancel",
-        chooseText: "choose",
-        togglePaletteMoreText: "more",
-        togglePaletteLessText: "less",
-        clearText: "Clear Color Selection",
-        noColorSelectedText: "No Color Selected",
+        cancelText: MESSAGE.i('mono.cancel'),
+        chooseText: MESSAGE.i('mono.choose'),
+        togglePaletteMoreText: MESSAGE.i('mono.more'),
+        togglePaletteLessText: MESSAGE.i('mono.less'),
+        clearText: MESSAGE.i('mono.ClearColorSelection'),
+        noColorSelectedText: MESSAGE.i('mono.NoColorSelected'),
         preferredFormat: false,
         className: "", // Deprecated - use containerClassName and replacerClassName instead.
         containerClassName: "",

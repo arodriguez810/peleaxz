@@ -4,7 +4,7 @@ VALIDATION = DSON.merge(VALIDATION, {
             count = DSON.ifundefined(count, 0);
             return {
                 valid: (count >= from && value <= to),
-                message: `You must upload between ${from} and ${to} files`,
+                message: `${MESSAGE.i('validations.Youmustuploadbetween')} ${from} ${MESSAGE.i('mono.and')} ${to} ${MESSAGE.i('mono.files')}`,
                 type: VALIDATION.types.error
             };
         },
@@ -12,7 +12,7 @@ VALIDATION = DSON.merge(VALIDATION, {
             count = DSON.ifundefined(count, 0);
             return {
                 valid: (count >= from),
-                message: `You must upload at least ${from} files`,
+                message: `${MESSAGE.i('validations.Youmustuploadatleast')} ${from} ${MESSAGE.i('mono.files')}`,
                 type: VALIDATION.types.error
             };
         }

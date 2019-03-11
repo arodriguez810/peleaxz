@@ -24,14 +24,14 @@ DSON.keepmerge(CRUD_ms_allusers, {
                     from: "user",
                     modal: {
                         header: {
-                            title: "User",
+                            title: MESSAGE.i(`columns.ms_user_name`,'Users'),
                             icon: ICON.classes.user
                         },
                         footer: {
                             cancelButton: true
                         },
                         content: {
-                            loadingContentText: "Loading.."
+                            loadingContentText: MESSAGE.i('actions.Loading')
                         },
                     }
                 }
@@ -43,14 +43,14 @@ DSON.keepmerge(CRUD_ms_allusers, {
                     from: "category",
                     modal: {
                         header: {
-                            title: "Category",
+                            title: MESSAGE.i(`columns.ms_category_name`,'Category'),
                             icon: ICON.classes.category
                         },
                         footer: {
                             cancelButton: true
                         },
                         content: {
-                            loadingContentText: "Loading.."
+                            loadingContentText: MESSAGE.i('actions.Loading')
                         },
                     }
                 }

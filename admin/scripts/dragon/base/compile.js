@@ -3,6 +3,7 @@ COMPILE = {
         $scope.build = function (id) {
             CHILDSCOPES.push($real.$new());
             $("#" + id).html($compile($("#" + id).html())(ARRAY.last(CHILDSCOPES)));
+            MESSAGE.run();
         };
         $scope.returnBuild = function (html) {
             CHILDSCOPES.push($real.$new());

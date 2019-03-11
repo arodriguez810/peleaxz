@@ -24,14 +24,14 @@ DSON.keepmerge(CRUD_ms_allproducts, {
                     from: "product",
                     modal: {
                         header: {
-                            title: "Detail of Product",
+                            title: MESSAGE.i(`columns.ms_product_name`,'Product'),
                             icon: ICON.classes.archive
                         },
                         footer: {
                             cancelButton: true
                         },
                         content: {
-                            loadingContentText: "Loading.."
+                            loadingContentText: MESSAGE.i('actions.Loading')
                         },
                     }
                 }

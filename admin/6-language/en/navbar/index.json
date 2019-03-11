@@ -5,6 +5,12 @@
   "RequestManager": "Request Manager",
   "FileManager": "File Manager",
   "StepManager": "Step Manager",
-  "Logout": "Logout",
-  "Favorites": "Favorites"
+  "Favorites": "Favorites",
+  "Logout": "End Session",
+  "AddToFavorite": "Add To Favorite",
+  "MessageManager": "Message Manager",
+  "RecordsPerPage": "Records PerPage",
+  "DonwloadExample": "Donwload Example",
+  "HideColumns": "Hide Columns",
+  "ShowColumns": "Show Columns"
 }

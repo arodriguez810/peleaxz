@@ -12,14 +12,14 @@ FILEMANAGER = {
         baseController.currentModel.modal.modalView("../templates/components/filemanager", {
             width: 'modal-full',
             header: {
-                title: "File Manager",
+                title:  MESSAGE.i('mono.FileManager'),
                 icon: ICON.classes.file_stats
             },
             footer: {
                 cancelButton: true
             },
             content: {
-                loadingContentText: "Loading Files.."
+                loadingContentText: MESSAGE.i('actions.Loading')
             },
         });
     }

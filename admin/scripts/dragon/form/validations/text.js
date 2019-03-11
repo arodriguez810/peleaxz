@@ -6,7 +6,7 @@ VALIDATION = DSON.merge(VALIDATION, {
             return {
                 valid: String.prototype.concat(...new Set(value)).length >= 5 &&
                     (String.prototype.concat(...new Set(value)).length >= Math.ceil(value.length / 2)),
-                message: `Value may not be real`,
+                message: MESSAGE.i('validations.Valuemaynotbereal'),
                 type: VALIDATION.types.warning
             };
         },
@@ -15,7 +15,7 @@ VALIDATION = DSON.merge(VALIDATION, {
                 return {valid: true, message: ``, type: VALIDATION.types.success};
             return {
                 valid: colors.indexOf(value),
-                message: `Color is not allowed`,
+                message: MESSAGE.i('validations.Colorisnotallowed'),
                 type: VALIDATION.types.error
             };
         },
@@ -23,7 +23,7 @@ VALIDATION = DSON.merge(VALIDATION, {
             var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             return {
                 valid: re.test(String(value).toLowerCase()) || DSON.oseaX(value),
-                message: `Is not a valid email`,
+                message: MESSAGE.i('validations.Isnotavalidemail'),
                 type: VALIDATION.types.error
             };
         }

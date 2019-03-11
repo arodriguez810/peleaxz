@@ -1,3 +1,11 @@
 {
-  "Copy": "This option copy this record without relations and paste in a new one with last ID. <br> ¿Are you sure you want copy this record?",
+  "ID": "ID",
+  "username": "Username",
+  "password": "Password",
+  "login": "Sing In",
+  "remember": "Remember",
+  "name": "Nombre",
+  "ms_product_name": "Product",
+  "ms_user_name": "User",
+  "ms_category_name": "Category"
 }

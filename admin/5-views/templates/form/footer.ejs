@@ -1,32 +1,12 @@
-<%
-var name = name || "";
-var options = {
-    text: params.capitalize(name),
-    icon: {
-        class: "none",
-        position: "left",
-        color: TAG.table+"-800"
-    },
-    type: "normal",
-    posttype:"button"
-};
-options = OBJECT.merge(options, opts);
-options.color = options.type === "form" ? "{{" + model + ".validation.stateDefault()}}" : TAG.table;
-var toclient = JSON.stringify(options);
-%>
-<script>
-    <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
-    if(MESSAGE.exist('columns.<%= name %>')){
-        <%= model %>.form.options.<%= name %>.text = MESSAGE.i('columns.<%= name %>');
-    }
-</script>
-<div class="form-group">
-    <button type="button" role="button"
-            ng-click="STEP.register({scope: '<%= model %>', action: 'Click <%= name %>'});<%= model %>.<%= name %>_click()"
-            class="btn bg-<%= options.color  %>-800 btn-block legitRipple">
-        {{<%= model %>.form.options.<%= name %>.text}}
-        <i ng-if="<%= model %>.form.options.<%= name %>.icon.class!=='none'"
-                class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} position-{{<%= model %>.form.options.<%= name %>.icon.position}}"></i>
+<div class="modal-footer" dragonlanguage="">
+     <span class="label label-white text-<%= TAG.table %>-300 label-rounded label-icon">
+            <i class="position-right"></i>
+        </span>
+    <button type="button" class="btn bg-<%= TAG.table %>-600" ng-click="<%= model %>.pages.form.save()">
+        <language>MESSAGE.ic('mono.save')</language>
+    </button>
+
+    <button type="button" class="btn bg-<%= TAG.table %>-600" ng-click="<%= model %>.pages.form.close()">
+        <language>MESSAGE.ic('mono.close')</language>
     </button>
 </div>
-

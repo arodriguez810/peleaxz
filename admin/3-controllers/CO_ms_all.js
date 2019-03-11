@@ -37,7 +37,7 @@ app.controller("ms_all", function ($scope, $http, $compile) {
                 location: FORM.schemasType.location,
                 products: {
                     toTable: "ms_allproducts",
-                    text: "Loading products...",
+                    text: MESSAGE.i('actions.Loading'),
                     fields: {
                         all: "$id",
                     },

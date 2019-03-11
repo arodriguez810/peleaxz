@@ -33,14 +33,14 @@ DSON.keepmerge(CRUD_ms_user, {
                     modal: {
                         width: 'modal-full',
                         header: {
-                            title: "Profile Image of ${this.username}",
+                            title: "${this.username}",
                             icon: ICON.classes.images3
                         },
                         footer: {
                             cancelButton: true
                         },
                         content: {
-                            loadingContentText: "Loading Profile Image"
+                            loadingContentText: MESSAGE.i('actions.Loading')
                         },
                     }
                 },

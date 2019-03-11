@@ -13,14 +13,14 @@ EXPORT = {
             $scope.modal.modalView("../templates/components/import", {
                 width: 'modal-full',
                 header: {
-                    title: `Import files of ${$scope.modelName}`,
+                    title: `${MESSAGE.i('export.Importfilesof')} ${$scope.modelName}`,
                     icon: ICON.classes.file_excel
                 },
                 footer: {
                     cancelButton: true
                 },
                 content: {
-                    loadingContentText: "Loading Files.."
+                    loadingContentText: MESSAGE.i('actions.Loading')
                 },
             });
         };
@@ -58,15 +58,15 @@ EXPORT = {
             $scope.modal.simpleModal(`<div style="overflow: auto;height: 500px;width: 100%">${$scope.export.Preview}</div>`,
                 {
                     width: "modal-full",
-                    header: {title: `Example to import records`},
+                    header: {title: `${MESSAGE.i('export.Exampletoimportrecords')}`},
                     footer: {
                         buttons: [
                             {
                                 color: COLOR.primary + '-600',
-                                title: "Download",
+                                title: MESSAGE.ic('mono.donwload'),
                                 action: function () {
-                                    SWEETALERT.loading({title: `Preparing    File`});
-                                    DOWNLOAD.csv(`Example to import ${$scope.plural}.csv`, csv);
+                                    SWEETALERT.loading({title: `${MESSAGE.i('mono.Preparing')}`});
+                                    DOWNLOAD.csv(`${MESSAGE.i('export.Exampletoimport')} ${$scope.plural}.csv`, csv);
                                     swal.close();
                                 }
                             }
@@ -86,13 +86,13 @@ EXPORT = {
                 dataToList.where = ARRAY.last(MODAL.historyObject).viewData.data;
 
             var options = [
-                {id: 'firstrow', text: "Columns in First Row"},
-                {id: 'orderColumn', text: "Columns Position"},
-                {id: 'sort', text: "Sort"},
-                {id: 'filter', text: "Filters"},
-                {id: 'currentPage', text: "Current Page"},
-                {id: 'selected', text: "Selecteds"},
-                {id: 'orginalformat', text: "Original Format"},
+                {id: 'firstrow', text: MESSAGE.i('export.ColumnsinFirstRow')},
+                {id: 'orderColumn', text: MESSAGE.i('export.ColumnsPosition')},
+                {id: 'sort', text: MESSAGE.ic('mono.Sort')},
+                {id: 'filter', text: MESSAGE.ic('mono.Filters')},
+                {id: 'currentPage', text: MESSAGE.ic('mono.CurrentPage')},
+                {id: 'selected', text: MESSAGE.ic('mono.Selecteds')},
+                {id: 'orginalformat', text: MESSAGE.i('export.OriginalFormat')},
             ];
             var optionsHtml = "";
             options.forEach(function (item) {
@@ -155,13 +155,13 @@ EXPORT = {
             SWEETALERT.buttons(
                 {
                     title:
-                        `Export to ${type}`,
+                        `${MESSAGE.ic('mono.export')} ${MESSAGE.i('mono.to')} ${type}`,
                     message:
                         `
                         <div class="row">
 								<div class="col-md-12">
 									<div class="content-group-lg">
-										<p class="content-group">The information exported depends on the options you choose.</p>
+										<p class="content-group">${MESSAGE.i('alerts.ExportedDepends')}</p>
 										
 									</div>
 								</div>
@@ -182,7 +182,7 @@ EXPORT = {
                 },
                 [
                     {
-                        text: "Export",
+                        text: MESSAGE.i('mono.export'),
                         action: function () {
                             if (!$(`#currentPage`).is(':checked')) {
                                 parameters.limit = 0;
@@ -219,7 +219,7 @@ EXPORT = {
                                 if (item.checked)
                                     columsAllow.push(item.value);
                             });
-                            SWEETALERT.loading({title: `Preparing ${type} File`});
+                            SWEETALERT.loading({title: `${MESSAGE.ic('mono.preparing')} ${type} ${MESSAGE.ic('mono.file')}`});
                             $scope.export.json(parameters, type, function (data) {
                                 var dataToExport = $scope.formatData(data.data, {
                                     orderColumn: orderColumn,
@@ -238,17 +238,17 @@ EXPORT = {
                                     $scope.modal.simpleModal(`<div style="overflow: auto;height: 500px;width: 100%">${$scope.export.Preview}</div>`,
                                         {
                                             width: "modal-full",
-                                            header: {title: `Export to ${type} of ${dataToExport.length} rows`},
+                                            header: {title: `${MESSAGE.ic('mono.Exportto')} ${type} ${MESSAGE.i('mono.of')} ${dataToExport.length} ${MESSAGE.i('mono.rows')}`},
                                             footer: {
                                                 buttons: [
                                                     {
                                                         color: COLOR.primary + '-600',
-                                                        title: "Copy",
+                                                        title: MESSAGE.ic('mono.copy'),
                                                         action: function () {
                                                             DOWNLOAD.clipboard($scope.export.Content);
                                                             SWEETALERT.show({
                                                                 type: "succcess",
-                                                                title: `Copy ${dataToExport.length} rows of ${$scope.plural} to ${type}`,
+                                                                title: `${MESSAGE.ic('mono.copy')} ${dataToExport.length} ${MESSAGE.ic('mono.rows')} ${MESSAGE.i('mono.of')} ${$scope.plural} ${MESSAGE.i('mono.to')} ${type}`,
                                                                 close: function () {
                                                                     swal.close();
                                                                 }
@@ -269,14 +269,14 @@ EXPORT = {
                                     $scope.modal.simpleModal(`<div style="overflow: auto;height: 500px;width: 100%">${$scope.export.Preview}</div>`,
                                         {
                                             width: "modal-full",
-                                            header: {title: `Export to ${type} Preview of ${dataToExport.length} rows`},
+                                            header: {title: `${MESSAGE.ic('mono.export')} ${MESSAGE.i('mono.to')} ${type} ${MESSAGE.ic('mono.preview')} ${MESSAGE.i('mono.of')} ${dataToExport.length} ${MESSAGE.i('mono.rows')}`},
                                             footer: {
                                                 buttons: [
                                                     {
                                                         color: COLOR.primary + '-600',
-                                                        title: "Download",
+                                                        title: MESSAGE.ic('mono.download'),
                                                         action: function () {
-                                                            DOWNLOAD.csv(`${$scope.plural} with ${dataToExport.length} rows ${new Date().getTime()}.csv`, $scope.export.Content);
+                                                            DOWNLOAD.csv(`${$scope.plural} ${MESSAGE.i('mono.with')} ${dataToExport.length} ${MESSAGE.i('mono.rows')} ${new Date().getTime()}.csv`, $scope.export.Content);
                                                             swal.close();
                                                         }
                                                     }
@@ -291,18 +291,18 @@ EXPORT = {
                                     $scope.modal.simpleModal(`<div style="overflow: auto;height: 500px;width: 100%">${$scope.export.Preview}</div>`,
                                         {
                                             width: "modal-full",
-                                            header: {title: `Export to ${type} of ${dataToExport.length} rows`},
+                                            header: {title: `${MESSAGE.ic('mono.export')} ${MESSAGE.i('mono.to')} ${type} ${MESSAGE.i('mono.of')} ${dataToExport.length} ${MESSAGE.i('mono.rows')}`},
                                             footer: {
                                                 buttons: [
                                                     {
                                                         color: COLOR.primary + '-600',
                                                         title: `${ICON.i('file-pdf')} Download`,
                                                         action: function () {
-                                                            SWEETALERT.loading({title: "Building PDF..."});
+                                                            SWEETALERT.loading({title: MESSAGE.ic('mono.downloading') + " PDF..."});
                                                             if (direct) {
                                                                 BASEAPI.ajax.formpost('post/templates/pdf/clean',
                                                                     {
-                                                                        pdf: `PDF ${dataToExport.length} rows of ${$scope.plural} to ${type}.pdf`,
+                                                                        pdf: `PDF ${dataToExport.length} ${MESSAGE.i('mono.rows')} ${MESSAGE.i('mono.of')} ${$scope.plural} ${MESSAGE.i('mono.to')} ${type}.pdf`,
                                                                         content: $scope.export.Preview
                                                                     }, function (data) {
 
@@ -310,7 +310,7 @@ EXPORT = {
                                                             } else {
                                                                 BASEAPI.ajax.formpost('post/templates/pdf/table',
                                                                     {
-                                                                        pdf: `PDF ${dataToExport.length} rows of ${$scope.plural} to ${type}.pdf`,
+                                                                        pdf: `PDF ${dataToExport.length} ${MESSAGE.i('mono.rows')} ${MESSAGE.i('mono.of')} ${$scope.plural} ${MESSAGE.i('mono.to')} ${type}.pdf`,
                                                                         content: JSON.stringify(dataToExport),
                                                                         firstrow: firstrow,
                                                                         columns: JSON.stringify($scope.export.jsonLabels(columsAllow))
@@ -330,18 +330,18 @@ EXPORT = {
                                     $scope.modal.simpleModal(`<div style="overflow: auto;height: 500px;width: 100%">${$scope.export.Preview}</div>`,
                                         {
                                             width: "modal-full",
-                                            header: {title: `Export to ${type} Preview of ${dataToExport.length} rows`},
+                                            header: {title: `${MESSAGE.ic('mono.export')} ${MESSAGE.i('mono.to')} ${type} ${MESSAGE.ic('mono.preview')} ${MESSAGE.i('mono.of')} ${dataToExport.length} ${MESSAGE.i('mono.rows')}`},
                                             footer: {
                                                 buttons: [
                                                     {
                                                         color: COLOR.primary + '-600',
-                                                        title: "Download",
+                                                        title: MESSAGE.ic('mono.download'),
                                                         action: function () {
-                                                            var fileName = `${$scope.plural} with ${dataToExport.length} rows ${new Date().getTime()}.xls`;
+                                                            var fileName = `${$scope.plural} with ${dataToExport.length} ${MESSAGE.i('mono.rows')} ${new Date().getTime()}.xls`;
                                                             var url = $("#dataexport").excelexportjs({
                                                                 containerid: "dataexport",
                                                                 datatype: 'table',
-                                                                worksheetName: `${$scope.plural} ${dataToExport.length} rows`,
+                                                                worksheetName: `${$scope.plural} ${dataToExport.length} ${MESSAGE.i('mono.rows')}`,
                                                                 returnUri: true
                                                             });
                                                             DOWNLOAD.excel(fileName, url);
@@ -359,18 +359,18 @@ EXPORT = {
                                     $scope.modal.simpleModal(`<div style="overflow: auto;height: 500px;width: 100%">${$scope.export.Preview}</div>`,
                                         {
                                             width: "modal-full",
-                                            header: {title: `Export to ${type} Preview of ${dataToExport.length} rows`},
+                                            header: {title: `${MESSAGE.ic('mono.export')} ${MESSAGE.i('mono.to')} ${type} ${MESSAGE.ic('mono.preview')} ${MESSAGE.i('mono.of')} ${dataToExport.length} ${MESSAGE.i('mono.rows')}`},
                                             footer: {
                                                 buttons: [
                                                     {
                                                         color: COLOR.primary + '-600',
-                                                        title: "Download",
+                                                        title: MESSAGE.ic('mono.download'),
                                                         action: function () {
-                                                            SWEETALERT.loading({title: "Building DOC..."});
+                                                            SWEETALERT.loading({title: MESSAGE.ic('mono.building')});
                                                             if (direct) {
                                                                 BASEAPI.ajax.formpost('post/templates/docx/clean',
                                                                     {
-                                                                        docx: `DOC ${dataToExport.length} rows of ${$scope.plural} to ${type}.docx`,
+                                                                        docx: `DOC ${dataToExport.length} ${MESSAGE.i('mono.rows')} ${MESSAGE.i('mono.of')} ${$scope.plural} ${MESSAGE.i('mono.to')} ${type}.docx`,
                                                                         content: $scope.export.ToExport
                                                                     }, function (data) {
 
@@ -378,7 +378,7 @@ EXPORT = {
                                                             } else {
                                                                 BASEAPI.ajax.formpost('post/templates/pdf/table',
                                                                     {
-                                                                        docx: `DOC ${dataToExport.length} rows of ${$scope.plural} to ${type}.docx`,
+                                                                        docx: `DOC ${dataToExport.length} ${MESSAGE.i('mono.rows')} ${MESSAGE.i('mono.of')} ${$scope.plural} ${MESSAGE.i('mono.to')} ${type}.docx`,
                                                                         content: JSON.stringify(dataToExport),
                                                                         firstrow: firstrow,
                                                                         columns: JSON.stringify($scope.export.jsonLabels(columsAllow))
@@ -397,8 +397,8 @@ EXPORT = {
                         }
                     },
                     {
-                        text: "Cancel",
-                        color: COLOR.danger,
+                        text: MESSAGE.ic('mono.cancel'),
+                        color: COLOR.primary,
                         action: function () {
                             swal.close();
                             if (direct === true) {

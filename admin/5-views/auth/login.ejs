@@ -12,14 +12,14 @@
                     <div class="icon-object border-<%= COLOR.primary %>-800 text-slate-300"><i
                                 class="text-<%= COLOR.info %> icon-user-{{<%= scope %>.validation.state()==='success'?'check animation':'lock'}}"></i>
                     </div>
-                    <h5 class="content-group">Login to <%= CONFIG.appName %>
-                        <small class="display-block">Enter your credentials below
+                    <h5 class="content-group" dragonlanguage><language>MESSAGE.i('login.Loginto')</language> <%= CONFIG.appName %>
+                        <small class="display-block"><language>MESSAGE.i('login.Enteryourcredentialsbelow')</language>
                         </small>
                     </h5>
                 </div>
 
                 <%- FORM.input("username", scope, {text: "Remember", icon: {class: "user"}}) %>
-                <%- FORM.input("password", scope, {
+                <%- FORM.password("password", scope, {
                     text: "Remember",
                     type: "password",
                     icon: {class: "unlocked2"}

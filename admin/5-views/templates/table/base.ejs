@@ -6,10 +6,10 @@
         could cause the application to go slow sometimes. ({{$$watchersCount}}).
     </div>
 
-    <div
-            ng-show="<%= scope %>.records.data.length<=0"
-            class="alert alpha-<%= TAG.table %> border-<%= TAG.table %> alert-styled-left">
-        There is no data to show in this table.
+    <div dragonlanguage=""
+         ng-show="<%= scope %>.records.data.length<=0"
+         class="alert alpha-<%= TAG.table %> border-<%= TAG.table %> alert-styled-left">
+        <language>MESSAGE.i('table.nodata')</language>
     </div>
 
     <div class="visible-md visible-lg" style="display: inline" ng-show="<%= scope %>.filters.lastFilter.length>0">

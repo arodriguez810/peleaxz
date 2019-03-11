@@ -58,7 +58,7 @@ STEP = {
                 cancelButton: true
             },
             content: {
-                loadingContentText: "Loading Steps..."
+                loadingContentText: MESSAGE.i('actions.Loading')
             },
         };
         baseController.currentModel.modal.modalView("../templates/components/stepManager", modal);

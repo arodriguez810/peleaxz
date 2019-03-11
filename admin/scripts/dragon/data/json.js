@@ -47,6 +47,30 @@ DSON = {
         });
         return newarray;
     },
+    jsonToCSV: function (json, hasColumns, name) {
+        if (json.length > 0) {
+            var csv = '';
+            var columns = [];
+            if (hasColumns !== false) {
+                for (var i in json[0]) {
+                    columns.push(capitalize(i));
+                }
+                csv += columns.join(",") + "\r\n";
+            }
+            for (var step of json) {
+                var values = [];
+                for (var i in step) {
+                    values.push(step[i]);
+                }
+                csv += `"${values.join('","')}"\r\n`;
+            }
+            SWEETALERT.loading({title: MESSAGE.ic('mono.downloading')});
+            DOWNLOAD.csv(`${name}.csv`, csv);
+            swal.close();
+        } else {
+            SWEETALERT.show(MESSAGE.i('alerts.Theresnotdatafordownload'));
+        }
+    },
     viewData: {},
     setViewData(obj) {
         DSON.viewData = {};

@@ -1,12 +1,11 @@
-<div class="modal-footer">
-     <span class="label label-white text-<%= TAG.table %>-300 label-rounded label-icon">
-            <i class="position-right"></i>
-        </span>
-    <button type="button" class="btn bg-<%= TAG.table %>-600" ng-click="<%= model %>.pages.form.save()">
-        <language>MESSAGE.ic('mono.save')</language>
-    </button>
-
-    <button type="button" class="btn bg-<%= TAG.table %>-600" ng-click="<%= model %>.pages.form.close()">
-        <language>MESSAGE.ic('mono.close')</language>
-    </button>
-</div>
+<ul class="nav nav-tabs bg-<%= COLOR.primary %>-800 nav-tabs-component nav-justified" dragonlanguage="">
+    <% var first = "active"; for(var tab of tabs) { %>
+        <li class="<%= first %>">
+            <a href="#<%= tab.id %>" data-toggle="tab">
+                <i class="<%= tab.icon %> position-left"></i>
+                <language>MESSAGE.ispace('ms_all.<%= tab.text %>','<%= tab.text %>')</language>
+                <i class="border-white  position-right"></i>
+            </a>
+        </li>
+    <% first = ""; } %>
+</ul>

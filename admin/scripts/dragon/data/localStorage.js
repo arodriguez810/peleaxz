@@ -55,7 +55,7 @@ STORAGE = {
         if (localStorage.length)
             SWEETALERT.confirm({
                 message:
-                    "This option removes all persisted configuration data for all system, sorting, columns reorder, current page, limit per page, filters, hide menu, fonts, are you sure?",
+                    MESSAGE.i('alerts.restoreAll'),
                 confirm: function () {
                     var session = SESSION.current();
                     localStorage.clear();
@@ -65,7 +65,7 @@ STORAGE = {
                 }
             });
         else
-            SWEETALERT.show({message: "There is not persisted data to restore."});
+            SWEETALERT.show({message: MESSAGE.i('alerts.norestore')});
     },
     delete: function (id) {
         localStorage.removeItem(id);

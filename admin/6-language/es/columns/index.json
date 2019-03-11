@@ -1,11 +1,11 @@
 {
   "ID": "ID",
-  "username": "Username",
-  "password": "Password",
-  "login": "Sing In",
-  "remember": "Remember",
+  "username": "Usuario",
+  "password": "Contraseña",
+  "login": "Iniciar Sesión",
+  "remember": "Recordar",
   "name": "Nombre",
-  "ms_product_name": "Product",
-  "ms_user_name": "User",
-  "ms_category_name": "Category"
+  "ms_product_name": "Producto",
+  "ms_user_name": "Usuario",
+  "ms_category_name": "Categoría"
 }

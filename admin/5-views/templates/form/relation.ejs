@@ -31,6 +31,9 @@ if (options.master === null) {
 <script>
     var keyColumn = <%= model %>.table.crud.table.key;
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
+    if(MESSAGE.exist('columns.<%= name %>')){
+        <%= model %>.form.options.<%= name %>.text = MESSAGE.i('columns.<%= name %>');
+    }
     <%= model %>.<%= name %> = '<%= model %><%= options.tempId %>';
     var thisID = eval(`<%= model %>.${keyColumn}`);
 
@@ -81,7 +84,7 @@ if (options.master === null) {
                 var field<%= name %> = '<%= options.originalField %>';
             }
 
-            SWEETALERT.loading({message: "Loading..."});
+            SWEETALERT.loading({message: MESSAGE.i('actions.Loading')});
             var linkCrud<%= name %> = eval("CRUD_<%= options.table %>");
             BASEAPI.list("<%= options.table %>",
                 {
@@ -125,7 +128,7 @@ if (options.master === null) {
                             cancelButton: true
                         },
                         content: {
-                            loadingContentText: "Loading..."
+                            loadingContentText: MESSAGE.i('actions.Loading')
                         },
                     });
                 });

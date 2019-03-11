@@ -47,10 +47,24 @@ languages = getFiles("./" + folders.language + "/");
 languages = languages.filter(function (file) {
     return file.indexOf('.disabled') === -1;
 });
+
 languages.forEach(function (languages) {
-    var file = eval("(" + fs.readFileSync(folders.language + "/" + languages) + ")");
-    Object.assign(LANGUAGE, file);
+    var lan = eval("(" + fs.readFileSync(folders.language + "/" + languages) + ")");
+    var nedted = "";
+    for (var lany of languages.split('/')) {
+        if (lany.indexOf('.json') === -1)
+            eval(`if(LANGUAGE.${nedted + lany}===undefined)LANGUAGE.${nedted + lany}={};`);
+        else {
+            eval(`LANGUAGE.${nedted.substr(0, nedted.length - 1)}=lan;`);
+        }
+        nedted += `${lany}.`;
+    }
 });
+
+SHOWLANGS = [];
+SHOWLANGSConsole = ['en', 'es'];
+SHOWLANGS.push({code: 'en', name: 'English', flag: 'us'});
+SHOWLANGS.push({code: 'es', name: 'Español', flag: 'es'});
 
 for (var i in CONFIG.modules) {
     var module = CONFIG.modules[i];
@@ -163,6 +177,7 @@ allparams += "      mssql:mssql,";
 allparams += "      mysql:mysql,";
 allparams += "      CONFIG:CONFIG,";
 allparams += "      LANGUAGE:LANGUAGE,";
+allparams += "      SHOWLANGS:SHOWLANGS,";
 allparams += "      catalogs:catalogs,";
 allparams += "      folders:folders,";
 allparams += "      servicesFunctions:servicesFunctions,";
@@ -341,6 +356,7 @@ modules.views.init(eval("(" + allparams + ")"));
 app.listen(CONFIG.port);
 console.log("******************".pxz + CONFIG.appName.pxz + " Server*************************************".pxz);
 console.log("Server : ".pxz + `${CONFIG.ssl === true ? 'https://' : 'http://'}${CONFIG.subdomain !== '' ? CONFIG.subdomain + '.' : ''}${CONFIG.domain}:${CONFIG.port === 80 ? '' : CONFIG.port}`);
+console.log("LAGs   : ".pxz + SHOWLANGSConsole.join(','));
 if (CONFIG.mongo !== undefined) console.log("Mongo  : ".pxz + models);
 if (CONFIG.mssql !== undefined) console.log("MSSQL  : ".pxz + modelsql);
 if (CONFIG.mysql !== undefined) console.log("MYSQL  : ".pxz + modelmysql);

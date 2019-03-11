@@ -5,7 +5,7 @@ var options = {
     icon: {
         class: "calendar",
         position: "left",
-        color: TAG.table+"-800"
+        color: TAG.table + "-800"
     },
     helptext: '',
     format: 'd/m/Y h:i',
@@ -37,6 +37,10 @@ var toclient = JSON.stringify(options);
 <script>
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
     <%= model %>.form.registerField("<%= name %>_DragonClean", "<%= toclient %>");
+    if (MESSAGE.exist('columns.<%= name %>')) {
+        <%= model %>.
+        form.options.<%= name %>.placeholder = MESSAGE.i('columns.<%= name %>');
+    }
     var isReadProgram = <%= model %>.form.isReadOnly('<%= name %>');
     if (isReadProgram !== false) {
         <%= model %>.
@@ -101,11 +105,13 @@ var toclient = JSON.stringify(options);
     $(document).ready(function () {
         var jsOptions = <%= model %>.
         form.options.<%= name %>;
+
+        $.datetimepicker.setLocale(MESSAGE.current().code);
+
         $('#<%= model %>_<%= name %>').datetimepicker({
             format: '<%= options.format %>',
             timepicker: <%= options.timepicker %>,
             datepicker: <%= options.datepicker %>,
-            lang: "<%= options.lang %>",
             inline: <%= options.inline %>,
             validateOnBlur: false,
             <%= options.allowTimes.length > 0 ? "allowTimes :" + JSON.stringify(options.allowTimes) + "," : "" %>
@@ -150,7 +156,8 @@ var toclient = JSON.stringify(options);
                     action: "Change Date",
                     field: "<%= name %>",
                     value: <%= model %>.<%= name %>_DragonClean
-                });
+            })
+                ;
 
             },
             onShow: function (ct) {

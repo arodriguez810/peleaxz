@@ -4,7 +4,7 @@ BASEAPI = {
             if (element)
                 ANIMATION.loadingPure(element, "", element, '30');
             else
-                SWEETALERT.loading({message: "Loading..."});
+                SWEETALERT.loading({message: MESSAGE.i('actions.Loading')});
         },
         stop: function (element) {
             if (element)

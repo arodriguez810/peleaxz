@@ -25,6 +25,9 @@ var toclient = JSON.stringify(options);
     var keyColumn = <%= model %>.table.crud.table.key;
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
     <%= model %>.form.registerField("<%= name %>_DragonCountFile", "<%= toclient %>");
+    if(MESSAGE.exist('columns.<%= name %>')){
+        <%= model %>.form.options.<%= name %>.text = MESSAGE.i('columns.<%= name %>');
+    }
     <%= model %>.<%= name %>_DragonCountFile = 0;
     var thisID = eval(`<%= model %>.${keyColumn}`);
 
@@ -125,7 +128,7 @@ var toclient = JSON.stringify(options);
                     cancelButton: true
                 },
                 content: {
-                    loadingContentText: "Loading..."
+                    loadingContentText: MESSAGE.i('actions.Loading')
                 },
                 };
             <%= model %>.

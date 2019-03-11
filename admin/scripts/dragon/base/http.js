@@ -67,17 +67,19 @@ HTTP = {
         baseController.WARNINGREQUESTS = WARNINGREQUESTS;
     },
     openManager: function () {
-        baseController.viewData = {};
+        baseController.viewData = {
+            staticdata: WARNINGREQUESTS
+        };
         var modal = {
             header: {
                 title: "Request Manager",
-                icon: ICON.classes.git_pull_request
+                icon: ICON.classes.stack_text
             },
             footer: {
                 cancelButton: true
             },
             content: {
-                loadingContentText: "Loading Requests..."
+                loadingContentText: MESSAGE.i('actions.Loading')
             },
         };
         baseController.currentModel.modal.modalView("../templates/components/requestManager", modal);
@@ -101,6 +103,8 @@ $(document).ready(function () {
     $(window).bind('hashchange', function () { //detect hash change
         $("body").removeClass("sidebar-mobile-main");
         FIXELEMENT.elements = [];
-        ANGULARJS.get('baseController').base();
+        ANIMATION.playPure($('#content'), LOAD.outanimation, function () {
+            ANGULARJS.get('baseController').base();
+        });
     });
 });

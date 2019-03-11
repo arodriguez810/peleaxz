@@ -1,27 +1,8 @@
-<ul class="nav nav-tabs bg-<%= COLOR.primary %>-800 nav-tabs-component nav-justified">
-    <li class="active">
-        <a href="#basic" data-toggle="tab">
-            <i class="icon-menu7 position-left"></i>
-            Basic Information
-            <i class="border-white  position-right"></i>
-
-        </a>
-    </li>
-    <li>
-        <a href="#products" data-toggle="tab">
-            <i class="icon-archive position-left"></i>
-            Products
-            <i class="border-white  position-right"></i>
-        </a>
-    </li>
-    <li>
-        <a href="#biography" data-toggle="tab">
-            <i class="icon-html5 position-left"></i>
-            Biography
-            <i class="border-white position-right"></i>
-        </a>
-    </li>
-</ul>
+<%- FORM.tabs(scope, [
+    {id: "basic", text: "Basic Information", icon: "icon-menu7"},
+    {id: "products", text: "Products", icon: "icon-archive"},
+    {id: "biography", text: "Biography", icon: "icon-html5"}
+]) %>
 
 <div class="tab-content">
     <div class="tab-pane active" id="basic">
@@ -201,21 +182,4 @@
     </div>
 
 </div>
-
-<div class="modal-footer">
-     <span class="label label-white text-<%= TAG.table %>-300 label-rounded label-icon">
-            <i class="position-right"></i>
-        </span>
-    <button type="button" class="btn bg-<%= TAG.table %>-600" ng-click="<%= scope %>.pages.form.save()">
-        Save
-    </button>
-
-    <button type="button" class="btn bg-<%= TAG.table %>-600" ng-click="<%= scope %>.pages.form.close()">
-        Close
-    </button>
-</div>
-
-
-
-
-
+<%- FORM.footer(scope) %>

@@ -125,7 +125,7 @@ TABLE = {
         $scope.restoreStorage = function () {
 
             if (!$scope.hasAnyModel()) {
-                SWEETALERT.show({message: "There is not persisted data to restore."});
+                SWEETALERT.show({message: MESSAGE.i('restore.norestore')});
             } else
                 SWEETALERT.confirm({
                     message:
@@ -168,7 +168,7 @@ TABLE = {
         $scope.refresh = function () {
             ANIMATION.loading(
                 "#" + $scope.modelName + "TablePanel",
-                "Refresing " + $scope.plural + " List...",
+                MESSAGE.ic('mono.refresing'),
                 ".loadingButton", 140
             );
             $scope.table.is.loading = true;
@@ -189,7 +189,6 @@ TABLE = {
             setTimeout(function () {
                 if ($scope.table.loaded !== true) {
                     $scope.table.loaded = true;
-                    ANIMATION.play("#" + $scope.modelName + "Table");
                     dataToList = {
                         limit: $scope.table.currentLimit,
                         page: $scope.table.currentPage,

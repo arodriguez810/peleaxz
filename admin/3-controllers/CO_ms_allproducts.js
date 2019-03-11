@@ -22,7 +22,7 @@ app.controller("ms_allproducts", function ($scope, $http, $compile) {
             ms_allproducts.form.schemas.select = {
                 products: {
                     toTable: "ms_allproducts",
-                    text: "Loading products...",
+                    text: MESSAGE.i('actions.Loading'),
                     fields: {
                         all: "$id",
                     },

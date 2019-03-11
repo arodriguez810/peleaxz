@@ -1,8 +1,8 @@
-<table class="table table-togglable table-framed">
+<table class="table table-togglable table-framed" dragonlanguage="">
     <tbody>
     <td ng-show="<%= scope %>.allow('actions') && <%= scope %>.allow(['edit','remove','active'])"
         class="text-center bg-<%= COLOR.primary %>">
-        Actions
+        <language>MESSAGE.ic('mono.actions')</language>
     </td>
     <td class="text-center"
         ng-show="(<%= scope %>.allow('actions') && <%= scope %>.allow(['edit','remove','active']))">
@@ -50,7 +50,6 @@
                 ng-mouseover="<%= scope %>.cell.mouseover(keycolum,value,<%= scope %>.dataForView)"
                 ng-mouseup="<%= scope %>.cell.mouseup(keycolum,value,<%= scope %>.dataForView)"
         >
-
         </span>
         </td>
 

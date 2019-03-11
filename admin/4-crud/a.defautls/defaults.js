@@ -60,7 +60,7 @@ CRUDDEFAULTS = {
                 menus: [
                     {
                         text: (data) => {
-                            return "Edit";
+                            return MESSAGE.i('actions.Edit');
                         },
                         icon: (data) => {
                             return "pencil5";
@@ -83,7 +83,7 @@ CRUDDEFAULTS = {
                     },
                     {
                         text: (data) => {
-                            return "View";
+                            return MESSAGE.i('actions.View');
                         },
                         icon: (data) => {
                             return "eye";
@@ -99,14 +99,14 @@ CRUDDEFAULTS = {
                                 data.$scope.dataForView = data.row;
                                 data.$scope.modal.modalView(String.format("{0}/view", data.$scope.modelName), {
                                     header: {
-                                        title: "View of " + data.$scope.plural,
+                                        title: MESSAGE.i('mono.Viewof') + " " + data.$scope.plural,
                                         icon: ICON.classes.user
                                     },
                                     footer: {
                                         cancelButton: true
                                     },
                                     content: {
-                                        loadingContentText: "Loading Child Info",
+                                        loadingContentText: `${MESSAGE.i('actions.Loading')}...`,
                                         sameController: true
                                     },
                                 });
@@ -115,7 +115,7 @@ CRUDDEFAULTS = {
                     },
                     {
                         text: (data) => {
-                            return "Remove";
+                            return MESSAGE.i('actions.Remove');
                         },
                         icon: (data) => {
                             return "trash";
@@ -128,9 +128,9 @@ CRUDDEFAULTS = {
                         },
                         click: function (data) {
                             SWEETALERT.confirm({
-                                message: "¿Are you sure you want delete this record?",
+                                message: MESSAGE.i('alerts.AYSDelete'),
                                 confirm: function () {
-                                    SWEETALERT.loading({message: "Deleting Row..."});
+                                    SWEETALERT.loading({message: MESSAGE.ic('mono.deleting') + "..."});
                                     data.$scope.deleteRow(data.row).then(function () {
                                         SWEETALERT.stop();
                                     });
@@ -141,7 +141,7 @@ CRUDDEFAULTS = {
                     },
                     {
                         text: (data) => {
-                            return "Enable";
+                            return MESSAGE.i('actions.Enable');
                         },
                         icon: (data) => {
                             return "checkmark-circle";
@@ -154,9 +154,9 @@ CRUDDEFAULTS = {
                         },
                         click: function (data) {
                             SWEETALERT.confirm({
-                                message: "¿Are you sure you want " + "Enable" + " this record?",
+                                message: MESSAGE.i('alerts.AYSEnable'),
                                 confirm: function () {
-                                    SWEETALERT.loading({message: "Procesing Row..."});
+                                    SWEETALERT.loading({message: MESSAGE.ic('mono.procesing')});
                                     data.$scope.activeRow(data.row, 1).then(function () {
                                         SWEETALERT.stop();
                                     });
@@ -170,7 +170,7 @@ CRUDDEFAULTS = {
                     },
                     {
                         text: (data) => {
-                            return "Disable";
+                            return MESSAGE.i('actions.Disable');
                         },
                         icon: (data) => {
                             return "circle";
@@ -183,9 +183,9 @@ CRUDDEFAULTS = {
                         },
                         click: function (data) {
                             SWEETALERT.confirm({
-                                message: "¿Are you sure you want " + "Disable" + " this record?",
+                                message: MESSAGE.i('alerts.AYSDisable'),
                                 confirm: function () {
-                                    SWEETALERT.loading({message: "Procesing Row..."});
+                                    SWEETALERT.loading({message: MESSAGE.ic('mono.procesing')});
                                     data.$scope.activeRow(data.row, 0).then(function () {
                                         SWEETALERT.stop();
                                     });
@@ -199,7 +199,7 @@ CRUDDEFAULTS = {
                     },
                     {
                         text: (data) => {
-                            return "Copy";
+                            return MESSAGE.i('actions.Copy');
                         },
                         icon: (data) => {
                             return "copy3";
@@ -231,10 +231,10 @@ CRUDDEFAULTS = {
                                 }
                             }
                             SWEETALERT.confirm({
-                                title: 'Copy Records',
-                                message: "This option copy this record without relations and paste in a new one with last ID. <br> ¿Are you sure you want copy this record?",
+                                title: MESSAGE.i('actions.CopyRecords'),
+                                message: MESSAGE.i('alerts.Copy'),
                                 confirm: function () {
-                                    SWEETALERT.loading({message: "Copyng Record..."});
+                                    SWEETALERT.loading({message: MESSAGE.i('actions.CopyngRecord')});
                                     var records = [formatRow];
                                     var columns = data.$scope.table.crud.table.columns;
                                     var inserts = [];
@@ -279,7 +279,7 @@ CRUDDEFAULTS = {
                 menus: [
                     {
                         text: (data) => {
-                            return "Clipboard";
+                            return MESSAGE.i('actions.Clipboard');
                         },
                         icon: (data) => {
                             return "copy3";

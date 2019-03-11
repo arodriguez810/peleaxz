@@ -10,7 +10,14 @@ MENU = {
     getMenu: function (A) {
         var icon = A.find('i:eq(0)').attr('class');
         var text = A.find('span:eq(0)').html();
-        return {icon: icon, text: text, a: A, href: A.attr("href")};
+        return {icon: icon, text: MENU.language(text), a: A, href: A.attr("href")};
+    },
+    language: function (text) {
+        if(text===undefined) return "";
+        if (text.indexOf('<language>') !== -1)
+            return text.replace('<language>', '').replace('</language>', '');
+        else
+            return text;
     },
     convertToNoA: function (item) {
         return {icon: item.icon, text: item.text, href: item.href};
@@ -22,7 +29,7 @@ MENU = {
             var I = A.find('i:eq(0)');
             var icon = I.attr('class');
             var text = A.find('span:eq(0)').html();
-            MENU.current.parents.push({icon: icon, text: text, a: A});
+            MENU.current.parents.push({icon: icon, text: MENU.language(text), a: A});
             MENU.setBrothers(ARRAY.last(MENU.current.parents));
             MENU.setParents(A);
         }
@@ -30,7 +37,8 @@ MENU = {
     setActive: function (link) {
         $(".dragon-menu li").removeClass('active');
         var a = $('.dragon-menu a[href="#' + link + '"]:eq(0)');
-        document.title = `${CONFIG.appName} - ${a.find('span:eq(0)').html() || capitalize(link)}`;
+        document.title = `${CONFIG.appName} - ${MENU.language(a.find('span:eq(0)').html()) || capitalize(link)}`;
+        $("#apptitle").html(MENU.language(a.find('span:eq(0)').html()));
         if (a.length > 0) {
             MENU.setLast(a);
             MENU.expand(a);

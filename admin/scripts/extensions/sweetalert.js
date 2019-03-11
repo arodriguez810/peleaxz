@@ -3,22 +3,23 @@ SWEETALERT = {
     goPage: function ($scope) {
         SWEETALERT.lastLaert = myswal({
             title: String.format(
-                "Enter Page Number between {0} to {1}",
+                MESSAGE.i('alerts.EnterPage'),
                 1,
                 $scope.table.totalPages
             ),
             input: "number",
             showCancelButton: true,
-            confirmButtonText: "Go"
+            confirmButtonText: MESSAGE.i('mono.go'),
+            cancelButtonText: MESSAGE.i('mono.cancel'),
         }).then(result => {
             if (result.dismiss === undefined) {
                 if (result.value > $scope.table.totalPages || result.value < 1) {
                     myswal({
                         title:
-                            "The page must be greater than 1 and less than " +
+                            MESSAGE.i('alerts.PageGreater') +
                             $scope.table.totalPages,
                         showCancelButton: true,
-                        confirmButtonText: "Try Again"
+                        confirmButtonText: MESSAGE.i('mono.TryAgain')
                     }).then(result => {
                         if (result.dismiss === undefined) SWEETALERT.goPage($scope);
                     });
@@ -32,10 +33,10 @@ SWEETALERT = {
         SWEETALERT.lastLaert = myswal({
             type: data.type || "warning",
             title: data.title || "",
-            html: data.message || "¿Are you sure?",
+            html: data.message || MESSAGE.i('mono.Areyousure'),
             showCancelButton: true,
-            confirmButtonText: data.yes || "Yes",
-            cancelButtonText: data.cancel || "No"
+            confirmButtonText: data.yes || MESSAGE.ic('mono.yes'),
+            cancelButtonText: data.cancel || MESSAGE.ic('mono.no')
         }).then(result => {
             if (result.dismiss === undefined) {
                 if (typeof data.confirm === "function") data.confirm();
@@ -77,7 +78,7 @@ SWEETALERT = {
             type: data.type || "info",
             title: data.title || "",
             html: data.message || "",
-            confirmButtonText: data.ok || "Ok"
+            confirmButtonText: data.ok || MESSAGE.ic('mono.ok')
         }).then(result => {
             if (typeof data.confirm === "function") data.confirm();
         });
