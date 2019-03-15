@@ -91,18 +91,4 @@ exports.defaultRequests = function (params, Model) {
             });
         });
     });
-    params.app.get(params.util.format('/api/%s/crud', params.modelName), function (req, res) {
-        params.secure.check(req, res, function () {
-            params.fs.readFile(util.format("./" + params.folders.crud + "/mongo/%s.json", params.modelName), function (err, data) {
-                if (err) {
-                    res.json({message: err, error: true});
-                }
-                res.json({
-                    message: "Success",
-                    crud: data,
-                    error: false
-                });
-            });
-        });
-    });
 };

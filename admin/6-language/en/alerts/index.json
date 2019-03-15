@@ -31,5 +31,6 @@
   "ContainsError":"this form contains errors so it will not allow you to save.",
   "CloseToComplete":"¿You are close to completing the form, are you sure you want to close it?",
   "ClientDbError":"An error occurred in the database, would you like to send this error?",
-  "ChangeLanguage":"Are you sure to change language to ${lang.name}?, this will change the texts of ${CONFIG.appName} and you may not understand them."
+  "ChangeLanguage":"Are you sure to change language to ${lang.name}?, this will change the texts of ${CONFIG.appName} and you may not understand them.",
+  "providerError":"Your errors have been sent to the provider"
 }

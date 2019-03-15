@@ -4,6 +4,7 @@
   "to": "a",
   "please": "porfavor",
   "save": "guardar",
+  "saving": "guardando",
   "close": "cerrar",
   "wait": "espera",
   "Preparingfilesandrelations": "Preparando archivos y relaciones...",
@@ -94,5 +95,9 @@
   "session": "sessión",
   "Thereisnofilestoshow": "No hay archivos a mostrar.",
   "deleting": "eliminando",
-  "filesof": "archivo de"
+  "filesof": "archivo de",
+  "DeletingMultipleRows": "Eliminando varias filas",
+  "quick": "rapida",
+  "view": "vista",
+  "options": "opciones"
 }

@@ -41,6 +41,14 @@
       "module": "node-mssql"
     },
     {
+      "var": "mysql",
+      "module": "mysql"
+    },
+    {
+      "var": "oracle",
+      "module": "oracledb"
+    },
+    {
       "var": "colors",
       "module": "colors"
     },
@@ -51,10 +59,6 @@
     {
       "var": "format",
       "module": "string-format"
-    },
-    {
-      "var": "mysql",
-      "module": "mysql"
     },
     {
       "var": "child_process",
@@ -129,8 +133,12 @@
       "module": "rimraf"
     },
     {
-      "var": "jwt ",
+      "var": "jwt",
       "module": "jsonwebtoken"
+    },
+    {
+      "var": "storage",
+      "module": "node-persist"
     }
   ]
 }

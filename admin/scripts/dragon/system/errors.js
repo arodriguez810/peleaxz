@@ -6,10 +6,13 @@ ERROR = {
     alert: function (error, category) {
         if (CONFIG.mode !== 'developer') {
             switch (category) {
-                case category.database: {
-                    SWEETALERT.show({
+                case ERROR.category.database: {
+                    SWEETALERT.confirm({
                         type: "error",
-                        message: MESSAGE.i('alerts.ClientDbError')
+                        message: MESSAGE.i('alerts.ClientDbError'),
+                        confirm: function () {
+                            SWEETALERT.show({message: MESSAGE.i('alerts.providerError')});
+                        }
                     });
                     break;
                 }
@@ -25,10 +28,13 @@ ERROR = {
     multiAlert: function (errors, category) {
         if (CONFIG.mode !== 'developer') {
             switch (category) {
-                case category.database: {
-                    SWEETALERT.show({
+                case ERROR.category.database: {
+                    SWEETALERT.confirm({
                         type: "error",
-                        message:  MESSAGE.i('alerts.ClientDbError')
+                        message: MESSAGE.i('alerts.ClientDbError'),
+                        confirm: function () {
+                            SWEETALERT.show({message: MESSAGE.i('alerts.providerError')});
+                        }
                     });
                     break;
                 }

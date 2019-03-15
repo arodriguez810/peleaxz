@@ -36,6 +36,14 @@ MESSAGE = {
         } else {
             for (var i in LANGUAGE) {
                 if (MESSAGE.existOther(key, i)) {
+                    if (CONFIG.mode === "developer") {
+                        var strict = key.split('.');
+                        if (strict.length > 1)
+                            MESSAGE.register(lan, strict[0], strict[1]);
+                        else {
+                            SWEETALERT.show(`The langage key ${key} don't have folder, please change`);
+                        }
+                    }
                     return eval(`LANGUAGE.${i}.${key}`);
                 }
             }
@@ -66,7 +74,11 @@ MESSAGE = {
         var lan = STORAGE.get('LANGUAGE') || CONFIG.language;
         if (!eval(`LANGUAGE.${lan}.hasOwnProperty('${key.split('.')[0]}')`))
             return false;
-        return eval(`LANGUAGE.${lan}.${key.split('.')[0]}.hasOwnProperty('${key.split('.')[1]}')`);
+        var exist = eval(`LANGUAGE.${lan}.${key.split('.')[0]}.hasOwnProperty('${key.split('.')[1]}')`);
+        if(!exist){
+
+        }
+        return exist;
     },
     existOther: function (key, lan) {
         if (!eval(`LANGUAGE.${lan}.hasOwnProperty('${key.split('.')[0]}')`))

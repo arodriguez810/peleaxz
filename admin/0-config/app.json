@@ -11,10 +11,28 @@
   "mode": "developer",
   "language": "en",
   "home": "ms_all",
+  "storage": "files/storage",
   "features": {
     "fileManager": true,
     "stepManager": true,
     "token": true,
     "language": true
-  }
+  },
+  "languages": [
+    {
+      "code": "en",
+      "name": "English",
+      "flag": "us"
+    },
+    {
+      "code": "es",
+      "name": "Español",
+      "flag": "es"
+    },
+    {
+      "code": "fr",
+      "name": "Français",
+      "flag": "fr"
+    }
+  ]
 }

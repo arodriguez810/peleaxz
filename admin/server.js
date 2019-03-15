@@ -16,6 +16,7 @@ var folders = {
     files: "files",
 };
 var modules = {}, localjs = [], localModules = [], localModulesVars = [], modulesList = [], developer = {};
+var modules = {}, localjs = [], localModules = [], localModulesVars = [], modulesList = [], developer = {};
 var fs = require("fs");
 var getFiles = function (dir, filelist, prefix) {
     var fs = fs || require("fs"),
@@ -73,18 +74,41 @@ for (var i in CONFIG.modules) {
     eval("var " + module.var + " = require('" + module.module + "');");
 }
 
+storage.init({
+    dir: 'files/storage',
+
+    stringify: JSON.stringify,
+
+    parse: JSON.parse,
+
+    encoding: 'utf8',
+
+    logging: false,  // can also be custom logging function
+
+    ttl: false, // ttl* [NEW], can be true for 24h default or a number in MILLISECONDS or a valid Javascript Date object
+
+    expiredInterval: 2 * 60 * 1000, // every 2 minutes the process will clean-up the expired cache
+
+    // in some cases, you (or some other service) might add non-valid storage files to your
+    // storage dir, i.e. Google Drive, make this true if you'd like to ignore these files and not throw an error
+    forgiveParseErrors: false
+});
+
+oracle.autoCommit = true;
 var upload = multer({dest: folders.files + '/uploads/'});
 
 var jsoncsv = require('express-json-csv')(express);
 localModulesVars.push("jsoncsv");
 //******* Load Custom Modules********//
-fs.readdir("./" + folders.modules + "/", function (err, files) {
-    for (var i in files) {
-        var file = files[i];
-        modulesList.push(file.replace(".js", "").replace("BASE_", ""));
-        eval("modules." + file.replace(".js", "").replace("BASE_", "") + " = require('./" + folders.modules + "/" + file + "');");
-    }
-});
+
+var filesmodules = fs.readdirSync("./" + folders.modules + "/");
+
+for (var i in filesmodules) {
+    var file = filesmodules[i];
+    modulesList.push(file.replace(".js", "").replace("BASE_", ""));
+    eval("modules." + file.replace(".js", "").replace("BASE_", "") + " = require('./" + folders.modules + "/" + file + "');");
+}
+
 localStyles = getFiles("./" + folders.styles + "/");
 localjs = getFiles("./" + folders.scripts + "/");
 localserver = getFiles("./" + folders.server + "/");
@@ -117,7 +141,7 @@ allparams += "      app: app,";
 allparams += "      dir: __dirname,";
 for (var i in modulesList) {
     var name = modulesList[i];
-    allparams += "      " + name + ":" + name + ",";
+    allparams += "      " + name + ":modules." + name + ",";
 }
 
 var secure = {};
@@ -162,6 +186,7 @@ for (var i in localModulesVars) {
 allparams += "      collections: collections,";
 allparams += "      scope: '@model@',";
 allparams += "      modules:modules,";
+allparams += "      storage:storage,";
 allparams += "      secure:secure,";
 allparams += "      fs:fs,";
 allparams += "      jwt:jwt,";
@@ -175,6 +200,7 @@ allparams += "      crudjs:crudjs,";
 allparams += "      models:models,";
 allparams += "      mssql:mssql,";
 allparams += "      mysql:mysql,";
+allparams += "      oracle:oracle,";
 allparams += "      CONFIG:CONFIG,";
 allparams += "      LANGUAGE:LANGUAGE,";
 allparams += "      SHOWLANGS:SHOWLANGS,";
@@ -185,17 +211,21 @@ allparams += "      app:app,";
 if (CONFIG.mongo) allparams += "  mongoose:mongoose,";
 if (CONFIG.mssql) allparams += "  modelsql:modelsql,";
 if (CONFIG.mysql) allparams += "  modelmysql:modelmysql,";
+if (CONFIG.oracle) allparams += "  modeloracle:modeloracle,";
 allparams += "}";
 
 //******* Load Models********//
 var models = [],
     modelsql = [],
-    modelmysql = [];
+    modelmysql = [],
+    modeloracle = [];
 var collections = {},
     collectionsql = {};
 
-
 loadedMotors = 0;
+
+var PARAMS = eval("(" + allparams + ")");
+
 if (CONFIG.mongo !== undefined) {
     fs.readdir("./" + folders.models + "/mongo", function (err, files) {
         for (var i in files) {
@@ -231,98 +261,141 @@ if (CONFIG.mongo !== undefined) {
             }
         loadedMotors++;
     });
-} else {
-    loadedMotors++;
-}
+} else loadedMotors++;
 if (CONFIG.mssql !== undefined) {
-    fs.readdir("./" + folders.models + "/mssql", function (err, files) {
-        for (var i in files) {
-            var file = files[i];
-            modelsql.push(S(file).replaceAll(".json", "").replaceAll("MO_", "").s);
-        }
+    var msfiles = fs.readdirSync("./" + folders.models + "/mssql");
 
-        for (var i in modelsql) {
-            var model = modelsql[i];
-            var content = fs.readFileSync(
-                util.format("./" + folders.models + "/mssql/MO_%s.json", model)
-            );
-            if (content.indexOf('"view": "view"') === -1) {
-                var object = eval("(" + util.format("%s", content) + ")");
-                var create = modules.mssql.createTable(model, object, eval("(" + allparams + ")"));
-                var add = modules.mssql.addColumns(model, object, eval("(" + allparams + ")"));
-                var alter = modules.mssql.alterColumns(model, object, eval("(" + allparams + ")"));
+    for (var i in msfiles) {
+        var file = msfiles[i];
+        modelsql.push(S(file).replaceAll(".sql", "").replaceAll("MO_", "").s);
+    }
 
-                var removes = modules.mssql.deleteColumns(model, object, eval("(" + allparams + ")"));
-                removes.forEach(function (item) {
-                    console.log(item.error);
-                });
-                modules.mssql.executeNonQuery(create, eval("(" + allparams + ")"));
-                modules.mssql.executeNonQuery(add, eval("(" + allparams + ")"));
-                modules.mssql.executeNonQuery(alter, eval("(" + allparams + ")"));
+    var queries = [];
+    for (var i in msfiles) {
+        var sentence = msfiles[i];
+        var query = fs.readFileSync(`./${folders.models}/mssql/${sentence}`);
+        queries.push(util.format("%s", query));
+    }
+    modules.mssql.executeNonQueryArray(queries, PARAMS, false).then(x => {
+        console.log('loaded mssql models');
+        fs.readdir("./" + folders.models + "/scripts/mssql", function (err, mssentences) {
+            var queries = [];
+            for (var i in mssentences) {
+                var sentence = mssentences[i];
+                var query = fs.readFileSync(`./${folders.models}/scripts/mssql/${sentence}`);
+
+                queries.push(util.format("%s", query));
             }
-            var stringModel = S(allparams).replaceAll("@model@", model).s;
-        }
-        var MSSQLDB = {};
-        for (var i in modelsql) {
-            eval("MSSQLDB." + modelsql[i] + " = new modules.mssql.Model('" + modelsql[i] + "'," + allparams + ");");
-            modules.mssql.defaultRequests(
-                eval(util.format("MSSQLDB.%s", modelsql[i])),
-                eval("(" + stringModel + ")")
-            );
-        }
-        loadedMotors++;
-
+            modules.mssql.executeNonQueryArray(queries, PARAMS, false).then((data) => {
+                console.log('loaded mssql queries');
+                loadedMotors++;
+            });
+        });
     });
-} else {
-    loadedMotors++;
-}
-if (CONFIG.mysql !== undefined) {
-    fs.readdir("./" + folders.models + "/mysql", function (err, files) {
-        for (var i in files) {
-            var file = files[i];
-            modelmysql.push(
-                S(file)
-                    .replaceAll(".json", "")
-                    .replaceAll("MO_", "").s
-            );
-        }
-        for (var i in modelmysql) {
-            var model = modelmysql[i];
-            var content = fs.readFileSync(
-                util.format("./" + folders.models + "/mysql/MO_%s.json", model)
-            );
-            if (content.indexOf('"view": "view"') === -1) {
-                var object = eval("(" + util.format("%s", content) + ")");
-                var create = modules.mysql.createTable(model, object, eval("(" + allparams + ")"));
-                var add = modules.mysql.addColumns(model, object, eval("(" + allparams + ")"));
-                var alter = modules.mysql.alterColumns(model, object, eval("(" + allparams + ")"));
-                modules.mysql.deleteColumns(model, object, eval("(" + allparams + ")"), function (item) {
-                    if (item.length > 0)
-                        console.log('delete this', item);
-                });
-                modules.mysql.executeNonQuery(create, eval("(" + allparams + ")"));
-                modules.mysql.executeNonQuery(alter, eval("(" + allparams + ")"));
-                modules.mysql.executeNonQuery(add, eval("(" + allparams + ")"));
-            }
-            var stringModel = S(allparams).replaceAll("@model@", model).s;
-        }
 
-        var MYQLDB = {};
-        for (var i in modelmysql) {
-            eval(
-                "MYQLDB." + modelmysql[i] + " = new modules.mysql.Model('" + modelmysql[i] + "'," + allparams + ");");
-            modules.mysql.defaultRequests(
-                eval(util.format("MYQLDB.%s", modelmysql[i])),
-                eval("(" + stringModel + ")")
-            );
-        }
-        loadedMotors++;
-    });
+    var MSSQLDB = {};
+    for (var i in modelsql) {
+
+        var stringModel = S(allparams).replaceAll("@model@", modelsql[i]).s;
+        eval("MSSQLDB." + modelsql[i] + " = new modules.mssql.Model('" + modelsql[i] + "'," + allparams + ");");
+        modules.mssql.defaultRequests(
+            eval(util.format("MSSQLDB.%s", modelsql[i])),
+            eval("(" + stringModel + ")")
+        );
+    }
 } else loadedMotors++;
 
-while (loadedMotors < 3) {
-    sleep(1);
-}
+if (CONFIG.mysql !== undefined) {
+    var myfiles = fs.readdirSync("./" + folders.models + "/mysql");
+
+    for (var i in myfiles) {
+        var file = myfiles[i];
+        modelmysql.push(S(file).replaceAll(".sql", "").replaceAll("MO_", "").s);
+    }
+
+
+    var queries = [];
+    for (var i in myfiles) {
+        var sentence = myfiles[i];
+        var query = fs.readFileSync(`./${folders.models}/mysql/${sentence}`);
+        queries.push(util.format("%s", query));
+    }
+
+    modules.mysql.executeNonQueryArray(queries, PARAMS, false).then(x => {
+        console.log('loaded mysql models');
+        fs.readdir("./" + folders.models + "/scripts/mysql", function (err, mysentences) {
+            var queries = [];
+            for (var i in mysentences) {
+                var sentence = mysentences[i];
+                var query = fs.readFileSync(`./${folders.models}/scripts/mysql/${sentence}`);
+
+                queries.push(util.format("%s", query));
+            }
+            modules.mysql.executeNonQueryArray(queries, PARAMS, false).then((data) => {
+                console.log('loaded mysql queries');
+                loadedMotors++;
+            });
+        });
+    });
+
+
+    var MYQLDB = {};
+    for (var i in modelmysql) {
+        var stringModel = S(allparams).replaceAll("@model@", modelmysql[i]).s;
+        eval("MYQLDB." + modelmysql[i] + " = new modules.mysql.Model('" + modelmysql[i] + "'," + allparams + ");");
+        modules.mysql.defaultRequests(
+            eval(util.format("MYQLDB.%s", modelmysql[i])),
+            eval("(" + stringModel + ")")
+        );
+    }
+} else loadedMotors++;
+
+if (CONFIG.oracle !== undefined) {
+
+    var orafiles = fs.readdirSync("./" + folders.models + "/oracle");
+
+
+    for (var i in orafiles) {
+        var file = orafiles[i];
+        modeloracle.push(S(file).replaceAll(".sql", "").replaceAll("MO_", "").s);
+    }
+
+    var queries = [];
+    for (var i in orafiles) {
+        var sentence = orafiles[i];
+        var query = fs.readFileSync(`./${folders.models}/oracle/${sentence}`);
+        queries.push(util.format("%s", query));
+    }
+    modules.oracle.executeNonQueryArray(queries, PARAMS, false).then(x => {
+        console.log('loaded oracle models');
+        fs.readdir("./" + folders.models + "/scripts/oracle", function (err, orasentences) {
+            var queries = [];
+            for (var i in orasentences) {
+                var sentence = orasentences[i];
+                var query = fs.readFileSync(`./${folders.models}/scripts/oracle/${sentence}`);
+
+                queries.push(util.format("%s", query));
+            }
+            modules.oracle.executeNonQueryArray(queries, PARAMS, false).then((data) => {
+                console.log('loaded oracle queries');
+                loadedMotors++;
+            });
+        });
+    });
+
+
+    var ORACLEDB = {};
+    for (var i in modeloracle) {
+        var stringModel = S(allparams).replaceAll("@model@", modeloracle[i]).s;
+        eval("ORACLEDB." + modeloracle[i] + " = new modules.oracle.Model('" + modeloracle[i] + "'," + allparams + ");");
+        modules.oracle.defaultRequests(
+            eval(util.format("ORACLEDB.%s", modeloracle[i])),
+            eval("(" + stringModel + ")")
+        );
+    }
+
+} else loadedMotors++;
+while (loadedMotors < 4) sleep(1);
 
 servicesFiles = getFiles("./" + folders.service + "/");
 var catalogs = [];
@@ -336,7 +409,6 @@ servicesFiles.forEach(function (item) {
     eval("services = " + model + "Service.api");
     servicesFunctions[model] = services;
 });
-
 
 servicesFiles.forEach(function (item) {
     var model = item.replace(".js", "").replace("SE_", "");
@@ -360,6 +432,7 @@ console.log("LAGs   : ".pxz + SHOWLANGSConsole.join(','));
 if (CONFIG.mongo !== undefined) console.log("Mongo  : ".pxz + models);
 if (CONFIG.mssql !== undefined) console.log("MSSQL  : ".pxz + modelsql);
 if (CONFIG.mysql !== undefined) console.log("MYSQL  : ".pxz + modelmysql);
+if (CONFIG.mysql !== undefined) console.log("ORACLE : ".pxz + modeloracle);
 console.log("Custom : ".pxz + modulesList);
 console.log("Modules: ".pxz + localModules);
 console.log("**********************************************************************".pxz);

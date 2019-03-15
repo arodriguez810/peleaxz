@@ -53,8 +53,13 @@
                   "icon": "user"
                 },
                 {
-                  "text": "External Users",
+                  "text": "Mysql Users",
                   "href": "#my_user",
+                  "icon": "user"
+                },
+                {
+                  "text": "Oracle Users",
+                  "href": "#oc_user",
                   "icon": "user"
                 },
                 {

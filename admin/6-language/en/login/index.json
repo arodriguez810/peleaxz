@@ -2,5 +2,6 @@
   "Loginto": "Login to",
   "Enteryourcredentialsbelow": "Enter your credentials below",
   "Remember": "Remember",
-  "invalid": "Invalid credentials, please try again"
+  "invalid": "Invalid credentials, please try again",
+  "blocked": "Your account has been blocked, please try in the next ${CONFIG.users.unlockTime} minutes"
 }

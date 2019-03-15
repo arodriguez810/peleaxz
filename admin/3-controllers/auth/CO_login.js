@@ -27,18 +27,28 @@ app.controller("auth_login", function ($scope, $http, $compile) {
         SERVICE.base_auth.login({username: auth_login.username, password: auth_login.password}, function (data) {
             SWEETALERT.stop();
             var response = data.data;
-            if (response.count[0] > 0) {
-                var user = response.data[0];
-                SESSION.register(user);
-                HTTP.redirect('');
-            } else {
+            if (response.error !== false) {
                 SWEETALERT.show({
                     type: 'error',
-                    message: MESSAGE.i('login.invalid'),
+                    message: MESSAGE.ieval('login.blocked'),
                     close: function () {
                         auth_login.password = "";
                     }
                 });
+            } else {
+                if (response.count[0] > 0) {
+                    var user = response.data[0];
+                    SESSION.register(user);
+                    HTTP.redirect('');
+                } else {
+                    SWEETALERT.show({
+                        type: 'error',
+                        message: MESSAGE.i('login.invalid'),
+                        close: function () {
+                            auth_login.password = "";
+                        }
+                    });
+                }
             }
         });
     };

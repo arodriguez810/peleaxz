@@ -12,6 +12,11 @@ exports.api = {
     posts: {
         login: async function (request) {
             var config = params.CONFIG.users;
+            var key = `${config.engine}-${request.username}`;
+            var attemps = await params.storage.getItem(key);
+            if (attemps >= config.attempts) {
+                return {error: "Account is Locked"};
+            }
             eval(`module = params.modules.${config.engine};`);
             var sendPassword = request.password;
             sendPassword = params.md5(params.CONFIG.appKey + sendPassword);
@@ -25,10 +30,11 @@ exports.api = {
                     field: config.fields.password,
                     value: sendPassword
                 }
-            ]).then(data => {
+            ]).then(async data => {
                 data.query = "[HIDE]";
 
                 if (data.count[0] > 0) {
+                    await params.storage.removeItem(key);
                     eval(`data.data[0].${config.fields.password} = "[HIDE]"`);
                     data.data[0].token = params.jwt.sign(
                         {
@@ -39,6 +45,9 @@ exports.api = {
                             expiresIn: config.expire
                         }
                     );
+                } else {
+                    data.attemps = ((attemps || 0) + 1);
+                    await params.storage.setItem(`${config.engine}-${request.username}`, data.attemps, {ttl: config.unlockTime * 60000});
                 }
                 return data;
             });

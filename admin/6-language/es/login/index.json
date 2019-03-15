@@ -2,5 +2,6 @@
   "Loginto": "Iniciar Sesión a",
   "Enteryourcredentialsbelow": "Digite sus credenciales",
   "Remember": "Recordar",
-  "invalid": "Credenciales invalidas, favor trate de nuevo"
+  "invalid": "Credenciales invalidas, favor trate de nuevo",
+  "blocked": "Su cuenta ha sido bloqueada, porfavor intente en los siguientes ${CONFIG.users.unlockTime} minutos"
 }

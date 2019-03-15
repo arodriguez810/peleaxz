@@ -10,7 +10,7 @@ CRUDDEFAULTS = {
             "_1": "visible-xs visible-sm visible-md visible-lg"
         },
         report: false,
-        width: "",
+        width: "width:5000px;",
         offWidth: 5,
         baseWidth: 1000,
         columnsalign: "center",

@@ -2,139 +2,61 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8fb134e-e727-43fe-b984-89a1d2d7969c" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/admin/5-views/templates/components/messageManager.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/5-views/templates/form/footer.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/5-views/templates/form/tabs.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/6-language/en/actions/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/6-language/en/alerts/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/6-language/en/columns/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/6-language/en/error/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/6-language/en/export/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/6-language/en/login/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/6-language/en/menu/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/6-language/en/mono/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/6-language/en/ms_all/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/6-language/en/navbar/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/6-language/en/table/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/6-language/en/validations/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/6-language/es/actions/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/6-language/es/alerts/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/6-language/es/columns/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/6-language/es/error/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/6-language/es/export/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/6-language/es/login/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/6-language/es/menu/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/6-language/es/mono/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/6-language/es/ms_all/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/6-language/es/navbar/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/6-language/es/restore/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/6-language/es/table/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/6-language/es/validations/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/styles/components/menu.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/1-models/mysql/MO_my_user2.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/1-models/oracle/MO_oc_user.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/1-models/scripts/mssql/motor.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/1-models/scripts/mysql/motor.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/1-models/scripts/oracle/md5support.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/1-models/scripts/oracle/or_user_seq.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/1-models/scripts/oracle/or_user_seqtrigger.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/3-controllers/CO_oc_user.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/4-crud/oracle/oc_user/1columns.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/4-crud/oracle/oc_user/filters.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/oc_user/filter.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/oc_user/form.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/oc_user/index.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/oc_user/view.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/modules/BASE_oracle.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/0-config/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/0-config/app.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/0-config/appearance/menu.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/0-config/appearance/menu.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/0-config/appearance/theme.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/0-config/appearance/theme.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/0-config/developer/modules.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/0-config/developer/modules.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/0-config/security/auth.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/0-config/security/auth.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/1-models/mssql/MO_ms_all.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/1-models/mssql/MO_ms_all.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/1-models/mssql/MO_ms_allproducts.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/1-models/mssql/MO_ms_allproducts.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/1-models/mssql/MO_ms_allusers.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/1-models/mssql/MO_ms_allusers.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/1-models/mssql/MO_ms_category.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/1-models/mssql/MO_ms_category.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/1-models/mssql/MO_ms_child.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/1-models/mssql/MO_ms_child.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/1-models/mssql/MO_ms_other.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/1-models/mssql/MO_ms_other.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/1-models/mssql/MO_ms_product.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/1-models/mssql/MO_ms_product.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/1-models/mssql/MO_ms_user.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/1-models/mssql/MO_ms_user.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/1-models/mssql/MO_ms_vwuser.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/1-models/mssql/MO_ms_vwuser.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/1-models/mysql/MO_my_user.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/1-models/mysql/MO_my_user.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/2-service/base/SE_auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/2-service/base/SE_auth.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/3-controllers/CO_ms_all.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/3-controllers/CO_ms_all.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/3-controllers/CO_ms_allproducts.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/3-controllers/CO_ms_allproducts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/3-controllers/CO_ms_category.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/3-controllers/CO_ms_category.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/3-controllers/abase/CO_BASE.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/3-controllers/abase/CO_BASE.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/3-controllers/auth/CO_login.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/3-controllers/auth/CO_login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/4-crud/a.defautls/defaults.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/4-crud/a.defautls/defaults.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/4-crud/mssql/ms_all/1columns.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/4-crud/mssql/ms_all/1columns.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/4-crud/mssql/ms_allproducts/1columns.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/4-crud/mssql/ms_allproducts/1columns.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/4-crud/mssql/ms_allusers/1columns.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/4-crud/mssql/ms_allusers/1columns.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/4-crud/mssql/ms_product/1columns.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/4-crud/mssql/ms_product/1columns.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/4-crud/mssql/ms_user/1columns.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/4-crud/mssql/ms_user/1columns.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/4-crud/mysql/my_user/1columns.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/4-crud/mysql/my_user/1columns.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/auth/login.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/auth/login.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/master/error/base.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/master/error/base.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/master/error/error.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/master/error/error.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/master/footer.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/master/footer.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/master/head.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/master/head.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/master/menu.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/master/menu.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/5-views/master/navbar.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/master/navbar.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/master/splash.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/master/splash.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/ms_all/form.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/ms_all/form.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/ms_allproducts/form.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/ms_allproducts/form.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/ms_allusers/form.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/ms_allusers/form.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/ms_category/form.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/ms_category/form.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/ms_child/form.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/ms_child/form.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/ms_other/form.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/ms_other/form.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/ms_other/view.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/ms_other/view.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/ms_product/form.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/ms_product/form.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/ms_user/form.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/ms_user/form.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/my_user/form.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/my_user/form.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/templates/components/crop.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/templates/components/crop.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/templates/components/datatable.ejs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/5-views/templates/components/filemanager.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/templates/components/filemanager.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/templates/components/gallery.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/templates/components/gallery.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/templates/components/import.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/templates/components/import.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/templates/components/locationPicker.ejs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/templates/components/requestManager.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/templates/components/requestManager.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/templates/components/statictable.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/templates/components/statictable.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/templates/form/button.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/templates/form/button.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/templates/form/checkbox.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/templates/form/checkbox.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/templates/form/color.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/templates/form/color.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/templates/form/datetime.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/templates/form/datetime.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/templates/form/file.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/templates/form/file.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/templates/form/filter.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/templates/form/filter.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/templates/form/html.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/templates/form/html.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/templates/form/input.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/templates/form/input.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/templates/form/inputview.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/templates/form/inputview.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/templates/form/location.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/templates/form/location.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/templates/form/password.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/templates/form/password.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/templates/form/relation.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/templates/form/relation.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/templates/form/select.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/templates/form/select.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/templates/form/tags.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/templates/form/tags.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/templates/form/textarea.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/templates/form/textarea.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/templates/table/base.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/templates/table/base.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/templates/table/columnOption.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/templates/table/columnOption.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/templates/table/header.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/templates/table/header.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/templates/table/paginator.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/templates/table/paginator.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/templates/table/rowOptionsSimple.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/templates/table/rowOptionsSimple.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/6-language/en/restore/restore.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/6-language/en/restore/index.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/6-language/es/restore/restore.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/assets/css/components.css" beforeDir="false" afterPath="$PROJECT_DIR$/admin/assets/css/components.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/assets/js/core/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/assets/js/core/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/assets/js/plugins/pickers/color/spectrum.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/assets/js/plugins/pickers/color/spectrum.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/assets/js/plugins/tables/datatables/datatables.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/assets/js/plugins/tables/datatables/datatables.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/my_user/profileimage/3/itachi-uchiha-profile-pictures-9.jpg___ea93a7854a29b4be6bff9472197169dc.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/modules/BASE_views.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/modules/BASE_views.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/6-language/en/alerts/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/6-language/en/alerts/index.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/6-language/en/login/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/6-language/en/login/index.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/6-language/en/menu/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/6-language/en/menu/index.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/6-language/en/mono/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/6-language/en/mono/index.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/6-language/es/alerts/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/6-language/es/alerts/index.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/6-language/es/login/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/6-language/es/login/index.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/6-language/es/mono/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/6-language/es/mono/index.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/files/my_user/profileimage/3/hqdefault.jpg___0d4e490e3c397e2d7f3e12f9d56f9efd.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/modules/BASE_mssql.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/modules/BASE_mssql.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/modules/BASE_mysql.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/modules/BASE_mysql.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/modules/BASE_request.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/modules/BASE_request.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/preview.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/admin/preview.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/appearance/animation.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/appearance/animation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/appearance/contextmenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/appearance/contextmenu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/auth/SESSION.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/auth/SESSION.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/base/baseapi.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/base/baseapi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/base/compile.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/base/compile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/base/http.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/base/http.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/base/load.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/base/load.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/components/menu.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/components/menu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/components/modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/components/modal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/data/capitalize.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/data/capitalize.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/data/json.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/data/json.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/data/localStorage.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/data/localStorage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/form/form.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/form/form.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/form/validations/dropdown.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/form/validations/dropdown.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/form/validations/file.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/form/validations/file.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/form/validations/general.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/form/validations/general.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/form/validations/number.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/form/validations/number.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/form/validations/text.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/form/validations/text.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/system/errors.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/system/errors.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/system/fileManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/system/fileManager.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/system/language.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/system/language.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/system/stepManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/system/stepManager.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/table/events.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/table/events.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/table/export.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/table/export.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/table/filter.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/table/filter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/table/format.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/table/format.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/table/table.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/table/table.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/extensions/sweetalert.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/extensions/sweetalert.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/server/form/templates.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/server/form/templates.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/styles/pages/loader.css" beforeDir="false" afterPath="$PROJECT_DIR$/admin/styles/pages/loader.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/readme.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/readme.sh" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -175,22 +97,25 @@
         <counts>
           <entry key="css" value="255" />
           <entry key="disabled" value="2" />
-          <entry key="ejs" value="1332" />
+          <entry key="ejs" value="1351" />
           <entry key="html" value="35" />
-          <entry key="js" value="2256" />
-          <entry key="json" value="475" />
+          <entry key="js" value="2311" />
+          <entry key="json" value="544" />
+          <entry key="sh" value="1" />
+          <entry key="sql" value="39" />
           <entry key="ts" value="4" />
-          <entry key="txt" value="17" />
+          <entry key="txt" value="18" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="255" />
-          <entry key="EJS" value="1332" />
+          <entry key="EJS" value="1351" />
           <entry key="HTML" value="35" />
-          <entry key="JSON" value="475" />
-          <entry key="JavaScript" value="2256" />
-          <entry key="PLAIN_TEXT" value="19" />
+          <entry key="JSON" value="544" />
+          <entry key="JavaScript" value="2311" />
+          <entry key="PLAIN_TEXT" value="21" />
+          <entry key="SQL" value="39" />
           <entry key="TypeScript" value="4" />
         </counts>
       </usages-collector>
@@ -198,21 +123,24 @@
         <counts>
           <entry key="css" value="698" />
           <entry key="disabled" value="2" />
-          <entry key="ejs" value="35960" />
+          <entry key="ejs" value="35980" />
           <entry key="html" value="6" />
-          <entry key="js" value="85559" />
-          <entry key="json" value="7005" />
+          <entry key="js" value="88536" />
+          <entry key="json" value="7462" />
+          <entry key="sh" value="8" />
+          <entry key="sql" value="128" />
           <entry key="txt" value="31" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="699" />
-          <entry key="EJS" value="35960" />
+          <entry key="EJS" value="35980" />
           <entry key="HTML" value="50" />
-          <entry key="JSON" value="7005" />
-          <entry key="JavaScript" value="85514" />
-          <entry key="PLAIN_TEXT" value="33" />
+          <entry key="JSON" value="7462" />
+          <entry key="JavaScript" value="88491" />
+          <entry key="PLAIN_TEXT" value="41" />
+          <entry key="SQL" value="128" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts">
@@ -223,17 +151,7 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/data/capitalize.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="7" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -248,52 +166,38 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>mobile</find>
-      <find>invalid</find>
-      <find>warning</find>
-      <find>This option copy this record without relations and paste in a new one with last ID.</find>
-      <find>Are you sure you want</find>
-      <find>copy</find>
-      <find>record</find>
-      <find>delete this</find>
-      <find>You must select any row for delete</find>
-      <find>You must select any row for</find>
-      <find>delete</find>
-      <find>filters</find>
-      <find>Filters:</find>
-      <find>add</find>
-      <find>clear</find>
-      <find>aply</find>
-      <find>apply</find>
-      <find>clipboard</find>
-      <find>cancel</find>
-      <find>&quot;Cancel&quot;</find>
-      <find>SAGE.i('alerts.SelectorDropFiles')</find>
-      <find>MESSAGE.i('alerts.SelectorDropFiles')</find>
-      <find>Colorisnotallowed</find>
-      <find>cancelButton</find>
-      <find>favor</find>
-      <find>document.tit</find>
-      <find>CONFIG.users</find>
-      <find>There is no files to show.</find>
-      <find>Thereisnofilestoshow</find>
-      <find>of</find>
+      <find>ms_</find>
+      <find>where</find>
+      <find>$page</find>
+      <find>data(</find>
+      <find>data =</find>
+      <find>console.log(</find>
+      <find>&quot;#&quot;</find>
+      <find>true</find>
+      <find>lang</find>
+      <find>exports.delete</find>
+      <find>:</find>
+      <find>&quot;</find>
+      <find>&quot;</find>
+      <find>&quot;:</find>
+      <find>&quot; &quot;</find>
+      <find>mssql</find>
+      <find>mysql</find>
+      <find>options.encrypt</find>
+      <find>`</find>
+      <find>files</find>
+      <find>stringModel</find>
+      <find>modules</find>
+      <find>model</find>
+      <find>catalogs</find>
+      <find>allparams</find>
+      <find>localModulesVars</find>
+      <find>modulesList</find>
+      <find>console.log</find>
+      <find>storage</find>
+      <find>store</find>
     </findStrings>
     <replaceStrings>
-      <replace>ms_vwuser</replace>
-      <replace>CRUD_ms_vw_user</replace>
-      <replace>CRUD_ms_vwuser</replace>
-      <replace>${MESSAGE.ic('mono.export')}</replace>
-      <replace>${MESSAGE.i('mono.to')}</replace>
-      <replace>${MESSAGE.i('mono.of')}</replace>
-      <replace>${MESSAGE.i('mono.rows')}</replace>
-      <replace>MESSAGE.ic('mono.download')</replace>
-      <replace>MESSAGE.i('data.</replace>
-      <replace>${MESSAGE.ic('mono.preview')}</replace>
-      <replace>MESSAGE.i('restore.norestore')</replace>
-      <replace>MESSAGE.i('mono.Preparingdownloadforfiles')</replace>
-      <replace>MESSAGE.i('mono.preview')</replace>
-      <replace>MESSAGE.ic('mono.preview')</replace>
       <replace>&lt;h5 dragonlanguage class=&quot;panel-title&quot;&gt;MESSAGE.i('alerts.SelectorDropFiles')&lt;/h5&gt;</replace>
       <replace>MESSAGE.i('alerts.upload')</replace>
       <replace>')</replace>
@@ -309,7 +213,21 @@
       <replace>&lt;language&gt;MESSAGE.i('alerts.SelectorDropFiles')&lt;/language&gt;</replace>
       <replace>&lt;language&gt;There is no files to show.&lt;/language&gt;</replace>
       <replace>MESSAGE.i('Thereisnofilestoshow')</replace>
+      <replace>VARCHAR2</replace>
+      <replace>DATE</replace>
       <replace>eliminar</replace>
+      <replace>\&quot;</replace>
+      <replace>or_user</replace>
+      <replace>oc_user</replace>
+      <replace>CRUD_oc_user</replace>
+      <replace />
+      <replace>[</replace>
+      <replace>]</replace>
+      <replace>`</replace>
+      <replace>`</replace>
+      <replace>&quot;</replace>
+      <replace>oc_</replace>
+      <replace>&quot;</replace>
     </replaceStrings>
     <dirStrings>
       <dir>C:\wamp\www\peleaxz\admin\scripts\dragon\data</dir>
@@ -321,57 +239,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/form/validations/general.js" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/form/validations/number.js" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/form/validations/text.js" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/form/form.js" />
         <option value="$PROJECT_DIR$/admin/scripts/dragon/system/errors.js" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/system/fileManager.js" />
         <option value="$PROJECT_DIR$/admin/6-language/en/alerts/index.json" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/table/format.js" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/table/table.js" />
-        <option value="$PROJECT_DIR$/admin/5-views/templates/components/messageManager.ejs" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/system/language.js" />
-        <option value="$PROJECT_DIR$/admin/styles/pages/loader.css" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/components/modal.js" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/base/load.js" />
-        <option value="$PROJECT_DIR$/admin/0-config/appearance/theme.json" />
-        <option value="$PROJECT_DIR$/admin/5-views/master/menu.ejs" />
-        <option value="$PROJECT_DIR$/admin/6-language/en/navbar/index.json" />
-        <option value="$PROJECT_DIR$/admin/6-language/en/menu/index.json" />
-        <option value="$PROJECT_DIR$/admin/6-language/en/restore/index.json" />
-        <option value="$PROJECT_DIR$/admin/6-language/en/export/index.json" />
-        <option value="$PROJECT_DIR$/admin/6-language/en/columns/index.json" />
-        <option value="$PROJECT_DIR$/admin/6-language/en/login/index.json" />
-        <option value="$PROJECT_DIR$/admin/3-controllers/auth/CO_login.js" />
-        <option value="$PROJECT_DIR$/admin/6-language/es/actions/index.json" />
-        <option value="$PROJECT_DIR$/admin/6-language/es/columns/index.json" />
-        <option value="$PROJECT_DIR$/admin/6-language/es/error/index.json" />
-        <option value="$PROJECT_DIR$/admin/6-language/es/export/index.json" />
-        <option value="$PROJECT_DIR$/admin/6-language/es/login/index.json" />
-        <option value="$PROJECT_DIR$/admin/6-language/es/menu/index.json" />
-        <option value="$PROJECT_DIR$/admin/6-language/es/ms_all/index.json" />
-        <option value="$PROJECT_DIR$/admin/6-language/es/navbar/index.json" />
-        <option value="$PROJECT_DIR$/admin/6-language/es/restore/index.json" />
-        <option value="$PROJECT_DIR$/admin/6-language/es/table/index.json" />
-        <option value="$PROJECT_DIR$/admin/scripts/extensions/sweetalert.js" />
-        <option value="$PROJECT_DIR$/admin/5-views/templates/form/filter.ejs" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/table/filter.js" />
-        <option value="$PROJECT_DIR$/admin/5-views/templates/table/header.ejs" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/table/export.js" />
-        <option value="$PROJECT_DIR$/admin/6-language/en/validations/index.json" />
-        <option value="$PROJECT_DIR$/admin/6-language/es/validations/index.json" />
         <option value="$PROJECT_DIR$/admin/6-language/es/alerts/index.json" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/components/menu.js" />
-        <option value="$PROJECT_DIR$/admin/5-views/master/navbar.ejs" />
-        <option value="$PROJECT_DIR$/admin/assets/js/core/app.js" />
-        <option value="$PROJECT_DIR$/admin/0-config/security/auth.json" />
-        <option value="$PROJECT_DIR$/admin/2-service/base/SE_auth.js" />
-        <option value="$PROJECT_DIR$/admin/3-controllers/CO_ms_category.js" />
-        <option value="$PROJECT_DIR$/admin/4-crud/mysql/my_user/1columns.js" />
         <option value="$PROJECT_DIR$/admin/6-language/en/mono/index.json" />
         <option value="$PROJECT_DIR$/admin/6-language/es/mono/index.json" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/data/capitalize.js" />
+        <option value="$PROJECT_DIR$/admin/scripts/dragon/system/language.js" />
+        <option value="$PROJECT_DIR$/admin/0-config/db/oracle.json" />
+        <option value="$PROJECT_DIR$/admin/0-config/security/network.json" />
+        <option value="$PROJECT_DIR$/admin/1-models/mssql/MO_ms_user.json" />
+        <option value="$PROJECT_DIR$/admin/1-models/mysql/MO_my_user.json" />
+        <option value="$PROJECT_DIR$/admin/3-controllers/CO_or_user.js" />
+        <option value="$PROJECT_DIR$/admin/3-controllers/CO_oc_user.js" />
+        <option value="$PROJECT_DIR$/admin/4-crud/oracle/oc_user/1columns.js" />
+        <option value="$PROJECT_DIR$/admin/4-crud/oracle/oc_user/filters.js" />
+        <option value="$PROJECT_DIR$/admin/0-config/appearance/menu.json" />
+        <option value="$PROJECT_DIR$/admin/1-models/scripts/oracle/md5support.sql" />
+        <option value="$PROJECT_DIR$/admin/1-models/scripts/oracle/or_user_secuence.sql" />
+        <option value="$PROJECT_DIR$/admin/1-models/scripts/oracle/or_user_trigger.sql" />
+        <option value="$PROJECT_DIR$/admin/modules/BASE_mysql.js" />
+        <option value="$PROJECT_DIR$/admin/1-models/scripts/oracle/or_user_seqtrigger.sql" />
+        <option value="$PROJECT_DIR$/admin/1-models/scripts/oracle/or_user_seq.sql" />
+        <option value="$PROJECT_DIR$/admin/6-language/en/menu/index.json" />
+        <option value="$PROJECT_DIR$/admin/1-models/scripts/mssql/motor.sql" />
+        <option value="$PROJECT_DIR$/admin/1-models/mssql/MO_ms_allusers.sql" />
+        <option value="$PROJECT_DIR$/admin/1-models/mssql/MO_ms_allproducts.sql" />
+        <option value="$PROJECT_DIR$/admin/1-models/mssql/MO_ms_category.sql" />
+        <option value="$PROJECT_DIR$/admin/1-models/mssql/MO_ms_child.sql" />
+        <option value="$PROJECT_DIR$/admin/1-models/mssql/MO_ms_other.sql" />
+        <option value="$PROJECT_DIR$/admin/1-models/mssql/MO_ms_product.sql" />
+        <option value="$PROJECT_DIR$/admin/modules/BASE_mssql.js" />
+        <option value="$PROJECT_DIR$/admin/1-models/oracle/MO_oc_user.json" />
+        <option value="$PROJECT_DIR$/admin/modules/BASE_oracle.js" />
+        <option value="$PROJECT_DIR$/admin/1-models/oracle/MO_oc_user.sql" />
+        <option value="$PROJECT_DIR$/admin/1-models/mssql/MO_ms_user.sql" />
+        <option value="$PROJECT_DIR$/admin/1-models/mssql/MO_ms_vwuser.sql" />
+        <option value="$PROJECT_DIR$/admin/1-models/mysql/MO_my_user.sql" />
+        <option value="$PROJECT_DIR$/admin/1-models/mssql/MO_ms_all.sql" />
+        <option value="$PROJECT_DIR$/readme.sh" />
+        <option value="$PROJECT_DIR$/admin/modules/BASE_request.js" />
+        <option value="$PROJECT_DIR$/admin/5-views/master/navbar.ejs" />
+        <option value="$PROJECT_DIR$/admin/0-config/appearance/theme.json" />
+        <option value="$PROJECT_DIR$/admin/4-crud/a.defautls/defaults.js" />
+        <option value="$PROJECT_DIR$/admin/scripts/dragon/table/table.js" />
+        <option value="$PROJECT_DIR$/admin/0-config/app.json" />
+        <option value="$PROJECT_DIR$/admin/0-config/developer/modules.json" />
+        <option value="$PROJECT_DIR$/admin/server.js" />
+        <option value="$PROJECT_DIR$/admin/0-config/security/auth.json" />
+        <option value="$PROJECT_DIR$/admin/6-language/es/login/index.json" />
+        <option value="$PROJECT_DIR$/admin/6-language/en/login/index.json" />
+        <option value="$PROJECT_DIR$/admin/3-controllers/auth/CO_login.js" />
+        <option value="$PROJECT_DIR$/admin/2-service/base/SE_auth.js" />
       </list>
     </option>
   </component>
@@ -396,7 +314,7 @@
     <dismissed value="$PROJECT_DIR$/admin/assets/js/plugins/iziToast/iziToast-master/package.json" />
     <dismissed value="$PROJECT_DIR$/tools/c/package.json" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="8" />
     <option name="y" value="152" />
     <option name="width" value="1364" />
@@ -438,48 +356,6 @@
               <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
               <item name="admin" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="peleaxz" type="b2602c69:ProjectViewProjectNode" />
-              <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="4-crud" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="peleaxz" type="b2602c69:ProjectViewProjectNode" />
-              <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="6-language" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="peleaxz" type="b2602c69:ProjectViewProjectNode" />
-              <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="6-language" type="462c0819:PsiDirectoryNode" />
-              <item name="en" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="peleaxz" type="b2602c69:ProjectViewProjectNode" />
-              <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="6-language" type="462c0819:PsiDirectoryNode" />
-              <item name="en" type="462c0819:PsiDirectoryNode" />
-              <item name="mono" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="peleaxz" type="b2602c69:ProjectViewProjectNode" />
-              <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="6-language" type="462c0819:PsiDirectoryNode" />
-              <item name="es" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="peleaxz" type="b2602c69:ProjectViewProjectNode" />
-              <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="6-language" type="462c0819:PsiDirectoryNode" />
-              <item name="es" type="462c0819:PsiDirectoryNode" />
-              <item name="mono" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -491,7 +367,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
-    <property name="SearchEverywhereHistoryKey" value="capit&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/data/capitalize.js&#10;C&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/3-controllers/CO_ms_category.js&#10;even&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/events.js&#10;co_ca&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/3-controllers/CO_ms_category.js&#10;app&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/assets/js/core/app.js&#10;ap&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/assets/js/core/app.js&#10;navbar&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/master/navbar.ejs&#10;na&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/master/navbar.ejs&#10;sess&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/auth/SESSION.js&#10;export&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/export.js&#10;header&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/templates/table/header.ejs&#10;filter.&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/templates/form/filter.ejs&#10;SW&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/extensions/sweetalert.js&#10;form&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/form/form.js&#10;menu&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/master/menu.ejs&#10;nav&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/master/navbar.ejs&#10;side&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/appearance/sidebar.js&#10;them&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/0-config/appearance/theme.json&#10;spla&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/master/splash.ejs&#10;modal&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/components/modal.js&#10;l&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/system/language.js&#10;stepman&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/system/stepManager.js&#10;request&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/modules/BASE_request.js&#10;lan&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/system/language.js&#10;events&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/events.js&#10;alerts/i&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/6-language/en/alerts/index.json&#10;index.json&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/6-language/en/alerts/index.json&#10;head&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/master/head.ejs&#10;filter.js&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/filter.js&#10;alerts/in&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/6-language/en/alerts/index.json&#10;swe&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/extensions/sweetalert.js&#10;he&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/master/head.ejs&#10;net&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/0-config/security/network.json&#10;json.j&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/data/json.js&#10;http&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/base/http.js&#10;stem&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/system/stepManager.js&#10;form.js&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/format.js&#10;datet&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/templates/form/datetime.ejs&#10;form.&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/ms_all/form.ejs&#10;eve&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/events.js&#10;stora&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/data/localStorage.js&#10;la&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/system/language.js&#10;defa&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/4-crud/a.defautls/defaults.js&#10;pagin&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/paginator.js&#10;ani&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/appearance/animation.js&#10;filter&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/filter.js&#10;event.&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/events.js&#10;load&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/base/load.js&#10;CO&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/3-controllers/abase/CO_BASE.js&#10;table.js&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/table.js" />
+    <property name="SearchEverywhereHistoryKey" value="CO_log&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/3-controllers/auth/CO_login.js&#10;server&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/server.js&#10;table&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/table.js&#10;base&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/templates/table/base.ejs&#10;nav&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/master/navbar.ejs&#10;theme&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/0-config/appearance/theme.json&#10;base_&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/modules/BASE_oracle.js&#10;BASE&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/modules/BASE_mysql.js&#10;serv&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/server.js&#10;BASE_my&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/modules/BASE_mysql.js&#10;BASE_m&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/modules/BASE_mssql.js&#10;BASE_My&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/modules/BASE_mysql.js&#10;BASE_ora&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/modules/BASE_oracle.js&#10;serve&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/server.js&#10;net&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/0-config/security/network.json&#10;CO_ms_ca&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/3-controllers/CO_ms_category.js&#10;format.&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/format.js&#10;tabl&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/templates/docx/table.ejs&#10;la&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/system/language.js&#10;json.js&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/data/json.js&#10;pass&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/templates/form/password.ejs&#10;base_m&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/modules/BASE_mssql.js&#10;na&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/master/navbar.ejs&#10;lan&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/system/language.js&#10;navb&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/master/navbar.ejs&#10;menu&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/master/menu.ejs&#10;capit&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/data/capitalize.js&#10;C&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/3-controllers/CO_ms_category.js&#10;even&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/events.js&#10;co_ca&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/3-controllers/CO_ms_category.js&#10;app&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/assets/js/core/app.js&#10;ap&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/assets/js/core/app.js&#10;navbar&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/master/navbar.ejs&#10;sess&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/auth/SESSION.js&#10;export&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/export.js&#10;header&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/templates/table/header.ejs&#10;filter.&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/templates/form/filter.ejs&#10;SW&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/extensions/sweetalert.js&#10;form&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/form/form.js&#10;side&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/appearance/sidebar.js&#10;them&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/0-config/appearance/theme.json&#10;spla&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/master/splash.ejs&#10;modal&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/components/modal.js&#10;l&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/system/language.js&#10;stepman&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/system/stepManager.js&#10;request&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/modules/BASE_request.js&#10;events&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/events.js&#10;alerts/i&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/6-language/en/alerts/index.json&#10;index.json&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/6-language/en/alerts/index.json&#10;head&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/master/head.ejs" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="8.10.0" />
     <property name="jsx.switch.disabled" value="true" />
@@ -513,11 +389,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\wamp\www\peleaxz\admin\6-language" />
-      <recent name="C:\wamp\www\peleaxz\admin\6-language\en" />
-      <recent name="C:\wamp\www\peleaxz\admin\5-views\templates\components" />
-      <recent name="C:\wamp\www\peleaxz\admin\5-views\templates\form" />
-      <recent name="C:\wamp\www\peleaxz\admin\6-language\en\mono" />
+      <recent name="C:\wamp\www\peleaxz\admin\1-models\mysql" />
+      <recent name="C:\wamp\www\peleaxz\admin\1-models\scripts\mysql" />
+      <recent name="C:\wamp\www\peleaxz\admin\1-models\scripts\mssql" />
+      <recent name="C:\wamp\www\peleaxz\admin\1-models\scripts\oracle" />
+      <recent name="C:\wamp\www\peleaxz\admin\1-models\scripts" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\wamp\www\peleaxz\admin\scripts\dragon\data" />
@@ -626,16 +502,15 @@
       <workItem from="1550344688296" duration="125414000" />
       <workItem from="1551055546262" duration="192130000" />
       <workItem from="1551888488424" duration="73056000" />
-      <workItem from="1552165244311" duration="20858000" />
+      <workItem from="1552165244311" duration="101431000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2454207000" />
+    <option name="totallyTimeSpent" value="2534780000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="32" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="32" width="1382" height="744" extended-state="7" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -684,370 +559,539 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/admin/5-views/templates/components/messageManager.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="36" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/system/language.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="32" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/data/localStorage.js">
+    <entry file="file://$PROJECT_DIR$/admin/3-controllers/CO_ms_category.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
-          <caret line="74" column="56" selection-start-line="74" selection-start-column="56" selection-end-line="74" selection-end-column="56" />
+          <caret line="9" column="46" selection-start-line="9" selection-start-column="42" selection-end-line="9" selection-end-column="46" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/master/splash.ejs">
+    <entry file="file://$PROJECT_DIR$/admin/modules/BASE_views.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-510" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/0-config/db/mssql.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/0-config/db/mysql.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/0-config/security/network.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="22" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/3-controllers/CO_oc_user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="14" lean-forward="true" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/4-crud/oracle/oc_user/1columns.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/4-crud/oracle/oc_user/filters.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="22" lean-forward="true" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/5-views/oc_user/filter.ejs">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/5-views/oc_user/form.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-51">
+          <caret line="6" column="14" lean-forward="true" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/5-views/oc_user/index.ejs">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/5-views/oc_user/view.ejs">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/0-config/db/oracle.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="26" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/2-service/SE_example.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret selection-end-line="4" selection-end-column="6" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/base/load.js">
+    <entry file="file://$PROJECT_DIR$/admin/1-models/scripts/oracle/or_user_trigger.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+        <state relative-caret-position="136">
+          <caret line="8" column="4" lean-forward="true" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/0-config/appearance/theme.json">
+    <entry file="file://$PROJECT_DIR$/admin/1-models/scripts/oracle/md5support.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="27" lean-forward="true" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
+        <state relative-caret-position="119">
+          <caret line="7" column="13" lean-forward="true" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/styles/pages/loader.css">
+    <entry file="file://$PROJECT_DIR$/admin/1-models/scripts/oracle/or_user_seq.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="42" column="20" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="20" />
+        <state>
+          <caret column="26" selection-start-column="26" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/appearance/sidebar.js">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/admin/1-models/scripts/oracle/or_user_seqtrigger.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/6-language/en/navbar/index.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+        <state relative-caret-position="136">
+          <caret line="8" column="9" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/6-language/en/menu/index.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
-          <caret line="13" column="18" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
+          <caret line="13" column="19" lean-forward="true" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/6-language/en/restore/index.json">
+    <entry file="file://$PROJECT_DIR$/admin/1-models/scripts/mssql/motor.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="9" selection-start-column="9" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/modules/BASE_mysql.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="28" column="66" lean-forward="true" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="66" />
+          <folding>
+            <element signature="n#Database#0" />
+            <element signature="n#!!block;n#constructor#0;n#Database#0" />
+            <element signature="n#!!block;n#query#0;n#Database#0" />
+            <element signature="e#199#384#0" />
+            <element signature="e#261#372#0" />
+            <element signature="n#!!block;n#close#0;n#Database#0" />
+            <element signature="e#456#616#0" />
+            <element signature="e#497#604#0" />
+            <element signature="e#826#978#0" />
+            <element signature="e#1123#1340#0" />
+            <element signature="e#1409#2239#0" />
+            <element signature="e#1631#2235#0" />
+            <element signature="e#1899#2034#0" />
+            <element signature="e#1959#2024#0" />
+            <element signature="e#2297#2517#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/modules/BASE_oracle.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="268" column="45" selection-start-line="268" selection-start-column="45" selection-end-line="268" selection-end-column="45" />
+          <folding>
+            <element signature="e#2946#3763#0" />
+            <element signature="e#3132#3270#0" />
+            <element signature="e#3283#3556#0" />
+            <element signature="e#3358#3507#0" />
+            <element signature="e#3376#3433#0" />
+            <element signature="e#3446#3497#0" />
+            <element signature="e#3565#3761#0" />
+            <element signature="e#3591#3755#0" />
+            <element signature="e#3609#3666#0" />
+            <element signature="e#3679#3745#0" />
+            <element signature="e#3835#3949#0" />
+            <element signature="e#4019#5227#0" />
+            <element signature="e#4123#5205#0" />
+            <element signature="e#4238#4812#0" />
+            <element signature="e#4844#5058#0" />
+            <element signature="e#5277#8212#0" />
+            <element signature="e#5381#8190#0" />
+            <element signature="e#5545#8083#0" />
+            <element signature="e#5585#6225#0" />
+            <element signature="e#6231#8073#0" />
+            <element signature="e#6416#8059#0" />
+            <element signature="e#6509#8041#0" />
+            <element signature="e#6600#7713#0" />
+            <element signature="e#7090#7408#0" />
+            <element signature="e#7414#7687#0" />
+            <element signature="e#7835#8019#0" />
+            <element signature="e#8262#8994#0" />
+            <element signature="e#8366#8972#0" />
+            <element signature="e#8483#8851#0" />
+            <element signature="e#9049#10129#0" />
+            <element signature="e#9165#9670#0" />
+            <element signature="e#9288#9490#0" />
+            <element signature="e#9353#9443#0" />
+            <element signature="e#9506#9663#0" />
+            <element signature="e#9683#9922#0" />
+            <element signature="e#9709#9873#0" />
+            <element signature="e#9727#9784#0" />
+            <element signature="e#9797#9863#0" />
+            <element signature="e#9931#10127#0" />
+            <element signature="e#9957#10121#0" />
+            <element signature="e#9975#10032#0" />
+            <element signature="e#10045#10111#0" />
+            <element signature="e#10182#13518#0" />
+            <element signature="e#10343#10403#0" />
+            <element signature="e#10462#10954#0" />
+            <element signature="e#10514#10946#0" />
+            <element signature="e#10823#10934#0" />
+            <element signature="e#11050#11535#0" />
+            <element signature="e#11102#11527#0" />
+            <element signature="e#11404#11515#0" />
+            <element signature="e#11629#11862#0" />
+            <element signature="e#11681#11854#0" />
+            <element signature="e#11731#11842#0" />
+            <element signature="e#11960#12198#0" />
+            <element signature="e#12012#12190#0" />
+            <element signature="e#12067#12178#0" />
+            <element signature="e#12280#12515#0" />
+            <element signature="e#12332#12507#0" />
+            <element signature="e#12384#12495#0" />
+            <element signature="e#12599#12879#0" />
+            <element signature="e#12651#12871#0" />
+            <element signature="e#12748#12859#0" />
+            <element signature="e#12962#13197#0" />
+            <element signature="e#13014#13189#0" />
+            <element signature="e#13066#13177#0" />
+            <element signature="e#13279#13514#0" />
+            <element signature="e#13331#13506#0" />
+            <element signature="e#13383#13494#0" />
+            <element signature="e#13565#28728#0" />
+            <element signature="e#13716#13766#0" />
+            <element signature="e#13804#13869#0" />
+            <element signature="e#13911#13968#0" />
+            <element signature="e#14023#14185#0" />
+            <element signature="e#14139#14177#0" />
+            <element signature="e#14230#14392#0" />
+            <element signature="e#14346#14384#0" />
+            <element signature="e#14446#14802#0" />
+            <element signature="e#14513#14606#0" />
+            <element signature="e#14756#14794#0" />
+            <element signature="e#14857#15026#0" />
+            <element signature="e#14980#15018#0" />
+            <element signature="e#15084#15629#0" />
+            <element signature="e#15683#15738#0" />
+            <element signature="e#15781#15848#0" />
+            <element signature="e#15896#16127#0" />
+            <element signature="e#15963#16056#0" />
+            <element signature="e#16181#16241#0" />
+            <element signature="e#16298#16446#0" />
+            <element signature="e#16494#17955#0" />
+            <element signature="e#16619#17300#0" />
+            <element signature="e#16715#16935#0" />
+            <element signature="e#16941#17289#0" />
+            <element signature="e#17306#17949#0" />
+            <element signature="e#17365#17585#0" />
+            <element signature="e#17591#17939#0" />
+            <element signature="e#18014#19992#0" />
+            <element signature="e#18231#19967#0" />
+            <element signature="e#18308#19957#0" />
+            <element signature="e#18383#19568#0" />
+            <element signature="e#18973#19277#0" />
+            <element signature="e#19283#19550#0" />
+            <element signature="e#19693#19853#0" />
+            <element signature="e#20058#28725#0" />
+            <element signature="e#20321#23944#0" />
+            <element signature="e#20368#23934#0" />
+            <element signature="e#20415#23163#0" />
+            <element signature="e#20496#23102#0" />
+            <element signature="e#20602#22181#0" />
+            <element signature="e#22187#23080#0" />
+            <element signature="e#22554#22807#0" />
+            <element signature="e#22813#22904#0" />
+            <element signature="e#23169#23920#0" />
+            <element signature="e#23497#23681#0" />
+            <element signature="e#23687#23762#0" />
+            <element signature="e#24113#24594#0" />
+            <element signature="e#24159#24584#0" />
+            <element signature="e#24242#24516#0" />
+            <element signature="e#24758#25125#0" />
+            <element signature="e#24808#25040#0" />
+            <element signature="e#24897#24961#0" />
+            <element signature="e#25205#26119#0" />
+            <element signature="e#25255#25703#0" />
+            <element signature="e#25339#25624#0" />
+            <element signature="e#25721#25972#0" />
+            <element signature="e#26004#26058#0" />
+            <element signature="e#26064#26109#0" />
+            <element signature="e#26191#26291#0" />
+            <element signature="e#26227#26281#0" />
+            <element signature="e#26424#27016#0" />
+            <element signature="e#26471#27006#0" />
+            <element signature="e#26566#26992#0" />
+            <element signature="e#27196#27620#0" />
+            <element signature="e#27768#27911#0" />
+            <element signature="e#27995#28717#0" />
+            <element signature="e#28044#28168#0" />
+            <element signature="e#28185#28705#0" />
+            <element signature="e#28286#28538#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/1-models/oracle/MO_oc_user.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="37" lean-forward="true" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/1-models/mssql/MO_ms_allproducts.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="76" lean-forward="true" selection-start-column="76" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/1-models/mssql/MO_ms_allusers.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="1" lean-forward="true" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/1-models/mssql/MO_ms_category.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="1" lean-forward="true" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/1-models/mssql/MO_ms_child.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="1" lean-forward="true" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/1-models/mssql/MO_ms_other.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="1" lean-forward="true" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/1-models/mssql/MO_ms_product.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="1" lean-forward="true" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/1-models/mssql/MO_ms_user.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="32" lean-forward="true" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/1-models/mssql/MO_ms_vwuser.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/1-models/mysql/MO_my_user.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="1" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/1-models/mssql/MO_ms_all.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" column="1" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/readme.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
-          <caret line="1" column="70" selection-start-line="1" selection-start-column="70" selection-end-line="1" selection-end-column="70" />
+          <caret line="1" column="39" selection-start-line="1" selection-start-column="39" selection-end-line="1" selection-end-column="39" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/6-language/en/export/index.json">
+    <entry file="file://$PROJECT_DIR$/admin/modules/BASE_mssql.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
-          <caret line="5" column="33" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
+          <caret line="5" column="46" selection-start-line="5" selection-start-column="46" selection-end-line="5" selection-end-column="46" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/master/menu.ejs">
+    <entry file="file://$PROJECT_DIR$/admin/modules/BASE_request.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="9" lean-forward="true" selection-start-line="1" selection-start-column="9" selection-end-line="1" selection-end-column="19" />
+        <state relative-caret-position="119">
+          <caret line="92" column="7" selection-start-line="92" selection-start-column="7" selection-end-line="92" selection-end-column="7" />
+          <folding>
+            <element signature="e#172#232#0" />
+            <element signature="e#328#1608#0" />
+            <element signature="e#380#1600#0" />
+            <element signature="e#860#1588#0" />
+            <element signature="e#1018#1572#0" />
+            <element signature="e#1093#1552#0" />
+            <element signature="e#1288#1409#0" />
+            <element signature="e#1703#2075#0" />
+            <element signature="e#1755#2067#0" />
+            <element signature="e#1849#2055#0" />
+            <element signature="e#1916#2039#0" />
+            <element signature="e#2174#2454#0" />
+            <element signature="e#2226#2446#0" />
+            <element signature="e#2300#2434#0" />
+            <element signature="e#2367#2418#0" />
+            <element signature="e#2537#2802#0" />
+            <element signature="e#2589#2794#0" />
+            <element signature="e#2648#2782#0" />
+            <element signature="e#2715#2766#0" />
+            <element signature="e#2888#3187#0" />
+            <element signature="e#2940#3179#0" />
+            <element signature="e#3033#3167#0" />
+            <element signature="e#3100#3151#0" />
+            <element signature="e#3276#3583#0" />
+            <element signature="e#3328#3575#0" />
+            <element signature="e#3355#3405#0" />
+            <element signature="e#3429#3563#0" />
+            <element signature="e#3496#3547#0" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/6-language/en/error/index.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/6-language/en/columns/index.json">
+    <entry file="file://$PROJECT_DIR$/admin/0-config/appearance/menu.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
+        <state relative-caret-position="375">
+          <caret line="61" column="30" selection-start-line="61" selection-start-column="30" selection-end-line="61" selection-end-column="30" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/3-controllers/auth/CO_login.js">
+    <entry file="file://$PROJECT_DIR$/admin/5-views/master/navbar.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1037">
-          <caret line="61" column="54" selection-start-line="61" selection-start-column="54" selection-end-line="61" selection-end-column="54" />
+        <state relative-caret-position="119">
+          <caret line="7" column="62" selection-start-line="7" selection-start-column="62" selection-end-line="7" selection-end-column="62" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/form/form.js">
+    <entry file="file://$PROJECT_DIR$/admin/5-views/templates/table/base.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
-          <caret line="592" column="70" selection-start-line="592" selection-start-column="37" selection-end-line="592" selection-end-column="70" />
+        <state relative-caret-position="306">
+          <caret line="36" column="48" selection-start-line="36" selection-start-column="38" selection-end-line="36" selection-end-column="48" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/table/table.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="53" lean-forward="true" selection-start-line="14" selection-start-column="53" selection-end-line="14" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/0-config/appearance/theme.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/4-crud/a.defautls/defaults.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="23" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/6-language/es/login/index.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="113" selection-start-line="5" selection-start-column="113" selection-end-line="5" selection-end-column="113" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/6-language/en/login/index.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
-          <caret line="4" column="52" selection-start-line="4" selection-start-column="52" selection-end-line="4" selection-end-column="52" />
+          <caret line="4" column="53" selection-start-line="4" selection-start-column="53" selection-end-line="4" selection-end-column="53" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/6-language/es/actions/index.json">
+    <entry file="file://$PROJECT_DIR$/admin/3-controllers/auth/CO_login.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
+        <state relative-caret-position="256">
+          <caret line="32" column="43" selection-start-line="32" selection-start-column="43" selection-end-line="32" selection-end-column="43" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/6-language/es/columns/index.json">
+    <entry file="file://$PROJECT_DIR$/admin/0-config/developer/modules.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
+        <state relative-caret-position="378">
+          <caret line="140" column="29" selection-start-line="140" selection-start-column="29" selection-end-line="140" selection-end-column="29" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/6-language/es/date/index.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/6-language/es/error/index.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="55" selection-start-line="1" selection-start-column="55" selection-end-line="1" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/6-language/es/export/index.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="40" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/6-language/es/login/index.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="58" selection-start-line="4" selection-start-column="58" selection-end-line="4" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/6-language/es/menu/index.json">
+    <entry file="file://$PROJECT_DIR$/admin/0-config/app.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
-          <caret line="13" column="17" lean-forward="true" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
+          <caret line="13" column="10" selection-start-line="13" selection-start-column="3" selection-end-line="13" selection-end-column="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/6-language/es/ms_all/index.json">
+    <entry file="file://$PROJECT_DIR$/admin/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="26" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/6-language/es/navbar/index.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="33" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/6-language/es/restore/index.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="81" selection-start-line="1" selection-start-column="81" selection-end-line="1" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/6-language/es/table/index.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="52" selection-start-line="17" selection-start-column="52" selection-end-line="17" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/templates/docx/header.ejs">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/extensions/sweetalert.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="55" selection-start-line="12" selection-start-column="55" selection-end-line="12" selection-end-column="55" />
+        <state relative-caret-position="272">
+          <caret line="188" column="27" selection-start-line="188" selection-start-column="27" selection-end-line="188" selection-end-column="27" />
           <folding>
-            <element signature="n#style#0;n#button#0;n#!!top" expanded="true" />
+            <element signature="e#725#1132#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/templates/form/filter.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="118" column="103" selection-start-line="118" selection-start-column="103" selection-end-line="118" selection-end-column="103" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/table/filter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="307" column="43" lean-forward="true" selection-start-line="307" selection-start-column="43" selection-end-line="307" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/templates/table/header.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="124" column="48" selection-start-line="124" selection-start-column="48" selection-end-line="124" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/6-language/en/validations/index.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="20" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/6-language/es/validations/index.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="3" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/table/export.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="405" column="29" lean-forward="true" selection-start-line="405" selection-start-column="29" selection-end-line="405" selection-end-column="29" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/components/modal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="86" column="100" selection-start-line="86" selection-start-column="90" selection-end-line="86" selection-end-column="100" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/auth/SESSION.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="43" column="43" selection-start-line="43" selection-start-column="36" selection-end-line="43" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/6-language/es/alerts/index.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="33" column="152" selection-start-line="33" selection-start-column="152" selection-end-line="33" selection-end-column="152" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/master/navbar.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="20" lean-forward="true" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#a#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#a#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/assets/js/core/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="523" column="7" selection-start-line="523" selection-start-column="7" selection-end-line="523" selection-end-column="7" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/components/menu.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="40" column="70" selection-start-line="40" selection-start-column="70" selection-end-line="40" selection-end-column="70" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/0-config/security/auth.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="11" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="11" />
+        <state relative-caret-position="238">
+          <caret line="14" column="15" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="15" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/2-service/base/SE_auth.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="21" column="34" lean-forward="true" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
+        <state relative-caret-position="238">
+          <caret line="40" column="35" selection-start-line="40" selection-start-column="35" selection-end-line="40" selection-end-column="35" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/4-crud/mysql/my_user/1columns.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="36" column="26" selection-start-line="36" selection-start-column="26" selection-end-line="36" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/table/events.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="23" column="39" selection-start-line="23" selection-start-column="37" selection-end-line="23" selection-end-column="39" />
-          <folding>
-            <element signature="n#style#0;n#object#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/6-language/en/mono/index.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="96" column="2" selection-start-line="96" selection-start-column="2" selection-end-line="96" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/6-language/es/mono/index.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="96" column="24" selection-start-line="96" selection-start-column="24" selection-end-line="96" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/3-controllers/CO_ms_category.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="40" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/data/capitalize.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="7" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
         </state>
       </provider>
     </entry>

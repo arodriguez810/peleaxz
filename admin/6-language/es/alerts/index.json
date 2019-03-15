@@ -31,5 +31,6 @@
   "ContainsError": "este formulario contiene errores, por lo que no le permitirá guardar",
   "CloseToComplete": "¿Está cerca de completar el formulario, está seguro de que desea cerrarlo?",
   "ClientDbError": "Ocurrió un error en la base de datos, ¿le gustaría enviar este error?",
-  "ChangeLanguage": "¿Está seguro de cambiar el idioma a ${lang.name} ?, esto cambiará los textos de ${CONFIG.appName} y es posible que no los entiendas"
+  "ChangeLanguage": "¿Está seguro de cambiar el idioma a ${lang.name} ?, esto cambiará los textos de ${CONFIG.appName} y es posible que no los entiendas",
+  "providerError": "Sus errores han sido enviado al proveedor"
 }

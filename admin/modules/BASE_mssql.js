@@ -1,85 +1,6 @@
-exports.alterBlackList = ["DEFAULT", "GETDATE()", "IDENTITY(1,1)", "IDENTITY"];
-exports.createTable = function (model, object, params) {
-    var tsql = params.util.format("IF NOT EXISTS(SELECT [name] FROM sys.tables WHERE [name] = '%s') CREATE TABLE [%s] (", model, model);
-    for (var property in object) {
-        tsql += params.util.format("\n[%s] %s,", property, object[property]);
-    }
-    tsql += "*";
-    tsql = tsql.replace(",*", "");
-    tsql += ");";
-    return tsql;
-};
-exports.addColumns = function (model, object, params) {
-    var tsql = "";
-    var deleteColumns = [];
-    exports.data("select COLUMN_NAME from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME='" + model + "'", params, function (data) {
-        var onlynames = [];
-        var onlyNamesObjects = [];
-        for (var i in data.data)
-            onlynames.push(data.data[i].COLUMN_NAME);
-
-        for (var property in object)
-            onlyNamesObjects.push(property);
-
-        for (var i in onlynames) {
-            if (!onlyNamesObjects.includes(onlynames[i])) {
-                deleteColumns.push(onlynames[i]);
-            }
-        }
-        deletes = [];
-        for (var i in deleteColumns) {
-            deletes.push(params.format("ALTER TABLE {0} DROP COLUMN {1};\n", model, deleteColumns[i]));
-        }
-        // exports.executeNonQuery(params.format("ALTER TABLE {0} DROP COLUMN {1};\n", model, deleteColumns[i]), params, function (data) {
-        //     console.log(data);
-        // });
-        return deletes;
-    });
-
-    var tsql = "";
-    for (var property in object)
-        tsql += params.util.format("IF NOT EXISTS (SELECT * FROM   sys.columns WHERE  object_id = OBJECT_ID(N'[dbo].[" + model + "]') AND name = '" + property + "') ALTER TABLE [%s] ADD [%s] %s;\n", model, property, object[property]);
-    for (var black in exports.alterBlackList)
-        tsql = params.S(tsql).replaceAll(exports.alterBlackList[black], '').s;
-    return tsql;
-};
-exports.deleteColumns = function (model, object, params) {
-    var tsql = "";
-    var deleteColumns = [];
-    exports.data("select COLUMN_NAME from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME='" + model + "'", params, function (data) {
-        var onlynames = [];
-        var onlyNamesObjects = [];
-        for (var i in data.data)
-            onlynames.push(data.data[i].COLUMN_NAME);
-
-        for (var property in object)
-            onlyNamesObjects.push(property);
-
-        for (var i in onlynames) {
-            if (!onlyNamesObjects.includes(onlynames[i])) {
-                deleteColumns.push(onlynames[i]);
-            }
-        }
-        deletes = [];
-        for (var i in deleteColumns) {
-            deletes.push(params.format("ALTER TABLE {0} DROP COLUMN {1};\n", model, deleteColumns[i]));
-        }
-        // exports.executeNonQuery(params.format("ALTER TABLE {0} DROP COLUMN {1};\n", model, deleteColumns[i]), params, function (data) {
-        //     console.log(data);
-        // });
-        return deletes;
-    });
-    return [];
-};
-exports.alterColumns = function (model, object, params) {
-    var tsql = "";
-    for (var property in object)
-        tsql += params.util.format("ALTER TABLE [%s] ALTER COLUMN [%s] %s;\n", model, property, object[property]);
-    for (var black in exports.alterBlackList)
-        tsql = params.S(tsql).replaceAll(exports.alterBlackList[black], '').s;
-    return tsql;
-};
-exports.executeNonQuery = async function (query, params) {
+exports.executeNonQuery = async function (query, params, show) {
+    if (show === undefined)
+        console.log(query.pxz);
     return await new params.mssql.ConnectionPool(params.CONFIG.mssql).connect().then(
         pool => {
             return pool.request().query(query);
@@ -90,6 +11,11 @@ exports.executeNonQuery = async function (query, params) {
         console.log(err);
         return {query: query, error: err.originalError.message};
     });
+};
+exports.executeNonQueryArray = async function (queries, params, show) {
+    for (var query of queries)
+        await exports.executeNonQuery(query, params,show);
+    return queries;
 };
 exports.insertQuery = function (table, data, params, get, getvalue) {
     var datas = (Array.isArray(data)) ? data : [data];
@@ -112,7 +38,6 @@ exports.insertQuery = function (table, data, params, get, getvalue) {
             else
                 values.push("'" + value.replace("'", "''") + "'");
         }
-        console.log(values);
         if (get !== undefined) {
             queries += params.format("INSERT INTO [{0}]({1}) VALUES({2}); SELECT * FROM [{0}] where [" + get + "]=" + getvalue, table, columns.join(", "), values.join(", "));
             break;
@@ -120,7 +45,6 @@ exports.insertQuery = function (table, data, params, get, getvalue) {
         else
             queries += params.format("INSERT INTO [{0}]({1}) VALUES({2});", table, columns.join(", "), values.join(", "));
     }
-    console.log(queries);
     return queries;
 };
 exports.update = function (table, data, params) {
@@ -602,7 +526,6 @@ exports.Model = function (tableName, params) {
             }
         );
 
-        console.log(query);
         var queryCount = params.format("SELECT count(*) count FROM [{table}] " + nickName + " {join} {where} {groupby}",
             {
                 table: offTableName,

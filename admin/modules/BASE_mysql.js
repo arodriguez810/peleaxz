@@ -70,7 +70,9 @@ exports.alterColumns = function (model, object, params) {
         tsql.push("ALTER TABLE `" + params.CONFIG.mysql.database + "`.`" + model + "` MODIFY COLUMN `" + property + "` " + object[property] + ";");
     return tsql;
 };
-exports.executeNonQuery = async function (query, params) {
+exports.executeNonQuery = async function (query, params,show) {
+    if (show === undefined)
+    console.log(query.pxz);
     return await new Database(params, params.CONFIG.mysql).query(query).then((data) => {
         return {
             query: query,
@@ -81,6 +83,11 @@ exports.executeNonQuery = async function (query, params) {
     }).catch(err => {
         return {query: query, error: err.sqlMessage};
     });
+};
+exports.executeNonQueryArray = async function (queries, params,show) {
+    for (var query of queries)
+        await exports.executeNonQuery(query,params,show);
+    return queries;
 };
 exports.insertQuery = function (table, data, params, get, getvalue) {
     var datas = (Array.isArray(data)) ? data : [data];
@@ -103,7 +110,6 @@ exports.insertQuery = function (table, data, params, get, getvalue) {
             else
                 values.push((value === "true" ? "1" : value === "false" ? "0" : ("'" + value.replace("'", "''") + "'")));
         }
-        console.log(values);
         if (get !== undefined) {
             queries += params.format("INSERT INTO `{0}`({1}) VALUES({2}); SELECT * FROM `{0}` where `" + get + "`=" + getvalue + ";", table, columns.join(", "), values.join(", "));
             break;
@@ -111,7 +117,6 @@ exports.insertQuery = function (table, data, params, get, getvalue) {
         else
             queries += params.format("INSERT INTO `{0}`({1}) VALUES({2});", table, columns.join(", "), values.join(", "));
     }
-    console.log(queries);
     return queries;
 };
 exports.update = function (table, data, params) {
@@ -196,6 +201,7 @@ exports.delete = function (table, data, params) {
     return queries;
 };
 exports.data = async function (query, params, index) {
+    console.log(query.pxz);
     return await new Database(params, params.CONFIG.mysql).query(query).then((data) => {
         return {
             query: query,
@@ -588,8 +594,6 @@ exports.Model = function (tableName, params) {
                 page: $page
             }
         );
-
-        console.log(query);
         var queryCount = params.format("SELECT count(*) count FROM `{table}` " + nickName + " {join} {where} {groupby}",
             {
                 table: offTableName,

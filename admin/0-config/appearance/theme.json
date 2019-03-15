@@ -1,9 +1,9 @@
 {
   "ui": {
     "colors": {
-      "primary": "wine",
-      "menu": "wine",
-      "info": "red",
+      "primary": "slate",
+      "menu": "slate",
+      "info": "blue",
       "logo": "logowhite",
       //      slate, grey, black, creme
       //      orange, darkorange, brown, yellow

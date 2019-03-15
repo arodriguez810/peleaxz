@@ -1,11 +1,11 @@
 <!-- Main navbar -->
 <div class="navbar navbar-inverse  bg-<%= TAG.navbar %>-800" ng-show="baseController.SESSION.isLogged()">
-    <div class="navbar-header  bg-<%= COLOR.menu %>-800">
-        <a class="visible-lg visible-md visible-sm navbar-brand bg-<%= COLOR.menu %>-800 sidebar-mobile-main-toggle">
+    <div class="navbar-header  bg-<%= COLOR.primary %>-800">
+        <a class="visible-lg visible-md visible-sm navbar-brand bg-<%= COLOR.primary %>-800 sidebar-mobile-main-toggle">
             <img style="float: left !important;" src="assets/images/<%= COLOR.logo %>.svg" alt="">
             <span class="navbar-brand-text" style="float: left;padding-left: 10px;"> <%= CONFIG.logo %></span>
         </a>
-        <a class="visible-xs navbar-brand bg-<%= COLOR.menu %>-800 sidebar-mobile-main-toggle">
+        <a class="visible-xs navbar-brand bg-<%= COLOR.primary %>-800 sidebar-mobile-main-toggle">
             <img style="float: left !important;" src="assets/images/<%= COLOR.logo %>.svg" alt="">
             <span id="apptitle" class="navbar-brand-text" style="float: left;padding-left: 10px;">
 
@@ -61,7 +61,7 @@
                     </ul>
                 </div>
             </li>
-            <li ng-if="baseController.CONFIG.features.language===true">
+            <li ng-if="baseController.CONFIG.mode==='developer'">
                 <a class="sidebar-control" onclick="HTTP.openManager()" data-popup="tooltip"
                    data-placement="bottom" data-container="body" dragonlanguage
                    title="MESSAGE.i('navbar.RequestManager')">
@@ -75,7 +75,7 @@
                     <i class="icon-folder-open"></i>
                 </a>
             </li>
-            <li ng-if="baseController.CONFIG.features.stepManager===true">
+            <li ng-if="baseController.CONFIG.features.stepManager===true && baseController.CONFIG.mode==='developer'">
                 <a class="sidebar-control" onclick="STEP.OPEN()" data-popup="tooltip"
                    data-placement="bottom" data-container="body" dragonlanguage title="MESSAGE.i('navbar.StepManager')">
                     <i class=" icon-stack-text"></i>
