@@ -197,7 +197,8 @@
                         }
                         inserts.push({row: row, relations: relations});
                     }
-                    <%= DATA.scope %>.importing(inserts);
+                    <%= DATA.scope %>.
+                    importing(inserts);
                 });
             }
         });
@@ -221,15 +222,15 @@
     };
 </script>
 <div dragonlanguage=""
-        ng-show="<%= DATA.scope %>.galleryFiles.columns && <%= DATA.scope %>.galleryFiles.data.files.length<=0"
-        class="alert alpha-<%= TAG.table %> border-<%= TAG.table %> alert-styled-left">
+     ng-show="<%= DATA.scope %>.galleryFiles.columns && <%= DATA.scope %>.galleryFiles.data.files.length<=0"
+     class="alert alpha-<%= TAG.table %> border-<%= TAG.table %> alert-styled-left">
     <language>MESSAGE.i('mono.Thereisnofilestoshow')</language>
 </div>
 
-<div
-        ng-show="<%= DATA.scope %>.galleryFiles.columns && <%= DATA.scope %>.galleryFiles.data.files.length<=0"
-        class="alert alpha-warning border-warning alert-styled-left">
-    These files will be used to import data to the corresponding entity
+<div dragonlanguage=""
+     ng-show="<%= DATA.scope %>.galleryFiles.columns && <%= DATA.scope %>.galleryFiles.data.files.length<=0"
+     class="alert alpha-warning border-warning alert-styled-left">
+    <language>MESSAGE.i('export.used')</language>
 </div>
 
 <div class="btn-group btn-group-justified">
@@ -271,7 +272,9 @@
 <div class="panel panel-flat"
      ng-show="(<%= DATA.scope %>.galleryFiles.upload && <%= DATA.scope %>.galleryFiles.columns) && <%= DATA.scope %>.galleryFiles.reachMaxFiles()">
     <div class="panel-heading">
-        <h5 dragonlanguage class="panel-title"><language>MESSAGE.i('alerts.SelectorDropFiles')</language></h5>
+        <h5 dragonlanguage class="panel-title">
+            <language>MESSAGE.i('alerts.SelectorDropFiles')</language>
+        </h5>
     </div>
     <div class="panel-body">
         <form class="dropzone" id="filesForm" method="post" enctype="multipart/form-data">
@@ -349,8 +352,10 @@
             init: function () {
                 this.on('complete', function (file) {
                     this.removeFile(file);
-                    <%= DATA.scope %>.galleryFiles.uploadview();
-                    <%= DATA.scope %>.galleryFiles.refresh();
+                    <%= DATA.scope %>.
+                    galleryFiles.uploadview();
+                    <%= DATA.scope %>.
+                    galleryFiles.refresh();
                 });
                 this.on('completemultiple', function (file) {
                     <%= DATA.scope %>.

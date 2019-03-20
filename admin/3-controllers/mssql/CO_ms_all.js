@@ -49,8 +49,8 @@ app.controller("ms_all", function ($scope, $http, $compile) {
                 name: function () {
                     var rules = [];
                     var value = ms_all.name;
-                    // rules.push(VALIDATION.general.required(value));
-                    // rules.push(VALIDATION.text.realdata(value));
+                    rules.push(VALIDATION.general.required(value));
+                    rules.push(VALIDATION.text.realdata(value));
                     return VALIDATION.process(ms_all, "name", rules)
                 },
                 child: function () {

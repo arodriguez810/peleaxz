@@ -6,6 +6,7 @@ DSON.keepmerge(CRUD_ms_all,
             key: 'id',
             deletekeys: ['id'],
             engine: 'ms',
+            width: "width:4000px;",
             columns: {
                 id: {
                     label:  "ID",

@@ -1,11 +1,11 @@
 <table class="table table-togglable table-framed" dragonlanguage="">
     <tbody>
-    <td ng-show="<%= scope %>.allow('actions') && <%= scope %>.allow(['edit','remove','active'])"
+    <td ng-show="<%= scope %>.allow(['edit','remove','active'])"
         class="text-center bg-<%= COLOR.primary %>">
         <language>MESSAGE.ic('mono.actions')</language>
     </td>
     <td class="text-center"
-        ng-show="(<%= scope %>.allow('actions') && <%= scope %>.allow(['edit','remove','active']))">
+        ng-show="(<%= scope %>.allow(['edit','remove','active']))">
         <ul class="icons-list" style="z-index: 99999">
             <li ng-repeat="(min, option) in <%= scope %>.getOptions(false) track by min"
                 ng-show="<%= scope %>.allow(<%= scope %>.option.permission(option,<%= scope %>.dataForView)) && <%= scope %>.option.show(option,<%= scope %>.dataForView)">

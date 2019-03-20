@@ -1,154 +1,154 @@
-.bg-base {
+.bg-lightblue {
     background-color: #00BCD4;
     border-color: #00BCD4;
     color: #fff;
 }
-.bg-base-300 {
+.bg-lightblue-300 {
     background-color: #4DD0E1;
     border-color: #4DD0E1;
     color: #fff;
 }
-.bg-base-400 {
+.bg-lightblue-400 {
     background-color: #26C6DA;
     border-color: #26C6DA;
     color: #fff;
 }
-.bg-base-600 {
+.bg-lightblue-600 {
     background-color: #00ACC1;
     border-color: #00ACC1;
     color: #fff;
 }
-.bg-base-700 {
+.bg-lightblue-700 {
     background-color: #0097A7;
     border-color: #0097A7;
     color: #fff;
 }
-.bg-base-800 {
+.bg-lightblue-800 {
     background-color: #00838F;
     border-color: #00838F;
     color: #fff;
 }
-.alpha-base {
+.alpha-lightblue {
     background-color: #E0F7FA;
     border-color: #00ACC1;
 }
-.border-base {
+.border-lightblue {
     border-color: #00BCD4;
 }
-.border-base-300 {
+.border-lightblue-300 {
     border-color: #4DD0E1;
 }
-.border-base-400 {
+.border-lightblue-400 {
     border-color: #26C6DA;
 }
-.border-base-600 {
+.border-lightblue-600 {
     border-color: #00ACC1;
 }
-.border-base-700 {
+.border-lightblue-700 {
     border-color: #0097A7;
 }
-.border-base-800 {
+.border-lightblue-800 {
     border-color: #00838F;
 }
-.border-top-base {
+.border-top-lightblue {
     border-top-color: #00BCD4;
 }
-.border-top-base-300 {
+.border-top-lightblue-300 {
     border-top-color: #4DD0E1;
 }
-.border-top-base-400 {
+.border-top-lightblue-400 {
     border-top-color: #26C6DA;
 }
-.border-top-base-600 {
+.border-top-lightblue-600 {
     border-top-color: #00ACC1;
 }
-.border-top-base-700 {
+.border-top-lightblue-700 {
     border-top-color: #0097A7;
 }
-.border-top-base-800 {
+.border-top-lightblue-800 {
     border-top-color: #00838F;
 }
-.border-bottom-base {
+.border-bottom-lightblue {
     border-bottom-color: #00BCD4;
 }
-.border-bottom-base-300 {
+.border-bottom-lightblue-300 {
     border-bottom-color: #4DD0E1;
 }
-.border-bottom-base-400 {
+.border-bottom-lightblue-400 {
     border-bottom-color: #26C6DA;
 }
-.border-bottom-base-600 {
+.border-bottom-lightblue-600 {
     border-bottom-color: #00ACC1;
 }
-.border-bottom-base-700 {
+.border-bottom-lightblue-700 {
     border-bottom-color: #0097A7;
 }
-.border-bottom-base-800 {
+.border-bottom-lightblue-800 {
     border-bottom-color: #00838F;
 }
-.border-left-base {
+.border-left-lightblue {
     border-left-color: #00BCD4;
 }
-.border-left-base-300 {
+.border-left-lightblue-300 {
     border-left-color: #4DD0E1;
 }
-.border-left-base-400 {
+.border-left-lightblue-400 {
     border-left-color: #26C6DA;
 }
-.border-left-base-600 {
+.border-left-lightblue-600 {
     border-left-color: #00ACC1;
 }
-.border-left-base-700 {
+.border-left-lightblue-700 {
     border-left-color: #0097A7;
 }
-.border-left-base-800 {
+.border-left-lightblue-800 {
     border-left-color: #00838F;
 }
-.border-right-base {
+.border-right-lightblue {
     border-right-color: #00BCD4;
 }
-.border-right-base-300 {
+.border-right-lightblue-300 {
     border-right-color: #4DD0E1;
 }
-.border-right-base-400 {
+.border-right-lightblue-400 {
     border-right-color: #26C6DA;
 }
-.border-right-base-600 {
+.border-right-lightblue-600 {
     border-right-color: #00ACC1;
 }
-.border-right-base-700 {
+.border-right-lightblue-700 {
     border-right-color: #0097A7;
 }
-.border-right-base-800 {
+.border-right-lightblue-800 {
     border-right-color: #00838F;
 }
-.text-base,
-.text-base:hover,
-.text-base:focus {
+.text-lightblue,
+.text-lightblue:hover,
+.text-lightblue:focus {
     color: #00BCD4 !important;
 }
-.text-base-300,
-.text-base-300:hover,
-.text-base-300:focus {
+.text-lightblue-300,
+.text-lightblue-300:hover,
+.text-lightblue-300:focus {
     color: #4DD0E1 !important;
 }
-.text-base-400,
-.text-base-400:hover,
-.text-base-400:focus {
+.text-lightblue-400,
+.text-lightblue-400:hover,
+.text-lightblue-400:focus {
     color: #26C6DA !important;
 }
-.text-base-600,
-.text-base-600:hover,
-.text-base-600:focus {
+.text-lightblue-600,
+.text-lightblue-600:hover,
+.text-lightblue-600:focus {
     color: #00ACC1 !important;
 }
-.text-base-700,
-.text-base-700:hover,
-.text-base-700:focus {
+.text-lightblue-700,
+.text-lightblue-700:hover,
+.text-lightblue-700:focus {
     color: #0097A7 !important;
 }
-.text-base-800,
-.text-base-800:hover,
-.text-base-800:focus {
+.text-lightblue-800,
+.text-lightblue-800:hover,
+.text-lightblue-800:focus {
     color: #00838F !important;
 }

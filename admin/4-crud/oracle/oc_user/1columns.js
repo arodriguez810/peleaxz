@@ -2,7 +2,7 @@ CRUD_oc_user = {};
 DSON.keepmerge(CRUD_oc_user, CRUDDEFAULTS);
 DSON.keepmerge(CRUD_oc_user, {
     table: {
-        engine: 'my',
+        engine: 'oc',
         columns: {
             id: {
                 label: "ID",
@@ -24,7 +24,7 @@ DSON.keepmerge(CRUD_oc_user, {
             },
             image: {
                 label: "Profile Image",
-                folder: "my_user/profileimage/${this.id}",
+                folder: "oc_user/profileimage/${this.id}",
                 files: {
                     maxsize: 20,
                     maxfiles: 2,

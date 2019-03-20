@@ -3,6 +3,29 @@ DSON.keepmerge(CRUD_ms_child, CRUDDEFAULTS);
 DSON.keepmerge(CRUD_ms_child, {
     table: {
         engine: 'ms',
+        limits: [10, 50, 100, 0],
+        report: false,
+        batch: true,
+        persist: true,
+        sortable: true,
+        allow: {
+            add: true,
+            edit: true,
+            view: true,
+            remove: true,
+            active: true,
+            filter: true,
+            import: true,
+            copy: true,
+            export: {
+                Clipboard: true,
+                PDF: true,
+                CSV: true,
+                XLS: true,
+                DOC: true
+            },
+            actions: true,
+        },
         columns: {
             id: {
                 label: "ID",

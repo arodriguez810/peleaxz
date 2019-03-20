@@ -13,5 +13,6 @@
   "UserReport": "UserReport",
   "Extra": "Extra",
   "MysqlUsers": "Users in Mysql",
-  "OracleUsers": "OracleUsers"
+  "OracleUsers": "Oracle Users",
+  "StorageUsers": "Storage Users"
 }

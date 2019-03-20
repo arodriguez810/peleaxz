@@ -32,5 +32,6 @@
   "CloseToComplete": "¿Está cerca de completar el formulario, está seguro de que desea cerrarlo?",
   "ClientDbError": "Ocurrió un error en la base de datos, ¿le gustaría enviar este error?",
   "ChangeLanguage": "¿Está seguro de cambiar el idioma a ${lang.name} ?, esto cambiará los textos de ${CONFIG.appName} y es posible que no los entiendas",
-  "providerError": "Sus errores han sido enviado al proveedor"
+  "providerError": "Sus errores han sido enviado al proveedor",
+  "permissiondenied": "No tienes los suficientes permisos para acceder a esta opción, si está en esta pantalla solo pudo ser por la opción de favoritos. Si esta consciente de que no debe tener permisos favor eliminarla sino contacte al administrador"
 }

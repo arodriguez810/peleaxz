@@ -99,5 +99,17 @@
   "DeletingMultipleRows": "Deleting Multiple Rows",
   "quick": "quick",
   "view": "view",
-  "options": "options"
+  "options": "options",
+  "downloading": "downloading",
+  "Preparing": "Preparing",
+  "importing": "importing",
+  "multiple": "multiple",
+  "CopyRecords": "Copy Records",
+  "copyng": "copyng",
+  "copy": "copy",
+  "Listof": "List of",
+  "disabling": "disabling",
+  "active": "active",
+  "activing": "activing",
+  "color": "color"
 }

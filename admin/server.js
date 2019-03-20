@@ -75,22 +75,13 @@ for (var i in CONFIG.modules) {
 }
 
 storage.init({
-    dir: 'files/storage',
-
+    dir: CONFIG.storage,
     stringify: JSON.stringify,
-
     parse: JSON.parse,
-
     encoding: 'utf8',
-
-    logging: false,  // can also be custom logging function
-
-    ttl: false, // ttl* [NEW], can be true for 24h default or a number in MILLISECONDS or a valid Javascript Date object
-
-    expiredInterval: 2 * 60 * 1000, // every 2 minutes the process will clean-up the expired cache
-
-    // in some cases, you (or some other service) might add non-valid storage files to your
-    // storage dir, i.e. Google Drive, make this true if you'd like to ignore these files and not throw an error
+    logging: false,
+    ttl: false,
+    expiredInterval: 2 * 60 * 1000,
     forgiveParseErrors: false
 });
 
@@ -218,7 +209,8 @@ allparams += "}";
 var models = [],
     modelsql = [],
     modelmysql = [],
-    modeloracle = [];
+    modeloracle = [],
+    modelstorage = [];
 var collections = {},
     collectionsql = {};
 
@@ -304,7 +296,6 @@ if (CONFIG.mssql !== undefined) {
         );
     }
 } else loadedMotors++;
-
 if (CONFIG.mysql !== undefined) {
     var myfiles = fs.readdirSync("./" + folders.models + "/mysql");
 
@@ -349,7 +340,6 @@ if (CONFIG.mysql !== undefined) {
         );
     }
 } else loadedMotors++;
-
 if (CONFIG.oracle !== undefined) {
 
     var orafiles = fs.readdirSync("./" + folders.models + "/oracle");
@@ -395,7 +385,22 @@ if (CONFIG.oracle !== undefined) {
     }
 
 } else loadedMotors++;
-while (loadedMotors < 4) sleep(1);
+if (true) {
+
+    for (var i in CONFIG.storageEntities) {
+        modelstorage.push(i);
+    }
+    console.log('loaded storage models');
+    var STORAGEDB = {};
+    for (var i in modelstorage) {
+        var stringModel = S(allparams).replaceAll("@model@", modelstorage[i]).s;
+        eval("STORAGEDB." + modelstorage[i] + " = new modules.storage.Model('" + modelstorage[i] + "'," + allparams + ");");
+        modules.storage.defaultRequests(eval(util.format("STORAGEDB.%s", modelstorage[i])), eval("(" + stringModel + ")"));
+    }
+    console.log('loaded storage queries');
+    loadedMotors++;
+} else loadedMotors++;
+while (loadedMotors < 5) sleep(1);
 
 servicesFiles = getFiles("./" + folders.service + "/");
 var catalogs = [];

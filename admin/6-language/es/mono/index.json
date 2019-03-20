@@ -99,5 +99,17 @@
   "DeletingMultipleRows": "Eliminando varias filas",
   "quick": "rapida",
   "view": "vista",
-  "options": "opciones"
+  "options": "opciones",
+  "downloading": "descargando",
+  "Preparing": "preparando",
+  "importing": "importando",
+  "multiple": "multiple",
+  "CopyRecords": "Copiando Registros",
+  "copyng": "copiando",
+  "copy": "copiar",
+  "Listof": "Lista de",
+  "disabling": "desactivando",
+  "active": "activar",
+  "activing": "activando",
+  "color": "color"
 }

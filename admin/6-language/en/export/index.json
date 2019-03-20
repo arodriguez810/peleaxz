@@ -3,5 +3,7 @@
   "ColumnsPosition": "Columns Position",
   "OriginalFormat": "Original Format",
   "Exampletoimportrecords": "Example to import records",
-  "Importfilesof": "Import files of"
+  "Importfilesof": "Import files of",
+  "Exampletoimport": "Example to import",
+  "used": "These files will be used to import data to the corresponding entity"
 }

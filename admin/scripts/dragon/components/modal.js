@@ -107,6 +107,7 @@ MODAL = {
                         "modalcontent" + data.id,
                         data.content.loadingContentText || MESSAGE.i('actions.Loading'),
                         function (success) {
+                            MESSAGE.run();
                         }
                     );
                 }
@@ -117,6 +118,7 @@ MODAL = {
                         "modalcontent" + data.id,
                         data.content.loadingContentText || MESSAGE.i('actions.Loading'),
                         function (success) {
+                            MESSAGE.run();
                         }
                     );
                 }

@@ -91,6 +91,10 @@ FILE = {
                 element.attr('src', source);
                 break
             }
+            case "A": {
+                element.attr('href', source);
+                break
+            }
         }
     },
     runServerFile: function ($me) {

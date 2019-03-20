@@ -6,6 +6,23 @@
       "icon": "tree5",
       "menus": [
         {
+          "text": "Nuevos",
+          "href": "#",
+          "icon": "graduation2",
+          "menus": [
+            {
+              "text": "Categories",
+              "href": "#my_category",
+              "icon": "lifebuoy"
+            },
+            {
+              "text": "Products",
+              "href": "#my_product",
+              "icon": "lifebuoy"
+            }
+          ]
+        },
+        {
           "text": "Parent",
           "href": "#",
           "icon": "graduation2",
@@ -61,6 +78,11 @@
                   "text": "Oracle Users",
                   "href": "#oc_user",
                   "icon": "user"
+                },
+                {
+                  "text": "Storage Users",
+                  "href": "#st_user",
+                  "icon": "users2"
                 },
                 {
                   "text": "User Report",

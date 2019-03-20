@@ -38,11 +38,9 @@ TABLE = {
                     }
                 }
         };
-
         $scope.responsive = function (key) {
 
         };
-
         $scope.columnVisible = function (value) {
             return value.visible !== false;
         };
@@ -120,8 +118,6 @@ TABLE = {
                 return $scope.table.crud.table.columns;
             }
         };
-
-
         $scope.restoreStorage = function () {
 
             if (!$scope.hasAnyModel()) {
@@ -164,6 +160,7 @@ TABLE = {
             );
             $scope.table.is.loading = false;
             $scope.width();
+            MESSAGE.run();
         };
         $scope.refresh = function () {
             ANIMATION.loading(

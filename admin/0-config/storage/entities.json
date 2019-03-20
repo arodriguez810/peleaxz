@@ -1,0 +1,52 @@
+{
+  "storage": "files/storage",
+  "storageEntities": {
+    "st_user": {
+      "key": "id",
+      "type": "one",
+      "fields": [
+        "username",
+        "name",
+        "lastname",
+        "password",
+        "email",
+        "tipo",
+        "active",
+        "created",
+        "updated",
+        "deleted",
+        "user_created",
+        "user_updated",
+        "user_deleted"
+      ],
+      "fkeys": [
+        {
+          "field": "tipo",
+          "table": "st_usertype",
+          "tableField": "id"
+        }
+      ]
+    },
+    "st_usertype": {
+      "key": "id",
+      "type": "one",
+      "fields": [
+        "description",
+        "name",
+        "active",
+        "created",
+        "updated",
+        "deleted",
+        "user_created",
+        "user_updated",
+        "user_deleted"
+      ],
+      "fkeys": [
+      ]
+    },
+    "permission": {
+      "key": "userid",
+      "type": "deep"
+    }
+  }
+}

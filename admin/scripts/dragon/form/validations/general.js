@@ -7,6 +7,14 @@ VALIDATION = DSON.merge(VALIDATION, {
                 message: MESSAGE.i('validations.Fieldisrequired'),
                 type: VALIDATION.types.error
             };
+        },
+        reglapropia: function (value) {
+            value = value || "";
+            return {
+                valid: (value==="bueno"),
+                message: "Opps no es bueno",
+                type: VALIDATION.types.error
+            };
         }
     }
 });

@@ -23,53 +23,6 @@ class Database {
         });
     }
 }
-
-exports.alterBlackList = [];
-exports.createTable = function (model, object, params) {
-    var tsql = params.util.format("CREATE TABLE IF NOT EXISTS `%s` (", model);
-    for (var property in object) {
-        tsql += params.util.format("\n%s %s,", property[0] === '$' ? property.substr(1, property.length) : `\`${property}\``, object[property]);
-    }
-    tsql += "*";
-    tsql = tsql.replace(",*", "");
-    tsql += ");";
-    return tsql;
-};
-exports.addColumns = function (model, object, params) {
-    var tsql = [];
-    for (var property in object)
-        tsql.push("ALTER TABLE `" + params.CONFIG.mysql.database + "`.`" + model + "` ADD COLUMN `" + property + "` " + object[property] + ";");
-    return tsql;
-};
-exports.deleteColumns = function (model, object, params, callback) {
-    var deleteColumns = [];
-    exports.data("select COLUMN_NAME from information_schema.`COLUMNS` where TABLE_NAME='" + model + "' and TABLE_SCHEMA='" + params.CONFIG.mysql.database + "'"
-        , params).then(data => {
-        var onlynames = [];
-        var onlyNamesObjects = [];
-        for (var i in data.data)
-            onlynames.push(data.data[i].COLUMN_NAME);
-
-        for (var property in object)
-            onlyNamesObjects.push(property);
-        for (var i in onlynames) {
-            if (!onlyNamesObjects.includes(onlynames[i])) {
-                deleteColumns.push(onlynames[i]);
-            }
-        }
-        var deletes = [];
-
-        for (var i in deleteColumns)
-            deletes.push(params.format("ALTER TABLE {0} DROP COLUMN {1};\n", model, deleteColumns[i]));
-        callback(deletes);
-    });
-};
-exports.alterColumns = function (model, object, params) {
-    var tsql = [];
-    for (var property in object)
-        tsql.push("ALTER TABLE `" + params.CONFIG.mysql.database + "`.`" + model + "` MODIFY COLUMN `" + property + "` " + object[property] + ";");
-    return tsql;
-};
 exports.executeNonQuery = async function (query, params,show) {
     if (show === undefined)
     console.log(query.pxz);

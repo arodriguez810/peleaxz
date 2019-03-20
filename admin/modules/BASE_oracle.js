@@ -5,31 +5,19 @@ exports.executeNonQuery = async function (query, params, show) {
     var options = {autoCommit: true};
     try {
         var result = await connection.execute(query, [], options);
+        await connection.release();
         return {query: query, error: false, recordset: result};
     } catch (err) {
         console.log({query: query, error: err});
-        if (connection) {
-            try {
-                await connection.close();
-            } catch (err) {
-                console.error(err);
-            }
-        }
+        await connection.release();
         return {query: query, error: err};
-    } finally {
-        if (connection) {
-            try {
-                await connection.close();
-            } catch (err) {
-                return {query: query, error: err};
-            }
-        }
     }
 };
 exports.executeNonQueryArray = async function (queries, params, show) {
+    var result;
     for (var query of queries)
-        await exports.executeNonQuery(query, params, show);
-    return queries;
+        result = await exports.executeNonQuery(query, params, show);
+    return result;
 };
 exports.insertQuery = function (table, data, params, get, getvalue) {
     var datas = (Array.isArray(data)) ? data : [data];
@@ -57,7 +45,7 @@ exports.insertQuery = function (table, data, params, get, getvalue) {
             break;
         }
         else
-            queries.push(params.format("INSERT INTO \"{0}\"({1}) VALUES({2});", table, columns.join(", "), values.join(", ")));
+            queries.push(params.format("INSERT INTO \"{0}\"({1}) VALUES({2})", table, columns.join(", "), values.join(", ")));
     }
     return queries;
 };
@@ -80,7 +68,7 @@ exports.update = function (table, data, params) {
                 if (value[0] === "$")
                     values = (value.replace('$', ''));
                 else if (value[0] === "#")
-                    values = (`CONVERT(VARCHAR(32), HashBytes('MD5', '${params.CONFIG.appKey}${value.replace('#', '')}'), 2)`);
+                    values = (`HASH_MD5('${params.CONFIG.appKey}${value.replace('#', '')}')`);
                 else
                     values = ("'" + value + "'");
                 sets.push(params.format("{0}={1}", columns, values))
@@ -116,7 +104,7 @@ exports.update = function (table, data, params) {
                 }
             }
         }
-        queries.push(params.format("UPDATE \"{0}\" SET {1} {2};\n", table, sets.join(", "), where));
+        queries.push(params.format("UPDATE \"{0}\" SET {1} {2}", table, sets.join(", "), where));
     }
     return queries;
 };
@@ -138,7 +126,7 @@ exports.delete = function (table, data, params) {
             else
                 values.push("'" + value + "'");
         }
-        queries.push(params.format("DELETE FROM \"{0}\" WHERE \n", table, columns.join(", "), values.join(", ")));
+        queries.push(params.format("DELETE FROM \"{0}\" WHERE", table, columns.join(", "), values.join(", ")));
     }
     return queries;
 };
@@ -147,7 +135,7 @@ exports.data = async function (query, params, index) {
     console.log(query.pxz);
     try {
         var result = await connection.execute(query);
-
+        await connection.release();
         var createjson = [];
         for (var row of result.rows) {
             var object = {};
@@ -156,6 +144,7 @@ exports.data = async function (query, params, index) {
             }
             createjson.push(object);
         }
+
         return {
             query: query,
             error: false,
@@ -164,22 +153,8 @@ exports.data = async function (query, params, index) {
             index: index
         };
     } catch (err) {
-        if (connection) {
-            try {
-                await connection.close();
-            } catch (err) {
-                return {query: query, error: err};
-            }
-        }
+        await connection.release();
         return {query: query, error: err};
-    } finally {
-        if (connection) {
-            try {
-                await connection.close();
-            } catch (err) {
-                return {query: query, error: err};
-            }
-        }
     }
 };
 exports.defaultRequests = function (Model, params) {
@@ -219,6 +194,14 @@ exports.defaultRequests = function (Model, params) {
     });
     params.app.get(params.util.format('/api/%s/all', Model.tableName), function (req, res) {
         params.secure.check(req, res, function () {
+            
+            if (req.query.limit === undefined)
+                req.query.limit = 10;
+            if (req.query.page === undefined)
+                req.query.page = 1;
+            if (req.query.orderby === undefined)
+                req.query.orderby = "id";
+
             Model.all(req.query).then((data) => {
                 if (data.error !== false) res.send(data.error);
                 res.json(data);
@@ -308,14 +291,15 @@ exports.Model = function (tableName, params) {
         });
     };
     this.insertID = async function (data, field, value) {
-        return await exports.executeNonQueryArray(exports.insertQuery(tableName, data, params), params).then(async (insert) => {
-            var retroID = field || "id";
-            var retroValue = value !== '' ? ("'" + value + "'") : ("(select MAX(\"" + (field || "id") + "\") from \"" + tableName + "\")");
-            var retroQuery = `SELECT * FROM ${tableName} where "${retroID}"= ${retroValue}`;
-            return await exports.data(retroQuery, params).then((result) => {
-                return result;
+        return await exports.executeNonQueryArray(exports.insertQuery(tableName, data, params), params)
+            .then(async (insert) => {
+                var retroID = field || "id";
+                var retroValue = value !== '' ? ("'" + value + "'") : ("(select MAX(\"" + (field || "id") + "\") from \"" + tableName + "\")");
+                var retroQuery = `SELECT * FROM "${tableName}" where "${retroID}"= ${retroValue}`;
+                return await exports.data(retroQuery, params).then((result) => {
+                    return result;
+                });
             });
-        });
     };
     //delete
     this.deleteAll = async function () {
@@ -548,30 +532,48 @@ exports.Model = function (tableName, params) {
                     $pagec = options.page;
                     var $value = $limitvalue * ($pagec - 1);
                     if (where !== '')
-                        $page = params.format(" and (ROWNUM >= {0} and ROWNUM <= {1})", $value, $value + $limitvalue);
+                        $page = params.format(" where (rnum >= {0} and rnum <= {1})", $value, $value + $limitvalue);
                     else
-                        $page = params.format(" where (ROWNUM >= {0} and ROWNUM <= {1})", $value, $value + $limitvalue);
+                        $page = params.format(" where (rnum >= {0} and rnum <= {1})", $value + 1, $value + $limitvalue);
                 }
             }
         }
-        var query = params.format("{sentence} {distinct} {selectfinal} FROM \"{table}\" " + nickName + " {join} {where} {page} {limit} {groupby} {orderby} {order}  ",
-            {
-                sentence: sentence,
-                distinct: distinct,
-                selectfinal: selectfinal,
-                joinColumns: joinColumns,
-                table: offTableName,
-                join: join,
-                where: where,
-                groupby: groupby,
-                orderby: orderby,
-                order: order,
-                limite: $limit,
-                page: $page
-            }
-        );
+        if (sentence === "SELECT")
+            var query = params.format("select * from ({sentence} {distinct} {selectfinal},rownum as rnum FROM \"{table}\" " + nickName + " {join} {where} {limit} {groupby} {orderby} {order}) {page}",
+                {
+                    sentence: sentence,
+                    distinct: distinct,
+                    selectfinal: selectfinal,
+                    joinColumns: joinColumns,
+                    table: offTableName,
+                    join: join,
+                    where: where,
+                    groupby: groupby,
+                    orderby: orderby,
+                    order: order,
+                    limite: $limit,
+                    page: $page
+                }
+            );
+        else
+            var query = params.format("{sentence} {distinct} {selectfinal} FROM \"{table}\" " + nickName + " {join} {where} {page} {limit} {groupby} {orderby} {order}  ",
+                {
+                    sentence: sentence,
+                    distinct: distinct,
+                    selectfinal: selectfinal,
+                    joinColumns: joinColumns,
+                    table: offTableName,
+                    join: join,
+                    where: where,
+                    groupby: groupby,
+                    orderby: orderby,
+                    order: order,
+                    limite: $limit,
+                    page: $page
+                }
+            );
 
-        var queryCount = params.format("SELECT count(*) count FROM \"{table}\" " + nickName + " {join} {where} {groupby}",
+        var queryCount = params.format("SELECT count(*) \"count\" FROM \"{table}\" " + nickName + " {join} {where} {groupby}",
             {
                 table: offTableName,
                 join: join,
@@ -579,25 +581,30 @@ exports.Model = function (tableName, params) {
                 groupby: groupby
             }
         );
-        return await exports.data(queryCount, params).then(countData => {
-            return exports.data(query, params, {
-                limitvalue: $limitvalue,
-                pagec: $pagec,
-                limit: options.limit
-            }).then((data) => {
-                if (options.limit !== undefined)
-                    if (data.index !== undefined) {
-                        data.totalPage = Math.ceil(countData.data[0].count / data.index.limitvalue);
-                        data.totalCount = countData.data[0].count;
-                        data.currentPage = data.index.pagec;
-                    }
+        if (sentence !== "DELETE")
+            return await exports.data(queryCount, params).then(async countData => {
+                return await exports.data(query, params, {
+                    limitvalue: $limitvalue,
+                    pagec: $pagec,
+                    limit: options.limit
+                }).then((data) => {
+                    if (options.limit !== undefined)
+                        if (data.index !== undefined) {
+                            data.totalPage = Math.ceil(countData.data[0].count / data.index.limitvalue);
+                            data.totalCount = countData.data[0].count;
+                            data.currentPage = data.index.pagec;
+                        }
+                        else
+                            data.index = {};
                     else
                         data.index = {};
-                else
-                    data.index = {};
+                    return data;
+                });
+            });
+        else
+            return await exports.executeNonQuery(query, params).then((data) => {
                 return data;
             });
-        });
     };
 };
 

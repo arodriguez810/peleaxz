@@ -1,5 +1,6 @@
 CRUDDEFAULTS = {
     table: {
+        isStorage: false,
         rowClass: function (row, $scope) {
             return $scope.activeSET(row) === false ? "bg-" + COLOR.danger + "-300" : "";
         },
@@ -10,14 +11,12 @@ CRUDDEFAULTS = {
             "_1": "visible-xs visible-sm visible-md visible-lg"
         },
         report: false,
-        width: "width:5000px;",
+        width: "",
         offWidth: 5,
         baseWidth: 1000,
         columnsalign: "center",
         limits: [10, 50, 100, 0],
         activeColumn: "active",
-        contextMenu: true,
-        sorteable: true,
         key: 'id',
         deletekeys: ['id'],
         engine: 'ms',
@@ -33,7 +32,6 @@ CRUDDEFAULTS = {
             filter: true,
             import: true,
             copy: true,
-            clone: true,
             export: {
                 Clipboard: true,
                 PDF: true,

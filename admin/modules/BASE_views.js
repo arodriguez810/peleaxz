@@ -282,6 +282,7 @@ exports.init = function (params) {
     params.fs.readdir(
         params.util.format("./" + params.folders.views + "/%s", params.modelName), function (err, files) {
             params.modelName = "base";
+
             exports.LoadEJS(files, params);
         }
     );
@@ -307,6 +308,7 @@ exports.init = function (params) {
         return filelist;
     };
     var autroute = getFiles(excludes, params.folders.views + "/");
+
     autroute.forEach(element => {
         exports.loadEJSSimple(
             "./" + params.folders.views + "/" + element.replace(".ejs", ""),

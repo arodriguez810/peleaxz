@@ -70,6 +70,7 @@ TABLEEVENT = {
                             mylink.modal.header.title = `${MESSAGE.ic('mono.quick')} ${$scope.columnLabel(data.column, data.field)} ${MESSAGE.i('mono.view')}`;
                             $scope.modal.modalView(String.format("{0}", mylink.table), mylink.modal);
                             mylink.modal.header.title = oldTitle;
+
                         });
                 }
             }
@@ -91,7 +92,6 @@ TABLEEVENT = {
                 data.column.files.modal.header.title = oldTitle;
                 return;
             }
-
             if (data.column.multilink && data.column.reference !== false) {
                 var mylink = data.column.multilink;
                 var id = eval("data.row." + mylink.from);
@@ -178,7 +178,6 @@ TABLEEVENT = {
                     return;
                 }
             }
-
             if (data.column.shorttext) {
                 var shorttext = data.value;
                 if (!DSON.oseaX(shorttext))
@@ -263,7 +262,7 @@ TABLEEVENT = {
                         $(event.currentTarget).parent().addClass("alpha-" + COLOR.info);
         };
         $scope.cell.dblselect = function (row) {
-            if (!DSON.oseaX(row)) {
+            if (!DSON.oseaX(row) && $scope.table.crud.table.allow.view) {
                 $scope.dataForView = row;
                 $scope.modal.modalView(String.format("{0}/view", $scope.modelName), {
                     header: {
@@ -287,6 +286,12 @@ TABLEEVENT = {
 
         };
         $scope.deleteRow = async function (row) {
+            var multiple = false;
+            if (row === undefined) {
+                row = ARRAY.last($scope.forDelte);
+                ARRAY.removeLast($scope.forDelte);
+                multiple = true;
+            }
             var where = [];
             for (const deletekey of $scope.table.crud.table.deletekeys)
                 where.push({field: deletekey, value: eval("row." + deletekey)});
@@ -327,14 +332,16 @@ TABLEEVENT = {
                         ERROR.multiAlert($scope.procesingRowErrors, ERROR.category.database);
                     }
                 }
-
+                if (multiple) {
+                    $scope.deleteRow();
+                }
             });
         };
         $scope.deleteSelected = function () {
-            var forDelte = $scope.records.data.filter(function (item) {
+            $scope.forDelte = $scope.records.data.filter(function (item) {
                 return item.selected === true;
             });
-            if (forDelte.length === 0) {
+            if ($scope.forDelte.length === 0) {
                 SWEETALERT.show({message: MESSAGE.i('alerts.YMDelete')});
                 return;
             }
@@ -343,18 +350,22 @@ TABLEEVENT = {
                 confirm: async function () {
 
                     $scope.procesingRow = 0;
-                    $scope.procesingRowFor = forDelte.length;
+                    $scope.procesingRowFor = $scope.forDelte.length;
                     SWEETALERT.loading({message: `${MESSAGE.ic('mono.DeletingMultipleRows')} ${$scope.procesingRow} ${MESSAGE.i('mono.of')} ${$scope.procesingRowFor}`});
-                    $scope.deleteRows(forDelte);
+                    $scope.deleteRows();
                 }
             });
         };
-        $scope.deleteRows = function (forDelte) {
-            for (const item of forDelte) {
-                $scope.deleteRow(item);
-            }
+        $scope.deleteRows = function () {
+            $scope.deleteRow();
         };
         $scope.activeRow = async function (row, active) {
+            var multiple = false;
+            if (row === undefined) {
+                row = ARRAY.last($scope.forDelte);
+                ARRAY.removeLast($scope.forDelte);
+                multiple = true;
+            }
             $("tr").removeClass("alpha-" + COLOR.info);
             $("td").removeClass("alpha-" + COLOR.info);
             var where = [];
@@ -399,20 +410,21 @@ TABLEEVENT = {
                         ERROR.multiAlert($scope.procesingRowErrors, ERROR.category.database);
                     }
                 }
+                if (multiple) {
+                    $scope.activeRow(undefined, active);
+                }
             });
         };
-        $scope.activeRows = function (forDelte, active) {
-            for (const item of forDelte) {
-                $scope.activeRow(item, active);
-            }
+        $scope.activeRows = function (active) {
+            $scope.activeRow(undefined, active);
         };
         $scope.activeSelected = function (active) {
-            var forDelte = $scope.records.data.filter(function (item) {
+            $scope.forDelte = $scope.records.data.filter(function (item) {
                 return item.selected === true;
             });
             var actionTextMultiple = active ? MESSAGE.i('mono.activing') : MESSAGE.i('mono.disabling');
             var value = active ? 1 : 0;
-            if (forDelte.length === 0) {
+            if ($scope.forDelte.length === 0) {
                 if (active)
                     SWEETALERT.show({message: MESSAGE.i('alerts.YMEnable')});
                 else
@@ -423,17 +435,18 @@ TABLEEVENT = {
                 message: active ? MESSAGE.i('alerts.AYSEnables') : MESSAGE.i('alerts.AYSDisables'),
                 confirm: async function () {
                     $scope.procesingRow = 0;
-                    $scope.procesingRowFor = forDelte.length;
+                    $scope.procesingRowFor = $scope.forDelte.length;
                     SWEETALERT.loading({message: `${actionTextMultiple}  ${MESSAGE.ic('mono.multiple')}  ${MESSAGE.ic('mono.rows')} ${$scope.procesingRow}  ${MESSAGE.i('mono.of')} ${$scope.procesingRowFor}`});
                     STEP.register({
                         scope: $scope.modelName,
-                        action: ` ${MESSAGE.ic('mono.active')} ${forDelte.length}  ${MESSAGE.ic('mono.rows')}`
+                        action: ` ${MESSAGE.ic('mono.active')} ${ $scope.forDelte.length}  ${MESSAGE.ic('mono.rows')}`
                     });
-                    $scope.activeRows(forDelte, value);
+                    $scope.activeRows(value);
                 }
             });
         };
         $scope.importing = function (data) {
+            $scope.importData = data;
             $scope.procesingRow = 0;
             $scope.procesingRowFor = data.length;
             SWEETALERT.loading({message: ` ${MESSAGE.ic('mono.importing')}  ${MESSAGE.ic('mono.multiple')}  ${MESSAGE.ic('mono.rows')} ${$scope.procesingRow}  ${MESSAGE.i('mono.of')} ${$scope.procesingRowFor}`});
@@ -442,48 +455,50 @@ TABLEEVENT = {
                 scope: $scope.modelName,
                 action: ` ${MESSAGE.ic('mono.importing')} ${data.length}  ${MESSAGE.i('mono.rows')}`
             });
-            for (const item of data) {
-                $scope.importRow(item);
-            }
+            $scope.importRow();
         };
-        $scope.importRow = async function (item) {
-            $scope.insertID(item.row, '', '', function (result) {
-                if (result.data.error === false) {
-                    var savedRow = result.data.data[0];
-                    $scope.procesingRow++;
-                    if ($scope.procesingRowFor !== 0)
-                        SWEETALERT.loading({
-                            message: `${MESSAGE.ic('mono.importing')} ${MESSAGE.ic('mono.multiple')} ${MESSAGE.ic('mono.rows')} ${$scope.procesingRow} ${MESSAGE.i('mono.of')} ${$scope.procesingRowFor}`
-                        }, false);
+        $scope.importRow = function () {
+            if ($scope.importData.length > 0) {
+                var row = ARRAY.last($scope.importData);
+                ARRAY.removeLast($scope.importData);
+                $scope.insertID(row.row, '', '', function (result) {
+                    if (result.data.error === false) {
+                        var savedRow = result.data.data[0];
+                        $scope.procesingRow++;
+                        if ($scope.procesingRowFor !== 0)
+                            SWEETALERT.loading({
+                                message: `${MESSAGE.ic('mono.importing')} ${MESSAGE.ic('mono.multiple')} ${MESSAGE.ic('mono.rows')} ${$scope.procesingRow} ${MESSAGE.i('mono.of')} ${$scope.procesingRowFor}`
+                            }, false);
 
-                    if ($scope.procesingRow === $scope.procesingRowFor || $scope.procesingRowFor === 0) {
-                        $scope.procesingRow = 0;
-                        $scope.procesingRowFor = 0;
-                        SWEETALERT.stop();
-                        SWEETALERT.show({message: MESSAGE.i('alerts.ALLFILEIMPORT')});
-                    }
-                    for (const relation of item.relations) {
-                        for (const value of relation.values) {
-                            var relaRow = {};
-                            eval(`relaRow.${relation.to} = '${savedRow.id}';`);
-                            eval(`relaRow.${relation.from} = '${value}';`);
-                            $scope.insertFrom(relation.table, relaRow, function (relResult) {
+                        if ($scope.procesingRow === $scope.procesingRowFor || $scope.procesingRowFor === 0) {
+                            $scope.procesingRow = 0;
+                            $scope.procesingRowFor = 0;
+                            SWEETALERT.stop();
+                            SWEETALERT.show({message: MESSAGE.i('alerts.ALLFILEIMPORT')});
+                        }
+                        for (const relation of row.relations) {
+                            for (const value of relation.values) {
+                                var relaRow = {};
+                                eval(`relaRow.${relation.to} = '${savedRow.id}';`);
+                                eval(`relaRow.${relation.from} = '${value}';`);
+                                $scope.insertFrom(relation.table, relaRow, function (relResult) {
 
-                            });
+                                });
+                            }
+                        }
+                    } else {
+                        $scope.procesingRow++;
+                        $scope.procesingRowErrors.push(result.data, ERROR.category.database);
+                        if ($scope.procesingRow === $scope.procesingRowFor || $scope.procesingRowFor === 0) {
+                            $scope.procesingRow = 0;
+                            $scope.procesingRowFor = 0;
+                            SWEETALERT.stop();
+                            ERROR.multiAlert($scope.procesingRowErrors, ERROR.category.database);
                         }
                     }
-                    return true;
-                } else {
-                    $scope.procesingRow++;
-                    $scope.procesingRowErrors.push(result.data, ERROR.category.database);
-                    if ($scope.procesingRow === $scope.procesingRowFor || $scope.procesingRowFor === 0) {
-                        $scope.procesingRow = 0;
-                        $scope.procesingRowFor = 0;
-                        SWEETALERT.stop();
-                        ERROR.multiAlert($scope.procesingRowErrors, ERROR.category.database);
-                    }
-                }
-            });
+                    $scope.importRow();
+                });
+            }
         };
         $scope.copyMultiple = async function () {
 

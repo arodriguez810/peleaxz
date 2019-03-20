@@ -13,7 +13,7 @@ MENU = {
         return {icon: icon, text: MENU.language(text), a: A, href: A.attr("href")};
     },
     language: function (text) {
-        if(text===undefined) return "";
+        if (text === undefined) return "";
         if (text.indexOf('<language>') !== -1)
             return text.replace('<language>', '').replace('</language>', '');
         else

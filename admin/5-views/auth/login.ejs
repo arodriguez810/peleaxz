@@ -1,5 +1,5 @@
 <script>
-    auth_login;
+    auth;
 </script>
 <div id="<%= scope %>" ng-controller="<%= scope %> as <%= scope %>">
     <div class="row" style="overflow: hidden">
@@ -12,8 +12,10 @@
                     <div class="icon-object border-<%= COLOR.primary %>-800 text-slate-300"><i
                                 class="text-<%= COLOR.info %> icon-user-{{<%= scope %>.validation.state()==='success'?'check animation':'lock'}}"></i>
                     </div>
-                    <h5 class="content-group" dragonlanguage><language>MESSAGE.i('login.Loginto')</language> <%= CONFIG.appName %>
-                        <small class="display-block"><language>MESSAGE.i('login.Enteryourcredentialsbelow')</language>
+                    <h5 class="content-group" dragonlanguage>
+                        <language>MESSAGE.i('login.Loginto')</language> <%= CONFIG.appName %>
+                        <small class="display-block">
+                            <language>MESSAGE.i('login.Enteryourcredentialsbelow')</language>
                         </small>
                     </h5>
                 </div>

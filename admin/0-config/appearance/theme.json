@@ -1,9 +1,12 @@
 {
+  "hidemenus": [
+    "ms_child"
+  ],
   "ui": {
     "colors": {
       "primary": "slate",
       "menu": "slate",
-      "info": "blue",
+      "info": "teal",
       "logo": "logowhite",
       //      slate, grey, black, creme
       //      orange, darkorange, brown, yellow

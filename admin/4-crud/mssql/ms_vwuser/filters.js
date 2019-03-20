@@ -1,4 +1,4 @@
-CRUD_ms_user = DSON.merge(CRUD_ms_user,
+CRUD_ms_vwuser = DSON.merge(CRUD_ms_vwuser,
     {
         table: {
             filters: {

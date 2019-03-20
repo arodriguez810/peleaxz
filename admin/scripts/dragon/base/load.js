@@ -21,6 +21,25 @@ LOAD = {
                 return;
             }
 
+
+            if (ARRAY.contains(CONFIG.hidemenus, view)) {
+                STEP.register({
+                    windows: `error ${'403'}`, action: "http error",
+                    description: view + ` ` + MESSAGE.i('alerts.permissiondenied'),
+                });
+                LOAD.template('error/base', {
+                    status: 403,
+                    statusText: MESSAGE.i('alerts.permissiondenied')
+                }, function (html) {
+                    $("#" + id).html(html);
+                    ANIMATION.playPure($("#" + id), LOAD.inanimation, function () {
+                    });
+                    $("#" + id).show();
+                    MESSAGE.run();
+                });
+                return;
+            }
+
             if (SESSION.ifLogoffRedirec(view)) {
                 return;
             }
@@ -72,18 +91,40 @@ LOAD = {
         if (SESSION.ifLogoffRedirec(view))
             return;
         MENU.setActive(view);
+
         LOAD.loadContentView(view, $scope, $http, $compile);
     },
     loadContentView: function (view, $scope, $http, $compile) {
         var scope = $scope.modelName;
-        if (DSON.oseaX(scope))
-            scope = view.replaceAll('/', '_');
+        if (DSON.oseaX(scope)) {
+            var spaces = view.split('/');
+            scope = spaces[0];
+        }
         STEP.clear();
         STEP.register({
             scope: scope,
             windows: `${scope} Page`, action: "Open Page"
         });
         $("#content").hide();
+
+        if (ARRAY.contains(CONFIG.hidemenus, view)) {
+            STEP.register({
+                windows: `error ${'403'}`, action: "http error",
+                description: view + `?scope=${scope} ` + MESSAGE.i('alerts.permissiondenied'),
+            });
+            LOAD.template('error/base', {
+                status: 403,
+                statusText: MESSAGE.i('alerts.permissiondenied')
+            }, function (html) {
+                $("#content").html(html);
+                ANIMATION.playPure($('#content'), LOAD.inanimation, function () {
+                });
+                $("#content").show();
+                MESSAGE.run();
+            });
+            return;
+        }
+
         $http.get(view + `?scope=${scope}`, {}).then(
             function (data) {
                 HTTP.evaluate(data);

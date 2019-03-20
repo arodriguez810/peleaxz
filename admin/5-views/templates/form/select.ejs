@@ -2,7 +2,7 @@
 var name = name || "";
 var options = {
     label: params.capitalize(name),
-    default:  'Select ' + params.capitalize(name),
+    default: 'Select ' + params.capitalize(name),
     icon: {
         class: "none",
         position: "left",
@@ -48,17 +48,21 @@ var options = {
 };
 options = OBJECT.merge(options, opts);
 options.model = options.model ? options.model : false;
+options.permission = options.permission || "CRUD_" + options.table;
 var toclient = JSON.stringify(options);
 %>
 <script>
+
 
     if (DSON.oseaX(<%= model + "." + name %>))
             <%= model + "." + name %> = "[NULL]";
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>", "'[NULL]'");
     <%= model %>.form.options.<%= name %>.default = `${MESSAGE.ic('mono.select')} <%= name %>`;
     if (MESSAGE.exist('columns.<%= name %>')) {
-        <%= model %>.form.options.<%= name %>.label = MESSAGE.i('columns.<%= name %>');
-        <%= model %>.form.options.<%= name %>.default = `${MESSAGE.ic('mono.select')} ` + MESSAGE.i('columns.<%= name %>');
+        <%= model %>.
+        form.options.<%= name %>.label = MESSAGE.i('columns.<%= name %>');
+        <%= model %>.
+        form.options.<%= name %>.default = `${MESSAGE.ic('mono.select')} ` + MESSAGE.i('columns.<%= name %>');
     }
 
 
@@ -71,6 +75,17 @@ var toclient = JSON.stringify(options);
         }
     }
     <%= model %>.form.loadDropDown("<%= name %>");
+
+    var permissions = eval('<%= options.permission %>');
+    if (!permissions.table.allow.edit)
+            <%= model %>.
+    form.options.<%= name %>.allowedit = false;
+    if (!permissions.table.allow.view)
+            <%= model %>.
+    form.options.<%= name %>.allowview = false;
+    if (!permissions.table.allow.add)
+            <%= model %>.
+    form.options.<%= name %>.allownew = false;
 </script>
 <div id="<%= options.table %>" ng-controller="<%= options.table %> as <%= options.table %>">
     <div class="form-group-material form-group has-feedback has-{{<%= model %>.validation.getType('<%= name %>')}}  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
@@ -87,8 +102,9 @@ var toclient = JSON.stringify(options);
             </a>
         <% } %>
 
-        <% if(options.allowview && !options.multiple){ %>
-            <a dragonlanguage="" title="MESSAGE.i('mono.Viewitem')" ng-show="<%= model + "." + name %>!='[NULL]'"
+        <% if(!options.multiple){ %>
+            <a dragonlanguage="" title="MESSAGE.i('mono.Viewitem')"
+               ng-show="<%= model + "." + name %>!='[NULL]' && <%= model %>.form.options.<%= name %>.allowview"
                id="view<%= model %>_<%= name %>"
                class="label bg-<%= TAG.table %> label-icon"
                style="float: right;margin-right: 10px;">
@@ -96,22 +112,21 @@ var toclient = JSON.stringify(options);
             </a>
         <% } %>
 
-        <% if(options.allowedit && !options.multiple){ %>
-            <a dragonlanguage="" title="MESSAGE.i('mono.Edititem')" ng-show="<%= model + "." + name %>!='[NULL]'"
-               id="edit<%= model %>_<%= name %>"
-               class="label bg-<%= TAG.table %> label-icon"
-               style="float: right;margin-right: 10px;">
-                <i class="icon-pencil"></i>
-            </a>
-        <% } %>
+        <a dragonlanguage="" title="MESSAGE.i('mono.Edititem')"
+           ng-show="<%= model + "." + name %>!='[NULL]' &&  <%= model %>.form.options.<%= name %>.allowedit"
+           id="edit<%= model %>_<%= name %>"
+           class="label bg-<%= TAG.table %> label-icon"
+           style="float: right;margin-right: 10px;">
+            <i class="icon-pencil"></i>
+        </a>
 
-        <% if(options.allownew){ %>
-            <a dragonlanguage="" title="MESSAGE.i('mono.Additem')" id="new<%= model %>_<%= name %>"
-               class="label bg-<%= TAG.table %> label-icon"
-               style="float: right;margin-right: 10px;">
-                <i class="icon-plus-circle2"></i>
-            </a>
-        <% } %>
+
+        <a dragonlanguage="" title="MESSAGE.i('mono.Additem')" id="new<%= model %>_<%= name %>"
+           ng-show="<%= model %>.form.options.<%= name %>.allownew"
+           class="label bg-<%= TAG.table %> label-icon"
+           style="float: right;margin-right: 10px;">
+            <i class="icon-plus-circle2"></i>
+        </a>
 
         <% if(options.refresh){ %>
             <a dragonlanguage="" title="MESSAGE.i('mono.RefreshList')" id="reload<%= model %>_<%= name %>"
@@ -132,7 +147,7 @@ var toclient = JSON.stringify(options);
                 <option></option>
             <% }else{ %>
                 <% if(!options.multiple){ %>
-                    <option  value="[NULL]" data-icon="blocked">---</option>
+                    <option value="[NULL]" data-icon="blocked">---</option>
                 <% } %>
             <% } %>
 
