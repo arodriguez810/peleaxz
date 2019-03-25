@@ -1,4 +1,3 @@
-SERVICEINDEXS = [];
 SERVICE = {
     run: function (services) {
         for (const service of services) {
@@ -23,8 +22,6 @@ SERVICE = {
                         "                        });\n" +
                         "                    };";
                     eval(String.format("SERVICE.{0}.{1} = {2}", parent, functionName, functioner));
-
-
                     break;
                 }
                 case "post":

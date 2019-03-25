@@ -76,8 +76,6 @@ KEY = {
 };
 
 $(document).ready(function () {
-
-
     // $(document).on('keyup', 'body', function (e) {
     //     KEY.repeat.make(e.key);
     //     if (!DSON.oseaX(ANGULARJS.tableScope))
@@ -87,5 +85,4 @@ $(document).ready(function () {
     // $(document).on('mouseover', '.table', function (e) {
     //     ANGULARJS.tableScope = $(this).data("scope");
     // });
-
 });

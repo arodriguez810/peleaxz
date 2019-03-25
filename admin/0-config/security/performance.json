@@ -1,7 +1,7 @@
 {
   "performance": {
     "angular": {
-      "modal": 2000,
+      "modal": 4000,
       "table": 10000
     },
     "jquery": {
@@ -9,9 +9,9 @@
       "table": 0
     },
     "http": {
-      "get": 500,
-      "post": 900,
-      "avg": 200
+      "get": 5000,
+      "post": 5000,
+      "avg": 5000
     }
   }
 }

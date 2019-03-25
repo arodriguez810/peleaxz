@@ -68,10 +68,11 @@ var toclient = JSON.stringify(options);
         }
     }
 </script>
-<div class="form-group-material form-group has-feedback  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
-     id="input<%= name %>">
+<div class="form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
+     id="input<%= model %>_<%= name %>">
     <label
-            class="control-label {{<%= model %>.form.LabelVisible('<%= name %>')?'is-visible animate':''}}">
+            id="label<%= model %>_<%= name %>"
+            class="control-label {{<%= model + "." + name %>?'is-visible animate':''}}">
         {{<%= model %>.form.options.<%= name %>.placeholder}}
     </label>
     <input
@@ -79,13 +80,14 @@ var toclient = JSON.stringify(options);
             id="<%= model %>_<%= name %>"
             name="<%= model %>_<%= name %>"
             type="text"
+            ng-model-onblur
             class="form-control"
             ng-disabled="<%= model %>.form.options.<%= name %>.disabled"
             placeholder="{{<%= model %>.form.options.<%= name %>.placeholder}}"
     >
 
     <div style="margin: 10px;" class="form-control-feedback">
-        <i class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} text-{{<%= model %>.validation.getColor('<%= name %>',<%= model %>.form.options.<%= name %>.icon.color)}}">
+        <i class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} text-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}">
 
         </i>
     </div>
@@ -94,10 +96,10 @@ var toclient = JSON.stringify(options);
         {{<%= model %>.form.options.<%= name %>.helptext}}
     </span>
 
-    <span ng-show="<%= model %>.validation.getMessages('<%= name %>').length>0" class="help-block">
-        <p class="text-{{$eval(validation).type}}"
-           ng-repeat="(key,validation) in <%= model %>.validation.getMessages('<%= name %>') track by key">
-               <i class="{{$eval(validation).icon}}"></i> {{$eval(validation).message}}
+    <span ng-show="<%= model %>.validate['<%= name %>'].messages.length>0" class="help-block">
+        <p class="text-{{validation.type}}"
+           ng-repeat="(key,validation) in <%= model %>.validate['<%= name %>'].messages track by key">
+               <i class="{{validation.icon}}"></i> {{validation.message}}
         </p>
     </span>
 </div>
@@ -146,8 +148,8 @@ var toclient = JSON.stringify(options);
                     <%= name %>_DragonClean = moment(currentDateTime).format("YYYY-MM-DD H:mm a");
                 }
 
-                $("#input<%= name %>").removeClass('has-warning has-error has-success');
-                $("#input<%= name %>").addClass('has-' + <%= model %>.validation.getType('<%= name %>')
+                $("#input<%= model %>_<%= name %>").removeClass('has-warning has-error has-success');
+                $("#input<%= model %>_<%= name %>").addClass('has-' + <%= model %>.validation.getType('<%= name %>')
             )
                 ;
 
@@ -180,7 +182,7 @@ var toclient = JSON.stringify(options);
             }
         });
         setTimeout(function () {
-            $("#input<%= name %>").addClass('has-' + <%= model %>.validation.getType('<%= name %>')
+            $("#input<%= model %>_<%= name %>").addClass('has-' + <%= model %>.validation.getType('<%= name %>')
         )
             ;
         }, 100);

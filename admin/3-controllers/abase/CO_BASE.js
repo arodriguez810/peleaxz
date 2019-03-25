@@ -9,6 +9,25 @@ app.directive("repeatEnd", function () {
         }
     };
 });
+
+
+app.directive('ngModelOnblur', function () {
+    return {
+        restrict: 'A',
+        require: 'ngModel',
+        link: function (scope, elm, attr, ngModelCtrl) {
+            if (attr.type === 'radio' || attr.type === 'checkbox') return;
+
+            elm.unbind('input').unbind('keydown').unbind('change');
+            elm.bind('blur', function () {
+                scope.$apply(function () {
+                    ngModelCtrl.$setViewValue(elm.val());
+                });
+            });
+        }
+    };
+});
+
 app.factory('logTimeTaken', [function () {
     var logTimeTaken = {
         request: function (config) {
@@ -29,7 +48,6 @@ app.config(['$httpProvider', function ($httpProvider) {
 }]);
 $.ajaxSetup({
     beforeSend: function (xhr) {
-        console.log('beforeSend');
         if (SESSION.isLogged())
             xhr.setRequestHeader("x-access-token", SESSION.current().token);
     }
@@ -120,7 +138,6 @@ RUN_A = function (conrollerName, inside, $scope, $http, $compile) {
         inside.$scope.$digest();
     };
     $scope.$on('$destroy', function () {
-        console.log('$destroy ' + inside.modelName);
     });
     if (MODAL.history.length === 0) {
         baseController.currentModel = inside;
@@ -136,36 +153,44 @@ RUNCONTROLLER = function (conrollerName, inside, $scope, $http, $compile) {
     GARBAGECOLECTOR(conrollerName);
     inside.MENU = MENU.current;
     inside.modelName = conrollerName;
-    inside.singular = inside.modelName.split('_')[1];
+    inside.singular = inside.modelName;
     inside.plural = pluralize(inside.singular);
     inside.$http = $http;
     inside.$compile = $compile;
     inside.$scope = $scope;
-    eval("inside.crudConfig = CRUD_" + conrollerName);
+    if (eval("typeof CRUD_" + conrollerName) !== "undefined")
+        eval("inside.crudConfig = CRUD_" + conrollerName);
+    else
+        inside.crudConfig = undefined;
     API.run(inside, $http);
     COMPILE.run(inside, $scope, $compile);
-    CRUD.run(inside, inside.crudConfig);
+    if (inside.crudConfig)
+        CRUD.run(inside, inside.crudConfig);
     STORAGE.run(inside);
-    TABLE.run(inside, $http, $compile);
+    if (inside.crudConfig)
+        TABLE.run(inside, $http, $compile);
     LOAD.run(inside, $http);
     MODAL.run(inside, $compile);
-    FILTER.run(inside);
-    TABLEOPTIONS.run(inside);
-    TABLEEVENT.run(inside, $http, $compile);
-    TABLEFORMAT.run(inside);
-    PAGINATOR.run(inside);
-    SORTABLE.run(inside);
-    TABLESELECTION.run(inside);
+    if (inside.crudConfig) {
+        FILTER.run(inside);
+        TABLEOPTIONS.run(inside);
+        TABLEEVENT.run(inside, $http, $compile);
+        TABLEFORMAT.run(inside);
+        PAGINATOR.run(inside);
+        SORTABLE.run(inside);
+        TABLESELECTION.run(inside);
+    }
     PERMISSIONS.run(inside);
     MENU.run(inside);
-    EXPORT.run(inside);
+    if (inside.crudConfig)
+        EXPORT.run(inside);
     inside.pages = {};
     inside.refreshAngular = function () {
         inside.$scope.$digest();
     };
-    inside.refresh();
+    if (inside.crudConfig)
+        inside.refresh();
     $scope.$on('$destroy', function () {
-        console.log('$destroy ' + inside.modelName);
     });
     if (MODAL.history.length === 0) {
         baseController.currentModel = inside;

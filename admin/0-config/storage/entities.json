@@ -47,6 +47,10 @@
     "permission": {
       "key": "userid",
       "type": "deep"
+    },
+    "st_menu": {
+      "key": "id",
+      "type": "deep"
     }
   }
 }

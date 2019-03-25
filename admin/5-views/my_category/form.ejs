@@ -2,15 +2,13 @@
     <div class="tab-pane active" id="basic">
         <div class="row">
             <div class="col-sm-6 col-md-6">
-                <%- FORM.input("name", scope, {maxlength: 255}) %>
+                <%- FORM.input("a", scope, {maxlength: 50}) %>
             </div>
             <div class="col-sm-6 col-md-6">
-                <%- FORM.checkbox("active", scope, {text: 'Active?'}) %>
+                <%- FORM.input("b", scope, {maxlength: 50}) %>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12 col-md-12">
-                <%- FORM.textarea("description", scope, {maxlength: 255}) %>
+            <div class="col-sm-6 col-md-6">
+                <%- FORM.input("c", scope, {maxlength: 50}) %>
             </div>
         </div>
     </div>

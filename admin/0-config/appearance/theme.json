@@ -4,41 +4,19 @@
   ],
   "ui": {
     "colors": {
-      "primary": "slate",
-      "menu": "slate",
-      "info": "teal",
+      "primary": "green",
+      "menu": "green",
+      "info": "green",
       "logo": "logowhite",
-      //      slate, grey, black, creme
-      //      orange, darkorange, brown, yellow
-      //      green, darkgreen, teal, lira
-      //      blue, marine, lightblue,turquoise
-      //      indigo, purple, violet,
-      //      red, pink, wine
       "danger": "danger",
       "success": "success",
       "warning": "warning",
       "default": "default",
-      "sidebar": "",
-      //"default",
       "tag": {
         "table": "info",
         "navbar": "primary",
         "border": "info",
         "dropdown": "primary"
-      }
-    },
-    "tables": {
-      "paginator": {
-        "range": 10,
-        "limits": [
-          10,
-          20,
-          50,
-          100,
-          200,
-          0,
-          5
-        ]
       }
     }
   }

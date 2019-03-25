@@ -25,7 +25,6 @@ EXPORT = {
             });
         };
         $scope.export.downloadExample = function () {
-
             var data = [];
             for (var i in $scope.table.crud.table.columns) {
                 var column = $scope.table.crud.table.columns[i];
@@ -40,8 +39,6 @@ EXPORT = {
                     });
                 }
             }
-
-
             var csv = '';
             var labels = [];
             var values = [];
@@ -52,8 +49,6 @@ EXPORT = {
             }
             csv += labels.join(",") + "\r\n";
             csv += `"${values.join('","')}"\r\n`;
-
-
             $scope.export.Preview = $scope.export.jsonToTableExample();
             $scope.modal.simpleModal(`<div style="overflow: auto;height: 500px;width: 100%">${$scope.export.Preview}</div>`,
                 {
@@ -82,8 +77,15 @@ EXPORT = {
                 order: $scope.table.order,
                 join: $scope.table.crud.table.single
             };
+            if (RELATIONS.anonymous[$scope.modelName] !== undefined) {
+                dataToList.where = RELATIONS.anonymous[$scope.modelName].where;
+            }
+
             if (!DSON.oseaX(ARRAY.last(MODAL.historyObject)))
-                dataToList.where = ARRAY.last(MODAL.historyObject).viewData.data;
+                if (!DSON.oseaX(ARRAY.last(MODAL.historyObject).viewData))
+                    if (!DSON.oseaX(ARRAY.last(MODAL.historyObject).viewData.data))
+                        dataToList.where = ARRAY.last(MODAL.historyObject).viewData.data;
+
 
             var options = [
                 {id: 'firstrow', text: MESSAGE.i('export.ColumnsinFirstRow')},
@@ -151,7 +153,6 @@ EXPORT = {
                         </label>
                     </div>`;
             }
-
             SWEETALERT.buttons(
                 {
                     title:
@@ -413,6 +414,10 @@ EXPORT = {
             CHECKBOX.run_switchery();
         };
         $scope.export.json = function (parameters, type, callback) {
+            if (RELATIONS.anonymous[$scope.modelName] !== undefined) {
+                parameters.where = RELATIONS.anonymous[$scope.modelName].where;
+            }
+
             if (!DSON.oseaX(ARRAY.last(MODAL.historyObject))) {
                 if (!DSON.oseaX(ARRAY.last(MODAL.historyObject).viewData))
                     parameters.where = ARRAY.last(MODAL.historyObject).viewData.data;

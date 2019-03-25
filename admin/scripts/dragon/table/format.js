@@ -7,13 +7,18 @@ TABLEFORMAT = {
 
 
             if (column.multilink !== undefined) {
+                var titleLink = "";
+                if (typeof column.format === "function")
+                    titleLink = column.format(row);
                 column.sortable = false;
-                return String.format("<a class='btn bg-" + TAG.table + "'>{0}</a>", ICON.i('list'));
+                return String.format("<a class='btn bg-" + TAG.table + "'>{0}</a>", ICON.i('list', titleLink));
             }
             if (column.link !== undefined) {
                 if (value === null)
                     return "<span class='text-grey'>[N/A]</span>";
-                if (column.shorttext) {
+                if (typeof column.format === "function")
+                    value = column.format(row);
+                if (column.shorttext && typeof column.format !== "function") {
                     var shorttext = value;
                     if (shorttext !== undefined) {
                         if (shorttext.length > column.shorttext) {
@@ -26,12 +31,13 @@ TABLEFORMAT = {
                     } else {
                         return `<span class='text-grey'>${key}</span>`;
                     }
-                } else
+                } else {
                     return "<a class='btn bg-" + TAG.table + "'>" + value + "</a>";
+                }
             }
             value = $scope.formatByType(column, row, key);
             if (typeof column.format === "function")
-                value = column.format(value);
+                value = column.format(row);
             if (value === null || value === undefined) return column.null || "";
             if (column.shorttext) {
                 var shorttext = value;
@@ -43,7 +49,6 @@ TABLEFORMAT = {
                 }
                 return shorttext;
             }
-
             return value;
         };
         $scope.tableStatus = function () {
@@ -59,7 +64,6 @@ TABLEFORMAT = {
                 currentShow + ($scope.table.currentCount - 1),
                 $scope.table.totalCount
             );
-
             return result;
         };
         $scope.columnLabel = function (value, key, func) {
@@ -112,7 +116,6 @@ TABLEFORMAT = {
         };
         $scope.formatByTypeClean = function (column, row, key, extra) {
             var value = eval("row." + key);
-
             if (column.multilink !== undefined) {
                 return "...";
             }
@@ -121,17 +124,14 @@ TABLEFORMAT = {
                     return "[N/A]";
                 return value;
             }
-
-
             if (column.anonymous === true) {
                 column.sortable = false;
                 data = {
                     $scope: $scope,
                     row: row
                 };
-                value = DSON.iffunction(column.value) ? column.value(data) : column.value;
+                value = typeof column.value === "function" ? column.value(data) : column.value;
             }
-
             if (column.formattype !== undefined) {
                 if (column.formattype.indexOf("datetime") !== -1) {
                     if (DSON.oseaX(value)) return DSON.noset();
@@ -193,7 +193,6 @@ TABLEFORMAT = {
                                     return `<object style='width: 100%;height: 100%' data="${fileUrl}"></object>`;
                             }
                         }
-
                         var fileUrl = HTTP.path([CONFIG.filePath, value]);
                         return `<img src="${fileUrl}"/>`;
                     }
@@ -233,7 +232,7 @@ TABLEFORMAT = {
                     $scope: $scope,
                     row: row
                 };
-                value = DSON.iffunction(column.value) ? column.value(data) : column.value;
+                value = typeof column.value === "function" ? column.value(data) : column.value;
             }
             if (column.formattype !== undefined) {
                 if (column.formattype.indexOf("datetime") !== -1) {

@@ -26,8 +26,6 @@ options.model = options.model ? options.model : false;
 var toclient = JSON.stringify(options);
 %>
 <script>
-
-
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
     <% if(options.format || options.isNumber){ %>
     <%= model %>.form.registerField("<%= name %>_DragonClean", "<%= toclient %>");
@@ -35,16 +33,15 @@ var toclient = JSON.stringify(options);
     if(MESSAGE.exist('columns.<%= name %>')){
         <%= model %>.form.options.<%= name %>.placeholder = MESSAGE.i('columns.<%= name %>');
     }
-if(ICON.classes.<%=  name.toLowerCase() %>!==undefined){
-    if( <%= model %>.form.options.<%= name %>.icon.class==='none')
-    <%= model %>.form.options.<%= name %>.icon.class =ICON.classes.<%=  name.toLowerCase() %>;
-}
+    if(ICON.classes.<%=  name.toLowerCase() %>!==undefined){
+        if(<%= model %>.form.options.<%= name %>.icon.class==='none')
+        <%= model %>.form.options.<%= name %>.icon.class =ICON.classes.<%=  name.toLowerCase() %>;
+    }
 </script>
-<div class="form-group-material form-group has-feedback  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
-     id="input<%= name %>">
+<div class="form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-{{::<%= model %>.form.options.<%= name %>.icon.position}}"
+     id="input<%= model %>_<%= name %>">
     <label
-
-            class="control-label {{<%= model %>.form.LabelVisible('<%= name %>')?'is-visible animate':''}}">
+            class="control-label {{<%= model + "." + name %>?'is-visible animate':''}}">
         {{<%= model %>.form.options.<%= name %>.placeholder}}
     </label>
     <input
@@ -52,47 +49,31 @@ if(ICON.classes.<%=  name.toLowerCase() %>!==undefined){
             ng-readonly="<%= model %>.form.options.<%= name %>.readonly"
             ng-disabled="<%= model %>.form.options.<%= name %>.disabled"
             maxlength="{{<%= model %>.form.options.<%= name %>.maxlength}}"
-            type="{{<%= model %>.form.options.<%= name %>.type}}"
-            <%= options.model ? "value='{{" + options.model + "}}'" : "" %>
+            type="text"
+            ng-model-onblur
             class="form-control"
             placeholder="{{<%= model %>.form.options.<%= name %>.placeholder}}">
 
     <div class="form-control-feedback" ng-if="<%= model %>.form.options.<%= name %>.icon.class!=='none'">
-        <i class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} text-{{<%= model %>.validation.getColor('<%= name %>',<%= model %>.form.options.<%= name %>.icon.color)}}">
+        <i class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} text-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}">
 
         </i>
     </div>
     <span ng-if="<%= model %>.form.options.<%= name %>.helptext!=''"
           class="help-block text-muted">
-        {{<%= model %>.form.options.<%= name %>.helptext}}
+        {{::<%= model %>.form.options.<%= name %>.helptext}}
     </span>
 
-    <span ng-show="<%= model %>.validation.getMessages('<%= name %>').length>0" class="help-block">
+    <span ng-if="<%= model %>.validate['<%= name %>'].messages.length>0" class="help-block">
 
-        <p class="text-{{$eval(validation).type}}"
-           ng-repeat="(key,validation) in <%= model %>.validation.getMessages('<%= name %>') track by key">
-               <i class="{{$eval(validation).icon}}"></i> {{$eval(validation).message}}
+        <p class="text-{{validation.type}}"
+           ng-repeat="(key,validation) in <%= model %>.validate['<%= name %>'].messages track by key">
+               <i class="{{validation.icon}}"></i> {{validation.message}}
         </p>
     </span>
 </div>
 
 <script>
-    <% if(options.format){ %>
-    var formaty =<%= model %>.
-    form.options.<%= name %>.format;
-    $('[name="<%= model %>_<%= name %>"]').mask(formaty.mask, formaty.options);
-    if (<%= model %>.
-    form.options.<%= name %>.isNumber
-    )
-    {
-        $('[name="<%= model %>_<%= name %>"]').change(function () {
-            $me = $(this).val();
-            $me = $me.replace(/\./g, 'POINT').replace(/\W/g, '').replace(/POINT/g, '.').replace(/[a-z]/gi, '');
-            <%= model %>.
-            <%= name %>_DragonClean = $me;
-        })
-    }
-    <% } %>
     <% if(options.maxlength){ %>
     $('[name="<%= model %>_<%= name %>"]').maxlength();
     <% } %>
@@ -100,24 +81,12 @@ if(ICON.classes.<%=  name.toLowerCase() %>!==undefined){
     $('[name="<%= model %>_<%= name %>"]').blur(function () {
         $(".map-wrapper").hide();
         STEP.register({
-                scope: "<%= model %>",
-                action: "Change Text",
-                field: "<%= name %>",
-                value: <%= model %>.<%= name %>
+            scope: "<%= model %>",
+            action: "Change Text",
+            field: "<%= name %>",
+            value: <%= model %>.<%= name %>
         });
     });
-
-    $('[name="<%= model %>_<%= name %>"]').keyup(function () {
-        $(this).trigger("change");
-        $("#input<%= name %>").removeClass('has-warning has-error has-success');
-        $("#input<%= name %>").addClass('has-' + <%= model %>.validation.getType('<%= name %>'));
-    });
-    $('[name="<%= model %>_<%= name %>"]').trigger("change");
-    setTimeout(function () {
-        $("#input<%= name %>").addClass('has-' + <%= model %>.validation.getType('<%= name %>')
-    )
-        ;
-    }, 100);
 
 
     var isReadProgram = <%= model %>.
@@ -127,16 +96,6 @@ if(ICON.classes.<%=  name.toLowerCase() %>!==undefined){
         form.options.<%= name %>.disabled = true;
         if (isReadProgram !== undefined) {
             <%= model %>.<%= name %> = isReadProgram;
-
-            if (<%= model %>.
-            form.options.<%= name %>.isNumber
-        )
-            {
-                $me = isReadProgram;
-                $me = $me.replace(/\./g, 'POINT').replace(/\W/g, '').replace(/POINT/g, '.').replace(/[a-z]/gi, '');
-                <%= model %>.
-                <%= name %>_DragonClean = $me;
-            }
             $('[name="<%= model %>_<%= name %>"]').val(isReadProgram);
         }
     }

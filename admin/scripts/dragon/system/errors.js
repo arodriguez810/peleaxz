@@ -3,6 +3,26 @@ ERROR = {
     category: {
         database: "database"
     },
+    send: function (error) {
+        SWEETALERT.loading({message: MESSAGE.i('actions.Loading')});
+        BASEAPI.mail({
+            "to": CONFIG.support.email,
+            "subject": "Database Error Reporting Code: " + new Date().getTime(),
+            "name": SESSION.current().fullName(),
+            "template": 'email/usersenderror',
+            "fields": {
+                profileimage: $("#profileImage").attr('src'),
+                name: SESSION.current().fullName(),
+                username: eval(`SESSION.current().${CONFIG.users.fields.username}`),
+                error: error,
+                phone: CONFIG.support.phone,
+                type: "Database Error",
+            }
+        }, function (result) {
+            SWEETALERT.stop();
+            SWEETALERT.show({message: MESSAGE.i('alerts.providerError')});
+        });
+    },
     alert: function (error, category) {
         if (CONFIG.mode !== 'developer') {
             switch (category) {
@@ -11,7 +31,7 @@ ERROR = {
                         type: "error",
                         message: MESSAGE.i('alerts.ClientDbError'),
                         confirm: function () {
-                            SWEETALERT.show({message: MESSAGE.i('alerts.providerError')});
+                            ERROR.send(JSON.stringify(error));
                         }
                     });
                     break;
@@ -33,7 +53,7 @@ ERROR = {
                         type: "error",
                         message: MESSAGE.i('alerts.ClientDbError'),
                         confirm: function () {
-                            SWEETALERT.show({message: MESSAGE.i('alerts.providerError')});
+                            ERROR.send(errors.join('<br>'));
                         }
                     });
                     break;

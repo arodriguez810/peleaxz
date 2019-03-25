@@ -15,7 +15,7 @@ CRUDDEFAULTS = {
         offWidth: 5,
         baseWidth: 1000,
         columnsalign: "center",
-        limits: [10, 50, 100, 0],
+        limits: [10, 20, 50, 100],
         activeColumn: "active",
         key: 'id',
         deletekeys: ['id'],

@@ -88,9 +88,9 @@ var toclient = JSON.stringify(options);
     form.options.<%= name %>.allownew = false;
 </script>
 <div id="<%= options.table %>" ng-controller="<%= options.table %> as <%= options.table %>">
-    <div class="form-group-material form-group has-feedback has-{{<%= model %>.validation.getType('<%= name %>')}}  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
-         id="input<%= name %>">
-        <label class="control-label {{<%= model %>.form.LabelVisible('<%= name %>')?'is-visible animate':''}}">
+    <div class="form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
+         id="input<%= model %>_<%= name %>">
+        <label  class="control-label is-visible animate">
             {{<%= model %>.form.options.<%= name %>.label}}
         </label>
 
@@ -154,12 +154,12 @@ var toclient = JSON.stringify(options);
             <% if(options.groupby){ %>
                 <optgroup ng-repeat="(key,categories) in <%= model %>.form.options.<%= name %>.groupbydata track by key"
                           label="{{key}}">
-                    <option ng-repeat="(i,item) in categories" value="item.{{<%= options.value %>}} track by i">
+                    <option data-object="{{item}}" ng-repeat="(i,item) in categories" value="item.{{<%= options.value %>}} track by i">
                         {{<%= options.text %>}}
                     </option>
                 </optgroup>
             <% } else{ %>
-                <option ng-repeat="(key,item) in <%= model %>.form.options.<%= name %>.data track by key"
+                <option data-object="{{item}}" ng-repeat="(key,item) in <%= model %>.form.options.<%= name %>.data track by key"
                         value="{{item.<%= options.value %>}}">
                     {{<%= options.text %>}}
                 </option>
@@ -170,7 +170,7 @@ var toclient = JSON.stringify(options);
         <div class="form-control-feedback">
             <i
                     id="icon<%= name %>"
-                    class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} text-{{<%= model %>.validation.getColor('<%= name %>',<%= model %>.form.options.<%= name %>.icon.color)}}">
+                    class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} text-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}">
 
             </i>
         </div>
@@ -178,10 +178,10 @@ var toclient = JSON.stringify(options);
               class="help-block text-muted">
         {{<%= model %>.form.options.<%= name %>.helptext}}
     </span>
-        <span ng-show="<%= model %>.validation.getMessages('<%= name %>').length>0" class="help-block">
-        <p class="text-{{$eval(validation).type}}"
-           ng-repeat="(key,validation) in <%= model %>.validation.getMessages('<%= name %>') track by key">
-               <i class="{{$eval(validation).icon}}"></i> {{$eval(validation).message}}
+        <span ng-show="<%= model %>.validate['<%= name %>'].messages.length>0" class="help-block">
+        <p class="text-{{validation.type}}"
+           ng-repeat="(key,validation) in <%= model %>.validate['<%= name %>'].messages track by key">
+               <i class="{{validation.icon}}"></i> {{validation.message}}
         </p>
     </span>
         <% if(options.multiple){ %>
@@ -236,15 +236,19 @@ var toclient = JSON.stringify(options);
     $(document).ready(function () {
         <%= model %>.
         form.beginFunctions.push(`<%= model %>.form.loadDropDown("<%= name %>");`);
-
+        <%= model %>.<%= name %>_object = {};
         $('[name="<%= model %>_<%= name %>"]').change(function () {
+            var selectedss = $(this).children("option:selected").data('object');
+
+            <%= model %>.<%= name %>_object = selectedss;
+
             STEP.register({
                 scope: "<%= model %>",
                 action: "Change DropDown",
                 field: "<%= name %>",
                 value: <%= model %>.<%= name %>
-        })
-            ;
+            });
+
             $(".map-wrapper").hide();
         });
 

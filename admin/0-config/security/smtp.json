@@ -1,0 +1,15 @@
+{
+  "smtp": {
+    "host": "smtp.gmail.com",
+    "port": 465,
+    "secure": true,
+    "auth": {
+      "user": "arodriguez@eisdr.com",
+      "pass": "password"
+    }
+  },
+  "smptOptions": {
+    "sender": "arodriguez@eisdr.com",
+    "name": "Angel Dragon"
+  }
+}

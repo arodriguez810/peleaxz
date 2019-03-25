@@ -1,7 +1,8 @@
 <%- FORM.tabs(scope, [
     {id: "basic", text: "Basic Information", icon: "icon-menu7"},
     {id: "products", text: "Products", icon: "icon-archive"},
-    {id: "biography", text: "Biography", icon: "icon-html5"}
+    {id: "biography", text: "Biography", icon: "icon-html5"},
+    {id: "comments", text: "Comments", icon: "icon-comment"}
 ]) %>
 
 <div class="tab-content">
@@ -49,14 +50,14 @@
         </div>
         <div class="row">
             <div class="col-sm-4 col-md-4">
-                <%- FORM.input("average", scope, {
+                <%- FORM.format("average", scope, {
                     isNumber: true,
                     icon: {class: "percent", position: "right"},
                     format: {mask: "###%", options: {reverse: true}}
                 }) %>
             </div>
             <div class="col-sm-4 col-md-4">
-                <%- FORM.input("salary", scope, {
+                <%- FORM.format("salary", scope, {
                     isNumber: true,
                     icon: {class: "cash3"},
                     format: {mask: "000,000,000,000,000.00", options: {reverse: true}}
@@ -167,18 +168,19 @@
                 <%- FORM.html("biography", scope) %>
             </div>
         </div>
+    </div>
+
+    <div class="tab-pane" id="comments">
         <div class="row">
             <div class="col-sm-12 col-md-12">
                 <%- FORM.relation("ms_allusers", scope, {
                     table: "ms_allusers",
                     field: "all",
                     master: null,
-                    title: "Add Somes User Descriptions",
                     icon: {class: "archive"}
                 }) %>
             </div>
         </div>
     </div>
-
 </div>
 <%- FORM.footer(scope) %>

@@ -9,12 +9,6 @@ ANIMATION = {
             element.removeClass("animated " + animation);
         });
     },
-    scrollToPure: function (block) {
-        var $container = $('#baseController');
-        $container.scrollTop(
-            block.offset().top - $container.offset().top + $container.scrollTop()
-        );
-    },
     playPure: function (block, animation, callback) {
         block.addClass("animated " + animation).one("webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend", function () {
             block.removeClass("animated " + animation);
@@ -135,8 +129,6 @@ ANIMATION = {
         }
     }
 };
-
-
 $(document).ready(function () {
 
     // Animate when Pace loading is done

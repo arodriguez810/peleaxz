@@ -41,7 +41,6 @@ FILTER = {
             {text: MESSAGE.i('mono.IsTrue'), operator: `= '1'`, value: '$', type: 'bool'},
             {text: MESSAGE.i('mono.IsFalse'), operator: `= '0'`, value: '$', type: 'bool'},
         ];
-
         if ($scope.crud.table.filters !== undefined) {
             $scope.filters = {};
             $scope.filters.fields = $scope.crud.table.filters.columns;
@@ -216,7 +215,6 @@ FILTER = {
             };
             $scope.filters.colored = function (block) {
                 var color = 'alpha-' + TAG.table;
-
                 var backs = $scope.filters.blocks.filter(function (item) {
                     return item.id < block.id;
                 }).reverse();

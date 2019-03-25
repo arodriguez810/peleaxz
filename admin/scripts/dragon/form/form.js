@@ -19,10 +19,19 @@ FORM = {
         location: "location",
         password: "password",
     },
+    targets: {
+        modal: "modal",
+        selft: "selft"
+    },
     run: function ($scope, $http) {
         $scope.form = {};
+        $scope.form.target = FORM.targets.modal;
         $scope.form.hasChanged = false;
+        $scope.form.modalWidth = undefined;
+        $scope.form.titles = undefined;
+        $scope.form.modalIcon = undefined;
         $scope.open = {};
+        $scope.defaultColor = TAG.table + '-600';
         $scope.pages = {};
         $scope.open.default = {};
         $scope.form.readonly = {};
@@ -82,7 +91,7 @@ FORM = {
         };
         $scope.form.event = function (name) {
             var func = eval(`$scope.form.events.${name}`);
-            if (DSON.iffunction(func)) {
+            if (typeof func === "function") {
                 func();
             }
         };
@@ -126,7 +135,7 @@ FORM = {
                     var newValue = value;
                     if (DSON.oseaX(newValue))
                         return newValue;
-                    newValue = Number(newValue).toFixed(2);
+                    newValue = numeral(newValue).format('0,0.00');
                     return newValue;
                 }
                 case FORM.schemasType.password: {
@@ -168,7 +177,6 @@ FORM = {
         $scope.form.saveAction = function () {
             $scope.form.hasChanged = true;
             $scope.form.makeInsert();
-
             SWEETALERT.loading({message: MESSAGE.ic('mono.saving')});
             if ($scope.form.mode === FORM.modes.new) {
                 for (var i in CONFIG.audit.insert) {
@@ -176,12 +184,13 @@ FORM = {
                     if ($scope.table.crud.table.columns[i] !== undefined)
                         eval(`$scope.form.inserting.${i} = '${eval(audit)}';`);
                 }
-                $scope.form.before.insert({
+                if ($scope.form.before.insert({
                     inserting: $scope.form.inserting,
                     uploading: $scope.form.uploading,
                     multipleRelations: $scope.form.multipleRelations,
                     relations: $scope.form.relations,
-                });
+                }))
+                    return;
                 $scope.insertID($scope.form.inserting, $scope.form.fieldExGET, $scope.form.valueExGET, function (result) {
                     if (result.data.error === false) {
                         $scope.form.after.insert({
@@ -240,7 +249,6 @@ FORM = {
                                         }
                                         dataToWhere.push(frel);
                                     }
-
                                     for (var i in relation.config.update) {
                                         var vi = relation.config.update[i].replace('$id', DRAGONID);
                                         eval(`dataToUpdate.${i} = vi`);
@@ -267,12 +275,12 @@ FORM = {
                     if ($scope.table.crud.table.columns[i] !== undefined)
                         eval(`$scope.form.inserting.${i} = '${eval(audit)}';`);
                 }
-                $scope.form.before.update({
+                if ($scope.form.before.update({
                     updating: $scope.form.inserting,
                     uploading: $scope.form.uploading,
                     multipleRelations: $scope.form.multipleRelations,
                     relations: $scope.form.relations,
-                });
+                })) return;
                 BASEAPI.updateall($scope.modelName, dataToUpdate, function (result) {
                     if (result.data.error === false) {
                         $scope.form.after.update({
@@ -344,8 +352,6 @@ FORM = {
                 if (exclude.indexOf(field) === -1)
                     $scope.form.pushInsert(field);
             }
-
-
             for (const fieldy of $scope.form.fileds) {
                 var field = fieldy;
                 var badwords = [
@@ -359,7 +365,6 @@ FORM = {
                 badwords.forEach((item) => {
                     field = field.replace(item, '');
                 });
-
                 if (eval(`$scope.form.schemas.insert.${field}`) === undefined) {
                     if (exclude.indexOf(field) === -1) {
                         if (eval(`$scope.form.lastPrepare.${field}`) !== undefined) {
@@ -370,8 +375,6 @@ FORM = {
                         }
                     }
                 }
-
-
                 else {
                     var typeField = eval(`$scope.form.schemas.insert.${field}`);
                     switch (typeField) {
@@ -469,7 +472,6 @@ FORM = {
                         eval(`$scope.form.options.${name}.groupbydata = newData`);
                     }
                     eval(`$scope.form.options.${name}.data = info.data`);
-
                     if (!options.multiple)
                         ANIMATION.stoploading(`#input${name}`, `#icon${name}`);
                     if (options.multiple) {
@@ -633,76 +635,99 @@ FORM = {
                 if ($scope.form.hasChanged) {
                     $scope.refresh();
                 }
-                if (DSON.iffunction(pre)) pre();
+                if (typeof pre === "function") pre();
                 if ($scope.form.mode === FORM.modes.new) {
                     if ($scope.validation.warningClose())
                         SWEETALERT.confirm({
                             message: MESSAGE.i('alerts.CloseToComplete'),
                             confirm: function () {
-                                MODAL.close($scope);
+                                if ($scope.form.target === FORM.targets.modal)
+                                    MODAL.close($scope);
+
                                 if ($scope.pages.form)
                                     $scope.pages.form.onClose();
                             }
                         });
                     else {
-                        MODAL.close($scope);
+                        if ($scope.form.target === FORM.targets.modal)
+                            MODAL.close($scope);
                         if ($scope.pages.form)
                             $scope.pages.form.onClose();
                     }
                 } else {
-                    MODAL.close($scope);
+                    if ($scope.form.target === FORM.targets.modal)
+                        MODAL.close($scope);
                     if ($scope.pages.form)
                         $scope.pages.form.onClose();
                 }
-                if (DSON.iffunction(post)) post();
+                if (typeof post === "function") post();
 
             };
             $scope.pages.form.beforeOpen();
-
             var icon = "";
-            if (mode === FORM.modes.new) icon = "file-plus";
-            if (mode === FORM.modes.edit) icon = "pencil7";
-            if (mode === FORM.modes.view) icon = "file-eye";
+            var finalTitle = undefined;
+            if (mode === FORM.modes.new) {
+                if ($scope.form.titles)
+                    finalTitle = $scope.form.titles.new;
+                icon = "file-plus"
+            }
+            if (mode === FORM.modes.edit) {
+                if ($scope.form.titles)
+                    finalTitle = eval($scope.form.titles.edit);
+                icon = "pencil7"
+            }
+            if (mode === FORM.modes.view) {
+                if ($scope.form.titles)
+                    finalTitle = eval($scope.form.titles.view);
+                icon = "file-eye"
+            }
             $scope.form.mode = mode;
             if (mode === FORM.modes.new) {
                 eval(`$scope.${$scope.table.crud.table.key} = '';`);
             }
+            if ($scope.form.target === FORM.targets.modal) {
+                $scope.modal.modalView($scope.modelName + '/form', {
+                    width: $scope.form.modalWidth || ENUM.modal.width.full,
+                    header: {
+                        title: finalTitle || capitalize(`${MESSAGE.i('mono.' + mode)} ${$scope.singular}`),
+                        icon: $scope.form.modalIcon || icon,
+                        bg: mode !== FORM.modes.view ? COLOR.primary + '-600' : `alpha-${COLOR.primary}-600`,
+                        closeButton: true,
+                        h: "h6"
+                    },
+                    footer: {
+                        cancelButton: false
+                    },
+                    event: {
+                        show: {
+                            begin: function (datam) {
+                                for (const func of  $scope.form.beginFunctions) {
+                                    eval(func);
+                                }
+                            },
+                            end: function (datam) {
 
-            $scope.modal.modalView($scope.modelName + '/form', {
-                width: ENUM.modal.width.full,
-                header: {
-                    title: capitalize(`${MESSAGE.i('mono.' + mode)} ${$scope.singular}`),
-                    icon: icon,
-                    bg: mode !== FORM.modes.view ? COLOR.primary + '-600' : `alpha-${COLOR.primary}-600`,
-                    closeButton: true,
-                    h: "h6"
-                },
-                footer: {
-                    cancelButton: false
-                },
-                event: {
-                    show: {
-                        begin: function (datam) {
-                            for (const func of  $scope.form.beginFunctions) {
-                                eval(func);
                             }
                         },
-                        end: function (datam) {
-
-                        }
-                    },
-                    hide: {
-                        begin: function (datam) {
-                            if (MODAL.history.length === 0) {
-                                $scope.pages.form.isOpen = false;
-                                $scope.form.destroy();
-                                if ($scope.form.hasChanged)
-                                    $scope.refresh();
+                        hide: {
+                            begin: function (datam) {
+                                if (MODAL.history.length === 0) {
+                                    $scope.pages.form.isOpen = false;
+                                    $scope.form.destroy();
+                                    if ($scope.form.hasChanged)
+                                        $scope.refresh();
+                                }
                             }
                         }
                     }
-                }
-            });
+                });
+            } else {
+                $scope.loadContent(
+                    location.href.split('#')[1], "content", MESSAGE.i('actions.Loading'), function () {
+                        MESSAGE.run();
+                    }
+                );
+            }
         };
         $scope.createForm = function (data, mode, defaultData) {
             if (baseController.viewData)
@@ -713,6 +738,18 @@ FORM = {
                         $scope.form.fileds.push(i);
                     }
                 }
+
+            if (RELATIONS.anonymous[$scope.modelName] !== undefined) {
+
+                console.log('form readonly', $scope.modelName, RELATIONS.anonymous[$scope.modelName]);
+
+                $scope.form.readonly = DSON.merge(RELATIONS.anonymous[$scope.modelName].readonly, $scope.form.readonly, true);
+                for (var i in $scope.form.readonly) {
+                    eval(`$scope.${i} = $scope.form.readonly.${i};`);
+                    $scope.form.fileds.push(i);
+                }
+            }
+
             $scope.open = {};
             $scope.open.default = {};
             if (!DSON.oseaX(defaultData)) {

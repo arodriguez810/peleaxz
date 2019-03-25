@@ -6,7 +6,7 @@
                 <%- FORM.input("name", scope, {maxlength: 50}) %>
             </div>
             <div class="col-sm-6 col-md-6">
-                <%- FORM.input("price", scope, {
+                <%- FORM.format("price", scope, {
                     isNumber: true,
                     icon: {class: "cash3"},
                     format: {mask: "000,000,000,000,000.00", options: {reverse: true}}

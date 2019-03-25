@@ -63,9 +63,10 @@ languages.forEach(function (languages) {
 });
 
 SHOWLANGS = [];
-SHOWLANGSConsole = ['en', 'es'];
-SHOWLANGS.push({code: 'en', name: 'English', flag: 'us'});
-SHOWLANGS.push({code: 'es', name: 'Español', flag: 'es'});
+SHOWLANGSConsole = [];
+for (var lan of CONFIG.languages)
+    SHOWLANGSConsole.push(lan.name);
+SHOWLANGS = CONFIG.languages;
 
 for (var i in CONFIG.modules) {
     var module = CONFIG.modules[i];
@@ -196,6 +197,7 @@ allparams += "      CONFIG:CONFIG,";
 allparams += "      LANGUAGE:LANGUAGE,";
 allparams += "      SHOWLANGS:SHOWLANGS,";
 allparams += "      catalogs:catalogs,";
+allparams += "      mail:mail,";
 allparams += "      folders:folders,";
 allparams += "      servicesFunctions:servicesFunctions,";
 allparams += "      app:app,";
@@ -203,6 +205,8 @@ if (CONFIG.mongo) allparams += "  mongoose:mongoose,";
 if (CONFIG.mssql) allparams += "  modelsql:modelsql,";
 if (CONFIG.mysql) allparams += "  modelmysql:modelmysql,";
 if (CONFIG.oracle) allparams += "  modeloracle:modeloracle,";
+if (true) allparams += "  modelstorage:modelstorage,";
+
 allparams += "}";
 
 //******* Load Models********//

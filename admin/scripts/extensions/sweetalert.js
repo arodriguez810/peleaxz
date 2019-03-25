@@ -64,7 +64,7 @@ SWEETALERT = {
         id = 0;
         buttons.forEach(function (item) {
             $(`#sweetalertbutton${id}`).click(function () {
-                if (DSON.iffunction(item.action)) {
+                if (typeof item.action === "function") {
                     item.action();
                 } else {
                     alert('This sweetlaert customButton don\'t have an action!');

@@ -26,7 +26,6 @@ MAP = {
         var tileCoordinate = new google.maps.Point(
             Math.floor(worldCoordinate.x * scale / MAP.TILE_SIZE),
             Math.floor(worldCoordinate.y * scale / MAP.TILE_SIZE));
-
         return [
             description,
             'LatLng: ' + latLng

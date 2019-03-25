@@ -1,9 +1,16 @@
 app.controller("ms_all", function ($scope, $http, $compile) {
     ms_all = this;
+    ms_all.fixFilters = [];
     RUNCONTROLLER("ms_all", ms_all, $scope, $http, $compile);
     ms_all.formulary = function (data, mode, defaultData) {
         if (ms_all !== undefined) {
             RUN_B("ms_all", ms_all, $scope, $http, $compile);
+            ms_all.form.modalWidth = ENUM.modal.width.full;
+            ms_all.form.titles = {
+                new: "Nuevo ALL",
+                edit: "`Editar ALL - ${$scope.name}`",
+                view: "`Ver ALL - ${$scope.name}`"
+            };
             ms_all.form.schemas.insert = {
                 file: FORM.schemasType.upload,
                 gallery: FORM.schemasType.upload,
@@ -45,68 +52,49 @@ app.controller("ms_all", function ($scope, $http, $compile) {
             };
             ms_all.form.readonly = {};
             ms_all.createForm(data, mode, defaultData);
-            ms_all.form.rules = {
-                name: function () {
-                    var rules = [];
-                    var value = ms_all.name;
-                    rules.push(VALIDATION.general.required(value));
-                    rules.push(VALIDATION.text.realdata(value));
-                    return VALIDATION.process(ms_all, "name", rules)
-                },
-                child: function () {
-                    var rules = [];
-                    var value = ms_all.child;
-                    // rules.push(VALIDATION.general.required(value));
-                    return VALIDATION.process(ms_all, "child", rules)
-                },
-                products: function () {
-                    var rules = [];
-                    var value = ms_all.products;
-                    // rules.push(VALIDATION.general.required(value));
-                    // rules.push(VALIDATION.dropdown.atLeast(value, 3));
-                    rules.push(VALIDATION.dropdown.atLeast(value, 2, true));
-                    return VALIDATION.process(ms_all, "products", rules);
-                },
-                average: function () {
-                    var rules = [];
-                    var value = DSON.cleanNumber((ms_all.average || ""));
-                    ms_all.salaryNeto =
-                        (DSON.cleanNumber(ms_all.salary) * DSON.cleanNumber(ms_all.average)) / 100;
-                    ms_all.salaryNeto = ms_all.form.masked("salaryNeto", Number(ms_all.salaryNeto).toFixed(2));
-                    rules.push(VALIDATION.general.required(value));
-                    rules.push(VALIDATION.number.range(value, 1, 100));
-                    return VALIDATION.process(ms_all, "average", rules);
-                },
-                salary: function () {
-                    var rules = [];
-                    var value = DSON.cleanNumber((ms_all.salary || ""));
-                    // rules.push(VALIDATION.general.required(value));
-                    return VALIDATION.process(ms_all, "salary", rules);
-                },
-                image: function () {
-                    var rules = [];
-                    var value = ms_all.image_DragonCountFile;
-                    rules.push(VALIDATION.file.count(value, 1));
-                    return VALIDATION.process(ms_all, "image", rules);
-                },
-                color: function () {
-                    var rules = [];
-                    var value = ms_all.color;
-                    rules.push(VALIDATION.text.noContainsColor(value, ['rgb(255, 0, 0)']));
-                    return VALIDATION.process(ms_all, "color", rules);
-                },
-            };
-            ms_all.form.rulesGroup = {
-                basic: function () {
-                    return ms_all.validation.stateIcon(['name', 'child', 'average', 'salary', 'image', 'color']);
-                },
-                products: function () {
-                    return ms_all.validation.stateIcon(['products']);
-                },
-                all: function () {
-                    return ms_all.validation.stateIcon(ms_all.form.fileds);
-                },
-            };
+
+            ms_all.$scope.$watch('ms_all.name', function (value) {
+                var rules = [];
+                rules.push(VALIDATION.general.required(value));
+                rules.push(VALIDATION.text.realdata(value));
+                VALIDATION.validate(ms_all, "name", rules);
+            });
+            ms_all.$scope.$watch('ms_all.child', function (value) {
+                var rules = [];
+                rules.push(VALIDATION.general.required(value));
+                VALIDATION.validate(ms_all, "child", rules);
+            });
+            ms_all.$scope.$watch('ms_all.products', function (value) {
+                var rules = [];
+                rules.push(VALIDATION.general.required(value));
+                rules.push(VALIDATION.dropdown.atLeast(value, 3));
+                rules.push(VALIDATION.dropdown.atLeast(value, 2, true));
+                VALIDATION.validate(ms_all, "products", rules);
+            });
+            ms_all.$scope.$watch('ms_all.salary', function (value) {
+                var rules = [];
+                rules.push(VALIDATION.general.required(DSON.cleanNumber((value || ""))));
+                VALIDATION.validate(ms_all, "salary", rules);
+            });
+            ms_all.$scope.$watch('ms_all.average', function (value) {
+                var rules = [];
+                var valueClean = DSON.cleanNumber((value || ""));
+                ms_all.salaryNeto = (DSON.cleanNumber(ms_all.salary) * DSON.cleanNumber(value)) / 100;
+                ms_all.salaryNeto = ms_all.form.masked("salaryNeto", Number(ms_all.salaryNeto).toFixed(2));
+                rules.push(VALIDATION.general.required(valueClean));
+                rules.push(VALIDATION.number.range(valueClean, 1, 100));
+                VALIDATION.validate(ms_all, "average", rules);
+            });
+            ms_all.$scope.$watch('ms_all.image_DragonCountFile', function (value) {
+                var rules = [];
+                rules.push(VALIDATION.file.count(value, 1));
+                VALIDATION.validate(ms_all, "image", rules);
+            });
+            ms_all.$scope.$watch('ms_all.color', function (value) {
+                var rules = [];
+                rules.push(VALIDATION.text.noContainsColor(value, ['rgb(255, 0, 0)']));
+                VALIDATION.validate(ms_all, "color", rules);
+            });
         }
     };
 });

@@ -13,43 +13,31 @@ app.controller("oc_user", function ($scope, $http, $compile) {
             };
             oc_user.form.readonly = {};
             oc_user.createForm(data, mode, defaultData);
-            oc_user.form.rules = {
-                name: function () {
-                    var rules = [];
-                    var value = oc_user.name;
-                    rules.push(VALIDATION.general.required(value));
-                    return VALIDATION.process(oc_user, "name", rules)
-                },
-                lastname: function () {
-                    var rules = [];
-                    var value = oc_user.lastname;
-                    rules.push(VALIDATION.general.required(value));
-                    return VALIDATION.process(oc_user, "lastname", rules)
-                },
-                username: function () {
-                    var rules = [];
-                    var value = oc_user.username;
-                    rules.push(VALIDATION.general.required(value));
-                    return VALIDATION.process(oc_user, "username", rules)
-                },
-                password: function () {
-                    var rules = [];
-                    var value = oc_user.password;
-                    rules.push(VALIDATION.general.required(value));
-                    return VALIDATION.process(oc_user, "password", rules)
-                },
-                email: function () {
-                    var rules = [];
-                    var value = oc_user.email;
-                    rules.push(VALIDATION.text.email(value));
-                    return VALIDATION.process(oc_user, "email", rules)
-                }
-            };
-            oc_user.form.rulesGroup = {
-                all: function () {
-                    return oc_user.validation.stateIcon(oc_user.form.fileds);
-                },
-            };
+            oc_user.$scope.$watch('oc_user.name', function (value) {
+                var rules = [];
+                rules.push(VALIDATION.general.required(value));
+                VALIDATION.validate(oc_user, "name", rules);
+            });
+            oc_user.$scope.$watch('oc_user.lastname', function (value) {
+                var rules = [];
+                rules.push(VALIDATION.general.required(value));
+                VALIDATION.validate(oc_user, "lastname", rules);
+            });
+            oc_user.$scope.$watch('oc_user.username', function (value) {
+                var rules = [];
+                rules.push(VALIDATION.general.required(value));
+                VALIDATION.validate(oc_user, "username", rules);
+            });
+            oc_user.$scope.$watch('oc_user.password', function (value) {
+                var rules = [];
+                rules.push(VALIDATION.general.required(value));
+                VALIDATION.validate(oc_user, "password", rules);
+            });
+            oc_user.$scope.$watch('oc_user.email', function (value) {
+                var rules = [];
+                rules.push(VALIDATION.general.required(value));
+                VALIDATION.validate(oc_user, "email", rules);
+            });
         }
     };
 });

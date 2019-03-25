@@ -9,19 +9,11 @@ app.controller("ms_category", function ($scope, $http, $compile) {
             ms_category.form.readonly = {};
             ms_category.form.editCell = ["name"];
             ms_category.createForm(data, mode, defaultData);
-            ms_category.form.rules = {
-                name: function () {
-                    var rules = [];
-                    var value = ms_category.name;
-                    rules.push(VALIDATION.general.required(value));
-                    return VALIDATION.process(ms_category, "name", rules)
-                }
-            };
-            ms_category.form.rulesGroup = {
-                all: function () {
-                    return ms_category.validation.stateIcon(ms_category.form.fileds);
-                },
-            };
+            ms_category.$scope.$watch('ms_category.name', function (value) {
+                var rules = [];
+                rules.push(VALIDATION.general.required(value));
+                VALIDATION.validate(ms_category, "name", rules);
+            });
         }
     };
 });

@@ -29,10 +29,11 @@ var toclient = JSON.stringify(options);
         }
     }
 </script>
-<div class="form-group-material form-group has-feedback has-{{<%= model %>.validation.getType('<%= name %>')}}  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
-     id="input<%= name %>">
+<div class="form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
+     id="input<%= model %>_<%= name %>">
     <label
-            class="control-label {{<%= model %>.form.LabelVisible('<%= name %>')?'is-visible animate':''}}">
+
+            class="control-label is-visible animate">
         {{<%= model %>.form.options.<%= name %>.placeholder}}
     </label>
     <input
@@ -42,7 +43,7 @@ var toclient = JSON.stringify(options);
             class="form-control">
 
     <div style="margin: 10px;" class="form-control-feedback" ng-if="<%= model %>.form.options.<%= name %>.icon.class!=='none'">
-        <i class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} text-{{<%= model %>.validation.getColor('<%= name %>',<%= model %>.form.options.<%= name %>.icon.color)}}">
+        <i class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} text-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}">
 
         </i>
     </div>
@@ -51,10 +52,10 @@ var toclient = JSON.stringify(options);
         {{<%= model %>.form.options.<%= name %>.helptext}}
     </span>
 
-    <span ng-show="<%= model %>.validation.getMessages('<%= name %>').length>0" class="help-block">
-        <p class="text-{{$eval(validation).type}}"
-           ng-repeat="(key,validation) in <%= model %>.validation.getMessages('<%= name %>') track by key">
-               <i class="{{$eval(validation).icon}}"></i> {{$eval(validation).message}}
+    <span ng-show="<%= model %>.validate['<%= name %>'].messages.length>0" class="help-block">
+        <p class="text-{{validation.type}}"
+           ng-repeat="(key,validation) in <%= model %>.validate['<%= name %>'].messages track by key">
+               <i class="{{validation.icon}}"></i> {{validation.message}}
         </p>
     </span>
 </div>

@@ -3,7 +3,6 @@ LOAD = {
     inanimation: "BounceInRight",
     run: function ($scope, $http) {
         $scope.loadContent = function (view, id, loadingText, callback, baseDiv) {
-
             baseDiv = baseDiv === undefined ? true : baseDiv;
             var thisid = "#" + id;
             if (view === "") {
@@ -20,8 +19,6 @@ LOAD = {
                 });
                 return;
             }
-
-
             if (ARRAY.contains(CONFIG.hidemenus, view)) {
                 STEP.register({
                     windows: `error ${'403'}`, action: "http error",
@@ -39,7 +36,6 @@ LOAD = {
                 });
                 return;
             }
-
             if (SESSION.ifLogoffRedirec(view)) {
                 return;
             }
@@ -91,7 +87,6 @@ LOAD = {
         if (SESSION.ifLogoffRedirec(view))
             return;
         MENU.setActive(view);
-
         LOAD.loadContentView(view, $scope, $http, $compile);
     },
     loadContentView: function (view, $scope, $http, $compile) {
@@ -106,7 +101,6 @@ LOAD = {
             windows: `${scope} Page`, action: "Open Page"
         });
         $("#content").hide();
-
         if (ARRAY.contains(CONFIG.hidemenus, view)) {
             STEP.register({
                 windows: `error ${'403'}`, action: "http error",
@@ -124,7 +118,6 @@ LOAD = {
             });
             return;
         }
-
         $http.get(view + `?scope=${scope}`, {}).then(
             function (data) {
                 HTTP.evaluate(data);
@@ -135,7 +128,6 @@ LOAD = {
                 });
                 $("#content").show();
                 MESSAGE.run();
-
             },
             function (data) {
                 STEP.register({
@@ -144,7 +136,7 @@ LOAD = {
                 });
                 LOAD.template('error/base', {
                     status: data.status,
-                    statusText: MESSAGE.i('error.' + data.status)
+                    statusText: MESSAGE.i('error.e' + data.status)
                 }, function (html) {
                     $("#content").html(html);
                     ANIMATION.playPure($('#content'), LOAD.inanimation, function () {

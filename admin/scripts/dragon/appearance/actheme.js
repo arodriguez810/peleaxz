@@ -1,6 +1,0 @@
-
-THEME = {
-    run: function () {
-
-    }
-};

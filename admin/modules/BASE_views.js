@@ -21,7 +21,8 @@ exports.LoadEJS = function (files, params) {
 
                     var models = params.models
                         .concat(params.modelsql)
-                        .concat(params.modelmysql);
+                        .concat(params.modelmysql)
+                        .concat(params.modeloracle).concat(params.modelstorage);
                     var tags = params.CONFIG.ui.colors.tag;
                     var newtags = {};
                     for (var tag in tags) {
@@ -125,8 +126,9 @@ exports.loadEJSSimple = function (folder, prefix, params) {
     params.fs.readdir(folder, function (err, files) {
         for (var i in files) {
             var file = files[i];
-            var viewName = params.S(file).contains("index.ejs") ? "" : file.replace(".ejs", "");
-            params.app.get(params.util.format("/%s/%s/", prefix, viewName), function (req, res) {
+            var viewName = params.S(file).contains("index.ejs") ? "" : "/" + file.replace(".ejs", "");
+
+            params.app.get(params.util.format("/%s%s", prefix, viewName), function (req, res) {
                 params.secure.check(req, res, function () {
                     var path = req.originalUrl;
                     var realPath = path.split("?");
@@ -134,7 +136,9 @@ exports.loadEJSSimple = function (folder, prefix, params) {
 
                     var models = params.models
                         .concat(params.modelsql)
-                        .concat(params.modelmysql);
+                        .concat(params.modelmysql)
+                        .concat(params.modeloracle)
+                        .concat(params.modelstorage);
                     var tags = params.CONFIG.ui.colors.tag;
                     var newtags = {};
                     for (var tag in tags) {
@@ -164,21 +168,25 @@ exports.loadEJSSimple = function (folder, prefix, params) {
                         FOLDERS: params.folders,
                         DATA: req.query,
                         SERVICES: params.catalogs,
-                        params: params
+                        params: params,
+                        localserver: localserver
                     };
-                    res.render("." + folder + "/" + viewN[viewN.length - 1], send);
+                    var viewfinal = viewN[viewN.length - 1];
+                    if (modelName.length == 1)
+                        viewfinal = "index";
+                    res.render("." + folder + "/" + viewfinal, send);
                 });
             });
-            params.app.post(params.util.format("/post/%s/%s/", prefix, viewName), function (req, res) {
-
+            params.app.post(params.util.format("/post/%s%s", prefix, viewName), function (req, res) {
                 var path = req.originalUrl;
-
                 var realPath = path.split("?");
                 var viewN = realPath[0].split("/");
 
                 var models = params.models
                     .concat(params.modelsql)
-                    .concat(params.modelmysql);
+                    .concat(params.modelmysql)
+                    .concat(params.modeloracle)
+                    .concat(params.modelstorage);
                 var tags = params.CONFIG.ui.colors.tag;
                 var newtags = {};
                 for (var tag in tags) {
@@ -188,9 +196,11 @@ exports.loadEJSSimple = function (folder, prefix, params) {
                         "newtags." + tag + " = " + largeVar + '===undefined ? "' + itag + '" : ' + largeVar + ";"
                     );
                 }
-
+                var modelName = viewN.filter(function (item) {
+                    return item !== '';
+                });
                 var send = {
-                    scope: params.modelName,
+                    scope: req.query.scope,
                     session: params.session,
                     localjs: params.localjs,
                     controllersjs: params.controllersjs,
@@ -203,16 +213,17 @@ exports.loadEJSSimple = function (folder, prefix, params) {
                     TAG: newtags,
                     models: models,
                     FOLDERS: params.folders,
-                    DATA: req.body
+                    DATA: req.body,
+                    SERVICES: params.catalogs,
+                    params: params,
+                    localserver: localserver
                 };
 
+                var viewfinal = viewN[viewN.length - 1];
+                if (modelName.length == 1)
+                    viewfinal = "index";
                 if (send.DATA.pdf) {
-                    // params.app.render("." + folder + "/" + viewN[viewN.length - 1], send, function (err, html) {
-                    //     params.HTMLPDF.create(html).toFile("./preview.pdf", function (err, res) {
-                    //         res.download("./preview.pdf", send.DATA.pdf);
-                    //     });
-                    // });
-                    params.app.render("." + folder + "/" + viewN[viewN.length - 1], send, function (err, html) {
+                    params.app.render("." + folder + "/" + viewfinal, send, function (err, html) {
                         if (err) {
                             res.json(err);
                             return;
@@ -274,7 +285,9 @@ exports.init = function (params) {
         params.folders.views + "//base",
         params.folders.views + "//master"
     ];
-    var models = params.models.concat(params.modelsql).concat(params.modelmysql);
+    var models = params.models
+        .concat(params.modelsql).concat(params.modelmysql)
+        .concat(params.modeloracle).concat(params.modelstorage);
     models.forEach(element => {
         excludes.push(params.folders.views + "//" + element);
     });
@@ -282,7 +295,6 @@ exports.init = function (params) {
     params.fs.readdir(
         params.util.format("./" + params.folders.views + "/%s", params.modelName), function (err, files) {
             params.modelName = "base";
-
             exports.LoadEJS(files, params);
         }
     );
@@ -308,7 +320,6 @@ exports.init = function (params) {
         return filelist;
     };
     var autroute = getFiles(excludes, params.folders.views + "/");
-
     autroute.forEach(element => {
         exports.loadEJSSimple(
             "./" + params.folders.views + "/" + element.replace(".ejs", ""),
@@ -499,5 +510,71 @@ exports.init = function (params) {
             res.json({uploaded: uploaded});
         });
     });
+    params.app.post('/email/send', function (req, res) {
+        params.secure.check(req, res, function () {
+            var transporter = params.mail.createTransport(params.CONFIG.smtp);
+            var options = params.CONFIG.smptOptions;
+            var from = req.body.from || options.sender;
+            var name = req.body.name || options.name;
+            if (!req.body.to)
+                res.json({error: "mailneedreceivers", success: false});
+            if (!req.body.subject)
+                res.json({error: "mailneedsubject", success: false});
+            if (!req.body.html && !req.body.text && !req.body.template)
+                res.json({error: "mailneedbody", success: false});
+            var mailOptions = {
+                from: `"${name}" ${from}`,
+                to: req.body.to,
+                subject: req.body.subject
+            };
+
+            if (req.body.text) {
+                mailOptions.text = req.body.text;
+                transporter.sendMail(mailOptions, (error, info) => {
+                    if (error) {
+                        res.json({error: error, success: false});
+                    }
+                    res.json({success: true});
+                });
+            }
+            if (req.body.html) {
+                mailOptions.html = req.body.html;
+                transporter.sendMail(mailOptions, (error, info) => {
+                    if (error) {
+                        res.json({error: error, success: false});
+                    }
+                    res.json({success: true});
+                });
+            }
+            if (req.body.template) {
+                params.app.render("../" + params.folders.views + "/templates/" + req.body.template,
+                    {
+                        session: params.session,
+                        CONFIG: params.CONFIG,
+                        LANGUAGE: params.LANGUAGE,
+                        SHOWLANGS: params.SHOWLANGS,
+                        COLOR: params.CONFIG.ui.colors,
+                        models: models,
+                        FOLDERS: params.folders,
+                        DATA: req.body.fields
+                    }, function (err, html) {
+                        if (err) {
+                            res.json({error: err, html: html});
+                            return;
+                        }
+                        mailOptions.html = html;
+                        transporter.sendMail(mailOptions, (error, info) => {
+                            if (error) {
+                                res.json({error: error, success: false});
+                            }
+                            res.json({success: true});
+                        });
+                    }
+                )
+                ;
+            }
+        });
+    });
+
     exports.loadEJSSimple("./" + params.folders.views + "/master/error", "error", params);
 };

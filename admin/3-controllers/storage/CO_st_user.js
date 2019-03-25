@@ -13,43 +13,31 @@ app.controller("st_user", function ($scope, $http, $compile) {
             };
             st_user.form.readonly = {};
             st_user.createForm(data, mode, defaultData);
-            st_user.form.rules = {
-                name: function () {
-                    var rules = [];
-                    var value = st_user.name;
-                    rules.push(VALIDATION.general.required(value));
-                    return VALIDATION.process(st_user, "name", rules)
-                },
-                lastname: function () {
-                    var rules = [];
-                    var value = st_user.lastname;
-                    rules.push(VALIDATION.general.required(value));
-                    return VALIDATION.process(st_user, "lastname", rules)
-                },
-                username: function () {
-                    var rules = [];
-                    var value = st_user.username;
-                    rules.push(VALIDATION.general.required(value));
-                    return VALIDATION.process(st_user, "username", rules)
-                },
-                password: function () {
-                    var rules = [];
-                    var value = st_user.password;
-                    rules.push(VALIDATION.general.required(value));
-                    return VALIDATION.process(st_user, "password", rules)
-                },
-                email: function () {
-                    var rules = [];
-                    var value = st_user.email;
-                    rules.push(VALIDATION.text.email(value));
-                    return VALIDATION.process(st_user, "email", rules)
-                }
-            };
-            st_user.form.rulesGroup = {
-                all: function () {
-                    return st_user.validation.stateIcon(st_user.form.fileds);
-                },
-            };
+            st_user.$scope.$watch('st_user.name', function (value) {
+                var rules = [];
+                rules.push(VALIDATION.general.required(value));
+                VALIDATION.validate(st_user, "name", rules);
+            });
+            st_user.$scope.$watch('st_user.lastname', function (value) {
+                var rules = [];
+                rules.push(VALIDATION.general.required(value));
+                VALIDATION.validate(st_user, "lastname", rules);
+            });
+            st_user.$scope.$watch('st_user.username', function (value) {
+                var rules = [];
+                rules.push(VALIDATION.general.required(value));
+                VALIDATION.validate(st_user, "username", rules);
+            });
+            st_user.$scope.$watch('st_user.password', function (value) {
+                var rules = [];
+                rules.push(VALIDATION.general.required(value));
+                VALIDATION.validate(st_user, "password", rules);
+            });
+            st_user.$scope.$watch('st_user.email', function (value) {
+                var rules = [];
+                rules.push(VALIDATION.general.required(value));
+                VALIDATION.validate(st_user, "email", rules);
+            });
         }
     };
 });

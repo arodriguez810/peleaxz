@@ -8,19 +8,16 @@ app.controller("my_category", function ($scope, $http, $compile) {
             my_category.form.schemas.select = {};
             my_category.form.readonly = {};
             my_category.createForm(data, mode, defaultData);
-            my_category.form.rules = {
-                name: function () {
-                    var rules = [];
-                    var value = my_category.name;
-                    rules.push(VALIDATION.general.required(value));
-                    return VALIDATION.process(my_category, "name", rules)
-                }
-            };
-            my_category.form.rulesGroup = {
-                all: function () {
-                    return my_category.validation.stateIcon(my_category.form.fileds);
-                },
-            };
+            my_category.$scope.$watch('my_category.a', function (value) {
+                var rules = [];
+                rules.push(VALIDATION.general.required(value));
+                VALIDATION.validate(my_category, "a", rules);
+            });
+            my_category.$scope.$watch('my_category.b', function (value) {
+                var rules = [];
+                rules.push(VALIDATION.text.realdata(value));
+                VALIDATION.validate(my_category, "b", rules);
+            });
         }
     };
 });

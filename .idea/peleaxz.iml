@@ -2,20 +2,94 @@
 <module type="WEB_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/admin/0-config" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/0-config/appearance" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/0-config/db" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/0-config/developer" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/0-config/security" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/0-config/storage" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/1-models/mongo" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/1-models/mssql" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/1-models/mysql" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/1-models/oracle" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/1-models/scripts" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/1-models/scripts/mssql" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/1-models/scripts/mysql" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/1-models/scripts/oracle" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/1-models" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/2-service" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/2-service/base" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/3-controllers/abase" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/3-controllers/auth" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/3-controllers" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/4-crud" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/4-crud/a.defautls" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/5-views/auth" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/5-views/base" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/5-views/master" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/5-views/master/error" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/5-views/templates/components" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/5-views/templates/docx" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/5-views/templates/form" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/5-views/templates/pdf" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/5-views/templates/table" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/6-language" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/actions" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/alerts" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/columns" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/error" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/export" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/login" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/menu" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/mono" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/ms_all" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/navbar" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/restore" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/table" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/validations" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/scripts/dragon/form/validations" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/scripts" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/scripts/dragon" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/scripts/dragon/appearance" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/scripts/dragon/auth" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/scripts/dragon/base" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/scripts/dragon/components" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/scripts/dragon/data" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/scripts/dragon/file" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/scripts/dragon/form" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/scripts/dragon/system" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/scripts/dragon/table" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/scripts/dragon/types" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/scripts/events" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/scripts/extensions" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/server" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/server/form" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/server/language" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/server/scripts" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/styles" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/styles/base" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/styles/colors" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/styles/components" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/styles/pages" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/modules" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/5-views/templates/email" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/5-views/templates" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/5-views" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/.tmp" />
       <excludeFolder url="file://$MODULE_DIR$/admin/assets" />
       <excludeFolder url="file://$MODULE_DIR$/admin/defaults" />
       <excludeFolder url="file://$MODULE_DIR$/admin/files" />
       <excludeFolder url="file://$MODULE_DIR$/admin/node_modules" />
       <excludeFolder url="file://$MODULE_DIR$/db" />
+      <excludeFolder url="file://$MODULE_DIR$/helper" />
       <excludeFolder url="file://$MODULE_DIR$/mongo" />
       <excludeFolder url="file://$MODULE_DIR$/programs" />
       <excludeFolder url="file://$MODULE_DIR$/temp" />
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
-      <excludeFolder url="file://$MODULE_DIR$/tools" />
-      <excludeFolder url="file://$MODULE_DIR$/tools/c" />
+      <excludeFolder url="file://$MODULE_DIR$/tools/helper" />
     </content>
-    <content url="file://$MODULE_DIR$/tools/c" />
+    <content url="file://$MODULE_DIR$/tools/helper" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>

@@ -9,7 +9,7 @@ DSON.keepmerge(CRUD_ms_all,
             width: "width:4000px;",
             columns: {
                 id: {
-                    label:  "ID",
+                    label: "ID",
                     sorttype: "numeric",//numeric,amount,time
                     class: "text-left",
                     exportExample: false,
@@ -39,7 +39,7 @@ DSON.keepmerge(CRUD_ms_all,
                         modal: {
                             header: {
                                 title: "${this.name}",
-                                icon:  ICON.classes.archive
+                                icon: ICON.classes.archive
                             },
                             footer: {
                                 cancelButton: true
@@ -101,6 +101,9 @@ DSON.keepmerge(CRUD_ms_all,
                     exportKey: 'category',
                     label: "category",
                     shorttext: 20,
+                    format: function (row) {
+                        return row.ms_category_id + '-' + row.ms_category_name;
+                    },
                     link: {
                         table: "ms_category",
                         from: "category",
@@ -179,8 +182,8 @@ DSON.keepmerge(CRUD_ms_all,
                     label: function () {
                         return "average" + ICON.i("file-stats");
                     },
-                    format: function (value) {
-                        return value === null ? '' : value + ICON.i("percent");
+                    format: function (row) {
+                        return row.average === null ? '' : row.average + ICON.i("percent");
                     },
                     sorttype: "numeric",
                     exportExample: "[numeric 1 to 100]",

@@ -18,25 +18,18 @@ DSON.keepmerge(CRUD_my_product, {
                 label: "Description",
                 shorttext: 30
             },
-            my_category_name: {
+            category: {
                 exportKey: 'category',
                 label: "Category",
                 shorttext: 30,
-                link: {
-                    table: "my_category",
-                    from: "category",
-                    modal: {
-                        header: {
-                            title: "${this.my_category_name}",
-                            icon: ICON.classes.lifebuoy
-                        },
-                        footer: {
-                            cancelButton: true
-                        },
-                        content: {
-                            loadingContentText: MESSAGE.i('actions.Loading')
-                        },
+                format: function (row) {
+                    var selected = MYCATEGORIES.data.filter(data => {
+                        return data.id === row.id;
+                    });
+                    if (selected.length > 0) {
+                        return selected[0].name;
                     }
+                    return "N/A";
                 },
                 exportExample: "category ids",
             },

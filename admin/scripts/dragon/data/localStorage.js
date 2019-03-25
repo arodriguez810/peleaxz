@@ -12,7 +12,6 @@ STORAGE = {
         $scope.getModelObject = function (name) {
             return STORAGE.basegetModelObject($scope, name);
         };
-
         $scope.getModelSimple = function (name) {
             return STORAGE.basegetModelSimple($scope, name);
         };
@@ -61,7 +60,6 @@ STORAGE = {
                     localStorage.clear();
                     SESSION.register(session);
                     location.reload();
-
                 }
             });
         else

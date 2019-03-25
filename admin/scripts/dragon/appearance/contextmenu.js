@@ -1,7 +1,4 @@
-CONTTEXTMENU = {};
-
 $(document).ready(function () {
-
     $(document).on('mousedown', '.context-control, .dragon-actions', function (event) {
         var myTD = $(this);
         var currentRowMenu = myTD.parent().find('.icons-list:eq(0)');
@@ -19,10 +16,7 @@ $(document).ready(function () {
             }
         }
     });
-
     $(document).on('click', '.breadcrumb-elements-toggle', function (event) {
         $(this).parent().children(".breadcrumb-elements").toggleClass("visible-elements");
     });
-
-
 });

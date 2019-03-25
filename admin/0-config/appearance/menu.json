@@ -13,12 +13,17 @@
             {
               "text": "Categories",
               "href": "#my_category",
-              "icon": "lifebuoy"
+              "icon": "price-tag2"
             },
             {
               "text": "Products",
               "href": "#my_product",
-              "icon": "lifebuoy"
+              "icon": "cart5"
+            },
+            {
+              "text": "Logica",
+              "href": "#logica",
+              "icon": "calculator3"
             }
           ]
         },

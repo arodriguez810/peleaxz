@@ -1,7 +1,7 @@
 PAGINATOR = {
     run: function ($scope) {
         $scope.getLimits = function () {
-            var limits = $scope.table.crud.table.limits || CONFIG.ui.tables.paginator.limits;
+            var limits = $scope.table.crud.table.limits || [10, 50, 100, 0];
             if(limits.length===0)
                 return [10];
             else return limits;
@@ -104,13 +104,14 @@ PAGINATOR = {
         $scope.table.totalCount = data.totalCount;
         $scope.table.currentCount = parseInt(data.count);
         $scope.table.pages = [];
-        var halfOfRange = Math.ceil(CONFIG.ui.tables.paginator.range / 2);
+        var paginartorRagen = 10;
+        var halfOfRange = Math.ceil(paginartorRagen/2);
         var initPaginator = $scope.table.currentPage - halfOfRange;
         initPaginator = initPaginator <= 0 ? 1 : initPaginator;
-        initPaginator = initPaginator > (data.totalPage - CONFIG.ui.tables.paginator.range) ? (data.totalPage - CONFIG.ui.tables.paginator.range) : initPaginator;
+        initPaginator = initPaginator > (data.totalPage - paginartorRagen) ? (data.totalPage - paginartorRagen) : initPaginator;
         initPaginator = initPaginator <= 0 ? 1 : initPaginator;
         var lastPaginator = $scope.table.currentPage + halfOfRange;
-        lastPaginator = lastPaginator < CONFIG.ui.tables.paginator.range ? CONFIG.ui.tables.paginator.range : lastPaginator;
+        lastPaginator = lastPaginator < paginartorRagen ? paginartorRagen : lastPaginator;
         lastPaginator = lastPaginator > data.totalPage ? data.totalPage : lastPaginator;
         for (var i = initPaginator; i <= lastPaginator; i++) {
             $scope.table.pages.push({

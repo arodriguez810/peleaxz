@@ -13,7 +13,8 @@ var options = {
     posttype: "relations",
     title: "Add Multiple",
     master: null,
-    originalField: "id"
+    originalField: "id",
+    modal:false
     //table:""
 };
 
@@ -38,44 +39,12 @@ if (options.master === null) {
     var thisID = eval(`<%= model %>.${keyColumn}`);
 
 </script>
-<div class="form-group-material form-group has-feedback has-{{<%= model %>.validation.getType('<%= name %>')}}  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
-     id="input<%= name %>">
-    <label
-            class="control-label">
-        {{<%= model %>.form.options.<%= name %>.title}}
-    </label>
-
-    <button name="<%= model %>_<%= name %>"
-            type="button"
-            role="button"
-            class="btn bg-<%= options.color %>-800 btn-block legitRipple">
-        <%= options.model ? "{{" + options.model + "}}" : "" %>
-        {{<%= model %>.<%= name %>Count>0? <%= model %>.<%= name %>Count + " Files" :""}}
-        <i class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} position-{{<%= model %>.form.options.<%= name %>.icon.position}}"></i>
-        {{<%= model %>.form.options.<%= name %>.title}}
-    </button>
-
-    <span ng-if="<%= model %>.form.options.<%= name %>.helptext!=''"
-          class="help-block text-muted">
-        {{<%= model %>.form.options.<%= name %>.helptext}}
-    </span>
-
-    <span ng-show="<%= model %>.validation.getMessages('<%= name %>').length>0" class="help-block">
-
-        <p class="text-{{$eval(validation).type}}"
-           ng-repeat="(key,validation) in <%= model %>.validation.getMessages('<%= name %>') track by key">
-               <i class="{{$eval(validation).icon}}"></i> {{$eval(validation).message}}
-        </p>
-    </span>
+<div id="<%= model %>_<%= name %>_content">
 
 </div>
 <script>
-
-
     $(document).ready(function () {
-
-
-        $('[name="<%= model %>_<%= name %>"]').click(function () {
+        var <%= model %>_<%= name %>Load = (function () {
             $(".map-wrapper").hide();
             var id<%= name %> = '<%= model %><%= options.tempId %>';
             var field<%= name %> = "<%= options.field %>";
@@ -83,42 +52,20 @@ if (options.master === null) {
                 id<%= name %> = thisID;
                 var field<%= name %> = '<%= options.originalField %>';
             }
-
-            SWEETALERT.loading({message: MESSAGE.i('actions.Loading')});
-            var linkCrud<%= name %> = eval("CRUD_<%= options.table %>");
-            BASEAPI.list("<%= options.table %>",
+            RELATIONS.anonymous["<%= options.table %>"] =
                 {
-                    limit: 0,
-                    page: 1,
-                    orderby: linkCrud<%= name %>.table.key || "id",
-                    order: "asc",
-                    join: linkCrud<%= name %>.table.single,
-                    where: [
+                    readonly : eval(`({${field<%= name %>}:'${id<%= name %>}'})`),
+                    fieldKey : field<%= name %>,
+                    where:[
                         {
                             field: field<%= name %>,
                             value: id<%= name %>
                         }
                     ]
                 }
-                , function (info) {
-                    SWEETALERT.stop();
-
-                    baseController.viewData = {
-                        from: "<%= model %>",
-                        to: "<%= options.table %>",
-                        data: [
-                            {
-                                field: field<%= name %>,
-                                value: id<%= name %>
-                            }
-                        ],
-                        crud: linkCrud<%= name %>
-                    };
-
-                    baseController.viewData.readonly = eval(`({${field<%= name %>}:'${id<%= name %>}'})`);
-                    baseController.viewData.fieldKey = field<%= name %>;
-
-                        <%= model %>.
+                if(<%= model %>.form.options.<%= name %>.modal)
+                {
+                    <%= model %>.
                     modal.modalView("<%= options.table %>", {
                         header: {
                             title: "<%= options.title %>",
@@ -131,9 +78,20 @@ if (options.master === null) {
                             loadingContentText: MESSAGE.i('actions.Loading')
                         },
                     });
-                });
+                }else{
+                    <%= model %>.loadContent(
+                        "<%= options.table %>",
+                        "<%= model %>_<%= name %>_content",
+                        MESSAGE.i('actions.Loading'),
+                        function () {
+                            MESSAGE.run();
+                        }
+                    );
+                }
+
 
         });
+        <%= model %>_<%= name %>Load();
     });
 </script>
 

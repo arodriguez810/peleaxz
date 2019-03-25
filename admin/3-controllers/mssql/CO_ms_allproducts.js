@@ -29,29 +29,22 @@ app.controller("ms_allproducts", function ($scope, $http, $compile) {
                 },
             };
             ms_allproducts.form.readonly = {};
-            ms_allproducts.form.getfilter = {
-                field: baseController.viewData.fieldKey
-            };
+            if (RELATIONS.anonymous[$scope.modelName] !== undefined) {
+                ms_allproducts.form.getfilter = {
+                    field: RELATIONS.anonymous[$scope.modelName].fieldKey
+                };
+            }
             ms_allproducts.createForm(data, mode, defaultData);
-            ms_allproducts.form.rules = {
-                all: function () {
-                    var rules = [];
-                    var value = ms_allproducts.all;
-                    rules.push(VALIDATION.general.required(value));
-                    return VALIDATION.process(ms_allproducts, "all", rules)
-                },
-                product: function () {
-                    var rules = [];
-                    var value = ms_allproducts.product;
-                    rules.push(VALIDATION.general.required(value));
-                    return VALIDATION.process(ms_allproducts, "product", rules)
-                }
-            };
-            ms_allproducts.form.rulesGroup = {
-                all: function () {
-                    return ms_allproducts.validation.stateIcon(ms_allproducts.form.fileds);
-                },
-            };
+            ms_allproducts.$scope.$watch('ms_allproducts.all', function (value) {
+                var rules = [];
+                rules.push(VALIDATION.general.required(value));
+                VALIDATION.validate(ms_allproducts, "all", rules);
+            });
+            ms_allproducts.$scope.$watch('ms_allproducts.product', function (value) {
+                var rules = [];
+                rules.push(VALIDATION.general.required(value));
+                VALIDATION.validate(ms_allproducts, "product", rules);
+            });
         }
     };
 });

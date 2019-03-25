@@ -8,30 +8,17 @@
   "logo": "Dragon Framework",
   "filePath": "files",
   "appKey": "d94g0nf94m3w09k",
-  "mode": "developer",
+  "mode": "pro",
   "language": "en",
   "home": "ms_all",
+  "support": {
+    "email": "angel.rodriguez810@gmail.com",
+    "phone": "809-316-1989"
+  },
   "features": {
     "fileManager": true,
     "stepManager": true,
     "token": true,
     "language": true
-  },
-  "languages": [
-    {
-      "code": "en",
-      "name": "English",
-      "flag": "us"
-    },
-    {
-      "code": "es",
-      "name": "Español",
-      "flag": "es"
-    },
-    {
-      "code": "fr",
-      "name": "Français",
-      "flag": "fr"
-    }
-  ]
+  }
 }

@@ -75,7 +75,6 @@ BASEAPI = {
         if (parameters.limit === 0) {
             parameters.limit = Number.MAX_SAFE_INTEGER;
         }
-
         $http.post(rootPath + '/list', parameters).then(function (data) {
             HTTP.evaluate(data);
             if (!HTTP.evaluateTokenHTML(data))
@@ -91,7 +90,6 @@ BASEAPI = {
         if (parameters.limit === 0) {
             parameters.limit = Number.MAX_SAFE_INTEGER;
         }
-
         $http.post(rootPath + '/list', parameters).then(function (data) {
             HTTP.evaluate(data);
             if (!HTTP.evaluateTokenHTML(data))
@@ -167,6 +165,17 @@ BASEAPI = {
         $http.delete(rootPath + '/delete/' + id).then(function (data) {
             callback(data);
         }, function (data) {
+            console.log('Error: ' + data);
+        });
+    },
+    mail: function (params, callback) {
+        $http = angular.injector(["ng"]).get("$http");
+        HTTP.setToken($http);
+        var rootPath = '/email/send';
+        $http.post(rootPath, params).then(function (data) {
+            callback(data);
+        }, function (data) {
+            SWEETALERT.stop();
             console.log('Error: ' + data);
         });
     }

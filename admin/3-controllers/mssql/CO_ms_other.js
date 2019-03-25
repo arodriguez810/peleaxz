@@ -12,19 +12,11 @@ app.controller("ms_other", function ($scope, $http, $compile) {
             };
             ms_other.form.readonly = {};
             ms_other.createForm(data, mode, defaultData);
-            ms_other.form.rules = {
-                name: function () {
-                    var rules = [];
-                    var value = ms_other.name;
-                    rules.push(VALIDATION.general.required(value));
-                    return VALIDATION.process(ms_other, "name", rules)
-                }
-            };
-            ms_other.form.rulesGroup = {
-                all: function () {
-                    return ms_other.validation.stateIcon(ms_other.form.fileds);
-                },
-            };
+            ms_other.$scope.$watch('ms_other.name', function (value) {
+                var rules = [];
+                rules.push(VALIDATION.general.required(value));
+                VALIDATION.validate(ms_other, "name", rules);
+            });
         }
     };
 });

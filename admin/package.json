@@ -32,6 +32,7 @@
     "node-mssql": "0.0.1",
     "node-persist": "^3.0.4",
     "node-storage": "0.0.7",
+    "nodemailer": "^5.1.1",
     "office-to-pdf": "^4.0.0",
     "oracledb": "^3.1.2",
     "phantom-html2pdf": "^4.0.1",

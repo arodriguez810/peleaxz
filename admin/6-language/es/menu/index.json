@@ -14,5 +14,8 @@
   "Extra": "Extra",
   "MysqlUsers": "Usuarios Mysql",
   "OracleUsers": "Usuarios Oracle",
-  "StorageUsers": "Usuarios Storage"
+  "StorageUsers": "Usuarios Storage",
+  "Nuevos": "Nuevos",
+  "Categories": "Categoría",
+  "Products": "Productos"
 }

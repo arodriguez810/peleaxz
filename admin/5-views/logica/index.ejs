@@ -1,0 +1,23 @@
+<div id="<%= scope %>" ng-controller="<%= scope %> as <%= scope %>">
+    <div class="panel panel-flat">
+
+        <div class="subcontent">
+            <%- FORM.datetime("record", scope, {
+                timepicker: true,
+                datepicker: false,
+                format: 'h:i a',
+                callformat: 'hh:mm a'
+            }) %>
+            Soy la logica y estoy en {{logica.record}}
+            <% for(var menu in CONFIG.menus) { %>
+                <%- FORM.checkbox("active"+menu, scope, {text: 'Active?'}) %>
+            <%}%>
+
+            <% for(var menu in CONFIG.menus) { %>
+                <div ng-if="logica.active<%= menu %>">
+                    <%= CONFIG.menus[menu].text %> - <%= CONFIG.menus[menu].href %>
+                </div>
+            <%}%>
+        </div>
+    </div>
+</div><!--end-->

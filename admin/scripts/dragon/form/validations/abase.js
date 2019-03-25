@@ -8,13 +8,13 @@ VALIDATION = {
         $scope.validation = {};
         $scope.validation.fields = {};
         $scope.validation.existRule = function (name) {
-            var rule = eval(`$scope.form.rules.${name}`);
-            return !DSON.oseaX(rule);
+            return eval(`typeof $scope.form.rules.${name} === "function"`);
         };
         $scope.validation.getRule = function (name) {
-            var rule = eval(`$scope.form.rules.${name}()`);
-            if ($scope.validation.existRule(name))
+            if ($scope.validation.existRule(name)) {
+                var rule = eval(`$scope.form.rules.${name}()`);
                 return rule;
+            }
             return {valid: true, messages: [], type: "success"};
         };
         $scope.validation.getType = function (name) {
@@ -34,14 +34,14 @@ VALIDATION = {
                 return eval(`$scope.form.rules.${name}().valid`);
             return true;
         };
-        $scope.validation.getColor = function (name, color) {
+        $scope.validation.getColor = function (name) {
             if ($scope.validation.existRule(name)) {
                 var type = $scope.validation.getType(name);
                 if (type !== VALIDATION.types.success)
                     return type.replace(VALIDATION.types.error, 'danger');
-                return color;
+                return TAG.table + "-800";
             }
-            return color;
+            return TAG.table + "-800";
         };
         $scope.validation.stateIcon = function (fields) {
             if ($scope === undefined)
@@ -56,13 +56,13 @@ VALIDATION = {
                 return;
             var fields = fieldsy || eval(`$scope.form.fileds`);
             var result = VALIDATION.types.success;
-            for (const i in  $scope.form.rules) {
+            for (const i in  $scope.validate) {
                 if (!DSON.oseaX(fields))
                     if (fields.indexOf(i) === -1)
                         continue;
 
-                var rule = $scope.form.rules[i];
-                var type = $scope.validation.getType(i);
+                var rule = $scope.validate[i];
+                var type = rule.type;
                 if (type !== VALIDATION.types.success) {
                     if (type === VALIDATION.types.error)
                         return "danger";
@@ -75,13 +75,13 @@ VALIDATION = {
         $scope.validation.statePure = function (fieldsy) {
             var fields = fieldsy || eval(`$scope.form.fileds`);
             var result = VALIDATION.types.success;
-            for (const i in  $scope.form.rules) {
+            for (const i in  $scope.validate) {
                 if (!DSON.oseaX(fields))
                     if (fields.indexOf(i) === -1)
                         continue;
 
-                var rule = $scope.form.rules[i];
-                var type = $scope.validation.getType(i);
+                var rule = $scope.validate[i];
+                var type = rule.type;
                 if (type !== VALIDATION.types.success) {
                     if (type === VALIDATION.types.error)
                         return type;
@@ -94,9 +94,9 @@ VALIDATION = {
         $scope.validation.warningClose = function () {
             var result = [];
             var success = 0;
-            for (const i in  $scope.form.rules) {
-                var rule = $scope.form.rules[i];
-                var type = $scope.validation.getType(i);
+            for (const i in  $scope.validate) {
+                var rule = $scope.validate[i];
+                var type = rule.type;
                 if (type !== VALIDATION.types.success) {
                     if (type === VALIDATION.types.error) {
                         result.push("danger");
@@ -137,6 +137,28 @@ VALIDATION = {
             }
         var valid = (messages.length === 0 && type !== VALIDATION.types.error);
         type = (valid ? VALIDATION.types.success : type);
+        return {valid: valid, messages: messages, type: type};
+    },
+    validate: function (scope, field, rules) {
+        if (scope.validate === undefined)
+            scope.validate = [];
+        var messages = [];
+        var type = VALIDATION.types.warning;
+        for (const rule of rules)
+            if (!rule.valid) {
+                if (rule.type === VALIDATION.types.error)
+                    type = VALIDATION.types.error;
+                messages.push({
+                    message: rule.message,
+                    icon: rule.type.replace(VALIDATION.types.error, 'danger').replace(VALIDATION.types.success, 'icon-checkmark4 text-success')
+                        .replace('danger', 'icon-cancel-circle2 text-danger')
+                        .replace(VALIDATION.types.warning, 'icon-notification2 text-warning'),
+                    type: rule.type.replace(VALIDATION.types.error, 'danger')
+                });
+            }
+        var valid = (messages.length === 0 && type !== VALIDATION.types.error);
+        type = (valid ? VALIDATION.types.success : type);
+        scope.validate[field] = {valid: valid, messages: messages, type: type};
         return {valid: valid, messages: messages, type: type};
     }
 };

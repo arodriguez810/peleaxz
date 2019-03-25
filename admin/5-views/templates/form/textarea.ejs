@@ -29,11 +29,11 @@ var toclient = JSON.stringify(options);
         <%= model %>.form.options.<%= name %>.placeholder = MESSAGE.i('columns.<%= name %>');
     }
 </script>
-<div class="form-group-material form-group has-feedback has-{{<%= model %>.validation.getType('<%= name %>')}}  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
-     id="input<%= name %>">
+<div class="form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
+     id="input<%= model %>_<%= name %>">
     <label
-
-            class="control-label {{<%= model %>.form.LabelVisible('<%= name %>')?'is-visible animate':''}}">
+            id="label<%= model %>_<%= name %>"
+            class="control-label {{<%= model + "." + name %>?'is-visible animate':''}}">
         {{<%= model %>.form.options.<%= name %>.placeholder}}
     </label>
     <textarea
@@ -41,13 +41,14 @@ var toclient = JSON.stringify(options);
             ng-readonly="<%= model %>.form.options.<%= name %>.readonly"
             ng-disabled="<%= model %>.form.options.<%= name %>.disabled"
             maxlength="{{<%= model %>.form.options.<%= name %>.maxlength}}"
+            ng-model-onblur
             type="{{<%= model %>.form.options.<%= name %>.type}}"
             <%= options.model ? "value='{{" + options.model + "}}'" : "" %>
             class="form-control"
             placeholder="{{<%= model %>.form.options.<%= name %>.placeholder}}"></textarea>
 
     <div class="form-control-feedback">
-        <i class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} text-{{<%= model %>.validation.getColor('<%= name %>',<%= model %>.form.options.<%= name %>.icon.color)}}">
+        <i class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} text-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}">
 
         </i>
     </div>
@@ -56,10 +57,10 @@ var toclient = JSON.stringify(options);
         {{<%= model %>.form.options.<%= name %>.helptext}}
     </span>
 
-    <span ng-show="<%= model %>.validation.getMessages('<%= name %>').length>0" class="help-block">
-       <p class="text-{{$eval(validation).type}}"
-          ng-repeat="(key,validation) in <%= model %>.validation.getMessages('<%= name %>') track by key">
-               <i class="{{$eval(validation).icon}}"></i> {{$eval(validation).message}}
+    <span ng-show="<%= model %>.validate['<%= name %>'].messages.length>0" class="help-block">
+       <p class="text-{{validation.type}}"
+          ng-repeat="(key,validation) in <%= model %>.validate['<%= name %>'].messages track by key">
+               <i class="{{validation.icon}}"></i> {{validation.message}}
         </p>
     </span>
 </div>

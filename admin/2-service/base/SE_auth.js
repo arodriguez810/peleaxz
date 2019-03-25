@@ -51,7 +51,7 @@ exports.api = {
                 }
                 return data;
             });
-        }
+        },
     },
     puts: {},
     deletes: {},

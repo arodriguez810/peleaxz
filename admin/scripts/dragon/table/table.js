@@ -162,6 +162,16 @@ TABLE = {
             $scope.width();
             MESSAGE.run();
         };
+        $scope.fixFiltersApply = function (dataToList) {
+            if (!DSON.oseaX($scope.fixFilters)) {
+                if (!DSON.oseaX(dataToList.where)) {
+                    for (var filter of $scope.fixFilters)
+                        dataToList.where.push(filter)
+                } else {
+                    dataToList.where = $scope.fixFilters;
+                }
+            }
+        };
         $scope.refresh = function () {
             ANIMATION.loading(
                 "#" + $scope.modelName + "TablePanel",
@@ -169,8 +179,6 @@ TABLE = {
                 ".loadingButton", 140
             );
             $scope.table.is.loading = true;
-
-
             if (STORAGE.hasPage($scope))
                 $scope.table.currentPage = STORAGE.getPage($scope);
             if ($scope.hasModel("limit")) {
@@ -182,7 +190,6 @@ TABLE = {
             if ($scope.hasModel("sortorder")) {
                 $scope.table.order = $scope.getModel("sortorder");
             }
-
             setTimeout(function () {
                 if ($scope.table.loaded !== true) {
                     $scope.table.loaded = true;
@@ -193,10 +200,21 @@ TABLE = {
                         order: $scope.table.order,
                         join: $scope.table.crud.table.single
                     };
-                    if (!DSON.oseaX(ARRAY.last(MODAL.historyObject))) {
-                        if (!DSON.oseaX(ARRAY.last(MODAL.historyObject).viewData))
-                            dataToList.where = ARRAY.last(MODAL.historyObject).viewData.data;
+                    if (RELATIONS.anonymous[$scope.modelName] !== undefined) {
+                        dataToList.where = RELATIONS.anonymous[$scope.modelName].where;
                     }
+                    if (!DSON.oseaX(ARRAY.last(MODAL.historyObject))) {
+                        if (!DSON.oseaX(ARRAY.last(MODAL.historyObject).viewData)) {
+                            if (!DSON.oseaX(ARRAY.last(MODAL.historyObject).viewData.data)) {
+                                if (DSON.oseaX(dataToList.where))
+                                    dataToList.where = [];
+                                for (const item of ARRAY.last(MODAL.historyObject).viewData.data) {
+                                    dataToList.where.push(item);
+                                }
+                            }
+                        }
+                    }
+                    $scope.fixFiltersApply(dataToList);
                     if (!DSON.oseaX($scope.filters))
                         if (!DSON.oseaX($scope.filters.lastFilter))
                             if ($scope.filters.lastFilter.length > 0) {
@@ -206,6 +224,8 @@ TABLE = {
                                     dataToList.where.push(item);
                                 }
                             }
+
+
                     $scope.list(
                         dataToList,
                         function (data) {
@@ -221,10 +241,23 @@ TABLE = {
                         order: $scope.table.order,
                         join: $scope.table.crud.table.single
                     };
-                    if (!DSON.oseaX(ARRAY.last(MODAL.historyObject))) {
-                        if (!DSON.oseaX(ARRAY.last(MODAL.historyObject).viewData))
-                            dataToList.where = ARRAY.last(MODAL.historyObject).viewData.data;
+
+                    if (RELATIONS.anonymous[$scope.modelName] !== undefined) {
+                        dataToList.where = RELATIONS.anonymous[$scope.modelName].where;
                     }
+                    if (!DSON.oseaX(ARRAY.last(MODAL.historyObject))) {
+                        if (!DSON.oseaX(ARRAY.last(MODAL.historyObject).viewData)) {
+                            if (!DSON.oseaX(ARRAY.last(MODAL.historyObject).viewData.data)) {
+                                if (DSON.oseaX(dataToList.where))
+                                    dataToList.where = [];
+                                for (const item of ARRAY.last(MODAL.historyObject).viewData.data) {
+                                    dataToList.where.push(item);
+                                }
+                            }
+                        }
+                    }
+
+                    $scope.fixFiltersApply(dataToList);
                     if (!DSON.oseaX($scope.filters))
                         if (!DSON.oseaX($scope.filters.lastFilter))
                             if ($scope.filters.lastFilter.length > 0) {
@@ -234,6 +267,7 @@ TABLE = {
                                     dataToList.where.push(item);
                                 }
                             }
+
 
                     $scope.list(
                         dataToList,

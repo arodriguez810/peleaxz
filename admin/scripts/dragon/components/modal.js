@@ -60,9 +60,7 @@ MODAL = {
                 buttonsHtml += String.format('<button id="modalButton{2}{3}" type="button" class="btn bg-{0}">{1}</button>', item.color, item.title, indexb, data.id);
                 indexb++;
             }
-
             if ($("#modal" + data.id).length > 0) $("#modal" + data.id).remove();
-
             var backMode = MODAL.history.length > 0 && data.backMode;
             var closeModal = String.format(
                 'onclick="MODAL.close({0})"', $scope.modelName
@@ -96,9 +94,7 @@ MODAL = {
                 "  </div>" +
                 " </div>" +
                 "</div>";
-
             $("#" + $scope.modal.DOMID).append(html);
-
             if (data.content.data.startsWith("->")) {
                 if (data.content.sameController) {
 
@@ -123,7 +119,6 @@ MODAL = {
                     );
                 }
             }
-
             $("#modal" + data.id).on("show.bs.modal", function () {
                 if (typeof data.event.show.begin === "function")
                     data.event.show.begin($scope);
@@ -142,12 +137,9 @@ MODAL = {
             });
             data.viewData = baseController.viewData;
             MODAL.historyObject.push(data);
-
-
             return data.id;
         };
         $scope.modal.refreshViewData = function () {
-
         };
         $scope.modal.open = function (id) {
             if (MODAL.history.length > 0) {
@@ -157,13 +149,11 @@ MODAL = {
             var data = ARRAY.last(MODAL.historyObject);
             baseController.viewData = data.viewData;
             $("#modal" + id).modal("show");
-
-
             var indexb = 0;
             for (var i in data.footer.buttons) {
                 var item = data.footer.buttons[i];
                 $(`#modalButton${indexb}${data.id}`).click(function () {
-                    if (DSON.iffunction(item.action)) {
+                    if (typeof item.action === "function") {
                         item.action();
                     } else {
                         alert('This modal customButton don\'t have an action!');
@@ -192,7 +182,6 @@ MODAL = {
             ARRAY.removeLast(MODAL.historyObject);
             if (MODAL.historyObject.length < 1)
                 REMOVEALLCHILDSCOPE();
-
             $(last).remove();
             if (MODAL.history.length > 0) {
                 last = ARRAY.last(MODAL.history);
@@ -216,7 +205,6 @@ MODAL = {
             baseController.viewData = undefined;
         };
         $scope.modal.modalView = function (view, options) {
-
             var id = view.replaceAll("/", "_").replaceAll("#", "_").replaceAll(".", "_");
             var properties = {
                 id: id,
@@ -323,7 +311,6 @@ MODAL = {
                 };
                 $scope.modal.modalView(String.format("{0}/detail", $scope.modelName), modaloptions);
             });
-
         }
     }
 };

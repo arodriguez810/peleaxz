@@ -129,6 +129,7 @@ exports.delete = function (table, data, params) {
     return queries;
 };
 exports.data = async function (query, params, index) {
+        console.log(query.pxz);
     return await new params.mssql.ConnectionPool(params.CONFIG.mssql).connect().then(
         pool => {
             return pool.request().query(query);

@@ -118,20 +118,21 @@ TABLEEVENT = {
                             multiarray.push(eval("item." + mylink.getList));
                         });
                         mylink.modal.header.title = $scope.columnLabel(data.column, mylink.from);
-                        baseController.viewData = {
-                            from: $scope.modelName,
-                            to: mylink.list,
-                            data: [
-                                {
-                                    field: mylink.wherelist,
-                                    value: multiarray
-                                }
-                            ],
-                            crud: linkCrud
-                        };
 
-                        baseController.viewData.readonly = eval(`({${mylink.to}:'${id}'})`);
-                        baseController.viewData.fieldKey = mylink.to;
+
+                        RELATIONS.anonymous[mylink.list] =
+                            {
+                                readonly: eval(`({${mylink.to}:'${id}'})`),
+                                fieldKey: mylink.to,
+                                where: [
+                                    {
+                                        field: mylink.wherelist,
+                                        value: multiarray
+                                    }
+                                ]
+                            };
+
+
                         $scope.modal.modalView(String.format("{0}", mylink.list), mylink.modal);
                     });
                 return;
@@ -170,6 +171,8 @@ TABLEEVENT = {
                                 onedata: info.data,
                                 crud: linkCrud
                             };
+
+
                             mylink.modal.content.sameController = true;
                             mylink.modal.header.title = $scope.columnLabel(data.column, mylink.from);
                             $scope.modal.modalView(String.format("{0}", mylink.table), mylink.modal);
@@ -280,7 +283,7 @@ TABLEEVENT = {
             }
         };
         $scope.beforeDelete = function (data) {
-
+            return false;
         };
         $scope.afterDelete = function (data) {
 
@@ -295,7 +298,7 @@ TABLEEVENT = {
             var where = [];
             for (const deletekey of $scope.table.crud.table.deletekeys)
                 where.push({field: deletekey, value: eval("row." + deletekey)});
-            $scope.beforeDelete(row);
+            if ($scope.beforeDelete(row)) return;
             $scope.delete(where, function (result) {
                 if (result.data.error === false) {
                     $scope.afterDelete(row);
