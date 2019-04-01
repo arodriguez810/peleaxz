@@ -17,12 +17,13 @@ var options = {
     columns: 1,
     posttype: "file"
 };
-options = OBJECT.merge(options, opts);
+options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g,'_');
 options.color = options.type === "form" ? "{{" + model + ".validation.stateDefault()}}" : options.icon.color;
 var toclient = JSON.stringify(options);
 %>
 <script>
     var keyColumn = <%= model %>.table.crud.table.key;
+    <%= model %>.form.schemas.insert["<%= name %>"] =FORM.schemasType.upload;
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
     <%= model %>.form.registerField("<%= name %>_DragonCountFile", "<%= toclient %>");
     if(MESSAGE.exist('columns.<%= name %>')){
@@ -33,13 +34,13 @@ var toclient = JSON.stringify(options);
 
 </script>
 <div class="form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
-     id="input<%= model %>_<%= name %>">
+     id="input<%= model %>_<%= nameclean %>">
     <label
             class="control-label is-visible animate">
         {{<%= model %>.form.options.<%= name %>.title}}
     </label>
 
-    <button name="<%= model %>_<%= name %>"
+    <button name="<%= model %>_<%= nameclean %>"
             type="button"
             role="button"
             class="btn bg-<%= options.color %>-600 btn-block legitRipple">
@@ -98,7 +99,7 @@ var toclient = JSON.stringify(options);
         form.options.<%= name %>.folder;
 
 
-        $('[name="<%= model %>_<%= name %>"]').click(function () {
+        $('[name="<%= model %>_<%= nameclean %>"]').click(function () {
             $(".map-wrapper").hide();
             amLoad<%= name %> = true;
             var root = <%= model %>.

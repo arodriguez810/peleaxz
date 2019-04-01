@@ -1,1 +1,31 @@
-<div class="bg-blue" style="text-align: center">pageNumber of totalPages</div>
+<%- include('../email/css.ejs') %>
+<style>
+    <%- include('../../../styles/colors/'+COLOR.primary+'.css') %>
+</style>
+<style>
+    <%- include('../../../styles/colors/'+TAG.table+'.css') %>
+</style>
+<div id="pageHeader">
+    <div class="bg-<%= COLOR.primary %>">
+        <%= DATA.pdf.replace('a PDF.pdf', '') %> - <%= CONFIG.appName %>
+    </div>
+    <table class="table table-bordered">
+        <thead class="bg-<%= TAG.table %>">
+
+        <tr class="bg-<%= TAG.table %>">
+            <% for(var i in DATA.columns) { %>
+                <th><%= DATA.columns[i] %></th>
+            <% } %>
+        </tr>
+        </thead>
+        <tbody style="visibility: hidden;height: 0px;">
+        <% DATA.content.forEach(function (row) { %>
+            <tr>
+                <% for(var i in row) { %>
+                    <td><%= row[i] %></td>
+                <% } %>
+            </tr>
+        <% }); %>
+        </tbody>
+    </table>
+</div>

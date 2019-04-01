@@ -3,11 +3,15 @@ API = {
         $scope.formData = {};
         $scope.rootPath = '/api/' + $scope.modelName;
         eval("$scope." + $scope.modelName + " ={}");
-        var func = function (parameters, callBack) {
+        var func = function (parameters, callBack, view) {
             if (parameters.limit === 0) {
                 parameters.limit = Number.MAX_SAFE_INTEGER;
             }
-            $http.post($scope.rootPath + '/list', parameters).then(function (data) {
+            var rootPath = $scope.rootPath;
+            if (view) {
+                var rootPath = '/api/' + view;
+            }
+            $http.post(rootPath + '/list', parameters).then(function (data) {
                 HTTP.evaluate(data);
                 if (!HTTP.evaluateTokenHTML(data))
                     callBack(data.data);

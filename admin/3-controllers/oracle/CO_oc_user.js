@@ -4,13 +4,6 @@ app.controller("oc_user", function ($scope, $http, $compile) {
     oc_user.formulary = function (data, mode, defaultData) {
         if (oc_user !== undefined) {
             RUN_B("oc_user", oc_user, $scope, $http, $compile);
-            oc_user.form.schemas.insert = {
-                password: FORM.schemasType.password,
-                profileimage: FORM.schemasType.upload
-            };
-            oc_user.form.schemas.select = {
-                password: FORM.schemasType.password
-            };
             oc_user.form.readonly = {};
             oc_user.createForm(data, mode, defaultData);
             oc_user.$scope.$watch('oc_user.name', function (value) {

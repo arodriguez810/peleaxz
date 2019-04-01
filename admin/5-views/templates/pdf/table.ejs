@@ -1,34 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Global stylesheets -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width"/>
+    <%- include('../email/css.ejs') %>
     <style>
-        <% include ../../../assets/css/icons/icomoon/styles.css %>
+        <%- include('../../../styles/colors/'+COLOR.primary+'.css') %>
     </style>
     <style>
-        <% include ../../../assets/css/bootstrap.css %>
+        <%- include('../../../styles/colors/'+TAG.table+'.css') %>
     </style>
-    <style>
-        <% include ../../../assets/css/style.css %>
-    </style>
-    <style>
-        <% include ../../../assets/css/colors.css %>
-    </style>
-    <!-- /global stylesheets -->
-
-
 </head>
 <body>
 <% DATA.content = eval("(" + DATA.content + ")"); %>
 <% DATA.firstrow = eval("(" + DATA.firstrow + ")"); %>
 <% DATA.columns = eval("(" + DATA.columns + ")"); %>
-<div id="baseController">
-    <div class="page-container">
-        <div class="page-content">
+
+<table class="body-wrap">
+    <tr>
+        <td class="container" style="margin: 0 0 !important;max-width: 5000px !important;">
             <table class="table table-bordered">
-                <thead class="bg-<%= TAG.table %>">
-                <tr>
+                <thead class="bg-<%= TAG.table %>" style="visibility: hidden;">
+                <tr class="bg-<%= TAG.table %>">
                     <% for(var i in DATA.columns) { %>
-                        <th><%= DATA.columns[i] %></th>
+                        <th height="0"><%= DATA.columns[i] %></th>
                     <% } %>
                 </tr>
                 </thead>
@@ -42,23 +37,8 @@
                 <% }); %>
                 </tbody>
             </table>
-        </div>
-    </div>
-    <script id="extrapdf">
-        runnings =
-            {
-                header: {
-                    height: '1cm',
-                    contents: function (pageNumber, totalPages) {
-                        return '<%- include('header',{DATA:DATA}); %>'.replace(/pageNumber/g, pageNumber).replace(/totalPages/g, totalPages);
-                    }
-                },
-                footer: {
-                    height: '1cm',
-                    contents: function (pageNumber, totalPages) {
-                        return '<%- include('footer',{DATA:DATA}); %>'.replace(/pageNumber/g, pageNumber).replace(/totalPages/g, totalPages);
-                    }
-                }
-            }
-    </script>
-</div>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

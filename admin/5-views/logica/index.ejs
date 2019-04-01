@@ -1,6 +1,6 @@
 <div id="<%= scope %>" ng-controller="<%= scope %> as <%= scope %>">
     <div class="panel panel-flat">
-
+        {{logica.PARAMETROSDELOGICA}}
         <div class="subcontent">
             <%- FORM.datetime("record", scope, {
                 timepicker: true,
@@ -8,16 +8,34 @@
                 format: 'h:i a',
                 callformat: 'hh:mm a'
             }) %>
-            Soy la logica y estoy en {{logica.record}}
-            <% for(var menu in CONFIG.menus) { %>
-                <%- FORM.checkbox("active"+menu, scope, {text: 'Active?'}) %>
-            <%}%>
+            Soy la logica y estoy en {{logica.record}} {{logica.new}}
 
             <% for(var menu in CONFIG.menus) { %>
-                <div ng-if="logica.active<%= menu %>">
+                <br>
+                <%- FORM.checkbox("active"+menu, scope, {text: 'Active?'}) %>
+
+                <div ng-if="logica.active<%= menu %>===true">
                     <%= CONFIG.menus[menu].text %> - <%= CONFIG.menus[menu].href %>
                 </div>
             <%}%>
+
+            <div ng-repeat="(key,value) in logica.CRUDS">
+                <br>
+                {{value.name}} : {{value.obj.table.allow}}
+            </div>
+
+            <input ng-model="logica.config.name">
+            <%- FORM.checkbox("config.estamuerto", scope, {text: 'Esta muerto?'}) %>
+            <br>
+            {{logica.config}}
+            <div id="ms_category" ng-controller="ms_category as ms_category">
+                <div class="panel panel-flat">
+                    <%- include('../templates/table/header',{scope:'ms_category'}); %>
+                    <div class="subcontent">
+                        <%- include('../templates/table/base',{scope:'ms_category'}); %>
+                    </div>
+                </div>
+            </div><!--end-->
         </div>
     </div>
 </div><!--end-->

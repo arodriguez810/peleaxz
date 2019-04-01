@@ -1,0 +1,86 @@
+<div class="row">
+    <div class="col-sm-12 col-md-2 remove-input-space">
+        <label class="control-label  is-visible animate" dragonlanguage><language>MESSAGE.i('mono.model')</language></label>
+        <select class="js-example-basic-single" name="state">
+            <option value="my_user">my_user</option>
+            <option value="ms_user">ms_user</option>
+            <option value="st_user">st_user</option>
+        </select>
+    </div>
+    <div class="col-sm-12 col-md-2 remove-input-space">
+        <label class="control-label  is-visible animate" dragonlanguage><language>MESSAGE.i('mono.databaseEngine')</language></label>
+        <select class="js-example-basic-single" name="state">
+            <option value="my_user">Microsoft SQL Server</option>
+            <option value="ms_user">MySQL</option>
+            <option value="st_user">Oracle</option>
+            <option value="st_user">MongoDB</option>
+        </select>
+    </div>
+    <div class="col-sm-12 col-md-3 remove-input-space ">
+        <%- FORM.input("username", scope, {maxlength: 50, icon: 'none'}) %>
+    </div>
+    <div class="col-sm-12 col-md-3 remove-input-space center-icon">
+        <%- FORM.password("password", scope, {maxlength: 50, icon: 'none'}) %>
+    </div>
+
+    <div class="col-sm-12 col-md-2 remove-input-space">
+        <label class="control-label  is-visible animate" dragonlanguage><language>MESSAGE.i('mono.encrytation')</language></label>
+        <select class="js-example-basic-single" name="state">
+            <option value="my_user">MD5</option>
+            <option value="ms_user">MD6</option>
+            <option value="st_user">SHA-1</option>
+            <option value="st_user">SHA-224</option>
+        </select>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12 col-md-2 remove-input-space">
+        <label class="control-label  is-visible animate" dragonlanguage><language>MESSAGE.i('mono.expirationUnit')</language></label>
+        <select class="js-example-basic-single" name="state">
+            <option value="my_user">Minutes</option>
+            <option value="ms_user">Hours</option>
+            <option value="st_user">Days</option>
+            <option value="st_user">Weeks</option>
+            <option value="st_user">Months</option>
+        </select>
+    </div>
+
+    <div class="col-sm-12 col-md-2 remove-input-space">
+        <label class="control-label  is-visible animate" style="margin-bottom: 0;" dragonlanguage><language>MESSAGE.i('mono.expiration')</language></label>
+        <input class="form-control" type="number" name="number" value="0">
+    </div>
+
+    <div class="col-sm-12 col-md-2 remove-input-space">
+        <label class="control-label  is-visible animate" style="margin-bottom: 0;" dragonlanguage><language>MESSAGE.i('mono.attempts')</language></label>
+        <input class="form-control" type="number" name="number" value="0">
+    </div>
+
+    <div class="col-sm-12 col-md-2 remove-input-space">
+        <label class="control-label  is-visible animate" style="margin-bottom: 0;" dragonlanguage><language>MESSAGE.i('mono.unlocktime')</language></label>
+        <input class="form-control" type="number" name="number" value="0">
+    </div>
+
+
+
+    <div class="col-sm-12 col-md-2 remove-input-space ">
+        <%- FORM.input("domain", scope, {maxlength: 50, icon: 'none'}) %>
+    </div>
+
+    <div class="col-sm-12 col-md-2 remove-input-space ">
+        <%- FORM.input("subdomain", scope, {maxlength: 50, icon: 'none'}) %>
+    </div>
+
+
+</div>
+
+<div class="row">
+    <div class="col-sm-12 col-md-1 remove-input-space ">
+        <%- FORM.input("port", scope, {maxlength: 4, type: 'number'}) %>
+    </div>
+
+    <div class="col-sm-1 col-md-1">
+        <br>
+        <%- FORM.checkbox("security", scope, {text: 'SSL', size: 'switchery-sm'})%>
+    </div>
+</div>

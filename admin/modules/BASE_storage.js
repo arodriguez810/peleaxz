@@ -148,7 +148,6 @@ exports.makeWhere = function (where, params) {
                     addi = ".toLowerCase()";
                 }
             }
-            console.log(obj.value);
             var condown = true;
             switch (operator) {
                 case "=": {
@@ -224,7 +223,10 @@ exports.sortByKey = function (array, key, order) {
 exports.data = async function (table, params, where, index) {
     var wherefinal = where;
     if (Array.isArray(where)) {
-        wherefinal = exports.makeWhere(where, params);
+        if (where.length > 1)
+            wherefinal = exports.makeWhere(where, params);
+        else
+            wherefinal = '';
     }
     var entity = eval(`params.CONFIG.storageEntities.${table}`);
     var indexKey = table + "_index";
@@ -393,7 +395,7 @@ exports.Model = function (tableName, params) {
         });
     };
     this.delete = async function (options) {
-        return await exports.delete(this.tableName, params, options).then(result => {
+        return await exports.delete(this.tableName, params, options.where).then(result => {
             return result;
         });
     };

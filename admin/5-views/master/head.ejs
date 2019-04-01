@@ -33,6 +33,7 @@
     <script type="text/javascript" src="assets/js/plugins/tables/datatables/extensions/responsive.min.js"></script>
     <script type="text/javascript" src="assets/js/core/libraries/bootstrap.min.js"></script>
     <script type="text/javascript" src="assets/js/plugins/loaders/blockui.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/tables/footable/footable.min.js"></script>
 
     <!-- /core JS files -->
 
@@ -96,6 +97,7 @@
         <script src="<%= FOLDERS.scripts %>/<%= item %>"></script>
     <% }); %>
 
+
     <script>
         WARNINGREQUESTS = [];
         Dropzone.autoDiscover = false;
@@ -120,6 +122,14 @@
         MODEL = {};
         MODELLIST = "<%= JSON.stringify(models) %>";
         MODELLIST = eval("(" + MODELLIST.replaceAll("&#34;", '"') + ")");
+        CONTROLLERS = "<%= JSON.stringify(controllersjs) %>";
+        CONTROLLERS = eval("(" + CONTROLLERS.replaceAll("&#34;", '"') + ")");
+        CONTROLLERSNAMES = [];
+        for (var CONTROLLER of CONTROLLERS) {
+            var name = CONTROLLER.split('CO_')[1].split('.js')[0];
+            if (["BASE"].indexOf(name) === -1)
+                CONTROLLERSNAMES.push(name);
+        }
         SESSION.ifLogoffRedirec();
         RELATIONS = {};
         RELATIONS.anonymous = [];
@@ -145,7 +155,38 @@
             include("../../server/" + item);
         }
     }); %>
+    <script>
+        if (SESSION.isLogged()) {
+            BASEAPI.list('permission', {
+                "where": [
+                    {
+                        "value": `${CONFIG.users.model}-${SESSION.current().getID()}`
+                    }
+                ]
+            }, function (result) {
+                if (result.data.length > 0) {
+                    var permissions = eval("(" + result.data[0].object + ")");
+                    for (var i in permissions) {
+                        eval(`CRUD_${permissions[i].name}.table.allow = permissions[i].obj.table.allow`);
+                    }
+                }
+                CRUDNAMES = [];
+                for (var CONTROLLER of CONTROLLERSNAMES) {
+                    if (eval(`typeof CRUD_${CONTROLLER} !== 'undefined'`)) {
+                        if (eval(`JSON.stringify(CONFIG.menus).indexOf('#${CONTROLLER}')===-1;`))
+                            (eval(`delete CRUD_${CONTROLLER}.table.allow.menu`))
 
+                        CRUDNAMES.push(
+                            {
+                                name: `${CONTROLLER}`,
+                                obj: (eval(`CRUD_${CONTROLLER}`))
+                            }
+                        )
+                    }
+                }
+            });
+        }
+    </script>
 </head>
 <body ng-app="app">
 

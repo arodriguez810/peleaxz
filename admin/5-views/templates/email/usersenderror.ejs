@@ -1,33 +1,60 @@
-
-
-<ul class="media-list">
-    <li class="media panel panel-body stack-media-on-mobile">
-        <a href="<%= DATA.profileimage %>" class="media-left" data-popup="lightbox">
-            <img src="<%= DATA.profileimage %>" width="96" alt="">
-        </a>
-
-        <div class="media-body">
-            <h6 class="media-heading text-semibold">
-                <a href="#"><%= DATA.name %></a>
-            </h6>
-
-            <ul class="list-inline list-inline-separate mb-10">
-                <li><a href="#" class="text-muted">Username</a></li>
-                <li><a href="#" class="text-muted"><%= DATA.username %></a></li>
-            </ul>
-
-            <p class="content-group-sm">
-                <%= DATA.error %>
-            </p>
-
-            <ul class="list-inline list-inline-separate">
-                <li>Date: <%= new Date() %></li>
-                <li>Call <%= DATA.phone %></li>
-            </ul>
-        </div>
-
-        <div class="media-right text-center">
-            <h3 class="no-margin text-semibold"><%= DATA.type %></h3>
-        </div>
-    </li>
-</ul>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width"/>
+    <%- include('css.ejs') %>
+    <style>
+        <%- include('../../../styles/colors/'+COLOR.primary+'.css') %>
+    </style>
+</head>
+<body>
+<table class="body-wrap">
+    <tr>
+        <td class="container">
+            <table>
+                <tr>
+                    <td align="center" class="masthead bg-<%= COLOR.primary %>-800">
+                        <h1><%= CONFIG.logo %></h1>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="content">
+                        <h2><%= CONFIG.developerBy.name %>,</h2>
+                        <h4><%= DATA.type %>:</h4>
+                        <p><%= DATA.error %></p>
+                        <table>
+                            <tr>
+                                <td align="center">
+                                    <p>
+                                        <a href="tel:+<%= DATA.phone %>" class="button bg-<%= COLOR.info %>">Call <%= DATA.phone %></a>
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                        <p>
+                            © <%= new Date().getFullYear() %>.
+                            <a href="<%= CONFIG.developerBy.site %>"><%= CONFIG.developerBy.name %></a>.
+                        </p>
+                        <p><em><%= DATA.name %> – <%= DATA.username %></em></p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td class="container bg-<%= COLOR.primary %>-300">
+            <table>
+                <tr>
+                    <td class="content footer" align="center">
+                        <p>
+                            Sent by <a href="#"><%= CONFIG.appName %></a>
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

@@ -39,6 +39,12 @@ var options = {
         //         base: "category",
         //         field: "id",
         //         columns: ["id", "name"]
+        //     },
+        //     {
+        //         table: "otratable",
+        //         base: "ms_category_id",
+        //         field: "id",
+        //         columns: ["id", "name"]
         //     }
         // ]
     },
@@ -47,6 +53,7 @@ var options = {
     posttype: "select"
 };
 options = OBJECT.merge(options, opts);
+var nameclean = name.replace(/\./g,'_');
 options.model = options.model ? options.model : false;
 options.permission = options.permission || "CRUD_" + options.table;
 var toclient = JSON.stringify(options);
@@ -54,8 +61,21 @@ var toclient = JSON.stringify(options);
 <script>
 
 
+
     if (DSON.oseaX(<%= model + "." + name %>))
             <%= model + "." + name %> = "[NULL]";
+
+    <% if(options.multiple){ %>
+        <%= model %>.form.schemas.insert["<%= name %>"] =FORM.schemasType.selectMultiple;
+        <%= model %>.form.schemas.select["<%= name %>"] =`{
+                    toTable: "<%= options.table %>",
+                    text: MESSAGE.i('actions.Loading'),
+                    fields: {
+                        <%= options.get.fieldTo %>: "$id",
+                    },
+                }`;
+    <% } %>
+
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>", "'[NULL]'");
     <%= model %>.form.options.<%= name %>.default = `${MESSAGE.ic('mono.select')} <%= name %>`;
     if (MESSAGE.exist('columns.<%= name %>')) {
@@ -89,13 +109,13 @@ var toclient = JSON.stringify(options);
 </script>
 <div id="<%= options.table %>" ng-controller="<%= options.table %> as <%= options.table %>">
     <div class="form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
-         id="input<%= model %>_<%= name %>">
+         id="input<%= model %>_<%= nameclean %>">
         <label  class="control-label is-visible animate">
             {{<%= model %>.form.options.<%= name %>.label}}
         </label>
 
         <% if(options.allowlist){ %>
-            <a dragonlanguage="" title="MESSAGE.ic('mono.list')" id="list<%= model %>_<%= name %>"
+            <a dragonlanguage="" title="MESSAGE.ic('mono.list')" id="list<%= model %>_<%= nameclean %>"
                class="label bg-<%= TAG.table %> label-icon"
                style="float: right;">
                 <i class="icon-list"></i>
@@ -105,7 +125,7 @@ var toclient = JSON.stringify(options);
         <% if(!options.multiple){ %>
             <a dragonlanguage="" title="MESSAGE.i('mono.Viewitem')"
                ng-show="<%= model + "." + name %>!='[NULL]' && <%= model %>.form.options.<%= name %>.allowview"
-               id="view<%= model %>_<%= name %>"
+               id="view<%= model %>_<%= nameclean %>"
                class="label bg-<%= TAG.table %> label-icon"
                style="float: right;margin-right: 10px;">
                 <i class="icon-eye"></i>
@@ -114,14 +134,14 @@ var toclient = JSON.stringify(options);
 
         <a dragonlanguage="" title="MESSAGE.i('mono.Edititem')"
            ng-show="<%= model + "." + name %>!='[NULL]' &&  <%= model %>.form.options.<%= name %>.allowedit"
-           id="edit<%= model %>_<%= name %>"
+           id="edit<%= model %>_<%= nameclean %>"
            class="label bg-<%= TAG.table %> label-icon"
            style="float: right;margin-right: 10px;">
             <i class="icon-pencil"></i>
         </a>
 
 
-        <a dragonlanguage="" title="MESSAGE.i('mono.Additem')" id="new<%= model %>_<%= name %>"
+        <a dragonlanguage="" title="MESSAGE.i('mono.Additem')" id="new<%= model %>_<%= nameclean %>"
            ng-show="<%= model %>.form.options.<%= name %>.allownew"
            class="label bg-<%= TAG.table %> label-icon"
            style="float: right;margin-right: 10px;">
@@ -129,7 +149,7 @@ var toclient = JSON.stringify(options);
         </a>
 
         <% if(options.refresh){ %>
-            <a dragonlanguage="" title="MESSAGE.i('mono.RefreshList')" id="reload<%= model %>_<%= name %>"
+            <a dragonlanguage="" title="MESSAGE.i('mono.RefreshList')" id="reload<%= model %>_<%= nameclean %>"
                class="label bg-<%= TAG.table %> label-icon"
                style="float: right;margin-right: 10px;">
                 <i class="icon-reload-alt"></i>
@@ -140,7 +160,7 @@ var toclient = JSON.stringify(options);
                 <%= options.multiple ? "multiple='multiple'" : "" %>
                 style="display: inline;"
                 ng-model="<%= model + "." + name %>"
-                name="<%= model %>_<%= name %>"
+                name="<%= model %>_<%= nameclean %>"
                 ng-disabled="<%= model %>.form.options.<%= name %>.disabled"
                 class="form-control bootstrap-select">
             <% if(!options.allownull){ %>
@@ -237,7 +257,7 @@ var toclient = JSON.stringify(options);
         <%= model %>.
         form.beginFunctions.push(`<%= model %>.form.loadDropDown("<%= name %>");`);
         <%= model %>.<%= name %>_object = {};
-        $('[name="<%= model %>_<%= name %>"]').change(function () {
+        $('[name="<%= model %>_<%= nameclean %>"]').change(function () {
             var selectedss = $(this).children("option:selected").data('object');
 
             <%= model %>.<%= name %>_object = selectedss;
@@ -252,17 +272,17 @@ var toclient = JSON.stringify(options);
             $(".map-wrapper").hide();
         });
 
-        $('#reload<%= model %>_<%= name %>').click(function () {
+        $('#reload<%= model %>_<%= nameclean %>').click(function () {
             <%= model %>.
             form.loadDropDown("<%= name %>");
             return false;
         });
-        $('#new<%= model %>_<%= name %>').click(function () {
+        $('#new<%= model %>_<%= nameclean %>').click(function () {
             <%= options.table %>.
             formulary(null, 'new');
             return false;
         });
-        $('#list<%= model %>_<%= name %>').click(function () {
+        $('#list<%= model %>_<%= nameclean %>').click(function () {
             baseController.viewData = {};
             var modal = {
                     header: {
@@ -280,7 +300,7 @@ var toclient = JSON.stringify(options);
             modal.modalView(String.format("{0}", "<%= options.table %>"), modal);
             return false;
         });
-        $('#edit<%= model %>_<%= name %>').click(function () {
+        $('#edit<%= model %>_<%= nameclean %>').click(function () {
             <%= options.table %>.
             formulary({
                 where: [{
@@ -294,7 +314,7 @@ var toclient = JSON.stringify(options);
             ;
             return false;
         });
-        $('#view<%= model %>_<%= name %>').click(function () {
+        $('#view<%= model %>_<%= nameclean %>').click(function () {
             <%= model %>.
             cell.openLink({
                     column: "<%= options.column %>",

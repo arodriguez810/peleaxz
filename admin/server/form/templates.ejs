@@ -36,6 +36,9 @@ FORM = {
     select: function (name, model, options) {
         return FORM.template('form/select', {name: name, model: model, opts: options});
     },
+    selectsimple: function (name, model, options) {
+        return FORM.template('form/selectsimple', {name: name, model: model, opts: options});
+    },
     relation: function (name, model, options) {
         return FORM.template('form/relation', {name: name, model: model, opts: options});
     },

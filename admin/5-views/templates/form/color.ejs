@@ -12,7 +12,7 @@ var options = {
     disabled: false
 
 };
-options = OBJECT.merge(options, opts);
+options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g,'_');
 var toclient = JSON.stringify(options);
 %>
 <script>
@@ -30,7 +30,7 @@ var toclient = JSON.stringify(options);
     }
 </script>
 <div class="form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
-     id="input<%= model %>_<%= name %>">
+     id="input<%= model %>_<%= nameclean %>">
     <label
 
             class="control-label is-visible animate">
@@ -38,7 +38,7 @@ var toclient = JSON.stringify(options);
     </label>
     <input
             ng-model="<%= model + "." + name %>"
-            name="<%= model %>_<%= name %>"
+            name="<%= model %>_<%= nameclean %>"
             type="text"
             class="form-control">
 
@@ -63,7 +63,7 @@ var toclient = JSON.stringify(options);
 
     $(document).ready(function () {
 
-        $('[name="<%= model %>_<%= name %>"]').spectrum({
+        $('[name="<%= model %>_<%= nameclean %>"]').spectrum({
             showInitial: true,
             showInput: true,
             showAlpha: true,
@@ -86,7 +86,7 @@ var toclient = JSON.stringify(options);
                 $('.sp-preview-inner').css('background-color', isReadProgram)
         }
 
-        $('[name="<%= model %>_<%= name %>"]').change(function () {
+        $('[name="<%= model %>_<%= nameclean %>"]').change(function () {
             $(".map-wrapper").hide();
             STEP.register({
                     scope: "<%= model %>",

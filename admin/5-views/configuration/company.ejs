@@ -1,0 +1,108 @@
+<div class="row">
+    <fieldset class="content-group fieldset-t">
+        <legend class="text-bold" style="margin-bottom: 15px;" dragonlanguage>
+            <language>MESSAGE.i('mono.application')</language>
+        </legend>
+        <div class="col-sm-4 col-md-4 remove-input-space ">
+            <%- FORM.input("appName", scope, {maxlength: 50, placeholder: "Name"}) %>
+        </div>
+
+        <div class="col-sm-4 col-md-4 remove-input-space ">
+            <%- FORM.input("logo", scope, {maxlength: 50, placeholder: "Logo Text"}) %>
+        </div>
+
+        <div class="col-sm-4 col-md-4 remove-input-space">
+            <%-
+            FORM.selectsimple("language", scope, {
+                label: "Language",
+                value: "code",
+                data: CONFIG.languages,
+                icon: {class: "sphere3"}
+            }) %>
+        </div>
+    </fieldset>
+</div>
+
+<div class="row">
+    <div class="col-sm-4 col-md-4 remove-input-space ">
+        <%- FORM.password("appKey", scope, {maxlength: 50, placeholder: "Key", icon: {class: "key"}}) %>
+    </div>
+
+    <div class="col-sm-4 col-md-4">
+        <%-
+        FORM.selectsimple("mode", scope, {
+            label: "Mode",
+            value: "id",
+            data: [
+                {id: 'developer', name: 'developer'},
+                {id: 'production', name: 'production'}
+            ],
+            icon: {class: "wrench3"}
+        }) %>
+    </div>
+
+    <div class="col-sm-4 col-md-4 remove-input-space">
+        <%-
+        FORM.selectsimple("home", scope, {
+            label: "Home Page",
+            data: CONTROLLERSNAMES,
+            icon: {class: "home"}
+        }) %>
+    </div>
+</div>
+
+<div class="row">
+    <fieldset class="content-group fieldset-t">
+        <legend class="text-bold" style="margin-bottom: 15px;" dragonlanguage>
+            <language>MESSAGE.i('mono.support')</language>
+        </legend>
+        <div class="col-sm-4 col-md-4 remove-input-space ">
+            <%- FORM.input("email", scope, {maxlength: 50, placeholder: "Email", icon: {class: "mail5"}}) %>
+        </div>
+
+        <div class="col-sm-4 col-md-4 remove-input-space ">
+            <%- FORM.input("phone", scope, {maxlength: 20, placeholder: "Phone", icon: {class: "phone2"}}) %>
+        </div>
+    </fieldset>
+</div>
+
+<div class="row">
+    <fieldset class="content-group fieldset-t">
+        <legend class="text-bold" style="margin-bottom: 15px;" dragonlanguage>
+            <language>MESSAGE.i('mono.features')</language>
+        </legend>
+        <div class="col-sm-2 col-md-2 pl-0">
+            <%- FORM.checkbox("fileManager", scope, {text: 'File Manager', size: 'switchery-sm'}) %>
+        </div>
+
+        <div class="col-sm-2 col-md-2">
+            <%- FORM.checkbox("stepManager", scope, {text: 'Step Manager QA/LOG', size: 'switchery-sm'}) %>
+        </div>
+
+        <div class="col-sm-2 col-md-2">
+            <%- FORM.checkbox("token", scope, {text: 'Token Security', size: 'switchery-sm'}) %>
+        </div>
+
+        <div class="col-sm-2 col-md-2">
+            <%- FORM.checkbox("multilanguage", scope, {text: 'Multi Languages', size: 'switchery-sm'}) %>
+        </div>
+    </fieldset>
+</div>
+
+
+<div class="row">
+    <fieldset class="content-group fieldset-t">
+        <legend class="text-bold" style="margin-bottom: 15px;" dragonlanguage>
+            <language>MESSAGE.i('mono.apparence')</language>
+        </legend>
+        <div class="col-sm-12 col-md-4 pl-0">
+            <%- FORM.color("primary", scope, {label: 'Multi Languages', icon: {class: "brush"}}) %>
+        </div>
+        <div class="col-sm-12 col-md-4 pl-0">
+            <%- FORM.color("menu", scope, {icon: {class: "brush"}}) %>
+        </div>
+        <div class="col-sm-12 col-md-4 pl-0">
+            <%- FORM.color("content", scope, {icon: {class: "brush"}}) %>
+        </div>
+    </fieldset>
+</div>

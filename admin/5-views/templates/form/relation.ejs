@@ -18,7 +18,7 @@ var options = {
     //table:""
 };
 
-options = OBJECT.merge(options, opts);
+options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g,'_');
 options.color = options.type === "form" ? "{{" + model + ".validation.stateDefault()}}" : COLOR.primary;
 var toclient = JSON.stringify(options);
 
@@ -32,6 +32,7 @@ if (options.master === null) {
 <script>
     var keyColumn = <%= model %>.table.crud.table.key;
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
+    <%= model %>.form.schemas.insert["<%= name %>"] =FORM.schemasType.relation;
     if(MESSAGE.exist('columns.<%= name %>')){
         <%= model %>.form.options.<%= name %>.text = MESSAGE.i('columns.<%= name %>');
     }
@@ -39,12 +40,12 @@ if (options.master === null) {
     var thisID = eval(`<%= model %>.${keyColumn}`);
 
 </script>
-<div id="<%= model %>_<%= name %>_content">
+<div id="<%= model %>_<%= nameclean %>_content">
 
 </div>
 <script>
     $(document).ready(function () {
-        var <%= model %>_<%= name %>Load = (function () {
+        var <%= model %>_<%= nameclean %>Load = (function () {
             $(".map-wrapper").hide();
             var id<%= name %> = '<%= model %><%= options.tempId %>';
             var field<%= name %> = "<%= options.field %>";
@@ -81,7 +82,7 @@ if (options.master === null) {
                 }else{
                     <%= model %>.loadContent(
                         "<%= options.table %>",
-                        "<%= model %>_<%= name %>_content",
+                        "<%= model %>_<%= nameclean %>_content",
                         MESSAGE.i('actions.Loading'),
                         function () {
                             MESSAGE.run();
@@ -91,7 +92,7 @@ if (options.master === null) {
 
 
         });
-        <%= model %>_<%= name %>Load();
+        <%= model %>_<%= nameclean %>Load();
     });
 </script>
 

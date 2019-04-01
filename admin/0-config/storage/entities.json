@@ -18,21 +18,14 @@
         "user_created",
         "user_updated",
         "user_deleted"
-      ],
-      "fkeys": [
-        {
-          "field": "tipo",
-          "table": "st_usertype",
-          "tableField": "id"
-        }
       ]
     },
-    "st_usertype": {
+    "group": {
       "key": "id",
       "type": "one",
       "fields": [
-        "description",
         "name",
+        "description",
         "active",
         "created",
         "updated",
@@ -40,16 +33,26 @@
         "user_created",
         "user_updated",
         "user_deleted"
-      ],
-      "fkeys": [
+      ]
+    },
+    "user_group": {
+      "key": "id",
+      "type": "one",
+      "fields": [
+        "user",
+        "product",
+        "created",
+        "updated",
+        "deleted",
+        "user_created",
+        "user_updated",
+        "user_deleted"
       ]
     },
     "permission": {
-      "key": "userid",
       "type": "deep"
     },
     "st_menu": {
-      "key": "id",
       "type": "deep"
     }
   }

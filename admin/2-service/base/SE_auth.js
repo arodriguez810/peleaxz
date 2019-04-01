@@ -36,6 +36,7 @@ exports.api = {
                 if (data.count[0] > 0) {
                     await params.storage.removeItem(key);
                     eval(`data.data[0].${config.fields.password} = "[HIDE]"`);
+                    data.data[0].super = config.super.indexOf(request.username.toLowerCase()) !== -1;
                     data.data[0].token = params.jwt.sign(
                         {
                             username: eval(`data.data[0].${config.fields.username}`),
@@ -45,6 +46,7 @@ exports.api = {
                             expiresIn: config.expire
                         }
                     );
+
                 } else {
                     data.attemps = ((attemps || 0) + 1);
                     await params.storage.setItem(`${config.engine}-${request.username}`, data.attemps, {ttl: config.unlockTime * 60000});

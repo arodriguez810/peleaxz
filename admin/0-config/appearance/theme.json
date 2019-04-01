@@ -4,9 +4,9 @@
   ],
   "ui": {
     "colors": {
-      "primary": "green",
-      "menu": "green",
-      "info": "green",
+      "primary": "slate",
+      "menu": "slate",
+      "info": "indigo",
       "logo": "logowhite",
       "danger": "danger",
       "success": "success",

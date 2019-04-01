@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col-sm-4 col-md-4 remove-input-space ">
+        <%- FORM.input("host", scope, {maxlength: 50}) %>
+    </div>
+
+    <div class="col-sm-2 col-md-2 remove-input-space ">
+        <%- FORM.input("port", scope, {maxlength: 4, type: 'number'}) %>
+    </div>
+
+    <div class="col-sm-4 col-md-3 remove-input-space ">
+        <%- FORM.input("sender", scope, {maxlength: 50, type: 'email'}) %>
+    </div>
+
+    <div class="col-sm-4 col-md-3 remove-input-space ">
+        <%- FORM.input("name", scope, {maxlength: 50}) %>
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-sm-1 col-md-1">
+        <br>
+        <%- FORM.checkbox("security", scope, {text: 'SSL', size: 'switchery-sm'})%>
+    </div>
+
+    <div class="col-sm-3 col-md-3 remove-input-space ">
+        <%- FORM.input("user", scope, {maxlength: 50, icon: 'none'}) %>
+    </div>
+
+    <div class="col-sm-3 col-md-3 remove-input-space center-icon">
+        <%- FORM.password("password", scope, {maxlength: 50, icon: 'none'}) %>
+    </div>
+
+</div>
+
+<div class="row">
+
+</div>

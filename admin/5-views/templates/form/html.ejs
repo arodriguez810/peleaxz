@@ -16,7 +16,7 @@ var options = {
     //maxlength: 10,
 
 };
-options = OBJECT.merge(options, opts);
+options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g,'_');
 options.autocomplete = options.autocomplete ? "autocomplete='Off'" : '';
 options.model = options.model ? options.model : false;
 var toclient = JSON.stringify(options);
@@ -28,14 +28,14 @@ var toclient = JSON.stringify(options);
     }
 </script>
 <div class="form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
-     id="input<%= model %>_<%= name %>">
+     id="input<%= model %>_<%= nameclean %>">
     <label
 
             class="control-label is-visible animate">
         {{<%= model %>.form.options.<%= name %>.placeholder}}
     </label>
     <textarea
-            ng-model="<%= model + "." + name %>" name="<%= model %>_<%= name %>"
+            ng-model="<%= model + "." + name %>" name="<%= model %>_<%= nameclean %>"
             ng-readonly="<%= model %>.form.options.<%= name %>.readonly"
             ng-disabled="<%= model %>.form.options.<%= name %>.disabled"
             ng-model-onblur
@@ -70,11 +70,11 @@ var toclient = JSON.stringify(options);
             <%= model %>.form.options.<%= name %>.disabled = true;
             if(isReadProgram!==undefined){
                 <%= model %>.<%= name %> = isReadProgram;
-                $('[name="<%= model %>_<%= name %>"]').val(isReadProgram);
+                $('[name="<%= model %>_<%= nameclean %>"]').val(isReadProgram);
             }
         }
 
-        $('[name="<%= model %>_<%= name %>"]').summernote({
+        $('[name="<%= model %>_<%= nameclean %>"]').summernote({
             callbacks: {
                 onKeydown: function(e) {
                     <%= model %>.<%= name %> = $(this).val();
@@ -85,13 +85,13 @@ var toclient = JSON.stringify(options);
         if(isReadProgram!==false){
             <%= model %>.form.options.<%= name %>.disabled = true;
             if(isReadProgram!==undefined){
-                $('[name="<%= model %>_<%= name %>"]').summernote('disable');
+                $('[name="<%= model %>_<%= nameclean %>"]').summernote('disable');
             }
         }
 
 
 
-        $('[name="<%= model %>_<%= name %>"]').on('summernote.change', function(we, contents, $editable) {
+        $('[name="<%= model %>_<%= nameclean %>"]').on('summernote.change', function(we, contents, $editable) {
             $(".map-wrapper").hide();
             STEP.register({
                     scope: "<%= model %>",

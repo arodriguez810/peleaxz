@@ -22,8 +22,6 @@
       <sourceFolder url="file://$MODULE_DIR$/admin/3-controllers/abase" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/3-controllers/auth" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/3-controllers" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/4-crud" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/4-crud/a.defautls" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/5-views/auth" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/5-views/base" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/5-views/master" isTestSource="true" />
@@ -33,18 +31,6 @@
       <sourceFolder url="file://$MODULE_DIR$/admin/5-views/templates/form" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/5-views/templates/pdf" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/5-views/templates/table" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/6-language" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/actions" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/alerts" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/columns" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/error" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/export" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/login" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/menu" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/mono" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/ms_all" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/navbar" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/restore" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/table" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/validations" isTestSource="true" />
@@ -67,14 +53,33 @@
       <sourceFolder url="file://$MODULE_DIR$/admin/server/form" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/server/language" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/server/scripts" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/styles/pages" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/modules" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/5-views/templates/email" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/5-views/group" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/4-crud" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/4-crud/a.defautls" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/4-crud/a.defautls/group" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/styles" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/styles/base" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/styles/colors" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/styles/components" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/styles/pages" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/modules" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/5-views/templates/email" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/styles/modules" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/6-language" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/actions" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/alerts" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/columns" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/error" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/export" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/login" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/menu" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/mono" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/ms_all" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/navbar" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/permissions" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/5-views/templates" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/5-views/configuration" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/5-views" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/.tmp" />
       <excludeFolder url="file://$MODULE_DIR$/admin/assets" />

@@ -1,0 +1,82 @@
+<div class="row">
+    <div class="col-sm-12 col-md-12">
+        <%- FORM.checkbox("mssql", scope, {text: 'Microsoft SQL Server ', size: 'switchery-sm'})%>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12 col-md-2 remove-input-space ">
+        <%- FORM.input("user", scope, {maxlength: 50, icon: 'none'}) %>
+    </div>
+    <div class="col-sm-12 col-md-3 remove-input-space center-icon">
+        <%- FORM.password("password", scope, {maxlength: 50, icon: 'none'}) %>
+    </div>
+    <div class="col-sm-12 col-md-3 remove-input-space ">
+        <%- FORM.input("sever", scope, {maxlength: 50, icon: 'none'}) %>
+    </div>
+    <div class="col-sm-12 col-md-3 remove-input-space ">
+        <%- FORM.input("database", scope, {maxlength: 50, icon: 'none'}) %>
+    </div>
+    <div class="col-sm-12 col-md-1 remove-input-space ">
+        <%- FORM.input("port", scope, {maxlength: 50, icon: 'none', type: 'number'}) %>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12 col-md-12">
+        <%- FORM.checkbox("mysql", scope, {text: 'MySQL ', size: 'switchery-sm'})%>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12 col-md-2 remove-input-space ">
+        <%- FORM.input("host", scope, {maxlength: 50, icon: 'none'}) %>
+    </div>
+    <div class="col-sm-12 col-md-2 remove-input-space ">
+        <%- FORM.input("user", scope, {maxlength: 50, icon: 'none'}) %>
+    </div>
+    <div class="col-sm-12 col-md-3 remove-input-space center-icon">
+        <%- FORM.password("password", scope, {maxlength: 50, icon: 'none'}) %>
+    </div>
+    <div class="col-sm-12 col-md-3 remove-input-space ">
+        <%- FORM.input("database", scope, {maxlength: 50, icon: 'none'}) %>
+    </div>
+    <div class="col-sm-12 col-md-2">
+        <br>
+        <%- FORM.checkbox("multipleStatements", scope, {text: 'Multiple Statements', size: 'switchery-sm'})%>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-sm-12 col-md-2 remove-input-space ">
+        <%- FORM.input("ConnectionLimit", scope, {maxlength: 50, icon: 'none', type: 'number'}) %>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12 col-md-12">
+        <%- FORM.checkbox("oracle", scope, {text: 'Oracle ', size: 'switchery-sm'})%>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 col-md-2 remove-input-space ">
+        <%- FORM.input("user", scope, {maxlength: 50, icon: 'none'}) %>
+    </div>
+    <div class="col-sm-12 col-md-3 remove-input-space center-icon">
+        <%- FORM.password("password", scope, {maxlength: 50, icon: 'none'}) %>
+    </div>
+    <div class="col-sm-12 col-md-7 remove-input-space ">
+        <%- FORM.input("connectionString", scope, {maxlength: 50, icon: 'none'}) %>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12 col-md-12">
+        <%- FORM.checkbox("mongo", scope, {text: 'MongoDB ', size: 'switchery-sm'})%>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 col-md-5 remove-input-space ">
+        <%- FORM.input("mongoURL", scope, {maxlength: 50, icon: 'none'}) %>
+    </div>
+</div>

@@ -65,18 +65,13 @@
               ]
             },
             {
-              "text": "Administration",
+              "text": "Multi DB",
               "href": "#",
               "icon": "equalizer3",
               "menus": [
                 {
                   "text": "Users",
                   "href": "#ms_user",
-                  "icon": "user"
-                },
-                {
-                  "text": "Mysql Users",
-                  "href": "#my_user",
                   "icon": "user"
                 },
                 {
@@ -93,6 +88,23 @@
                   "text": "User Report",
                   "href": "#ms_vwuser",
                   "icon": "user"
+                }
+              ]
+            },
+            {
+              "text": "Administration",
+              "href": "#",
+              "icon": "equalizer3",
+              "menus": [
+                {
+                  "text": "Users",
+                  "href": "#my_user",
+                  "icon": "user"
+                },
+                {
+                  "text": "Groups",
+                  "href": "#group",
+                  "icon": "users4"
                 }
               ]
             }

@@ -77,14 +77,6 @@ EXPORT = {
                 order: $scope.table.order,
                 join: $scope.table.crud.table.single
             };
-            if (RELATIONS.anonymous[$scope.modelName] !== undefined) {
-                dataToList.where = RELATIONS.anonymous[$scope.modelName].where;
-            }
-
-            if (!DSON.oseaX(ARRAY.last(MODAL.historyObject)))
-                if (!DSON.oseaX(ARRAY.last(MODAL.historyObject).viewData))
-                    if (!DSON.oseaX(ARRAY.last(MODAL.historyObject).viewData.data))
-                        dataToList.where = ARRAY.last(MODAL.historyObject).viewData.data;
 
 
             var options = [
@@ -399,7 +391,7 @@ EXPORT = {
                     },
                     {
                         text: MESSAGE.ic('mono.cancel'),
-                        color: COLOR.primary,
+                        color: TAG.table,
                         action: function () {
                             swal.close();
                             if (direct === true) {
@@ -418,10 +410,14 @@ EXPORT = {
                 parameters.where = RELATIONS.anonymous[$scope.modelName].where;
             }
 
+
+
             if (!DSON.oseaX(ARRAY.last(MODAL.historyObject))) {
                 if (!DSON.oseaX(ARRAY.last(MODAL.historyObject).viewData))
                     parameters.where = ARRAY.last(MODAL.historyObject).viewData.data;
             }
+
+            $scope.fixFiltersApply(parameters);
             if (!DSON.oseaX($scope.filters))
                 if (!DSON.oseaX($scope.filters.lastFilter))
                     if ($scope.filters.lastFilter.length > 0) {
@@ -431,9 +427,13 @@ EXPORT = {
                             parameters.where.push(item);
                         }
                     }
-            $scope.list(parameters, function (data) {
+
+            BASEAPI.list($scope.tableOrView, parameters, function (data) {
                 callback(data);
             });
+            // $scope.list(parameters, function (data) {
+            //     callback(data);
+            // });
         };
         $scope.export.jsonLabels = function (columns) {
             var labels = [];

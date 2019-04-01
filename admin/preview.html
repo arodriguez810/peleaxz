@@ -1,0 +1,917 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width"/>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        font-size: 100%;
+        font-family: "Avenir Next", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+        line-height: 1.65;
+    }
+
+    img {
+        max-width: 100%;
+        margin: 0 auto;
+        display: block;
+    }
+
+    body, .body-wrap {
+        width: 100% !important;
+        height: 100%;
+        background: #f8f8f8;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .text-right {
+        text-align: right;
+    }
+
+    .text-left {
+        text-align: left;
+    }
+
+    .button {
+        display: inline-block;
+        border-width: 10px 20px 8px;
+        font-weight: bold;
+        border-radius: 4px;
+    }
+
+    .button:hover {
+        text-decoration: none;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        margin-bottom: 20px;
+        line-height: 1.25;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+
+    h2 {
+        font-size: 28px;
+    }
+
+    h3 {
+        font-size: 24px;
+    }
+
+    h4 {
+        font-size: 20px;
+    }
+
+    h5 {
+        font-size: 16px;
+    }
+
+    p, ul, ol {
+        font-size: 16px;
+        font-weight: normal;
+        margin-bottom: 20px;
+    }
+
+    .container {
+        display: block !important;
+        clear: both !important;
+        margin: 0 auto !important;
+        max-width: 580px !important;
+    }
+
+    .container table {
+        width: 100% !important;
+        border-collapse: collapse;
+    }
+
+    .container .masthead {
+        padding: 80px 0;
+    }
+
+    .container .masthead h1 {
+        margin: 0 auto !important;
+        max-width: 90%;
+        text-transform: uppercase;
+    }
+
+    .container .content {
+        background: white;
+        padding: 30px 35px;
+    }
+
+    .container .content.footer {
+        background: none;
+    }
+
+    .container .content.footer p {
+        margin-bottom: 0;
+        text-align: center;
+        font-size: 14px;
+    }
+
+    .container .content.footer a {
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .container .content.footer a:hover {
+        text-decoration: underline;
+    }
+
+    .table {
+        border-collapse: collapse !important;
+    }
+
+    .table-bordered th,
+    .table-bordered td {
+        border: 1px solid #ddd !important;
+    }
+
+    .table {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+    .table > thead > tr > th,
+    .table > tbody > tr > th,
+    .table > tfoot > tr > th,
+    .table > thead > tr > td,
+    .table > tbody > tr > td,
+    .table > tfoot > tr > td {
+        padding: 12px 20px;
+        line-height: 1.5384616;
+        vertical-align: top;
+        border-top: 1px solid #ddd;
+    }
+    .table > thead > tr > th {
+        vertical-align: bottom;
+        border-bottom: 2px solid #ddd;
+    }
+    .table > caption + thead > tr:first-child > th,
+    .table > colgroup + thead > tr:first-child > th,
+    .table > thead:first-child > tr:first-child > th,
+    .table > caption + thead > tr:first-child > td,
+    .table > colgroup + thead > tr:first-child > td,
+    .table > thead:first-child > tr:first-child > td {
+        border-top: 0;
+    }
+    .table > tbody + tbody {
+        border-top: 2px solid #ddd;
+    }
+    .table .table {
+        background-color: #eeeded;
+    }
+    .table-condensed > thead > tr > th,
+    .table-condensed > tbody > tr > th,
+    .table-condensed > tfoot > tr > th,
+    .table-condensed > thead > tr > td,
+    .table-condensed > tbody > tr > td,
+    .table-condensed > tfoot > tr > td {
+        padding: 8px 20px;
+    }
+    .table-bordered {
+        border: 1px solid #ddd;
+    }
+    .table-bordered > thead > tr > th,
+    .table-bordered > tbody > tr > th,
+    .table-bordered > tfoot > tr > th,
+    .table-bordered > thead > tr > td,
+    .table-bordered > tbody > tr > td,
+    .table-bordered > tfoot > tr > td {
+        border: 1px solid #ddd;
+    }
+    .table-bordered > thead > tr > th,
+    .table-bordered > thead > tr > td {
+        border-bottom-width: 2px;
+    }
+    .table-striped > tbody > tr:nth-of-type(odd) {
+        background-color: #fcfcfc;
+    }
+    .table-hover > tbody > tr:hover {
+        background-color: #f8f8f8;
+    }
+    table col[class*="col-"] {
+        position: static;
+        float: none;
+        display: table-column;
+    }
+    table td[class*="col-"],
+    table th[class*="col-"] {
+        position: static;
+        float: none;
+        display: table-cell;
+    }
+    .table > thead > tr > td.active,
+    .table > tbody > tr > td.active,
+    .table > tfoot > tr > td.active,
+    .table > thead > tr > th.active,
+    .table > tbody > tr > th.active,
+    .table > tfoot > tr > th.active,
+    .table > thead > tr.active > td,
+    .table > tbody > tr.active > td,
+    .table > tfoot > tr.active > td,
+    .table > thead > tr.active > th,
+    .table > tbody > tr.active > th,
+    .table > tfoot > tr.active > th {
+        background-color: #f8f8f8;
+    }
+    .table-hover > tbody > tr > td.active:hover,
+    .table-hover > tbody > tr > th.active:hover,
+    .table-hover > tbody > tr.active:hover > td,
+    .table-hover > tbody > tr:hover > .active,
+    .table-hover > tbody > tr.active:hover > th {
+        background-color: #ebebeb;
+    }
+    .table > thead > tr > td.success,
+    .table > tbody > tr > td.success,
+    .table > tfoot > tr > td.success,
+    .table > thead > tr > th.success,
+    .table > tbody > tr > th.success,
+    .table > tfoot > tr > th.success,
+    .table > thead > tr.success > td,
+    .table > tbody > tr.success > td,
+    .table > tfoot > tr.success > td,
+    .table > thead > tr.success > th,
+    .table > tbody > tr.success > th,
+    .table > tfoot > tr.success > th {
+        background-color: #E8F5E9;
+    }
+    .table-hover > tbody > tr > td.success:hover,
+    .table-hover > tbody > tr > th.success:hover,
+    .table-hover > tbody > tr.success:hover > td,
+    .table-hover > tbody > tr:hover > .success,
+    .table-hover > tbody > tr.success:hover > th {
+        background-color: #d6edd8;
+    }
+    .table > thead > tr > td.info,
+    .table > tbody > tr > td.info,
+    .table > tfoot > tr > td.info,
+    .table > thead > tr > th.info,
+    .table > tbody > tr > th.info,
+    .table > tfoot > tr > th.info,
+    .table > thead > tr.info > td,
+    .table > tbody > tr.info > td,
+    .table > tfoot > tr.info > td,
+    .table > thead > tr.info > th,
+    .table > tbody > tr.info > th,
+    .table > tfoot > tr.info > th {
+        background-color: #E0F7FA;
+    }
+    .table-hover > tbody > tr > td.info:hover,
+    .table-hover > tbody > tr > th.info:hover,
+    .table-hover > tbody > tr.info:hover > td,
+    .table-hover > tbody > tr:hover > .info,
+    .table-hover > tbody > tr.info:hover > th {
+        background-color: #caf1f6;
+    }
+    .table > thead > tr > td.warning,
+    .table > tbody > tr > td.warning,
+    .table > tfoot > tr > td.warning,
+    .table > thead > tr > th.warning,
+    .table > tbody > tr > th.warning,
+    .table > tfoot > tr > th.warning,
+    .table > thead > tr.warning > td,
+    .table > tbody > tr.warning > td,
+    .table > tfoot > tr.warning > td,
+    .table > thead > tr.warning > th,
+    .table > tbody > tr.warning > th,
+    .table > tfoot > tr.warning > th {
+        background-color: #FFF3E0;
+    }
+    .table-hover > tbody > tr > td.warning:hover,
+    .table-hover > tbody > tr > th.warning:hover,
+    .table-hover > tbody > tr.warning:hover > td,
+    .table-hover > tbody > tr:hover > .warning,
+    .table-hover > tbody > tr.warning:hover > th {
+        background-color: #ffe9c6;
+    }
+    .table > thead > tr > td.danger,
+    .table > tbody > tr > td.danger,
+    .table > tfoot > tr > td.danger,
+    .table > thead > tr > th.danger,
+    .table > tbody > tr > th.danger,
+    .table > tfoot > tr > th.danger,
+    .table > thead > tr.danger > td,
+    .table > tbody > tr.danger > td,
+    .table > tfoot > tr.danger > td,
+    .table > thead > tr.danger > th,
+    .table > tbody > tr.danger > th,
+    .table > tfoot > tr.danger > th {
+        background-color: #FBE9E7;
+    }
+    .table-hover > tbody > tr > td.danger:hover,
+    .table-hover > tbody > tr > th.danger:hover,
+    .table-hover > tbody > tr.danger:hover > td,
+    .table-hover > tbody > tr:hover > .danger,
+    .table-hover > tbody > tr.danger:hover > th {
+        background-color: #f7d5d1;
+    }
+    .table-responsive {
+        overflow-x: auto;
+        min-height: 0.01%;
+    }
+    @media screen and (max-width: 768px) {
+        .table-responsive {
+            width: 100%;
+            margin-bottom: 15px;
+            overflow-y: hidden;
+            -ms-overflow-style: -ms-autohiding-scrollbar;
+            border: 1px solid #ddd;
+        }
+        .table-responsive > .table {
+            margin-bottom: 0;
+        }
+        .table-responsive > .table > thead > tr > th,
+        .table-responsive > .table > tbody > tr > th,
+        .table-responsive > .table > tfoot > tr > th,
+        .table-responsive > .table > thead > tr > td,
+        .table-responsive > .table > tbody > tr > td,
+        .table-responsive > .table > tfoot > tr > td {
+            white-space: nowrap;
+        }
+        .table-responsive > .table-bordered {
+            border: 0;
+        }
+        .table-responsive > .table-bordered > thead > tr > th:first-child,
+        .table-responsive > .table-bordered > tbody > tr > th:first-child,
+        .table-responsive > .table-bordered > tfoot > tr > th:first-child,
+        .table-responsive > .table-bordered > thead > tr > td:first-child,
+        .table-responsive > .table-bordered > tbody > tr > td:first-child,
+        .table-responsive > .table-bordered > tfoot > tr > td:first-child {
+            border-left: 0;
+        }
+        .table-responsive > .table-bordered > thead > tr > th:last-child,
+        .table-responsive > .table-bordered > tbody > tr > th:last-child,
+        .table-responsive > .table-bordered > tfoot > tr > th:last-child,
+        .table-responsive > .table-bordered > thead > tr > td:last-child,
+        .table-responsive > .table-bordered > tbody > tr > td:last-child,
+        .table-responsive > .table-bordered > tfoot > tr > td:last-child {
+            border-right: 0;
+        }
+        .table-responsive > .table-bordered > tbody > tr:last-child > th,
+        .table-responsive > .table-bordered > tfoot > tr:last-child > th,
+        .table-responsive > .table-bordered > tbody > tr:last-child > td,
+        .table-responsive > .table-bordered > tfoot > tr:last-child > td {
+            border-bottom: 0;
+        }
+    }
+
+</style>
+    <style>
+        .bg-slate {
+    background-color: #607D8B;
+    border-color: #607D8B;
+    color: #fff;
+}
+.bg-slate-300 {
+    background-color: #90A4AE;
+    border-color: #90A4AE;
+    color: #fff;
+}
+.bg-slate-400 {
+    background-color: #78909C;
+    border-color: #78909C;
+    color: #fff;
+}
+.bg-slate-600 {
+    background-color: #546E7A;
+    border-color: #546E7A;
+    color: #fff;
+}
+.bg-slate-700 {
+    background-color: #455A64;
+    border-color: #455A64;
+    color: #fff;
+}
+.bg-slate-800 {
+    background-color: #37474F;
+    border-color: #37474F;
+    color: #fff;
+}
+.alpha-slate {
+    background-color: #ECEFF1;
+    border-color: #546E7A;
+}
+.border-slate {
+    border-color: #607D8B;
+}
+.border-slate-300 {
+    border-color: #90A4AE;
+}
+.border-slate-400 {
+    border-color: #78909C;
+}
+.border-slate-600 {
+    border-color: #546E7A;
+}
+.border-slate-700 {
+    border-color: #455A64;
+}
+.border-slate-800 {
+    border-color: #37474F;
+}
+.border-top-slate {
+    border-top-color: #607D8B;
+}
+.border-top-slate-300 {
+    border-top-color: #90A4AE;
+}
+.border-top-slate-400 {
+    border-top-color: #78909C;
+}
+.border-top-slate-600 {
+    border-top-color: #546E7A;
+}
+.border-top-slate-700 {
+    border-top-color: #455A64;
+}
+.border-top-slate-800 {
+    border-top-color: #37474F;
+}
+.border-bottom-slate {
+    border-bottom-color: #607D8B;
+}
+.border-bottom-slate-300 {
+    border-bottom-color: #90A4AE;
+}
+.border-bottom-slate-400 {
+    border-bottom-color: #78909C;
+}
+.border-bottom-slate-600 {
+    border-bottom-color: #546E7A;
+}
+.border-bottom-slate-700 {
+    border-bottom-color: #455A64;
+}
+.border-bottom-slate-800 {
+    border-bottom-color: #37474F;
+}
+.border-left-slate {
+    border-left-color: #607D8B;
+}
+.border-left-slate-300 {
+    border-left-color: #90A4AE;
+}
+.border-left-slate-400 {
+    border-left-color: #78909C;
+}
+.border-left-slate-600 {
+    border-left-color: #546E7A;
+}
+.border-left-slate-700 {
+    border-left-color: #455A64;
+}
+.border-left-slate-800 {
+    border-left-color: #37474F;
+}
+.border-right-slate {
+    border-right-color: #607D8B;
+}
+.border-right-slate-300 {
+    border-right-color: #90A4AE;
+}
+.border-right-slate-400 {
+    border-right-color: #78909C;
+}
+.border-right-slate-600 {
+    border-right-color: #546E7A;
+}
+.border-right-slate-700 {
+    border-right-color: #455A64;
+}
+.border-right-slate-800 {
+    border-right-color: #37474F;
+}
+.text-slate,
+.text-slate:hover,
+.text-slate:focus {
+    color: #607D8B !important;
+}
+.text-slate-300,
+.text-slate-300:hover,
+.text-slate-300:focus {
+    color: #90A4AE !important;
+}
+.text-slate-400,
+.text-slate-400:hover,
+.text-slate-400:focus {
+    color: #78909C !important;
+}
+.text-slate-600,
+.text-slate-600:hover,
+.text-slate-600:focus {
+    color: #546E7A !important;
+}
+.text-slate-700,
+.text-slate-700:hover,
+.text-slate-700:focus {
+    color: #455A64 !important;
+}
+.text-slate-800,
+.text-slate-800:hover,
+.text-slate-800:focus {
+    color: #37474F !important;
+}
+
+    </style>
+    <style>
+        .bg-indigo {
+    background-color: #4527A0;
+    border-color: #4527A0;
+    color: #fff;
+}
+.bg-indigo-300 {
+    background-color: #7986CB;
+    border-color: #7986CB;
+    color: #fff;
+}
+.bg-indigo-400 {
+    background-color: #5C6BC0;
+    border-color: #5C6BC0;
+    color: #fff;
+}
+.bg-indigo-600 {
+    background-color: #3949AB;
+    border-color: #3949AB;
+    color: #fff;
+}
+.bg-indigo-700 {
+    background-color: #303F9F;
+    border-color: #303F9F;
+    color: #fff;
+}
+.bg-indigo-800 {
+    background-color: #283593;
+    border-color: #283593;
+    color: #fff;
+}
+.alpha-indigo {
+    background-color: #E8EAF6;
+    border-color: #3949AB;
+}
+.border-indigo {
+    border-color: #4527A0;
+}
+.border-indigo-300 {
+    border-color: #7986CB;
+}
+.border-indigo-400 {
+    border-color: #5C6BC0;
+}
+.border-indigo-600 {
+    border-color: #3949AB;
+}
+.border-indigo-700 {
+    border-color: #303F9F;
+}
+.border-indigo-800 {
+    border-color: #283593;
+}
+.border-top-indigo {
+    border-top-color: #4527A0;
+}
+.border-top-indigo-300 {
+    border-top-color: #7986CB;
+}
+.border-top-indigo-400 {
+    border-top-color: #5C6BC0;
+}
+.border-top-indigo-600 {
+    border-top-color: #3949AB;
+}
+.border-top-indigo-700 {
+    border-top-color: #303F9F;
+}
+.border-top-indigo-800 {
+    border-top-color: #283593;
+}
+.border-bottom-indigo {
+    border-bottom-color: #4527A0;
+}
+.border-bottom-indigo-300 {
+    border-bottom-color: #7986CB;
+}
+.border-bottom-indigo-400 {
+    border-bottom-color: #5C6BC0;
+}
+.border-bottom-indigo-600 {
+    border-bottom-color: #3949AB;
+}
+.border-bottom-indigo-700 {
+    border-bottom-color: #303F9F;
+}
+.border-bottom-indigo-800 {
+    border-bottom-color: #283593;
+}
+.border-left-indigo {
+    border-left-color: #4527A0;
+}
+.border-left-indigo-300 {
+    border-left-color: #7986CB;
+}
+.border-left-indigo-400 {
+    border-left-color: #5C6BC0;
+}
+.border-left-indigo-600 {
+    border-left-color: #3949AB;
+}
+.border-left-indigo-700 {
+    border-left-color: #303F9F;
+}
+.border-left-indigo-800 {
+    border-left-color: #283593;
+}
+.border-right-indigo {
+    border-right-color: #4527A0;
+}
+.border-right-indigo-300 {
+    border-right-color: #7986CB;
+}
+.border-right-indigo-400 {
+    border-right-color: #5C6BC0;
+}
+.border-right-indigo-600 {
+    border-right-color: #3949AB;
+}
+.border-right-indigo-700 {
+    border-right-color: #303F9F;
+}
+.border-right-indigo-800 {
+    border-right-color: #283593;
+}
+.text-indigo,
+.text-indigo:hover,
+.text-indigo:focus {
+    color: #4527A0 !important;
+}
+.text-indigo-300,
+.text-indigo-300:hover,
+.text-indigo-300:focus {
+    color: #7986CB !important;
+}
+.text-indigo-400,
+.text-indigo-400:hover,
+.text-indigo-400:focus {
+    color: #5C6BC0 !important;
+}
+.text-indigo-600,
+.text-indigo-600:hover,
+.text-indigo-600:focus {
+    color: #3949AB !important;
+}
+.text-indigo-700,
+.text-indigo-700:hover,
+.text-indigo-700:focus {
+    color: #303F9F !important;
+}
+.text-indigo-800,
+.text-indigo-800:hover,
+.text-indigo-800:focus {
+    color: #283593 !important;
+}
+
+    </style>
+</head>
+<body>
+
+
+
+
+
+<img style="display: none" src="https://www.google.com/images/srpr/logo11w.png">
+<table class="body-wrap">
+    <tr>
+        <td class="container" style="margin: 0 0 !important;max-width: 5000px !important;">
+            <table class="table table-bordered">
+                <thead class="bg-indigo" style="visibility: hidden;">
+                <tr class="bg-indigo">
+                    
+                        <th height="0">ID</th>
+                    
+                        <th height="0">Nombre</th>
+                    
+                        <th height="0">Price</th>
+                    
+                        <th height="0">Categoría</th>
+                    
+                        <th height="0">Description</th>
+                    
+                        <th height="0">Active</th>
+                    
+                </tr>
+                </thead>
+                <tbody>
+                
+                    <tr>
+                        
+                            <td>1</td>
+                        
+                            <td>Coca Cola</td>
+                        
+                            <td>20.25</td>
+                        
+                            <td>Frios</td>
+                        
+                            <td>Coca Cola</td>
+                        
+                            <td>Si</td>
+                        
+                    </tr>
+                
+                    <tr>
+                        
+                            <td>2</td>
+                        
+                            <td>Kola Real</td>
+                        
+                            <td>15.52</td>
+                        
+                            <td>Frios</td>
+                        
+                            <td>Es algo parecido a la coca cola</td>
+                        
+                            <td>Si</td>
+                        
+                    </tr>
+                
+                    <tr>
+                        
+                            <td>5</td>
+                        
+                            <td>Laptop</td>
+                        
+                            <td>12,000.00</td>
+                        
+                            <td>Electronicos</td>
+                        
+                            <td>Laptop</td>
+                        
+                            <td>Si</td>
+                        
+                    </tr>
+                
+                    <tr>
+                        
+                            <td>7</td>
+                        
+                            <td>Mobile</td>
+                        
+                            <td>10,000.00</td>
+                        
+                            <td>Electronicos</td>
+                        
+                            <td>Mobile</td>
+                        
+                            <td>Si</td>
+                        
+                    </tr>
+                
+                    <tr>
+                        
+                            <td>8</td>
+                        
+                            <td>Iphone X</td>
+                        
+                            <td>20,000.00</td>
+                        
+                            <td>Electronicos</td>
+                        
+                            <td>Test</td>
+                        
+                            <td>Si</td>
+                        
+                    </tr>
+                
+                    <tr>
+                        
+                            <td>10</td>
+                        
+                            <td>Samsung Galaxy Note 9</td>
+                        
+                            <td>30,000.00</td>
+                        
+                            <td>Electronicos</td>
+                        
+                            <td>Test</td>
+                        
+                            <td>Si</td>
+                        
+                    </tr>
+                
+                    <tr>
+                        
+                            <td>11</td>
+                        
+                            <td>Salchihcas Jajá</td>
+                        
+                            <td>20.00</td>
+                        
+                            <td>Lacteos</td>
+                        
+                            <td>test</td>
+                        
+                            <td>Si</td>
+                        
+                    </tr>
+                
+                    <tr>
+                        
+                            <td>12</td>
+                        
+                            <td>Chiclke</td>
+                        
+                            <td>5.35</td>
+                        
+                            <td>Frios</td>
+                        
+                            <td>test</td>
+                        
+                            <td>Si</td>
+                        
+                    </tr>
+                
+                    <tr>
+                        
+                            <td>34</td>
+                        
+                            <td>Performance</td>
+                        
+                            <td>50,000.50</td>
+                        
+                            <td>Lacteos</td>
+                        
+                            <td>Performance</td>
+                        
+                            <td>Si</td>
+                        
+                    </tr>
+                
+                    <tr>
+                        
+                            <td>35</td>
+                        
+                            <td>diomedes</td>
+                        
+                            <td>2,000.00</td>
+                        
+                            <td>Salsas</td>
+                        
+                            <td>test</td>
+                        
+                            <td>Si</td>
+                        
+                    </tr>
+                
+                    <tr>
+                        
+                            <td>36</td>
+                        
+                            <td>Test</td>
+                        
+                            <td>200.00</td>
+                        
+                            <td>Comida</td>
+                        
+                            <td>test</td>
+                        
+                            <td>Si</td>
+                        
+                    </tr>
+                
+                    <tr>
+                        
+                            <td>37</td>
+                        
+                            <td>Dio</td>
+                        
+                            <td>200.00</td>
+                        
+                            <td>Comida</td>
+                        
+                            <td>test</td>
+                        
+                            <td>Si</td>
+                        
+                    </tr>
+                
+                </tbody>
+            </table>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

@@ -279,7 +279,7 @@
     <div class="panel-body">
         <form class="dropzone" id="filesForm" method="post" enctype="multipart/form-data">
             <input type="hidden" name="folder" value="{{<%= DATA.scope %>.galleryFiles.rootFolder}}">
-            <input type="hidden" name="user" value="{{baseController.SESSION.current().id}}">
+            <input type="hidden" name="user" value="{{baseController.SESSION.current().getID()}}">
 
         </form>
     </div>

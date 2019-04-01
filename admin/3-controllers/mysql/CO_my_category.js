@@ -4,8 +4,6 @@ app.controller("my_category", function ($scope, $http, $compile) {
     my_category.formulary = function (data, mode, defaultData) {
         if (my_category !== undefined) {
             RUN_B("my_category", my_category, $scope, $http, $compile);
-            my_category.form.schemas.insert = {};
-            my_category.form.schemas.select = {};
             my_category.form.readonly = {};
             my_category.createForm(data, mode, defaultData);
             my_category.$scope.$watch('my_category.a', function (value) {

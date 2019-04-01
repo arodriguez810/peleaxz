@@ -21,7 +21,7 @@ MODAL = {
     close: function ($scope) {
         var last = ARRAY.last(MODAL.history);
         STEP.register({
-            scope: $scope.modelName,
+            scope: $scope ? $scope.modelName : '',
             windows: `${ARRAY.last(MODAL.historyObject).header.title} Modal`, action: "Close Modal",
         });
         $(last).modal("hide");
@@ -82,7 +82,7 @@ MODAL = {
                 : data.content.data;
             var cancelText = backMode ? MESSAGE.ic('mono.back') : MESSAGE.ic('mono.close');
             var cancelButton = data.footer.cancelButton
-                ? '    <button type="button" class="btn btn-link" ' + closeModal + " >" + cancelText + "</button>" : "";
+                ? '    <button type="button" class="btn btn-labeled bg-' + TAG.table + '" ' + closeModal + " > <b><i class=\"icon-cross2\"></i></b>" + cancelText + "</button>" : "";
             var html = String.format('<div id="modal' + data.id + '" class="modal {0}"  data-backdrop="false">', animation) +
                 ' <div class="modal-dialog ' + data.width + ' ">' +
                 '  <div class="modal-content">' +
@@ -96,7 +96,7 @@ MODAL = {
                 "</div>";
             $("#" + $scope.modal.DOMID).append(html);
             if (data.content.data.startsWith("->")) {
-                if (data.content.sameController) {
+                if (data.content.sameController === true) {
 
                     $scope.loadContent(
                         data.content.data.replaceAll("->", ""),
@@ -115,7 +115,8 @@ MODAL = {
                         data.content.loadingContentText || MESSAGE.i('actions.Loading'),
                         function (success) {
                             MESSAGE.run();
-                        }
+                        },
+                        data.content.sameController
                     );
                 }
             }

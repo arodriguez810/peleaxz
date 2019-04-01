@@ -2,7 +2,7 @@ LOAD = {
     outanimation: "BounceOutLeft",
     inanimation: "BounceInRight",
     run: function ($scope, $http) {
-        $scope.loadContent = function (view, id, loadingText, callback, baseDiv) {
+        $scope.loadContent = function (view, id, loadingText, callback, baseDiv, controller) {
             baseDiv = baseDiv === undefined ? true : baseDiv;
             var thisid = "#" + id;
             if (view === "") {
@@ -39,7 +39,7 @@ LOAD = {
             if (SESSION.ifLogoffRedirec(view)) {
                 return;
             }
-            $http.get(view + `?scope=${$scope.modelName}`, {}).then(
+            $http.get(view + `?scope=${controller || $scope.modelName}`, {}).then(
                 function (data) {
                     HTTP.evaluate(data);
                     if (!HTTP.evaluateTokenHTML(data))
@@ -51,13 +51,13 @@ LOAD = {
                     callback(true);
                 },
                 function (data) {
-                    $http.get("error/error" + "?scope=" + $scope.modelName, {}).then(
+                    $http.get("error/error" + "?scope=" + controller || $scope.modelName, {}).then(
                         function (template) {
                             $scope.httpError = data;
                             STEP.register({
-                                scope: $scope.modelName,
+                                scope: controller || $scope.modelName,
                                 windows: `error ${data.status}`, action: "http error",
-                                description: view + `?scope=${$scope.modelName} ` + data.statusText,
+                                description: view + `?scope=${controller || $scope.modelName} ` + data.statusText,
                             });
                             $(thisid).html($scope.returnBuild(template.data));
                             ANIMATION.playPure($(thisid), LOAD.inanimation, function () {
@@ -70,8 +70,8 @@ LOAD = {
                 }
             );
         };
-        $scope.loadContentClean = function (view, id, loadingText, callback) {
-            $scope.loadContent(view, id, loadingText, callback, false);
+        $scope.loadContentClean = function (view, id, loadingText, callback, controller) {
+            $scope.loadContent(view, id, loadingText, callback, false, controller);
         };
     },
     loadContent: function ($scope, $http, $compile) {

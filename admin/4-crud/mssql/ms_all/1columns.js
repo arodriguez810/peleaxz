@@ -102,7 +102,11 @@ DSON.keepmerge(CRUD_ms_all,
                     label: "category",
                     shorttext: 20,
                     format: function (row) {
-                        return row.ms_category_id + '-' + row.ms_category_name;
+                        if (!DSON.oseaX(row)) {
+                            return row.ms_category_id + '-' + row.ms_category_name;
+                        } else {
+                            return 'N/A';
+                        }
                     },
                     link: {
                         table: "ms_category",
@@ -183,7 +187,11 @@ DSON.keepmerge(CRUD_ms_all,
                         return "average" + ICON.i("file-stats");
                     },
                     format: function (row) {
-                        return row.average === null ? '' : row.average + ICON.i("percent");
+                        if (!DSON.oseaX(row)) {
+                            return row.average === null ? '' : row.average + ICON.i("percent");
+                        } else {
+                            return MESSAGE.i('mono.notset')
+                        }
                     },
                     sorttype: "numeric",
                     exportExample: "[numeric 1 to 100]",

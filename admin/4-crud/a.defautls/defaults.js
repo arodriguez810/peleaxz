@@ -24,6 +24,8 @@ CRUDDEFAULTS = {
         persist: true,
         sortable: true,
         allow: {
+            menu: true,
+            permission: true,
             add: true,
             edit: true,
             view: true,
@@ -42,6 +44,7 @@ CRUDDEFAULTS = {
             actions: true,
         },
         options: [
+
             {
                 text: (data) => {
                     return "";
@@ -376,7 +379,8 @@ CRUDDEFAULTS = {
                         }
                     }
                 ]
-            }
+            },
+
         ]
     }
 };

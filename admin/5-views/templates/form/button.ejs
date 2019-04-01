@@ -10,7 +10,7 @@ var options = {
     type: "normal",
     posttype:"button"
 };
-options = OBJECT.merge(options, opts);
+options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g,'_');
 options.color = options.type === "form" ? "{{" + model + ".validation.stateDefault()}}" : TAG.table;
 var toclient = JSON.stringify(options);
 %>

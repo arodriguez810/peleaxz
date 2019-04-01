@@ -22,7 +22,7 @@
     <%- include('paginator',{scope:scope}); %>
 
     <table ng-show="<%= scope %>.records.data.length>1"
-           class="table table-togglable table-framed sindu-table dragon-table <%= scope %>-drag"
+           class="table-responsive table table-togglable table-framed sindu-table dragon-table <%= scope %>-drag"
            data-animation="bounceInUp"
            id="<%= scope %>Table"
            style="{{<%= scope %>.funcWidth}}margin-bottom: {{<%= scope %>.firstCountOption(false)*40}}px"

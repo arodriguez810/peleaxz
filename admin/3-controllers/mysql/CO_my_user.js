@@ -6,7 +6,6 @@ app.controller("my_user", function ($scope, $http, $compile) {
             RUN_B("my_user", my_user, $scope, $http, $compile);
 
             my_user.form.before.insert = function (data) {
-                console.log(data);
                 if (data.inserting.username === "mmm") {
                     SWEETALERT.show({message: `El nombre ${data.inserting.username} no es permitido`});
                     return true;

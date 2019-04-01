@@ -1,0 +1,102 @@
+.indicador-padding{
+    padding: 14px!important;
+}
+
+.mid-check,
+.mid-text{
+    text-align:left;
+    height:41px;
+    display: table;
+}
+
+/*Centrar texto horizontalmente*/
+.mid-text{
+    width: 100%;
+}
+
+.mid-check span,
+.mid-text span{
+    vertical-align:middle;
+    display: table-cell;
+}
+/**/
+
+/*Centrar icon en inputs*/
+.center-icon .form-control-feedback{
+    top: 33px!important;
+}
+
+
+.center-icon a{
+    position: relative;
+    top: 29px!important;
+}
+
+
+/*Estilos para swutch en navbar*/
+.mega-dropdown{
+    padding: 10px 20px;
+}
+
+/**/
+.border-medium{
+    border-color: #5e5e9a!important;
+    color: #5e5e9a!important;
+}
+
+/*Indicador*/
+.inidcador{
+    padding-left: 12px;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 0;
+}
+
+.inidcador li{
+    float: left;
+    list-style: none;
+    margin-right: 28px;
+}
+
+.inidcador li span{
+    padding: 5px!important;
+}
+
+.inidcador li span i{
+    font-size: 7px;
+}
+
+.mega-dropdown2{
+    min-width: 366px!important;
+}
+
+.fieldset-t{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.pl-0{
+    padding-left: 0!important;
+}
+
+.pr-0{
+    padding-right: 0!important;
+}
+
+.w-100{
+    width: 100%;
+}
+
+.fl{
+    float: left;
+}
+
+.sub-permission{
+    list-style: none;
+}
+
+.sub-permission a {
+    padding: 8px 16px;
+    float: left;
+    color: #333333;
+}

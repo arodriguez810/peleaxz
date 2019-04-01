@@ -1,3 +1,4 @@
 {
-  "Restoreconfigurationforthistable": "Restore configuration for this table"
+  "Restoreconfigurationforthistable": "Restore configuration for this table",
+  "norestore":"There is no configuration to restore on this screen",
 }

@@ -21,5 +21,11 @@ CHECKBOX = {
         elems.forEach(function (html) {
             var switchery = new Switchery(html, {});
         });
+    },
+    runCheck: function () {
+        var elems = Array.prototype.slice.call(document.getElementsByName(".switchery"));
+        elems.forEach(function (html) {
+            var a = new Switchery(html, {size: "small"});
+        });
     }
 };

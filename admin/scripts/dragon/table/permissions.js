@@ -48,5 +48,55 @@ PERMISSIONS = {
             }
             return true;
         };
+        $scope.moduleColor = function (actions) {
+            var search = JSON.stringify(actions);
+            if (search.indexOf('false') !== -1)
+                if (search.indexOf('true') !== -1)
+                    return "orange";
+            if (search.indexOf('false') === -1)
+                return "success";
+            if (search.indexOf('true') === -1)
+                return "danger";
+        };
+        $scope.moduleName = function (name) {
+            if (MESSAGE.exist('permissions.' + name)) {
+                return MESSAGE.i('permissions.' + name);
+            } else {
+                return capitalize(name.replaceAll('_', ' '));
+            }
+        };
+        $scope.boolIcon = function (value) {
+            return value === true ? ' icon-checkbox-checked' : ' icon-checkbox-unchecked';
+        };
+        $scope.isObject = function (obj) {
+            return typeof obj === 'object';
+        };
+        $scope.savePermission = function () {
+            SWEETALERT.loading({message: MESSAGE.ic('mono.saving')});
+            BASEAPI.deleteall('permission', {
+                "where": [
+                    {
+                        "value": `${$scope.idPermission}`
+                    }
+                ]
+            }, function (deleted) {
+                BASEAPI.insert('permission', {
+                    "insertData": {
+                        "id": `${$scope.idPermission}`,
+                        "object": JSON.stringify($scope.permissions)
+                    }
+                }, function (insert) {
+                    SWEETALERT.stop();
+                    if (insert.data.recordset.length > 0) {
+                        var permissions = eval("(" + insert.data.recordset[0].object + ")");
+                        for (var i in permissions) {
+                            eval(`CRUD_${permissions[i].name}.table.allow = permissions[i].obj.table.allow`);
+                        }
+                    }
+
+                    MODAL.close($scope);
+                });
+            });
+        };
     }
 };

@@ -49,7 +49,7 @@ SWEETALERT = {
         var buttonsHtml = ' <div class="row"> <div class="col-md-12">';
         var id = 0;
         buttons.forEach(function (item) {
-            buttonsHtml += `<button style="margin-top: 10px" id="sweetalertbutton${id}" class="btn bg-${item.color || COLOR.primary}">${item.text}</button>`;
+            buttonsHtml += `<button style="margin-top: 10px" id="sweetalertbutton${id}" class="btn  bg-${item.color || COLOR.primary}">${item.text}</button>`;
             id++;
         });
         buttonsHtml += '</div> </div>';

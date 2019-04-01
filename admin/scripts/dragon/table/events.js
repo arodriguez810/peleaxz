@@ -464,6 +464,13 @@ TABLEEVENT = {
             if ($scope.importData.length > 0) {
                 var row = ARRAY.last($scope.importData);
                 ARRAY.removeLast($scope.importData);
+
+                for (var i in CONFIG.audit.insert) {
+                    var audit = CONFIG.audit.insert[i];
+                    if ($scope.table.crud.table.columns[i] !== undefined)
+                        eval(`row.row.${i} = '${eval(audit)}';`);
+                }
+
                 $scope.insertID(row.row, '', '', function (result) {
                     if (result.data.error === false) {
                         var savedRow = result.data.data[0];

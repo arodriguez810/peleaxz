@@ -4,30 +4,6 @@ app.controller("ms_allproducts", function ($scope, $http, $compile) {
     ms_allproducts.formulary = function (data, mode, defaultData) {
         if (ms_allproducts !== undefined) {
             RUN_B("ms_allproducts", ms_allproducts, $scope, $http, $compile);
-            ms_allproducts.form.schemas.insert = {
-                products: FORM.schemasType.selectMultiple,
-                products_config: {
-                    toTable: "ms_allproducts",
-                    text: "Inserting products...",
-                    fields: {
-                        all: "$id",
-                        product: "$item"
-                    },
-                    fieldsUpdate: {
-                        field: "all",
-                        value: "$id",
-                    },
-                },
-            };
-            ms_allproducts.form.schemas.select = {
-                products: {
-                    toTable: "ms_allproducts",
-                    text: MESSAGE.i('actions.Loading'),
-                    fields: {
-                        all: "$id",
-                    },
-                },
-            };
             ms_allproducts.form.readonly = {};
             if (RELATIONS.anonymous[$scope.modelName] !== undefined) {
                 ms_allproducts.form.getfilter = {

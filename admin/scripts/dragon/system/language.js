@@ -112,6 +112,10 @@ MESSAGE = {
             if (!DSON.oseaX($me.attr('title')))
                 if ($me.attr('title').indexOf('MESSAGE.') !== -1)
                     $me.attr('title', eval($me.attr('title')));
+            if (!DSON.oseaX($me.attr('placeholder')))
+                if ($me.attr('placeholder').indexOf('MESSAGE.') !== -1)
+                    $me.attr('placeholder', eval($me.attr('placeholder')));
+
             if (!DSON.oseaX($me.attr('data-original-title')))
                 if ($me.attr('data-original-title').indexOf('MESSAGE.') !== -1)
                     $me.attr('data-original-title', eval($me.attr('data-original-title')));

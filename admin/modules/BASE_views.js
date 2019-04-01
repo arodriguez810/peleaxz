@@ -32,6 +32,13 @@ exports.LoadEJS = function (files, params) {
                     }
 
 
+                    var CONTROLLERSNAMES = [];
+                    for (var CONTROLLER of params.controllersjs) {
+                        var name = CONTROLLER.split('CO_')[1].split('.js')[0];
+                        if (["BASE"].indexOf(name) === -1)
+                            CONTROLLERSNAMES.push({id: name, name: name});
+                    }
+
                     var send = {
                         scope: params.modelName,
                         session: params.session,
@@ -49,7 +56,8 @@ exports.LoadEJS = function (files, params) {
                         DATA: req.query,
                         SERVICES: params.catalogs,
                         params: params,
-                        localserver: localserver
+                        localserver: localserver,
+                        CONTROLLERSNAMES: CONTROLLERSNAMES
                     };
 
                     res.render("../" + params.folders.views + "/" + realPath, send);
@@ -152,6 +160,12 @@ exports.loadEJSSimple = function (folder, prefix, params) {
                         return item !== '';
                     });
 
+                    var CONTROLLERSNAMES = [];
+                    for (var CONTROLLER of params.controllersjs) {
+                        var name = CONTROLLER.split('CO_')[1].split('.js')[0];
+                        if (["BASE"].indexOf(name) === -1)
+                            CONTROLLERSNAMES.push({id: name, name: name});
+                    }
                     var send = {
                         scope: req.query.scope,
                         session: params.session,
@@ -169,7 +183,8 @@ exports.loadEJSSimple = function (folder, prefix, params) {
                         DATA: req.query,
                         SERVICES: params.catalogs,
                         params: params,
-                        localserver: localserver
+                        localserver: localserver,
+                        CONTROLLERSNAMES: CONTROLLERSNAMES
                     };
                     var viewfinal = viewN[viewN.length - 1];
                     if (modelName.length == 1)
@@ -199,6 +214,13 @@ exports.loadEJSSimple = function (folder, prefix, params) {
                 var modelName = viewN.filter(function (item) {
                     return item !== '';
                 });
+
+                var CONTROLLERSNAMES = [];
+                for (var CONTROLLER of params.controllersjs) {
+                    var name = CONTROLLER.split('CO_')[1].split('.js')[0];
+                    if (["BASE"].indexOf(name) === -1)
+                        CONTROLLERSNAMES.push({id: name, name: name});
+                }
                 var send = {
                     scope: req.query.scope,
                     session: params.session,
@@ -216,7 +238,8 @@ exports.loadEJSSimple = function (folder, prefix, params) {
                     DATA: req.body,
                     SERVICES: params.catalogs,
                     params: params,
-                    localserver: localserver
+                    localserver: localserver,
+                    CONTROLLERSNAMES: CONTROLLERSNAMES
                 };
 
                 var viewfinal = viewN[viewN.length - 1];
@@ -228,29 +251,54 @@ exports.loadEJSSimple = function (folder, prefix, params) {
                             res.json(err);
                             return;
                         }
-                        var runnings = html.split('<script id="extrapdf">');
 
-                        if (runnings.length > 1) {
-                            runnings = runnings[1];
-                            runnings = runnings.split('</script>')[0];
-                            runnings = runnings.replace('runnings =', '');
-                            runnings = (params.S(runnings).replaceAll('\r\n', '').s);
-                            runnings = "module.exports =" + runnings + ";";
-                        } else
-                            runnings = "";
-                        var pdfOptions = {
-                            html: html,
-                            paperSize: {
-                                format: 'A4',
-                                orientation: 'landscape', // portrait
-                                border: '1cm'
-                            },
-                            runnings: runnings
-                        };
+                        params.app.render("." + folder + "/" + 'header', send, function (err, headHtml) {
+                            if (err) {
+                                res.json(err);
+                                return;
+                            }
 
-                        params.PDF.convert(pdfOptions, function (err, result) {
-                            result.toFile("./preview.pdf", function () {
-                                res.download("./preview.pdf", send.DATA.pdf);
+                            params.app.render("." + folder + "/" + 'footer', send, function (err, footerHtml) {
+                                if (err) {
+                                    res.json(err);
+                                    return;
+                                }
+                                var runnings = `module.exports = {
+                                    header: {
+                                        height: '3cm', 
+                                        contents: function (page) {
+                                            return '${headHtml.replace(/(\r\n|\n|\r)/gm, "")}';
+                                        }
+                                    },
+        
+                                    footer: {
+                                        height: '3cm', 
+                                        contents: function (page) {
+                                            return '${footerHtml.replace(/(\r\n|\n|\r)/gm, "")}';
+                                        }
+                                    },
+                                };`;
+                                var pdfOptions = {
+                                    html: html,
+                                    paperSize: {
+                                        format: 'A4',
+                                        orientation: 'landscape', // portrait
+                                        border: '1cm'
+                                    },
+                                    runnings: runnings
+                                };
+
+                                params.fs.writeFile("./preview.html", html, function (err) {
+                                    if (err) {
+                                        return console.log(err);
+                                    }
+                                });
+
+                                params.PDF.convert(pdfOptions, function (err, result) {
+                                    result.toFile("./preview.pdf", function () {
+                                        res.download("./preview.pdf", send.DATA.pdf);
+                                    });
+                                });
                             });
                         });
                     });

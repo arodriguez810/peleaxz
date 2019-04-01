@@ -5,7 +5,7 @@ var options = {
     posttype:"checkboxlist",
     selecteds:[]
 };
-options = OBJECT.merge(options, opts);
+options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g,'_');
 var toclient = JSON.stringify(options);
 %>
 <script>

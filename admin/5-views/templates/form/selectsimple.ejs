@@ -1,0 +1,146 @@
+<%
+var name = name || "";
+var options = {
+    label: params.capitalize(name),
+    default: 'Select ' + params.capitalize(name),
+    icon: {
+        class: "none",
+        position: "left",
+        color: TAG.table + "-800"
+    },
+    allownull: true,
+    multiple: false,
+    disabled: false,
+    helptext: '',
+    simple: true,
+    value: "id",
+    text: "item.name",
+    //table: "",
+    get: {
+        table: '',
+        field: ''
+    },
+    parent: false,
+    childs: false,
+    groupby: "",
+    data: [],
+    posttype: "select"
+};
+options = OBJECT.merge(options, opts);
+var nameclean = name.replace(/\./g, '_');
+options.model = options.model ? options.model : false;
+var toclient = JSON.stringify(options);
+%>
+<script>
+
+
+    if (DSON.oseaX(<%= model + "." + name %>))
+            <%= model + "." + name %> = "[NULL]";
+
+
+    <%= model %>.form.registerField("<%= name %>", "<%= toclient %>", "'[NULL]'");
+    <%= model %>.form.options.<%= name %>.default = `${MESSAGE.ic('mono.select')} <%= name %>`;
+    if (MESSAGE.exist('columns.<%= name %>')) {
+        <%= model %>.
+        form.options.<%= name %>.label = MESSAGE.i('columns.<%= name %>');
+        <%= model %>.
+        form.options.<%= name %>.default = `${MESSAGE.ic('mono.select')} ` + MESSAGE.i('columns.<%= name %>');
+    }
+
+
+    var isReadProgram = <%= model %>.form.isReadOnly('<%= name %>');
+    if (isReadProgram !== false) {
+        <%= model %>.
+        form.options.<%= name %>.disabled = true;
+        if (isReadProgram !== undefined) {
+            <%= model %>.<%= name %> = isReadProgram;
+        }
+    }
+    <%= model %>.form.loadDropDown("<%= name %>");
+
+</script>
+<div>
+    <div class="form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
+         id="input<%= model %>_<%= nameclean %>">
+        <label class="control-label is-visible animate">
+            {{<%= model %>.form.options.<%= name %>.label}}
+        </label>
+
+
+        <select
+                <%= options.multiple ? "multiple='multiple'" : "" %>
+                style="display: inline;"
+                ng-model="<%= model + "." + name %>"
+                name="<%= model %>_<%= nameclean %>"
+                ng-disabled="<%= model %>.form.options.<%= name %>.disabled"
+                class="form-control bootstrap-select">
+            <% if(!options.allownull){ %>
+                <option></option>
+            <% }else{ %>
+                <% if(!options.multiple){ %>
+                    <option value="[NULL]" data-icon="blocked">---</option>
+                <% } %>
+            <% } %>
+
+            <% if(options.groupby){ %>
+                <optgroup ng-repeat="(key,categories) in <%= model %>.form.options.<%= name %>.groupbydata track by key"
+                          label="{{key}}">
+                    <option data-object="{{item}}" ng-repeat="(i,item) in categories"
+                            value="item.{{<%= options.value %>}} track by i">
+                        {{<%= options.text %>}}
+                    </option>
+                </optgroup>
+            <% } else{ %>
+                <option data-object="{{item}}"
+                        ng-repeat="(key,item) in <%= model %>.form.options.<%= name %>.data track by key"
+                        value="{{item.<%= options.value %>}}">
+                    {{<%= options.text %>}}
+                </option>
+            <% } %>
+        </select>
+
+
+        <div class="form-control-feedback">
+            <i
+                    id="icon<%= name %>"
+                    class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} text-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}">
+
+            </i>
+        </div>
+        <span ng-if="<%= model %>.form.options.<%= name %>.helptext!=''"
+              class="help-block text-muted">
+        {{<%= model %>.form.options.<%= name %>.helptext}}
+    </span>
+        <span ng-show="<%= model %>.validate['<%= name %>'].messages.length>0" class="help-block">
+        <p class="text-{{validation.type}}"
+           ng-repeat="(key,validation) in <%= model %>.validate['<%= name %>'].messages track by key">
+               <i class="{{validation.icon}}"></i> {{validation.message}}
+        </p>
+    </span>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        <%= model %>.
+        form.beginFunctions.push(`<%= model %>.form.loadDropDown("<%= name %>");`);
+        <%= model %>.
+        <%= name %>_object = {};
+        $('[name="<%= model %>_<%= nameclean %>"]').change(function () {
+            var selectedss = $(this).children("option:selected").data('object');
+
+            <%= model %>.
+            <%= name %>_object = selectedss;
+
+            STEP.register({
+                scope: "<%= model %>",
+                action: "Change DropDown",
+                field: "<%= name %>",
+                value: <%= model %>.<%= name %>
+        })
+            ;
+
+            $(".map-wrapper").hide();
+        });
+
+    });
+</script>

@@ -17,7 +17,7 @@ var options = {
     //maxlength: 10,
 
 };
-options = OBJECT.merge(options, opts);
+options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g,'_');
 options.autocomplete = options.autocomplete ? "autocomplete='Off'" : '';
 options.format = options.format ? options.format : false;
 options.model = options.model ? options.model : false;
@@ -30,14 +30,14 @@ var toclient = JSON.stringify(options);
     }
 </script>
 <div class="form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
-     id="input<%= model %>_<%= name %>">
+     id="input<%= model %>_<%= nameclean %>">
     <label
-            id="label<%= model %>_<%= name %>"
+            id="label<%= model %>_<%= nameclean %>"
             class="control-label {{<%= model + "." + name %>?'is-visible animate':''}}">
         {{<%= model %>.form.options.<%= name %>.placeholder}}
     </label>
     <textarea
-            ng-model="<%= model + "." + name %>" name="<%= model %>_<%= name %>"
+            ng-model="<%= model + "." + name %>" name="<%= model %>_<%= nameclean %>"
             ng-readonly="<%= model %>.form.options.<%= name %>.readonly"
             ng-disabled="<%= model %>.form.options.<%= name %>.disabled"
             maxlength="{{<%= model %>.form.options.<%= name %>.maxlength}}"
@@ -67,18 +67,18 @@ var toclient = JSON.stringify(options);
 <script>
     $(document).ready(function () {
         <% if(options.format){ %>
-        $('[name="<%= model %>_<%= name %>"]').formatter({
+        $('[name="<%= model %>_<%= nameclean %>"]').formatter({
             pattern: '<%= options.format %>'
         });
         <% } %>
         <% if(options.maxlength){ %>
-        $('[name="<%= model %>_<%= name %>"]').maxlength();
+        $('[name="<%= model %>_<%= nameclean %>"]').maxlength();
         <% } %>
-        $('[name="<%= model %>_<%= name %>"]').keyup(function () {
+        $('[name="<%= model %>_<%= nameclean %>"]').keyup(function () {
             $(this).trigger("change");
         });
-        $('[name="<%= model %>_<%= name %>"]').trigger("change");
-        $('[name="<%= model %>_<%= name %>"]').blur(function () {
+        $('[name="<%= model %>_<%= nameclean %>"]').trigger("change");
+        $('[name="<%= model %>_<%= nameclean %>"]').blur(function () {
             STEP.register({
                     scope: "<%= model %>",
                     action: "Change TextArea",
@@ -92,7 +92,7 @@ var toclient = JSON.stringify(options);
             <%= model %>.form.options.<%= name %>.disabled = true;
             if(isReadProgram!==undefined){
                 <%= model %>.<%= name %> = isReadProgram;
-                $('[name="<%= model %>_<%= name %>"]').html(isReadProgram)
+                $('[name="<%= model %>_<%= nameclean %>"]').html(isReadProgram)
             }
         }
     });

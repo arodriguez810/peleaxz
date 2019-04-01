@@ -7,6 +7,7 @@ TABLE = {
         $scope.table.is.loading = true;
         $scope.funcWidth = $scope.table.crud.table.width;
         $scope.report = $scope.table.crud.table.report;
+        $scope.tableOrView = $scope.table.crud.table.view || $scope.modelName;
         $scope.width = function () {
             if (!DSON.oseaX($scope.table.crud.table.width)) {
                 return "";
@@ -153,6 +154,7 @@ TABLE = {
         };
         /*Validation******************************/
         $scope.afterData = function (data) {
+            console.log('after data');
             PAGINATOR.make($scope, data);
             ANIMATION.stoploading(
                 "#" + $scope.modelName + "TablePanel",
@@ -225,13 +227,13 @@ TABLE = {
                                 }
                             }
 
-
                     $scope.list(
                         dataToList,
                         function (data) {
                             $scope.afterData(data);
                             DRAG.run($scope);
-                        }
+                        },
+                        $scope.tableOrView
                     );
                 } else {
                     dataToList = {
@@ -268,13 +270,13 @@ TABLE = {
                                 }
                             }
 
-
                     $scope.list(
                         dataToList,
                         function (data) {
                             $scope.afterData(data);
                             DRAG.run($scope);
-                        }
+                        },
+                        $scope.tableOrView
                     );
                 }
             }, 0);

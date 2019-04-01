@@ -1,48 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Global stylesheets -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width"/>
+    <%- include('../email/css.ejs') %>
     <style>
-        <% include ../../../assets/css/icons/icomoon/styles.css %>
+        <%- include('../../../styles/colors/'+COLOR.primary+'.css') %>
     </style>
     <style>
-        <% include ../../../assets/css/bootstrap.css %>
+        <%- include('../../../styles/colors/'+TAG.table+'.css') %>
     </style>
-    <style>
-        <% include ../../../assets/css/core.css %>
-    </style>
-    <style>
-        <% include ../../../assets/css/components.css %>
-    </style>
-    <style>
-        <% include ../../../assets/css/style.css %>
-    </style>
-    <style>
-        <% include ../../../assets/css/colors.css %>
-    </style>
-    <!-- /global stylesheets -->
-
 </head>
-
 <body>
 <% DATA.content = eval("(" + DATA.content + ")"); %>
 <% DATA.firstrow = eval("(" + DATA.firstrow + ")"); %>
 <% DATA.columns = eval("(" + DATA.columns + ")"); %>
-<table class="table table-bordered">
-    <thead class="bg-<%= TAG.table %>">
+
+<table class="body-wrap">
     <tr>
-        <% for(var i in DATA.columns) { %>
-            <th><%= DATA.columns[i] %></th>
-        <% } %>
+        <td class="container" style="margin: 0 0 !important;max-width: 5000px !important;">
+            <div class="bg-<%= COLOR.primary %>">
+                <%= DATA.docx.replace('a DOC.docx', '') %> - <%= CONFIG.appName %>
+            </div>
+            <table class="table table-bordered">
+                <thead class="bg-<%= TAG.table %>" style="visibility: hidden;">
+                <tr class="bg-<%= TAG.table %>">
+                    <% for(var i in DATA.columns) { %>
+                        <th height="0"><%= DATA.columns[i] %></th>
+                    <% } %>
+                </tr>
+                </thead>
+                <tbody>
+                <% DATA.content.forEach(function (row) { %>
+                    <tr>
+                        <% for(var i in row) { %>
+                            <td><%= row[i] %></td>
+                        <% } %>
+                    </tr>
+                <% }); %>
+                </tbody>
+            </table>
+        </td>
     </tr>
-    </thead>
-    <tbody>
-    <% DATA.content.forEach(function (row) { %>
-        <tr>
-            <% for(var i in row) { %>
-                <td><%= row[i] %></td>
-            <% } %>
-        </tr>
-    <% }); %>
-    </tbody>
 </table>
 </body>
+</html>

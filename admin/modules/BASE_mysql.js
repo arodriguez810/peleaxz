@@ -23,10 +23,13 @@ class Database {
         });
     }
 }
-exports.executeNonQuery = async function (query, params,show) {
+
+exports.executeNonQuery = async function (query, params, show) {
     if (show === undefined)
-    console.log(query.pxz);
-    return await new Database(params, params.CONFIG.mysql).query(query).then((data) => {
+        console.log(query.pxz);
+    var connection = new Database(params, params.CONFIG.mysql);
+    return await connection.query(query).then(async (data) => {
+        await connection.close();
         return {
             query: query,
             error: false,
@@ -37,9 +40,9 @@ exports.executeNonQuery = async function (query, params,show) {
         return {query: query, error: err.sqlMessage};
     });
 };
-exports.executeNonQueryArray = async function (queries, params,show) {
+exports.executeNonQueryArray = async function (queries, params, show) {
     for (var query of queries)
-        await exports.executeNonQuery(query,params,show);
+        await exports.executeNonQuery(query, params, show);
     return queries;
 };
 exports.insertQuery = function (table, data, params, get, getvalue) {
@@ -50,7 +53,7 @@ exports.insertQuery = function (table, data, params, get, getvalue) {
         var columns = [];
         var values = [];
         for (var property in row) {
-            var value = row[property];
+            var value = row[property].toString();
             if (property[0] === "$")
                 columns.push(property.replace('$', ''));
             else
@@ -155,11 +158,21 @@ exports.delete = function (table, data, params) {
 };
 exports.data = async function (query, params, index) {
     console.log(query.pxz);
-    return await new Database(params, params.CONFIG.mysql).query(query).then((data) => {
+    var connection = new Database(params, params.CONFIG.mysql);
+    return await connection.query(query).then(async (data) => {
+        await connection.close();
+        var realData = [];
+        for (var d in data) {
+            if (data[d].affectedRows === undefined)
+                if (data[d][0] !== undefined)
+                    realData.push(data[d][0]);
+                else
+                    realData.push(data[d]);
+        }
         return {
             query: query,
             error: false,
-            data: data,
+            data: realData,
             index: index,
             count: [data.length],
         };

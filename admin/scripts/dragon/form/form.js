@@ -25,6 +25,7 @@ FORM = {
     },
     run: function ($scope, $http) {
         $scope.form = {};
+        $scope.selectQueries = [];
         $scope.form.target = FORM.targets.modal;
         $scope.form.hasChanged = false;
         $scope.form.modalWidth = undefined;
@@ -97,6 +98,11 @@ FORM = {
         };
         $scope.form.registerField = function (name, properties, alterval) {
             $scope.form.fileds.push(name);
+            var references = name.split('.');
+            ARRAY.removeLast(references);
+            for (var ref of references) {
+                eval(`$scope.form.options.${ref} = {}`);
+            }
             eval(`$scope.form.options.${name} = ${properties.replaceAll("&#34;", '"').replaceAll("&#39", "'")}`);
             if ($scope.form.mode === FORM.modes.new) {
                 eval(`$scope.${name}=${alterval || 'null'};`);
@@ -193,14 +199,15 @@ FORM = {
                     return;
                 $scope.insertID($scope.form.inserting, $scope.form.fieldExGET, $scope.form.valueExGET, function (result) {
                     if (result.data.error === false) {
+                        SWEETALERT.loading({message: MESSAGE.i('mono.Preparingfilesandrelations')});
+                        var savedRow = result.data.data[0];
                         $scope.form.after.insert({
+                            inserted: savedRow,
                             inserting: $scope.form.inserting,
                             uploading: $scope.form.uploading,
                             multipleRelations: $scope.form.multipleRelations,
                             relations: $scope.form.relations,
                         });
-                        SWEETALERT.loading({message: MESSAGE.i('mono.Preparingfilesandrelations')});
-                        var savedRow = result.data.data[0];
                         var firstColumn = $scope.table.crud.table.key || "id";
                         var DRAGONID = eval(`savedRow.${firstColumn}`);
                         $scope.form.mode = FORM.modes.edit;
@@ -254,6 +261,8 @@ FORM = {
                                         eval(`dataToUpdate.${i} = vi`);
                                     }
                                     dataToUpdate.where = dataToWhere;
+
+                                    console.log(dataToUpdate);
                                     BASEAPI.updateall(relation.config.toTable, dataToUpdate, function (udata) {
                                         $scope.pages.form.subRequestComplete();
                                     });
@@ -315,7 +324,10 @@ FORM = {
                                     }
                                     var whereDelete = [];
                                     whereDelete.push(relation.config.fieldsUpdate)
+
+
                                     BASEAPI.deleteall(relation.config.toTable, whereDelete, function (ddata) {
+                                        console.log(relation);
                                         BASEAPI.insert(relation.config.toTable, relation.data, function (data) {
                                             $scope.pages.form.subRequestComplete();
                                         });
@@ -386,7 +398,19 @@ FORM = {
                             break;
                         }
                         case FORM.schemasType.selectMultiple: {
-                            var config = eval(`$scope.form.schemas.insert.${field}_config`);
+                            var prop = eval(`$scope.form.options.${field}`);
+                            var config = {
+                                toTable: prop.get.table,
+                                text: "Inserting multiples...",
+                                fields: {},
+                                fieldsUpdate: {}
+                            };
+                            config.fields = {};
+                            eval(`config.fields.${prop.get.fieldTo} = '$id';`);
+                            eval(`config.fields.${prop.get.field} = '$item';`);
+                            eval(`config.fieldsUpdate.field = '${prop.get.fieldTo}';`);
+                            eval(`config.fieldsUpdate.value = '$id';`);
+
                             if (eval(`$scope.form.lastPrepare.${field}`) !== undefined) {
                                 var arrayField = eval(`$scope.form.lastPrepare.${field}`).split(',');
                                 var dataarray = [];
@@ -402,13 +426,20 @@ FORM = {
                                     config: config,
                                     data: dataarray
                                 });
+                                console.log($scope.form.relations);
                             }
                             break;
                         }
                         case FORM.schemasType.relation: {
-                            var config = eval(`$scope.form.schemas.insert.${field}_config`);
                             var tempID = eval(`$scope.form.lastPrepare.${field}`);
-
+                            var prop = eval(`$scope.form.options.${field}`);
+                            var config = {
+                                toTable: prop.table,
+                                update: {all: "$id", tempid: "$NULL"},
+                                where: [{field: "tempid", value: "$id"}]
+                            };
+                            eval(`config.update = {${prop.field}: "$id", tempid: "$NULL"};`);
+                            eval(`config.where = [{field: "tempid", value: "$id"}];`);
                             $scope.form.multipleRelations.push({
                                 config: config,
                                 tempID: tempID
@@ -436,102 +467,158 @@ FORM = {
         };
         $scope.form.loadDropDown = function (name) {
             var options = eval(`$scope.form.options.${name}`);
-            ANIMATION.loading(`#input${name}`, "", `#icon${name}`, '30');
-            eval(`var crud = CRUD_${options.table}`);
-            if (crud.table.single)
-                options.query.join = crud.table.single;
-            var toquery = DSON.merge(options.query, {});
-            if (options.parent !== false) {
-                if (DSON.oseaX(toquery.where))
-                    toquery.where = [];
-                var exist = toquery.where.filter((item) => {
-                    return item.field === options.parent.model;
-                });
-                if (exist.length) {
-                    exist[0].value = eval(`$scope.${options.parent.model}`)
-                }
-                else {
-                    toquery.where.push({
-                        field: options.parent.model,
-                        value: eval(`$scope.${options.parent.model}`)
-                    });
-                }
-            }
-            BASEAPI.list(options.table, toquery,
-                function (info) {
-                    if (!DSON.oseaX(options.groupby)) {
-                        var newData = {};
-                        for (const i in info.data) {
-                            var item = info.data[i];
-                            var groupbyValue = eval(`item.${options.groupby}`);
-                            if (DSON.oseaX(eval(`newData.${groupbyValue}`))) {
-                                eval(`newData.${groupbyValue} = [];`);
+            ANIMATION.loading(`#input${$scope.modelName}_${name}`, "", `#icon${name}`, '30');
+            if (!options.simple) {
+                eval(`var crud = CRUD_${options.table}`);
+                if (crud.table.single)
+                    options.query.join = crud.table.single;
+                var toquery = DSON.merge(options.query, {});
+                if ($scope.selectQueries[name]) {
+                    var toConsult = $scope.selectQueries[name];
+                    if (toConsult.length > 0) {
+                        if (!DSON.oseaX(toquery.where)) {
+                            for (var optadd in toConsult) {
+                                toquery.where.push(toConsult[optadd]);
                             }
-                            eval(`newData.${groupbyValue}.push(item)`);
-                        }
-                        eval(`$scope.form.options.${name}.groupbydata = newData`);
-                    }
-                    eval(`$scope.form.options.${name}.data = info.data`);
-                    if (!options.multiple)
-                        ANIMATION.stoploading(`#input${name}`, `#icon${name}`);
-                    if (options.multiple) {
-                        if (eval(`$scope.${name}.length<=0`))
-                            eval(`$scope.${name}=[];`);
-                        if (!$scope.form.isReadOnly(name)) {
-                            var lastWhere = [];
-                            lastWhere.push({
-                                field: options.get.fieldTo,
-                                value: eval(`$scope.${options.get.fieldFrom}`)
-                            });
-                            BASEAPI.list(options.get.table, {
-                                limit: 99999,
-                                page: 1,
-                                orderby: options.get.fieldTo,
-                                order: "asc",
-                                where: lastWhere
-                            }, function (selectedy) {
-                                if (eval(`$scope.${name} ==='[NULL]'`))
-                                    eval(`$scope.${name}=[];`);
-                                if (eval(`$scope.${name}.length<=0`))
-                                    selectedy.data.forEach((item) => {
-                                        eval(`$scope.${name}.push('${eval(`item.${options.get.field}`)}')`);
-                                    });
-                                ANIMATION.stoploading(`#input${name}`, `#icon${name}`);
-                                $scope.form.callSelect2(name, options);
-                            });
                         } else {
+                            toquery.where = toConsult;
+                        }
+                    }
+                }
+
+                if (options.parent !== false) {
+                    if (DSON.oseaX(toquery.where))
+                        toquery.where = [];
+                    var exist = toquery.where.filter((item) => {
+                        return item.field === options.parent.model;
+                    });
+                    if (exist.length) {
+                        exist[0].value = eval(`$scope.${options.parent.model}`)
+                    }
+                    else {
+                        toquery.where.push({
+                            field: options.parent.model,
+                            value: eval(`$scope.${options.parent.model}`)
+                        });
+                    }
+                }
+                BASEAPI.list(options.table, toquery,
+                    function (info) {
+                        if (!DSON.oseaX(options.groupby)) {
+                            var newData = {};
+                            for (const i in info.data) {
+                                var item = info.data[i];
+                                var groupbyValue = eval(`item.${options.groupby}`);
+                                if (DSON.oseaX(eval(`newData.${groupbyValue}`))) {
+                                    eval(`newData.${groupbyValue} = [];`);
+                                }
+                                eval(`newData.${groupbyValue}.push(item)`);
+                            }
+                            eval(`$scope.form.options.${name}.groupbydata = newData`);
+                        }
+                        eval(`$scope.form.options.${name}.data = info.data`);
+                        if (!options.multiple)
+                            ANIMATION.stoploading(`#input${$scope.modelName}_${name}`, `#icon${name}`);
+                        if (options.multiple) {
                             if (eval(`$scope.${name}.length<=0`))
-                                eval(`$scope.${name}=$scope.form.isReadOnly('${name}');`);
-                            ANIMATION.stoploading(`#input${name}`, `#icon${name}`);
+                                eval(`$scope.${name}=[];`);
+                            if (!$scope.form.isReadOnly(name)) {
+                                var lastWhere = [];
+                                lastWhere.push({
+                                    field: options.get.fieldTo,
+                                    value: eval(`$scope.${options.get.fieldFrom}`)
+                                });
+                                BASEAPI.list(options.get.table, {
+                                    limit: 99999,
+                                    page: 1,
+                                    orderby: options.get.fieldTo,
+                                    order: "asc",
+                                    where: lastWhere
+                                }, function (selectedy) {
+                                    if (eval(`$scope.${name} ==='[NULL]'`))
+                                        eval(`$scope.${name}=[];`);
+                                    if (eval(`$scope.${name}.length<=0`))
+                                        selectedy.data.forEach((item) => {
+                                            eval(`$scope.${name}.push('${eval(`item.${options.get.field}`)}')`);
+                                        });
+                                    ANIMATION.stoploading(`#input${$scope.modelName}_${name}`, `#icon${name}`);
+                                    $scope.form.callSelect2(name, options);
+                                });
+                            } else {
+                                if (eval(`$scope.${name}.length<=0`))
+                                    eval(`$scope.${name}=$scope.form.isReadOnly('${name}');`);
+                                ANIMATION.stoploading(`#input${$scope.modelName}_${name}`, `#icon${name}`);
+                                $scope.form.callSelect2(name, options);
+                            }
+                        } else {
                             $scope.form.callSelect2(name, options);
                         }
-                    } else {
-                        $scope.form.callSelect2(name, options);
+                    });
+            } else {
+                var info = {};
+                info.data = options.data;
+                if (!DSON.oseaX(options.groupby)) {
+                    var newData = {};
+                    for (const i in info.data) {
+                        var item = info.data[i];
+                        var groupbyValue = eval(`item.${options.groupby}`);
+                        if (DSON.oseaX(eval(`newData.${groupbyValue}`))) {
+                            eval(`newData.${groupbyValue} = [];`);
+                        }
+                        eval(`newData.${groupbyValue}.push(item)`);
                     }
-                });
+                    eval(`$scope.form.options.${name}.groupbydata = newData`);
+                }
+                eval(`$scope.form.options.${name}.data = info.data`);
+                ANIMATION.stoploading(`#input${$scope.modelName}_${name}`, `#icon${name}`);
+                $scope.form.callSelect2(name, options);
+            }
         };
         $scope.form.callSelect2 = function (name, options) {
-            $('[name="' + $scope.modelName + "_" + name + '"]').select2({
-                placeholder:
-                    capitalize(MESSAGE.i('mono.select') + ' ' + eval(`${options.table}.${!options.multiple ? 'singular' : 'plural'}`)),
-                templateSelection: DROPDOWN.iformat,
-                templateResult: DROPDOWN.iformat,
-                allowHtml: true
-            });
-            $('[name="' + $scope.modelName + "_" + name + '"]').on('change', function (e) {
-                if (options.childs !== false) {
-                    options.childs.forEach((child) => {
-                        if (eval(`$scope.form.options.${child.model}.multiple`))
-                            eval(`$scope.${child.model} = []`);
-                        else
-                            eval(`$scope.${child.model} = '[NULL]'`);
-                        $scope.form.loadDropDown(child.model);
-                    });
-                }
+            if (!options.simple) {
+                $('[name="' + $scope.modelName + "_" + name + '"]').select2({
+                    placeholder:
+                        capitalize(MESSAGE.i('mono.select') + ' ' + eval(`${options.table}.${!options.multiple ? 'singular' : 'plural'}`)),
+                    templateSelection: DROPDOWN.iformat,
+                    templateResult: DROPDOWN.iformat,
+                    allowHtml: true
+                });
+                $('[name="' + $scope.modelName + "_" + name + '"]').on('change', function (e) {
+                    if (options.childs !== false) {
+                        options.childs.forEach((child) => {
+                            if (eval(`$scope.form.options.${child.model}.multiple`))
+                                eval(`$scope.${child.model} = []`);
+                            else
+                                eval(`$scope.${child.model} = '[NULL]'`);
+                            $scope.form.loadDropDown(child.model);
+                        });
+                    }
+                    $scope.$scope.$digest();
+                });
                 $scope.$scope.$digest();
-            });
-            $scope.$scope.$digest();
-            $('[name="' + $scope.modelName + "_" + name + '"]').trigger('change.select2');
+                $('[name="' + $scope.modelName + "_" + name + '"]').trigger('change.select2');
+            } else {
+                $('[name="' + $scope.modelName + "_" + name + '"]').select2({
+                    placeholder:
+                        capitalize(MESSAGE.i('mono.select') + ' ' + options.default),
+                    templateSelection: DROPDOWN.iformat,
+                    templateResult: DROPDOWN.iformat,
+                    allowHtml: true
+                });
+                $('[name="' + $scope.modelName + "_" + name + '"]').on('change', function (e) {
+                    if (options.childs !== false) {
+                        options.childs.forEach((child) => {
+                            if (eval(`$scope.form.options.${child.model}.multiple`))
+                                eval(`$scope.${child.model} = []`);
+                            else
+                                eval(`$scope.${child.model} = '[NULL]'`);
+                            $scope.form.loadDropDown(child.model);
+                        });
+                    }
+                    $scope.$scope.$digest();
+                });
+                $('[name="' + $scope.modelName + "_" + name + '"]').trigger('change.select2');
+            }
         };
         $scope.form.loadOutDropDown = function (options, id) {
             ANIMATION.loading(`#input${name}`, "", `#icon${name}`, '30');
@@ -572,6 +659,7 @@ FORM = {
             $scope.validation.destroy();
         };
         $scope.openForm = function (mode) {
+
             $scope.pages.form.isOpen = true;
             $scope.pages.form.subRequestCompleteVar = 0;
             $scope.pages.form.subRequestCompleteProgress = 0;
@@ -730,6 +818,12 @@ FORM = {
             }
         };
         $scope.createForm = function (data, mode, defaultData) {
+            $scope.form.mode = mode;
+            for (var i in $scope.form.readonly) {
+                eval(`$scope.${i} = $scope.form.readonly.${i};`);
+                $scope.form.fileds.push(i);
+            }
+
             if (baseController.viewData)
                 if (baseController.viewData.readonly) {
                     $scope.form.readonly = DSON.merge(baseController.viewData.readonly, $scope.form.readonly, true);
@@ -740,9 +834,6 @@ FORM = {
                 }
 
             if (RELATIONS.anonymous[$scope.modelName] !== undefined) {
-
-                console.log('form readonly', $scope.modelName, RELATIONS.anonymous[$scope.modelName]);
-
                 $scope.form.readonly = DSON.merge(RELATIONS.anonymous[$scope.modelName].readonly, $scope.form.readonly, true);
                 for (var i in $scope.form.readonly) {
                     eval(`$scope.${i} = $scope.form.readonly.${i};`);

@@ -2,11 +2,15 @@
      <span class="label label-white text-<%= TAG.table %>-300 label-rounded label-icon">
             <i class="position-right"></i>
         </span>
-    <button type="button" class="btn bg-<%= TAG.table %>-600" ng-click="<%= model %>.pages.form.save()">
-        <language>MESSAGE.ic('mono.save')</language>
-    </button>
 
-    <button type="button" class="btn bg-<%= TAG.table %>-600" ng-click="<%= model %>.pages.form.close()">
-        <language>MESSAGE.ic('mono.close')</language>
+    <button type="button" class="btn bg-<%= TAG.table %> btn-labeled pull-right"
+            ng-click="<%= model %>.pages.form.close()">
+        <b><i class="icon-cross2"></i></b>
+        <language>MESSAGE.i('mono.cancel')</language>
+    </button>
+    <button type="button" class="btn bg-<%= COLOR.primary %> btn-labeled pull-right"
+            ng-click="<%= model %>.pages.form.save()">
+        <b><i class="icon-floppy-disk"></i></b>
+        <language>MESSAGE.i('mono.save')</language>
     </button>
 </div>

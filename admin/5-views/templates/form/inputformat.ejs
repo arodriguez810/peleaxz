@@ -19,15 +19,19 @@ var options = {
 
 };
 
-options = OBJECT.merge(options, opts);
+options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g,'_');
 options.autocomplete = options.autocomplete ? "autocomplete='Off'" : '';
 options.format = options.format ? options.format : false;
 options.model = options.model ? options.model : false;
 var toclient = JSON.stringify(options);
 %>
 <script>
+
+    <%= model %>.form.schemas.select["<%= name %>"] =FORM.schemasType.decimal;
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
     <%= model %>.form.registerField("<%= name %>_DragonClean", "<%= toclient %>");
+    if(<%= model %>.form.options.<%= name %>.isNumber)
+
 
     if(MESSAGE.exist('columns.<%= name %>')){
         <%= model %>.form.options.<%= name %>.placeholder = MESSAGE.i('columns.<%= name %>');
@@ -38,13 +42,13 @@ var toclient = JSON.stringify(options);
     }
 </script>
 <div class="form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-{{::<%= model %>.form.options.<%= name %>.icon.position}}"
-     id="input<%= model %>_<%= name %>">
+     id="input<%= model %>_<%= nameclean %>">
     <label
             class="control-label {{<%= model + "." + name %>?'is-visible animate':''}}">
         {{<%= model %>.form.options.<%= name %>.placeholder}}
     </label>
     <input
-            ng-model="<%= model + "." + name %>" name="<%= model %>_<%= name %>"
+            ng-model="<%= model + "." + name %>" name="<%= model %>_<%= nameclean %>"
             ng-readonly="<%= model %>.form.options.<%= name %>.readonly"
             ng-disabled="<%= model %>.form.options.<%= name %>.disabled"
             maxlength="{{<%= model %>.form.options.<%= name %>.maxlength}}"
@@ -75,8 +79,8 @@ var toclient = JSON.stringify(options);
 <script>
 
     var formaty =<%= model %>.form.options.<%= name %>.format;
-    $('[name="<%= model %>_<%= name %>"]').mask(formaty.mask, formaty.options);
-    $('[name="<%= model %>_<%= name %>"]').change(function () {
+    $('[name="<%= model %>_<%= nameclean %>"]').mask(formaty.mask, formaty.options);
+    $('[name="<%= model %>_<%= nameclean %>"]').change(function () {
         $me = $(this).val();
         $me = $me.replace(/\./g, 'POINT').replace(/\W/g, '').replace(/POINT/g, '.').replace(/[a-z]/gi, '');
         <%= model %>.<%= name %>_DragonClean = $me;

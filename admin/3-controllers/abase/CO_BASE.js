@@ -87,6 +87,62 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
         }
     };
 
+
+
+    var permissionOptions = {
+        text: (data) => {
+            return "";
+        },
+        icon: (data) => {
+            return ICON.classes.user_lock;
+        },
+        permission: (data) => {
+            return ['permission'];
+        },
+        characterist: (data) => {
+            return '';
+        },
+        title: (data) => {
+            return MESSAGE.ic('actions.permissions');
+        },
+        click: function (data) {
+            SWEETALERT.loading({message: MESSAGE.i('actions.Loading')});
+            BASEAPI.list('permission', {
+                "where": [
+                    {
+                        "value": `${data.$scope.modelName}-${data.row.id}`
+                    }
+                ]
+            }, function (result) {
+                SWEETALERT.stop();
+                eval(`${data.$scope.modelName}.permissions = {};`);
+                eval(`${data.$scope.modelName}.idPermission = '${data.$scope.modelName}-${data.row.id}';`);
+                DSON.merge(eval(`${data.$scope.modelName}.permissions`), CRUDNAMES, true);
+                if (result.data.length > 0) {
+                    eval(`${data.$scope.modelName}.permissions = eval("(" + result.data[0].object + ")")`);
+                }
+                data.$scope.modal.modalView("templates/components/permissions", {
+                    width: ENUM.modal.width.full,
+                    header: {
+                        title: `Permissions per ${data.$scope.modelName} of ${data.row.name}`,
+                        icon: ICON.classes.user_lock
+                    },
+                    footer: {
+                        cancelButton: false
+                    },
+                    content: {
+                        loadingContentText: `${MESSAGE.i('actions.Loading')}...`,
+                        sameController: true
+                    },
+                });
+            });
+
+            return false;
+        }
+    };
+    for (var entity of CONFIG.permissions.entities) {
+        eval(`CRUD_${entity}.table.options.push(permissionOptions)`);
+    }
 });
 
 CHILDSCOPES = [];
@@ -108,9 +164,11 @@ GARBAGECOLECTOR = function (exclude) {
                 if (exclude !== item) {
                     eval(`
                     if((typeof ${item})!=='undefined'){
-                        if(${item}!==null){   
-                          ${item}.$scope.$destroy();
-                          ${item} = null;
+                        if(${item}!==null){
+                          if(${item}.$scope!==undefined){ 
+                              ${item}.$scope.$destroy();
+                              ${item} = null;
+                          }
                         }
                     }`);
                 }
@@ -165,32 +223,39 @@ RUNCONTROLLER = function (conrollerName, inside, $scope, $http, $compile) {
     API.run(inside, $http);
     COMPILE.run(inside, $scope, $compile);
     if (inside.crudConfig)
-        CRUD.run(inside, inside.crudConfig);
+        if (inside.crudConfig.type !== 'raw')
+            CRUD.run(inside, inside.crudConfig);
     STORAGE.run(inside);
     if (inside.crudConfig)
-        TABLE.run(inside, $http, $compile);
+        if (inside.crudConfig.type !== 'raw')
+            TABLE.run(inside, $http, $compile);
     LOAD.run(inside, $http);
     MODAL.run(inside, $compile);
     if (inside.crudConfig) {
-        FILTER.run(inside);
-        TABLEOPTIONS.run(inside);
-        TABLEEVENT.run(inside, $http, $compile);
-        TABLEFORMAT.run(inside);
-        PAGINATOR.run(inside);
-        SORTABLE.run(inside);
-        TABLESELECTION.run(inside);
+        if (inside.crudConfig.type !== 'raw') {
+            FILTER.run(inside);
+            TABLEOPTIONS.run(inside);
+            TABLEEVENT.run(inside, $http, $compile);
+            TABLEFORMAT.run(inside);
+            PAGINATOR.run(inside);
+            SORTABLE.run(inside);
+            TABLESELECTION.run(inside);
+        }
     }
     PERMISSIONS.run(inside);
     MENU.run(inside);
     if (inside.crudConfig)
-        EXPORT.run(inside);
+        if (inside.crudConfig.type !== 'raw')
+            EXPORT.run(inside);
     inside.pages = {};
     inside.refreshAngular = function () {
         inside.$scope.$digest();
     };
     if (inside.crudConfig)
-        inside.refresh();
+        if (inside.crudConfig.type !== 'raw')
+            inside.refresh();
     $scope.$on('$destroy', function () {
+
     });
     if (MODAL.history.length === 0) {
         baseController.currentModel = inside;
