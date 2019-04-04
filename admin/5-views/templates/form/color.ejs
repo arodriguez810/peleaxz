@@ -17,8 +17,8 @@ var toclient = JSON.stringify(options);
 %>
 <script>
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
-    if(MESSAGE.exist('columns.<%= name %>')){
-        <%= model %>.form.options.<%= name %>.placeholder = MESSAGE.i('columns.<%= name %>');
+    if(MESSAGE.exist('columns.<%= nameclean %>')){
+        <%= model %>.form.options.<%= name %>.placeholder = MESSAGE.i('columns.<%= nameclean %>');
     }
     var isReadProgram = <%= model %>.form.isReadOnly('<%= name %>');
     if (isReadProgram !== false) {

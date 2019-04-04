@@ -26,8 +26,8 @@ var toclient = JSON.stringify(options);
     <%= model %>.form.schemas.insert["<%= name %>"] =FORM.schemasType.upload;
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
     <%= model %>.form.registerField("<%= name %>_DragonCountFile", "<%= toclient %>");
-    if(MESSAGE.exist('columns.<%= name %>')){
-        <%= model %>.form.options.<%= name %>.text = MESSAGE.i('columns.<%= name %>');
+    if(MESSAGE.exist('columns.<%= nameclean %>')){
+        <%= model %>.form.options.<%= name %>.text = MESSAGE.i('columns.<%= nameclean %>');
     }
     <%= model %>.<%= name %>_DragonCountFile = 0;
     var thisID = eval(`<%= model %>.${keyColumn}`);

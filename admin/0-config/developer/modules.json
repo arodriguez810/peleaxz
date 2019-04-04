@@ -143,6 +143,10 @@
     {
       "var": "mail",
       "module": "nodemailer"
+    },
+    {
+      "var": "OneSignal",
+      "module": "onesignal-node"
     }
   ]
 }

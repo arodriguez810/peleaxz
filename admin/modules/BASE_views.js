@@ -41,6 +41,7 @@ exports.LoadEJS = function (files, params) {
 
                     var send = {
                         scope: params.modelName,
+                        THEMES: params.themes,
                         session: params.session,
                         localjs: params.localjs,
                         controllersjs: params.controllersjs,
@@ -168,6 +169,7 @@ exports.loadEJSSimple = function (folder, prefix, params) {
                     }
                     var send = {
                         scope: req.query.scope,
+                        THEMES: params.themes,
                         session: params.session,
                         localjs: params.localjs,
                         controllersjs: params.controllersjs,
@@ -223,6 +225,7 @@ exports.loadEJSSimple = function (folder, prefix, params) {
                 }
                 var send = {
                     scope: req.query.scope,
+                    THEMES: params.themes,
                     session: params.session,
                     localjs: params.localjs,
                     controllersjs: params.controllersjs,
@@ -623,6 +626,29 @@ exports.init = function (params) {
             }
         });
     });
-
+    params.app.post("/dragon/api/saveConfig", function (req, res) {
+        params.secure.check(req, res, function () {
+            var fs = params.fs || require("fs");
+            var file = __dirname + '/../' + params.folders.config + '/' + 'z_saved.json';
+            fs.writeFile(file, req.body.json, function (err, data) {
+                if (err) {
+                    res.json({error: err});
+                }
+            });
+            res.json({error: false, saved: true});
+        });
+    });
+    params.app.post("/dragon/api/saveLanguages", function (req, res) {
+        params.secure.check(req, res, function () {
+            var fs = params.fs || require("fs");
+            var file = __dirname + '/../' + params.folders.language + '/' + 'z_saved.json';
+            fs.writeFile(file, req.body.json, function (err, data) {
+                if (err) {
+                    res.json({error: err});
+                }
+            });
+            res.json({error: false, saved: true});
+        });
+    });
     exports.loadEJSSimple("./" + params.folders.views + "/master/error", "error", params);
 };

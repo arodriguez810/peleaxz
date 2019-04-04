@@ -136,5 +136,9 @@
   "audit": "auditoría",
   "insert": "insertar",
   "update": "actualizar",
-  "support": "soporte"
+  "support": "soporte",
+  "owner": "Dueño",
+  "network": "Dominio",
+  "authentication": "autenticación",
+  "restarting": "Reiniciando Servidor"
 }

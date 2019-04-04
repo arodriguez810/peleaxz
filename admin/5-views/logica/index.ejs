@@ -12,12 +12,12 @@
 
             <% for(var menu in CONFIG.menus) { %>
                 <br>
-                <%- FORM.checkbox("active"+menu, scope, {text: 'Active?'}) %>
+                <%- FORM.checkbox("active" + menu, scope, {text: 'Active?'}) %>
 
                 <div ng-if="logica.active<%= menu %>===true">
                     <%= CONFIG.menus[menu].text %> - <%= CONFIG.menus[menu].href %>
                 </div>
-            <%}%>
+            <% } %>
 
             <div ng-repeat="(key,value) in logica.CRUDS">
                 <br>
@@ -28,6 +28,7 @@
             <%- FORM.checkbox("config.estamuerto", scope, {text: 'Esta muerto?'}) %>
             <br>
             {{logica.config}}
+
             <div id="ms_category" ng-controller="ms_category as ms_category">
                 <div class="panel panel-flat">
                     <%- include('../templates/table/header',{scope:'ms_category'}); %>
@@ -36,6 +37,16 @@
                     </div>
                 </div>
             </div><!--end-->
+
+            <div id="ms_other" ng-controller="ms_other as ms_other">
+                <div class="panel panel-flat">
+                    <%- include('../templates/table/header',{scope:'ms_other'}); %>
+                    <div class="subcontent">
+                        <%- include('../templates/table/base',{scope:'ms_other'}); %>
+                    </div>
+                </div>
+            </div><!--end-->
         </div>
     </div>
 </div><!--end-->
+

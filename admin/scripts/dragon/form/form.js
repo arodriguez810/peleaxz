@@ -97,12 +97,27 @@ FORM = {
             }
         };
         $scope.form.registerField = function (name, properties, alterval) {
+            var nameclean = name.replace(/\./g, '_');
             $scope.form.fileds.push(name);
             var references = name.split('.');
-            ARRAY.removeLast(references);
-            for (var ref of references) {
-                eval(`$scope.form.options.${ref} = {}`);
+            if ($scope.form === undefined) {
+                $scope.form = {};
+                $scope.form.options = {};
             }
+            if ($scope.form.options === undefined)
+                $scope.form.options = {};
+
+            var sequece = [];
+            for (var ref of references) {
+                var base = $scope.form.options;
+                for (var seq of sequece)
+                    base = base[seq];
+                if (!base.hasOwnProperty(ref)) {
+                    base[ref] = {};
+                }
+                sequece.push(ref);
+            }
+
             eval(`$scope.form.options.${name} = ${properties.replaceAll("&#34;", '"').replaceAll("&#39", "'")}`);
             if ($scope.form.mode === FORM.modes.new) {
                 eval(`$scope.${name}=${alterval || 'null'};`);
@@ -115,12 +130,13 @@ FORM = {
                             dvalue = $scope.form.runSelectRule(name, dvalue, hasRule, eval(`$scope.form.options.${name}`));
                         }
                         eval(`$scope.${name} = dvalue;`);
-                        $('[name="' + $scope.modelName + "_" + name + '"]').val(dvalue);
+                        $('[name="' + $scope.modelName + "_" + nameclean + '"]').val(dvalue);
                     }
                 }
             }
         };
         $scope.form.runSelectRule = function (name, value, rule, properties) {
+            var nameclean = name.replace(/\./g, '_');
             switch (rule) {
                 case FORM.schemasType.datetime: {
                     var newValue = value.replace('Z', '');
@@ -160,10 +176,10 @@ FORM = {
                     eval(`$scope.${name}_DragonLon = info[1];`);
                     eval(`$scope.${name}_DragonAddress = info[2];`);
 
-                    $('[name="' + name + '_DragonLat"]').val(info[0]);
-                    $('[name="' + name + '_DragonLon"]').val(info[1]);
-                    $('[name="' + name + '_DragonAddress"]').val(info[2]);
-                    $('[name="' + name + '_DragonAddressFilter"]').typeahead('val', info[2]);
+                    $('[name="' + $scope.modelName + "_" + nameclean + '_DragonLat"]').val(info[0]);
+                    $('[name="' + $scope.modelName + "_" + nameclean + '_DragonLon"]').val(info[1]);
+                    $('[name="' + $scope.modelName + "_" + nameclean + '_DragonAddress"]').val(info[2]);
+                    $('[name="' + $scope.modelName + "_" + nameclean + '_DragonAddressFilter"]').typeahead('val', info[2]);
                     return newValue;
                 }
             }
@@ -187,7 +203,7 @@ FORM = {
             if ($scope.form.mode === FORM.modes.new) {
                 for (var i in CONFIG.audit.insert) {
                     var audit = CONFIG.audit.insert[i];
-                    if ($scope.table.crud.table.columns[i] !== undefined)
+                    if (eval(`CRUD_${$scope.modelName}`).table.columns[i] !== undefined)
                         eval(`$scope.form.inserting.${i} = '${eval(audit)}';`);
                 }
                 if ($scope.form.before.insert({
@@ -208,7 +224,9 @@ FORM = {
                             multipleRelations: $scope.form.multipleRelations,
                             relations: $scope.form.relations,
                         });
-                        var firstColumn = $scope.table.crud.table.key || "id";
+
+
+                        var firstColumn = eval(`CRUD_${$scope.modelName}`).table.key || "id";
                         var DRAGONID = eval(`savedRow.${firstColumn}`);
                         $scope.form.mode = FORM.modes.edit;
                         $scope.pages.form.subRequestCompleteVar = 0;
@@ -275,13 +293,13 @@ FORM = {
                 });
             }
             if ($scope.form.mode === FORM.modes.edit) {
-                var firstColumn = $scope.table.crud.table.key || "id";
+                var firstColumn = eval(`CRUD_${$scope.modelName}`).table.key || "id";
                 var dataToWhere = [{field: firstColumn, value: eval(`$scope.${firstColumn}`)}];
                 var dataToUpdate = $scope.form.inserting;
                 dataToUpdate.where = dataToWhere;
                 for (var i in CONFIG.audit.update) {
                     var audit = CONFIG.audit.update[i];
-                    if ($scope.table.crud.table.columns[i] !== undefined)
+                    if (eval(`CRUD_${$scope.modelName}`).table.columns[i] !== undefined)
                         eval(`$scope.form.inserting.${i} = '${eval(audit)}';`);
                 }
                 if ($scope.form.before.update({
@@ -299,7 +317,7 @@ FORM = {
                             relations: $scope.form.relations,
                         });
                         SWEETALERT.loading({message: MESSAGE.i('mono.Preparingfilesandrelations')});
-                        var firstColumn = $scope.table.crud.table.key || "id";
+                        var firstColumn = eval(`CRUD_${$scope.modelName}`).table.key || "id";
                         var DRAGONID = eval(`$scope.${firstColumn}`);
                         $scope.form.mode = FORM.modes.edit;
                         $scope.pages.form.subRequestCompleteVar = 0;
@@ -456,10 +474,11 @@ FORM = {
             }
         };
         $scope.form.masked = function (name, value) {
+            var nameclean = name.replace(/\./g, '_');
             if ($scope.pages.form.isOpen)
                 if (!DSON.oseaX(value)) {
                     try {
-                        return $(`[name="${name}"]`).masked(value);
+                        return $(`[name="${$scope.modelName}_${nameclean}"]`).masked(value);
                     } catch (e) {
                         return "";
                     }
@@ -575,15 +594,16 @@ FORM = {
             }
         };
         $scope.form.callSelect2 = function (name, options) {
+            var nameclean = name.replace(/\./g, '_');
             if (!options.simple) {
-                $('[name="' + $scope.modelName + "_" + name + '"]').select2({
+                $('[name="' + $scope.modelName + "_" + nameclean + '"]').select2({
                     placeholder:
                         capitalize(MESSAGE.i('mono.select') + ' ' + eval(`${options.table}.${!options.multiple ? 'singular' : 'plural'}`)),
                     templateSelection: DROPDOWN.iformat,
                     templateResult: DROPDOWN.iformat,
                     allowHtml: true
                 });
-                $('[name="' + $scope.modelName + "_" + name + '"]').on('change', function (e) {
+                $('[name="' + $scope.modelName + "_" + nameclean + '"]').on('change', function (e) {
                     if (options.childs !== false) {
                         options.childs.forEach((child) => {
                             if (eval(`$scope.form.options.${child.model}.multiple`))
@@ -596,16 +616,16 @@ FORM = {
                     $scope.$scope.$digest();
                 });
                 $scope.$scope.$digest();
-                $('[name="' + $scope.modelName + "_" + name + '"]').trigger('change.select2');
+                $('[name="' + $scope.modelName + "_" + nameclean + '"]').trigger('change.select2');
             } else {
-                $('[name="' + $scope.modelName + "_" + name + '"]').select2({
+                $('[name="' + $scope.modelName + "_" + nameclean + '"]').select2({
                     placeholder:
                         capitalize(MESSAGE.i('mono.select') + ' ' + options.default),
                     templateSelection: DROPDOWN.iformat,
                     templateResult: DROPDOWN.iformat,
                     allowHtml: true
                 });
-                $('[name="' + $scope.modelName + "_" + name + '"]').on('change', function (e) {
+                $('[name="' + $scope.modelName + "_" + nameclean + '"]').on('change', function (e) {
                     if (options.childs !== false) {
                         options.childs.forEach((child) => {
                             if (eval(`$scope.form.options.${child.model}.multiple`))
@@ -617,7 +637,7 @@ FORM = {
                     }
                     $scope.$scope.$digest();
                 });
-                $('[name="' + $scope.modelName + "_" + name + '"]').trigger('change.select2');
+                $('[name="' + $scope.modelName + "_" + nameclean + '"]').trigger('change.select2');
             }
         };
         $scope.form.loadOutDropDown = function (options, id) {
@@ -717,11 +737,14 @@ FORM = {
                 $scope.pages.form.isOpen = false;
                 $scope.form.destroy();
                 if ($scope.form.hasChanged)
-                    $scope.refresh();
+                    if ($scope.refresh !== undefined)
+                        $scope.refresh();
             };
             $scope.pages.form.close = function (pre, post) {
                 if ($scope.form.hasChanged) {
-                    $scope.refresh();
+
+                    if ($scope.refresh !== undefined)
+                        $scope.refresh();
                 }
                 if (typeof pre === "function") pre();
                 if ($scope.form.mode === FORM.modes.new) {
@@ -771,7 +794,7 @@ FORM = {
             }
             $scope.form.mode = mode;
             if (mode === FORM.modes.new) {
-                eval(`$scope.${$scope.table.crud.table.key} = '';`);
+                //eval(`CRUD_${$scope.modelName}.table.key = '';`);
             }
             if ($scope.form.target === FORM.targets.modal) {
                 $scope.modal.modalView($scope.modelName + '/form', {
@@ -803,7 +826,8 @@ FORM = {
                                     $scope.pages.form.isOpen = false;
                                     $scope.form.destroy();
                                     if ($scope.form.hasChanged)
-                                        $scope.refresh();
+                                        if ($scope.refresh !== undefined)
+                                            $scope.refresh();
                                 }
                             }
                         }

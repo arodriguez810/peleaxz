@@ -7,42 +7,6 @@ VALIDATION = {
     run: function ($scope) {
         $scope.validation = {};
         $scope.validation.fields = {};
-        $scope.validation.existRule = function (name) {
-            return eval(`typeof $scope.form.rules.${name} === "function"`);
-        };
-        $scope.validation.getRule = function (name) {
-            if ($scope.validation.existRule(name)) {
-                var rule = eval(`$scope.form.rules.${name}()`);
-                return rule;
-            }
-            return {valid: true, messages: [], type: "success"};
-        };
-        $scope.validation.getType = function (name) {
-            if ($scope !== undefined)
-                if ($scope.validation.existRule(name))
-                    return eval(`$scope.form.rules.${name}().type`);
-            return "success";
-        };
-        $scope.validation.getMessages = function (name) {
-            if ($scope.validation.existRule(name)) {
-                return eval(`$scope.form.rules.${name}().messages`);
-            }
-            return [];
-        };
-        $scope.validation.getValid = function (name) {
-            if ($scope.validation.existRule(name))
-                return eval(`$scope.form.rules.${name}().valid`);
-            return true;
-        };
-        $scope.validation.getColor = function (name) {
-            if ($scope.validation.existRule(name)) {
-                var type = $scope.validation.getType(name);
-                if (type !== VALIDATION.types.success)
-                    return type.replace(VALIDATION.types.error, 'danger');
-                return TAG.table + "-800";
-            }
-            return TAG.table + "-800";
-        };
         $scope.validation.stateIcon = function (fields) {
             if ($scope === undefined)
                 return;

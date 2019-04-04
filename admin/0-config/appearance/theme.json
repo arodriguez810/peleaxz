@@ -1,7 +1,5 @@
 {
-  "hidemenus": [
-    "ms_child"
-  ],
+  "hidemenus": [],
   "ui": {
     "colors": {
       "primary": "slate",

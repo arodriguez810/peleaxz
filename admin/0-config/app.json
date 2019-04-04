@@ -15,7 +15,8 @@
     "stepManager": true,
     "token": true,
     "multilanguage": true,
-    "configuration": true
+    "configuration": true,
+    "onesignal": true
   },
   "developerBy": {
     "name": "Angel Rodríguez",

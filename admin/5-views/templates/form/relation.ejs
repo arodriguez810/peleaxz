@@ -33,8 +33,8 @@ if (options.master === null) {
     var keyColumn = <%= model %>.table.crud.table.key;
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
     <%= model %>.form.schemas.insert["<%= name %>"] =FORM.schemasType.relation;
-    if(MESSAGE.exist('columns.<%= name %>')){
-        <%= model %>.form.options.<%= name %>.text = MESSAGE.i('columns.<%= name %>');
+    if(MESSAGE.exist('columns.<%= nameclean %>')){
+        <%= model %>.form.options.<%= name %>.text = MESSAGE.i('columns.<%= nameclean %>');
     }
     <%= model %>.<%= name %> = '<%= model %><%= options.tempId %>';
     var thisID = eval(`<%= model %>.${keyColumn}`);

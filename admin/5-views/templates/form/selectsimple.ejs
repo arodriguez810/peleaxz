@@ -40,11 +40,11 @@ var toclient = JSON.stringify(options);
 
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>", "'[NULL]'");
     <%= model %>.form.options.<%= name %>.default = `${MESSAGE.ic('mono.select')} <%= name %>`;
-    if (MESSAGE.exist('columns.<%= name %>')) {
+    if (MESSAGE.exist('columns.<%= nameclean %>')) {
         <%= model %>.
-        form.options.<%= name %>.label = MESSAGE.i('columns.<%= name %>');
+        form.options.<%= name %>.label = MESSAGE.i('columns.<%= nameclean %>');
         <%= model %>.
-        form.options.<%= name %>.default = `${MESSAGE.ic('mono.select')} ` + MESSAGE.i('columns.<%= name %>');
+        form.options.<%= name %>.default = `${MESSAGE.ic('mono.select')} ` + MESSAGE.i('columns.<%= nameclean %>');
     }
 
 

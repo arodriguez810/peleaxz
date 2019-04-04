@@ -1,86 +1,181 @@
-<div class="row">
-    <div class="col-sm-12 col-md-2 remove-input-space">
-        <label class="control-label  is-visible animate" dragonlanguage><language>MESSAGE.i('mono.model')</language></label>
-        <select class="js-example-basic-single" name="state">
-            <option value="my_user">my_user</option>
-            <option value="ms_user">ms_user</option>
-            <option value="st_user">st_user</option>
-        </select>
-    </div>
-    <div class="col-sm-12 col-md-2 remove-input-space">
-        <label class="control-label  is-visible animate" dragonlanguage><language>MESSAGE.i('mono.databaseEngine')</language></label>
-        <select class="js-example-basic-single" name="state">
-            <option value="my_user">Microsoft SQL Server</option>
-            <option value="ms_user">MySQL</option>
-            <option value="st_user">Oracle</option>
-            <option value="st_user">MongoDB</option>
-        </select>
-    </div>
-    <div class="col-sm-12 col-md-3 remove-input-space ">
-        <%- FORM.input("username", scope, {maxlength: 50, icon: 'none'}) %>
-    </div>
-    <div class="col-sm-12 col-md-3 remove-input-space center-icon">
-        <%- FORM.password("password", scope, {maxlength: 50, icon: 'none'}) %>
+<div class="panel panel-white">
+    <div class="panel-heading">
+        <h6 class="panel-title" dragonlanguage><i class="icon-users2 position-left"></i>
+            <language>MESSAGE.ic('mono.authentication')</language>
+        </h6>
     </div>
 
-    <div class="col-sm-12 col-md-2 remove-input-space">
-        <label class="control-label  is-visible animate" dragonlanguage><language>MESSAGE.i('mono.encrytation')</language></label>
-        <select class="js-example-basic-single" name="state">
-            <option value="my_user">MD5</option>
-            <option value="ms_user">MD6</option>
-            <option value="st_user">SHA-1</option>
-            <option value="st_user">SHA-224</option>
-        </select>
+    <div class="panel-body">
+
+        <div class="row">
+            <div class="col-sm-2 col-md-2 remove-input-space ">
+                <%- FORM.input("config.users.model", scope, {
+                    maxlength: 50,
+                    placeholder: "Users Table",
+                    icon: {class: "none"}
+                }) %>
+            </div>
+            <div class="col-sm-2 col-md-2 remove-input-space ">
+                <%-
+                FORM.selectsimple("config.users.engine", scope, {
+                    label: "Database Engine",
+                    value: "id",
+                    data: [
+                        {id: 'mssql', name: 'SQL Server'},
+                        {id: 'mysql', name: 'MySql'},
+                        {id: 'oracle', name: 'Oracle'},
+                        {id: 'storage', name: 'Files'}
+                    ],
+                    icon: {class: "wrench3"}
+                }) %>
+            </div>
+            <div class="col-sm-12 col-md-3 remove-input-space ">
+                <%- FORM.input("config.users.fields.username", scope, {
+                    maxlength: 50,
+                    placeholder: "Username Field",
+                    icon: {class: "none"}
+                }) %>
+            </div>
+            <div class="col-sm-12 col-md-3 remove-input-space center-icon">
+                <%- FORM.input("config.users.fields.password", scope, {
+                    maxlength: 50,
+                    placeholder: "Username Field",
+                    icon: {class: "none"}
+                }) %>
+            </div>
+
+            <div class="col-sm-12 col-md-2 remove-input-space">
+
+                <%-
+                FORM.selectsimple("config.users.hash", scope, {
+                    label: "Hash",
+                    value: "id",
+                    data: [
+                        {id: 'md5', name: 'MD5'}
+                    ],
+                    icon: {class: "wrench3"}
+                }) %>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 col-md-4 remove-input-space">
+                <%- FORM.input("config.users.expire", scope, {
+                    maxlength: 50,
+                    placeholder: "Session expire",
+                    icon: {class: "none"},
+                    helptext: "d,h,m,s"
+                }) %>
+            </div>
+
+            <div class="col-sm-12 col-md-4 remove-input-space">
+                <%- FORM.input("config.users.attempts", scope, {
+                    maxlength: 50,
+                    placeholder: "Login attempts allowed",
+                    icon: {class: "none"}
+                }) %>
+            </div>
+
+            <div class="col-sm-12 col-md-4 remove-input-space">
+                <%- FORM.input("config.users.unlockTime", scope, {
+                    maxlength: 50,
+                    isNumber: true,
+                    placeholder: "UnlockTime in minutes",
+                    icon: {class: "none"}
+                }) %>
+            </div>
+
+
+        </div>
     </div>
 </div>
 
-<div class="row">
-    <div class="col-sm-12 col-md-2 remove-input-space">
-        <label class="control-label  is-visible animate" dragonlanguage><language>MESSAGE.i('mono.expirationUnit')</language></label>
-        <select class="js-example-basic-single" name="state">
-            <option value="my_user">Minutes</option>
-            <option value="ms_user">Hours</option>
-            <option value="st_user">Days</option>
-            <option value="st_user">Weeks</option>
-            <option value="st_user">Months</option>
-        </select>
+<div class="panel panel-white">
+    <div class="panel-heading">
+        <h6 class="panel-title" dragonlanguage><i class="icon-sphere position-left"></i>
+            <language>MESSAGE.ic('mono.network')</language>
+        </h6>
     </div>
 
-    <div class="col-sm-12 col-md-2 remove-input-space">
-        <label class="control-label  is-visible animate" style="margin-bottom: 0;" dragonlanguage><language>MESSAGE.i('mono.expiration')</language></label>
-        <input class="form-control" type="number" name="number" value="0">
+    <div class="panel-body">
+
+        <div class="row">
+
+            <div class="col-sm-4 col-md-4 remove-input-space ">
+                <%- FORM.input("config.domain", scope, {
+                    maxlength: 50,
+                    placeholder: "Domain",
+                    icon: {class: "browser"}
+                }) %>
+            </div>
+
+            <div class="col-sm-4 col-md-4 remove-input-space ">
+                <%- FORM.input("config.subdomain", scope, {
+                    maxlength: 20,
+                    placeholder: "Subdomain",
+                    icon: {class: "browser"}
+                }) %>
+            </div>
+
+            <div class="col-sm-12 col-md-2 remove-input-space ">
+                <%- FORM.input("config.port", scope, {placeholder: "Port", maxlength: 4, isNumber: true}) %>
+            </div>
+
+            <div class="col-sm-1 col-md-2">
+                <br>
+                <%- FORM.checkbox("config.ssl", scope, {text: 'SSL/HTTPS', size: 'switchery-sm'}) %>
+            </div>
+
+        </div>
+        <div class="row">
+            <%- FORM.password("config.googlemap", scope, {
+                normal: true,
+                maxlength: 50,
+                placeholder: "Google Map API Key"
+            }) %>
+        </div>
     </div>
-
-    <div class="col-sm-12 col-md-2 remove-input-space">
-        <label class="control-label  is-visible animate" style="margin-bottom: 0;" dragonlanguage><language>MESSAGE.i('mono.attempts')</language></label>
-        <input class="form-control" type="number" name="number" value="0">
-    </div>
-
-    <div class="col-sm-12 col-md-2 remove-input-space">
-        <label class="control-label  is-visible animate" style="margin-bottom: 0;" dragonlanguage><language>MESSAGE.i('mono.unlocktime')</language></label>
-        <input class="form-control" type="number" name="number" value="0">
-    </div>
-
-
-
-    <div class="col-sm-12 col-md-2 remove-input-space ">
-        <%- FORM.input("domain", scope, {maxlength: 50, icon: 'none'}) %>
-    </div>
-
-    <div class="col-sm-12 col-md-2 remove-input-space ">
-        <%- FORM.input("subdomain", scope, {maxlength: 50, icon: 'none'}) %>
-    </div>
-
-
 </div>
 
-<div class="row">
-    <div class="col-sm-12 col-md-1 remove-input-space ">
-        <%- FORM.input("port", scope, {maxlength: 4, type: 'number'}) %>
+
+<div class="panel panel-white">
+    <div class="panel-heading">
+        <h6 class="panel-title" dragonlanguage><i class="icon-bubble-notification position-left"></i>
+            <language>OneSignal</language>
+        </h6>
     </div>
 
-    <div class="col-sm-1 col-md-1">
-        <br>
-        <%- FORM.checkbox("security", scope, {text: 'SSL', size: 'switchery-sm'})%>
+    <div class="panel-body">
+
+        <div class="row">
+
+            <div class="col-sm-4 col-md-4 remove-input-space ">
+                <%- FORM.password("config.onesignal.userAuthKey", scope, {
+                    maxlength: 50,
+                    normal: true,
+                    placeholder: "User Auth Key",
+                    icon: {class: "key"}
+                }) %>
+            </div>
+
+            <div class="col-sm-4 col-md-4 remove-input-space ">
+                <%- FORM.password("config.onesignal.app.appAuthKey", scope, {
+                    maxlength: 50,
+                    normal: true,
+                    placeholder: "App Auth Key",
+                    icon: {class: "key"}
+                }) %>
+            </div>
+
+            <div class="col-sm-12 col-md-4 remove-input-space ">
+                <%- FORM.password("config.onesignal.app.appId", scope, {
+                    maxlength: 50,
+                    normal: true,
+                    placeholder: "App ID",
+                    icon: {class: "key"}
+                }) %>
+            </div>
+
+        </div>
     </div>
 </div>

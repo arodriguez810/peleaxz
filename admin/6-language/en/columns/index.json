@@ -7,5 +7,10 @@
   "name": "Nombre",
   "ms_product_name": "Product",
   "ms_user_name": "User",
-  "ms_category_name": "Category"
+  "ms_category_name": "Category",
+  "Company": "Company",
+  "Security": "Security",
+  "SMTP": "SMTP",
+  "Database": "Database",
+  "expireExp": "Days(d),Hours(h),Minutes(M),Seconds(S)"
 }

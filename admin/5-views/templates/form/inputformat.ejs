@@ -33,12 +33,12 @@ var toclient = JSON.stringify(options);
     if(<%= model %>.form.options.<%= name %>.isNumber)
 
 
-    if(MESSAGE.exist('columns.<%= name %>')){
-        <%= model %>.form.options.<%= name %>.placeholder = MESSAGE.i('columns.<%= name %>');
+    if(MESSAGE.exist('columns.<%= nameclean %>')){
+        <%= model %>.form.options.<%= name %>.placeholder = MESSAGE.i('columns.<%= nameclean %>');
     }
-    if(ICON.classes.<%=  name.toLowerCase() %>!==undefined){
+    if(ICON.classes.<%=  nameclean.toLowerCase() %>!==undefined){
         if(<%= model %>.form.options.<%= name %>.icon.class==='none')
-        <%= model %>.form.options.<%= name %>.icon.class =ICON.classes.<%=  name.toLowerCase() %>;
+        <%= model %>.form.options.<%= name %>.icon.class =ICON.classes.<%=  nameclean.toLowerCase() %>;
     }
 </script>
 <div class="form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-{{::<%= model %>.form.options.<%= name %>.icon.position}}"

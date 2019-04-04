@@ -14,9 +14,10 @@ var folders = {
     styles: "styles",
     server: "server",
     files: "files",
+    themes: "styles/colors",
 };
-var modules = {}, localjs = [], localModules = [], localModulesVars = [], modulesList = [], developer = {};
-var modules = {}, localjs = [], localModules = [], localModulesVars = [], modulesList = [], developer = {};
+var modules = {}, localjs = [], localModules = [], localModulesVars = [], modulesList = [], developer = {}, themes = [];
+//var modules = {}, localjs = [], localModules = [], localModulesVars = [], modulesList = [], developer = {},themes=[];
 var fs = require("fs");
 var getFiles = function (dir, filelist, prefix) {
     var fs = fs || require("fs"),
@@ -45,6 +46,12 @@ configs.forEach(function (config) {
 
 var LANGUAGE = {};
 languages = getFiles("./" + folders.language + "/");
+THEMES = getFiles("./" + folders.themes + "/");
+themes = [];
+THEMES.forEach(function (theme) {
+    themes.push({name: theme.replace('.css', ''), code: theme.replace('.css', ''), css: theme});
+});
+
 languages = languages.filter(function (file) {
     return file.indexOf('.disabled') === -1;
 });
@@ -180,6 +187,7 @@ allparams += "      scope: '@model@',";
 allparams += "      modules:modules,";
 allparams += "      storage:storage,";
 allparams += "      secure:secure,";
+allparams += "      themes:themes,";
 allparams += "      fs:fs,";
 allparams += "      jwt:jwt,";
 allparams += "      rimraf:rimraf,";
@@ -196,6 +204,7 @@ allparams += "      oracle:oracle,";
 allparams += "      CONFIG:CONFIG,";
 allparams += "      LANGUAGE:LANGUAGE,";
 allparams += "      SHOWLANGS:SHOWLANGS,";
+allparams += "      OneSignal:OneSignal,";
 allparams += "      catalogs:catalogs,";
 allparams += "      mail:mail,";
 allparams += "      folders:folders,";

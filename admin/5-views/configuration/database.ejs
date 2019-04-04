@@ -1,82 +1,92 @@
 <div class="row">
     <div class="col-sm-12 col-md-12">
-        <%- FORM.checkbox("mssql", scope, {text: 'Microsoft SQL Server ', size: 'switchery-sm'})%>
+        <%- FORM.checkbox("config.mssqlactive", scope, {text: 'Microsoft SQL Server', size: 'switchery-sm'}) %>
     </div>
 </div>
 
 <div class="row">
     <div class="col-sm-12 col-md-2 remove-input-space ">
-        <%- FORM.input("user", scope, {maxlength: 50, icon: 'none'}) %>
+        <%- FORM.input("config.mssql.user", scope, {placeholder: "User", maxlength: 50, icon: 'none'}) %>
     </div>
     <div class="col-sm-12 col-md-3 remove-input-space center-icon">
-        <%- FORM.password("password", scope, {maxlength: 50, icon: 'none'}) %>
+        <%- FORM.password("config.mssql.password", scope, {
+            normal: true,
+            placeholder: "Password",
+            maxlength: 50,
+            icon: 'none'
+        }) %>
     </div>
     <div class="col-sm-12 col-md-3 remove-input-space ">
-        <%- FORM.input("sever", scope, {maxlength: 50, icon: 'none'}) %>
+        <%- FORM.input("config.mssql.server", scope, {placeholder: "Server", maxlength: 50, icon: 'none'}) %>
     </div>
     <div class="col-sm-12 col-md-3 remove-input-space ">
-        <%- FORM.input("database", scope, {maxlength: 50, icon: 'none'}) %>
+        <%- FORM.input("config.mssql.database", scope, {placeholder: "Database Name", maxlength: 50, icon: 'none'}) %>
     </div>
     <div class="col-sm-12 col-md-1 remove-input-space ">
-        <%- FORM.input("port", scope, {maxlength: 50, icon: 'none', type: 'number'}) %>
+        <%- FORM.input("config.mssql.port", scope, {
+            isNumber: true,
+            placeholder: "Port",
+            maxlength: 6,
+            icon: 'none'
+        }) %>
     </div>
 </div>
+
 
 <div class="row">
     <div class="col-sm-12 col-md-12">
-        <%- FORM.checkbox("mysql", scope, {text: 'MySQL ', size: 'switchery-sm'})%>
+        <%- FORM.checkbox("config.mysqlactive", scope, {text: 'My SQL', size: 'switchery-sm'}) %>
     </div>
 </div>
 
 <div class="row">
     <div class="col-sm-12 col-md-2 remove-input-space ">
-        <%- FORM.input("host", scope, {maxlength: 50, icon: 'none'}) %>
-    </div>
-    <div class="col-sm-12 col-md-2 remove-input-space ">
-        <%- FORM.input("user", scope, {maxlength: 50, icon: 'none'}) %>
+        <%- FORM.input("config.mysql.user", scope, {placeholder: "User", maxlength: 50, icon: 'none'}) %>
     </div>
     <div class="col-sm-12 col-md-3 remove-input-space center-icon">
-        <%- FORM.password("password", scope, {maxlength: 50, icon: 'none'}) %>
+        <%- FORM.password("config.mysql.password", scope, {
+            normal: true,
+            placeholder: "Password",
+            maxlength: 50,
+            icon: 'none'
+        }) %>
     </div>
     <div class="col-sm-12 col-md-3 remove-input-space ">
-        <%- FORM.input("database", scope, {maxlength: 50, icon: 'none'}) %>
+        <%- FORM.input("config.mysql.host", scope, {placeholder: "Server", maxlength: 50, icon: 'none'}) %>
     </div>
-    <div class="col-sm-12 col-md-2">
-        <br>
-        <%- FORM.checkbox("multipleStatements", scope, {text: 'Multiple Statements', size: 'switchery-sm'})%>
+    <div class="col-sm-12 col-md-3 remove-input-space ">
+        <%- FORM.input("config.mysql.database", scope, {placeholder: "Database Name", maxlength: 50, icon: 'none'}) %>
     </div>
+    <div class="col-sm-12 col-md-1 remove-input-space ">
+        <%- FORM.input("config.mysql.port", scope, {
+            isNumber: true,
+            placeholder: "Port",
+            maxlength: 6,
+            icon: 'none'
+        }) %>
+    </div>
+</div>
 
-</div>
-<div class="row">
-    <div class="col-sm-12 col-md-2 remove-input-space ">
-        <%- FORM.input("ConnectionLimit", scope, {maxlength: 50, icon: 'none', type: 'number'}) %>
-    </div>
-</div>
 
 <div class="row">
     <div class="col-sm-12 col-md-12">
-        <%- FORM.checkbox("oracle", scope, {text: 'Oracle ', size: 'switchery-sm'})%>
+        <%- FORM.checkbox("config.oracleactive", scope, {text: 'Oracle', size: 'switchery-sm'}) %>
     </div>
 </div>
+
 <div class="row">
     <div class="col-sm-12 col-md-2 remove-input-space ">
-        <%- FORM.input("user", scope, {maxlength: 50, icon: 'none'}) %>
+        <%- FORM.input("config.oracle.user", scope, {placeholder: "User", maxlength: 50, icon: 'none'}) %>
     </div>
     <div class="col-sm-12 col-md-3 remove-input-space center-icon">
-        <%- FORM.password("password", scope, {maxlength: 50, icon: 'none'}) %>
+        <%- FORM.password("config.oracle.password", scope, {
+            normal: true,
+            placeholder: "Password",
+            maxlength: 50,
+            icon: 'none'
+        }) %>
     </div>
-    <div class="col-sm-12 col-md-7 remove-input-space ">
-        <%- FORM.input("connectionString", scope, {maxlength: 50, icon: 'none'}) %>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-sm-12 col-md-12">
-        <%- FORM.checkbox("mongo", scope, {text: 'MongoDB ', size: 'switchery-sm'})%>
-    </div>
-</div>
-<div class="row">
-    <div class="col-sm-12 col-md-5 remove-input-space ">
-        <%- FORM.input("mongoURL", scope, {maxlength: 50, icon: 'none'}) %>
+    <div class="col-sm-12 col-md-3 remove-input-space ">
+        <%- FORM.input("config.oracle.connectString", scope, {placeholder: "Server", maxlength: 50, icon: 'none'}) %>
     </div>
 </div>

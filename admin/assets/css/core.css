@@ -1379,9 +1379,9 @@ textarea {
     filter: alpha(opacity=0);
 }
 
-.form-group-material > .control-label ~ .form-control-feedback {
-    top: 20px;
-}
+/*.form-group-material > .control-label ~ .form-control-feedback {*/
+    /*top: 20px;*/
+/*}*/
 
 .form-group-material > .control-label.has-margin {
     margin-bottom: 8px;

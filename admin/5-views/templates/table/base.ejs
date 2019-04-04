@@ -1,3 +1,6 @@
+<script>
+    RUNTABLE('<%= scope %>');
+</script>
 <div class="dragon-panel" id="<%= scope %>TablePanel" style="overflow-x: scroll;overflow-y: visible">
     <!--Table List -->
     <div ng-show="$$watchersCount>=baseController.CONFIG.performance.angular.table && baseController.CONFIG.mode!=='production'"

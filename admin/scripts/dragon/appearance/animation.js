@@ -169,28 +169,7 @@ $(document).ready(function () {
                     FILE.runServerFile($(this))
                 });
 
-                $(".navbar, .navbar-brand, .navbar-text, .navbar-nav > li, .page-title, .page-header .heading-elements")
-                    .css('opacity', 1)
-                    .velocity("transition.slideDownIn", {
-                        stagger: 100,
-                        duration: 100,
-                        complete: function (elements) {
-                            $(this).removeAttr('style');
-                        }
-                    });
-
-                // Navigation list on load
-                $(".navigation ul > li")
-                    .css('opacity', 0)
-                    .velocity("transition.slideLeftIn", {
-                        stagger: 150,
-                        duration: 500,
-                        complete: function (elements) {
-                            $(this).removeAttr('style')
-                        }
-                    });
-
-            }, 1000);
+            }, 0);
             firstPeace = false;
         }
     });

@@ -1,39 +1,56 @@
 <div class="row">
-    <div class="col-sm-4 col-md-4 remove-input-space ">
-        <%- FORM.input("host", scope, {maxlength: 50}) %>
+    <div class="col-sm-4 col-md-3 remove-input-space ">
+        <%- FORM.input("config.smtp.host", scope, {maxlength: 50, placeholder: "Host", icon: {class: "none"}}) %>
     </div>
 
-    <div class="col-sm-2 col-md-2 remove-input-space ">
-        <%- FORM.input("port", scope, {maxlength: 4, type: 'number'}) %>
+    <div class="col-sm-2 col-md-3 remove-input-space ">
+        <%- FORM.input("config.smtp.port", scope, {
+            maxlength: 4,
+            isNumber: true,
+            placeholder: "Port",
+            icon: {class: "none"}
+        }) %>
     </div>
 
     <div class="col-sm-4 col-md-3 remove-input-space ">
-        <%- FORM.input("sender", scope, {maxlength: 50, type: 'email'}) %>
+        <%- FORM.checkbox("config.smtp.secure", scope, {text: 'SSL', size: 'switchery-sm'}) %>
     </div>
 
-    <div class="col-sm-4 col-md-3 remove-input-space ">
-        <%- FORM.input("name", scope, {maxlength: 50}) %>
-    </div>
 
 </div>
 
 <div class="row">
-
-    <div class="col-sm-1 col-md-1">
-        <br>
-        <%- FORM.checkbox("security", scope, {text: 'SSL', size: 'switchery-sm'})%>
+    <div class="col-sm-4 col-md-3 remove-input-space ">
+        <%- FORM.input("config.smtp.auth.user", scope, {maxlength: 50, placeholder: "Email", icon: {class: "mail5"}}) %>
+    </div>
+    <div class="col-sm-4 col-md-3 remove-input-space ">
+        <%- FORM.password("config.smtp.auth.pass", scope, {
+            maxlength: 50,
+            normal: true,
+            placeholder: "Password",
+            icon: {class: ""}
+        }) %>
     </div>
 
-    <div class="col-sm-3 col-md-3 remove-input-space ">
-        <%- FORM.input("user", scope, {maxlength: 50, icon: 'none'}) %>
+    <div class="col-sm-4 col-md-3 remove-input-space ">
+        <%- FORM.input("config.smptOptions.sender", scope, {
+            maxlength: 50,
+            normal: true,
+            placeholder: "Sender",
+            icon: {class: "mail5"}
+        }) %>
     </div>
 
-    <div class="col-sm-3 col-md-3 remove-input-space center-icon">
-        <%- FORM.password("password", scope, {maxlength: 50, icon: 'none'}) %>
+    <div class="col-sm-4 col-md-3 remove-input-space ">
+        <%- FORM.input("config.smptOptions.name", scope, {
+            maxlength: 50,
+            normal: true,
+            placeholder: "Sender Name",
+            icon: {class: "mail5"}
+        }) %>
     </div>
 
 </div>
 
-<div class="row">
 
-</div>
+

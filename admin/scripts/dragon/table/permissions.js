@@ -1,7 +1,7 @@
 PERMISSIONS = {
     run: function ($scope) {
         $scope.allow = function (permisionName, or, isModal) {
-            var finalCrud = $scope.table.crud;
+            var finalCrud = eval(`CRUD_${$scope.modelName}`);
             if (isModal)
                 if (!DSON.oseaX(ARRAY.last(MODAL.historyObject)))
                     finalCrud = ARRAY.last(MODAL.historyObject).viewData.crud;
@@ -25,7 +25,7 @@ PERMISSIONS = {
             return true;
         };
         $scope.characterist = function (characterist, or, isModal) {
-            var finalCrud = $scope.table.crud;
+            var finalCrud = eval(`CRUD_${$scope.modelName}`);
             if (isModal)
                 if (!DSON.oseaX(ARRAY.last(MODAL.historyObject)))
                     finalCrud = ARRAY.last(MODAL.historyObject).viewData.crud;

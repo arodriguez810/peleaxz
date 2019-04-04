@@ -92,13 +92,14 @@
     <script type="text/javascript" src="assets/js/plugins/pickers/location/autocomplete_addresspicker.js"></script>
     <script type="text/javascript" src="assets/js/plugins/pickers/location/location.js"></script>
     <script type="text/javascript" src="assets/js/plugins/editors/summernote/summernote.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/onesignal/index.js"></script>
 
     <% localjs.forEach(function(item){ %>
         <script src="<%= FOLDERS.scripts %>/<%= item %>"></script>
     <% }); %>
 
-
     <script>
+        CHANGINGMENU = true;
         WARNINGREQUESTS = [];
         Dropzone.autoDiscover = false;
         CONFIG = "<%= JSON.stringify(CONFIG) %>";
@@ -113,6 +114,8 @@
         TAG = eval("(" + TAG.replaceAll("&#34;", '"') + ")");
         FOLDERS = "<%= JSON.stringify(FOLDERS) %>";
         FOLDERS = eval("(" + FOLDERS.replaceAll("&#34;", '"') + ")");
+        THEMES = "<%= JSON.stringify(THEMES) %>";
+        THEMES = eval("(" + THEMES.replaceAll("&#34;", '"') + ")");
         DATA = "<%= JSON.stringify(DATA) %>";
         DATA = "<%= JSON.stringify(DATA) %>";
         DATA = eval("(" + DATA.replaceAll("&#34;", '"') + ")");
@@ -137,8 +140,33 @@
         $(".sidebar, .navbar, .navbar-brand, .navbar-text, .navbar-nav > li, .page-header, .page-title, .page-header .heading-elements, .breadcrumb, .breadcrumb-elements > li, .content > .panel, .content .row > [class*=col-], .footer")
             .css('opacity', 0);
         MESSAGE.run();
+        PLAYERID = null;
     </script>
+    <script>
+        if (CONFIG.features.onesignal) {
+            var OneSignal = window.OneSignal || [];
+            OneSignal.push(function () {
+                OneSignal.init({
+                    appId: CONFIG.onesignal.app.appId,
+                    autoResubscribe: true,
+                    autoRegister: true,
+                    welcomeNotification: {
+                        disable: true
+                    }
+                });
 
+                OneSignal.on('subscriptionChange', function (isSubscribed) {
+                    OneSignal.getUserId().then(function (userId) {
+                        PLAYERID = userId;
+                    });
+                });
+                OneSignal.getUserId().then(function (userId) {
+                    PLAYERID = userId;
+                });
+            });
+
+        }
+    </script>
     <script type="text/javascript" src="assets/js/plugins/pickers/color/spectrum.js"></script>
     <script type="text/javascript" src="assets/js/plugins/date/jquery.datetimepicker.full.min.js"></script>
 
@@ -160,6 +188,7 @@
             BASEAPI.list('permission', {
                 "where": [
                     {
+                        "field": "id",
                         "value": `${CONFIG.users.model}-${SESSION.current().getID()}`
                     }
                 ]

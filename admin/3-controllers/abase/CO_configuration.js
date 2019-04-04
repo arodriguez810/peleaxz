@@ -1,21 +1,24 @@
 app.controller("configuration", function ($scope, $http, $compile) {
-    console.log(1);
     configuration = this;
-    configuration.inputs = [];
-    configuration.addRoute = function () {
-        configuration.inputs.push({})
+    configuration.config = {};
+    DSON.merge(configuration.config, CONFIG, true);
+    configuration.configurationClose = function () {
+        MODAL.close(configuration);
     };
-    configuration.customfileds = [];
-    configuration.addfield = function () {
-        configuration.customfileds.push({})
-    };
-    configuration.insertField = [];
-    configuration.addfieldUnsert = function () {
-        configuration.insertField.push({})
-    };
-    configuration.updateField = [];
-    configuration.addfieldUpdate = function () {
-        configuration.updateField.push({})
+    configuration.saveConfiguration = function () {
+        SWEETALERT.confirm({
+            message:
+                MESSAGE.i('alerts.saveConfig'),
+            confirm: function () {
+                SWEETALERT.loading({message: MESSAGE.ic('mono.procesing')});
+                BASEAPI.ajax.post('dragon/api/saveConfig', {json: JSON.stringify(configuration.config)}, function () {
+                    SWEETALERT.loading({message: MESSAGE.ic('mono.restarting')});
+                    setTimeout(() => {
+                        location.reload();
+                    }, 5000);
+                });
+            }
+        });
     };
     RUNCONTROLLER("configuration", configuration, $scope, $http, $compile);
     RUN_B("configuration", configuration, $scope, $http, $compile);

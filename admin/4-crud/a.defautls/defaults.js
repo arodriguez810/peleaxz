@@ -25,7 +25,6 @@ CRUDDEFAULTS = {
         sortable: true,
         allow: {
             menu: true,
-            permission: true,
             add: true,
             edit: true,
             view: true,

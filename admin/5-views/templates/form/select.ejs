@@ -78,11 +78,11 @@ var toclient = JSON.stringify(options);
 
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>", "'[NULL]'");
     <%= model %>.form.options.<%= name %>.default = `${MESSAGE.ic('mono.select')} <%= name %>`;
-    if (MESSAGE.exist('columns.<%= name %>')) {
+    if (MESSAGE.exist('columns.<%= nameclean %>')) {
         <%= model %>.
-        form.options.<%= name %>.label = MESSAGE.i('columns.<%= name %>');
+        form.options.<%= name %>.label = MESSAGE.i('columns.<%= nameclean %>');
         <%= model %>.
-        form.options.<%= name %>.default = `${MESSAGE.ic('mono.select')} ` + MESSAGE.i('columns.<%= name %>');
+        form.options.<%= name %>.default = `${MESSAGE.ic('mono.select')} ` + MESSAGE.i('columns.<%= nameclean %>');
     }
 
 
@@ -278,8 +278,7 @@ var toclient = JSON.stringify(options);
             return false;
         });
         $('#new<%= model %>_<%= nameclean %>').click(function () {
-            <%= options.table %>.
-            formulary(null, 'new');
+            <%= options.table %>.formulary(null, 'new');
             return false;
         });
         $('#list<%= model %>_<%= nameclean %>').click(function () {
@@ -300,30 +299,20 @@ var toclient = JSON.stringify(options);
             modal.modalView(String.format("{0}", "<%= options.table %>"), modal);
             return false;
         });
+
         $('#edit<%= model %>_<%= nameclean %>').click(function () {
-            <%= options.table %>.
-            formulary({
+            <%= options.table %>.formulary({
                 where: [{
-                    field: <%= options.table %>.table.crud.table.key,
-                    value
-        : <%= model %>.<%= name %>
-        }]
-        },
-            FORM.modes.edit, {}
-        )
-            ;
+                    field: <%= 'CRUD_'+options.table %>.table.key,
+                    value: <%= model %>.<%= name %>}]},FORM.modes.edit, {});
             return false;
         });
         $('#view<%= model %>_<%= nameclean %>').click(function () {
             <%= model %>.
-            cell.openLink({
-                    column: "<%= options.column %>",
-                    value: <%= model %>.<%= name %>,
-                field
-        :
-            "<%= name %>"
-        })
-            ;
+
+            cell.openLink({column: "<%= options.column %>", value: <%= model %>.<%= name %>, field:"<%= name %>"});
+
+
             return false;
         });
     });

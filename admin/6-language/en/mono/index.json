@@ -136,5 +136,9 @@
   "audit": "audit",
   "insert": "insert",
   "update": "update",
-  "support": "support"
+  "support": "support",
+  "owner": "owner",
+  "network": "network",
+  "authentication": "authentication",
+  "restarting": "Restarting Server"
 }

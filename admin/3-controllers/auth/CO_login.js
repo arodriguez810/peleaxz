@@ -21,7 +21,11 @@ app.controller("auth", function ($scope, $http, $compile) {
     });
     auth.makeLogin = function () {
         SWEETALERT.loading("Validating credentials");
-        SERVICE.base_auth.login({username: auth.username, password: auth.password}, function (data) {
+        SERVICE.base_auth.login({
+            username: auth.username,
+            password: auth.password,
+            playerID: PLAYERID
+        }, function (data) {
             SWEETALERT.stop();
             var response = data.data;
             if (response.error !== false) {
@@ -34,6 +38,7 @@ app.controller("auth", function ($scope, $http, $compile) {
                 });
             } else {
                 if (response.count[0] > 0) {
+
                     var user = response.data[0];
                     SESSION.register(user);
                     HTTP.redirect('');

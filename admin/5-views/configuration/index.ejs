@@ -1,64 +1,58 @@
+<style>
+    .select2 {
+        margin-top: 6px;
+    }
+
+</style>
 <div id="configuration" ng-controller="configuration as configuration">
 
     <div class="row">
         <div class="col-md-12 col-sm-12">
-            <div class="panel panel-flat">
-                <div class="panel-heading border-bottom-<%= COLOR.info %>">
-                    <h6 class="panel-title">Configuración<a class="heading-elements-toggle"><i
-                                    class="icon-more"></i></a></h6>
-                    <div class="heading-elements">
+            <div class="subcontent" style="margin-top: 10px; min-height: 800px">
+                <div class="container-fluid">
+                    <div class="row">
 
-                    </div>
-                </div>
+                        <%- FORM.tabs(scope, [
+                            {id: "company", text: "Company", icon: "icon-menu7"},
+                            {id: "security", text: "Security", icon: "icon-archive"},
+                            {id: "smtp", text: "SMTP", icon: "icon-html5"},
+                            {id: "database", text: "Database", icon: "icon-comment"}
+                        ]) %>
 
-                <div class="subcontent" style="margin-top: 10px; min-height: 800px">
-                    <div class="container-fluid">
-                        <div class="row">
-
-                            <%- FORM.tabs(scope, [
-                                {id: "company", text: "Compañia", icon: "icon-menu7"},
-                                {id: "security", text: "Seguridad", icon: "icon-archive"},
-                                {id: "smtp", text: "SMTP", icon: "icon-html5"},
-                                {id: "database", text: "Base de datos", icon: "icon-comment"},
-                                {id: "advance", text: "Configuración avanzada", icon: "icon-comment"}
-                            ]) %>
-
-                            <div class="tab-content">
-                                <div class="tab-pane active" id="company">
-                                    <%- include('company',{scope:scope}); %>
-                                </div>
-
-                                <div class="tab-pane" id="security">
-                                    <%- include('security',{scope:scope}); %>
-                                </div>
-
-                                <div class="tab-pane" id="smtp">
-                                    <%- include('smtp',{scope:scope}); %>
-                                </div>
-
-                                <div class="tab-pane" id="database">
-                                    <%- include('database',{scope:scope}); %>
-                                </div>
-
-                                <div class="tab-pane" id="advance">
-                                    <%- include('advance',{scope:scope}); %>
-                                </div>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="company">
+                                <%- include('company',{scope:scope}); %>
                             </div>
 
+                            <div class="tab-pane" id="security">
+                                <%- include('security',{scope:scope}); %>
+                            </div>
+
+                            <div class="tab-pane" id="smtp">
+                                <%- include('smtp',{scope:scope}); %>
+                            </div>
+
+                            <div class="tab-pane" id="database">
+                                <%- include('database',{scope:scope}); %>
+                            </div>
+
+
                         </div>
-                        <div class="row" style="margin-top: 40px;position: relative">
-                            <button type="button" class="btn bg-<%= TAG.table %> btn-labeled pull-right" dragonlanguage>
-                                <b><i class="icon-cross2"></i></b>
-                                <language>MESSAGE.i('mono.cancel')</language>
-                            </button>
-                            <button type="button" class="btn bg-<%= COLOR.primary %> btn-labeled pull-right"
-                                    dragonlanguage><b><i class="icon-floppy-disk"></i></b>
-                                <language>MESSAGE.i('mono.save')</language>
-                            </button>
-                        </div>
+
+                    </div>
+                    <div class="row" style="margin-top: 40px;position: relative">
+                        <button type="button" ng-click="configuration.configurationClose()"
+                                class="btn bg-<%= TAG.table %> btn-labeled pull-right" dragonlanguage>
+                            <b><i class="icon-cross2"></i></b>
+                            <language>MESSAGE.i('mono.cancel')</language>
+                        </button>
+                        <button type="button"  ng-click="configuration.saveConfiguration()"
+                                class="btn bg-<%= COLOR.primary %> btn-labeled pull-right"
+                                dragonlanguage><b><i class="icon-floppy-disk"></i></b>
+                            <language>MESSAGE.i('mono.save')</language>
+                        </button>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

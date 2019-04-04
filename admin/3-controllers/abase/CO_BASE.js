@@ -16,14 +16,16 @@ app.directive('ngModelOnblur', function () {
         restrict: 'A',
         require: 'ngModel',
         link: function (scope, elm, attr, ngModelCtrl) {
-            if (attr.type === 'radio' || attr.type === 'checkbox') return;
+            setTimeout(() => {
+                if (attr.type === 'radio' || attr.type === 'checkbox') return;
 
-            elm.unbind('input').unbind('keydown').unbind('change');
-            elm.bind('blur', function () {
-                scope.$apply(function () {
-                    ngModelCtrl.$setViewValue(elm.val());
+                elm.unbind('input').unbind('keydown').unbind('change');
+                elm.bind('blur', function () {
+                    scope.$apply(function () {
+                        ngModelCtrl.$setViewValue(elm.val());
+                    });
                 });
-            });
+            }, 1000);
         }
     };
 });
@@ -88,7 +90,6 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
     };
 
 
-
     var permissionOptions = {
         text: (data) => {
             return "";
@@ -141,6 +142,7 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
         }
     };
     for (var entity of CONFIG.permissions.entities) {
+        eval(`CRUD_${entity}.table.allow.permission = true;`);
         eval(`CRUD_${entity}.table.options.push(permissionOptions)`);
     }
 });
@@ -158,11 +160,12 @@ REMOVEALLCHILDSCOPE = function () {
 };
 
 GARBAGECOLECTOR = function (exclude) {
-    if (MODAL.history.length === 0)
-        MODELLIST.forEach((item) => {
-            if (!DSON.oseaX(item)) {
-                if (exclude !== item) {
-                    eval(`
+    if (CHANGINGMENU)
+        if (MODAL.history.length === 0)
+            MODELLIST.forEach((item) => {
+                if (!DSON.oseaX(item)) {
+                    if (exclude !== item) {
+                        eval(`
                     if((typeof ${item})!=='undefined'){
                         if(${item}!==null){
                           if(${item}.$scope!==undefined){ 
@@ -171,9 +174,10 @@ GARBAGECOLECTOR = function (exclude) {
                           }
                         }
                     }`);
+                    }
                 }
-            }
-        });
+            });
+    CHANGINGMENU = false;
 };
 
 RUN_A = function (conrollerName, inside, $scope, $http, $compile) {
@@ -207,6 +211,38 @@ RUN_B = function (conrollerName, inside, $scope, $http, $compile) {
     VALIDATION.run(inside);
 };
 
+RUNTABLE = function (inside) {
+    console.log(inside);
+    if (eval(`${inside}`).crudConfig !== undefined)
+        return;
+    if (eval("typeof CRUD_" + eval(`${inside}`).modelName) !== "undefined")
+        eval(inside + ".crudConfig = CRUD_" + eval(`${inside}`).modelName);
+    else
+        eval(`${inside}`).crudConfig = undefined;
+    if (eval(`${inside}`).crudConfig)
+        if (eval(`${inside}`).crudConfig.type !== 'raw')
+            CRUD.run(eval(`${inside}`), eval(`${inside}`).crudConfig);
+    if (eval(`${inside}`).crudConfig)
+        if (eval(`${inside}`).crudConfig.type !== 'raw')
+            TABLE.run(eval(`${inside}`), eval(`${inside}`).$http, eval(`${inside}`).$compile);
+    if (eval(`${inside}`).crudConfig) {
+        if (eval(`${inside}`).crudConfig.type !== 'raw') {
+            FILTER.run(eval(`${inside}`));
+            TABLEOPTIONS.run(eval(`${inside}`));
+            TABLEEVENT.run(eval(`${inside}`), eval(`${inside}`).$http, eval(`${inside}`).$compile);
+            TABLEFORMAT.run(eval(`${inside}`));
+            PAGINATOR.run(eval(`${inside}`));
+            SORTABLE.run(eval(`${inside}`));
+            TABLESELECTION.run(eval(`${inside}`));
+        }
+    }
+    if (eval(`${inside}`).crudConfig)
+        if (eval(`${inside}`).crudConfig.type !== 'raw')
+            EXPORT.run(eval(`${inside}`));
+    if (eval(`${inside}`).crudConfig)
+        if (eval(`${inside}`).crudConfig.type !== 'raw')
+            eval(`${inside}`).refresh();
+};
 RUNCONTROLLER = function (conrollerName, inside, $scope, $http, $compile) {
     GARBAGECOLECTOR(conrollerName);
     inside.MENU = MENU.current;
@@ -216,48 +252,20 @@ RUNCONTROLLER = function (conrollerName, inside, $scope, $http, $compile) {
     inside.$http = $http;
     inside.$compile = $compile;
     inside.$scope = $scope;
-    if (eval("typeof CRUD_" + conrollerName) !== "undefined")
-        eval("inside.crudConfig = CRUD_" + conrollerName);
-    else
-        inside.crudConfig = undefined;
     API.run(inside, $http);
     COMPILE.run(inside, $scope, $compile);
-    if (inside.crudConfig)
-        if (inside.crudConfig.type !== 'raw')
-            CRUD.run(inside, inside.crudConfig);
     STORAGE.run(inside);
-    if (inside.crudConfig)
-        if (inside.crudConfig.type !== 'raw')
-            TABLE.run(inside, $http, $compile);
     LOAD.run(inside, $http);
     MODAL.run(inside, $compile);
-    if (inside.crudConfig) {
-        if (inside.crudConfig.type !== 'raw') {
-            FILTER.run(inside);
-            TABLEOPTIONS.run(inside);
-            TABLEEVENT.run(inside, $http, $compile);
-            TABLEFORMAT.run(inside);
-            PAGINATOR.run(inside);
-            SORTABLE.run(inside);
-            TABLESELECTION.run(inside);
-        }
-    }
     PERMISSIONS.run(inside);
     MENU.run(inside);
-    if (inside.crudConfig)
-        if (inside.crudConfig.type !== 'raw')
-            EXPORT.run(inside);
     inside.pages = {};
     inside.refreshAngular = function () {
         inside.$scope.$digest();
     };
-    if (inside.crudConfig)
-        if (inside.crudConfig.type !== 'raw')
-            inside.refresh();
     $scope.$on('$destroy', function () {
 
     });
-    if (MODAL.history.length === 0) {
+    if (MODAL.history.length === 0)
         baseController.currentModel = inside;
-    }
 };

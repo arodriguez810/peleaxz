@@ -222,9 +222,11 @@ exports.sortByKey = function (array, key, order) {
 };
 exports.data = async function (table, params, where, index) {
     var wherefinal = where;
+
     if (Array.isArray(where)) {
-        if (where.length > 1)
+        if (where.length > 0) {
             wherefinal = exports.makeWhere(where, params);
+        }
         else
             wherefinal = '';
     }
@@ -234,30 +236,6 @@ exports.data = async function (table, params, where, index) {
     lastID = lastID - 1;
     var records = await params.storage.getItem(table) || [];
     try {
-
-        // if (entity.fkeys.length > 0) {
-        //     var tables = {};
-        //     for (var fk of entity.fkeys) {
-        //         eval(`tables.${fk.table} = await params.storage.getItem(fk.table) || [];`);
-        //     }
-        //     for (var fk of entity.fkeys) {
-        //         var fkRecords = eval(`table.${fk.table}`);
-        //         if (fkRecords.length > 0) {
-        //             records.forEach(function (row) {
-        //                 var selected = fkRecords.filter(function (fkrow) {
-        //                     return eval(`fkrow.${fk.tableField}==row.${fk.field};`);
-        //                 });
-        //                 if (selected.length > 0) {
-        //                     selected = selected[0];
-        //                     eval(`row.${fk.field} = selected.${fk.tableField}`);
-        //                 } else {
-        //                     eval(`row.${fk.field} = null;`);
-        //                 }
-        //
-        //             });
-        //         }
-        //     }
-        // }
 
         if (wherefinal !== '' && wherefinal !== undefined)
             records = records.filter(function (row) {

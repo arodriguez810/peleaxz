@@ -41,9 +41,9 @@ var toclient = JSON.stringify(options);
 
 
 
-    if (MESSAGE.exist('columns.<%= name %>')) {
+    if (MESSAGE.exist('columns.<%= nameclean %>')) {
         <%= model %>.
-        form.options.<%= name %>.placeholder = MESSAGE.i('columns.<%= name %>');
+        form.options.<%= name %>.placeholder = MESSAGE.i('columns.<%= nameclean %>');
     }
     var isReadProgram = <%= model %>.form.isReadOnly('<%= name %>');
     if (isReadProgram !== false) {
@@ -182,10 +182,5 @@ var toclient = JSON.stringify(options);
                 }
             }
         });
-        setTimeout(function () {
-            $("#input<%= model %>_<%= nameclean %>").addClass('has-' + <%= model %>.validation.getType('<%= name %>')
-        )
-            ;
-        }, 100);
     });
 </script>

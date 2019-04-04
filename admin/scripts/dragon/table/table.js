@@ -154,7 +154,6 @@ TABLE = {
         };
         /*Validation******************************/
         $scope.afterData = function (data) {
-            console.log('after data');
             PAGINATOR.make($scope, data);
             ANIMATION.stoploading(
                 "#" + $scope.modelName + "TablePanel",

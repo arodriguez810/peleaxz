@@ -33,5 +33,6 @@
   "ClientDbError": "An error occurred in the database, would you like to send this error?",
   "ChangeLanguage": "Are you sure to change language to ${lang.name}?, this will change the texts of ${CONFIG.appName} and you may not understand them.",
   "providerError": "Your errors have been sent to the provider",
-  "permissiondenied": "You do not have enough permissions to access this option, if it is on this screen it could only be by the option of favorites. If you are aware that you should not have permissions please delete it but contact the administrator"
+  "permissiondenied": "You do not have enough permissions to access this option, if it is on this screen it could only be by the option of favorites. If you are aware that you should not have permissions please delete it but contact the administrator",
+  "saveConfig": "When saving the configuration of the application the server will restart and it will take a few seconds to start, you must be sure of all the changed paramenters since the mishandling of some may cause the server not to start, even though you are sure you want to save these changes anyway?",
 }

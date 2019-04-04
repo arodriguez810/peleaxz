@@ -30,7 +30,7 @@ TABLEEVENT = {
             );
         });
         $scope.cell.openLink = function (data) {
-            data.column = eval("$scope.table.crud.table.columns." + data.column);
+            data.column = eval("eval(`CRUD_${$scope.modelName}`).table.columns." + data.column);
             if (data.column.link && data.column.reference !== false) {
                 if (!DSON.oseaX(data.value)) {
                     var mylink = data.column.link;

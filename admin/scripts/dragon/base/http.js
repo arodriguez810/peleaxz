@@ -101,10 +101,12 @@ HTTP = {
 };
 $(document).ready(function () {
     $(window).bind('hashchange', function () { //detect hash change
+        CHANGINGMENU = true;
         $("body").removeClass("sidebar-mobile-main");
         FIXELEMENT.elements = [];
         ANIMATION.playPure($('#content'), LOAD.outanimation, function () {
             ANGULARJS.get('baseController').base();
         });
+
     });
 });
