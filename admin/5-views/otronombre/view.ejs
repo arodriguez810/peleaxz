@@ -1,0 +1,60 @@
+<table class="table table-togglable table-framed">
+    <tbody>
+    <td ng-show="<%= scope %>.allow(['edit','remove','active'])"
+        class="text-center bg-<%= COLOR.primary %>">
+        Actions
+    </td>
+    <td class="text-center"
+        ng-show="(<%= scope %>.allow(['edit','remove','active']))">
+        <ul class="icons-list" style="z-index: 99999">
+            <li ng-repeat="(min, option) in <%= scope %>.getOptions(false) track by min"
+                ng-show="<%= scope %>.allow(<%= scope %>.option.permission(option,<%= scope %>.dataForView)) && <%= scope %>.option.show(option,<%= scope %>.dataForView)">
+                <a
+                        data-action="{{<%= scope %>.option.action(option,<%= scope %>.dataForView)}}"
+                        title="{{<%= scope %>.option.title(option,<%= scope %>.dataForView)}}"
+                        ng-click="<%= scope %>.option.click(option,<%= scope %>.dataForView,false)" class="dropdown-toggle"
+                        data-toggle="dropdown">
+                    <i class=" icon-{{<%= scope %>.option.icon(option,<%= scope %>.dataForView)}}"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right dragon-menu" ng-show="option.menus">
+                    <li ng-repeat="(item, menu) in option.menus track by item"
+                        ng-show="<%= scope %>.allow(<%= scope %>.option.permission(menu,<%= scope %>.dataForView)) && <%= scope %>.option.show(menu,<%= scope %>.dataForView)">
+                        <a
+                                title="{{<%= scope %>.option.text(menu,<%= scope %>.dataForView)}}"
+                                data-action="{{<%= scope %>.option.action(menu,<%= scope %>.dataForView)}}"
+                                ng-click="<%= scope %>.option.click(menu,<%= scope %>.dataForView)">
+                            <i class="icon-{{<%= scope %>.option.icon(menu,<%= scope %>.dataForView)}}"></i>
+                            {{<%= scope %>.option.text(menu,<%= scope %>.dataForView)}}
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </td>
+
+
+
+    <tr ng-repeat="(keycolum, value) in <%= scope %>.columns() track by keycolum" ng-show="value.visibleDetail!=false">
+        <td class="text-white bg-<%= TAG.table %>">
+            <span ng-bind-html="<%= scope %>.columnLabel(value,keycolum)"></span>
+        </td>
+        <td>
+        <span
+                ng-bind-html="<%= scope %>.cellValue(keycolum,value,<%= scope %>.dataForView)"
+                ng-click="<%= scope %>.cell.click(keycolum,value,<%= scope %>.dataForView)"
+                ng-dblclick="<%= scope %>.cell.dblclick(keycolum,value,<%= scope %>.dataForView)"
+                ng-mousedown="<%= scope %>.cell.mousedown(keycolum,value,<%= scope %>.dataForView)"
+                ng-mouseenter="<%= scope %>.cell.mouseenter(keycolum,value,<%= scope %>.dataForView)"
+                ng-mouseleave="<%= scope %>.cell.mouseleave(keycolum,value,<%= scope %>.dataForView)"
+                ng-mousemove="<%= scope %>.cell.mousemove(keycolum,value,<%= scope %>.dataForView)"
+                ng-mouseover="<%= scope %>.cell.mouseover(keycolum,value,<%= scope %>.dataForView)"
+                ng-mouseup="<%= scope %>.cell.mouseup(keycolum,value,<%= scope %>.dataForView)"
+        >
+
+        </span>
+        </td>
+
+    </tr>
+    </tbody>
+</table>
+<!--Table List-->

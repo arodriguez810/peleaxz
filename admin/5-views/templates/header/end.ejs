@@ -1,0 +1,44 @@
+<div class="page-header-lg page-header-sm page-header page-header-default border-bottom-lg border-bottom-<%= TAG.border %>">
+    <!--Breadcrumb and Table Options-->
+    <div class="breadcrumb-line">
+
+        <ul class="breadcrumb visible-lg visible-md" ng-show="!<%= scope %>.modal.isOpen()" dragonlanguage="">
+            <li ng-repeat="(key, menu) in <%= scope %>.MENU.parents track by key">
+                <a data-function="menu" href="javascript:void(0)">
+                    <i class="{{menu.icon}} position-left"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-left" ng-show="menu.childs.length>0">
+                    <li ng-repeat="(subkey, submenu) in menu.childs track by subkey"
+                        class="{{<%= scope %>.sameHref(submenu,'bg-<%= COLOR.menu %>-300')||''}}">
+                        <a href="{{<%= scope %>.sameHref(submenu,'javascript:void(0)')||submenu.href}}"
+                           class="">
+                            <i class="{{submenu.icon}}"></i>{{submenu.text}}
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="active">
+                <a data-function="menu" href="javascript:void(0)">
+                    <i class="{{<%= scope %>.MENU.menu.icon}} position-left"></i>
+                    {{<%= scope %>.MENU.menu.text}}
+                </a>
+                <a
+                        ng-show="!<%= scope %>.menu.already(baseController,'#<%= scope %>')"
+                        ng-click="<%= scope %>.favorite(baseController);"
+                        class="text-<%= COLOR.primary %>-700 legitRipple"
+                >
+                    <i dragonlanguage="" title="MESSAGE.i('navbar.AddToFavorite')"
+                       class="icon-heart5"></i> 
+                </a>
+            </li>
+        </ul>
+        <ul class="breadcrumb-elements visible-elements">
+            <li ng-show="!<%= scope %>.report && <%= scope %>.allow('add')">
+                <a ng-click="<%= scope %>.formulary(null,'new')" class="legitRipple">
+                    <i dragonlanguage="" title="MESSAGE.ic('mono.add')" class="icon-plus-circle2 "></i> 
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!--Breadcrumb and Table Options-->
+</div>

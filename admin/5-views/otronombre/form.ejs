@@ -1,0 +1,35 @@
+<div class="tab-content">
+    <div class="tab-pane active" id="basic">
+        <div class="row">
+            <div class="col-sm-6 col-md-6">
+                <%- FORM.input("name", scope, {maxlength: 255}) %>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <%- FORM.checkbox("active", scope, {text: 'Active?'}) %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-md-6">
+                <%- FORM.select("category", scope, {
+                    column: "my_category_name",
+                    table: "ms_category",
+                    icon: {class: "archive"}
+                }) %>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <textarea>
+                    {{my_product.category_object.id}}
+                </textarea>
+                <textarea>
+                    {{my_product.category_object.name}}
+                </textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <%- FORM.textarea("description", scope, {maxlength: 255}) %>
+            </div>
+        </div>
+    </div>
+</div>
+<%- FORM.footer(scope) %>
