@@ -86,7 +86,7 @@ TABLEFORMAT = {
             }) : data;
 
             var originalColumns = [];
-            for (var i in $scope.table.crud.table.columns) {
+            for (var i in eval(`CRUD_${$scope.modelName}`).table.columns) {
                 if (extra.columsAllow.indexOf(i) !== -1)
                     originalColumns.push(i);
             }
@@ -103,7 +103,7 @@ TABLEFORMAT = {
                     else {
                         var goValue = "";
                         eval(`goValue = row.${column};`);
-                        goValue = $scope.formatByTypeClean($scope.table.crud.table.columns[column], row, column, extra);
+                        goValue = $scope.formatByTypeClean(eval(`CRUD_${$scope.modelName}`).table.columns[column], row, column, extra);
                         if (extra.onerow)
                             if ([ENUM.file.formats.CSV].indexOf(extra.type) !== -1)
                                 goValue = `"${goValue}"`;
@@ -300,8 +300,8 @@ TABLEFORMAT = {
             return value;
         };
         $scope.rowClass = function (row) {
-            if (typeof $scope.table.crud.table.rowClass === "function")
-                return $scope.table.crud.table.rowClass(row, $scope);
+            if (typeof eval(`CRUD_${$scope.modelName}`).table.rowClass === "function")
+                return eval(`CRUD_${$scope.modelName}`).table.rowClass(row, $scope);
             return "";
         };
         $scope.rowDeleted = function (row) {

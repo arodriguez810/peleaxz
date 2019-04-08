@@ -1,21 +1,21 @@
 TABLEOPTIONS = {
     run: function ($scope) {
-        $scope.options = $scope.table.crud.table.options;
+        $scope.options = eval(`CRUD_${$scope.modelName}`).table.options;
         $scope.option = {};
         $scope.option.data = "{$scope:$scope.modelName,column:value,key:key,row:row}";
         $scope.lastMenu = 0;
         $scope.getOptions = function (isModal) {
             if (isModal === true) {
                 if (!DSON.oseaX(ARRAY.last(MODAL.historyObject)))
-                    return ARRAY.last(MODAL.historyObject).viewData.crud.table.options;
+                    return eval(`CRUD_${$scope.modelName}`).table.options;
             }
             else return $scope.options;
         };
         $scope.firstCountOption = function (isModal) {
             if (isModal === true) {
                 if (!DSON.oseaX(ARRAY.last(MODAL.historyObject))) {
-                    if (ARRAY.last(MODAL.historyObject).viewData.crud.table.options !== null) {
-                        return ARRAY.last(MODAL.historyObject).viewData.crud.table.options[0].menus.length
+                    if (eval(`CRUD_${$scope.modelName}`).table.options !== null) {
+                        return eval(`CRUD_${$scope.modelName}`).table.options[0].menus.length
                     }
                 }
             }

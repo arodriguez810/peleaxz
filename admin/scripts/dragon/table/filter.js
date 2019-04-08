@@ -41,9 +41,9 @@ FILTER = {
             {text: MESSAGE.i('mono.IsTrue'), operator: `= '1'`, value: '$', type: 'bool'},
             {text: MESSAGE.i('mono.IsFalse'), operator: `= '0'`, value: '$', type: 'bool'},
         ];
-        if ($scope.crud.table.filters !== undefined) {
+        if (eval(`CRUD_${$scope.modelName}`).table.filters !== undefined) {
             $scope.filters = {};
-            $scope.filters.fields = $scope.crud.table.filters.columns;
+            $scope.filters.fields = eval(`CRUD_${$scope.modelName}`).table.filters.columns;
             $scope.filters.blocks = [];
             $scope.filters.lastFilter = [];
             $scope.filters.options = {};

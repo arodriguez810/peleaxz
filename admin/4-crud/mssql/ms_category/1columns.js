@@ -123,8 +123,8 @@ DSON.keepmerge(CRUD_ms_category, {
                         click: function (data) {
                             data.$scope.formulary({
                                 where: [{
-                                    field: data.$scope.table.crud.table.key,
-                                    value: eval(`data.row.${data.$scope.table.crud.table.key}`)
+                                    field: eval(`CRUD_${data.$scope.modelName}`).table.key,
+                                    value: eval(`data.row.${eval(`CRUD_${data.$scope.modelName}`).table.key}`)
                                 }]
                             }, FORM.modes.edit, {});
                             return false;
@@ -263,12 +263,12 @@ DSON.keepmerge(CRUD_ms_category, {
 
                             var formatRow = {};
 
-                            for (var i in data.$scope.table.crud.table.columns) {
-                                var column = data.$scope.table.crud.table.columns[i];
+                            for (var i in eval(`CRUD_${data.$scope.modelName}`).table.columns) {
+                                var column = eval(`CRUD_${data.$scope.modelName}`).table.columns[i];
                                 var key = i;
                                 var alter = column.exportKey !== undefined ? column.exportKey : i;
-                                if (data.$scope.table.crud.table.columns[key].exportExample !== false) {
-                                    var exampleText = data.$scope.table.crud.table.columns[key].exportExample;
+                                if (eval(`CRUD_${data.$scope.modelName}`).table.columns[key].exportExample !== false) {
+                                    var exampleText = eval(`CRUD_${data.$scope.modelName}`).table.columns[key].exportExample;
                                     exampleText = exampleText === undefined ? "[string]" : exampleText;
                                     var realValue = eval(`data.row.${key};`);
                                     if (!DSON.oseaX(realValue)) {
@@ -285,7 +285,7 @@ DSON.keepmerge(CRUD_ms_category, {
                                 confirm: function () {
                                     SWEETALERT.loading({message: MESSAGE.i('actions.CopyngRecord')});
                                     var records = [formatRow];
-                                    var columns = data.$scope.table.crud.table.columns;
+                                    var columns = eval(`CRUD_${data.$scope.modelName}`).table.columns;
                                     var inserts = [];
                                     for (var i in records) {
                                         var record = records[i];

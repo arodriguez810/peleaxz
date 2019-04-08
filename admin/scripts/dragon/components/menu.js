@@ -69,15 +69,8 @@ MENU = {
             }
         }
     },
-    hideMenus: function () {
-        for (var CONTROLLER of CONTROLLERSNAMES) {
-            if (eval(`typeof CRUD_${CONTROLLER} !== 'undefined'`)) {
-                if (eval(`JSON.stringify(CONFIG.menus).indexOf('#${CONTROLLER}')===-1;`))
-                    (eval(`delete CRUD_${CONTROLLER}.table.allow.menu`))
-
-
-            }
-        }
+    hideMenus: function (controller) {
+        $("[href='#" + controller + "']").parent().remove();
     },
     run: function ($scope) {
 

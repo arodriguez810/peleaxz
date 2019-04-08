@@ -89,7 +89,6 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
                     }
                 ]
             }, function (result) {
-
                 var userPermission = null;
                 var grouppermission = [];
                 for (var permissionD of result.data) {
@@ -127,6 +126,9 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
                 CRUDNAMES = [];
                 for (var CONTROLLER of CONTROLLERSNAMES) {
                     if (eval(`typeof CRUD_${CONTROLLER} !== 'undefined'`)) {
+                        if (eval(`CRUD_${CONTROLLER}.table.allow.menu`) !== true) {
+                            MENU.hideMenus(CONTROLLER);
+                        }
                         if (eval(`JSON.stringify(CONFIG.menus).indexOf('#${CONTROLLER}')===-1;`))
                             (eval(`delete CRUD_${CONTROLLER}.table.allow.menu`))
 
@@ -156,6 +158,19 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
     };
     baseController.base();
     baseController.deleteFavorite = function (href) {
+        if (STORAGE.exist('favorites')) {
+            var stored = STORAGE.get('favorites');
+            var newarray = [];
+            stored.forEach(function (item) {
+                if (item.href !== href)
+                    newarray.push(item);
+            });
+            STORAGE.add('favorites', newarray);
+            baseController.favorites = newarray;
+        }
+    };
+
+    baseController.favorite = function (href) {
         if (STORAGE.exist('favorites')) {
             var stored = STORAGE.get('favorites');
             var newarray = [];

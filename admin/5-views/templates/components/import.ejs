@@ -165,8 +165,7 @@
                 BASEAPI.ajax.post(http.path(["files", "api", "import"]), {filename: finalArray}, function (data) {
                     SWEETALERT.stop();
                     var records = data.data;
-                    var columns = <%= DATA.scope %>.
-                    table.crud.table.columns;
+                    var columns =eval(`CRUD_<%= DATA.scope %>`).table.columns;
                     var inserts = [];
                     for (var i in records) {
                         var record = records[i];

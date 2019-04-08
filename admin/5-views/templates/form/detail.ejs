@@ -35,7 +35,7 @@
                 </div>
             </div>
             <div
-                    ng-repeat="(d_index, d_column) in <%= scope %>.crud.table.columns track by d_index"
+                    ng-repeat="(d_index, d_column) in <%= scope %>.crudConfig.table.columns track by d_index"
                     class="form-group {{d_column.class || ''}} "
                     ng-show="d_column.visibleDetail!=false"
                     style="{{d_column.style || ''}}"

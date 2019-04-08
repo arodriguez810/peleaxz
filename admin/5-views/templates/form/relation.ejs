@@ -30,7 +30,7 @@ if (options.master === null) {
 }
 %>
 <script>
-    var keyColumn = <%= model %>.table.crud.table.key;
+    var keyColumn = eval(`CRUD_<%= model %>`).table.key;
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
     <%= model %>.form.schemas.insert["<%= name %>"] = FORM.schemasType.relation;
     if (MESSAGE.exist('columns.<%= nameclean %>')) {

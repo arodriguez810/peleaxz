@@ -4,7 +4,7 @@ PERMISSIONS = {
             var finalCrud = eval(`CRUD_${$scope.modelName}`);
             if (isModal)
                 if (!DSON.oseaX(ARRAY.last(MODAL.historyObject)))
-                    finalCrud = ARRAY.last(MODAL.historyObject).viewData.crud;
+                    finalCrud = eval(`CRUD_${$scope.modelName}`);
             if (finalCrud.table.allow !== undefined && permisionName !== "") {
                 or = DSON.ifundefined(or, true);
                 if (Array.isArray(permisionName)) {
@@ -28,7 +28,7 @@ PERMISSIONS = {
             var finalCrud = eval(`CRUD_${$scope.modelName}`);
             if (isModal)
                 if (!DSON.oseaX(ARRAY.last(MODAL.historyObject)))
-                    finalCrud = ARRAY.last(MODAL.historyObject).viewData.crud;
+                    finalCrud = eval(`CRUD_${$scope.modelName}`);
             if (finalCrud.table !== undefined && characterist !== "") {
                 or = DSON.ifundefined(or, true);
                 if (Array.isArray(characterist)) {
@@ -87,14 +87,7 @@ PERMISSIONS = {
                     }
                 }, function (insert) {
                     SWEETALERT.stop();
-                    if (insert.data.recordset.length > 0) {
-                        var permissions = eval("(" + insert.data.recordset[0].object + ")");
-                        for (var i in permissions) {
-                            eval(`CRUD_${permissions[i].name}.table.allow = permissions[i].obj.table.allow`);
-                        }
-                    }
-
-                    MODAL.close($scope);
+                    location.reload();
                 });
             });
         };

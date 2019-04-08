@@ -1,7 +1,7 @@
 PAGINATOR = {
     run: function ($scope) {
         $scope.getLimits = function () {
-            var limits = $scope.table.crud.table.limits || [10, 50, 100, 0];
+            var limits = eval(`CRUD_${$scope.modelName}`).table.limits || [10, 50, 100, 0];
             if(limits.length===0)
                 return [10];
             else return limits;

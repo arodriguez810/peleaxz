@@ -265,7 +265,7 @@ TABLEEVENT = {
                         $(event.currentTarget).parent().addClass("alpha-" + COLOR.info);
         };
         $scope.cell.dblselect = function (row) {
-            if (!DSON.oseaX(row) && $scope.table.crud.table.allow.view) {
+            if (!DSON.oseaX(row) && eval(`CRUD_${$scope.modelName}`).table.allow.view) {
                 $scope.dataForView = row;
                 $scope.modal.modalView(String.format("{0}/view", $scope.modelName), {
                     header: {
@@ -297,7 +297,7 @@ TABLEEVENT = {
             }
             var where = [];
 
-            for (const deletekey of $scope.table.crud.table.deletekeys)
+            for (const deletekey of eval(`CRUD_${$scope.modelName}`).table.deletekeys)
                 where.push({field: deletekey, value: eval("row." + deletekey)});
             if ($scope.beforeDelete(row)) return;
             BASEAPI.deleteall($scope.tableOrMethod, where, function (result) {
@@ -317,11 +317,11 @@ TABLEEVENT = {
                     }
                     $scope.records.data = $scope.records.data.filter(function (item) {
                         var goOut = 0;
-                        for (const deletekey of $scope.table.crud.table.deletekeys) {
+                        for (const deletekey of eval(`CRUD_${$scope.modelName}`).table.deletekeys) {
                             if (eval("item." + deletekey) === eval("row." + deletekey))
                                 goOut++;
                         }
-                        if (goOut === $scope.table.crud.table.deletekeys.length) {
+                        if (goOut === eval(`CRUD_${$scope.modelName}`).table.deletekeys.length) {
                             item.rowdeleted = true;
                             return true;
                         }
@@ -375,7 +375,7 @@ TABLEEVENT = {
             $("tr").removeClass("alpha-" + COLOR.info);
             $("td").removeClass("alpha-" + COLOR.info);
             var where = [];
-            for (const deletekey of $scope.table.crud.table.deletekeys)
+            for (const deletekey of eval(`CRUD_${$scope.modelName}`).table.deletekeys)
                 where.push({field: deletekey, value: eval("row." + deletekey)});
             var data = {};
             eval(`data.${$scope.activeColumn()} = ${active}`);
@@ -397,11 +397,11 @@ TABLEEVENT = {
                     }
                     $scope.records.data = $scope.records.data.filter(function (item) {
                         var goOut = 0;
-                        for (const deletekey of $scope.table.crud.table.deletekeys) {
+                        for (const deletekey of eval(`CRUD_${$scope.modelName}`).table.deletekeys) {
                             if (eval("item." + deletekey) === eval("row." + deletekey))
                                 goOut++;
                         }
-                        if (goOut === $scope.table.crud.table.deletekeys.length) {
+                        if (goOut === eval(`CRUD_${$scope.modelName}`).table.deletekeys.length) {
                             eval(`item.${$scope.activeColumn()} = ${active}`);
                             return true;
                         }
@@ -472,7 +472,7 @@ TABLEEVENT = {
 
                 for (var i in CONFIG.audit.insert) {
                     var audit = CONFIG.audit.insert[i];
-                    if ($scope.table.crud.table.columns[i] !== undefined)
+                    if (eval(`CRUD_${$scope.modelName}`).table.columns[i] !== undefined)
                         eval(`row.row.${i} = '${eval(audit)}';`);
                 }
 
@@ -531,12 +531,12 @@ TABLEEVENT = {
 
             forCopy.forEach(function (data) {
                 var formatRow = {};
-                for (var i in $scope.table.crud.table.columns) {
-                    var column = $scope.table.crud.table.columns[i];
+                for (var i in eval(`CRUD_${$scope.modelName}`).table.columns) {
+                    var column = eval(`CRUD_${$scope.modelName}`).table.columns[i];
                     var key = i;
                     var alter = column.exportKey !== undefined ? column.exportKey : i;
-                    if ($scope.table.crud.table.columns[key].exportExample !== false) {
-                        var exampleText = $scope.table.crud.table.columns[key].exportExample;
+                    if (eval(`CRUD_${$scope.modelName}`).table.columns[key].exportExample !== false) {
+                        var exampleText = eval(`CRUD_${$scope.modelName}`).table.columns[key].exportExample;
                         exampleText = exampleText === undefined ? "[string]" : exampleText;
                         var realValue = eval(`data.${key};`);
                         if (!DSON.oseaX(realValue)) {
@@ -556,7 +556,7 @@ TABLEEVENT = {
                 confirm: function () {
                     SWEETALERT.loading({message: MESSAGE.ic('mono.copyng')});
                     var records = formatRows;
-                    var columns = $scope.table.crud.table.columns;
+                    var columns = eval(`CRUD_${$scope.modelName}`).table.columns;
                     var inserts = [];
                     for (var i in records) {
                         var record = records[i];

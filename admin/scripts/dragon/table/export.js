@@ -26,12 +26,12 @@ EXPORT = {
         };
         $scope.export.downloadExample = function () {
             var data = [];
-            for (var i in $scope.table.crud.table.columns) {
-                var column = $scope.table.crud.table.columns[i];
+            for (var i in eval(`CRUD_${$scope.modelName}`).table.columns) {
+                var column = eval(`CRUD_${$scope.modelName}`).table.columns[i];
                 var key = i;
                 var alter = column.exportKey !== undefined ? column.exportKey : i;
-                if ($scope.table.crud.table.columns[key].exportExample !== false) {
-                    var exampleText = $scope.table.crud.table.columns[key].exportExample;
+                if (eval(`CRUD_${$scope.modelName}`).table.columns[key].exportExample !== false) {
+                    var exampleText = eval(`CRUD_${$scope.modelName}`).table.columns[key].exportExample;
                     exampleText = exampleText === undefined ? "[string]" : exampleText;
                     data.push({
                         column: alter,
@@ -75,7 +75,7 @@ EXPORT = {
                 page: $scope.table.currentPage,
                 orderby: $scope.table.orderby,
                 order: $scope.table.order,
-                join: $scope.table.crud.table.single
+                join: eval(`CRUD_${$scope.modelName}`).table.single
             };
 
 
@@ -96,7 +96,7 @@ EXPORT = {
                         goChecked = true;
                 }
                 if (item.id === "sort") {
-                    if (($scope.table.crud.table.key || "id") !== parameters.orderby || "asc" !== parameters.order)
+                    if ((eval(`CRUD_${$scope.modelName}`).table.key || "id") !== parameters.orderby || "asc" !== parameters.order)
                         goChecked = true;
                 }
                 if (item.id === "orderColumn") {
@@ -132,8 +132,8 @@ EXPORT = {
                     `
             });
             var columnsHtml = "";
-            for (const i in $scope.table.crud.table.columns) {
-                var column = $scope.table.crud.table.columns[i];
+            for (const i in eval(`CRUD_${$scope.modelName}`).table.columns) {
+                var column = eval(`CRUD_${$scope.modelName}`).table.columns[i];
                 var checked = column.visible !== false ? 'checked="checked"' : "";
                 if (column.export !== false)
                     columnsHtml +=
@@ -182,7 +182,7 @@ EXPORT = {
                                 parameters.page = 1;
                             }
                             if (!$(`#sort`).is(':checked')) {
-                                parameters.orderby = $scope.table.crud.table.key || "id";
+                                parameters.orderby = eval(`CRUD_${$scope.modelName}`).table.key || "id";
                                 parameters.order = "asc";
                             }
                             var firstrow = true;
@@ -436,7 +436,7 @@ EXPORT = {
             var labels = [];
             for (var i in columns) {
                 var key = columns[i];
-                labels.push(HTML.strip($scope.columnLabel($scope.table.crud.table.columns[key], key)));
+                labels.push(HTML.strip($scope.columnLabel(eval(`CRUD_${$scope.modelName}`).table.columns[key], key)));
             }
             return labels;
         };
@@ -445,12 +445,12 @@ EXPORT = {
             var labels = [];
             var previewColums = "";
             var oneRow = "";
-            for (var i in $scope.table.crud.table.columns) {
+            for (var i in eval(`CRUD_${$scope.modelName}`).table.columns) {
                 var key = i;
-                if ($scope.table.crud.table.columns[key].exportExample !== false) {
-                    labels.push(HTML.strip($scope.columnLabel($scope.table.crud.table.columns[key], key)));
+                if (eval(`CRUD_${$scope.modelName}`).table.columns[key].exportExample !== false) {
+                    labels.push(HTML.strip($scope.columnLabel(eval(`CRUD_${$scope.modelName}`).table.columns[key], key)));
                     previewColums += `<th>${ARRAY.last(labels)}</th>`;
-                    var exampleText = $scope.table.crud.table.columns[key].exportExample;
+                    var exampleText = eval(`CRUD_${$scope.modelName}`).table.columns[key].exportExample;
                     exampleText = exampleText === undefined ? "[string]" : exampleText;
                     oneRow += `<td>${exampleText}</td>`;
                 }
@@ -466,7 +466,7 @@ EXPORT = {
                     var previewColums = "";
                     for (var i in columns) {
                         var key = columns[i];
-                        labels.push(HTML.strip($scope.columnLabel($scope.table.crud.table.columns[key], key)));
+                        labels.push(HTML.strip($scope.columnLabel(eval(`CRUD_${$scope.modelName}`).table.columns[key], key)));
                         previewColums += `<th>${ARRAY.last(labels)}</th>`;
                     }
                     preview += `<thead class="bg-${COLOR.info}"  ><tr>${previewColums}</tr></thead>`;
@@ -487,7 +487,7 @@ EXPORT = {
                 var previewColums = "";
                 for (var i in columns) {
                     var key = columns[i];
-                    labels.push(HTML.strip($scope.columnLabel($scope.table.crud.table.columns[key], key)));
+                    labels.push(HTML.strip($scope.columnLabel(eval(`CRUD_${$scope.modelName}`).table.columns[key], key)));
                     previewColums += `<tr><td class="bg-${COLOR.info}">${ARRAY.last(labels)}</td><td>${eval("json[0]." + key)}</td></tr>`;
                 }
                 preview += `<tbody>${previewColums}</tbody></table>`;
@@ -501,7 +501,7 @@ EXPORT = {
                     var labels = [];
                     for (var i in columns) {
                         var key = columns[i];
-                        labels.push(HTML.strip($scope.columnLabel($scope.table.crud.table.columns[key], key)));
+                        labels.push(HTML.strip($scope.columnLabel(eval(`CRUD_${$scope.modelName}`).table.columns[key], key)));
                     }
                     csv += labels.join(",") + "\r\n";
                 }
@@ -516,7 +516,7 @@ EXPORT = {
                 var labels = [];
                 for (var i in columns) {
                     var key = columns[i];
-                    labels.push(`${HTML.strip($scope.columnLabel($scope.table.crud.table.columns[key], key))},${eval("json[0]." + key)}`);
+                    labels.push(`${HTML.strip($scope.columnLabel(eval(`CRUD_${$scope.modelName}`).table.columns[key], key))},${eval("json[0]." + key)}`);
                 }
                 csv += labels.join("\r\n");
             }
@@ -529,7 +529,7 @@ EXPORT = {
                     var labels = [];
                     for (var i in columns) {
                         var key = columns[i];
-                        labels.push(HTML.strip($scope.columnLabel($scope.table.crud.table.columns[key], key)));
+                        labels.push(HTML.strip($scope.columnLabel(eval(`CRUD_${$scope.modelName}`).table.columns[key], key)));
                     }
                     result += labels.join("\t") + "\r\n";
                 }
@@ -544,7 +544,7 @@ EXPORT = {
                 var labels = [];
                 for (var i in columns) {
                     var key = columns[i];
-                    labels.push(`${HTML.strip($scope.columnLabel($scope.table.crud.table.columns[key], key))}\t${eval("json[0]." + key)}`);
+                    labels.push(`${HTML.strip($scope.columnLabel(eval(`CRUD_${$scope.modelName}`).table.columns[key], key))}\t${eval("json[0]." + key)}`);
                 }
                 result += labels.join("\r\n");
             }

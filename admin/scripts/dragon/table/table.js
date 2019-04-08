@@ -4,12 +4,12 @@ TABLE = {
         $scope.table.loading = false;
         $scope.table.is = {};
         $scope.table.is.loading = true;
-        $scope.funcWidth = $scope.table.crud.table.width;
-        $scope.report = $scope.table.crud.table.report;
-        $scope.tableOrView = $scope.table.crud.table.view || $scope.modelName;
-        $scope.tableOrMethod = $scope.table.crud.table.method || $scope.modelName;
+        $scope.funcWidth = eval(`CRUD_${$scope.modelName}`).table.width;
+        $scope.report = eval(`CRUD_${$scope.modelName}`).table.report;
+        $scope.tableOrView = eval(`CRUD_${$scope.modelName}`).table.view || $scope.modelName;
+        $scope.tableOrMethod = eval(`CRUD_${$scope.modelName}`).table.method || $scope.modelName;
         $scope.width = function () {
-            if (!DSON.oseaX($scope.table.crud.table.width)) {
+            if (!DSON.oseaX(eval(`CRUD_${$scope.modelName}`).table.width)) {
                 return "";
             }
             else
@@ -28,10 +28,10 @@ TABLE = {
                         }
                         index++;
                     }
-                    for (var r in $scope.table.crud.table.responsive) {
+                    for (var r in eval(`CRUD_${$scope.modelName}`).table.responsive) {
                         var number = r.substr(1, r.length - 1);
                         if (index >= number) {
-                            column.responsive = $scope.table.crud.table.responsive[r];
+                            column.responsive = eval(`CRUD_${$scope.modelName}`).table.responsive[r];
                             break;
                         } else {
                             continue;
@@ -55,8 +55,8 @@ TABLE = {
             $('.dragon-table th').trigger('click');
         };
         $scope.hideColumnsCount = function () {
-            for (const key in $scope.table.crud.table.columns) {
-                if ($scope.table.crud.table.columns[key].visible === false)
+            for (const key in eval(`CRUD_${$scope.modelName}`).table.columns) {
+                if (eval(`CRUD_${$scope.modelName}`).table.columns[key].visible === false)
                     return true;
             }
             return false;
@@ -67,13 +67,13 @@ TABLE = {
                 hides = hides.filter((hide) => {
                     return hide !== key;
                 });
-            $scope.table.crud.table.columns[key].visible = true;
+            eval(`CRUD_${$scope.modelName}`).table.columns[key].visible = true;
             STORAGE.add($scope.modelName + "." + 'hideColumns', hides);
             $scope.width();
         };
         $scope.showallColumn = function () {
-            for (const key in $scope.table.crud.table.columns) {
-                $scope.table.crud.table.columns[key].visible = true;
+            for (const key in eval(`CRUD_${$scope.modelName}`).table.columns) {
+                eval(`CRUD_${$scope.modelName}`).table.columns[key].visible = true;
             }
             STORAGE.add($scope.modelName + "." + 'hideColumns', []);
             $scope.width();
@@ -85,14 +85,14 @@ TABLE = {
                 reorded = $scope.reorderColumn(storage_columns);
             } else {
                 var hides = $scope.getModel("hideColumns");
-                for (const key in $scope.table.crud.table.columns) {
-                    if ($scope.table.crud.table.columns.hasOwnProperty(key)) {
+                for (const key in eval(`CRUD_${$scope.modelName}`).table.columns) {
+                    if (eval(`CRUD_${$scope.modelName}`).table.columns.hasOwnProperty(key)) {
                         if (ARRAY.contains(hides, key)) {
-                            $scope.table.crud.table.columns[key].visible = false;
+                            eval(`CRUD_${$scope.modelName}`).table.columns[key].visible = false;
                         }
                     }
                 }
-                reorded = $scope.table.crud.table.columns;
+                reorded = eval(`CRUD_${$scope.modelName}`).table.columns;
             }
             var count = 0;
             for (var i in reorded) {
@@ -109,14 +109,14 @@ TABLE = {
                 return $scope.reorderColumn(storage_columns);
             } else {
                 var hides = $scope.getModel("hideColumns");
-                for (const key in $scope.table.crud.table.columns) {
-                    if ($scope.table.crud.table.columns.hasOwnProperty(key)) {
+                for (const key in eval(`CRUD_${$scope.modelName}`).table.columns) {
+                    if (eval(`CRUD_${$scope.modelName}`).table.columns.hasOwnProperty(key)) {
                         if (ARRAY.contains(hides, key)) {
-                            $scope.table.crud.table.columns[key].visible = false;
+                            eval(`CRUD_${$scope.modelName}`).table.columns[key].visible = false;
                         }
                     }
                 }
-                return $scope.table.crud.table.columns;
+                return eval(`CRUD_${$scope.modelName}`).table.columns;
             }
         };
         $scope.restoreStorage = function () {
@@ -141,9 +141,9 @@ TABLE = {
             var ordered = {};
             var hides = $scope.getModel("hideColumns");
             for (let obj of storage_columns) {
-                eval("ordered." + obj + " = $scope.table.crud.table.columns." + obj);
+                eval("ordered." + obj + " = eval(`CRUD_${$scope.modelName}`).table.columns." + obj);
                 if (ARRAY.contains(hides, obj)) {
-                    eval("$scope.table.crud.table.columns." + obj + ".visible = false;");
+                    eval("eval(`CRUD_${$scope.modelName}`).table.columns." + obj + ".visible = false;");
                 }
             }
             return ordered;
@@ -199,7 +199,7 @@ TABLE = {
                         page: $scope.table.currentPage,
                         orderby: $scope.table.orderby,
                         order: $scope.table.order,
-                        join: $scope.table.crud.table.single
+                        join: eval(`CRUD_${$scope.modelName}`).table.single
                     };
                     if (RELATIONS.anonymous[$scope.modelName] !== undefined) {
                         dataToList.where = RELATIONS.anonymous[$scope.modelName].where;
@@ -241,7 +241,7 @@ TABLE = {
                         page: $scope.table.currentPage,
                         orderby: $scope.table.orderby,
                         order: $scope.table.order,
-                        join: $scope.table.crud.table.single
+                        join: eval(`CRUD_${$scope.modelName}`).table.single
                     };
 
                     if (RELATIONS.anonymous[$scope.modelName] !== undefined) {

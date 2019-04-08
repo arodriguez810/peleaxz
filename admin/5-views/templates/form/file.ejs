@@ -22,7 +22,7 @@ options.color = options.type === "form" ? "{{" + model + ".validation.stateDefau
 var toclient = JSON.stringify(options);
 %>
 <script>
-    var keyColumn = <%= model %>.table.crud.table.key;
+    var keyColumn = eval(`CRUD_<%= model %>`).table.key;
     <%= model %>.form.schemas.insert["<%= name %>"] =FORM.schemasType.upload;
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
     <%= model %>.form.registerField("<%= name %>_DragonCountFile", "<%= toclient %>");

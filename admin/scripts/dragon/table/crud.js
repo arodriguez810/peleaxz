@@ -1,8 +1,6 @@
 CRUD = {
     run: function ($scope, crud) {
         $scope.table = {};
-        $scope.crud = crud;
-        $scope.table.crud = crud;
         $scope.lastRow = {};
         $scope.activeSET = function (row) {
             if (eval("row." + $scope.activeColumn()) === undefined)
@@ -13,7 +11,7 @@ CRUD = {
             return value == 1 || value == "true";
         };
         $scope.isActiveColumn = function (key) {
-            var acColumn = $scope.table.crud.table.activeColumn;
+            var acColumn = eval(`CRUD_${$scope.modelName}`).table.activeColumn;
             if (acColumn === undefined)
                 return false;
             else {
@@ -21,7 +19,7 @@ CRUD = {
             }
         };
         $scope.activeColumn = function () {
-            var acColumn = $scope.table.crud.table.activeColumn;
+            var acColumn = eval(`CRUD_${$scope.modelName}`).table.activeColumn;
             if (acColumn === undefined)
                 return undefined;
             else {
