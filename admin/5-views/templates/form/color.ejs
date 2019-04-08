@@ -87,7 +87,7 @@ var toclient = JSON.stringify(options);
         }
 
         $('[name="<%= model %>_<%= nameclean %>"]').change(function () {
-            $(".map-wrapper").hide();
+
             STEP.register({
                     scope: "<%= model %>",
                     action: "Change Color",

@@ -1,5 +1,5 @@
-ANIMATION = {
-    play: function (block, animation) {
+ANIMATION = function () {
+    this.play = function (block, animation) {
         if (block === undefined) block = "#content";
         var element = $(block);
         if (animation === undefined) {
@@ -8,18 +8,18 @@ ANIMATION = {
         element.addClass("animated " + animation).one("webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend", function () {
             element.removeClass("animated " + animation);
         });
-    },
-    playPure: function (block, animation, callback) {
+    };
+    this.playPure = function (block, animation, callback) {
         block.addClass("animated " + animation).one("webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend", function () {
             block.removeClass("animated " + animation);
             callback();
         });
-    },
-    loading: function (customBlock, text, spinner, size, icon) {
+    };
+    this.loading = function (customBlock, text, spinner, size, icon) {
         if (customBlock === undefined) customBlock = "#content";
         if (text === undefined) text = MESSAGE.i('actions.Loading');
         if (spinner !== undefined) {
-            ANIMATION.spinner.on(spinner);
+            this.spinner.on(spinner);
         }
         var message = text + '<br><i class="icon-' + (icon || "spinner2") + ' spinner" style="font-size: ' + (size || "50") + 'px"></i>';
         if (customBlock === "#content") {
@@ -46,22 +46,22 @@ ANIMATION = {
                 backgroundColor: 'none'
             }
         });
-    },
-    stoploading: function (customBlock, spinner) {
+    };
+    this.stoploading = function (customBlock, spinner) {
         if (customBlock === undefined) {
             customBlock = "#content";
         }
 
         if (spinner !== undefined) {
-            ANIMATION.spinner.off(spinner);
+            this.spinner.off(spinner);
         }
         var block = $(customBlock);
         $(block).unblock();
-    },
-    loadingPure: function (customBlock, text, spinner, size, icon) {
+    };
+    this.loadingPure = function (customBlock, text, spinner, size, icon) {
         if (text === undefined) text = MESSAGE.i('actions.Loading');
         if (spinner !== undefined) {
-            ANIMATION.spinner.onPure(spinner);
+            this.spinner.onPure(spinner);
         }
         customBlock.block({
             message: text + '<br><i class="icon-' + (icon || "spinner2") + ' spinner" style="font-size: ' + (size || "50") + 'px"></i>',
@@ -79,14 +79,14 @@ ANIMATION = {
                 backgroundColor: 'none'
             }
         });
-    },
-    stoploadingPure: function (customBlock, spinner) {
+    };
+    this.stoploadingPure = function (customBlock, spinner) {
         if (spinner !== undefined) {
-            ANIMATION.spinner.offPure(spinner);
+            this.spinner.offPure(spinner);
         }
         customBlock.unblock();
-    },
-    spinner: {
+    };
+    this.spinner = {
         on: function (customBlock) {
             var i = $(customBlock).find("i");
             $(customBlock).addClass("disabled");
@@ -154,7 +154,7 @@ $(document).ready(function () {
                         width: 'modal-full',
                         header: {
                             title: `${MESSAGE.ic('mono.filesof')} ${folder}`,
-                            icon: ICON.classes.file_stats
+                            icon: "file-stats"
                         },
                         footer: {
                             cancelButton: true

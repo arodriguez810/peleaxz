@@ -9,8 +9,6 @@ app.directive("repeatEnd", function () {
         }
     };
 });
-
-
 app.directive('ngModelOnblur', function () {
     return {
         restrict: 'A',
@@ -29,7 +27,6 @@ app.directive('ngModelOnblur', function () {
         }
     };
 });
-
 app.factory('logTimeTaken', [function () {
     var logTimeTaken = {
         request: function (config) {
@@ -45,37 +42,70 @@ app.factory('logTimeTaken', [function () {
 }]);
 app.config(['$httpProvider', function ($httpProvider) {
     $httpProvider.interceptors.push('logTimeTaken');
-    if (SESSION.isLogged())
-        $httpProvider.defaults.headers.common['x-access-token'] = SESSION.current().token;
+    var session = new SESSION();
+    if (session.isLogged())
+        $httpProvider.defaults.headers.common['x-access-token'] = session.current().token;
 }]);
 $.ajaxSetup({
     beforeSend: function (xhr) {
-        if (SESSION.isLogged())
-            xhr.setRequestHeader("x-access-token", SESSION.current().token);
+        var session = new SESSION();
+        if (session.isLogged())
+            xhr.setRequestHeader("x-access-token", session.current().token);
     }
 });
-
 app.controller('baseController', function ($scope, $http, $compile, $controller) {
     var baseController = this;
-    baseController.SESSION = SESSION;
+    var session = new SESSION();
+    session.ifLogoffRedirec();
+    if (session.current()) {
+        baseController.isLogged = true;
+        baseController.isSuper = session.current().super;
+        baseController.userID = session.current().getID();
+        baseController.fullName = session.current().fullName();
+        BASEAPI.list('permission', {
+            "where": [
+                {
+                    "field": "id",
+                    "value": `${CONFIG.permissions.entities[0]}-${baseController.userID}`
+                }
+            ]
+        }, function (result) {
+            if (result.data.length > 0) {
+                var permissions = eval("(" + result.data[0].object + ")");
+                for (var i in permissions) {
+                    eval(`CRUD_${permissions[i].name}.table.allow = permissions[i].obj.table.allow`);
+                }
+            }
+            CRUDNAMES = [];
+            for (var CONTROLLER of CONTROLLERSNAMES) {
+                if (eval(`typeof CRUD_${CONTROLLER} !== 'undefined'`)) {
+                    if (eval(`JSON.stringify(CONFIG.menus).indexOf('#${CONTROLLER}')===-1;`))
+                        (eval(`delete CRUD_${CONTROLLER}.table.allow.menu`))
+
+                    CRUDNAMES.push(
+                        {
+                            name: `${CONTROLLER}`,
+                            obj: (eval(`CRUD_${CONTROLLER}`))
+                        }
+                    )
+                }
+            }
+        });
+    }
     baseController.menus = CONFIG.menus;
     baseController.favorites = [];
-    baseController.$scope = $scope;
-    baseController.CONFIG = CONFIG;
+    baseController.mode = CONFIG.mode;
+    baseController.features = CONFIG.features;
     baseController.SHOWLANGS = SHOWLANGS;
     baseController.currentLang = MESSAGE.current();
     baseController.changeLanguage = MESSAGE.change;
-    baseController.refreshAngular = function () {
-        baseController.$scope.$digest();
-    };
     if (STORAGE.exist('favorites')) {
         baseController.favorites = STORAGE.get('favorites');
     }
     baseController.base = function () {
-        LOAD.loadContent($scope, $http, $compile);
+        new LOAD().loadContent($scope, $http, $compile);
     };
     baseController.base();
-
     baseController.deleteFavorite = function (href) {
         if (STORAGE.exist('favorites')) {
             var stored = STORAGE.get('favorites');
@@ -95,7 +125,7 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
             return "";
         },
         icon: (data) => {
-            return ICON.classes.user_lock;
+            return "user-lock";
         },
         permission: (data) => {
             return ['permission'];
@@ -111,13 +141,13 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
             BASEAPI.list('permission', {
                 "where": [
                     {
-                        "value": `${data.$scope.modelName}-${data.row.id}`
+                        "value": `${data.$scope.permissionTable || data.$scope.modelName}-${data.row.id}`
                     }
                 ]
             }, function (result) {
                 SWEETALERT.stop();
                 eval(`${data.$scope.modelName}.permissions = {};`);
-                eval(`${data.$scope.modelName}.idPermission = '${data.$scope.modelName}-${data.row.id}';`);
+                eval(`${data.$scope.modelName}.idPermission = '${data.$scope.permissionTable || data.$scope.modelName}-${data.row.id}';`);
                 DSON.merge(eval(`${data.$scope.modelName}.permissions`), CRUDNAMES, true);
                 if (result.data.length > 0) {
                     eval(`${data.$scope.modelName}.permissions = eval("(" + result.data[0].object + ")")`);
@@ -126,7 +156,7 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
                     width: ENUM.modal.width.full,
                     header: {
                         title: `Permissions per ${data.$scope.modelName} of ${data.row.name}`,
-                        icon: ICON.classes.user_lock
+                        icon: "user-lock"
                     },
                     footer: {
                         cancelButton: false
@@ -159,18 +189,31 @@ REMOVEALLCHILDSCOPE = function () {
     CHILDSCOPES = [];
 };
 
-GARBAGECOLECTOR = function (exclude) {
-    if (CHANGINGMENU)
+GARBAGECOLECTOR = function (exclude, ignoreChangeMenu) {
+    if (!Array.isArray(exclude))
+        exclude = [exclude];
+    if (ignoreChangeMenu || CHANGINGMENU)
         if (MODAL.history.length === 0)
             MODELLIST.forEach((item) => {
                 if (!DSON.oseaX(item)) {
-                    if (exclude !== item) {
+                    if (exclude.indexOf(item) === -1) {
                         eval(`
                     if((typeof ${item})!=='undefined'){
                         if(${item}!==null){
                           if(${item}.$scope!==undefined){ 
                               ${item}.$scope.$destroy();
                               ${item} = null;
+                          }
+                        }
+                    }`);
+                    } else {
+                        eval(`
+                    if(${item}.cleanForm){
+                        if(${item}!==null){
+                          if(${item}.form!==undefined){ 
+                              ${item}.form = null;
+                              ${item}.open = null;
+                              ${item}.pages = null;
                           }
                         }
                     }`);
@@ -185,14 +228,9 @@ RUN_A = function (conrollerName, inside, $scope, $http, $compile) {
     inside.modelName = conrollerName;
     inside.singular = inside.modelName.split('_').length > 1 ? inside.modelName.split('_')[1] : inside.modelName.split('_')[0];
     inside.plural = pluralize(inside.singular);
-    inside.$http = $http;
-    inside.$compile = $compile;
     inside.$scope = $scope;
-    API.run(inside, $http);
     COMPILE.run(inside, $scope, $compile);
-    LOAD.run(inside, $http);
     PERMISSIONS.run(inside);
-    MENU.run(inside);
     STORAGE.run(inside);
     FORM.run(inside, $http);
     VALIDATION.run(inside);
@@ -224,12 +262,12 @@ RUNTABLE = function (inside) {
             CRUD.run(eval(`${inside}`), eval(`${inside}`).crudConfig);
     if (eval(`${inside}`).crudConfig)
         if (eval(`${inside}`).crudConfig.type !== 'raw')
-            TABLE.run(eval(`${inside}`), eval(`${inside}`).$http, eval(`${inside}`).$compile);
+            TABLE.run(eval(`${inside}`));
     if (eval(`${inside}`).crudConfig) {
         if (eval(`${inside}`).crudConfig.type !== 'raw') {
             FILTER.run(eval(`${inside}`));
             TABLEOPTIONS.run(eval(`${inside}`));
-            TABLEEVENT.run(eval(`${inside}`), eval(`${inside}`).$http, eval(`${inside}`).$compile);
+            TABLEEVENT.run(eval(`${inside}`));
             TABLEFORMAT.run(eval(`${inside}`));
             PAGINATOR.run(eval(`${inside}`));
             SORTABLE.run(eval(`${inside}`));
@@ -244,21 +282,21 @@ RUNTABLE = function (inside) {
             eval(`${inside}`).refresh();
 };
 RUNCONTROLLER = function (conrollerName, inside, $scope, $http, $compile) {
-    GARBAGECOLECTOR(conrollerName);
+    if (inside.cleanForm === undefined)
+        inside.cleanForm = true;
     inside.MENU = MENU.current;
     inside.modelName = conrollerName;
+    inside.colertor = function () {
+        GARBAGECOLECTOR(inside.extraExclude || inside.modelName, true);
+    };
+    GARBAGECOLECTOR(inside.extraExclude || inside.modelName);
     inside.singular = inside.modelName;
     inside.plural = pluralize(inside.singular);
-    inside.$http = $http;
-    inside.$compile = $compile;
     inside.$scope = $scope;
-    API.run(inside, $http);
     COMPILE.run(inside, $scope, $compile);
     STORAGE.run(inside);
-    LOAD.run(inside, $http);
     MODAL.run(inside, $compile);
     PERMISSIONS.run(inside);
-    MENU.run(inside);
     inside.pages = {};
     inside.refreshAngular = function () {
         inside.$scope.$digest();

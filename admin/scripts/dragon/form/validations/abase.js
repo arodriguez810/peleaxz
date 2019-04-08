@@ -124,5 +124,38 @@ VALIDATION = {
         type = (valid ? VALIDATION.types.success : type);
         scope.validate[field] = {valid: valid, messages: messages, type: type};
         return {valid: valid, messages: messages, type: type};
+    },
+    save: function (scope, save) {
+        var state = scope.validation.statePure();
+        if (state === VALIDATION.types.success) {
+            save();
+        } else {
+            if (state === VALIDATION.types.warning) {
+                SWEETALERT.confirm({
+                    message:
+                        MESSAGE.i('alerts.preventClose'),
+                    confirm: function () {
+                        save();
+                    }
+                });
+            } else {
+                SWEETALERT.show({
+                    type: "error",
+                    message: MESSAGE.i('alerts.ContainsError'),
+                    confirm: function () {
+                        setTimeout(function () {
+                            var firstFieldWithError = $(".help-block:has('p'):eq(0)").closest('.form-group-material');
+                            firstFieldWithError.find('.form-control').focus();
+                            var tab = firstFieldWithError.closest('.tab-pane');
+                            $(`[href='#${tab.attr('id')}']`).trigger('click');
+                            new ANIMATION().playPure(firstFieldWithError, "shake", function () {
+                                firstFieldWithError.find('.form-control').focus();
+                            });
+                        }, 500);
+                    }
+                });
+
+            }
+        }
     }
 };

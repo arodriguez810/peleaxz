@@ -120,7 +120,6 @@ exports.delete = async function (table, params, where) {
     }
 };
 exports.makeWhere = function (where, params) {
-    console.log(where);
     var whereprepare = [];
     var connectors = [];
     for (var obj of where) {
@@ -207,7 +206,6 @@ exports.makeWhere = function (where, params) {
         var strtoreplace = connectors[i] + "<<**>>";
         whereprepare = params.S(whereprepare).replaceAll(strtoreplace, "").s;
     }
-    console.log(whereprepare);
     return whereprepare;
 };
 exports.sortByKey = function (array, key, order) {
@@ -230,6 +228,8 @@ exports.data = async function (table, params, where, index) {
         else
             wherefinal = '';
     }
+    if (wherefinal !== undefined)
+        wherefinal = wherefinal.replace('AND', '&&').replace('OR', '||');
     var entity = eval(`params.CONFIG.storageEntities.${table}`);
     var indexKey = table + "_index";
     var lastID = await params.storage.getItem(indexKey) || 1;
@@ -237,10 +237,11 @@ exports.data = async function (table, params, where, index) {
     var records = await params.storage.getItem(table) || [];
     try {
 
-        if (wherefinal !== '' && wherefinal !== undefined)
+        if (wherefinal !== '' && wherefinal !== undefined) {
             records = records.filter(function (row) {
                 return eval(wherefinal);
             });
+        }
 
         if (index.order !== undefined) {
             if (index.orderby !== undefined) {
@@ -373,7 +374,8 @@ exports.Model = function (tableName, params) {
         });
     };
     this.delete = async function (options) {
-        return await exports.delete(this.tableName, params, options.where).then(result => {
+        var where = options.where || options;
+        return await exports.delete(this.tableName, params, where).then(result => {
             return result;
         });
     };
@@ -384,9 +386,15 @@ exports.Model = function (tableName, params) {
         });
     };
     this.insert = async function (options) {
+        var toInsert = {};
         if (options.insertData !== undefined)
-            options.data = options.insertData;
-        return await exports.insertQuery(this.tableName, options.data, params).then(result => {
+            toInsert = options.insertData;
+        else
+        if (options.data !== undefined)
+            toInsert = options.data;
+        else
+            toInsert = options;
+        return await exports.insertQuery(this.tableName, toInsert, params).then(result => {
             return result;
         });
     };

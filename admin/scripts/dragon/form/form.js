@@ -24,6 +24,10 @@ FORM = {
         selft: "selft"
     },
     run: function ($scope, $http) {
+        if (eval(`typeof CRUD_${$scope.modelName} !=='undefined'`)) {
+            $scope.tableOrView = eval(`CRUD_${$scope.modelName}`).table.view || $scope.modelName;
+            $scope.tableOrMethod = eval(`CRUD_${$scope.modelName}`).table.method || $scope.modelName;
+        }
         $scope.form = {};
         $scope.selectQueries = [];
         $scope.form.target = FORM.targets.modal;
@@ -174,12 +178,10 @@ FORM = {
                     var info = newValue.split(';');
                     eval(`$scope.${name}_DragonLat = info[0];`);
                     eval(`$scope.${name}_DragonLon = info[1];`);
-                    eval(`$scope.${name}_DragonAddress = info[2];`);
+
 
                     $('[name="' + $scope.modelName + "_" + nameclean + '_DragonLat"]').val(info[0]);
                     $('[name="' + $scope.modelName + "_" + nameclean + '_DragonLon"]').val(info[1]);
-                    $('[name="' + $scope.modelName + "_" + nameclean + '_DragonAddress"]').val(info[2]);
-                    $('[name="' + $scope.modelName + "_" + nameclean + '_DragonAddressFilter"]').typeahead('val', info[2]);
                     return newValue;
                 }
             }
@@ -213,7 +215,7 @@ FORM = {
                     relations: $scope.form.relations,
                 }))
                     return;
-                $scope.insertID($scope.form.inserting, $scope.form.fieldExGET, $scope.form.valueExGET, function (result) {
+                BASEAPI.insertID($scope.tableOrMethod, $scope.form.inserting, $scope.form.fieldExGET, $scope.form.valueExGET, function (result) {
                     if (result.data.error === false) {
                         SWEETALERT.loading({message: MESSAGE.i('mono.Preparingfilesandrelations')});
                         var savedRow = result.data.data[0];
@@ -236,56 +238,58 @@ FORM = {
                             + $scope.form.multipleRelations.length
                             + $scope.form.relations.length;
 
-                        if ($scope.pages.form.subRequestCompleteVar === 0) {
-                            $scope.pages.form.close();
-                            SWEETALERT.stop();
-                        }
-                        if ($scope.form.uploading !== undefined)
-                            if ($scope.form.uploading.length > 0) {
-                                for (var file of $scope.form.uploading)
-                                    file.to = file.to.replace('$id', DRAGONID);
-                                BASEAPI.ajax.post(HTTP.path(["files", "api", "move"]), {moves: $scope.form.uploading}, function (data) {
-                                    $scope.pages.form.subRequestComplete();
-                                });
+                        if ($scope.pages !== null)
+                            if ($scope.pages.form.subRequestCompleteVar === 0) {
+                                $scope.pages.form.close();
+                                SWEETALERT.stop();
                             }
-                        if ($scope.form.relations !== undefined)
-                            if ($scope.form.relations.length > 0) {
-                                for (var relation of $scope.form.relations) {
-                                    for (var frel of relation.data) {
-                                        for (var i in frel) {
-                                            var vi = frel[i].replace('$id', DRAGONID);
-                                            eval(`frel.${i} = vi`);
-                                        }
-                                    }
-                                    BASEAPI.insert(relation.config.toTable, relation.data, function (data) {
+                        if ($scope.form !== null)
+                            if ($scope.form.uploading !== undefined)
+                                if ($scope.form.uploading.length > 0) {
+                                    for (var file of $scope.form.uploading)
+                                        file.to = file.to.replace('$id', DRAGONID);
+                                    BASEAPI.ajax.post(new HTTP().path(["files", "api", "move"]), {moves: $scope.form.uploading}, function (data) {
                                         $scope.pages.form.subRequestComplete();
                                     });
                                 }
-                            }
-                        if ($scope.form.multipleRelations !== undefined)
-                            if ($scope.form.multipleRelations.length > 0) {
-                                for (var relation of $scope.form.multipleRelations) {
-                                    var dataToUpdate = {};
-                                    var dataToWhere = [];
-                                    for (var frel of relation.config.where) {
-                                        for (var i in frel) {
-                                            var vi = frel[i].replace('$id', relation.tempID);
-                                            eval(`frel.${i} = vi`);
+                        if ($scope.form !== null)
+                            if ($scope.form.relations !== undefined)
+                                if ($scope.form.relations.length > 0) {
+                                    for (var relation of $scope.form.relations) {
+                                        for (var frel of relation.data) {
+                                            for (var i in frel) {
+                                                var vi = frel[i].replace('$id', DRAGONID);
+                                                eval(`frel.${i} = vi`);
+                                            }
                                         }
-                                        dataToWhere.push(frel);
+                                        BASEAPI.insert(relation.config.toTable, relation.data, function (data) {
+                                            $scope.pages.form.subRequestComplete();
+                                        });
                                     }
-                                    for (var i in relation.config.update) {
-                                        var vi = relation.config.update[i].replace('$id', DRAGONID);
-                                        eval(`dataToUpdate.${i} = vi`);
-                                    }
-                                    dataToUpdate.where = dataToWhere;
-
-                                    console.log(dataToUpdate);
-                                    BASEAPI.updateall(relation.config.toTable, dataToUpdate, function (udata) {
-                                        $scope.pages.form.subRequestComplete();
-                                    });
                                 }
-                            }
+                        if ($scope.form !== null)
+                            if ($scope.form.multipleRelations !== undefined)
+                                if ($scope.form.multipleRelations.length > 0) {
+                                    for (var relation of $scope.form.multipleRelations) {
+                                        var dataToUpdate = {};
+                                        var dataToWhere = [];
+                                        for (var frel of relation.config.where) {
+                                            for (var i in frel) {
+                                                var vi = frel[i].replace('$id', relation.tempID);
+                                                eval(`frel.${i} = vi`);
+                                            }
+                                            dataToWhere.push(frel);
+                                        }
+                                        for (var i in relation.config.update) {
+                                            var vi = relation.config.update[i].replace('$id', DRAGONID);
+                                            eval(`dataToUpdate.${i} = vi`);
+                                        }
+                                        dataToUpdate.where = dataToWhere;
+                                        BASEAPI.updateall(relation.config.toTable, dataToUpdate, function (udata) {
+                                            $scope.pages.form.subRequestComplete();
+                                        });
+                                    }
+                                }
                     } else {
                         SWEETALERT.stop();
                         ERROR.alert(result.data, ERROR.category.database);
@@ -308,7 +312,7 @@ FORM = {
                     multipleRelations: $scope.form.multipleRelations,
                     relations: $scope.form.relations,
                 })) return;
-                BASEAPI.updateall($scope.modelName, dataToUpdate, function (result) {
+                BASEAPI.updateall($scope.tableOrMethod, dataToUpdate, function (result) {
                     if (result.data.error === false) {
                         $scope.form.after.update({
                             updating: $scope.form.inserting,
@@ -345,7 +349,6 @@ FORM = {
 
 
                                     BASEAPI.deleteall(relation.config.toTable, whereDelete, function (ddata) {
-                                        console.log(relation);
                                         BASEAPI.insert(relation.config.toTable, relation.data, function (data) {
                                             $scope.pages.form.subRequestComplete();
                                         });
@@ -388,8 +391,6 @@ FORM = {
                     '_DragonCountFile',
                     '_DragonLat',
                     '_DragonLon',
-                    '_DragonAddress',
-                    '_DragonFilter',
                     '_DragonClean',
                 ];
                 badwords.forEach((item) => {
@@ -444,7 +445,6 @@ FORM = {
                                     config: config,
                                     data: dataarray
                                 });
-                                console.log($scope.form.relations);
                             }
                             break;
                         }
@@ -485,8 +485,9 @@ FORM = {
                 }
         };
         $scope.form.loadDropDown = function (name) {
+            var animation = new ANIMATION();
             var options = eval(`$scope.form.options.${name}`);
-            ANIMATION.loading(`#input${$scope.modelName}_${name}`, "", `#icon${name}`, '30');
+            animation.loading(`#input${$scope.modelName}_${name}`, "", `#icon${name}`, '30');
             if (!options.simple) {
                 eval(`var crud = CRUD_${options.table}`);
                 if (crud.table.single)
@@ -537,36 +538,41 @@ FORM = {
                         }
                         eval(`$scope.form.options.${name}.data = info.data`);
                         if (!options.multiple)
-                            ANIMATION.stoploading(`#input${$scope.modelName}_${name}`, `#icon${name}`);
+                            animation.stoploading(`#input${$scope.modelName}_${name}`, `#icon${name}`);
                         if (options.multiple) {
                             if (eval(`$scope.${name}.length<=0`))
                                 eval(`$scope.${name}=[];`);
                             if (!$scope.form.isReadOnly(name)) {
                                 var lastWhere = [];
-                                lastWhere.push({
-                                    field: options.get.fieldTo,
-                                    value: eval(`$scope.${options.get.fieldFrom}`)
-                                });
-                                BASEAPI.list(options.get.table, {
-                                    limit: 99999,
-                                    page: 1,
-                                    orderby: options.get.fieldTo,
-                                    order: "asc",
-                                    where: lastWhere
-                                }, function (selectedy) {
-                                    if (eval(`$scope.${name} ==='[NULL]'`))
-                                        eval(`$scope.${name}=[];`);
-                                    if (eval(`$scope.${name}.length<=0`))
-                                        selectedy.data.forEach((item) => {
-                                            eval(`$scope.${name}.push('${eval(`item.${options.get.field}`)}')`);
-                                        });
-                                    ANIMATION.stoploading(`#input${$scope.modelName}_${name}`, `#icon${name}`);
+                                if (eval(`$scope.${options.get.fieldFrom}`) !== undefined) {
+                                    lastWhere.push({
+                                        field: options.get.fieldTo,
+                                        value: eval(`$scope.${options.get.fieldFrom}`)
+                                    });
+                                    BASEAPI.list(options.get.table, {
+                                        limit: 99999,
+                                        page: 1,
+                                        orderby: options.get.fieldTo,
+                                        order: "asc",
+                                        where: lastWhere
+                                    }, function (selectedy) {
+                                        if (eval(`$scope.${name} ==='[NULL]'`))
+                                            eval(`$scope.${name}=[];`);
+                                        if (eval(`$scope.${name}.length<=0`))
+                                            selectedy.data.forEach((item) => {
+                                                eval(`$scope.${name}.push('${eval(`item.${options.get.field}`)}')`);
+                                            });
+                                        animation.stoploading(`#input${$scope.modelName}_${name}`, `#icon${name}`);
+                                        $scope.form.callSelect2(name, options);
+                                    });
+                                } else {
+                                    animation.stoploading(`#input${$scope.modelName}_${name}`, `#icon${name}`);
                                     $scope.form.callSelect2(name, options);
-                                });
+                                }
                             } else {
                                 if (eval(`$scope.${name}.length<=0`))
                                     eval(`$scope.${name}=$scope.form.isReadOnly('${name}');`);
-                                ANIMATION.stoploading(`#input${$scope.modelName}_${name}`, `#icon${name}`);
+                                animation.stoploading(`#input${$scope.modelName}_${name}`, `#icon${name}`);
                                 $scope.form.callSelect2(name, options);
                             }
                         } else {
@@ -589,7 +595,7 @@ FORM = {
                     eval(`$scope.form.options.${name}.groupbydata = newData`);
                 }
                 eval(`$scope.form.options.${name}.data = info.data`);
-                ANIMATION.stoploading(`#input${$scope.modelName}_${name}`, `#icon${name}`);
+                animation.stoploading(`#input${$scope.modelName}_${name}`, `#icon${name}`);
                 $scope.form.callSelect2(name, options);
             }
         };
@@ -641,7 +647,8 @@ FORM = {
             }
         };
         $scope.form.loadOutDropDown = function (options, id) {
-            ANIMATION.loading(`#input${name}`, "", `#icon${name}`, '30');
+            var animation = new ANIMATION();
+            animation.loading(`#input${name}`, "", `#icon${name}`, '30');
             BASEAPI.list(options.table, options.query,
                 function (info) {
                     if (!DSON.oseaX(options.groupby)) {
@@ -658,7 +665,7 @@ FORM = {
                     }
                     eval(`options.data = info.data`);
 
-                    ANIMATION.stoploading(`#input${name}`, `#icon${name}`);
+                    animation.stoploading(`#input${name}`, `#icon${name}`);
                     $scope.form.callSelect2(name, options);
                 });
         };
@@ -715,7 +722,7 @@ FORM = {
                     firstFieldWithError.find('.form-control').focus();
                     var tab = firstFieldWithError.closest('.tab-pane');
                     $(`[href='#${tab.attr('id')}']`).trigger('click');
-                    ANIMATION.playPure(firstFieldWithError, "shake", function () {
+                    new ANIMATION().playPure(firstFieldWithError, "shake", function () {
                         firstFieldWithError.find('.form-control').focus();
                     });
                 }, 500);
@@ -735,42 +742,47 @@ FORM = {
             $scope.pages.form.onClose = function () {
 
                 $scope.pages.form.isOpen = false;
-                $scope.form.destroy();
-                if ($scope.form.hasChanged)
-                    if ($scope.refresh !== undefined)
-                        $scope.refresh();
+                if ($scope.form !== null) {
+                    $scope.form.destroy();
+                    if ($scope.form.hasChanged)
+                        if ($scope.refresh !== undefined)
+                            $scope.refresh();
+                }
             };
             $scope.pages.form.close = function (pre, post) {
-                if ($scope.form.hasChanged) {
+                if ($scope.form !== null)
+                    if ($scope.form.hasChanged) {
 
-                    if ($scope.refresh !== undefined)
-                        $scope.refresh();
-                }
+                        if ($scope.refresh !== undefined)
+                            $scope.refresh();
+                    }
                 if (typeof pre === "function") pre();
-                if ($scope.form.mode === FORM.modes.new) {
-                    if ($scope.validation.warningClose())
-                        SWEETALERT.confirm({
-                            message: MESSAGE.i('alerts.CloseToComplete'),
-                            confirm: function () {
-                                if ($scope.form.target === FORM.targets.modal)
-                                    MODAL.close($scope);
+                if ($scope.form !== null)
+                    if ($scope.form.mode === FORM.modes.new) {
+                        if ($scope.validation.warningClose())
+                            SWEETALERT.confirm({
+                                message: MESSAGE.i('alerts.CloseToComplete'),
+                                confirm: function () {
+                                    if ($scope.form.target === FORM.targets.modal)
+                                        MODAL.close($scope);
 
-                                if ($scope.pages.form)
-                                    $scope.pages.form.onClose();
-                            }
-                        });
-                    else {
+                                    if ($scope.pages.form)
+                                        $scope.pages.form.onClose();
+                                }
+                            });
+                        else {
+                            if ($scope.form.target === FORM.targets.modal)
+                                MODAL.close($scope);
+                            if ($scope.pages.form)
+                                $scope.pages.form.onClose();
+                        }
+                    } else {
                         if ($scope.form.target === FORM.targets.modal)
                             MODAL.close($scope);
-                        if ($scope.pages.form)
-                            $scope.pages.form.onClose();
+                        if ($scope.pages !== null)
+                            if ($scope.pages.form)
+                                $scope.pages.form.onClose();
                     }
-                } else {
-                    if ($scope.form.target === FORM.targets.modal)
-                        MODAL.close($scope);
-                    if ($scope.pages.form)
-                        $scope.pages.form.onClose();
-                }
                 if (typeof post === "function") post();
 
             };
@@ -834,10 +846,10 @@ FORM = {
                     }
                 });
             } else {
-                $scope.loadContent(
+                new LOAD().loadContentScope(
                     location.href.split('#')[1], "content", MESSAGE.i('actions.Loading'), function () {
                         MESSAGE.run();
-                    }
+                    },undefined,undefined,$scope
                 );
             }
         };
@@ -872,7 +884,7 @@ FORM = {
             }
             if (data !== null) {
                 $scope.open.query = data;
-                BASEAPI.first($scope.modelName, $scope.open.query, function (data) {
+                BASEAPI.first($scope.tableOrMethod, $scope.open.query, function (data) {
                     for (var i in data) {
                         var item = eval(`'${eval(`data.${i}`)}'`);
                         eval(`$scope.open.default.${i} = '${item}';`);

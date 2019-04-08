@@ -8,10 +8,28 @@ VALIDATION = DSON.merge(VALIDATION, {
                 type: VALIDATION.types.error
             };
         },
+        equal: function (value, value2, field, field2) {
+            value = value || "";
+            value2 = value2 || "";
+            return {
+                valid: (value === value2),
+                message: MESSAGE.ieval('validations.fieldPassword', {field: field, field2: field2}),
+                type: VALIDATION.types.error
+            };
+        },
+        greaterThan: function (value, value2, field, field2) {
+            value = value || "";
+            value2 = value2 || "";
+            return {
+                valid: (value < value2),
+                message: MESSAGE.ieval('validations.greaterThan', {field: field, field2: field2}),
+                type: VALIDATION.types.error
+            };
+        },
         reglapropia: function (value) {
             value = value || "";
             return {
-                valid: (value==="bueno"),
+                valid: (value === "bueno"),
                 message: "Opps no es bueno",
                 type: VALIDATION.types.error
             };

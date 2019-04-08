@@ -69,7 +69,7 @@ var toclient = JSON.stringify(options);
 
     function ShowCount<%= name %>(direct) {
         if (amLoad<%= name %> || direct===true) {
-            BASEAPI.ajax.get(HTTP.path(["files", "api"]), {folder: <%= model %>.form.options.<%= name %>.folder
+            BASEAPI.ajax.get(new HTTP().path(["files", "api"]), {folder: <%= model %>.form.options.<%= name %>.folder
         },
 
             function (data) {
@@ -100,7 +100,7 @@ var toclient = JSON.stringify(options);
 
 
         $('[name="<%= model %>_<%= nameclean %>"]').click(function () {
-            $(".map-wrapper").hide();
+
             amLoad<%= name %> = true;
             var root = <%= model %>.
             form.options.<%= name %>.folder;

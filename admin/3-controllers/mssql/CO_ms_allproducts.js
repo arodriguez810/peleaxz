@@ -11,12 +11,12 @@ app.controller("ms_allproducts", function ($scope, $http, $compile) {
                 };
             }
             ms_allproducts.createForm(data, mode, defaultData);
-            ms_allproducts.$scope.$watch('ms_allproducts.all', function (value) {
+            $scope.$watch('ms_allproducts.all', function (value) {
                 var rules = [];
                 rules.push(VALIDATION.general.required(value));
                 VALIDATION.validate(ms_allproducts, "all", rules);
             });
-            ms_allproducts.$scope.$watch('ms_allproducts.product', function (value) {
+            $scope.$watch('ms_allproducts.product', function (value) {
                 var rules = [];
                 rules.push(VALIDATION.general.required(value));
                 VALIDATION.validate(ms_allproducts, "product", rules);

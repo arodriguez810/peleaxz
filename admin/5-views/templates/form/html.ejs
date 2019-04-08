@@ -92,7 +92,7 @@ var toclient = JSON.stringify(options);
 
 
         $('[name="<%= model %>_<%= nameclean %>"]').on('summernote.change', function(we, contents, $editable) {
-            $(".map-wrapper").hide();
+
             STEP.register({
                     scope: "<%= model %>",
                     action: "Change HTML",

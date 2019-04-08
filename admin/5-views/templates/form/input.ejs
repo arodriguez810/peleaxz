@@ -33,10 +33,6 @@ var toclient = JSON.stringify(options);
     if(MESSAGE.exist('columns.<%= nameclean %>')){
         <%= model %>.form.options.<%= name %>.placeholder = MESSAGE.i('columns.<%= nameclean %>');
     }
-    if(ICON.classes.<%=  nameclean.toLowerCase() %>!==undefined){
-        if(<%= model %>.form.options.<%= name %>.icon.class==='none')
-        <%= model %>.form.options.<%= name %>.icon.class =ICON.classes.<%=  nameclean.toLowerCase() %>;
-    }
 </script>
 <div class="form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-{{::<%= model %>.form.options.<%= name %>.icon.position}}"
      id="input<%= model %>_<%= nameclean %>">
@@ -79,7 +75,7 @@ var toclient = JSON.stringify(options);
     <% } %>
 
     $('[name="<%= model %>_<%= nameclean %>"]').blur(function () {
-        $(".map-wrapper").hide();
+
         STEP.register({
             scope: "<%= model %>",
             action: "Change Text",

@@ -194,7 +194,7 @@ exports.defaultRequests = function (Model, params) {
     });
     params.app.get(params.util.format('/api/%s/all', Model.tableName), function (req, res) {
         params.secure.check(req, res, function () {
-            
+
             if (req.query.limit === undefined)
                 req.query.limit = 10;
             if (req.query.page === undefined)
@@ -379,8 +379,10 @@ exports.Model = function (tableName, params) {
                         where.push(params.format(open + " {0} {1} ('{2}') {4} {3}", field, operator, obj.value.join("','"), connector, close));
                         connectors.push(connector);
                     } else {
-                        where.push(params.format(open + " {0} {1} {2} {4} {3}", field, operator, obj.value[0] === '$' ? obj.value.replace('$', '') : "'" + obj.value + "'", connector, close));
-                        connectors.push(connector);
+                        if (obj.value !== undefined) {
+                            where.push(params.format(open + " {0} {1} {2} {4} {3}", field, operator, obj.value[0] === '$' ? obj.value.replace('$', '') : "'" + obj.value + "'", connector, close));
+                            connectors.push(connector);
+                        }
                     }
                 }
                 where = (whereWord ? "WHERE " : "") + where.join(" ") + "<<**>>";

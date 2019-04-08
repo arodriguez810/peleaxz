@@ -6,7 +6,7 @@ var options = {
     icon: {
         class: "location4",
         position: "left",
-        color: TAG.table+"-800"
+        color: TAG.table + "-800"
     },
     helptext: '',
     readonly: false,
@@ -14,20 +14,20 @@ var options = {
     posttype: "location"
 
 };
-options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g,'_');
+options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g, '_');
 var toclient = JSON.stringify(options);
 %>
 <script>
-
-    <%= model %>.form.schemas.select["<%= name %>"] =FORM.schemasType.location;
+    <%= model %>.locationselectedText = MESSAGE.i('mono.selectedLocation');
+    <%= model %>.form.schemas.select["<%= name %>"] = FORM.schemasType.location;
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
     <%= model %>.form.registerField("<%= name %>_DragonLat", "<%= toclient %>");
     <%= model %>.form.registerField("<%= name %>_DragonLon", "<%= toclient %>");
-    <%= model %>.form.registerField("<%= name %>_DragonAddress", "<%= toclient %>");
-    <%= model %>.form.registerField("<%= name %>_DragonFilter", "<%= toclient %>");
 
-    if(MESSAGE.exist('columns.<%= nameclean %>')){
-        <%= model %>.form.options.<%= name %>.placeholder = MESSAGE.i('columns.<%= nameclean %>');
+
+    if (MESSAGE.exist('columns.<%= nameclean %>')) {
+        <%= model %>.
+        form.options.<%= name %>.placeholder = MESSAGE.i('columns.<%= nameclean %>');
     }
     var isReadProgram = <%= model %>.form.isReadOnly('<%= name %>');
     if (isReadProgram !== false) {
@@ -40,11 +40,6 @@ var toclient = JSON.stringify(options);
                 <%= name %>_DragonLat = locationLoaded[0];
                 <%= model %>.
                 <%= name %>_DragonLon = locationLoaded[1];
-                <%= model %>.
-                <%= name %>_DragonAddress = locationLoaded[2];
-                <%= model %>.
-                <%= name %>_DragonFilter = locationLoaded[2];
-                $("#<%= name %>_map").show();
             }
         }
     }
@@ -56,28 +51,21 @@ var toclient = JSON.stringify(options);
         {{<%= model %>.form.options.<%= name %>.placeholder}}
     </label>
 
-    <input
-            ng-model-onblur
-            ng-readonly="<%= model %>.form.options.<%= name %>.readonly"
-            ng-disabled="<%= model %>.form.options.<%= name %>.disabled"
-            placeholder="{{<%= model %>.form.options.<%= name %>.placeholder}}"
-            name="<%= model %>_<%= nameclean %>_DragonAddressFilter"
-            ng-model="<%= model + "." + name %>Filter"
-            class="form-control typeahead" type="text" placeholder="Enter an address">
+    <button name="<%= model %>_<%= nameclean %>"
+            type="button"
+            role="button"
+            class="btn bg-<%= options.color %>-600 btn-block legitRipple">
+        {{<%= model %>.<%= name %>_DragonLat!==null ? <%= model %>.locationselectedText :""}}
+        <i class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} text-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}"></i>
+        <div ng-show="<%= model %>.<%= name %>_DragonLat===null" dragonlanguage="">
+            <language>MESSAGE.i('mono.selectLocation')</language>
+        </div>
 
-    <i onclick="$(" #<%= name %>_map").hide();" class="icon-close"></i>
-    <div id="<%= name %>_map" class="map-wrapper " style="display: none"></div>
+    </button>
+
+
     <input type="hidden" ng-model="<%= model + "." + name %>_DragonLat" name="<%= model %>_<%= nameclean %>_DragonLat">
     <input type="hidden" ng-model="<%= model + "." + name %>_DragonLon" name="<%= model %>_<%= nameclean %>_DragonLon">
-    <input type="hidden" ng-model="<%= model + "." + name %>_DragonAddress"
-           name="<%= model %>_<%= nameclean %>_DragonAddress">
-    <input type="hidden" ng-model="<%= model + "." + name %>" name="<%= model %>_<%= nameclean %>">
-
-    <div class="form-control-feedback">
-        <i class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} text-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}">
-
-        </i>
-    </div>
 
     <span ng-if="<%= model %>.form.options.<%= name %>.helptext!=''"
           class="help-block text-muted">
@@ -98,68 +86,21 @@ var toclient = JSON.stringify(options);
                 lat: <%= model + "." + name + "_DragonLat" %>,
                 lon: <%= model + "." + name + "_DragonLon" %>
             };
-            var addressPicker = new AddressPicker({
-                map: {
-                    id: '#<%= name %>_map',
-                    zoom: 10,
-                    center: new google.maps.LatLng(defaultLocation.lat, defaultLocation.lon)
-                },
-                reverseGeocoding: true,
-            });
-
-            $('[name="<%= model %>_<%= nameclean %>_DragonAddressFilter"]').focus(function () {
-                $("#<%= name %>_map").show();
-            });
-
-            $('[name="<%= model %>_<%= nameclean %>_DragonAddressFilter"]').dblclick(function () {
-                $("#<%= name %>_map").toggle();
-            });
-
-            $('[name="<%= model %>_<%= nameclean %>_DragonAddressFilter"]').focusout(function () {
-                $('[name="<%= model %>_<%= nameclean %>_DragonAddressFilter"]').typeahead('val', <%= model + "." + name + "_DragonAddress" %>);
-                STEP.register({
-                        scope: "<%= model %>",
-                        action: "Change Location",
-                        field: "<%= name %>",
-                        value: <%= model %>.<%= name %>
-                });
-            });
-
-            $('[name="<%= model %>_<%= nameclean %>_DragonAddressFilter"]').typeahead(null, {
-                displayKey: 'description',
-                limit: 20,
-                source: addressPicker.ttAdapter()
-            });
-            addressPicker.bindDefaultTypeaheadEvent($('[name="<%= model %>_<%= nameclean %>_DragonAddressFilter"]'));
-            $(addressPicker).on('addresspicker:selected', function (event, result) {
-                Prism.highlightAll();
-                <%= model + "." + name %>_DragonAddress = result.address();
-                $('[name="<%= model %>_<%= nameclean %>_DragonAddressFilter"]').val(result.address());
-                <%= model + "." + name %>_DragonLat = result.lat();
-                <%= model + "." + name %>_DragonLon = result.lng();
-                <%= model + "." + name %> = result.lat() + ";" + result.lng() + ";" + result.address();
-
-            });
-            $('[name="<%= model %>_<%= nameclean %>_DragonAddressFilter"]').typeahead('val', <%= model + "." + name + "_DragonAddress" %>);
-            $('[name="<%= model %>_<%= nameclean %>__DragonAddressFilter"]').trigger('focusout');
-            setTimeout(() => {
-                $('[name="<%= model %>_<%= nameclean %>_DragonAddressFilter"]').trigger('focusout');
-                $(addressPicker).trigger('selected');
-            }, 1000);
-        } else {
-            setTimeout(() => {
-                if ($('[name="<%= model %>_<%= nameclean %>_DragonAddressFilter"]').val() === "")
-                    $('[name="<%= model %>_<%= nameclean %>_DragonAddressFilter"]').val("Latitude;Longitude;Google Not Load");
-                else
-                    $('[name="<%= model %>_<%= nameclean %>_DragonAddressFilter"]').val(<%= model + "." + name %>);
-                $('[name="<%= model %>_<%= nameclean %>_DragonAddressFilter"]').change(function () {
-                    var props = $(this).val().split(';');
-                    var lat = props.length === 3 ? props[0] : "0";
-                    var lng = props.length === 3 ? props[1] : "0";
-                    var address = props.length === 3 ? props[2] : "Google Not Load";
-                    <%= model + "." + name %> = lat + ";" + lng + ";" + address;
-                });
-            }, 500);
         }
+        $('[name="<%= model %>_<%= nameclean %>"]').click(function () {
+            baseController.viewData = {
+                name: '<%= name %>'
+            }
+            var modal = {
+                width: ENUM.modal.width.large,
+                header: {
+                    title: <%= model %>.form.options.<%= name %>.placeholder,
+                    icon: <%= model %>.form.options.<%= name %>.icon.class
+                },
+                footer: {cancelButton: true},
+                content: {loadingContentText: MESSAGE.i('actions.Loading')}
+            };
+            <%= model %>.modal.modalView("../templates/components/map", modal);
+        });
     });
 </script>

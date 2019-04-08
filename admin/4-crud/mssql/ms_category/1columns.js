@@ -94,7 +94,7 @@ DSON.keepmerge(CRUD_ms_category, {
                             data.$scope.modal.modalView("logica", {
                                 header: {
                                     title: "Permisos de " + data.row.name,
-                                    icon: ICON.classes.user
+                                    icon: "user"
                                 },
                                 footer: {
                                     cancelButton: true
@@ -149,7 +149,7 @@ DSON.keepmerge(CRUD_ms_category, {
                                 data.$scope.modal.modalView(String.format("{0}/view", data.$scope.modelName), {
                                     header: {
                                         title: MESSAGE.i('mono.Viewof') + " " + data.$scope.plural,
-                                        icon: ICON.classes.user
+                                        icon: "user"
                                     },
                                     footer: {
                                         cancelButton: true

@@ -1,6 +1,14 @@
 <div id="<%= scope %>" ng-controller="<%= scope %> as <%= scope %>">
     <div class="panel panel-flat">
-        {{logica.PARAMETROSDELOGICA}}
+        <%- include('../templates/header/begin',{scope:scope}); %>
+        <ul class="breadcrumb-elements visible-elements">
+            <li dragonlanguage="">
+                <a onclick="alert('Holaaaa')">
+                    <i dragonlanguage="" title="MESSAGE.ic('mono.add')" class="icon-mail5"></i> 
+                </a>
+            </li>
+        </ul>
+        <%- include('../templates/header/end',{scope:scope}); %>
         <div class="subcontent">
             <%- FORM.datetime("record", scope, {
                 timepicker: true,
@@ -28,24 +36,6 @@
             <%- FORM.checkbox("config.estamuerto", scope, {text: 'Esta muerto?'}) %>
             <br>
             {{logica.config}}
-
-            <div id="ms_category" ng-controller="ms_category as ms_category">
-                <div class="panel panel-flat">
-                    <%- include('../templates/table/header',{scope:'ms_category'}); %>
-                    <div class="subcontent">
-                        <%- include('../templates/table/base',{scope:'ms_category'}); %>
-                    </div>
-                </div>
-            </div><!--end-->
-
-            <div id="ms_other" ng-controller="ms_other as ms_other">
-                <div class="panel panel-flat">
-                    <%- include('../templates/table/header',{scope:'ms_other'}); %>
-                    <div class="subcontent">
-                        <%- include('../templates/table/base',{scope:'ms_other'}); %>
-                    </div>
-                </div>
-            </div><!--end-->
         </div>
     </div>
 </div><!--end-->

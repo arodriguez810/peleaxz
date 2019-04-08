@@ -1,6 +1,7 @@
 app.controller("my_user", function ($scope, $http, $compile) {
     my_user = this;
     RUNCONTROLLER("my_user", my_user, $scope, $http, $compile);
+    my_user.permissionTable = "my_user";
     my_user.formulary = function (data, mode, defaultData) {
         if (my_user !== undefined) {
             RUN_B("my_user", my_user, $scope, $http, $compile);
@@ -38,6 +39,8 @@ app.controller("my_user", function ($scope, $http, $compile) {
             };
             my_user.form.readonly = {};
             my_user.createForm(data, mode, defaultData);
+
+
             my_user.$scope.$watch('my_user.name', function (value) {
                 var rules = [];
                 rules.push(VALIDATION.general.required(value));

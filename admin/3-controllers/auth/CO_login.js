@@ -2,12 +2,12 @@ app.controller("auth", function ($scope, $http, $compile) {
     auth = this;
     RUN_A("auth", auth, $scope, $http, $compile);
 
-    auth.$scope.$watch('auth.username', function (value) {
+    $scope.$watch('auth.username', function (value) {
         var rules = [];
         rules.push(VALIDATION.general.required(value));
         VALIDATION.validate(auth, "username", rules);
     });
-    auth.$scope.$watch('auth.password', function (value) {
+    $scope.$watch('auth.password', function (value) {
         var rules = [];
         rules.push(VALIDATION.general.required(value));
         var validation = VALIDATION.validate(auth, "password", rules);
@@ -28,6 +28,7 @@ app.controller("auth", function ($scope, $http, $compile) {
         }, function (data) {
             SWEETALERT.stop();
             var response = data.data;
+            console.log(response);
             if (response.error !== false) {
                 SWEETALERT.show({
                     type: 'error',
@@ -38,10 +39,10 @@ app.controller("auth", function ($scope, $http, $compile) {
                 });
             } else {
                 if (response.count[0] > 0) {
-
                     var user = response.data[0];
-                    SESSION.register(user);
-                    HTTP.redirect('');
+                    new SESSION().register(user);
+                    var http = new HTTP();
+                    http.redirect('');
                 } else {
                     SWEETALERT.show({
                         type: 'error',

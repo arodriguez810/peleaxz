@@ -1,4 +1,4 @@
-CRUD_ms_product = DSON.merge(CRUD_ms_product,
+CRUD_otronombre = DSON.merge(CRUD_otronombre,
     {
         table: {
             single: [

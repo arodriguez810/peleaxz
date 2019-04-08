@@ -78,9 +78,10 @@
       <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/ms_all" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/navbar" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/permissions" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/5-views/templates" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/5-views/configuration" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/5-views" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/5-views/templates" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/5-views/templates/header" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/.tmp" />
       <excludeFolder url="file://$MODULE_DIR$/admin/assets" />
       <excludeFolder url="file://$MODULE_DIR$/admin/defaults" />

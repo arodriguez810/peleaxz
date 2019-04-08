@@ -13,3 +13,10 @@
 button.btn {
     margin: 0 15px 0 0;
 }
+
+.checkbox-switchery label, label.checkbox-switchery {
+    position: relative;
+    padding-left: 0;
+    margin: 0 !important;;
+    cursor: pointer;
+}

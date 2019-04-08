@@ -1,12 +1,13 @@
 FILE = {
     server: function (folder, callback, nofound, element) {
-        BASEAPI.ajax.get(HTTP.path(["generalfiles", "api"]), {folder: folder}, function (data) {
+        var http = new HTTP();
+        BASEAPI.ajax.get(http.path(["generalfiles", "api"]), {folder: folder}, function (data) {
             if (data.data.files) {
                 for (var i in  data.data.files) {
                     var file = data.data.files[i];
                     data.data.files[i] = {
-                        url: `${HTTP.path([FOLDERS.files, folder])}/${file}`,
-                        cleanUrl: HTTP.cleanRoot(`${HTTP.path([FOLDERS.files, folder])}${file}`),
+                        url: `${http.path([FOLDERS.files, folder])}/${file}`,
+                        cleanUrl: http.cleanRoot(`${http.path([FOLDERS.files, folder])}${file}`),
                         selected: false,
                         fileName: file,
                         original: file.split('___')[0],

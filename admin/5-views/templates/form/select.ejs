@@ -53,7 +53,7 @@ var options = {
     posttype: "select"
 };
 options = OBJECT.merge(options, opts);
-var nameclean = name.replace(/\./g,'_');
+var nameclean = name.replace(/\./g, '_');
 options.model = options.model ? options.model : false;
 options.permission = options.permission || "CRUD_" + options.table;
 var toclient = JSON.stringify(options);
@@ -61,13 +61,12 @@ var toclient = JSON.stringify(options);
 <script>
 
 
-
     if (DSON.oseaX(<%= model + "." + name %>))
             <%= model + "." + name %> = "[NULL]";
 
     <% if(options.multiple){ %>
-        <%= model %>.form.schemas.insert["<%= name %>"] =FORM.schemasType.selectMultiple;
-        <%= model %>.form.schemas.select["<%= name %>"] =`{
+    <%= model %>.form.schemas.insert["<%= name %>"] = FORM.schemasType.selectMultiple;
+    <%= model %>.form.schemas.select["<%= name %>"] = `{
                     toTable: "<%= options.table %>",
                     text: MESSAGE.i('actions.Loading'),
                     fields: {
@@ -110,7 +109,7 @@ var toclient = JSON.stringify(options);
 <div id="<%= options.table %>" ng-controller="<%= options.table %> as <%= options.table %>">
     <div class="form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
          id="input<%= model %>_<%= nameclean %>">
-        <label  class="control-label is-visible animate">
+        <label class="control-label is-visible animate">
             {{<%= model %>.form.options.<%= name %>.label}}
         </label>
 
@@ -174,12 +173,14 @@ var toclient = JSON.stringify(options);
             <% if(options.groupby){ %>
                 <optgroup ng-repeat="(key,categories) in <%= model %>.form.options.<%= name %>.groupbydata track by key"
                           label="{{key}}">
-                    <option data-object="{{item}}" ng-repeat="(i,item) in categories" value="item.{{<%= options.value %>}} track by i">
+                    <option data-object="{{item}}" ng-repeat="(i,item) in categories"
+                            value="item.{{<%= options.value %>}} track by i">
                         {{<%= options.text %>}}
                     </option>
                 </optgroup>
             <% } else{ %>
-                <option data-object="{{item}}" ng-repeat="(key,item) in <%= model %>.form.options.<%= name %>.data track by key"
+                <option data-object="{{item}}"
+                        ng-repeat="(key,item) in <%= model %>.form.options.<%= name %>.data track by key"
                         value="{{item.<%= options.value %>}}">
                     {{<%= options.text %>}}
                 </option>
@@ -204,72 +205,29 @@ var toclient = JSON.stringify(options);
                <i class="{{validation.icon}}"></i> {{validation.message}}
         </p>
     </span>
-        <% if(options.multiple){ %>
-            <div dragonlanguage=""
-                 ng-show="<%= model + "." + name %>.length<=0 || <%= model + "." + name %>==='[NULL]' || <%= model + "." + name %>===null"
-                 class="alert alpha-<%= TAG.table %>
-                 border-<%= TAG.table %> alert-styled-left visible-md visible-lg">
-                <language>MESSAGE.i('mono.Thereisnodataselected')</language>
-            </div>
-
-            <table ng-show="<%= model + "." + name %>.length>0 && <%= model + "." + name %>!=='[NULL]'"
-                   class="table table-togglable table-framed visible-md visible-lg"
-                   style="{{<%= options.table %>.funcWidth}}">
-                <thead class="bg-<%= TAG.table %>">
-                <tr class="bg-<%= TAG.table %>">
-                    <th ng-repeat="(key, value) in <%= options.table %>.columns() track by key"
-                        ng-show="<%= options.table %>.columnVisible(value)"
-                        data-column="{{key}}">
-                        <span ng-bind-html="<%= options.table %>.columnLabel(value,key)"></span>
-                    </th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr
-
-                        ng-repeat="(key, row) in <%= model %>.form.options.<%= name %>.data track by key"
-                        data-object="{{row}}"
-                        ng-show="<%= model + "." + name %>.indexOf(row.<%= options.value %>+'')!==-1"
-                        class="{{<%= options.table %>.rowClass(row)}}">
-
-                    <td ng-repeat="(key, value) in <%= options.table %>.columns() track by key"
-                        ng-show="value.visible!=false"
-                        class="{{::value.class || ''}} context-control"
-                        style="{{::value.style || ''}}"
-                        data-column="{{::key}}">
-
-                        <span
-                                ng-bind-html="<%= options.table %>.cellValue(key,value,row)"
-                                ng-click="<%= options.table %>.cell.click(key,value,row)"
-                        >
-
-                        </span>
-                    </td>
-
-                </tr>
-                </tbody>
-            </table>
-        <% } %>
     </div>
 </div>
 <script>
     $(document).ready(function () {
         <%= model %>.
         form.beginFunctions.push(`<%= model %>.form.loadDropDown("<%= name %>");`);
-        <%= model %>.<%= name %>_object = {};
+        <%= model %>.
+        <%= name %>_object = {};
         $('[name="<%= model %>_<%= nameclean %>"]').change(function () {
             var selectedss = $(this).children("option:selected").data('object');
 
-            <%= model %>.<%= name %>_object = selectedss;
+            <%= model %>.
+            <%= name %>_object = selectedss;
 
             STEP.register({
                 scope: "<%= model %>",
                 action: "Change DropDown",
                 field: "<%= name %>",
                 value: <%= model %>.<%= name %>
-            });
+        })
+            ;
 
-            $(".map-wrapper").hide();
+
         });
 
         $('#reload<%= model %>_<%= nameclean %>').click(function () {
@@ -278,7 +236,8 @@ var toclient = JSON.stringify(options);
             return false;
         });
         $('#new<%= model %>_<%= nameclean %>').click(function () {
-            <%= options.table %>.formulary(null, 'new');
+            <%= options.table %>.
+            formulary(null, 'new');
             return false;
         });
         $('#list<%= model %>_<%= nameclean %>').click(function () {
@@ -286,7 +245,7 @@ var toclient = JSON.stringify(options);
             var modal = {
                     header: {
                         title: MESSAGE.i('mono.Listof') + <%= options.table %>.plural,
-                    icon: ICON.classes.list
+                    icon: "list"
                 },
                 footer: {
                     cancelButton: true
@@ -301,16 +260,26 @@ var toclient = JSON.stringify(options);
         });
 
         $('#edit<%= model %>_<%= nameclean %>').click(function () {
-            <%= options.table %>.formulary({
+            <%= options.table %>.
+            formulary({
                 where: [{
-                    field: <%= 'CRUD_'+options.table %>.table.key,
-                    value: <%= model %>.<%= name %>}]},FORM.modes.edit, {});
+                    field: <%= 'CRUD_' + options.table %>.table.key,
+                    value
+        : <%= model %>.<%= name %>}]
+        },
+            FORM.modes.edit, {}
+        )
+            ;
             return false;
         });
         $('#view<%= model %>_<%= nameclean %>').click(function () {
             <%= model %>.
 
-            cell.openLink({column: "<%= options.column %>", value: <%= model %>.<%= name %>, field:"<%= name %>"});
+            cell.openLink({column: "<%= options.column %>", value: <%= model %>.<%= name %>, field
+        :
+            "<%= name %>"
+        })
+            ;
 
 
             return false;

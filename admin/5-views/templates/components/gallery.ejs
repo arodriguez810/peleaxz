@@ -13,17 +13,18 @@
     <%= DATA.scope %>.galleryFiles.rootFolder = viewModel.root;
     var firstThis = true;
     <%= DATA.scope %>.galleryFiles.refresh = function () {
+        var http = new HTTP();
         if (!firstThis) {
             $(`[data-dragonfile='/${viewModel.root}']:not(:hidden)`).each(function () {
                 FILE.runServerFile($(this))
             });
         }
-        BASEAPI.ajax.get(HTTP.path(["files", "api"]), {folder: viewModel.root}, function (data) {
+        BASEAPI.ajax.get(http.path(["files", "api"]), {folder: viewModel.root}, function (data) {
             for (var i in  data.data.files) {
                 var file = data.data.files[i];
                 data.data.files[i] = {
-                    url: `${HTTP.path([FOLDERS.files, viewModel.root])}/${file}`,
-                    cleanUrl: HTTP.cleanRoot(`${HTTP.path([FOLDERS.files, viewModel.root])}/${file}`),
+                    url: `${http.path([FOLDERS.files, viewModel.root])}/${file}`,
+                    cleanUrl: http.cleanRoot(`${http.path([FOLDERS.files, viewModel.root])}/${file}`),
                     selected: false,
                     fileName: file,
                     original: file.split('___')[0],
@@ -65,13 +66,14 @@
         }
     };
     <%= DATA.scope %>.galleryFiles.view = function (file) {
+        var load = new LOAD();
         if (FILE.isImage(file.fileName)) {
-            LOAD.template('templates/components/crop', {src: file.url}, function (html) {
+            load.template('templates/components/crop', {src: file.url}, function (html) {
                 <%= DATA.scope %>.
                 modal.simpleModal(html, {header: {title: MESSAGE.i('mono.preview')}});
             });
         } else {
-            LOAD.template('templates/components/object', {src: file.url}, function (html) {
+            load.template('templates/components/object', {src: file.url}, function (html) {
                 <%= DATA.scope %>.
                 modal.simpleModal(html, {header: {title: MESSAGE.ic('mono.preview')}});
             });
@@ -153,7 +155,7 @@
             message: MESSAGE.i('alerts.AYSDeleteFile'),
             confirm: function () {
                 SWEETALERT.loading({message: MESSAGE.ic('mono.deleting')});
-                BASEAPI.ajax.post(HTTP.path(["files", "api", "delete"]), {filename: finalArray}, function (data) {
+                BASEAPI.ajax.post(new HTTP().path(["files", "api", "delete"]), {filename: finalArray}, function (data) {
                     SWEETALERT.stop();
                     if (data.data.deleted) {
                         <%= DATA.scope %>.
@@ -173,14 +175,15 @@
         SWEETALERT.confirm({
             message: MESSAGE.i('alerts.AYSDownloadAll'),
             confirm: function () {
+                var http = new HTTP();
                 SWEETALERT.loading({message: MESSAGE.i('mono.Preparingdownloadforfiles')});
-                BASEAPI.ajax.get(HTTP.path(["files", "api", "download"]), {
+                BASEAPI.ajax.get(http.path(["files", "api", "download"]), {
                     folder: viewModel.root,
                     name: MODAL.current().header.title + ".zip"
                 }, function (data) {
                     SWEETALERT.stop();
 
-                    var url = HTTP.path(["files", viewModel.root, MODAL.current().header.title + ".zip"]);
+                    var url = http.path(["files", viewModel.root, MODAL.current().header.title + ".zip"]);
                     DOWNLOAD.fileUrl(url, MODAL.current().header.title + ".zip");
                 });
             }
@@ -237,7 +240,7 @@
     <div class="panel-body">
         <form class="dropzone" id="filesForm" method="post" enctype="multipart/form-data">
             <input type="hidden" name="folder" value="{{<%= DATA.scope %>.galleryFiles.rootFolder}}">
-            <input type="hidden" name="user" value="{{baseController.SESSION.current().getID()}}">
+            <input type="hidden" name="user" value="{{baseController.userID}}">
         </form>
     </div>
 </div>
@@ -285,7 +288,8 @@
 </div>
 <script>
     $(document).ready(function () {
-        $("#filesForm").attr('action', HTTP.path(["files", "api", "upload"]));
+        var http = new HTTP();
+        $("#filesForm").attr('action', http.path(["files", "api", "upload"]));
         var myDropzone = $("#filesForm").dropzone({
             paramName: "toupload", // The name that will be used to transfer the file
             dictDefaultMessage: MESSAGE.i('alerts.upload'),

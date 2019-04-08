@@ -1,5 +1,5 @@
 <!-- Main navbar -->
-<div class="navbar navbar-inverse  bg-<%= TAG.navbar %>-800" ng-show="baseController.SESSION.isLogged()">
+<div class="navbar navbar-inverse  bg-<%= TAG.navbar %>-800" ng-show="baseController.isLogged">
     <div class="navbar-header  bg-<%= COLOR.primary %>-800">
         <a class="visible-lg visible-md visible-sm navbar-brand bg-<%= COLOR.primary %>-800 sidebar-mobile-main-toggle">
             <img style="float: left !important;" src="assets/images/<%= COLOR.logo %>.svg" alt="">
@@ -61,27 +61,27 @@
                     </ul>
                 </div>
             </li>
-            <li ng-if="baseController.CONFIG.mode==='developer'">
-                <a class="sidebar-control" onclick="HTTP.openManager()" data-popup="tooltip"
+            <li ng-if="baseController.mode==='developer'">
+                <a class="sidebar-control" onclick="new HTTP().openManager()" data-popup="tooltip"
                    data-placement="bottom" data-container="body" dragonlanguage
                    title="MESSAGE.i('navbar.RequestManager')">
                     <i class="icon-git-pull-request"></i>
                     <span class="badge bg-<%= TAG.table %>" ng-model="baseController.WARNINGREQUESTS.length"></span>
                 </a>
             </li>
-            <li ng-if="baseController.CONFIG.features.fileManager===true">
+            <li ng-if="baseController.features.fileManager===true">
                 <a class="sidebar-control" onclick="FILEMANAGER.OPEN(['/'])" data-popup="tooltip"
                    data-placement="bottom" data-container="body" dragonlanguage title="MESSAGE.i('navbar.FileManager')">
                     <i class="icon-folder-open"></i>
                 </a>
             </li>
-            <li ng-if="baseController.CONFIG.features.stepManager===true && baseController.CONFIG.mode==='developer'">
+            <li ng-if="baseController.features.stepManager===true && baseController.mode==='developer'">
                 <a class="sidebar-control" onclick="STEP.OPEN()" data-popup="tooltip"
                    data-placement="bottom" data-container="body" dragonlanguage title="MESSAGE.i('navbar.StepManager')">
                     <i class=" icon-stack-text"></i>
                 </a>
             </li>
-            <li ng-if="baseController.CONFIG.features.configuration===true && baseController.SESSION.current().super">
+            <li ng-if="baseController.features.configuration===true && baseController.isSuper">
                 <a class="sidebar-control" onclick="CONFIGURATION.OPEN()" data-popup="tooltip"
                    data-placement="bottom" data-container="body" dragonlanguage title="MESSAGE.i('mono.configuration')">
                     <i class=" icon-cog2"></i>
@@ -89,14 +89,14 @@
             </li>
         </ul>
         <ul class="nav navbar-nav">
-            <li ng-if="baseController.CONFIG.features.multilanguage===true && baseController.CONFIG.mode==='developer'">
+            <li ng-if="baseController.features.multilanguage===true && baseController.mode==='developer'">
                 <a class="sidebar-control" onclick="MESSAGE.OPEN()" data-popup="tooltip"
                    data-placement="bottom" data-container="body" dragonlanguage
                    title="MESSAGE.i('navbar.MessageManager')">
                     <i class=" icon-sphere"></i>
                 </a>
             </li>
-            <li class="dropdown language-switch" ng-if="baseController.CONFIG.features.multilanguage===true">
+            <li class="dropdown language-switch" ng-if="baseController.features.multilanguage===true">
                 <a class="dropdown-toggle legitRipple" data-toggle="dropdown" aria-expanded="false"><img
                             src="assets/images/flags/{{baseController.currentLang.flag}}.png" alt=""
                             class="position-left"> {{baseController.currentLang.name}} <i class="caret"></i></a>
@@ -110,7 +110,7 @@
                 </ul>
             </li>
         </ul>
-        <div class="navbar-right" ng-show="baseController.SESSION.isLogged()">
+        <div class="navbar-right" ng-show="baseController.isLogged">
 
             <ul class="nav navbar-nav">
 
@@ -118,10 +118,10 @@
                     <a class="dropdown-toggle legitRipple" data-toggle="dropdown" aria-expanded="false">
 
                         <img id="profileImage"
-                             data-dragonfile="/my_user/profileimage/{{::baseController.SESSION.current().getID()}}"
+                             data-dragonfile="/my_user/profileimage/{{::baseController.userID}}"
                              src="assets/images/placeholder.jpg" alt="">
 
-                        <span>{{::baseController.SESSION.current().fullName()}}</span>
+                        <span>{{::baseController.fullName}}</span>
                         <i class="caret"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
@@ -131,7 +131,7 @@
                         <!--<li class="divider"></li>-->
                         <!--<li><a href="#"><i class="icon-cog5"></i> Account settings</a></li>-->
                         <li>
-                            <a onclick="SESSION.logoff()" dragonlanguage><i class="icon-switch2"></i>
+                            <a onclick="new SESSION().logoff()" dragonlanguage><i class="icon-switch2"></i>
                                 <language>MESSAGE.i('navbar.Logout')</language>
                             </a>
                         </li>

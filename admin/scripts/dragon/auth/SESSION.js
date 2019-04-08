@@ -1,5 +1,5 @@
-SESSION = {
-    current: function () {
+SESSION = function () {
+    this.current = function () {
         var obj = STORAGE.get("APPSESSION");
         if (!DSON.oseaX(obj)) {
             for (var i in CONFIG.users.addFields) {
@@ -8,45 +8,47 @@ SESSION = {
             }
         }
         return obj;
-    },
-    register: function (data) {
-        return STORAGE.add("APPSESSION", data);
-    },
-    isLogged: function () {
+    };
+    this.register = function (data) {
+        STORAGE.add("APPSESSION", data);
+    };
+    this.isLogged = function () {
         return !DSON.oseaX(STORAGE.get("APPSESSION"));
-    },
-    destroy: function () {
+    };
+    this.destroy = function () {
         STORAGE.delete("APPSESSION");
-    },
-    ifLogoffRedirec: function (view) {
+    };
+    this.ifLogoffRedirec = function (view) {
         var href = view || location.href;
         if (href.indexOf('auth/login') === -1) {
-            if (!SESSION.isLogged()) {
+            if (!this.isLogged()) {
                 MODAL.closeAll();
-                HTTP.redirecttag('auth/login');
+                var http = new HTTP();
+                http.redirecttag('auth/login');
                 return true;
             }
         }
         return false;
-    },
-    logoff: function () {
+    };
+    this.logoff = function () {
         SWEETALERT.confirm({
             message: MESSAGE.i('alerts.AYSCloseSession'),
             confirm: function () {
-                SESSION.destroy();
-                HTTP.redirecttag('auth/login');
+                new SESSION().destroy();
+                location.reload();
             }
         });
-    },
-    terminated: function () {
+    };
+    this.terminated = function () {
         SWEETALERT.show({
             type: ENUM.modal.type.warning,
             title: MESSAGE.ic('mono.session'),
             message: MESSAGE.i('alerts.SessionEnd'),
             confirm: function () {
                 MODAL.closeAll();
-                SESSION.destroy();
-                HTTP.redirecttag('auth/login');
+                new SESSION().destroy();
+                var http = new HTTP();
+                http.redirecttag('auth/login');
             }
         });
     }

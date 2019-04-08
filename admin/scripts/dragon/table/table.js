@@ -1,13 +1,13 @@
 TABLE = {
-    run: function ($scope, $http, $compile) {
+    run: function ($scope) {
         $scope.records = [];
-        $scope.CONFIG = CONFIG;
         $scope.table.loading = false;
         $scope.table.is = {};
         $scope.table.is.loading = true;
         $scope.funcWidth = $scope.table.crud.table.width;
         $scope.report = $scope.table.crud.table.report;
         $scope.tableOrView = $scope.table.crud.table.view || $scope.modelName;
+        $scope.tableOrMethod = $scope.table.crud.table.method || $scope.modelName;
         $scope.width = function () {
             if (!DSON.oseaX($scope.table.crud.table.width)) {
                 return "";
@@ -155,7 +155,7 @@ TABLE = {
         /*Validation******************************/
         $scope.afterData = function (data) {
             PAGINATOR.make($scope, data);
-            ANIMATION.stoploading(
+            new ANIMATION().stoploading(
                 "#" + $scope.modelName + "TablePanel",
                 ".loadingButton"
             );
@@ -174,7 +174,7 @@ TABLE = {
             }
         };
         $scope.refresh = function () {
-            ANIMATION.loading(
+            new ANIMATION().loading(
                 "#" + $scope.modelName + "TablePanel",
                 MESSAGE.ic('mono.refresing'),
                 ".loadingButton", 140
@@ -226,13 +226,14 @@ TABLE = {
                                 }
                             }
 
-                    $scope.list(
+                    BASEAPI.list(
+                        $scope.tableOrView,
                         dataToList,
                         function (data) {
                             $scope.afterData(data);
+                            $scope.refreshAngular();
                             DRAG.run($scope);
-                        },
-                        $scope.tableOrView
+                        }
                     );
                 } else {
                     dataToList = {
@@ -269,13 +270,14 @@ TABLE = {
                                 }
                             }
 
-                    $scope.list(
+                    BASEAPI.list(
+                        $scope.tableOrView,
                         dataToList,
                         function (data) {
                             $scope.afterData(data);
+                            $scope.refreshAngular();
                             DRAG.run($scope);
-                        },
-                        $scope.tableOrView
+                        }
                     );
                 }
             }, 0);

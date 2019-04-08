@@ -115,6 +115,7 @@ TABLEFORMAT = {
             return formatedData;
         };
         $scope.formatByTypeClean = function (column, row, key, extra) {
+            var http = new HTTP();
             var value = eval("row." + key);
             if (column.multilink !== undefined) {
                 return "...";
@@ -176,7 +177,7 @@ TABLEFORMAT = {
                         format = format.length > 1 ? format[1] : "";
                         if (DSON.oseaX(value))
                             return DSON.noset();
-                        var fileUrl = HTTP.path([CONFIG.filePath, value]);
+                        var fileUrl = http.path([CONFIG.filePath, value]);
                         if ([ENUM.file.formats.XLS, ENUM.file.formats.CSV, ENUM.file.formats.Clipboard].indexOf(extra.type) !== -1)
                             return fileUrl;
                         switch (format) {
@@ -193,16 +194,16 @@ TABLEFORMAT = {
                                     return `<object style='width: 100%;height: 100%' data="${fileUrl}"></object>`;
                             }
                         }
-                        var fileUrl = HTTP.path([CONFIG.filePath, value]);
+                        var fileUrl = http.path([CONFIG.filePath, value]);
                         return `<img src="${fileUrl}"/>`;
                     }
-                    return HTTP.path([CONFIG.filePath, value]);
+                    return http.path([CONFIG.filePath, value]);
                 }
                 else if (column.formattype.indexOf("html") !== -1) {
                     if (extra.onerow) {
                         return value;
                     }
-                    return HTTP.path([CONFIG.filePath, value]);
+                    return http.path([CONFIG.filePath, value]);
                 }
             }
 
@@ -254,7 +255,7 @@ TABLEFORMAT = {
                 } else if (column.formattype.indexOf("location") !== -1) {
                     if (DSON.oseaX(value))
                         return DSON.noset();
-                    var location = value.split(',');
+                    var location = value.split(';');
                     if (location.length > 1) {
                         var lat = location[0];
                         var lng = location[1];

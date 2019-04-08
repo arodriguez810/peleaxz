@@ -48,6 +48,14 @@ CRUDDEFAULTS = {
                 text: (data) => {
                     return "";
                 },
+                title: (data) => {
+                    return MESSAGE.i('actions.Edit') + ", " +
+                        MESSAGE.i('actions.View') + ", " +
+                        MESSAGE.i('actions.Remove') + ", " +
+                        MESSAGE.i('actions.Disable') + ", " +
+                        MESSAGE.i('actions.Copy') + ", " +
+                        MESSAGE.i('actions.Enable');
+                },
                 icon: (data) => {
                     return "cog2";
                 },
@@ -100,7 +108,7 @@ CRUDDEFAULTS = {
                                 data.$scope.modal.modalView(String.format("{0}/view", data.$scope.modelName), {
                                     header: {
                                         title: MESSAGE.i('mono.Viewof') + " " + data.$scope.plural,
-                                        icon: ICON.classes.user
+                                        icon: "user"
                                     },
                                     footer: {
                                         cancelButton: true
@@ -267,11 +275,14 @@ CRUDDEFAULTS = {
                 text: (data) => {
                     return "";
                 },
+                title: (data) => {
+                    return MESSAGE.i('mono.Exportas');
+                },
                 icon: (data) => {
                     return "file-download2";
                 },
                 permission: (data) => {
-                    return '';
+                    return ['export.Clipboard', 'export.PDF', 'export.CSV', 'export.XLS', 'export.DOC'];
                 },
                 characterist: (data) => {
                     return '';

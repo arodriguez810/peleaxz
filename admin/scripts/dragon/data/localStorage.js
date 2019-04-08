@@ -56,9 +56,9 @@ STORAGE = {
                 message:
                     MESSAGE.i('alerts.restoreAll'),
                 confirm: function () {
-                    var session = SESSION.current();
+                    var session = new SESSION();
                     localStorage.clear();
-                    SESSION.register(session);
+                    session.register(session.current());
                     location.reload();
                 }
             });

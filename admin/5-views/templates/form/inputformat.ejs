@@ -14,7 +14,7 @@ var options = {
     disabled: false,
     autocomplete: '',
     posttype: "text",
-    isNumber: false
+    isNumber: true
     //maxlength: 10,
 
 };
@@ -27,18 +27,17 @@ var toclient = JSON.stringify(options);
 %>
 <script>
 
+    <% if(options.isNumber){ %>
     <%= model %>.form.schemas.select["<%= name %>"] =FORM.schemasType.decimal;
+    <% } %>
+
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
     <%= model %>.form.registerField("<%= name %>_DragonClean", "<%= toclient %>");
-    if(<%= model %>.form.options.<%= name %>.isNumber)
+
 
 
     if(MESSAGE.exist('columns.<%= nameclean %>')){
         <%= model %>.form.options.<%= name %>.placeholder = MESSAGE.i('columns.<%= nameclean %>');
-    }
-    if(ICON.classes.<%=  nameclean.toLowerCase() %>!==undefined){
-        if(<%= model %>.form.options.<%= name %>.icon.class==='none')
-        <%= model %>.form.options.<%= name %>.icon.class =ICON.classes.<%=  nameclean.toLowerCase() %>;
     }
 </script>
 <div class="form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-{{::<%= model %>.form.options.<%= name %>.icon.position}}"
@@ -80,17 +79,16 @@ var toclient = JSON.stringify(options);
 
     var formaty =<%= model %>.form.options.<%= name %>.format;
     $('[name="<%= model %>_<%= nameclean %>"]').mask(formaty.mask, formaty.options);
-    $('[name="<%= model %>_<%= nameclean %>"]').change(function () {
+    <% if(options.maxlength){ %>
+        $('[name="<%= model %>_<%= nameclean %>"]').maxlength();
+    <% } %>
+
+    $('[name="<%= model %>_<%= nameclean %>"]').blur(function () {
+
         $me = $(this).val();
         $me = $me.replace(/\./g, 'POINT').replace(/\W/g, '').replace(/POINT/g, '.').replace(/[a-z]/gi, '');
         <%= model %>.<%= name %>_DragonClean = $me;
-    });
-    <% if(options.maxlength){ %>
-        $('[name="<%= model %>_<%= name %>"]').maxlength();
-    <% } %>
 
-    $('[name="<%= model %>_<%= name %>"]').blur(function () {
-        $(".map-wrapper").hide();
         STEP.register({
             scope: "<%= model %>",
             action: "Change Format Text",
@@ -99,7 +97,7 @@ var toclient = JSON.stringify(options);
         });
     });
 
-    $('[name="<%= model %>_<%= name %>"]').trigger('change');
+    $('[name="<%= model %>_<%= nameclean %>"]').trigger('change');
 
     var isReadProgram = <%= model %>.form.isReadOnly('<%= name %>');
     if (isReadProgram !== false){
@@ -111,7 +109,7 @@ var toclient = JSON.stringify(options);
             $me = $me.replace(/\./g, 'POINT').replace(/\W/g, '').replace(/POINT/g, '.').replace(/[a-z]/gi, '');
             <%= model %>.
             <%= name %>_DragonClean = $me;
-            $('[name="<%= model %>_<%= name %>"]').val(isReadProgram);
+            $('[name="<%= model %>_<%= nameclean %>"]').val(isReadProgram);
         }
     }
 </script>

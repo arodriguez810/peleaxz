@@ -4,6 +4,7 @@ app.controller("ms_product", function ($scope, $http, $compile) {
     ms_product.formulary = function (data, mode, defaultData) {
         if (ms_product !== undefined) {
             RUN_B("ms_product", ms_product, $scope, $http, $compile);
+            ms_product.custom = [1,2,3];
             ms_product.form.readonly = {campo: 5};
             ms_product.selectQueries["category"] = [
                 {
@@ -13,11 +14,15 @@ app.controller("ms_product", function ($scope, $http, $compile) {
                 }
             ];
             ms_product.createForm(data, mode, defaultData);
-            ms_product.$scope.$watch('ms_product.name', function (value) {
+            $scope.$watch('ms_product.name', function (value) {
                 var rules = [];
                 rules.push(VALIDATION.general.required(value));
                 rules.push(VALIDATION.text.realdata(value));
                 VALIDATION.validate(ms_product, "name", rules);
+            });
+
+            $scope.$watchCollection('ms_product.custom', function (value) {
+
             });
         }
     };

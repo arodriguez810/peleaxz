@@ -13,7 +13,7 @@ FILEMANAGER = {
             width: 'modal-full',
             header: {
                 title:  MESSAGE.i('mono.FileManager'),
-                icon: ICON.classes.file_stats
+                icon: "file-stats"
             },
             footer: {
                 cancelButton: true

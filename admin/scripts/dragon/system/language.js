@@ -7,7 +7,7 @@ MESSAGE = {
         var modal = {
             header: {
                 title: "Missing Messages",
-                icon: ICON.classes.stack_text
+                icon: "stack-text"
             },
             footer: {
                 cancelButton: true

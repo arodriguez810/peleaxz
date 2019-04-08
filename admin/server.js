@@ -117,6 +117,7 @@ crudjs = getFiles("./" + folders.crud + "/");
 
 //******* App Configuration ********//
 var app = express();
+app.use(compression());
 if (CONFIG.mongo !== undefined) mongoose.connect(CONFIG.mongo);
 app.use(express.static(__dirname));
 app.use(morgan("dev"));
@@ -151,8 +152,10 @@ secure.check = (req, res, next) => {
     }
     var path = req.originalUrl;
     var realPath = path.split("?")[0];
-    if (CONFIG.routes.notoken.indexOf(realPath) !== -1)
+    if (CONFIG.routes.notoken.indexOf(realPath) !== -1) {
         next();
+        return;
+    }
     let token = req.headers['x-access-token'] || req.headers['authorization'] || "";
     if (token) {
         jwt.verify(token, CONFIG.appKey, (err, decoded) => {

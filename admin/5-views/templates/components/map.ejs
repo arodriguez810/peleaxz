@@ -1,11 +1,70 @@
-<style>
-    .image-cropper-container {
-        height: auto;
-        width: 100%;
-        overflow: hidden;
-    }
-</style>
+<div id="mapdiv" class="map-container"></div>
+<script>
+    var viewModel = MODAL.getViewData();
+    var map;
+    var marker = false;
 
-<div class="image-cropper-container content-group">
-    <img style="width: 100%" src="<%= DATA.src %>" alt="" class="cropper" id="cropper-image">
-</div>
+    function initMap() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        }
+
+    }
+
+    function showPosition(position) {
+
+
+        if (DSON.oseaX(eval(`<%= DATA.scope %>.${viewModel.name}_DragonLat`))) {
+            eval(`<%= DATA.scope %>.${viewModel.name}_DragonLat = position.coords.latitude`);
+            eval(`<%= DATA.scope %>.${viewModel.name}_DragonLon = position.coords.longitude`);
+        }
+
+        var centerOfMap = new google.maps.LatLng(
+            eval(`<%= DATA.scope %>.${viewModel.name}_DragonLat`) || 52.357971,
+            eval(`<%= DATA.scope %>.${viewModel.name}_DragonLon`) || -6.516758);
+
+        var options = {
+            center: centerOfMap,
+            zoom: 15
+        };
+        map = new google.maps.Map(document.getElementById('mapdiv'), options);
+
+        console.log(centerOfMap)
+        marker = new google.maps.Marker({
+            position: centerOfMap,
+            map: map,
+            draggable: true
+        });
+        google.maps.event.addListener(marker, 'dragend', function (event) {
+            markerLocation();
+        });
+
+
+        google.maps.event.addListener(map, 'click', function (event) {
+            var clickedLocation = event.latLng;
+            if (marker === false) {
+                marker = new google.maps.Marker({
+                    position: clickedLocation,
+                    map: map,
+                    draggable: true
+                });
+                google.maps.event.addListener(marker, 'dragend', function (event) {
+                    markerLocation();
+                });
+            } else {
+                marker.setPosition(clickedLocation);
+            }
+            markerLocation();
+        });
+    }
+
+
+    function markerLocation() {
+        var currentLocation = marker.getPosition();
+        eval(`<%= DATA.scope %>.${viewModel.name}_DragonLat = currentLocation.lat()`);
+        eval(`<%= DATA.scope %>.${viewModel.name}_DragonLon = currentLocation.lng()`);
+        eval(`<%= DATA.scope %>.${viewModel.name} = currentLocation.lat()+";"+currentLocation.lng()`);
+    }
+
+    initMap();
+</script>

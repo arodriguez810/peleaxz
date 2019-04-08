@@ -58,6 +58,11 @@
                   "icon": "apple2"
                 },
                 {
+                  "text": "Product Otro",
+                  "href": "#otronombre",
+                  "icon": "apple2"
+                },
+                {
                   "text": "Category",
                   "href": "#ms_category",
                   "icon": "list2"

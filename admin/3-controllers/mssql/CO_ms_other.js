@@ -6,7 +6,7 @@ app.controller("ms_other", function ($scope, $http, $compile) {
             RUN_B("ms_other", ms_other, $scope, $http, $compile);
             ms_other.form.readonly = {};
             ms_other.createForm(data, mode, defaultData);
-            ms_other.$scope.$watch('ms_other.name', function (value) {
+            $scope.$watch('ms_other.name', function (value) {
                 var rules = [];
                 rules.push(VALIDATION.general.required(value));
                 VALIDATION.validate(ms_other, "name", rules);

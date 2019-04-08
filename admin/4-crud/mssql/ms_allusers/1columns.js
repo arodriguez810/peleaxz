@@ -25,7 +25,7 @@ DSON.keepmerge(CRUD_ms_allusers, {
                     modal: {
                         header: {
                             title: MESSAGE.i(`columns.ms_user_name`,'Users'),
-                            icon: ICON.classes.user
+                            icon: "user"
                         },
                         footer: {
                             cancelButton: true
@@ -44,7 +44,7 @@ DSON.keepmerge(CRUD_ms_allusers, {
                     modal: {
                         header: {
                             title: MESSAGE.i(`columns.ms_category_name`,'Category'),
-                            icon: ICON.classes.category
+                            icon: "category"
                         },
                         footer: {
                             cancelButton: true

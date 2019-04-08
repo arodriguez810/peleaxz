@@ -6,61 +6,64 @@ var options = {
     icon: {
         class: "none",
         position: "left",
-        color: TAG.table+"-800"
+        color: TAG.table + "-800"
     },
     helptext: '',
-    posttype: "view"
+    posttype: "view",
+    when: null
 
 };
-options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g,'_');
+options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g, '_');
 var toclient = JSON.stringify(options);
 %>
 <script>
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
 
-    <%= model %>.form.schemas.insert["<%= name %>"] =FORM.schemasType.calculated;
+    <%= model %>.form.schemas.insert["<%= name %>"] = FORM.schemasType.calculated;
 
-    if(MESSAGE.exist('columns.<%= nameclean %>')){
-        <%= model %>.form.options.<%= name %>.placeholder = MESSAGE.i('columns.<%= nameclean %>');
+    if (MESSAGE.exist('columns.<%= nameclean %>')) {
+        <%= model %>.
+        form.options.<%= name %>.placeholder = MESSAGE.i('columns.<%= nameclean %>');
     }
 </script>
 <div class="form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
-id="input<%= model %>_<%= nameclean %>">
-<label
-        id="label<%= model %>_<%= nameclean %>"
-    class="control-label {{<%= model + "." + name %>?'is-visible animate':''}}">
-    {{<%= model %>.form.options.<%= name %>.placeholder}}
-</label>
-<input
-ng-model="<%= model + "." + name %>" name="<%= name %>"
-readonly
-type="text"
-class="form-control"
-placeholder="{{<%= model %>.form.options.<%= name %>.placeholder}}">
+     id="input<%= model %>_<%= nameclean %>">
+    <label
+            id="label<%= model %>_<%= nameclean %>"
+            class="control-label {{<%= model + "." + name %>?'is-visible animate':''}}">
+        {{<%= model %>.form.options.<%= name %>.placeholder}}
+    </label>
+    <input
+            ng-model="<%= model + "." + name %>" name="<%= name %>"
+            readonly
+            type="text"
+            class="form-control"
+            placeholder="{{<%= model %>.form.options.<%= name %>.placeholder}}">
 
-<div class="form-control-feedback">
-<i class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} text-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}">
+    <div class="form-control-feedback">
+        <i class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} text-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}">
 
-    </i>
+        </i>
     </div>
     <span ng-show="<%= model %>.form.options.<%= name %>.helptext!=''"
-class="help-block text-muted">
+          class="help-block text-muted">
     {{<%= model %>.form.options.<%= name %>.helptext}}
 </span>
 
-<span ng-show="<%= model %>.validate['<%= name %>'].messages.length>0" class="help-block">
+    <span ng-show="<%= model %>.validate['<%= name %>'].messages.length>0" class="help-block">
 <p class="text-{{validation.type}}"
-ng-repeat="validation in <%= model %>.validate['<%= name %>'].messages">
+   ng-repeat="validation in <%= model %>.validate['<%= name %>'].messages">
 <i class="{{validation.icon}}"></i> {{validation.message}}
     </p>
     </span>
-    </div>
-    <script>
+</div>
+<script>
     $(document).ready(function () {
         <% if(options.format){ %>
-            var formaty =<%= model %>.form.options.<%= name %>.format;
-            $('[name="<%= name %>"]').mask(formaty.mask, formaty.options);
-            <% } %>
+        var formaty =<%= model %>.
+        form.options.<%= name %>.format;
+        $('[name="<%= name %>"]').mask(formaty.mask, formaty.options);
+        <% } %>
 
     });
 </script>

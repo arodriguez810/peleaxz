@@ -1,8 +1,10 @@
-CRUD_ms_product = {};
-DSON.keepmerge(CRUD_ms_product, CRUDDEFAULTS);
-DSON.keepmerge(CRUD_ms_product, {
+CRUD_otronombre = {};
+DSON.keepmerge(CRUD_otronombre, CRUDDEFAULTS);
+DSON.keepmerge(CRUD_otronombre, {
     table: {
         engine: 'ms',
+        view: 'ms_product',
+        method: 'ms_product',
         columns: {
             id: {
                 label: "ID",
@@ -28,8 +30,8 @@ DSON.keepmerge(CRUD_ms_product, {
                     from: "category",
                     modal: {
                         header: {
-                            title: MESSAGE.i(`columns.ms_category_name`,'Category'),
-                            icon: ICON.classes.archive
+                            title: MESSAGE.i(`columns.ms_category_name`, 'Category'),
+                            icon: "archive"
                         },
                         footer: {
                             cancelButton: true

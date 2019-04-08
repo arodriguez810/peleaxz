@@ -23,11 +23,13 @@ DSON.keepmerge(CRUD_my_product, {
                 label: "Category",
                 shorttext: 30,
                 format: function (row) {
-                    var selected = MYCATEGORIES.data.filter(data => {
-                        return data.id === row.id;
-                    });
-                    if (selected.length > 0) {
-                        return selected[0].name;
+                    if(MYCATEGORIES) {
+                        var selected = MYCATEGORIES.data.filter(data => {
+                            return data.id === row.id;
+                        });
+                        if (selected.length > 0) {
+                            return selected[0].name;
+                        }
                     }
                     return "N/A";
                 },

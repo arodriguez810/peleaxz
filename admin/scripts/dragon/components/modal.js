@@ -27,8 +27,10 @@ MODAL = {
         $(last).modal("hide");
         ARRAY.removeLast(MODAL.history);
         ARRAY.removeLast(MODAL.historyObject);
-        if (MODAL.historyObject.length < 1)
+        if (MODAL.historyObject.length < 1) {
             REMOVEALLCHILDSCOPE();
+            $scope.colertor();
+        }
         $(last).remove();
         if (MODAL.history.length > 0) {
             last = ARRAY.last(MODAL.history);
@@ -97,26 +99,24 @@ MODAL = {
             $("#" + $scope.modal.DOMID).append(html);
             if (data.content.data.startsWith("->")) {
                 if (data.content.sameController === true) {
-
-                    $scope.loadContent(
+                    new LOAD().loadContentScope(
                         data.content.data.replaceAll("->", ""),
                         "modalcontent" + data.id,
                         data.content.loadingContentText || MESSAGE.i('actions.Loading'),
                         function (success) {
                             MESSAGE.run();
-                        }
-                    );
+                        }, undefined, undefined, $scope);
                 }
                 else {
 
-                    $scope.loadContentClean(
+                    new LOAD().loadContentClean(
                         data.content.data.replaceAll("->", ""),
                         "modalcontent" + data.id,
                         data.content.loadingContentText || MESSAGE.i('actions.Loading'),
                         function (success) {
                             MESSAGE.run();
                         },
-                        data.content.sameController
+                        data.content.sameController, $scope
                     );
                 }
             }
@@ -181,8 +181,10 @@ MODAL = {
             $(last).modal("hide");
             ARRAY.removeLast(MODAL.history);
             ARRAY.removeLast(MODAL.historyObject);
-            if (MODAL.historyObject.length < 1)
+            if (MODAL.historyObject.length < 1) {
                 REMOVEALLCHILDSCOPE();
+                $scope.colertor();
+            }
             $(last).remove();
             if (MODAL.history.length > 0) {
                 last = ARRAY.last(MODAL.history);
@@ -214,7 +216,7 @@ MODAL = {
                 backMode: true,
                 header: {
                     title: "Test Modal",
-                    icon: ICON.classes.law,
+                    icon: "law",
                     bg: COLOR.primary + "-600",
                     closeButton: true,
                     h: "h6"
@@ -299,8 +301,9 @@ MODAL = {
         };
         $scope.modal.map = function (location, content, options) {
             $scope.modal.simpleModal('<div id="mapdiv" class="map-container"></div>', options);
-            var map = MAP.basic("#mapdiv", location, {zoom: 18});
-            MAP.pixel(map, content);
+            var maper = new MAP();
+            var map = maper.basic("#mapdiv", location, {zoom: 18});
+            maper.pixel(map, content);
         };
         $scope.modal.jsonDetail = function (method, paramenters, crud, modaloptions) {
             BASEAPI.ajax.post(method, paramenters, function (data) {

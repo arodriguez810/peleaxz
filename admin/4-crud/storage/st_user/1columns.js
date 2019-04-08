@@ -35,7 +35,7 @@ DSON.keepmerge(CRUD_st_user, {
                         width: 'modal-full',
                         header: {
                             title: "${this.username}",
-                            icon: ICON.classes.images3
+                            icon: "images3"
                         },
                         footer: {
                             cancelButton: true

@@ -69,35 +69,17 @@ MENU = {
             }
         }
     },
-    run: function ($scope) {
-        $scope.menu = {};
-        $scope.sameHref = function (menu, result) {
-            if (menu.href === $scope.MENU.menu.href)
-                return result;
-            return undefined;
-        };
-        $scope.favorite = function (scope) {
-            var exist = scope.favorites.filter(function (item) {
-                return item.href === MENU.current.menu.href;
-            });
-            if (exist.length === 0) {
-                var current = [];
-                if (STORAGE.exist('favorites'))
-                    current = STORAGE.get('favorites');
-                current.push(MENU.convertToNoA(MENU.current.menu));
-                scope.favorites.push(MENU.convertToNoA(MENU.current.menu));
-                STORAGE.add('favorites', current);
+    hideMenus: function () {
+        for (var CONTROLLER of CONTROLLERSNAMES) {
+            if (eval(`typeof CRUD_${CONTROLLER} !== 'undefined'`)) {
+                if (eval(`JSON.stringify(CONFIG.menus).indexOf('#${CONTROLLER}')===-1;`))
+                    (eval(`delete CRUD_${CONTROLLER}.table.allow.menu`))
+
+
             }
-        };
-        $scope.menu.already = function (scope, href) {
-            if (scope.favorites !== undefined) {
-                var exits = scope.favorites.filter(function (item) {
-                    return item.href === href;
-                });
-                return exits.length > 0;
-            }
-            return true;
         }
+    },
+    run: function ($scope) {
 
     }
 };

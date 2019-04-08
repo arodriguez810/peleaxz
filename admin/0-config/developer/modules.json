@@ -5,8 +5,8 @@
       "module": "express"
     },
     {
-      "var": "mongoose",
-      "module": "mongoose"
+      "var": "compression",
+      "module": "compression"
     },
     {
       "var": "morgan",

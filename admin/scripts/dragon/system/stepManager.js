@@ -52,7 +52,7 @@ STEP = {
         var modal = {
             header: {
                 title: "Steps Manager",
-                icon: ICON.classes.stack_text
+                icon: "stack-text"
             },
             footer: {
                 cancelButton: true

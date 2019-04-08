@@ -39,7 +39,7 @@ DSON.keepmerge(CRUD_ms_all,
                         modal: {
                             header: {
                                 title: "${this.name}",
-                                icon: ICON.classes.archive
+                                icon: "archive"
                             },
                             footer: {
                                 cancelButton: true
@@ -63,7 +63,7 @@ DSON.keepmerge(CRUD_ms_all,
                         modal: {
                             header: {
                                 title: "${this.name}",
-                                icon: ICON.classes.user
+                                icon: "user"
                             },
                             footer: {
                                 cancelButton: true
@@ -85,7 +85,7 @@ DSON.keepmerge(CRUD_ms_all,
                         modal: {
                             header: {
                                 title: "${this.ms_child_name}",
-                                icon: ICON.classes.archive
+                                icon: "archive"
                             },
                             footer: {
                                 cancelButton: true
@@ -114,7 +114,7 @@ DSON.keepmerge(CRUD_ms_all,
                         modal: {
                             header: {
                                 title: "${this.ms_child_name}",
-                                icon: ICON.classes.archive
+                                icon: "archive"
                             },
                             footer: {
                                 cancelButton: true
@@ -136,7 +136,7 @@ DSON.keepmerge(CRUD_ms_all,
                         modal: {
                             header: {
                                 title: "${this.ms_child_name}",
-                                icon: ICON.classes.archive
+                                icon: "archive"
                             },
                             footer: {
                                 cancelButton: true
@@ -158,7 +158,7 @@ DSON.keepmerge(CRUD_ms_all,
                         modal: {
                             header: {
                                 title: "${this.ms_other_name}",
-                                icon: ICON.classes.cube
+                                icon: "cube"
                             },
                             footer: {
                                 cancelButton: true
@@ -231,7 +231,7 @@ DSON.keepmerge(CRUD_ms_all,
                             width: 'modal-full',
                             header: {
                                 title: "${this.name}",
-                                icon: ICON.classes.images3
+                                icon: "images3"
                             },
                             footer: {
                                 cancelButton: true
@@ -256,7 +256,7 @@ DSON.keepmerge(CRUD_ms_all,
                             width: 'modal-full',
                             header: {
                                 title: "${this.name}",
-                                icon: ICON.classes.images3
+                                icon: "images3"
                             },
                             footer: {
                                 cancelButton: true
@@ -281,7 +281,7 @@ DSON.keepmerge(CRUD_ms_all,
                             width: 'modal-full',
                             header: {
                                 title: "${this.name}",
-                                icon: ICON.classes.archive
+                                icon: "archive"
                             },
                             footer: {
                                 cancelButton: true

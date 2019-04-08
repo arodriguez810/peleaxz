@@ -14,7 +14,7 @@ EXPORT = {
                 width: 'modal-full',
                 header: {
                     title: `${MESSAGE.i('export.Importfilesof')} ${$scope.modelName}`,
-                    icon: ICON.classes.file_excel
+                    icon: "file-excel"
                 },
                 footer: {
                     cancelButton: true
@@ -431,9 +431,6 @@ EXPORT = {
             BASEAPI.list($scope.tableOrView, parameters, function (data) {
                 callback(data);
             });
-            // $scope.list(parameters, function (data) {
-            //     callback(data);
-            // });
         };
         $scope.export.jsonLabels = function (columns) {
             var labels = [];

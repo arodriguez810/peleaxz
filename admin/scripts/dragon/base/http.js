@@ -1,46 +1,49 @@
-HTTP = {
-    objToQuery: function (obj) {
+HTTP = function () {
+    this.objToQuery = function (obj) {
         var str = [];
         for (var p in obj)
             if (obj.hasOwnProperty(p)) {
                 str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
             }
         return str.join("&");
-    },
-    path: function (pathsarray) {
+    };
+    this.path = function (pathsarray) {
         var formurl = [];
         formurl.push(`http${CONFIG.ssl ? "s" : ""}://${CONFIG.subdomain !== "" ? (CONFIG.subdomain + ".") : ""}${CONFIG.domain}:${CONFIG.port === 80 ? "" : CONFIG.port}`);
         return formurl.concat(pathsarray).join("/");
-    },
-    cleanRoot: function (path) {
-        return path.replaceAll(HTTP.path([]), "");
-    },
-    tagpath: function (pathsarray) {
+    };
+    this.cleanRoot = function (path) {
+        return path.replaceAll(new HTTP().path([]), "");
+    };
+    this.tagpath = function (pathsarray) {
         var formurl = [];
         pathsarray[0] = "#" + pathsarray[0];
         formurl.push(`http${CONFIG.ssl ? "s" : ""}://${CONFIG.subdomain !== "" ? (CONFIG.subdomain + ".") : ""}${CONFIG.domain}:${CONFIG.port === 80 ? "" : CONFIG.port}`);
         return formurl.concat(pathsarray).join("/");
-    },
-    redirect: function (path) {
-        document.location.href = HTTP.path(path.split('/'));
-    },
-    redirecttag: function (path) {
-        document.location.href = HTTP.tagpath(path.split('/'));
-    },
-    evaluateTokenHTML: function (data) {
-        if (SESSION.isLogged()) {
+    };
+    this.redirect = function (path) {
+        document.location.href = new HTTP().path(path.split('/'));
+    };
+    this.redirecttag = function (path) {
+        document.location.href = new HTTP().tagpath(path.split('/'));
+    };
+    this.evaluateTokenHTML = function (data) {
+        var session = new SESSION();
+        if (session.isLogged()) {
             if (data.data.apptoken !== undefined) {
-                SESSION.terminated();
+                session.terminated();
                 return true;
             }
         }
         return false;
-    },
-    setToken: function ($http) {
-        if (SESSION.isLogged())
-            $http.defaults.headers.common['x-access-token'] = SESSION.current().token;
-    },
-    evaluate: function (data) {
+    };
+    this.setToken = function ($http) {
+        var session = new SESSION();
+        if (new session.isLogged())
+            if (session.current() !== null)
+                $http.defaults.headers.common['x-access-token'] = session.current().token;
+    };
+    this.evaluate = function (data) {
         if (STORAGE.exist('warningRequests')) {
             WARNINGREQUESTS = STORAGE.get('warningRequests');
         }
@@ -65,15 +68,15 @@ HTTP = {
         }
         STORAGE.add('warningRequests', WARNINGREQUESTS);
         baseController.WARNINGREQUESTS = WARNINGREQUESTS;
-    },
-    openManager: function () {
+    };
+    this.openManager = function () {
         baseController.viewData = {
             staticdata: WARNINGREQUESTS
         };
         var modal = {
             header: {
                 title: "Request Manager",
-                icon: ICON.classes.stack_text
+                icon: "stack-text"
             },
             footer: {
                 cancelButton: true
@@ -83,8 +86,8 @@ HTTP = {
             },
         };
         baseController.currentModel.modal.modalView("../templates/components/requestManager", modal);
-    },
-    resetManager: function () {
+    };
+    this.resetManager = function () {
         if (WARNINGREQUESTS.length)
             SWEETALERT.confirm({
                 message:
@@ -104,7 +107,7 @@ $(document).ready(function () {
         CHANGINGMENU = true;
         $("body").removeClass("sidebar-mobile-main");
         FIXELEMENT.elements = [];
-        ANIMATION.playPure($('#content'), LOAD.outanimation, function () {
+        new ANIMATION().playPure($('#content'), outanimation, function () {
             ANGULARJS.get('baseController').base();
         });
 

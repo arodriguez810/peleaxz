@@ -29,7 +29,7 @@ DSON.keepmerge(CRUD_ms_product, {
                     modal: {
                         header: {
                             title: MESSAGE.i(`columns.ms_category_name`,'Category'),
-                            icon: ICON.classes.archive
+                            icon: "archive"
                         },
                         footer: {
                             cancelButton: true

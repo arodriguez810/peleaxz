@@ -1,5 +1,5 @@
 TABLEEVENT = {
-    run: function ($scope, $http, $compile) {
+    run: function ($scope) {
         $scope.cell = {};
         $scope.cell.selected = [];
         $scope.procesingRow = 0;
@@ -14,8 +14,6 @@ TABLEEVENT = {
                 "                var data  = {\n" +
                 "                    value: value,\n" +
                 "                    $scope: $scope,\n" +
-                "                    $http: $http,\n" +
-                "                    $compile: $compile,\n" +
                 "                    key: key,\n" +
                 "                    column: column,\n" +
                 "                    element: element,\n" +
@@ -190,13 +188,15 @@ TABLEEVENT = {
                         });
                     }
             } else {
+                var load = new LOAD();
                 if (!DSON.oseaX(data.column.formattype)) {
                     if (data.column.formattype.indexOf("html") !== -1) {
                         $scope.modal.simpleModal(data.value || "", {
                             header: {title: "HTML " + MESSAGE.i('mono.of') + " " + data.column.label}
                         });
                     } else if (data.column.formattype.indexOf("color") !== -1) {
-                        LOAD.template('templates/components/color', {color: data.value}, function (html) {
+
+                        load.template('templates/components/color', {color: data.value}, function (html) {
                             $scope.modal.simpleModal(html, {header: {title: MESSAGE.ic('mono.color')}});
                         });
                     } else if (data.column.formattype.indexOf("location") !== -1) {
@@ -213,13 +213,13 @@ TABLEEVENT = {
                     } else if (data.column.formattype.indexOf("file") !== -1) {
                         var format = data.column.formattype.split(":");
                         format = format.length > 1 ? format[1] : "";
-                        var fileUrl = HTTP.path([CONFIG.filePath, data.value]);
+                        var fileUrl = new HTTP().path([CONFIG.filePath, data.value]);
 
 
                         if (!DSON.oseaX(data.value)) {
                             switch (format) {
                                 case "image": {
-                                    LOAD.template('templates/components/crop', {src: fileUrl}, function (html) {
+                                    load.template('templates/components/crop', {src: fileUrl}, function (html) {
                                         $scope.modal.simpleModal(html, {header: {title: MESSAGE.i('mono.preview')}});
                                     });
                                     break;
@@ -229,7 +229,7 @@ TABLEEVENT = {
                                         return;
                                     }
                                     if (FILE.isImage(data.value)) {
-                                        LOAD.template('templates/components/crop', {src: fileUrl}, function (html) {
+                                        load.template('templates/components/crop', {src: fileUrl}, function (html) {
                                             $scope.modal.simpleModal(html, {header: {title: MESSAGE.i('mono.preview')}});
                                         });
                                     } else {
@@ -270,7 +270,7 @@ TABLEEVENT = {
                 $scope.modal.modalView(String.format("{0}/view", $scope.modelName), {
                     header: {
                         title: MESSAGE.i('mono.Viewof') + " " + $scope.plural,
-                        icon: ICON.classes.list
+                        icon: "list"
                     },
                     footer: {
                         cancelButton: true
@@ -296,10 +296,11 @@ TABLEEVENT = {
                 multiple = true;
             }
             var where = [];
+
             for (const deletekey of $scope.table.crud.table.deletekeys)
                 where.push({field: deletekey, value: eval("row." + deletekey)});
             if ($scope.beforeDelete(row)) return;
-            $scope.delete(where, function (result) {
+            BASEAPI.deleteall($scope.tableOrMethod, where, function (result) {
                 if (result.data.error === false) {
                     $scope.afterDelete(row);
                     $scope.procesingRow++;
@@ -311,6 +312,7 @@ TABLEEVENT = {
                     if ($scope.procesingRow === $scope.procesingRowFor || $scope.procesingRowFor === 0) {
                         $scope.procesingRow = 0;
                         $scope.procesingRowFor = 0;
+                        $scope.refresh();
                         SWEETALERT.stop();
                     }
                     $scope.records.data = $scope.records.data.filter(function (item) {
@@ -331,6 +333,7 @@ TABLEEVENT = {
                     if ($scope.procesingRow === $scope.procesingRowFor || $scope.procesingRowFor === 0) {
                         $scope.procesingRow = 0;
                         $scope.procesingRowFor = 0;
+                        $scope.refresh();
                         SWEETALERT.stop();
                         ERROR.multiAlert($scope.procesingRowErrors, ERROR.category.database);
                     }
@@ -360,7 +363,7 @@ TABLEEVENT = {
             });
         };
         $scope.deleteRows = function () {
-            $scope.deleteRow();
+            $scope.deleteRow(undefined);
         };
         $scope.activeRow = async function (row, active) {
             var multiple = false;
@@ -378,7 +381,7 @@ TABLEEVENT = {
             eval(`data.${$scope.activeColumn()} = ${active}`);
             data.where = where;
             var actionText = active ? MESSAGE.i('mono.activing') : MESSAGE.i('mono.disabling');
-            $scope.update(data, function (result) {
+            BASEAPI.updateall($scope.tableOrMethod, data, function (result) {
                 if (result.data.error === false) {
                     $scope.procesingRow++;
                     if ($scope.procesingRowFor !== 0)
@@ -389,6 +392,7 @@ TABLEEVENT = {
                     if ($scope.procesingRow === $scope.procesingRowFor || $scope.procesingRowFor === 0) {
                         $scope.procesingRow = 0;
                         $scope.procesingRowFor = 0;
+                        $scope.refresh();
                         SWEETALERT.stop();
                     }
                     $scope.records.data = $scope.records.data.filter(function (item) {
@@ -409,6 +413,7 @@ TABLEEVENT = {
                     if ($scope.procesingRow === $scope.procesingRowFor || $scope.procesingRowFor === 0) {
                         $scope.procesingRow = 0;
                         $scope.procesingRowFor = 0;
+                        $scope.refresh();
                         SWEETALERT.stop();
                         ERROR.multiAlert($scope.procesingRowErrors, ERROR.category.database);
                     }
@@ -471,7 +476,7 @@ TABLEEVENT = {
                         eval(`row.row.${i} = '${eval(audit)}';`);
                 }
 
-                $scope.insertID(row.row, '', '', function (result) {
+                BASEAPI.insertID($scope.tableOrMethod, row.row, '', '', function (result) {
                     if (result.data.error === false) {
                         var savedRow = result.data.data[0];
                         $scope.procesingRow++;
@@ -484,6 +489,7 @@ TABLEEVENT = {
                             $scope.procesingRow = 0;
                             $scope.procesingRowFor = 0;
                             SWEETALERT.stop();
+                            $scope.refresh();
                             SWEETALERT.show({message: MESSAGE.i('alerts.ALLFILEIMPORT')});
                         }
                         for (const relation of row.relations) {
@@ -491,7 +497,7 @@ TABLEEVENT = {
                                 var relaRow = {};
                                 eval(`relaRow.${relation.to} = '${savedRow.id}';`);
                                 eval(`relaRow.${relation.from} = '${value}';`);
-                                $scope.insertFrom(relation.table, relaRow, function (relResult) {
+                                BASEAPI.insert(relation.table, relaRow, function (relResult) {
 
                                 });
                             }
@@ -502,6 +508,7 @@ TABLEEVENT = {
                         if ($scope.procesingRow === $scope.procesingRowFor || $scope.procesingRowFor === 0) {
                             $scope.procesingRow = 0;
                             $scope.procesingRowFor = 0;
+                            $scope.refresh();
                             SWEETALERT.stop();
                             ERROR.multiAlert($scope.procesingRowErrors, ERROR.category.database);
                         }
@@ -590,7 +597,7 @@ TABLEEVENT = {
                 width: 'modal-full',
                 header: {
                     title: `${MESSAGE.i('export.Importfilesof')} ${$scope.modelName}`,
-                    icon: ICON.classes.file_excel
+                    icon: "file-excel"
                 },
                 footer: {
                     cancelButton: true

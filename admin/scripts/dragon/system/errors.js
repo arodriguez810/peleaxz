@@ -5,15 +5,16 @@ ERROR = {
     },
     send: function (error) {
         SWEETALERT.loading({message: MESSAGE.i('actions.Loading')});
+        var session = new SESSION();
         BASEAPI.mail({
             "to": CONFIG.support.email,
             "subject": "Database Error Reporting Code: " + new Date().getTime(),
-            "name": SESSION.current().fullName(),
+            "name": session.current().fullName(),
             "template": 'email/usersenderror',
             "fields": {
                 profileimage: $("#profileImage").attr('src'),
-                name: SESSION.current().fullName(),
-                username: eval(`SESSION.current().${CONFIG.users.fields.username}`),
+                name: session.current().fullName(),
+                username: eval(`session.current().${CONFIG.users.fields.username}`),
                 error: error,
                 phone: CONFIG.support.phone,
                 type: "Database Error",

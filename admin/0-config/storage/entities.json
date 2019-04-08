@@ -40,10 +40,11 @@
       "type": "one",
       "fields": [
         "user",
-        "product",
+        "group",
         "created",
         "updated",
         "deleted",
+        "tempid",
         "user_created",
         "user_updated",
         "user_deleted"

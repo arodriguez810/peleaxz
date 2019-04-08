@@ -140,5 +140,7 @@
   "owner": "Dueño",
   "network": "Dominio",
   "authentication": "autenticación",
-  "restarting": "Reiniciando Servidor"
+  "restarting": "Reiniciando Servidor",
+  "selectLocation": "Selecciona Localización",
+  "selectedLocation": "Localización Seleccionada"
 }

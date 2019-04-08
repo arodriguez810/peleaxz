@@ -3,11 +3,6 @@
 </script>
 <div class="dragon-panel" id="<%= scope %>TablePanel" style="overflow-x: scroll;overflow-y: visible">
     <!--Table List -->
-    <div ng-show="$$watchersCount>=baseController.CONFIG.performance.angular.table && baseController.CONFIG.mode!=='production'"
-         class="alert alpha-warning border-warning alert-styled-left">
-        This window is consuming more memory than established({{baseController.CONFIG.performance.angular.table}}), this
-        could cause the application to go slow sometimes. ({{$$watchersCount}}).
-    </div>
 
     <div dragonlanguage=""
          ng-show="<%= scope %>.records.data.length<=0"

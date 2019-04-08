@@ -4,7 +4,7 @@ CONFIGURATION = {
             width: 'modal-full',
             header: {
                 title: MESSAGE.i('mono.configuration'),
-                icon: ICON.classes.cog2
+                icon: "cog2"
             },
             footer: {
                 cancelButton: false

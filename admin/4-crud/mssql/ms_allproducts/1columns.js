@@ -25,7 +25,7 @@ DSON.keepmerge(CRUD_ms_allproducts, {
                     modal: {
                         header: {
                             title: MESSAGE.i(`columns.ms_product_name`,'Product'),
-                            icon: ICON.classes.archive
+                            icon: "archive"
                         },
                         footer: {
                             cancelButton: true

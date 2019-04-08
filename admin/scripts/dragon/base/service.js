@@ -14,9 +14,10 @@ SERVICE = {
                     var functioner = "function (parameters, callBack) {\n" +
                         "                        var $queryString = $.param(parameters);\n" +
                         "                        $http = angular.injector([\"ng\"]).get(\"$http\");\n" +
-                        "                        HTTP.setToken($http);                " +
+                        "                        var http = new HTTP();                " +
+                        "                        http.setToken($http);                " +
                         "                        $http.get(String.format(\"service/{1}/{2}?{3}\", '', '" + parent + "', '" + functionName + "', $queryString)).then(function (data) {\n" +
-                        "                            HTTP.evaluate(data); if (!HTTP.evaluateTokenHTML(data)) callBack(data);\n" +
+                        "                            http.evaluate(data); if (!http.evaluateTokenHTML(data)) callBack(data);\n" +
                         "                        }, function (data) {\n" +
                         "                            console.log('error',data);\n" +
                         "                        });\n" +
@@ -29,7 +30,8 @@ SERVICE = {
                 case "delete": {
                     var functioner = "function (parameters, callBack) {\n" +
                         "                        $http = angular.injector([\"ng\"]).get(\"$http\");\n" +
-                        "                        HTTP.setToken($http);                " +
+                        "                        var http = new HTTP();                " +
+                        "                        http.setToken($http);                " +
                         "                        $http." + method + "(String.format(\"service/{1}/{2}\", 'service', '" + parent + "', '" + functionName + "'),parameters).then(function (data) {\n" +
                         "                            callBack(data);\n" +
                         "                        }, function (data) {\n" +

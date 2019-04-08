@@ -88,7 +88,7 @@ FILTER = {
                     width: ENUM.modal.width.full,
                     header: {
                         title: capitalize(`Filter ${$scope.singular}`),
-                        icon: ICON.classes.filter4,
+                        icon: "filter4",
                         closeButton: true,
                         h: "h6"
                     },

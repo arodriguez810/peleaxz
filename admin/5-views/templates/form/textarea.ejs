@@ -85,7 +85,7 @@ var toclient = JSON.stringify(options);
                     field: "<%= name %>",
                     value: <%= model %>.<%= name %>
             });
-            $(".map-wrapper").hide();
+
         });
         var isReadProgram = <%= model %>.form.isReadOnly('<%= name %>');
         if(isReadProgram!==false){
