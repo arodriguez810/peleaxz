@@ -771,10 +771,12 @@ FORM = {
                                 }
                             });
                         else {
-                            if ($scope.form.target === FORM.targets.modal)
-                                MODAL.close($scope);
-                            if ($scope.pages.form)
-                                $scope.pages.form.onClose();
+                            if ($scope.form !== null)
+                                if ($scope.form.target === FORM.targets.modal)
+                                    MODAL.close($scope);
+                            if ($scope.pages !== null)
+                                if ($scope.pages.form)
+                                    $scope.pages.form.onClose();
                         }
                     } else {
                         if ($scope.form.target === FORM.targets.modal)
@@ -849,7 +851,7 @@ FORM = {
                 new LOAD().loadContentScope(
                     location.href.split('#')[1], "content", MESSAGE.i('actions.Loading'), function () {
                         MESSAGE.run();
-                    },undefined,undefined,$scope
+                    }, undefined, undefined, $scope
                 );
             }
         };

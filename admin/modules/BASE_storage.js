@@ -130,14 +130,14 @@ exports.makeWhere = function (where, params) {
         var close = obj.close !== undefined ? obj.close : "";
 
         if (Array.isArray(obj.value)) {
-            operator = obj.operator !== undefined ? obj.operator : ".indexOf";
+            operator = obj.operator !== undefined ? obj.operator : "indexOf";
             var menosuno = "!==-1";
-            if (operator.indexOf('not'))
+            if (operator.indexOf('not')!== -1)
                 menosuno = "===-1";
-            if (operator.indexOf('null'))
-                wherefinal.push(params.format(open + " (row.{0}===null||row.{0}===undefined) {4} {3}", field, operator, obj.value.join("','"), connector, close));
+            if (operator.indexOf('null') !== -1)
+                whereprepare.push(params.format(open + " (row.{0}===null||row.{0}===undefined) {4} {3}", field, operator, obj.value.join("','"), connector, close));
             else
-                wherefinal.push(params.format(open + " ('{2}').{1}(row.{0})" + menosuno + " {4} {3}", field, operator, obj.value.join("','"), connector, close));
+                whereprepare.push(params.format(open + " ('{2}').{1}(row.{0})" + menosuno + " {4} {3}", field, operator, obj.value.join("','"), connector, close));
             connectors.push(connector);
         } else {
             var addi = "";
@@ -206,6 +206,7 @@ exports.makeWhere = function (where, params) {
         var strtoreplace = connectors[i] + "<<**>>";
         whereprepare = params.S(whereprepare).replaceAll(strtoreplace, "").s;
     }
+    console.log(whereprepare.pxz);
     return whereprepare;
 };
 exports.sortByKey = function (array, key, order) {
@@ -223,6 +224,7 @@ exports.data = async function (table, params, where, index) {
 
     if (Array.isArray(where)) {
         if (where.length > 0) {
+
             wherefinal = exports.makeWhere(where, params);
         }
         else
@@ -389,8 +391,7 @@ exports.Model = function (tableName, params) {
         var toInsert = {};
         if (options.insertData !== undefined)
             toInsert = options.insertData;
-        else
-        if (options.data !== undefined)
+        else if (options.data !== undefined)
             toInsert = options.data;
         else
             toInsert = options;

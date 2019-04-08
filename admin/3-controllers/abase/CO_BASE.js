@@ -62,34 +62,83 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
         baseController.isSuper = session.current().super;
         baseController.userID = session.current().getID();
         baseController.fullName = session.current().fullName();
-        BASEAPI.list('permission', {
+        BASEAPI.list('user_group', {
             "where": [
                 {
-                    "field": "id",
-                    "value": `${CONFIG.permissions.entities[0]}-${baseController.userID}`
+                    "field": "user",
+                    "value": baseController.userID
                 }
             ]
-        }, function (result) {
-            if (result.data.length > 0) {
-                var permissions = eval("(" + result.data[0].object + ")");
-                for (var i in permissions) {
-                    eval(`CRUD_${permissions[i].name}.table.allow = permissions[i].obj.table.allow`);
-                }
-            }
-            CRUDNAMES = [];
-            for (var CONTROLLER of CONTROLLERSNAMES) {
-                if (eval(`typeof CRUD_${CONTROLLER} !== 'undefined'`)) {
-                    if (eval(`JSON.stringify(CONFIG.menus).indexOf('#${CONTROLLER}')===-1;`))
-                        (eval(`delete CRUD_${CONTROLLER}.table.allow.menu`))
+        }, function (user_group) {
 
-                    CRUDNAMES.push(
-                        {
-                            name: `${CONTROLLER}`,
-                            obj: (eval(`CRUD_${CONTROLLER}`))
-                        }
-                    )
-                }
+            var groups = [];
+            for (var item of user_group.data) {
+                groups.push(`group-${item.group}`);
             }
+
+            BASEAPI.list('permission', {
+                where: [
+                    {
+                        "field": "id",
+                        "value": `${CONFIG.permissions.entities[0]}-${baseController.userID}`,
+                        "connector": "OR"
+                    },
+                    {
+                        "field": "id",
+                        "value": groups
+                    }
+                ]
+            }, function (result) {
+
+                var userPermission = null;
+                var grouppermission = [];
+                for (var permissionD of result.data) {
+                    if (permissionD.id.indexOf(CONFIG.permissions.entities[0]) !== -1)
+                        userPermission = permissionD;
+                    else {
+                        grouppermission.push(permissionD);
+                    }
+                }
+
+                if (result.data.length > 0) {
+                    var merge = false;
+                    if (grouppermission) {
+                        for (var gper of grouppermission) {
+                            var permissions = eval("(" + gper.object + ")");
+                            for (var i in permissions) {
+                                if (merge) {
+                                    eval(`DSON.merge(CRUD_${permissions[i].name}.table.allow,permissions[i].obj.table.allow,true);`);
+                                } else
+                                    eval(`CRUD_${permissions[i].name}.table.allow = permissions[i].obj.table.allow`);
+                            }
+                            merge = true;
+                        }
+                    }
+                    if (userPermission) {
+                        var permissions = eval("(" + userPermission.object + ")");
+                        for (var i in permissions) {
+                            if (merge) {
+                                eval(`DSON.merge(CRUD_${permissions[i].name}.table.allow,permissions[i].obj.table.allow,true);`);
+                            } else
+                                eval(`CRUD_${permissions[i].name}.table.allow = permissions[i].obj.table.allow`);
+                        }
+                    }
+                }
+                CRUDNAMES = [];
+                for (var CONTROLLER of CONTROLLERSNAMES) {
+                    if (eval(`typeof CRUD_${CONTROLLER} !== 'undefined'`)) {
+                        if (eval(`JSON.stringify(CONFIG.menus).indexOf('#${CONTROLLER}')===-1;`))
+                            (eval(`delete CRUD_${CONTROLLER}.table.allow.menu`))
+
+                        CRUDNAMES.push(
+                            {
+                                name: `${CONTROLLER}`,
+                                obj: (eval(`CRUD_${CONTROLLER}`))
+                            }
+                        )
+                    }
+                }
+            });
         });
     }
     baseController.menus = CONFIG.menus;
