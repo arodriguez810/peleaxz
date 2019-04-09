@@ -71,6 +71,7 @@ MENU = {
     },
     hideMenus: function (controller) {
         $("[href='#" + controller + "']").parent().remove();
+        $("ul.hidden-ul:not(:has(li))").parent().remove();
     },
     run: function ($scope) {
 

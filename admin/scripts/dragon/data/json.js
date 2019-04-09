@@ -8,6 +8,17 @@ DSON = {
     merge: function (from, to, deep) {
         return $.extend(deep || true, from, to);
     },
+    mergeBool: function (from, to) {
+        for (var i in to) {
+            if (from.hasOwnProperty(i)) {
+                if (typeof to[i] === 'object') {
+                    DSON.mergeBool(from[i], to[i]);
+                } else if (to[i] === false) {
+                    to[i] = from[i];
+                }
+            }
+        }
+    },
     invermerge: function (from, to, deep) {
         return $.extend(deep || true, to, from);
     },

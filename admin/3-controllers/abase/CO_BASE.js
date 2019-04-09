@@ -106,9 +106,10 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
                             var permissions = eval("(" + gper.object + ")");
                             for (var i in permissions) {
                                 if (merge) {
-                                    eval(`DSON.merge(CRUD_${permissions[i].name}.table.allow,permissions[i].obj.table.allow,true);`);
-                                } else
+                                    eval(`DSON.mergeBool(permissions[i].obj.table.allow,CRUD_${permissions[i].name}.table.allow);`);
+                                } else {
                                     eval(`CRUD_${permissions[i].name}.table.allow = permissions[i].obj.table.allow`);
+                                }
                             }
                             merge = true;
                         }
@@ -117,9 +118,10 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
                         var permissions = eval("(" + userPermission.object + ")");
                         for (var i in permissions) {
                             if (merge) {
-                                eval(`DSON.merge(CRUD_${permissions[i].name}.table.allow,permissions[i].obj.table.allow,true);`);
-                            } else
+                                eval(`DSON.mergeBool(permissions[i].obj.table.allow,CRUD_${permissions[i].name}.table.allow);`);
+                            } else {
                                 eval(`CRUD_${permissions[i].name}.table.allow = permissions[i].obj.table.allow`);
+                            }
                         }
                     }
                 }
