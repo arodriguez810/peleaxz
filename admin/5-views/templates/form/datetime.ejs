@@ -179,6 +179,20 @@ var toclient = JSON.stringify(options);
                     if (jsOptions.maxDateTime)
                         this.setOptions({maxDateTime: eval(`<%= model %>.${jsOptions.maxDateTime}_DragonClean`)});
 
+                }else{
+                    if (jsOptions.minTime)
+                        this.setOptions({minTime: jsOptions.minTime});
+                    if (jsOptions.minDate)
+                        this.setOptions({minDate: jsOptions.minDate});
+                    if (jsOptions.minDateTime)
+                        this.setOptions({minDateTime: jsOptions.minDateTime});
+
+                    if (jsOptions.maxTime)
+                        this.setOptions({maxTime: jsOptions.maxTime});
+                    if (jsOptions.maxDate)
+                        this.setOptions({maxDate: jsOptions.maxDate});
+                    if (jsOptions.maxDateTime)
+                        this.setOptions({maxDateTime: jsOptions.maxDateTime});
                 }
             }
         });

@@ -641,12 +641,25 @@ exports.init = function (params) {
     params.app.post("/dragon/api/saveLanguages", function (req, res) {
         params.secure.check(req, res, function () {
             var fs = params.fs || require("fs");
-            var file = __dirname + '/../' + params.folders.language + '/' + 'z_saved.json';
-            fs.writeFile(file, req.body.json, function (err, data) {
-                if (err) {
-                    res.json({error: err});
+
+            var languages = eval("(" + req.body.json + ")");
+            for (var lan in languages) {
+                var dirlan = __dirname + '/../' + params.folders.language + '/' + lan;
+                if (!fs.existsSync(dirlan))
+                    params.shelljs.mkdir('-p', dirlan);
+                for (var section in languages[lan]) {
+                    var dirsec = __dirname + '/../' + params.folders.language + '/' + lan + '/' + section;
+                    if (!fs.existsSync(dirsec))
+                        params.shelljs.mkdir('-p', dirsec);
+
+                    var file = __dirname + '/../' + params.folders.language + '/' + lan + '/' + section + '/' + 'z_saved.json';
+                    fs.writeFile(file, JSON.stringify(languages[lan][section]), function (err, data) {
+                        if (err) {
+                            res.json({error: err});
+                        }
+                    });
                 }
-            });
+            }
             res.json({error: false, saved: true});
         });
     });

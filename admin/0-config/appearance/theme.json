@@ -4,7 +4,7 @@
     "colors": {
       "primary": "slate",
       "menu": "slate",
-      "info": "indigo",
+      "info": "red",
       "logo": "logowhite",
       "danger": "danger",
       "success": "success",

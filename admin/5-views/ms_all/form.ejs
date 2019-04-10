@@ -29,7 +29,7 @@
                     placeHolder: 'Last Login',
                     minDate: 'birthDate',
                     minTime: 'record',
-                    dynamic: true
+                    dynamic: false
                 }) %>
             </div>
         </div>
@@ -136,7 +136,8 @@
                     icon: {class: "archive"},
                     parent: {
                         model: 'category',
-                        field: 'id'
+                        field: 'id',
+                        myfield: 'CATEGORY'
                     }
                 }) %>
             </div>
@@ -149,7 +150,8 @@
                     multiple: true,
                     parent: {
                         model: 'category',
-                        field: 'id'
+                        field: 'id',
+                        myfield: 'CATEGORY'
                     },
                     icon: {class: "archive"}
                 }) %>

@@ -50,7 +50,7 @@ if (options.master === null) {
 
             var id<%= name %> = '<%= model %><%= options.tempId %>';
             var field<%= name %> = "<%= options.field %>";
-            if (!DSON.oseaX(thisID)) {
+            if (!DSON.oseaX(thisID) && <%= model %>.form.mode===FORM.modes.edit) {
                 id<%= name %> = thisID;
                 var field<%= name %> = '<%= options.originalField %>';
             }

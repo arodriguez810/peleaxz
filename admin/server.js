@@ -69,6 +69,7 @@ languages.forEach(function (languages) {
     }
 });
 
+
 SHOWLANGS = [];
 SHOWLANGSConsole = [];
 for (var lan of CONFIG.languages)
