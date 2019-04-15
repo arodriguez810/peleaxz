@@ -401,9 +401,9 @@ exports.Model = function (tableName, params) {
                                 joinColumns.push(Jcolumns);
 
                             if (subwhere === "")
-                                join.push(params.format(" {0} JOIN {1} ON {2} {3} {4}", type, obj.table, this.colPointer(baseField), operator, field));
+                                join.push(params.format(" {0} JOIN [{1}] ON {2} {3} {4}", type, obj.table, this.colPointer(baseField), operator, field));
                             else
-                                join.push(params.format(" {0} JOIN {1} ON {2} {3} {4} {5} ({6})", type, obj.table, this.colPointer(baseField), operator, field, connector, subwhere));
+                                join.push(params.format(" {0} JOIN [{1}] ON {2} {3} {4} {5} ({6})", type, obj.table, this.colPointer(baseField), operator, field, connector, subwhere));
                         } else {
                             var spliter = obj.split(':');
                             var type = spliter[0];

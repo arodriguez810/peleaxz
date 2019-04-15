@@ -68,6 +68,16 @@ exports.api = {
                         }
 
                     data.data[0].super = config.super.indexOf(request.username.toLowerCase()) !== -1;
+                    var user_groups = await params.storage.getItem('user_group') || [];
+                    user_groups = user_groups.filter((user_group) => {
+                        return user_group.user == eval(`data.data[0].${config.fields.id}`);
+                    });
+                    data.data[0].groups = user_groups;
+                    var groups = [];
+                    for (var item of user_groups) {
+                        groups.push(`group-${item.group}`);
+                    }
+                    data.data[0].onlygroups = groups;
                     data.data[0].token = params.jwt.sign(
                         {
                             username: eval(`data.data[0].${config.fields.username}`),

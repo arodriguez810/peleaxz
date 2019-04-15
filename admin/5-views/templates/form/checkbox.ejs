@@ -13,6 +13,7 @@ var toclient = JSON.stringify(options);
 %>
 <script>
     <%= model %>.form.schemas.insert["<%= name %>"] = FORM.schemasType.checkbox;
+    <%= model %>.form.schemas.select["<%= name %>"] = FORM.schemasType.checkbox;
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
     if(MESSAGE.exist('columns.<%= nameclean %>')){
         <%= model %>.form.options.<%= name %>.text = MESSAGE.i('columns.<%= nameclean %>');
@@ -60,10 +61,10 @@ var toclient = JSON.stringify(options);
     $('[name="<%= model %>_<%= nameclean %>"]').change(function () {
 
         STEP.register({
-                scope: "<%= model %>",
-                action: "Change Checkbox",
-                field: "<%= name %>",
-                value: <%= model %>.<%= name %>
-        });
+            scope: "<%= model %>",
+            action: "Change Checkbox",
+            field: "<%= name %>",
+            value: <%= model %>.<%= name %>
+    });
     });
 </script>

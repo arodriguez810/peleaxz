@@ -8,6 +8,9 @@ DSON = {
     merge: function (from, to, deep) {
         return $.extend(deep || true, from, to);
     },
+    OSO: function (object) {
+        return eval("(" + JSON.stringify(object) + ")");
+    },
     mergeBool: function (from, to) {
         for (var i in to) {
             if (from.hasOwnProperty(i)) {

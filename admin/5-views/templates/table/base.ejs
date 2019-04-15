@@ -42,6 +42,7 @@
         <tbody id="<%= scope %>TableBody">
         <!--Rows-->
         <tr ng-repeat="(key, row) in <%= scope %>.records.data track by key" data-object="{{row}}"
+            style="{{<%= scope %>.rowStyle(row)}}"
             class="dragon-rows {{<%= scope %>.rowClass(row)}}  {{<%= scope %>.rowDeleted(row)}} {{<%= scope %>.trCheck(row)}}">
             <%- include('rows',{scope:scope}); %>
             <!--Options-->

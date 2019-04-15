@@ -1,6 +1,9 @@
 CRUDDEFAULTS = {
     table: {
         isStorage: false,
+        rowStyle: function (row, $scope) {
+            return "";
+        },
         rowClass: function (row, $scope) {
             return $scope.activeSET(row) === false ? "bg-" + COLOR.danger + "-300" : "";
         },

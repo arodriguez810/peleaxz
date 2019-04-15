@@ -282,12 +282,14 @@ TABLEEVENT = {
                 });
             }
         };
-        $scope.beforeDelete = function (data) {
-            return false;
-        };
-        $scope.afterDelete = function (data) {
+        if (!$scope.beforeDelete)
+            $scope.beforeDelete = function (data) {
+                return false;
+            };
+        if (!$scope.afterDelete)
+            $scope.afterDelete = function (data) {
 
-        };
+            };
         $scope.deleteRow = async function (row) {
             var multiple = false;
             if (row === undefined) {

@@ -115,6 +115,9 @@ var toclient = JSON.stringify(options);
         $.datetimepicker.setLocale(MESSAGE.current().code);
 
         $('#<%= model %>_<%= nameclean %>').datetimepicker({
+            scrollMonth:false,
+            scrollTime:false,
+            scrollInput:false,
             format: '<%= options.format %>',
             timepicker: <%= options.timepicker %>,
             datepicker: <%= options.datepicker %>,

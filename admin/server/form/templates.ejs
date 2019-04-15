@@ -1,7 +1,18 @@
 <%
+CHART = {
+    template: function (view, data) {
+        return include('../../5-views/templates/' + view, data);
+    },
+    pie: function (name, model, options) {
+        return FORM.template('charts/pie', {name: name, model: model, opts: options});
+    }
+}
 FORM = {
     template: function (view, data) {
         return include('../../5-views/templates/' + view, data);
+    },
+    chart: function (name, model, options) {
+        return FORM.template('charts/datetime', {name: name, model: model, opts: options});
     },
     checkbox: function (name, model, options) {
         return FORM.template('form/checkbox', {name: name, model: model, opts: options});

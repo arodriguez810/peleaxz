@@ -65,6 +65,7 @@ var toclient = JSON.stringify(options);
             <%= model + "." + name %> = "[NULL]";
 
     <% if(options.multiple){ %>
+    <%= model %>.<%= nameclean %> = [];
     <%= model %>.form.schemas.insert["<%= name %>"] = FORM.schemasType.selectMultiple;
     <%= model %>.form.schemas.select["<%= name %>"] = `{
                     toTable: "<%= options.table %>",
@@ -106,7 +107,9 @@ var toclient = JSON.stringify(options);
             <%= model %>.
     form.options.<%= name %>.allownew = false;
 </script>
+<% if (model !== options.table){ %>
 <div id="<%= options.table %>" ng-controller="<%= options.table %> as <%= options.table %>">
+    <% } %>
     <div class="form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
          id="input<%= model %>_<%= nameclean %>">
         <label class="control-label is-visible animate">
@@ -206,7 +209,9 @@ var toclient = JSON.stringify(options);
         </p>
     </span>
     </div>
+    <% if (model !== options.table){ %>
 </div>
+<% } %>
 <script>
     $(document).ready(function () {
         <%= model %>.
@@ -217,7 +222,7 @@ var toclient = JSON.stringify(options);
             var selectedss = $(this).children("option:selected").data('object');
 
             <%= model %>.
-            <%= name %>_object = selectedss;
+            <%= nameclean %>_object = selectedss;
 
             STEP.register({
                 scope: "<%= model %>",

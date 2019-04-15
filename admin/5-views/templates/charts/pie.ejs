@@ -1,0 +1,135 @@
+<%
+var name = name || "";
+var options = {
+    title: params.capitalize(name),
+    type: "text",
+    icon: {
+        class: "none",
+        position: "left",
+        color: TAG.table + "-800"
+    },
+    items: ['n/a']
+};
+
+options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g, '_');
+options.model = options.model ? options.model : false;
+var toclient = JSON.stringify(options);
+%>
+<script>
+    if (!<%= model %>.charts)<%= model %>.charts = {};
+    eval(`<%= model %>.charts.<%= name %> = ${"<%= toclient %>".replaceAll("&#34;", '"').replaceAll("&#39", "'")}`);
+</script>
+<div class="panel panel-flat">
+    <div class="panel-heading">
+        <h5 class="panel-title">{{<%= model %>.charts.<%= name %>.title}}</h5>
+        <div class="heading-elements">
+        </div>
+    </div>
+
+    <div class="panel-body">
+        <div class="chart-container has-scroll">
+            <div class="chart has-fixed-height has-minimum-width" id="basic_pie"></div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+
+        // Set paths
+        // ------------------------------
+
+        require.config({
+            paths: {
+                echarts: 'assets/js/plugins/visualization/echarts'
+            }
+        });
+        require(
+            [
+                'echarts',
+                'echarts/theme/limitless',
+                'echarts/chart/bar',
+                'echarts/chart/line',
+                'echarts/chart/pie',
+                'echarts/chart/scatter',
+                'echarts/chart/k',
+                'echarts/chart/radar',
+                'echarts/chart/gauge',
+                'echarts/chart/chord',
+                'echarts/chart/funnel',
+            ],
+            function (ec, limitless) {
+                <%= model %>.charts.<%= name %>_pie = ec.init(document.getElementById('basic_pie'), limitless);
+                <%= model %>.charts.<%= name %>_pie_options = {
+
+                    // Add tooltip
+                    tooltip: {
+                        trigger: 'item',
+                        formatter: "{a} <br/>{b}: {c} ({d}%)"
+                    },
+
+                    // Add legend
+                    legend: {
+                        orient: 'vertical',
+                        x: 'left',
+                        data: ['IE', 'Opera', 'Safari', 'Firefox', 'Chrome']
+                    },
+
+                    // Display toolbox
+                    toolbox: {
+                        show: true,
+                        orient: 'vertical',
+                        feature: {
+                            magicType: {
+                                show: true,
+                                title: {
+                                    pie: 'Switch to pies',
+                                    funnel: 'Switch to funnel',
+                                },
+                                type: ['pie', 'funnel'],
+                                option: {
+                                    funnel: {
+                                        x: '25%',
+                                        y: '20%',
+                                        width: '50%',
+                                        height: '70%',
+                                        funnelAlign: 'left',
+                                        max: 1548
+                                    }
+                                }
+                            },
+                            restore: {
+                                show: true,
+                                title: 'Restore'
+                            },
+                            saveAsImage: {
+                                show: true,
+                                title: 'Same as image',
+                                lang: ['Save']
+                            }
+                        }
+                    },
+                    calculable: true,
+                    series: [{
+                        name: 'Browsers',
+                        type: 'pie',
+                        radius: '70%',
+                        center: ['40%', '57.5%'],
+                        data: [
+                            {value: 335, name: 'IE'},
+                            {value: 310, name: 'Opera'},
+                            {value: 234, name: 'Safari'},
+                            {value: 135, name: 'Firefox'},
+                            {value: 1548, name: 'Chrome'}
+                        ]
+                    }]
+                };
+                <%= model %>.charts.<%= name %>_pie.setOption(<%= model %>.charts.<%= name %>_pie_options);
+                <%= model %>.charts.<%= name %>_pie.resize();
+                setTimeout(function () {
+                    <%= model %>.charts.<%= name %>_pie.resize();
+                }, 1000);
+            }
+        );
+    });
+
+</script>

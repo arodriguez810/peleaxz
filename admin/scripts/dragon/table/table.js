@@ -232,7 +232,7 @@ TABLE = {
                         function (data) {
                             $scope.afterData(data);
                             $scope.refreshAngular();
-                            DRAG.run($scope);
+                            //DRAG.run($scope);
                         }
                     );
                 } else {
@@ -276,7 +276,7 @@ TABLE = {
                         function (data) {
                             $scope.afterData(data);
                             $scope.refreshAngular();
-                            DRAG.run($scope);
+                            //DRAG.run($scope);
                         }
                     );
                 }

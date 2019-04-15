@@ -175,6 +175,13 @@ FORM = {
                         newValue = numeral(newValue).format('0,0.00');
                         return newValue;
                     }
+                    case FORM.schemasType.checkbox: {
+                        var newValue = value;
+                        if (DSON.oseaX(newValue))
+                            return false;
+                        newValue = ['true', true, 1, "1"].indexOf(value) !== -1 ? true : false;
+                        return newValue;
+                    }
                     case FORM.schemasType.password: {
                         var newValue = value;
                         if (DSON.oseaX(newValue))
@@ -497,9 +504,13 @@ FORM = {
                             case FORM.schemasType.checkbox: {
                                 var truorfalse = eval(`$scope.form.lastPrepare.${field}`).toString();
                                 if (truorfalse === "true")
-                                    eval(`$scope.form.inserting.${field} = 1`);
+                                    eval(`$scope.form.inserting.${field} = '1'`);
                                 else
-                                    eval(`$scope.form.inserting.${field} = 0`);
+                                    eval(`$scope.form.inserting.${field} = '0'`);
+                                break;
+                            }
+                            case FORM.schemasType.calculated: {
+                                eval(`delete $scope.form.inserting.${field}`);
                                 break;
                             }
                         }
@@ -519,6 +530,7 @@ FORM = {
                 }
         };
         $scope.form.loadDropDown = function (name) {
+            var nameclean = name.replace(/\./g, '_');
             if ($scope.form !== null) {
                 var animation = new ANIMATION();
                 var options = eval(`$scope.form.options.${name}`);
@@ -548,12 +560,14 @@ FORM = {
                             return item.field === options.parent.myfield || options.parent.model;
                         });
                         if (exist.length) {
-                            exist[0].value = eval(`$scope.${options.parent.model}`)
+                            console.log(eval(`$scope.${options.parent.model}_object`));
+                            exist[0].value = eval(`$scope.${options.parent.model}_object.${options.parent.sufield}`);
                         }
                         else {
+                            console.log(eval(`$scope.${options.parent.model}_object`));
                             toquery.where.push({
                                 field: options.parent.myfield || options.parent.model,
-                                value: eval(`$scope.${options.parent.model}`)
+                                value: eval(`$scope.${options.parent.model}_object.${options.parent.sufield}`)
                             });
                         }
                     }
@@ -572,6 +586,23 @@ FORM = {
                                 eval(`$scope.form.options.${name}.groupbydata = newData`);
                             }
                             eval(`$scope.form.options.${name}.data = info.data`);
+                            if (eval(`$scope.form.options.${name}.data`) !== undefined) {
+                                var objectSelected = eval(`$scope.form.options.${name}.data`).filter(function (row) {
+                                    var idtun = eval(`$scope.form.options.${name}.value`);
+                                    return eval(`row.${idtun}`) == eval(`$scope.${name}`);
+                                });
+                                if (objectSelected.length > 0) {
+                                    eval(`${$scope.modelName}.${name}_object = objectSelected[0];`);
+
+                                    if (options.childs !== false) {
+                                        options.childs.forEach((child) => {
+                                            $scope.form.loadDropDown(child.model);
+                                        });
+                                    }
+                                    $scope.$scope.$digest();
+                                }
+                            }
+
                             if (!options.multiple)
                                 animation.stoploading(`#input${$scope.modelName}_${name}`, `#icon${name}`);
                             if (options.multiple) {

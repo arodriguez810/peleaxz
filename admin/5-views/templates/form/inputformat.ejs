@@ -28,7 +28,7 @@ var toclient = JSON.stringify(options);
 <script>
 
     <% if(options.isNumber){ %>
-    <%= model %>.form.schemas.select["<%= name %>"] =FORM.schemasType.decimal;
+        <%= model %>.form.schemas.select["<%= name %>"] =FORM.schemasType.decimal;
     <% } %>
 
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
@@ -97,7 +97,7 @@ var toclient = JSON.stringify(options);
         });
     });
 
-    $('[name="<%= model %>_<%= nameclean %>"]').trigger('change');
+    $('[name="<%= model %>_<%= nameclean %>"]').trigger('blur');
 
     var isReadProgram = <%= model %>.form.isReadOnly('<%= name %>');
     if (isReadProgram !== false){

@@ -62,60 +62,35 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
         baseController.isSuper = session.current().super;
         baseController.userID = session.current().getID();
         baseController.fullName = session.current().fullName();
-        BASEAPI.list('user_group', {
-            "where": [
+        GROUPS = new SESSION().current().onlygroups;
+        BASEAPI.list('permission', {
+            where: [
                 {
-                    "field": "user",
-                    "value": baseController.userID
+                    "field": "id",
+                    "value": `${CONFIG.permissions.entities[0]}-${baseController.userID}`,
+                    "connector": "OR"
+                },
+                {
+                    "field": "id",
+                    "value": GROUPS
                 }
             ]
-        }, function (user_group) {
-
-            var groups = [];
-            for (var item of user_group.data) {
-                groups.push(`group-${item.group}`);
+        }, function (result) {
+            var userPermission = null;
+            var grouppermission = [];
+            for (var permissionD of result.data) {
+                if (permissionD.id.indexOf(CONFIG.permissions.entities[0]) !== -1)
+                    userPermission = permissionD;
+                else {
+                    grouppermission.push(permissionD);
+                }
             }
 
-            BASEAPI.list('permission', {
-                where: [
-                    {
-                        "field": "id",
-                        "value": `${CONFIG.permissions.entities[0]}-${baseController.userID}`,
-                        "connector": "OR"
-                    },
-                    {
-                        "field": "id",
-                        "value": groups
-                    }
-                ]
-            }, function (result) {
-                var userPermission = null;
-                var grouppermission = [];
-                for (var permissionD of result.data) {
-                    if (permissionD.id.indexOf(CONFIG.permissions.entities[0]) !== -1)
-                        userPermission = permissionD;
-                    else {
-                        grouppermission.push(permissionD);
-                    }
-                }
-
-                if (result.data.length > 0) {
-                    var merge = false;
-                    if (grouppermission) {
-                        for (var gper of grouppermission) {
-                            var permissions = eval("(" + gper.object + ")");
-                            for (var i in permissions) {
-                                if (merge) {
-                                    eval(`DSON.mergeBool(permissions[i].obj.table.allow,CRUD_${permissions[i].name}.table.allow);`);
-                                } else {
-                                    eval(`CRUD_${permissions[i].name}.table.allow = permissions[i].obj.table.allow`);
-                                }
-                            }
-                            merge = true;
-                        }
-                    }
-                    if (userPermission) {
-                        var permissions = eval("(" + userPermission.object + ")");
+            if (result.data.length > 0) {
+                var merge = false;
+                if (grouppermission) {
+                    for (var gper of grouppermission) {
+                        var permissions = eval("(" + gper.object + ")");
                         for (var i in permissions) {
                             if (merge) {
                                 eval(`DSON.mergeBool(permissions[i].obj.table.allow,CRUD_${permissions[i].name}.table.allow);`);
@@ -123,26 +98,37 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
                                 eval(`CRUD_${permissions[i].name}.table.allow = permissions[i].obj.table.allow`);
                             }
                         }
+                        merge = true;
                     }
                 }
-                CRUDNAMES = [];
-                for (var CONTROLLER of CONTROLLERSNAMES) {
-                    if (eval(`typeof CRUD_${CONTROLLER} !== 'undefined'`)) {
-                        if (eval(`CRUD_${CONTROLLER}.table.allow.menu`) !== true) {
-                            MENU.hideMenus(CONTROLLER);
+                if (userPermission) {
+                    var permissions = eval("(" + userPermission.object + ")");
+                    for (var i in permissions) {
+                        if (merge) {
+                            eval(`DSON.mergeBool(permissions[i].obj.table.allow,CRUD_${permissions[i].name}.table.allow);`);
+                        } else {
+                            eval(`CRUD_${permissions[i].name}.table.allow = permissions[i].obj.table.allow`);
                         }
-                        if (eval(`JSON.stringify(CONFIG.menus).indexOf('#${CONTROLLER}')===-1;`))
-                            (eval(`delete CRUD_${CONTROLLER}.table.allow.menu`))
-
-                        CRUDNAMES.push(
-                            {
-                                name: `${CONTROLLER}`,
-                                obj: (eval(`CRUD_${CONTROLLER}`))
-                            }
-                        )
                     }
                 }
-            });
+            }
+            CRUDNAMES = [];
+            for (var CONTROLLER of CONTROLLERSNAMES) {
+                if (eval(`typeof CRUD_${CONTROLLER} !== 'undefined'`)) {
+                    if (eval(`CRUD_${CONTROLLER}.table.allow.menu`) !== true) {
+                        MENU.hideMenus(CONTROLLER);
+                    }
+                    if (eval(`JSON.stringify(CONFIG.menus).indexOf('#${CONTROLLER}')===-1;`))
+                        (eval(`delete CRUD_${CONTROLLER}.table.allow.menu`))
+
+                    CRUDNAMES.push(
+                        {
+                            name: `${CONTROLLER}`,
+                            obj: (eval(`CRUD_${CONTROLLER}`))
+                        }
+                    )
+                }
+            }
         });
     }
     baseController.menus = CONFIG.menus;
@@ -277,6 +263,10 @@ GARBAGECOLECTOR = function (exclude, ignoreChangeMenu) {
                     if(${item}.cleanForm){
                         if(${item}!==null){
                           if(${item}.form!==undefined){ 
+                              eval('delete ${item}.'+CRUD_${item}.table.key);
+                              for(var field of ${item}.form.fileds){
+                                 eval('delete ${item}.'+field);
+                              }
                               ${item}.form = null;
                               ${item}.open = null;
                               ${item}.pages = null;
@@ -284,6 +274,7 @@ GARBAGECOLECTOR = function (exclude, ignoreChangeMenu) {
                         }
                     }`);
                     }
+
                 }
             });
     CHANGINGMENU = false;
@@ -319,8 +310,12 @@ RUNTABLE = function (inside) {
     console.log(inside);
     if (eval(`${inside}`).crudConfig !== undefined)
         return;
-    if (eval("typeof CRUD_" + eval(`${inside}`).modelName) !== "undefined")
-        eval(inside + ".crudConfig = CRUD_" + eval(`${inside}`).modelName);
+    if (eval("typeof CRUD_" + eval(
+        `${inside}`
+    ).modelName) !== "undefined")
+        eval(inside + ".crudConfig = CRUD_" + eval(
+            `${inside}`
+        ).modelName);
     else
         eval(`${inside}`).crudConfig = undefined;
     if (eval(`${inside}`).crudConfig)

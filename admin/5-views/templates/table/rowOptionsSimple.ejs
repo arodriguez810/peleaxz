@@ -1,9 +1,9 @@
-<td dragonlanguage="" ng-show="<%= scope %>.allow(['edit','remove','active'])"
+<td dragonlanguage="" ng-show="<%= scope %>.allow(['edit','remove','active','view'])"
     class="text-center bg-<%= COLOR.primary %>">
     <language>MESSAGE.ic('mono.actions')</language>
 </td>
 <td class="text-center"
-    ng-show="(<%= scope %>.allow(['edit','remove','active']))">
+    ng-show="(<%= scope %>.allow(['edit','remove','active','view']))">
     <ul class="icons-list" style="z-index: 99999">
         <li ng-repeat="(min, option) in <%= scope %>.getOptions(false) track by min"
             ng-show="<%= scope %>.allow(<%= scope %>.option.permission(option,<%= scope %>.records.data[0])) && <%= scope %>.option.show(option,<%= scope %>.records.data[0])">

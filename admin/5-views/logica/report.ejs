@@ -1,0 +1,23 @@
+<div id="<%= scope %>" ng-controller="<%= scope %> as <%= scope %>">
+    <div class="panel panel-flat">
+        <%- include('../templates/header/begin',{scope:scope}); %>
+        <ul class="breadcrumb-elements visible-elements">
+            <li dragonlanguage="">
+                <a onclick="alert('Holaaaa')">
+                    <i dragonlanguage="" title="MESSAGE.ic('mono.add')" class="icon-mail5"></i> 
+                </a>
+            </li>
+        </ul>
+        <%- include('../templates/header/end',{scope:scope}); %>
+        <div class="subcontent">
+            <div class="row">
+                <div class="col-sm-6 col-md-6">
+                    <%- CHART.pie("test", scope, {
+                        title: 'Pie Example',
+                    }) %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!--end-->
+

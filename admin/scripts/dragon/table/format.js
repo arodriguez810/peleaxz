@@ -304,6 +304,12 @@ TABLEFORMAT = {
                 return eval(`CRUD_${$scope.modelName}`).table.rowClass(row, $scope);
             return "";
         };
+        $scope.rowStyle = function (row) {
+            if (typeof eval(`CRUD_${$scope.modelName}`).table.rowStyle === "function")
+                return eval(`CRUD_${$scope.modelName}`).table.rowStyle(row, $scope);
+            return "";
+        };
+
         $scope.rowDeleted = function (row) {
             if (row.rowdeleted === true)
                 return "dragon-row-deleted";

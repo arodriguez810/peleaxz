@@ -1,4 +1,4 @@
-BASEAPI =  {
+BASEAPI = {
     ajax: {
         loading: function (element) {
             if (element)
@@ -80,10 +80,38 @@ BASEAPI =  {
         }
         $http.post(rootPath + '/list', parameters).then(function (data) {
             http.evaluate(data);
-            if (!http.evaluateTokenHTML(data))
-                callBack(data.data);
+            if (!http.evaluateTokenHTML(data)) {
+                if (callBack !== undefined)
+                    callBack(data.data);
+                else {
+                    return new Promise(function (resolve, reject) {
+                        resolve(data.data);
+                    });
+                }
+            }
         }, function (data) {
             console.log('Error: ' + data);
+        });
+    },
+    listp: async function (model, parameters) {
+        $http = angular.injector(["ng"]).get("$http");
+        var http = new HTTP();
+        http.setToken($http);
+        var rootPath = '/api/' + model;
+        if (parameters.limit === 0) {
+            parameters.limit = Number.MAX_SAFE_INTEGER;
+        }
+        return await $http.post(rootPath + '/list', parameters).then(function (data) {
+            http.evaluate(data);
+            if (!http.evaluateTokenHTML(data)) {
+                return new Promise(function (resolve, reject) {
+                    resolve(data.data);
+                });
+            }
+        }, function (data) {
+            return new Promise(function (resolve, reject) {
+                reject('Error: ' + data);
+            });
         });
     },
     first: function (model, parameters, callBack) {
@@ -97,7 +125,10 @@ BASEAPI =  {
         $http.post(rootPath + '/list', parameters).then(function (data) {
             http.evaluate(data);
             if (!http.evaluateTokenHTML(data))
-                callBack(data.data.data[0]);
+                if (data.data.data !== undefined)
+                    callBack(data.data.data[0]);
+                else
+                    callBack(null);
         }, function (data) {
             console.log('Error: ' + data);
         });

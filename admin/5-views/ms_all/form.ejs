@@ -117,12 +117,10 @@
                     icon: {class: "archive"},
                     childs: [
                         {
-                            model: 'product',
-                            field: 'category'
+                            model: 'product'
                         },
                         {
-                            model: 'products',
-                            field: 'category'
+                            model: 'products'
                         }
                     ]
                 }) %>
@@ -136,25 +134,37 @@
                     icon: {class: "archive"},
                     parent: {
                         model: 'category',
-                        field: 'id',
-                        myfield: 'CATEGORY'
+                        myfield: 'CATEGORY',
+                        sufield: 'id'
                     }
                 }) %>
             </div>
+
         </div>
         <div class="row">
-            <div class="col-sm-12 col-md-12">
+            <div class="col-sm-6 col-md-6">
                 <%- FORM.select("products", scope, {
                     table: "ms_product",
                     get: {table: 'ms_allproducts', fieldFrom: 'id', fieldTo: 'all', field: 'product'},
                     multiple: true,
                     parent: {
                         model: 'category',
-                        field: 'id',
-                        myfield: 'CATEGORY'
+                        myfield: 'CATEGORY',
+                        sufield: 'id'
                     },
                     icon: {class: "archive"}
                 }) %>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <input type="text" class="yearpicker form-control"/>
+                <script>
+                    new Picker(document.querySelector('.yearpicker'), {
+                        format: 'YYYY',
+                        text: {
+                            title: 'Selecciona un año',
+                        },
+                    });
+                </script>
             </div>
         </div>
         <div class="row">

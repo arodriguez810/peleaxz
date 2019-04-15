@@ -11,6 +11,20 @@ exports.api = {
             if (request.contents === undefined)
                 return {error: "contents is required!"};
 
+            if (request.users !== undefined) {
+                request.include_player_ids = [];
+                console.log(request.users);
+                var users = await params.storage.getItem('onesignalUsers') || [];
+
+                for (var user of users) {
+                    if (request.users.indexOf(user.id) !== -1) {
+                        for (var player of user.players) {
+                            request.include_player_ids.push(player);
+                        }
+                    }
+                }
+            }
+
             var obj = {contents: request.contents};
 
             for (var i in request)

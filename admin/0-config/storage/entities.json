@@ -55,6 +55,21 @@
     },
     "st_menu": {
       "type": "deep"
+    },
+    "audit": {
+      "key": "id",
+      "type": "one",
+      "fields": [
+        "entity",
+        "entityID",
+        "active",
+        "created",
+        "updated",
+        "deleted",
+        "user_created",
+        "user_updated",
+        "user_deleted"
+      ]
     }
   }
 }
