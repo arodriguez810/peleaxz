@@ -11,6 +11,9 @@ DSON = {
     OSO: function (object) {
         return eval("(" + JSON.stringify(object) + ")");
     },
+    equals: function (obj1, obj2) {
+        return JSON.stringify(obj1) === JSON.stringify(obj2);
+    },
     mergeBool: function (from, to) {
         for (var i in to) {
             if (from.hasOwnProperty(i)) {

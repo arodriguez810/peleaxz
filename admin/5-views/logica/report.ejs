@@ -12,9 +12,653 @@
         <div class="subcontent">
             <div class="row">
                 <div class="col-sm-6 col-md-6">
-                    <%- CHART.pie("test", scope, {
-                        title: 'Pie Example',
-                    }) %>
+                    <div class="panel panel-flat">
+                        <div class="panel-heading">
+                            <h5 class="panel-title">Pie</h5>
+                            <div class="heading-elements">
+                            </div>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="chart has-fixed-height has-minimum-width" id="pie"></div>
+                            <script>
+                                <%= scope %>.pie_data = [
+                                    {value: 335, name: 'IE'},
+                                    {value: 310, name: 'Opera'},
+                                    {value: 234, name: 'Safari'},
+                                    {value: 135, name: 'Firefox'},
+                                    {value: 1548, name: 'Chrome'}
+                                ];
+                            </script>
+                            <%- CHART.pie("pie", scope, {}) %>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    <div class="panel panel-flat">
+                        <div class="panel-heading">
+                            <h5 class="panel-title">Circle</h5>
+                            <div class="heading-elements">
+                            </div>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="chart has-fixed-height has-minimum-width" id="circle"></div>
+                            <script>
+                                <%= scope %>.circle_data = [
+                                    {value: 335, name: 'IE'},
+                                    {value: 310, name: 'Opera'},
+                                    {value: 234, name: 'Safari'},
+                                    {value: 135, name: 'Firefox'},
+                                    {value: 1548, name: 'Chrome'}
+                                ];
+                            </script>
+                            <%- CHART.circle("circle", scope, {}) %>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    <div class="panel panel-flat">
+                        <div class="panel-heading">
+                            <h5 class="panel-title">Rose</h5>
+                            <div class="heading-elements">
+                            </div>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="chart has-fixed-height has-minimum-width" id="rose"></div>
+                            <script>
+                                <%= scope %>.rose_data = [
+                                    {value: 335, name: 'IE'},
+                                    {value: 310, name: 'Opera'},
+                                    {value: 234, name: 'Safari'},
+                                    {value: 135, name: 'Firefox'},
+                                    {value: 1548, name: 'Chrome'}
+                                ];
+                            </script>
+                            <%- CHART.rose("rose", scope, {}) %>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-sm-6 col-md-6">
+                    <div class="panel panel-flat">
+                        <div class="panel-heading">
+                            <h5 class="panel-title">Radar</h5>
+                            <div class="heading-elements">
+                            </div>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="chart has-fixed-height has-minimum-width" id="radar"></div>
+                            <script>
+                                <%= scope %>.radar_data = {
+                                    legend:['Allocated Budget','Actual Spending'],
+                                    polar:[
+                                        {text: 'Sales', max: 100},
+                                        {text: 'Administration', max: 100},
+                                        {text: 'Information Techology', max: 100},
+                                        {text: 'Customer Support', max: 100},
+                                        {text: 'Development', max: 100},
+                                        {text: 'Marketing', max: 100}
+                                    ],
+                                    data:[
+                                        {
+                                            value: [97, 68, 88, 94, 90, 86],
+                                            name: 'Allocated Budget'
+                                        },
+                                        {
+                                            value: [97, 32, 46, 95, 88, 92],
+                                            name: 'Actual Spending'
+                                        }
+                                    ]
+                                };
+                            </script>
+                            <%- CHART.radar("radar", scope, {}) %>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-12 col-md-12">
+                    <div class="panel panel-flat">
+                        <div class="panel-heading">
+                            <h5 class="panel-title">Donuts</h5>
+                            <div class="heading-elements">
+                            </div>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="chart has-fixed-height has-minimum-width" id="donuts"></div>
+                            <script>
+                                var labelTop = {
+                                    normal: {
+                                        label: {
+                                            show: true,
+                                            position: 'center',
+                                            formatter: '{b}\n',
+                                            textStyle: {
+                                                baseline: 'middle',
+                                                fontWeight: 300,
+                                                fontSize: 15
+                                            }
+                                        },
+                                        labelLine: {
+                                            show: false
+                                        }
+                                    }
+                                };
+                                var labelFromatter = {
+                                    normal: {
+                                        label: {
+                                            formatter: function (params) {
+                                                return '\n\n' + (100 - params.value) + '%'
+                                            }
+                                        }
+                                    }
+                                }
+                                var labelBottom = {
+                                    normal: {
+                                        color: '#eee',
+                                        label: {
+                                            show: true,
+                                            position: 'center',
+                                            textStyle: {
+                                                baseline: 'middle'
+                                            }
+                                        },
+                                        labelLine: {
+                                            show: false
+                                        }
+                                    },
+                                    emphasis: {
+                                        color: 'rgba(0,0,0,0)'
+                                    }
+                                };
+                                var radius = [50, 60];
+                                <%= scope %>.donuts_legends = ['GoogleMaps', 'Facebook', 'Youtube', 'Google+', 'Weixin', 'Twitter', 'Skype', 'Messenger', 'Whatsapp', 'Instagram'];
+                                <%= scope %>.donuts_data = [
+                                    {
+                                        type: 'pie',
+                                        center: ['10%', '32.5%'],
+                                        radius: radius,
+                                        itemStyle: labelFromatter,
+                                        data: [
+                                            {name: 'other', value: 46, itemStyle: labelBottom},
+                                            {name: 'GoogleMaps', value: 54, itemStyle: labelTop}
+                                        ]
+                                    },
+                                    {
+                                        type: 'pie',
+                                        center: ['30%', '32.5%'],
+                                        radius: radius,
+                                        itemStyle: labelFromatter,
+                                        data: [
+                                            {name: 'other', value: 56, itemStyle: labelBottom},
+                                            {name: 'Facebook', value: 44, itemStyle: labelTop}
+                                        ]
+                                    },
+                                    {
+                                        type: 'pie',
+                                        center: ['50%', '32.5%'],
+                                        radius: radius,
+                                        itemStyle: labelFromatter,
+                                        data: [
+                                            {name: 'other', value: 65, itemStyle: labelBottom},
+                                            {name: 'Youtube', value: 35, itemStyle: labelTop}
+                                        ]
+                                    },
+                                    {
+                                        type: 'pie',
+                                        center: ['70%', '32.5%'],
+                                        radius: radius,
+                                        itemStyle: labelFromatter,
+                                        data: [
+                                            {name: 'other', value: 70, itemStyle: labelBottom},
+                                            {name: 'Google+', value: 30, itemStyle: labelTop}
+                                        ]
+                                    },
+                                    {
+                                        type: 'pie',
+                                        center: ['90%', '32.5%'],
+                                        radius: radius,
+                                        itemStyle: labelFromatter,
+                                        data: [
+                                            {name: 'other', value: 73, itemStyle: labelBottom},
+                                            {name: 'Weixin', value: 27, itemStyle: labelTop}
+                                        ]
+                                    },
+                                    {
+                                        type: 'pie',
+                                        center: ['10%', '82.5%'],
+                                        radius: radius,
+                                        itemStyle: labelFromatter,
+                                        data: [
+                                            {name: 'other', value: 78, itemStyle: labelBottom},
+                                            {name: 'Twitter', value: 22, itemStyle: labelTop}
+                                        ]
+                                    },
+                                    {
+                                        type: 'pie',
+                                        center: ['30%', '82.5%'],
+                                        radius: radius,
+                                        itemStyle: labelFromatter,
+                                        data: [
+                                            {name: 'other', value: 78, itemStyle: labelBottom},
+                                            {name: 'Skype', value: 22, itemStyle: labelTop}
+                                        ]
+                                    },
+                                    {
+                                        type: 'pie',
+                                        center: ['50%', '82.5%'],
+                                        radius: radius,
+                                        itemStyle: labelFromatter,
+                                        data: [
+                                            {name: 'other', value: 78, itemStyle: labelBottom},
+                                            {name: 'Messenger', value: 22, itemStyle: labelTop}
+                                        ]
+                                    },
+                                    {
+                                        type: 'pie',
+                                        center: ['70%', '82.5%'],
+                                        radius: radius,
+                                        itemStyle: labelFromatter,
+                                        data: [
+                                            {name: 'other', value: 83, itemStyle: labelBottom},
+                                            {name: 'Whatsapp', value: 17, itemStyle: labelTop}
+                                        ]
+                                    },
+                                    {
+                                        type: 'pie',
+                                        center: ['90%', '82.5%'],
+                                        radius: radius,
+                                        itemStyle: labelFromatter,
+                                        data: [
+                                            {name: 'other', value: 89, itemStyle: labelBottom},
+                                            {name: 'Instagram', value: 11, itemStyle: labelTop}
+                                        ]
+                                    }
+                                ];
+                            </script>
+                            <%- CHART.donuts("donuts", scope, {}) %>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-12 col-md-12">
+                    <div class="panel panel-flat">
+                        <div class="panel-heading">
+                            <h5 class="panel-title">Line</h5>
+                            <div class="heading-elements">
+                            </div>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="chart has-fixed-height has-minimum-width" id="line"></div>
+                            <script>
+                                <%= scope %>.line_data = {
+                                    legend: ['Internet Explorer', 'Opera', 'Safari', 'Firefox', 'Chrome'],
+                                    down: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                                    data: [
+                                        {
+                                            name: 'Internet Explorer',
+                                            type: 'line',
+                                            stack: 'Total',
+                                            data: [120, 132, 101, 134, 90, 230, 210]
+                                        },
+                                        {
+                                            name: 'Opera',
+                                            type: 'line',
+                                            stack: 'Total',
+                                            data: [220, 182, 191, 234, 290, 330, 310]
+                                        },
+                                        {
+                                            name: 'Safari',
+                                            type: 'line',
+                                            stack: 'Total',
+                                            data: [150, 232, 201, 154, 190, 330, 410]
+                                        },
+                                        {
+                                            name: 'Firefox',
+                                            type: 'line',
+                                            stack: 'Total',
+                                            data: [320, 332, 301, 334, 390, 330, 320]
+                                        },
+                                        {
+                                            name: 'Chrome',
+                                            type: 'line',
+                                            stack: 'Total',
+                                            data: [820, 932, 901, 934, 1290, 1330, 1320]
+                                        }
+                                    ]
+                                }
+                            </script>
+                            <%- CHART.line("line", scope, {}) %>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-12 col-md-12">
+                    <div class="panel panel-flat">
+                        <div class="panel-heading">
+                            <h5 class="panel-title">Area</h5>
+                            <div class="heading-elements">
+                            </div>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="chart has-fixed-height has-minimum-width" id="area"></div>
+                            <script>
+                                <%= scope %>.area_data = {
+                                    legend: ['Internet Explorer', 'Opera', 'Safari', 'Firefox', 'Chrome'],
+                                    down: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                                    data: [
+                                        {
+                                            name: 'Internet Explorer',
+                                            type: 'line',
+                                            stack: 'Total',
+                                            itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                                            data: [120, 132, 101, 134, 490, 230, 210]
+                                        },
+                                        {
+                                            name: 'Safari',
+                                            type: 'line',
+                                            stack: 'Total',
+                                            itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                                            data: [150, 1232, 901, 154, 190, 330, 810]
+                                        },
+                                        {
+                                            name: 'Firefox',
+                                            type: 'line',
+                                            stack: 'Total',
+                                            itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                                            data: [320, 1332, 1801, 1334, 590, 830, 1220]
+                                        },
+                                        {
+                                            name: 'Chrome',
+                                            type: 'line',
+                                            stack: 'Total',
+                                            itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                                            data: [820, 1632, 1901, 2234, 1290, 1330, 1320]
+                                        }
+                                    ]
+                                }
+                            </script>
+                            <%- CHART.line("area", scope, {}) %>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-12 col-md-12">
+                    <div class="panel panel-flat">
+                        <div class="panel-heading">
+                            <h5 class="panel-title">Columns</h5>
+                            <div class="heading-elements">
+                            </div>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="chart-container has-scroll">
+                                <div class="chart has-fixed-height" id="columns"></div>
+                            </div>
+                            <script>
+                                <%= scope %>.columns_data = {
+                                    legend: ['Internet Explorer', 'Opera', 'Safari', 'Firefox', 'Chrome'],
+                                    down: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                                    data: [
+                                        {
+                                            name: 'Internet Explorer',
+                                            type: 'bar',
+                                            data: [120, 132, 101, 134, 490, 230, 210]
+                                        },
+                                        {
+                                            name: 'Safari',
+                                            type: 'bar',
+                                            data: [150, 1232, 901, 154, 190, 330, 810]
+                                        },
+                                        {
+                                            name: 'Firefox',
+                                            type: 'bar',
+                                            data: [320, 1332, 1801, 1334, 590, 830, 1220]
+                                        },
+                                        {
+                                            name: 'Chrome',
+                                            type: 'bar',
+                                            data: [820, 1632, 1901, 2234, 1290, 1330, 1320]
+                                        }
+                                    ]
+                                }
+                            </script>
+                            <%- CHART.columns("columns", scope, {}) %>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-12 col-md-12">
+                    <div class="panel panel-flat">
+                        <div class="panel-heading">
+                            <h5 class="panel-title">Columns Stack</h5>
+                            <div class="heading-elements">
+                            </div>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="chart-container has-scroll">
+                                <div class="chart has-fixed-height" id="columnsstack"></div>
+                            </div>
+                            <script>
+                                <%= scope %>.columnsstack_data = {
+                                    legend: ['Internet Explorer', 'Opera', 'Safari', 'Firefox', 'Chrome'],
+                                    down: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                                    data: [
+                                        {
+                                            name: 'Internet Explorer',
+                                            type: 'bar',
+                                            stack: 'Total',
+                                            data: [120, 132, 101, 134, 490, 230, 210]
+                                        },
+                                        {
+                                            name: 'Safari',
+                                            type: 'bar',
+                                            stack: 'Total',
+                                            data: [150, 1232, 901, 154, 190, 330, 810]
+                                        },
+                                        {
+                                            name: 'Firefox',
+                                            type: 'bar',
+                                            stack: 'Total',
+                                            data: [320, 1332, 1801, 1334, 590, 830, 1220]
+                                        },
+                                        {
+                                            name: 'Chrome',
+                                            type: 'bar',
+                                            stack: 'Total',
+                                            data: [820, 1632, 1901, 2234, 1290, 1330, 1320]
+                                        }
+                                    ]
+                                }
+                            </script>
+                            <%- CHART.columns("columnsstack", scope, {}) %>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-12 col-md-12">
+                    <div class="panel panel-flat">
+                        <div class="panel-heading">
+                            <h5 class="panel-title">Bar</h5>
+                            <div class="heading-elements">
+                            </div>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="chart-container has-scroll">
+                                <div class="chart has-fixed-height" id="bar"></div>
+                            </div>
+                            <script>
+                                <%= scope %>.bar_data = {
+                                    legend: ['Year 2013', 'Year 2014'],
+                                    left: ['Germany', 'France', 'Spain', 'Netherlands', 'Belgium'],
+                                    data: [
+                                        {
+                                            name: 'Year 2013',
+                                            type: 'bar',
+                                            itemStyle: {
+                                                normal: {
+                                                    color: '#EF5350'
+                                                }
+                                            },
+                                            data: [38203, 73489, 129034, 204970, 331744]
+                                        },
+                                        {
+                                            name: 'Year 2014',
+                                            type: 'bar',
+                                            itemStyle: {
+                                                normal: {
+                                                    color: '#66BB6A'
+                                                }
+                                            },
+                                            data: [39325, 83438, 131000, 221594, 334141]
+                                        }
+                                    ]
+                                }
+                            </script>
+                            <%- CHART.bar("bar", scope, {}) %>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-12 col-md-12">
+                    <div class="panel panel-flat">
+                        <div class="panel-heading">
+                            <h5 class="panel-title">Stacked Bar</h5>
+                            <div class="heading-elements">
+                            </div>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="chart-container has-scroll">
+                                <div class="chart has-fixed-height" id="bar2"></div>
+                            </div>
+                            <script>
+                                <%= scope %>.bar2_data = {
+                                    legend: ['Internet Explorer','Opera','Safari','Firefox','Chrome'],
+                                    left: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                                    data: [
+                                        {
+                                            name: 'Internet Explorer',
+                                            type: 'bar',
+                                            stack: 'Total',
+                                            itemStyle: {
+                                                normal: {
+                                                    color: '#42A5F5',
+                                                    label: {
+                                                        show: true,
+                                                        position: 'insideRight'
+                                                    }
+                                                },
+                                                emphasis: {
+                                                    color: '#42A5F5',
+                                                    label: {
+                                                        show: true
+                                                    }
+                                                }
+                                            },
+                                            data:[320, 302, 301, 334, 390, 330, 320]
+                                        },
+                                        {
+                                            name: 'Opera',
+                                            type: 'bar',
+                                            stack: 'Total',
+                                            itemStyle: {
+                                                normal: {
+                                                    color: '#ef5350',
+                                                    label: {
+                                                        show: true,
+                                                        position: 'insideRight'
+                                                    }
+                                                },
+                                                emphasis: {
+                                                    color: '#ef5350',
+                                                    label: {
+                                                        show: true
+                                                    }
+                                                }
+                                            },
+                                            data:[120, 132, 101, 134, 90, 230, 210]
+                                        },
+                                        {
+                                            name: 'Safari',
+                                            type: 'bar',
+                                            stack: 'Total',
+                                            itemStyle: {
+                                                normal: {
+                                                    color: '#66bb6a',
+                                                    label: {
+                                                        show: true,
+                                                        position: 'insideRight'
+                                                    }
+                                                },
+                                                emphasis: {
+                                                    color: '#66bb6a',
+                                                    label: {
+                                                        show: true
+                                                    }
+                                                }
+                                            },
+                                            data:[220, 182, 191, 234, 290, 330, 310]
+                                        },
+                                        {
+                                            name: 'Firefox',
+                                            type: 'bar',
+                                            stack: 'Total',
+                                            itemStyle: {
+                                                normal: {
+                                                    color: '#ff7043',
+                                                    label: {
+                                                        show: true,
+                                                        position: 'insideRight'
+                                                    }
+                                                },
+                                                emphasis: {
+                                                    color: '#ff7043',
+                                                    label: {
+                                                        show: true
+                                                    }
+                                                }
+                                            },
+                                            data:[150, 212, 201, 154, 190, 330, 410]
+                                        },
+                                        {
+                                            name: 'Chrome',
+                                            type: 'bar',
+                                            stack: 'Total',
+                                            itemStyle: {
+                                                normal: {
+                                                    color: '#26a69a',
+                                                    label: {
+                                                        show: true,
+                                                        position: 'insideRight'
+                                                    }
+                                                },
+                                                emphasis: {
+                                                    color: '#26a69a',
+                                                    label: {
+                                                        show: true
+                                                    }
+                                                }
+                                            },
+                                            data:[820, 832, 901, 934, 1290, 1330, 1320]
+                                        }
+                                    ]
+                                }
+                            </script>
+                            <%- CHART.bar("bar2", scope, {}) %>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>

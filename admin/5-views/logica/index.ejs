@@ -10,6 +10,10 @@
         </ul>
         <%- include('../templates/header/end',{scope:scope}); %>
         <div class="subcontent">
+            <%- FORM.mask("ver", scope, {
+                mask: "integer"
+            }) %>
+
             <%- FORM.datetime("record", scope, {
                 timepicker: true,
                 datepicker: false,

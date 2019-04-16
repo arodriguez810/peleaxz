@@ -152,7 +152,7 @@ exports.delete = function (table, data, params) {
             else
                 values.push("'" + value + "'");
         }
-        queries += params.format("DELETE FROM [{0}` WHERE \n", table, columns.join(", "), values.join(", "));
+        queries += params.format("DELETE FROM `{0}` WHERE \n", table, columns.join(", "), values.join(", "));
     }
     return queries;
 };

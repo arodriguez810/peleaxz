@@ -50,6 +50,12 @@ var toclient = JSON.stringify(options);
                         trigger: 'item',
                         formatter: "{b}:<br/> {c} ({d}%)"
                     },
+                    // Add legend
+                    legend: {
+                        x: 'center',
+                        y: '56%',
+                        data: <%= model %>.<%= name %>_legends
+                    },
                     toolbox: {
                         show: true,
                         orient: 'horizontal',
@@ -67,12 +73,7 @@ var toclient = JSON.stringify(options);
                         }
                     },
                     calculable: true,
-                    series: [{
-                        type: 'pie',
-                        radius: '60%',
-                        center: ['40%', '55.5%'],
-                        data: <%= model %>.<%= name %>_data
-                    }]
+                    series:  <%= model %>.<%= name %>_data
                 };
                 <%= model %>.
                 charts.<%= name %>_chart.setOption(<%= model %>.charts.<%= name %>_chart_options);

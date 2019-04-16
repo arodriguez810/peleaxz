@@ -38,17 +38,19 @@ var toclient = JSON.stringify(options);
             [
                 'echarts',
                 'echarts/theme/limitless',
-                'echarts/chart/pie',
-                'echarts/chart/funnel'
+                'echarts/chart/bar',
+                'echarts/chart/line'
             ],
             function (ec, limitless) {
                 <%= model %>.
                 charts.<%= name %>_chart = ec.init(document.getElementById('<%= name %>'), limitless);
                 <%= model %>.
                 charts.<%= name %>_chart_options = {
-                    tooltip: {
-                        trigger: 'item',
-                        formatter: "{b}:<br/> {c} ({d}%)"
+                    grid: {
+                        x: 40,
+                        x2: 20,
+                        y: 35,
+                        y2: 25
                     },
                     toolbox: {
                         show: true,
@@ -66,13 +68,22 @@ var toclient = JSON.stringify(options);
                             }
                         }
                     },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data: <%= model %>.<%= name %>_data.legend
+                    },
+                    xAxis: [{
+                        type: 'category',
+                        boundaryGap: false,
+                        data:<%= model %>.<%= name %>_data.down
+                    }],
+                    yAxis: [{
+                        type: 'value'
+                    }],
                     calculable: true,
-                    series: [{
-                        type: 'pie',
-                        radius: '60%',
-                        center: ['40%', '55.5%'],
-                        data: <%= model %>.<%= name %>_data
-                    }]
+                    series: <%= model %>.<%= name %>_data.data
                 };
                 <%= model %>.
                 charts.<%= name %>_chart.setOption(<%= model %>.charts.<%= name %>_chart_options);

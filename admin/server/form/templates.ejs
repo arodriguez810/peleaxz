@@ -4,15 +4,34 @@ CHART = {
         return include('../../5-views/templates/' + view, data);
     },
     pie: function (name, model, options) {
-        return FORM.template('charts/pie', {name: name, model: model, opts: options});
+        return CHART.template('charts/pie', {name: name, model: model, opts: options});
+    },
+    circle: function (name, model, options) {
+        return CHART.template('charts/circle', {name: name, model: model, opts: options});
+    },
+    rose: function (name, model, options) {
+        return CHART.template('charts/rose', {name: name, model: model, opts: options});
+    },
+    donuts: function (name, model, options) {
+        return CHART.template('charts/donuts', {name: name, model: model, opts: options});
+    },
+    line: function (name, model, options) {
+        return CHART.template('charts/line', {name: name, model: model, opts: options});
+    },
+    columns: function (name, model, options) {
+        return CHART.template('charts/columns', {name: name, model: model, opts: options});
+    },
+    bar: function (name, model, options) {
+        return CHART.template('charts/bar', {name: name, model: model, opts: options});
+    },
+    radar: function (name, model, options) {
+        return CHART.template('charts/radar', {name: name, model: model, opts: options});
     }
+
 }
 FORM = {
     template: function (view, data) {
         return include('../../5-views/templates/' + view, data);
-    },
-    chart: function (name, model, options) {
-        return FORM.template('charts/datetime', {name: name, model: model, opts: options});
     },
     checkbox: function (name, model, options) {
         return FORM.template('form/checkbox', {name: name, model: model, opts: options});
@@ -31,6 +50,9 @@ FORM = {
     },
     format: function (name, model, options) {
         return FORM.template('form/inputformat', {name: name, model: model, opts: options});
+    },
+    mask: function (name, model, options) {
+        return FORM.template('form/inputmask', {name: name, model: model, opts: options});
     },
     password: function (name, model, options) {
         return FORM.template('form/password', {name: name, model: model, opts: options});

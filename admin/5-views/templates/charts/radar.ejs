@@ -38,8 +38,11 @@ var toclient = JSON.stringify(options);
             [
                 'echarts',
                 'echarts/theme/limitless',
-                'echarts/chart/pie',
-                'echarts/chart/funnel'
+                'echarts/chart/line',
+                'echarts/chart/scatter',
+                'echarts/chart/k',
+                'echarts/chart/radar',
+                'echarts/chart/gauge'
             ],
             function (ec, limitless) {
                 <%= model %>.
@@ -47,13 +50,22 @@ var toclient = JSON.stringify(options);
                 <%= model %>.
                 charts.<%= name %>_chart_options = {
                     tooltip: {
-                        trigger: 'item',
-                        formatter: "{b}:<br/> {c} ({d}%)"
+                        trigger: 'axis'
                     },
+                    legend: {
+                        orient: 'vertical',
+                        x: 'left',
+                        data: <%= model %>.<%= name %>_data.legend
+                    },
+                    polar: [{
+                        radius: '80%',
+                        indicator: <%= model %>.<%= name %>_data.polar
+                    }],
                     toolbox: {
                         show: true,
                         orient: 'horizontal',
                         x: 'left',
+                        y:"80%",
                         feature: {
                             restore: {
                                 show: true,
@@ -67,12 +79,17 @@ var toclient = JSON.stringify(options);
                         }
                     },
                     calculable: true,
-                    series: [{
-                        type: 'pie',
-                        radius: '60%',
-                        center: ['40%', '55.5%'],
-                        data: <%= model %>.<%= name %>_data
-                    }]
+                        series: [{
+                    type: 'radar',
+                    itemStyle: {
+                        normal: {
+                            areaStyle: {
+                                type: 'default'
+                            }
+                        }
+                    },
+                    data: <%= model %>.<%= name %>_data.data
+                }]
                 };
                 <%= model %>.
                 charts.<%= name %>_chart.setOption(<%= model %>.charts.<%= name %>_chart_options);

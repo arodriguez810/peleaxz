@@ -22,6 +22,7 @@
     <% localStyles.forEach(function(item){ %>
         <link href="<%= FOLDERS.styles %>/<%= item %>" rel="stylesheet" type="text/css">
     <% }); %>
+
     <script type="text/javascript" src="assets/js/plugins/loaders/pace.min.js"></script>
     <script type="text/javascript" src="assets/js/core/libraries/jquery.min.js"></script>
     <script type="text/javascript" src="assets/js/plugins/forms/inputs/jquery.mask.min.js"></script>
@@ -57,7 +58,6 @@
     <% localjs.forEach(function(item){ %>
         <script src="<%= FOLDERS.scripts %>/<%= item %>"></script>
     <% }); %>
-
 
     <script>
         CHANGINGMENU = true;
@@ -143,6 +143,28 @@
             include("../../server/" + item);
         }
     }); %>
+
+    <script type="text/javascript" src="assets/js/plugins/mask/jquery.inputmask.bundle.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/visualization/echarts/echarts.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/visualization/echarts/theme/limitless.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/visualization/echarts/chart/pie.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/visualization/echarts/chart/funnel.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/visualization/echarts/chart/bar.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/visualization/echarts/chart/chord.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/visualization/echarts/chart/eventRiver.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/visualization/echarts/chart/force.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/visualization/echarts/chart/gauge.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/visualization/echarts/chart/heatmap.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/visualization/echarts/chart/k.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/visualization/echarts/chart/line.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/visualization/echarts/chart/map.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/visualization/echarts/chart/radar.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/visualization/echarts/chart/scatter.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/visualization/echarts/chart/tree.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/visualization/echarts/chart/treemap.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/visualization/echarts/chart/venn.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/visualization/echarts/chart/wordCloud.js"></script>
+
 
 </head>
 <body ng-app="app">

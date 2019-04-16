@@ -1,6 +1,11 @@
 {
   "menus": [
     {
+      "text": "Dashboard",
+      "href": "#logica/report",
+      "icon": "chart"
+    },
+    {
       "text": "Grant Parent",
       "href": "#",
       "icon": "tree5",

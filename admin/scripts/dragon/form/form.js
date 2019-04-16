@@ -542,12 +542,18 @@ FORM = {
                     var toquery = DSON.merge(options.query, {});
                     if ($scope.selectQueries[name]) {
                         var toConsult = $scope.selectQueries[name];
+                        toquery.where = toquery.where.filter((wh) => {
+                            return wh.selecter !== true;
+                        });
                         if (toConsult.length > 0) {
                             if (!DSON.oseaX(toquery.where)) {
                                 for (var optadd in toConsult) {
+                                    toConsult[optadd].selecter = true;
                                     toquery.where.push(toConsult[optadd]);
                                 }
                             } else {
+                                for (var optadd in toConsult)
+                                    toConsult[optadd].selecter = true;
                                 toquery.where = toConsult;
                             }
                         }
@@ -713,6 +719,7 @@ FORM = {
                     });
                     $('[name="' + $scope.modelName + "_" + nameclean + '"]').trigger('change.select2');
                 }
+                $scope.form.onload(nameclean);
             }
         };
         $scope.form.loadOutDropDown = function (options, id) {
@@ -932,6 +939,10 @@ FORM = {
         };
         $scope.createForm = function (data, mode, defaultData) {
             if ($scope.form !== null) {
+                if (!$scope.form.onload)
+                    $scope.form.onload = function (name) {
+                        alert(1);
+                    };
                 $scope.form.mode = mode;
                 for (var i in $scope.form.readonly) {
                     eval(`$scope.${i} = $scope.form.readonly.${i};`);

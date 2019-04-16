@@ -92,7 +92,7 @@ LOAD = function () {
         this.loadContentView(view, $scope, $http, $compile);
     };
     this.loadContentView = function (view, $scope, $http, $compile) {
-        var animation = ANIMATION();
+        var animation = new ANIMATION();
         var scope = $scope.modelName;
         if (DSON.oseaX(scope)) {
             var spaces = view.split('/');
