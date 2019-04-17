@@ -16,6 +16,7 @@ options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g,'_');
 var toclient = JSON.stringify(options);
 %>
 <script>
+    <%= model %>.triggers.table.before.control("<%= nameclean %>");
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
     if(MESSAGE.exist('columns.<%= nameclean %>')){
         <%= model %>.form.options.<%= name %>.placeholder = MESSAGE.i('columns.<%= nameclean %>');
@@ -86,6 +87,8 @@ var toclient = JSON.stringify(options);
                 source: engine.ttAdapter()
             }]
         });
+
+        <%= model %>.triggers.table.after.control("<%= nameclean %>");
 
         $('[name="<%= model %>_<%= nameclean %>"]').blur(function () {
             STEP.register({

@@ -26,7 +26,7 @@ options.model = options.model ? options.model : false;
 var toclient = JSON.stringify(options);
 %>
 <script>
-
+    <%= model %>.triggers.table.before.control("<%= nameclean %>");
     <% if(options.isNumber){ %>
         <%= model %>.form.schemas.select["<%= name %>"] =FORM.schemasType.decimal;
     <% } %>
@@ -76,7 +76,7 @@ var toclient = JSON.stringify(options);
 </div>
 
 <script>
-
+    <%= model %>.triggers.table.after.control("<%= nameclean %>");
     var formaty =<%= model %>.form.options.<%= name %>.format;
     $('[name="<%= model %>_<%= nameclean %>"]').mask(formaty.mask, formaty.options);
     <% if(options.maxlength){ %>

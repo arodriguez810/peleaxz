@@ -1143,7 +1143,16 @@ $(function () {
                         type: 'pie',
                         center: ['10%', '32.5%'],
                         radius: radius,
-                        itemStyle: labelFromatter,
+                        itemStyle: {
+                            normal: {
+                                color: '#EF5350',
+                                label: {
+                                    formatter: function (params) {
+                                        return '\n\n' + (100 - params.value) + '%'
+                                    }
+                                }
+                            }
+                        },
                         data: [
                             {name: 'other', value: 46, itemStyle: labelBottom},
                             {name: 'GoogleMaps', value: 54,itemStyle: labelTop}

@@ -24,6 +24,7 @@ options.model = options.model ? options.model : false;
 var toclient = JSON.stringify(options);
 %>
 <script>
+    <%= model %>.triggers.table.before.control("<%= nameclean %>");
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
     if(MESSAGE.exist('columns.<%= nameclean %>')){
         <%= model %>.form.options.<%= name %>.placeholder = MESSAGE.i('columns.<%= nameclean %>');
@@ -66,6 +67,7 @@ var toclient = JSON.stringify(options);
 </div>
 <script>
     $(document).ready(function () {
+        <%= model %>.triggers.table.after.control("<%= nameclean %>");
         <% if(options.format){ %>
         $('[name="<%= model %>_<%= nameclean %>"]').formatter({
             pattern: '<%= options.format %>'

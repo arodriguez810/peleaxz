@@ -132,7 +132,7 @@ exports.makeWhere = function (where, params) {
         if (Array.isArray(obj.value)) {
             operator = obj.operator !== undefined ? obj.operator : "indexOf";
             var menosuno = "!==-1";
-            if (operator.indexOf('not')!== -1)
+            if (operator.indexOf('not') !== -1)
                 menosuno = "===-1";
             if (operator.indexOf('null') !== -1)
                 whereprepare.push(params.format(open + " (row.{0}===null||row.{0}===undefined) {4} {3}", field, operator, obj.value.join("','"), connector, close));
@@ -143,8 +143,12 @@ exports.makeWhere = function (where, params) {
             var addi = "";
             if (isNaN(obj.value)) {
                 if (typeof obj.value !== 'object') {
-                    obj.value = obj.value.toLowerCase();
-                    addi = ".toLowerCase()";
+                    if (obj.value !== undefined) {
+                        obj.value = obj.value.toLowerCase();
+                        addi = ".toLowerCase()";
+                    } else {
+                        obj.value = "undefined";
+                    }
                 }
             }
             var condown = true;

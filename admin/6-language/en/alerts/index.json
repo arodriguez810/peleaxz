@@ -1,6 +1,6 @@
 {
-  "Copy": "This option copy this record without relations and paste in a new one with last ID. <br> Are you sure you want copy this record?",
-  "Copys": "This option copy this record without relations and paste in a new one with last ID. <br> Are you sure you want copy this record?",
+  "Copy": "This option copy this record without relations and paste in a new one with last ID. Are you sure you want copy this record?",
+  "Copys": "This option copy this record without relations and paste in a new one with last ID. Are you sure you want copy this record?",
   "ExportedDepends": "The information exported depends on the options you choose.",
   "AYSDelete": "Are you sure you want delete this record?",
   "AYSDeletes": "Are you sure you want delete this record?",

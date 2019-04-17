@@ -57,8 +57,9 @@ STORAGE = {
                     MESSAGE.i('alerts.restoreAll'),
                 confirm: function () {
                     var session = new SESSION();
+                    var objsession = DSON.OSO(session.current());
                     localStorage.clear();
-                    session.register(session.current());
+                    session.register(objsession);
                     location.reload();
                 }
             });

@@ -103,7 +103,6 @@ TABLE = {
             return count;
         };
         $scope.columns = function () {
-
             if (STORAGE.hasColumns($scope)) {
                 var storage_columns = STORAGE.getColumns($scope);
                 return $scope.reorderColumn(storage_columns);
@@ -152,6 +151,7 @@ TABLE = {
         $scope.stopInteraction = function () {
             return $scope.table.is.loading;
         };
+
         /*Validation******************************/
         $scope.afterData = function (data) {
             PAGINATOR.make($scope, data);
@@ -162,6 +162,7 @@ TABLE = {
             $scope.table.is.loading = false;
             $scope.width();
             MESSAGE.run();
+            $scope.triggers.table.after.load($scope.records);
         };
         $scope.fixFiltersApply = function (dataToList) {
             if (!DSON.oseaX($scope.fixFilters)) {
@@ -173,7 +174,9 @@ TABLE = {
                 }
             }
         };
-        $scope.refresh = function () {
+        $scope.refresh = async function () {
+            if (await $scope.triggers.table.before.load() === false)
+                return;
             new ANIMATION().loading(
                 "#" + $scope.modelName + "TablePanel",
                 MESSAGE.ic('mono.refresing'),
@@ -232,7 +235,7 @@ TABLE = {
                         function (data) {
                             $scope.afterData(data);
                             $scope.refreshAngular();
-                            //DRAG.run($scope);
+                            DRAG.run($scope);
                         }
                     );
                 } else {
@@ -276,7 +279,7 @@ TABLE = {
                         function (data) {
                             $scope.afterData(data);
                             $scope.refreshAngular();
-                            //DRAG.run($scope);
+                            DRAG.run($scope);
                         }
                     );
                 }

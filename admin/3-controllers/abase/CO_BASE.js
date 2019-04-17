@@ -93,9 +93,11 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
                         var permissions = eval("(" + gper.object + ")");
                         for (var i in permissions) {
                             if (merge) {
-                                eval(`DSON.mergeBool(permissions[i].obj.table.allow,CRUD_${permissions[i].name}.table.allow);`);
+                                if (eval(`typeof CRUD_${permissions[i].name} !=='undefined'`))
+                                    eval(`DSON.mergeBool(permissions[i].obj.table.allow,CRUD_${permissions[i].name}.table.allow);`);
                             } else {
-                                eval(`CRUD_${permissions[i].name}.table.allow = permissions[i].obj.table.allow`);
+                                if (eval(`typeof CRUD_${permissions[i].name} !=='undefined'`))
+                                    eval(`CRUD_${permissions[i].name}.table.allow = permissions[i].obj.table.allow`);
                             }
                         }
                         merge = true;
@@ -105,9 +107,11 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
                     var permissions = eval("(" + userPermission.object + ")");
                     for (var i in permissions) {
                         if (merge) {
-                            eval(`DSON.mergeBool(permissions[i].obj.table.allow,CRUD_${permissions[i].name}.table.allow);`);
+                            if (eval(`typeof CRUD_${permissions[i].name} !=='undefined'`))
+                                eval(`DSON.mergeBool(permissions[i].obj.table.allow,CRUD_${permissions[i].name}.table.allow);`);
                         } else {
-                            eval(`CRUD_${permissions[i].name}.table.allow = permissions[i].obj.table.allow`);
+                            if (eval(`typeof CRUD_${permissions[i].name} !=='undefined'`))
+                                eval(`CRUD_${permissions[i].name}.table.allow = permissions[i].obj.table.allow`);
                         }
                     }
                 }
@@ -281,6 +285,7 @@ GARBAGECOLECTOR = function (exclude, ignoreChangeMenu) {
 };
 
 RUN_A = function (conrollerName, inside, $scope, $http, $compile) {
+    TRIGGER.run(inside);
     inside.MENU = MENU.current;
     inside.modelName = conrollerName;
     inside.singular = inside.modelName.split('_').length > 1 ? inside.modelName.split('_')[1] : inside.modelName.split('_')[0];
@@ -302,14 +307,16 @@ RUN_A = function (conrollerName, inside, $scope, $http, $compile) {
 };
 
 RUN_B = function (conrollerName, inside, $scope, $http, $compile) {
+
     FORM.run(inside, $http);
     VALIDATION.run(inside);
 };
 
 RUNTABLE = function (inside) {
-    console.log(inside);
+
     if (eval(`${inside}`).crudConfig !== undefined)
         return;
+    TRIGGER.run(eval(`${inside}`));
     if (eval("typeof CRUD_" + eval(
         `${inside}`
     ).modelName) !== "undefined")
@@ -343,6 +350,9 @@ RUNTABLE = function (inside) {
             eval(`${inside}`).refresh();
 };
 RUNCONTROLLER = function (conrollerName, inside, $scope, $http, $compile) {
+    if (inside.events === undefined) {
+        TRIGGER.run(inside);
+    }
     if (inside.cleanForm === undefined)
         inside.cleanForm = true;
     inside.MENU = MENU.current;

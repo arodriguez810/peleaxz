@@ -16,6 +16,7 @@ options.model = options.model ? options.model : false;
 var toclient = JSON.stringify(options);
 %>
 <script>
+    <%= model %>.triggers.table.before.control("<%= name %>");
     if (!<%= model %>.
     charts
     )<%= model %>.charts = {};
@@ -44,6 +45,8 @@ var toclient = JSON.stringify(options);
             function (ec, limitless) {
                 <%= model %>.
                 charts.<%= name %>_chart = ec.init(document.getElementById('<%= name %>'), limitless);
+                <%= model %>.
+                charts.<%= name %>.refresh = function () {
                 <%= model %>.
                 charts.<%= name %>_chart_options = {
                     grid: {
@@ -76,25 +79,35 @@ var toclient = JSON.stringify(options);
                     },
                     legend: {
                         data: <%= model %>.<%= name %>_data.legend
-                    },
-                    xAxis: [{
-                        type: 'value',
-                        boundaryGap: [0, 0.01]
-                    }],
-                    yAxis: [{
-                        type: 'category',
-                        data:<%= model %>.<%= name %>_data.left
-                    }],
-                    calculable: true,
-                    series: <%= model %>.<%= name %>_data.data
-                };
-                <%= model %>.
-                charts.<%= name %>_chart.setOption(<%= model %>.charts.<%= name %>_chart_options);
-                <%= model %>.charts.<%= name %>_chart.resize();
-                setTimeout(function () {
+                },
+                    xAxis
+            :
+                [{
+                    type: 'value',
+                    boundaryGap: [0, 0.01]
+                }],
+                    yAxis
+            :
+                [{
+                    type: 'category',
+                    data:<%= model %>.<%= name %>_data.left
+            }],
+                calculable: true,
+                    series
+            : <%= model %>.
+                <%= name %>_data.data
+            }
+                ;
+
                     <%= model %>.
-                    charts.<%= name %>_chart.resize();
-                }, 3000);
+                    charts.<%= name %>_chart.setOption(<%= model %>.charts.<%= name %>_chart_options
+                )
+                    ;
+                    setTimeout(function () {
+                        <%= model %>.
+                        charts.<%= name %>_chart.resize();
+                    }, 3000);
+                }
             }
         );
     });

@@ -9,6 +9,7 @@ options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g,'_');
 var toclient = JSON.stringify(options);
 %>
 <script>
+    <%= model %>.triggers.table.before.control("<%= nameclean %>");
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
     <%= model %>.<%= name %> = <%= model %>.form.options.<%= name %>.selecteds;
     var thec<%= name %> = [];

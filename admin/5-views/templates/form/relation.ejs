@@ -30,6 +30,7 @@ if (options.master === null) {
 }
 %>
 <script>
+    <%= model %>.triggers.table.before.control("<%= nameclean %>");
     var keyColumn = eval(`CRUD_<%= model %>`).table.key;
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
     <%= model %>.form.schemas.insert["<%= name %>"] = FORM.schemasType.relation;
@@ -46,6 +47,7 @@ if (options.master === null) {
 </div>
 <script>
     $(document).ready(function () {
+        <%= model %>.triggers.table.after.control("<%= nameclean %>");
         var <%= model %>_<%= nameclean %>Load = (function () {
 
             var id<%= name %> = '<%= model %><%= options.tempId %>';

@@ -3,6 +3,17 @@ ERROR = {
     category: {
         database: "database"
     },
+    regulate: function (error) {
+        var regulated = MESSAGE.i('alerts.ClientDbError');
+        if (error.indexOf('REFERENCE constraint') !== -1) {
+            return MESSAGE.i('error.dbreference');
+        }
+        if (CONFIG.mode !== 'developer') {
+            return JSON.stringify({trueerror: error, regulated: regulated});
+        } else {
+            return regulated;
+        }
+    },
     send: function (error) {
         SWEETALERT.loading({message: MESSAGE.i('actions.Loading')});
         var session = new SESSION();
@@ -30,7 +41,7 @@ ERROR = {
                 case ERROR.category.database: {
                     SWEETALERT.confirm({
                         type: "error",
-                        message: MESSAGE.i('alerts.ClientDbError'),
+                        message: ERROR.regulate(JSON.stringify(error)),
                         confirm: function () {
                             ERROR.send(JSON.stringify(error));
                         }
@@ -42,7 +53,7 @@ ERROR = {
             SWEETALERT.show({
                 type: "error",
                 title: capitalize(`${category} errors`),
-                message: JSON.stringify(error)
+                message: ERROR.regulate(JSON.stringify(error))
             });
         }
     },
@@ -52,7 +63,7 @@ ERROR = {
                 case ERROR.category.database: {
                     SWEETALERT.confirm({
                         type: "error",
-                        message: MESSAGE.i('alerts.ClientDbError'),
+                        message: ERROR.regulate(errors.join('<br>')),
                         confirm: function () {
                             ERROR.send(errors.join('<br>'));
                         }
@@ -67,7 +78,7 @@ ERROR = {
             SWEETALERT.show({
                 type: "error",
                 title: capitalize(`${category} errors`),
-                message: errors.join('<br>')
+                message: ERROR.regulate(errors.join('<br>'))
             });
         }
     }

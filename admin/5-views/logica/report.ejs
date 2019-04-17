@@ -21,6 +21,8 @@
 
                         <div class="panel-body">
                             <div class="chart has-fixed-height has-minimum-width" id="pie"></div>
+
+                            <%- CHART.pie("pie", scope, {}) %>
                             <script>
                                 <%= scope %>.pie_data = [
                                     {value: 335, name: 'IE'},
@@ -29,8 +31,8 @@
                                     {value: 135, name: 'Firefox'},
                                     {value: 1548, name: 'Chrome'}
                                 ];
+                                <%= scope %>.charts.pie.refresh();
                             </script>
-                            <%- CHART.pie("pie", scope, {}) %>
                         </div>
                     </div>
 
@@ -45,6 +47,8 @@
 
                         <div class="panel-body">
                             <div class="chart has-fixed-height has-minimum-width" id="circle"></div>
+                            <%- CHART.circle("circle", scope, {}) %>
+
                             <script>
                                 <%= scope %>.circle_data = [
                                     {value: 335, name: 'IE'},
@@ -53,8 +57,8 @@
                                     {value: 135, name: 'Firefox'},
                                     {value: 1548, name: 'Chrome'}
                                 ];
+                                <%= scope %>.charts.circle.refresh();
                             </script>
-                            <%- CHART.circle("circle", scope, {}) %>
                         </div>
                     </div>
 
@@ -69,6 +73,8 @@
 
                         <div class="panel-body">
                             <div class="chart has-fixed-height has-minimum-width" id="rose"></div>
+                            <%- CHART.rose("rose", scope, {}) %>
+
                             <script>
                                 <%= scope %>.rose_data = [
                                     {value: 335, name: 'IE'},
@@ -77,8 +83,9 @@
                                     {value: 135, name: 'Firefox'},
                                     {value: 1548, name: 'Chrome'}
                                 ];
+                                <%= scope %>.charts.rose.refresh();
+
                             </script>
-                            <%- CHART.rose("rose", scope, {}) %>
                         </div>
                     </div>
 
@@ -94,6 +101,8 @@
 
                         <div class="panel-body">
                             <div class="chart has-fixed-height has-minimum-width" id="radar"></div>
+                            <%- CHART.radar("radar", scope, {}) %>
+
                             <script>
                                 <%= scope %>.radar_data = {
                                     legend:['Allocated Budget','Actual Spending'],
@@ -116,8 +125,9 @@
                                         }
                                     ]
                                 };
+                                <%= scope %>.radar.rose.refresh();
+
                             </script>
-                            <%- CHART.radar("radar", scope, {}) %>
                         </div>
                     </div>
 
@@ -132,6 +142,8 @@
 
                         <div class="panel-body">
                             <div class="chart has-fixed-height has-minimum-width" id="donuts"></div>
+                            <%- CHART.donuts("donuts", scope, {}) %>
+
                             <script>
                                 var labelTop = {
                                     normal: {
@@ -281,8 +293,9 @@
                                         ]
                                     }
                                 ];
+                                <%= scope %>.donuts.rose.refresh();
+
                             </script>
-                            <%- CHART.donuts("donuts", scope, {}) %>
                         </div>
                     </div>
 
@@ -297,6 +310,8 @@
 
                         <div class="panel-body">
                             <div class="chart has-fixed-height has-minimum-width" id="line"></div>
+                            <%- CHART.line("line", scope, {}) %>
+
                             <script>
                                 <%= scope %>.line_data = {
                                     legend: ['Internet Explorer', 'Opera', 'Safari', 'Firefox', 'Chrome'],
@@ -334,8 +349,9 @@
                                         }
                                     ]
                                 }
+                                <%= scope %>.donuts.line.refresh();
+
                             </script>
-                            <%- CHART.line("line", scope, {}) %>
                         </div>
                     </div>
 
@@ -350,6 +366,8 @@
 
                         <div class="panel-body">
                             <div class="chart has-fixed-height has-minimum-width" id="area"></div>
+                            <%- CHART.line("area", scope, {}) %>
+
                             <script>
                                 <%= scope %>.area_data = {
                                     legend: ['Internet Explorer', 'Opera', 'Safari', 'Firefox', 'Chrome'],
@@ -385,8 +403,9 @@
                                         }
                                     ]
                                 }
+                                <%= scope %>.donuts.area.refresh();
+
                             </script>
-                            <%- CHART.line("area", scope, {}) %>
                         </div>
                     </div>
 
@@ -403,6 +422,8 @@
                             <div class="chart-container has-scroll">
                                 <div class="chart has-fixed-height" id="columns"></div>
                             </div>
+                            <%- CHART.columns("columns", scope, {}) %>
+
                             <script>
                                 <%= scope %>.columns_data = {
                                     legend: ['Internet Explorer', 'Opera', 'Safari', 'Firefox', 'Chrome'],
@@ -430,8 +451,9 @@
                                         }
                                     ]
                                 }
+                                <%= scope %>.donuts.columns.refresh();
+
                             </script>
-                            <%- CHART.columns("columns", scope, {}) %>
                         </div>
                     </div>
 
@@ -448,6 +470,8 @@
                             <div class="chart-container has-scroll">
                                 <div class="chart has-fixed-height" id="columnsstack"></div>
                             </div>
+                            <%- CHART.columns("columnsstack", scope, {}) %>
+
                             <script>
                                 <%= scope %>.columnsstack_data = {
                                     legend: ['Internet Explorer', 'Opera', 'Safari', 'Firefox', 'Chrome'],
@@ -479,8 +503,9 @@
                                         }
                                     ]
                                 }
+                                <%= scope %>.donuts.columnsstack.refresh();
+
                             </script>
-                            <%- CHART.columns("columnsstack", scope, {}) %>
                         </div>
                     </div>
 
@@ -497,6 +522,8 @@
                             <div class="chart-container has-scroll">
                                 <div class="chart has-fixed-height" id="bar"></div>
                             </div>
+                            <%- CHART.bar("bar", scope, {}) %>
+
                             <script>
                                 <%= scope %>.bar_data = {
                                     legend: ['Year 2013', 'Year 2014'],
@@ -524,8 +551,9 @@
                                         }
                                     ]
                                 }
+                                <%= scope %>.donuts.bar.refresh();
+
                             </script>
-                            <%- CHART.bar("bar", scope, {}) %>
                         </div>
                     </div>
 
@@ -542,6 +570,7 @@
                             <div class="chart-container has-scroll">
                                 <div class="chart has-fixed-height" id="bar2"></div>
                             </div>
+                            <%- CHART.bar("bar2", scope, {}) %>
                             <script>
                                 <%= scope %>.bar2_data = {
                                     legend: ['Internet Explorer','Opera','Safari','Firefox','Chrome'],
@@ -654,8 +683,10 @@
                                         }
                                     ]
                                 }
+                                <%= scope %>.donuts.bar2.refresh();
+
                             </script>
-                            <%- CHART.bar("bar2", scope, {}) %>
+
                         </div>
                     </div>
 

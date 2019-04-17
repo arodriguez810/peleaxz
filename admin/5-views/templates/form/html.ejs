@@ -22,6 +22,7 @@ options.model = options.model ? options.model : false;
 var toclient = JSON.stringify(options);
 %>
 <script>
+    <%= model %>.triggers.table.before.control("<%= nameclean %>");
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
     if(MESSAGE.exist('columns.<%= nameclean %>')){
         <%= model %>.form.options.<%= name %>.placeholder = MESSAGE.i('columns.<%= nameclean %>');
@@ -81,6 +82,7 @@ var toclient = JSON.stringify(options);
                 }
             }
         });
+        <%= model %>.triggers.table.after.control("<%= nameclean %>");
 
         if(isReadProgram!==false){
             <%= model %>.form.options.<%= name %>.disabled = true;

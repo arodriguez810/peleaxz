@@ -1,6 +1,6 @@
 {
-  "Copy": "Esta opción copia este registro sin relaciones y pega uno nuevo con el último ID. <br> ¿Está seguro de que desea copiar este registro?",
-  "Copys": "Esta opción copia este registro sin relaciones y pega uno nuevo con la última identificación. <br> ¿Está seguro de que desea copiar este registro?",
+  "Copy": "Esta opción copia este registro sin relaciones y pega uno nuevo con el último ID ¿Está seguro de que desea copiar este registro?",
+  "Copys": "Esta opción copia este registro sin relaciones y pega uno nuevo con la última identificación. ¿Está seguro de que desea copiar este registro?",
   "ExportedDepends": "La información exportada depende de las opciones que elija.",
   "AYSDelete": "¿Está seguro de que desea eliminar este registro?",
   "AYSDeletes": "¿Está seguro de que desea eliminar este registro?",

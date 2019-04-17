@@ -302,6 +302,7 @@ TABLEEVENT = {
             for (const deletekey of eval(`CRUD_${$scope.modelName}`).table.deletekeys)
                 where.push({field: deletekey, value: eval("row." + deletekey)});
             if ($scope.beforeDelete(row)) return;
+            $scope.procesingRowErrors = [];
             BASEAPI.deleteall($scope.tableOrMethod, where, function (result) {
                 if (result.data.error === false) {
                     $scope.afterDelete(row);
@@ -383,6 +384,7 @@ TABLEEVENT = {
             eval(`data.${$scope.activeColumn()} = ${active}`);
             data.where = where;
             var actionText = active ? MESSAGE.i('mono.activing') : MESSAGE.i('mono.disabling');
+            $scope.procesingRowErrors = [];
             BASEAPI.updateall($scope.tableOrMethod, data, function (result) {
                 if (result.data.error === false) {
                     $scope.procesingRow++;
@@ -477,7 +479,7 @@ TABLEEVENT = {
                     if (eval(`CRUD_${$scope.modelName}`).table.columns[i] !== undefined)
                         eval(`row.row.${i} = '${eval(audit)}';`);
                 }
-
+                $scope.procesingRowErrors = [];
                 BASEAPI.insertID($scope.tableOrMethod, row.row, '', '', function (result) {
                     if (result.data.error === false) {
                         var savedRow = result.data.data[0];

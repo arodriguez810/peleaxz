@@ -17,6 +17,7 @@ options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g, '_');
 var toclient = JSON.stringify(options);
 %>
 <script>
+    <%= model %>.triggers.table.before.control("<%= nameclean %>");
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
 
     <%= model %>.form.schemas.insert["<%= name %>"] = FORM.schemasType.calculated;
@@ -59,6 +60,7 @@ var toclient = JSON.stringify(options);
 </div>
 <script>
     $(document).ready(function () {
+        <%= model %>.triggers.table.after.control("<%= nameclean %>");
         <% if(options.format){ %>
         var formaty =<%= model %>.
         form.options.<%= name %>.format;

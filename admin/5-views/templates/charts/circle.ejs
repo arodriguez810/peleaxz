@@ -16,6 +16,7 @@ options.model = options.model ? options.model : false;
 var toclient = JSON.stringify(options);
 %>
 <script>
+    <%= model %>.triggers.table.before.control("<%= name %>");
     if (!<%= model %>.
     charts
     )<%= model %>.charts = {};
@@ -45,6 +46,8 @@ var toclient = JSON.stringify(options);
                 <%= model %>.
                 charts.<%= name %>_chart = ec.init(document.getElementById('<%= name %>'), limitless);
                 <%= model %>.
+                charts.<%= name %>.refresh = function () {
+                <%= model %>.
                 charts.<%= name %>_chart_options = {
                     tooltip: {
                         trigger: 'item',
@@ -72,15 +75,17 @@ var toclient = JSON.stringify(options);
                         radius: ['40%', '60%'],
                         center: ['40%', '55.5%'],
                         data: <%= model %>.<%= name %>_data
-                    }]
-                };
-                <%= model %>.
-                charts.<%= name %>_chart.setOption(<%= model %>.charts.<%= name %>_chart_options);
-                <%= model %>.charts.<%= name %>_chart.resize();
-                setTimeout(function () {
-                    <%= model %>.
-                    charts.<%= name %>_chart.resize();
-                }, 3000);
+                }
+            ]
+            }
+                ;
+                                     <%= model %>.
+                    charts.<%= name %>_chart.setOption(<%= model %>.charts.<%= name %>_chart_options
+                )
+                    ;setTimeout(function () {                         <%= model %>.
+                        charts.<%= name %>_chart.resize();
+                    }, 3000);
+                }
             }
         );
     });

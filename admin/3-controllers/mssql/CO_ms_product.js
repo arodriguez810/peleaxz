@@ -1,6 +1,15 @@
 app.controller("ms_product", function ($scope, $http, $compile) {
     ms_product = this;
+    TRIGGER.run(ms_product);
+    ms_product.triggers.table.before.load = () => new Promise((resolve, reject) => {
+        console.log(`es mio`);
+        setTimeout(function () {
+            resolve(true);
+        }, 10000);
+    });
+
     RUNCONTROLLER("ms_product", ms_product, $scope, $http, $compile);
+
     ms_product.formulary = function (data, mode, defaultData) {
         if (ms_product !== undefined) {
             RUN_B("ms_product", ms_product, $scope, $http, $compile);

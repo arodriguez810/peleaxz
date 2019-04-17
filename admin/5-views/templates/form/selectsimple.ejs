@@ -33,7 +33,7 @@ var toclient = JSON.stringify(options);
 %>
 <script>
 
-
+    <%= model %>.triggers.table.before.control("<%= nameclean %>");
     if (DSON.oseaX(<%= model + "." + name %>))
             <%= model + "." + name %> = "[NULL]";
 

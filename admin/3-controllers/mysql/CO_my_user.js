@@ -7,6 +7,10 @@ app.controller("my_user", async function ($scope, $http, $compile) {
         return data;
     });
 
+    my_user.beforeDelete = function (data) {
+        alert("sure bye?");
+        return false;
+    };
     my_user.afterDelete = function (data) {
         alert("good bye ");
         return false;

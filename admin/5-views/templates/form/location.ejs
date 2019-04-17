@@ -18,6 +18,7 @@ options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g, '_');
 var toclient = JSON.stringify(options);
 %>
 <script>
+    <%= model %>.triggers.table.before.control("<%= nameclean %>");
     <%= model %>.locationselectedText = MESSAGE.i('mono.selectedLocation');
     <%= model %>.form.schemas.select["<%= name %>"] = FORM.schemasType.location;
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
@@ -81,6 +82,7 @@ var toclient = JSON.stringify(options);
 </div>
 <script>
     $(document).ready(function () {
+        <%= model %>.triggers.table.after.control("<%= nameclean %>");
         if (typeof google !== "undefined") {
             var defaultLocation = {
                 lat: <%= model + "." + name + "_DragonLat" %>,

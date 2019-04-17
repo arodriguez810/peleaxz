@@ -16,6 +16,7 @@ options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g,'_');
 var toclient = JSON.stringify(options);
 %>
 <script>
+    <%= model %>.triggers.table.before.control("<%= nameclean %>");
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
     if(MESSAGE.exist('columns.<%= nameclean %>')){
         <%= model %>.form.options.<%= name %>.placeholder = MESSAGE.i('columns.<%= nameclean %>');
@@ -81,6 +82,7 @@ var toclient = JSON.stringify(options);
                 ["#600", "#783f04", "#7f6000", "#274e13", "#0c343d", "#073763", "#20124d", "#4c1130"]
             ]
         });
+        <%= model %>.triggers.table.after.control("<%= nameclean %>");
         if (isReadProgram !== false) {
             if (isReadProgram !== undefined)
                 $('.sp-preview-inner').css('background-color', isReadProgram)

@@ -12,6 +12,7 @@ var nameclean = name.replace(/\./g,'_');
 var toclient = JSON.stringify(options);
 %>
 <script>
+    <%= model %>.triggers.table.before.control("<%= nameclean %>");
     <%= model %>.form.schemas.insert["<%= name %>"] = FORM.schemasType.checkbox;
     <%= model %>.form.schemas.select["<%= name %>"] = FORM.schemasType.checkbox;
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
@@ -41,6 +42,7 @@ var toclient = JSON.stringify(options);
     </label>
 </div>
 <script>
+    <%= model %>.triggers.table.after.control("<%= nameclean %>");
     var elems = Array.prototype.slice.call(document.getElementsByName("<%= model %>_<%= nameclean %>"));
     var checkbox<%= model %>_<%= nameclean %> = false;
     var isReadProgram = <%= model %>.form.isReadOnly('<%= name %>');

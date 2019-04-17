@@ -35,6 +35,7 @@ options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g,'_');
 var toclient = JSON.stringify(options);
 %>
 <script>
+    <%= model %>.triggers.table.before.control("<%= nameclean %>");
     <%= model %>.form.schemas.select["<%= name %>"] =FORM.schemasType.datetime;
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
     <%= model %>.form.registerField("<%= name %>_DragonClean", "<%= toclient %>");
@@ -199,5 +200,6 @@ var toclient = JSON.stringify(options);
                 }
             }
         });
+        <%= model %>.triggers.table.after.control("<%= nameclean %>");
     });
 </script>

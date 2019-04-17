@@ -219,7 +219,7 @@ FORM = {
                 }
             }
         };
-        $scope.form.saveAction = function () {
+        $scope.form.saveAction = async function () {
             if ($scope.form !== null) {
                 $scope.form.hasChanged = true;
                 $scope.form.makeInsert();
@@ -237,7 +237,16 @@ FORM = {
                         relations: $scope.form.relations,
                     }))
                         return;
-                    BASEAPI.insertID($scope.tableOrMethod, $scope.form.inserting, $scope.form.fieldExGET, $scope.form.valueExGET, function (result) {
+                    var conti = await $scope.triggers.table.before.insert({
+                        inserting: $scope.form.inserting,
+                        uploading: $scope.form.uploading,
+                        multipleRelations: $scope.form.multipleRelations,
+                        relations: $scope.form.relations,
+                    });
+                    if (conti === false) {
+                        return;
+                    }
+                    BASEAPI.insertID($scope.tableOrMethod, $scope.form.inserting, $scope.form.fieldExGET, $scope.form.valueExGET, async function (result) {
                         if (result.data.error === false) {
                             SWEETALERT.loading({message: MESSAGE.i('mono.Preparingfilesandrelations')});
                             var savedRow = result.data.data[0];
@@ -249,6 +258,14 @@ FORM = {
                                 relations: $scope.form.relations,
                             });
 
+
+                            $scope.triggers.table.after.insert({
+                                inserted: savedRow,
+                                inserting: $scope.form.inserting,
+                                uploading: $scope.form.uploading,
+                                multipleRelations: $scope.form.multipleRelations,
+                                relations: $scope.form.relations,
+                            });
 
                             var firstColumn = eval(`CRUD_${$scope.modelName}`).table.key || "id";
                             var DRAGONID = eval(`savedRow.${firstColumn}`);
@@ -334,15 +351,32 @@ FORM = {
                         multipleRelations: $scope.form.multipleRelations,
                         relations: $scope.form.relations,
                     })) return;
+
+                    if (await $scope.triggers.table.before.update({
+                        updating: $scope.form.inserting,
+                        uploading: $scope.form.uploading,
+                        multipleRelations: $scope.form.multipleRelations,
+                        relations: $scope.form.relations,
+                    }) === false)
+                        return;
+
                     BASEAPI.updateall($scope.tableOrMethod, dataToUpdate, function (result) {
                         if (result.data.error === false) {
-                            if ($scope.form !== null)
+                            if ($scope.form !== null) {
                                 $scope.form.after.update({
                                     updating: $scope.form.inserting,
                                     uploading: $scope.form.uploading,
                                     multipleRelations: $scope.form.multipleRelations,
                                     relations: $scope.form.relations,
                                 });
+
+                                $scope.triggers.table.after.update({
+                                    updating: $scope.form.inserting,
+                                    uploading: $scope.form.uploading,
+                                    multipleRelations: $scope.form.multipleRelations,
+                                    relations: $scope.form.relations,
+                                });
+                            }
                             SWEETALERT.loading({message: MESSAGE.i('mono.Preparingfilesandrelations')});
                             var firstColumn = eval(`CRUD_${$scope.modelName}`).table.key || "id";
                             var DRAGONID = eval(`$scope.${firstColumn}`);
@@ -566,11 +600,9 @@ FORM = {
                             return item.field === options.parent.myfield || options.parent.model;
                         });
                         if (exist.length) {
-                            console.log(eval(`$scope.${options.parent.model}_object`));
                             exist[0].value = eval(`$scope.${options.parent.model}_object.${options.parent.sufield}`);
                         }
                         else {
-                            console.log(eval(`$scope.${options.parent.model}_object`));
                             toquery.where.push({
                                 field: options.parent.myfield || options.parent.model,
                                 value: eval(`$scope.${options.parent.model}_object.${options.parent.sufield}`)
@@ -719,7 +751,9 @@ FORM = {
                     });
                     $('[name="' + $scope.modelName + "_" + nameclean + '"]').trigger('change.select2');
                 }
-                $scope.form.onload(nameclean);
+                if (typeof $scope.form.onload === 'function')
+                    $scope.form.onload(nameclean);
+                $scope.triggers.table.after.control(nameclean);
             }
         };
         $scope.form.loadOutDropDown = function (options, id) {
@@ -765,8 +799,9 @@ FORM = {
                 $scope.validation.destroy();
             }
         };
-        $scope.openForm = function (mode) {
-
+        $scope.openForm = async function (mode) {
+            if (await $scope.triggers.table.before.open() === false)
+                return;
             if ($scope.form !== null) {
                 $scope.pages.form.isOpen = true;
                 $scope.pages.form.subRequestCompleteVar = 0;
@@ -912,18 +947,27 @@ FORM = {
                                     }
                                 },
                                 end: function (datam) {
-
+                                    $scope.triggers.table.after.open($scope.form);
                                 }
                             },
                             hide: {
-                                begin: function (datam) {
+                                begin: async function (datam) {
+                                    if (await $scope.triggers.table.before.close() === false)
+                                        return;
                                     if (MODAL.history.length === 0) {
-                                        $scope.pages.form.isOpen = false;
-                                        $scope.form.destroy();
-                                        if ($scope.form.hasChanged)
-                                            if ($scope.refresh !== undefined)
-                                                $scope.refresh();
+                                        if ($scope.pages !== null) {
+                                            $scope.pages.form.isOpen = false;
+                                        }
+                                        if ($scope.form !== null) {
+                                            $scope.form.destroy();
+                                            if ($scope.form.hasChanged)
+                                                if ($scope.refresh !== undefined)
+                                                    $scope.refresh();
+                                        }
                                     }
+                                },
+                                end: function () {
+                                    $scope.triggers.table.after.close($scope.form);
                                 }
                             }
                         }
@@ -941,7 +985,6 @@ FORM = {
             if ($scope.form !== null) {
                 if (!$scope.form.onload)
                     $scope.form.onload = function (name) {
-                        alert(1);
                     };
                 $scope.form.mode = mode;
                 for (var i in $scope.form.readonly) {

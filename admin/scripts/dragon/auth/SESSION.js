@@ -47,8 +47,7 @@ SESSION = function () {
             confirm: function () {
                 MODAL.closeAll();
                 new SESSION().destroy();
-                var http = new HTTP();
-                http.redirecttag('auth/login');
+                location.reload();
             }
         });
     }

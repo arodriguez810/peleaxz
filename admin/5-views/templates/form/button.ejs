@@ -15,6 +15,7 @@ options.color = options.type === "form" ? "{{" + model + ".validation.stateDefau
 var toclient = JSON.stringify(options);
 %>
 <script>
+    <%= model %>.triggers.table.before.control("<%= nameclean %>");
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
     if(MESSAGE.exist('columns.<%= nameclean %>')){
         <%= model %>.form.options.<%= name %>.text = MESSAGE.i('columns.<%= nameclean %>');

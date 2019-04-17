@@ -26,6 +26,7 @@ options.model = options.model ? options.model : false;
 var toclient = JSON.stringify(options);
 %>
 <script>
+    <%= model %>.triggers.table.before.control("<%= nameclean %>");
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
     <% if(options.format || options.isNumber){ %>
     <%= model %>.form.registerField("<%= name %>_DragonClean", "<%= toclient %>");
@@ -70,6 +71,7 @@ var toclient = JSON.stringify(options);
 </div>
 
 <script>
+    <%= model %>.triggers.table.after.control("<%= nameclean %>");
     <% if(options.maxlength){ %>
     $('[name="<%= model %>_<%= nameclean %>"]').maxlength();
     <% } %>

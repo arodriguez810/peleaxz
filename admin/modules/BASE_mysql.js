@@ -8,7 +8,9 @@ class Database {
             this.connection.query(sql, args, (err, rows) => {
                 if (err)
                     return reject(err);
-                resolve(rows);
+                this.close().then(d => {
+                    resolve(rows);
+                });
             });
         });
     }
@@ -29,7 +31,6 @@ exports.executeNonQuery = async function (query, params, show) {
         console.log(query.pxz);
     var connection = new Database(params, params.CONFIG.mysql);
     return await connection.query(query).then(async (data) => {
-        await connection.close();
         return {
             query: query,
             error: false,
@@ -160,7 +161,6 @@ exports.data = async function (query, params, index) {
     console.log(query.pxz);
     var connection = new Database(params, params.CONFIG.mysql);
     return await connection.query(query).then(async (data) => {
-        await connection.close();
         var realData = [];
         for (var d in data) {
             if (data[d].affectedRows === undefined)
