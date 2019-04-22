@@ -1,5 +1,6 @@
 exports.executeNonQuery = async function (query, params, show) {
-    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
+    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;
+    if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
     if (show === undefined)
         console.log(query.pxz);
     var connection = await params.oracle.getConnection(params.CONFIG.oracle);
@@ -21,7 +22,8 @@ exports.executeNonQueryArray = async function (queries, params, show) {
     return result;
 };
 exports.insertQuery = async function (table, data, params, get, getvalue) {
-    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
+    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;
+    if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
     var datas = (Array.isArray(data)) ? data : [data];
     var queries = [];
     for (var m in datas) {
@@ -52,7 +54,8 @@ exports.insertQuery = async function (table, data, params, get, getvalue) {
     return queries;
 };
 exports.update = async function (table, data, params) {
-    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
+    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;
+    if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
     var datas = (Array.isArray(data)) ? data : [data];
     var queries = [];
     for (var m in datas) {
@@ -134,7 +137,8 @@ exports.delete = function (table, data, params) {
     return queries;
 };
 exports.data = async function (query, params, index) {
-    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
+    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;
+    if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
     var connection = await params.oracle.getConnection(params.CONFIG.oracle);
     console.log(query.pxz);
     try {
@@ -269,12 +273,12 @@ exports.Model = function (tableName, params) {
     };
     //update
     this.update = async function (data) {
-        return await exports.executeNonQueryArray(exports.update(tableName, data, params), params).then(result => {
+        return await exports.executeNonQueryArray(await exports.update(tableName, data, params), params).then(result => {
             return result;
         });
     };
     this.updateAll = async function (data) {
-        return await exports.executeNonQueryArray(exports.update(tableName, data, params), params).then(result => {
+        return await exports.executeNonQueryArray(await exports.update(tableName, data, params), params).then(result => {
             return result;
         });
     };
@@ -284,18 +288,18 @@ exports.Model = function (tableName, params) {
             finalwhere.push({value: eval("where." + property), field: property});
         }
         data.where = finalwhere;
-        return await exports.executeNonQueryArray(exports.update(tableName, data, params), params).then((result) => {
+        return await exports.executeNonQueryArray(await exports.update(tableName, data, params), params).then((result) => {
             return result;
         });
     };
     //insert
     this.insert = async function (data) {
-        return await exports.executeNonQueryArray(exports.insertQuery(tableName, data, params), params).then((result) => {
+        return await exports.executeNonQueryArray(await exports.insertQuery(tableName, data, params), params).then((result) => {
             return result;
         });
     };
     this.insertID = async function (data, field, value) {
-        return await exports.executeNonQueryArray(exports.insertQuery(tableName, data, params), params)
+        return await exports.executeNonQueryArray(await exports.insertQuery(tableName, data, params), params)
             .then(async (insert) => {
                 var retroID = field || "id";
                 var retroValue = value !== '' ? ("'" + value + "'") : ("(select MAX(\"" + (field || "id") + "\") from \"" + tableName + "\")");

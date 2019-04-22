@@ -6,13 +6,13 @@
 var params = {};
 exports.run = async function (_params) {
     params = _params;
-    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
+    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;
+    if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
 };
 exports.api = {
     gets: {},
     posts: {
         login: async function (request) {
-
             var config = params.CONFIG.users;
             var key = `${config.engine}-${request.username}`;
             var attemps = await params.storage.getItem(key);

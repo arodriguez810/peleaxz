@@ -5,7 +5,8 @@ exports.LoadEJS = function (files, params) {
         params.app.get(params.util.format("/%s%s", params.modelName === "base" ? "" : params.modelName + "/", viewName),
             function (req, res) {
                 params.secure.check(req, res, async function () {
-                    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
+                    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;
+                    if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
                     var path = req.originalUrl;
                     var realPath = path.split("?");
                     var query = "";
@@ -140,7 +141,8 @@ exports.loadEJSSimple = function (folder, prefix, params) {
 
             params.app.get(params.util.format("/%s%s", prefix, viewName), function (req, res) {
                 params.secure.check(req, res, async function () {
-                    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
+                    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;
+                    if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
                     var path = req.originalUrl;
                     var realPath = path.split("?");
                     var viewN = realPath[0].split("/");
@@ -197,7 +199,8 @@ exports.loadEJSSimple = function (folder, prefix, params) {
                 });
             });
             params.app.post(params.util.format("/post/%s%s", prefix, viewName), async function (req, res) {
-                params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
+                params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;
+                if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
                 var path = req.originalUrl;
                 var realPath = path.split("?");
                 var viewN = realPath[0].split("/");
@@ -566,7 +569,8 @@ exports.init = function (params) {
     });
     params.app.post('/email/send', function (req, res) {
         params.secure.check(req, res, async function () {
-            params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
+            params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;
+            if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
             var transporter = params.mail.createTransport(params.CONFIG.smtp);
             var options = params.CONFIG.smptOptions;
             var from = req.body.from || options.sender;

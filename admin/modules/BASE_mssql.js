@@ -1,5 +1,6 @@
 exports.executeNonQuery = async function (query, params, show) {
-    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
+    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;
+    if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
     if (show === undefined)
         console.log(query.pxz);
     return await new params.mssql.ConnectionPool(params.CONFIG.mssql).connect().then(
@@ -19,7 +20,8 @@ exports.executeNonQueryArray = async function (queries, params, show) {
     return queries;
 };
 exports.insertQuery = async function (table, data, params, get, getvalue) {
-    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
+    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;
+    if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
     var datas = (Array.isArray(data)) ? data : [data];
     var queries = "";
     for (var m in datas) {
@@ -50,7 +52,8 @@ exports.insertQuery = async function (table, data, params, get, getvalue) {
     return queries;
 };
 exports.update = async function (table, data, params) {
-    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
+    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;
+    if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
     var datas = (Array.isArray(data)) ? data : [data];
     var queries = "";
     for (var m in datas) {
@@ -132,7 +135,8 @@ exports.delete = function (table, data, params) {
     return queries;
 };
 exports.data = async function (query, params, index) {
-    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
+    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;
+    if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
     console.log(query.pxz);
     return await new params.mssql.ConnectionPool(params.CONFIG.mssql).connect().then(
         pool => {
@@ -251,12 +255,12 @@ exports.Model = function (tableName, params) {
     };
     //update
     this.update = async function (data) {
-        return await exports.data(exports.update(tableName, data, params), params).then(result => {
+        return await exports.data(await exports.update(tableName, data, params), params).then(result => {
             return result;
         });
     };
     this.updateAll = async function (data) {
-        return await exports.data(exports.update(tableName, data, params), params).then(result => {
+        return await exports.data(await exports.update(tableName, data, params), params).then(result => {
             return result;
         });
     };
@@ -266,18 +270,18 @@ exports.Model = function (tableName, params) {
             finalwhere.push({value: eval("where." + property), field: property});
         }
         data.where = finalwhere;
-        return await exports.data(exports.update(tableName, data, params), params).then((result) => {
+        return await exports.data(await exports.update(tableName, data, params), params).then((result) => {
             return result;
         });
     };
     //insert
     this.insert = async function (data) {
-        return await exports.data(exports.insertQuery(tableName, data, params), params).then((result) => {
+        return await exports.data(await exports.insertQuery(tableName, data, params), params).then((result) => {
             return result;
         });
     };
     this.insertID = async function (data, field, value) {
-        return await exports.data(exports.insertQuery(tableName, data, params, field || "id", value !== '' ? ("'" + value + "'") : ("IDENT_CURRENT('" + tableName + "')")), params).then((result) => {
+        return await exports.data(await exports.insertQuery(tableName, data, params, field || "id", value !== '' ? ("'" + value + "'") : ("IDENT_CURRENT('" + tableName + "')")), params).then((result) => {
             return result;
         });
     };
