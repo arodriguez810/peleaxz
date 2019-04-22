@@ -81,7 +81,7 @@
                     <i class=" icon-stack-text"></i>
                 </a>
             </li>
-            <li ng-if="baseController.features.configuration===true && baseController.isSuper">
+            <li ng-if="baseController.features.configuration===true && (baseController.isSuper || baseController.isAdmin)">
                 <a class="sidebar-control" onclick="CONFIGURATION.OPEN()" data-popup="tooltip"
                    data-placement="bottom" data-container="body" dragonlanguage title="MESSAGE.i('mono.configuration')">
                     <i class=" icon-cog2"></i>

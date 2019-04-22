@@ -4,13 +4,15 @@
 //     return {name: name};
 // }
 var params = {};
-exports.run = function (_params) {
+exports.run = async function (_params) {
     params = _params;
+    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
 };
 exports.api = {
     gets: {},
     posts: {
         login: async function (request) {
+
             var config = params.CONFIG.users;
             var key = `${config.engine}-${request.username}`;
             var attemps = await params.storage.getItem(key);
@@ -68,10 +70,23 @@ exports.api = {
                         }
 
                     data.data[0].super = config.super.indexOf(request.username.toLowerCase()) !== -1;
+                    var groups = await params.storage.getItem('group') || [];
                     var user_groups = await params.storage.getItem('user_group') || [];
                     user_groups = user_groups.filter((user_group) => {
                         return user_group.user == eval(`data.data[0].${config.fields.id}`);
                     });
+                    data.data[0].groupadmin = false;
+                    user_groups.forEach((ug) => {
+                        var group = groups.filter((g) => {
+                            return g.id == ug.group;
+                        });
+                        if (group.length > 0) {
+                            ug.groupinfo = group[0];
+                            if (group[0].isAdmin == "1")
+                                data.data[0].groupadmin = true;
+                        }
+                    });
+
                     data.data[0].groups = user_groups;
                     var groups = [];
                     for (var item of user_groups) {

@@ -142,5 +142,7 @@
   "authentication": "autenticación",
   "restarting": "Reiniciando Servidor",
   "selectLocation": "Selecciona Localización",
-  "selectedLocation": "Localización Seleccionada"
+  "selectedLocation": "Localización Seleccionada",
+  "uncheckall": "Quitar Todos",
+  "checkall": "Asignar Todos"
 }

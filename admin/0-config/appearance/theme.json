@@ -2,9 +2,9 @@
   "hidemenus": [],
   "ui": {
     "colors": {
-      "primary": "slate",
-      "menu": "slate",
-      "info": "red",
+      "primary": "blue",
+      "menu": "blue",
+      "info": "blue",
       "logo": "logowhite",
       "danger": "danger",
       "success": "success",

@@ -16,7 +16,7 @@
     "token": true,
     "multilanguage": true,
     "configuration": true,
-    "onesignal": true
+    "onesignal": false
   },
   "developerBy": {
     "name": "Angel Rodríguez",

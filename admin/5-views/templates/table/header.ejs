@@ -2,7 +2,8 @@
     <!--Breadcrumb and Table Options-->
     <div class="breadcrumb-line">
 
-        <ul class="breadcrumb visible-lg visible-md" ng-show="!<%= scope %>.modal.isOpen()" dragonlanguage="">
+        <ul ng-if="!<%= scope %>.headertitle" class="breadcrumb visible-lg visible-md"
+            ng-show="!<%= scope %>.modal.isOpen()" dragonlanguage="">
             <li ng-repeat="(key, menu) in <%= scope %>.MENU.parents track by key">
                 <a data-function="menu" href="javascript:void(0)">
                     <i class="{{menu.icon}} position-left"></i>
@@ -23,6 +24,13 @@
                     {{<%= scope %>.MENU.menu.text}}
                 </a>
 
+            </li>
+        </ul>
+        <ul ng-if="<%= scope %>.headertitle" class="breadcrumb visible-lg visible-md" dragonlanguage="">
+            <li class="active">
+                <a data-function="menu" href="javascript:void(0)">
+                    {{<%= scope %>.headertitle}}
+                </a>
             </li>
         </ul>
         <ul class="breadcrumb-elements visible-elements">
@@ -105,7 +113,9 @@
                     </li>
                 </ul>
             </li>
-            <li class="dropdown" ng-show="<%= scope %>.records.data.length>1 && <%= scope %>.allow(['export.PDF','export.CSV','export.XLS','export.DOC','export.Clipboard'])" dragonlanguage="">
+            <li class="dropdown"
+                ng-show="<%= scope %>.records.data.length>1 && <%= scope %>.allow(['export.PDF','export.CSV','export.XLS','export.DOC','export.Clipboard'])"
+                dragonlanguage="">
                 <a href="#" class="dropdown-toggle legitRipple" data-toggle="dropdown"
                    aria-expanded="false">
                     <i dragonlanguage="" title="MESSAGE.i('mono.Exportas')" class=" icon-database-export "></i>

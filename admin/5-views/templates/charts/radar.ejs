@@ -29,6 +29,10 @@ var toclient = JSON.stringify(options);
 
         // Set paths
         // ------------------------------
+        if(<%= model %>.charts.<%= name %>.onLoad===undefined)
+        <%= model %>.charts.<%= name %>.onLoad = function(){
+
+        }
 
         require.config({
             paths: {
@@ -46,6 +50,7 @@ var toclient = JSON.stringify(options);
                 'echarts/chart/gauge'
             ],
             function (ec, limitless) {
+
                 <%= model %>.
                 charts.<%= name %>_chart = ec.init(document.getElementById('<%= name %>'), limitless);
                 <%= model %>.charts.<%= name %>.refresh  = function () {
@@ -94,6 +99,7 @@ var toclient = JSON.stringify(options);
                 }]
                 };
                                     <%= model %>.charts.<%= name %>_chart.setOption(<%= model %>.charts.<%= name %>_chart_options);                     setTimeout(function () {                         <%= model %>.                         charts.<%= name %>_chart.resize();                     }, 3000);                 }
+                <%= model %>.charts.<%= name %>.onLoad();
             }
         );
     });

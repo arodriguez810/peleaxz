@@ -1,4 +1,5 @@
 exports.executeNonQuery = async function (query, params, show) {
+    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
     if (show === undefined)
         console.log(query.pxz);
     return await new params.mssql.ConnectionPool(params.CONFIG.mssql).connect().then(
@@ -14,10 +15,11 @@ exports.executeNonQuery = async function (query, params, show) {
 };
 exports.executeNonQueryArray = async function (queries, params, show) {
     for (var query of queries)
-        await exports.executeNonQuery(query, params,show);
+        await exports.executeNonQuery(query, params, show);
     return queries;
 };
-exports.insertQuery = function (table, data, params, get, getvalue) {
+exports.insertQuery = async function (table, data, params, get, getvalue) {
+    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
     var datas = (Array.isArray(data)) ? data : [data];
     var queries = "";
     for (var m in datas) {
@@ -47,7 +49,8 @@ exports.insertQuery = function (table, data, params, get, getvalue) {
     }
     return queries;
 };
-exports.update = function (table, data, params) {
+exports.update = async function (table, data, params) {
+    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
     var datas = (Array.isArray(data)) ? data : [data];
     var queries = "";
     for (var m in datas) {
@@ -129,7 +132,8 @@ exports.delete = function (table, data, params) {
     return queries;
 };
 exports.data = async function (query, params, index) {
-        console.log(query.pxz);
+    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
+    console.log(query.pxz);
     return await new params.mssql.ConnectionPool(params.CONFIG.mssql).connect().then(
         pool => {
             return pool.request().query(query);
@@ -231,6 +235,7 @@ exports.defaultRequests = function (Model, params) {
     });
 };
 exports.Model = function (tableName, params) {
+
     this.tableName = tableName;
     this.mssql = params.mssql;
     this.config = params.config;
@@ -354,7 +359,7 @@ exports.Model = function (tableName, params) {
                         where.push(params.format(open + " {0} {1} ('{2}') {4} {3}", field, operator, obj.value.join("','"), connector, close));
                         connectors.push(connector);
                     } else {
-                        if(obj.value!==undefined) {
+                        if (obj.value !== undefined) {
                             where.push(params.format(open + " {0} {1} {2} {4} {3}", field, operator, obj.value[0] === '$' ? obj.value.replace('$', '') : "'" + obj.value + "'", connector, close));
                             connectors.push(connector);
                         }

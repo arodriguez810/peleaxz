@@ -54,6 +54,9 @@ FORM = {
     mask: function (name, model, options) {
         return FORM.template('form/inputmask', {name: name, model: model, opts: options});
     },
+    normalpassword: function (name, model, options) {
+        return FORM.template('form/normalpassword', {name: name, model: model, opts: options});
+    },
     password: function (name, model, options) {
         return FORM.template('form/password', {name: name, model: model, opts: options});
     },

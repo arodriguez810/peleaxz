@@ -29,7 +29,7 @@
         </div>
 
         <div class="row">
-            <div class="col-sm-4 col-md-4 remove-input-space ">
+            <div class="col-sm-4 col-md-4 remove-input-space " ng-show="configuration.mode!=='admin'">
                 <%- FORM.password("config.appKey", scope,
                         {
                             maxlength: 50,
@@ -37,7 +37,7 @@
                         }) %>
             </div>
 
-            <div class="col-sm-4 col-md-4">
+            <div class="col-sm-4 col-md-4" ng-show="configuration.mode!=='admin'">
                 <%-
                 FORM.selectsimple("config.mode", scope, {
                     label: "App Mode",
@@ -62,7 +62,7 @@
 
 
         <div class="row">
-            <div class="col-sm-4 col-md-4 remove-input-space ">
+            <div class="col-sm-4 col-md-4 remove-input-space " ng-show="configuration.mode!=='admin'">
                 <%- FORM.inputview("config.filePath", scope, {
                     maxlength: 50,
                     placeholder: "File Folder",
@@ -73,7 +73,7 @@
     </div>
 </div>
 
-<div class="panel panel-<%= TAG.table %>">
+<div class="panel panel-<%= TAG.table %>" ng-show="configuration.mode!=='admin'">
     <div class="panel-heading">
         <h6 class="panel-title" dragonlanguage><i class="icon-wrench3 position-left"></i>
             <language>MESSAGE.ic('mono.support')</language>
@@ -103,7 +103,7 @@
     </div>
 </div>
 
-<div class="panel panel-<%= TAG.table %>">
+<div class="panel panel-<%= TAG.table %>" ng-show="configuration.mode!=='admin'">
     <div class="panel-heading">
         <h6 class="panel-title" dragonlanguage><i class="icon-equalizer position-left"></i>
             <language>MESSAGE.ic('mono.features')</language>
@@ -291,7 +291,7 @@
     </div>
 </div>
 
-<div class="panel panel-<%= TAG.table %>">
+<div class="panel panel-<%= TAG.table %>" ng-show="configuration.mode!=='admin'">
     <div class="panel-heading">
         <h6 class="panel-title" dragonlanguage><i class="icon-magazine position-left"></i>
             <language>MESSAGE.ic('mono.owner')</language>

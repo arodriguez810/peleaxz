@@ -27,6 +27,7 @@
         "name",
         "description",
         "active",
+        "isAdmin",
         "created",
         "updated",
         "deleted",
@@ -53,7 +54,7 @@
     "permission": {
       "type": "deep"
     },
-    "st_menu": {
+    "menu": {
       "type": "deep"
     },
     "audit": {

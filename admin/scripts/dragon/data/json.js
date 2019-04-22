@@ -25,6 +25,15 @@ DSON = {
             }
         }
     },
+    allfalse: function (to) {
+        for (var i in to) {
+            if (typeof to[i] === 'object') {
+                DSON.allfalse(to[i]);
+            } else if (to[i] === true) {
+                to[i] = false;
+            }
+        }
+    },
     invermerge: function (from, to, deep) {
         return $.extend(deep || true, to, from);
     },

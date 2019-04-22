@@ -28,7 +28,6 @@ app.controller("auth", function ($scope, $http, $compile) {
         }, function (data) {
             SWEETALERT.stop();
             var response = data.data;
-            console.log(response);
             if (response.error !== false) {
                 SWEETALERT.show({
                     type: 'error',

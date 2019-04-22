@@ -30,6 +30,11 @@ var toclient = JSON.stringify(options);
         // Set paths
         // ------------------------------
 
+        if(<%= model %>.charts.<%= name %>.onLoad===undefined)
+        <%= model %>.charts.<%= name %>.onLoad = function(){
+
+        }
+
         require.config({
             paths: {
                 echarts: 'assets/js/plugins/visualization/echarts'
@@ -43,11 +48,12 @@ var toclient = JSON.stringify(options);
                 'echarts/chart/funnel'
             ],
             function (ec, limitless) {
+
                 <%= model %>.
                 charts.<%= name %>_chart = ec.init(document.getElementById('<%= name %>'), limitless);
+
                 <%= model %>.charts.<%= name %>.refresh  = function () {
-                <%= model %>.
-                charts.<%= name %>_chart_options = {
+                <%= model %>.charts.<%= name %>_chart_options = {
                     tooltip: {
                         trigger: 'item',
                         formatter: "{b}:<br/> {c} ({d}%)"
@@ -76,7 +82,9 @@ var toclient = JSON.stringify(options);
                         data: <%= model %>.<%= name %>_data
                     }]
                 };
-                                     <%= model %>.charts.<%= name %>_chart.setOption(<%= model %>.charts.<%= name %>_chart_options);                     setTimeout(function () {                         <%= model %>.                         charts.<%= name %>_chart.resize();                     }, 3000);                 }
+                                     <%= model %>.charts.<%= name %>_chart.setOption(<%= model %>.charts.<%= name %>_chart_options);                     setTimeout(function () {                         <%= model %>.                         charts.<%= name %>_chart.resize();                     }, 3000);
+                }
+                <%= model %>.charts.<%= name %>.onLoad();
             }
         );
     });

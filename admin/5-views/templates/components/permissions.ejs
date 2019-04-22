@@ -1,12 +1,14 @@
+<script>
+    <%= scope %>.searchPermission = "";
+</script>
 <div class="row">
     <div class="col-md-12 col-sm-12">
         <div class="panel panel-flat">
+
             <div class="panel-heading border-bottom-<%= COLOR.info %>">
                 <h6 class="panel-title" dragonlanguage="">
                     <language>MESSAGE.i('mono.persmissionTitle')</language>
-                    <a class="heading-elements-toggle">
-                        <i class="icon-more"></i>
-                    </a>
+
                 </h6>
                 <div class="heading-elements">
                     <div class="form-group has-feedback has-feedback-left">
@@ -15,13 +17,27 @@
                         <div class="form-control-feedback center-icon">
                             <i class="icon-search4"></i>
                         </div>
+                        <div class="form-control-feedback center-icon" style="margin-left: -60%" dragonlanguage="">
+                            <i class=" icon-checkbox-checked">
+                                <language>MESSAGE.i('mono.checkall')</language>
+                            </i>
+
+                        </div>
+                        <div class="form-control-feedback center-icon" style="margin-left: -90%" dragonlanguage="">
+                            <i class=" icon-checkbox-unchecked">
+                                <language>MESSAGE.i('mono.uncheckall')</language>
+                            </i>
+                        </div>
                     </div>
                 </div>
+
             </div>
+
             <div class="subcontent" style="margin-top: 10px;">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-3 col-sm-12 mt-10"
+                             ng-show="<%= scope %>.searchPermission.toLowerCase()==='' || <%= scope %>.moduleName(module.name).toLowerCase().indexOf(<%= scope %>.searchPermission.toLowerCase())!==-1"
                              ng-repeat="(key,module) in <%= scope %>.permissions">
                             <div class="panel panel-white">
                                 <div class="panel-body">
@@ -35,7 +51,8 @@
                                     <ul class="dropdown-menu dropdown-menu-left"
                                         style="width: 100%; min-width: 438px!important; margin-top: 0; float: none;">
                                         <li ng-if="!<%= scope %>.isObject(module.obj.table.allow[aKey])"
-                                            ng-repeat="(aKey,action) in module.obj.table.allow" class="col-md-4 col-sm-12">
+                                            ng-repeat="(aKey,action) in module.obj.table.allow"
+                                            class="col-md-4 col-sm-12">
                                             <a href="#<%= scope %>" class="">
                                                 <div class="checkbox">
                                                     <label>
@@ -47,21 +64,25 @@
                                             </a>
                                         </li>
                                         <ul ng-if="<%= scope %>.isObject(module.obj.table.allow[aKey])"
-                                            ng-repeat="(aKey,action) in module.obj.table.allow" style="width: 100%; float: left;padding-left: 0;">
-                                            <li class="sub-permission col-md-12 col-sm-12" style="padding-left: 23px;font-size: 15px;">{{<%= scope %>.moduleName(aKey)}}</li>
+                                            ng-repeat="(aKey,action) in module.obj.table.allow"
+                                            style="width: 100%; float: left;padding-left: 0;">
+                                            <li class="sub-permission col-md-12 col-sm-12"
+                                                style="padding-left: 23px;font-size: 15px;">{{<%= scope %>
+                                                .moduleName(aKey)}}
+                                            </li>
                                             <li ng-if="!<%= scope %>.isObject(module.obj.table.allow[aKey][saKey])"
-                                                ng-repeat="(saKey,sub) in action" class="col-md-4 col-sm-12 sub-permission">
+                                                ng-repeat="(saKey,sub) in action"
+                                                class="col-md-4 col-sm-12 sub-permission">
                                                 <a href="#<%= scope %>" class="">
                                                     <div class="checkbox">
                                                         <label>
                                                             <input type="checkbox" class="switchery" checked="checked"
                                                                    ng-model="module.obj.table.allow[aKey][saKey]">
-                                                                {{<%= scope %>.moduleName(saKey)}}
+                                                            {{<%= scope %>.moduleName(saKey)}}
                                                         </label>
                                                     </div>
                                                 </a>
                                             </li>
-
                                         </ul>
                                         <!--lista de actions-->
                                     </ul>
@@ -100,11 +121,13 @@
                         </li>
                     </ul>
 
-                    <button onclick="MODAL.close()" type="button" class="btn bg-<%= COLOR.warning %> btn-labeled pull-right"
+                    <button onclick="MODAL.close()" type="button"
+                            class="btn bg-<%= COLOR.warning %> btn-labeled pull-right"
                             dragonlanguage><b><i class="icon-cross2"></i></b>
                         <language>MESSAGE.i('mono.cancel')</language>
                     </button>
-                    <button ng-click="<%= scope %>.savePermission()" type="button" class="btn bg-<%= COLOR.primary %> btn-labeled pull-right"
+                    <button ng-click="<%= scope %>.savePermission()" type="button"
+                            class="btn bg-<%= COLOR.primary %> btn-labeled pull-right"
                             dragonlanguage><b><i class="icon-floppy-disk"></i></b>
                         <language>MESSAGE.i('mono.save')</language>
                     </button>

@@ -1,5 +1,6 @@
 app.controller("ms_allusers", function ($scope, $http, $compile) {
     ms_allusers = this;
+    ms_allusers.headertitle = "Hola Title";
     RUNCONTROLLER("ms_allusers", ms_allusers, $scope, $http, $compile);
     ms_allusers.formulary = function (data, mode, defaultData) {
         if (ms_allusers !== undefined) {

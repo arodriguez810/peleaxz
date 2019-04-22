@@ -24,14 +24,16 @@
 
                             <%- CHART.pie("pie", scope, {}) %>
                             <script>
-                                <%= scope %>.pie_data = [
+                                logica.pie_data = [
                                     {value: 335, name: 'IE'},
                                     {value: 310, name: 'Opera'},
                                     {value: 234, name: 'Safari'},
                                     {value: 135, name: 'Firefox'},
                                     {value: 1548, name: 'Chrome'}
                                 ];
-                                <%= scope %>.charts.pie.refresh();
+                                logica.charts.pie.onLoad = function () {
+                                    logica.charts.pie.refresh();
+                                }
                             </script>
                         </div>
                     </div>
@@ -50,14 +52,16 @@
                             <%- CHART.circle("circle", scope, {}) %>
 
                             <script>
-                                <%= scope %>.circle_data = [
+                                logica.circle_data = [
                                     {value: 335, name: 'IE'},
                                     {value: 310, name: 'Opera'},
                                     {value: 234, name: 'Safari'},
                                     {value: 135, name: 'Firefox'},
                                     {value: 1548, name: 'Chrome'}
                                 ];
-                                <%= scope %>.charts.circle.refresh();
+                                logica.charts.circle.onLoad = function () {
+                                    logica.charts.circle.refresh();
+                                }
                             </script>
                         </div>
                     </div>
@@ -83,14 +87,14 @@
                                     {value: 135, name: 'Firefox'},
                                     {value: 1548, name: 'Chrome'}
                                 ];
-                                <%= scope %>.charts.rose.refresh();
-
+                                <%= scope %>.charts.rose.onLoad = function () {
+                                    <%= scope %>.charts.rose.refresh();
+                                }
                             </script>
                         </div>
                     </div>
 
                 </div>
-
                 <div class="col-sm-6 col-md-6">
                     <div class="panel panel-flat">
                         <div class="panel-heading">
@@ -105,8 +109,8 @@
 
                             <script>
                                 <%= scope %>.radar_data = {
-                                    legend:['Allocated Budget','Actual Spending'],
-                                    polar:[
+                                    legend: ['Allocated Budget', 'Actual Spending'],
+                                    polar: [
                                         {text: 'Sales', max: 100},
                                         {text: 'Administration', max: 100},
                                         {text: 'Information Techology', max: 100},
@@ -114,7 +118,7 @@
                                         {text: 'Development', max: 100},
                                         {text: 'Marketing', max: 100}
                                     ],
-                                    data:[
+                                    data: [
                                         {
                                             value: [97, 68, 88, 94, 90, 86],
                                             name: 'Allocated Budget'
@@ -125,8 +129,9 @@
                                         }
                                     ]
                                 };
-                                <%= scope %>.radar.rose.refresh();
-
+                                <%= scope %>.charts.radar.onLoad = function () {
+                                    <%= scope %>.charts.radar.refresh();
+                                }
                             </script>
                         </div>
                     </div>
@@ -293,8 +298,9 @@
                                         ]
                                     }
                                 ];
-                                <%= scope %>.donuts.rose.refresh();
-
+                                <%= scope %>.charts.donuts.onLoad = function () {
+                                    <%= scope %>.charts.donuts.refresh();
+                                }
                             </script>
                         </div>
                     </div>
@@ -349,8 +355,10 @@
                                         }
                                     ]
                                 }
-                                <%= scope %>.donuts.line.refresh();
 
+                                        <%= scope %>.charts.line.onLoad = function () {
+                                    <%= scope %>.charts.line.refresh();
+                                }
                             </script>
                         </div>
                     </div>
@@ -403,7 +411,10 @@
                                         }
                                     ]
                                 }
-                                <%= scope %>.donuts.area.refresh();
+
+                                        <%= scope %>.charts.area.onLoad = function () {
+                                    <%= scope %>.charts.area.refresh();
+                                }
 
                             </script>
                         </div>
@@ -451,8 +462,10 @@
                                         }
                                     ]
                                 }
-                                <%= scope %>.donuts.columns.refresh();
 
+                                        <%= scope %>.charts.columns.onLoad = function () {
+                                    <%= scope %>.charts.columns.refresh();
+                                }
                             </script>
                         </div>
                     </div>
@@ -503,8 +516,10 @@
                                         }
                                     ]
                                 }
-                                <%= scope %>.donuts.columnsstack.refresh();
 
+                                        <%= scope %>.charts.columnsstack.onLoad = function () {
+                                    <%= scope %>.charts.columnsstack.refresh();
+                                }
                             </script>
                         </div>
                     </div>
@@ -551,8 +566,10 @@
                                         }
                                     ]
                                 }
-                                <%= scope %>.donuts.bar.refresh();
 
+                                        <%= scope %>.charts.bar.onLoad = function () {
+                                    <%= scope %>.charts.bar.refresh();
+                                }
                             </script>
                         </div>
                     </div>
@@ -573,7 +590,7 @@
                             <%- CHART.bar("bar2", scope, {}) %>
                             <script>
                                 <%= scope %>.bar2_data = {
-                                    legend: ['Internet Explorer','Opera','Safari','Firefox','Chrome'],
+                                    legend: ['Internet Explorer', 'Opera', 'Safari', 'Firefox', 'Chrome'],
                                     left: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
                                     data: [
                                         {
@@ -595,7 +612,7 @@
                                                     }
                                                 }
                                             },
-                                            data:[320, 302, 301, 334, 390, 330, 320]
+                                            data: [320, 302, 301, 334, 390, 330, 320]
                                         },
                                         {
                                             name: 'Opera',
@@ -616,7 +633,7 @@
                                                     }
                                                 }
                                             },
-                                            data:[120, 132, 101, 134, 90, 230, 210]
+                                            data: [120, 132, 101, 134, 90, 230, 210]
                                         },
                                         {
                                             name: 'Safari',
@@ -637,7 +654,7 @@
                                                     }
                                                 }
                                             },
-                                            data:[220, 182, 191, 234, 290, 330, 310]
+                                            data: [220, 182, 191, 234, 290, 330, 310]
                                         },
                                         {
                                             name: 'Firefox',
@@ -658,7 +675,7 @@
                                                     }
                                                 }
                                             },
-                                            data:[150, 212, 201, 154, 190, 330, 410]
+                                            data: [150, 212, 201, 154, 190, 330, 410]
                                         },
                                         {
                                             name: 'Chrome',
@@ -679,12 +696,14 @@
                                                     }
                                                 }
                                             },
-                                            data:[820, 832, 901, 934, 1290, 1330, 1320]
+                                            data: [820, 832, 901, 934, 1290, 1330, 1320]
                                         }
                                     ]
                                 }
-                                <%= scope %>.donuts.bar2.refresh();
 
+                                        <%= scope %>.charts.bar2.onLoad = function () {
+                                    <%= scope %>.charts.bar2.refresh();
+                                }
                             </script>
 
                         </div>

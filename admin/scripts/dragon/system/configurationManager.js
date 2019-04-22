@@ -1,9 +1,10 @@
 CONFIGURATION = {
     OPEN: function () {
+        var user = new SESSION().current();
         var modal = {
             width: 'modal-full',
             header: {
-                title: MESSAGE.i('mono.configuration'),
+                title: MESSAGE.ic('mono.configuration') + (user.super ? ' Super Admin' : ' Admin'),
                 icon: "cog2"
             },
             footer: {
@@ -14,6 +15,9 @@ CONFIGURATION = {
                 sameController: 'configuration'
             },
         };
-        baseController.currentModel.modal.modalView("configuration", modal);
+        if (user.super)
+            baseController.currentModel.modal.modalView("configuration", modal);
+        else
+            baseController.currentModel.modal.modalView("configuration/soft", modal);
     }
 };

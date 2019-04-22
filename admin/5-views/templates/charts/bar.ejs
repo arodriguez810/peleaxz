@@ -29,6 +29,10 @@ var toclient = JSON.stringify(options);
 
         // Set paths
         // ------------------------------
+        if(<%= model %>.charts.<%= name %>.onLoad===undefined)
+        <%= model %>.charts.<%= name %>.onLoad = function(){
+
+        }
 
         require.config({
             paths: {
@@ -108,7 +112,10 @@ var toclient = JSON.stringify(options);
                         charts.<%= name %>_chart.resize();
                     }, 3000);
                 }
+                <%= model %>.charts.<%= name %>.onLoad();
+
             }
+
         );
     });
 

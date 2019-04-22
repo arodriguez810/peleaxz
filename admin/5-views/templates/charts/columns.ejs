@@ -30,6 +30,11 @@ var toclient = JSON.stringify(options);
         // Set paths
         // ------------------------------
 
+        if(<%= model %>.charts.<%= name %>.onLoad===undefined)
+        <%= model %>.charts.<%= name %>.onLoad = function(){
+
+        }
+
         require.config({
             paths: {
                 echarts: 'assets/js/plugins/visualization/echarts'
@@ -88,6 +93,7 @@ var toclient = JSON.stringify(options);
                     series: <%= model %>.<%= name %>_data.data
                 };
                                      <%= model %>.charts.<%= name %>_chart.setOption(<%= model %>.charts.<%= name %>_chart_options);                     setTimeout(function () {                         <%= model %>.                         charts.<%= name %>_chart.resize();                     }, 3000);                 }
+                <%= model %>.charts.<%= name %>.onLoad();
             }
         );
     });

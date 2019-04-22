@@ -60,6 +60,7 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
     if (session.current()) {
         baseController.isLogged = true;
         baseController.isSuper = session.current().super;
+        baseController.isAdmin = session.current().groupadmin;
         baseController.userID = session.current().getID();
         baseController.fullName = session.current().fullName();
         GROUPS = new SESSION().current().onlygroups;

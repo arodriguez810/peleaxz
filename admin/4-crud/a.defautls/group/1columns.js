@@ -25,6 +25,12 @@ DSON.keepmerge(CRUD_group, {
                 sorttype: "bool",
                 formattype: "bool"
             },
+            isAdmin: {
+                label: "Admin",
+                visible: true,
+                sorttype: "bool",
+                formattype: "bool"
+            },
             created: {
                 visible: false,
                 sorttype: "time",

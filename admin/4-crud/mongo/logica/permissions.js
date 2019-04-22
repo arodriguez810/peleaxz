@@ -4,7 +4,8 @@ CRUD_logica =
         table: {
             allow: {
                 menu: true,
-                set_permissions: false
+                set_permissions: false,
+                check: true
             }
         }
     };

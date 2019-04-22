@@ -1,11 +1,8 @@
-app.controller("my_user", async function ($scope, $http, $compile) {
+app.controller("my_user", function ($scope, $http, $compile) {
     my_user = this;
     RUNCONTROLLER("my_user", my_user, $scope, $http, $compile);
 
     my_user.permissionTable = "my_user";
-    my_user.ms_category_list = await BASEAPI.listp('ms_category', {}).then((data) => {
-        return data;
-    });
 
     my_user.beforeDelete = function (data) {
         alert("sure bye?");
@@ -42,14 +39,6 @@ app.controller("my_user", async function ($scope, $http, $compile) {
                 return false;
             };
 
-
-            my_user.form.schemas.insert = {
-                password: FORM.schemasType.password,
-                profileimage: FORM.schemasType.upload
-            };
-            my_user.form.schemas.select = {
-                password: FORM.schemasType.password
-            };
             my_user.form.readonly = {};
             my_user.createForm(data, mode, defaultData);
 
@@ -80,5 +69,4 @@ app.controller("my_user", async function ($scope, $http, $compile) {
             });
         }
     };
-    my_user.refreshAngular();
 });

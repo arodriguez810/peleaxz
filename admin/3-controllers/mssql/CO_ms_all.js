@@ -8,6 +8,7 @@ app.controller("ms_all", function ($scope, $http, $compile) {
         }
     ];
     RUNCONTROLLER("ms_all", ms_all, $scope, $http, $compile);
+    ms_all.singular = "Singular";
     ms_all.formulary = function (data, mode, defaultData) {
         if (ms_all !== undefined) {
             RUN_B("ms_all", ms_all, $scope, $http, $compile);
