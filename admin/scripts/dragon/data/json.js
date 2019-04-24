@@ -25,12 +25,12 @@ DSON = {
             }
         }
     },
-    allfalse: function (to) {
+    allvalue: function (to, value) {
         for (var i in to) {
             if (typeof to[i] === 'object') {
-                DSON.allfalse(to[i]);
-            } else if (to[i] === true) {
-                to[i] = false;
+                DSON.allvalue(to[i], value);
+            } else if (to[i] !== value) {
+                to[i] = value;
             }
         }
     },

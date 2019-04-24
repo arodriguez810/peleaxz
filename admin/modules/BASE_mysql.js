@@ -1,6 +1,14 @@
 class Database {
     constructor(params) {
         this.connection = params.mysql.createConnection(params.CONFIG.mysql);
+        this.connection.on('error', function (err) {
+            console.log('db error', err);
+            if (err.code === 'PROTOCOL_CONNECTION_LOST') {
+                console.log('connection lost');
+            } else {
+                console.log('connection lost ' + err);
+            }
+        });
     }
 
     query(sql, args) {

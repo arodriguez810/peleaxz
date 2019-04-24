@@ -57,8 +57,6 @@
       <sourceFolder url="file://$MODULE_DIR$/admin/modules" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/5-views/templates/email" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/5-views/group" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/4-crud" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/4-crud/a.defautls" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/4-crud/a.defautls/group" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/styles" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/styles/base" isTestSource="true" />
@@ -81,9 +79,13 @@
       <sourceFolder url="file://$MODULE_DIR$/admin/5-views/configuration" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/5-views/templates/header" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/5-views/templates" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/5-views" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/5-views/templates/charts" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/recode" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/5-views" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/5-views/language" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/4-crud/a.defautls/language" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/4-crud/a.defautls" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/4-crud" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/.tmp" />
       <excludeFolder url="file://$MODULE_DIR$/admin/assets" />
       <excludeFolder url="file://$MODULE_DIR$/admin/defaults" />

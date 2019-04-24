@@ -1,5 +1,17 @@
 <script>
     <%= scope %>.searchPermission = "";
+    <%= scope %>.allcheck = function (value) {
+        SWEETALERT.loading({message: MESSAGE.i('actions.Loading')});
+        for (var i in <%= scope %>.
+        permissions
+    )
+        {
+            DSON.allvalue(<%= scope %>.permissions[i].obj.table.allow, value
+        )
+            ;
+        }
+        SWEETALERT.stop();
+    }
 </script>
 <div class="row">
     <div class="col-md-12 col-sm-12">
@@ -17,22 +29,54 @@
                         <div class="form-control-feedback center-icon">
                             <i class="icon-search4"></i>
                         </div>
-                        <div class="form-control-feedback center-icon" style="margin-left: -60%" dragonlanguage="">
-                            <i class=" icon-checkbox-checked">
-                                <language>MESSAGE.i('mono.checkall')</language>
-                            </i>
 
-                        </div>
-                        <div class="form-control-feedback center-icon" style="margin-left: -90%" dragonlanguage="">
-                            <i class=" icon-checkbox-unchecked">
-                                <language>MESSAGE.i('mono.uncheckall')</language>
-                            </i>
-                        </div>
+
                     </div>
                 </div>
 
             </div>
+            <div class="panel-footer"><a class="heading-elements-toggle"><i class="icon-more"></i></a>
+                <div class="heading-elements">
+                    <ul class="pull-left inidcador" style="margin-bottom: 8px;">
+                        <li>
+                            <span class="indicador-padding btn border-<%= COLOR.success %> text-<%= COLOR.success %> btn-flat btn-rounded btn-icon btn-xs valign-text-bottom legitRipple">
+                                <i class="icon-checkmark3"></i>
+                            </span>
+                            <label class="text-muted">
+                                <language>Todos los permisos activos</language>
+                            </label>
+                        </li>
+                        <li>
+                            <span class="indicador-padding btn border-orange text-orange btn-flat btn-rounded btn-icon btn-xs valign-text-bottom legitRipple">
+                                <i class="icon-checkmark3"></i>
+                            </span>
+                            <label class="text-muted">
+                                <language>Algunos permisos activos</language>
+                            </label>
+                        </li>
+                        <li>
+                            <span class="indicador-padding btn text-<%= COLOR.danger %>-800 border-<%= COLOR.danger %> btn-flat btn-rounded btn-icon btn-xs valign-text-bottom legitRipple">
+                                <i class="icon-checkmark3"></i>
+                            </span>
+                            <label class="text-muted">
+                                <language>No hay permisos activos</language>
+                            </label>
+                        </li>
+                    </ul>
+                    <button dragonlanguage="" ng-click="<%= scope %>.allcheck(true)"
+                            class="btn bg-<%= COLOR.primary %> btn-labeled pull-right">
+                        <b><i class="icon-checkbox-checked"></i></b>
+                        <language>MESSAGE.i('mono.checkall')</language>
+                    </button>
 
+
+                    <button dragonlanguage="" ng-click="<%= scope %>.allcheck(false)"
+                            class="btn bg-<%= COLOR.primary %> btn-labeled pull-right">
+                        <b><i class="icon-checkbox-unchecked"></i></b>
+                        <language>MESSAGE.i('mono.uncheckall')</language>
+                    </button>
+                </div>
+            </div>
             <div class="subcontent" style="margin-top: 10px;">
                 <div class="container-fluid">
                     <div class="row">
@@ -120,6 +164,7 @@
                             </label>
                         </li>
                     </ul>
+
 
                     <button onclick="MODAL.close()" type="button"
                             class="btn bg-<%= COLOR.warning %> btn-labeled pull-right"

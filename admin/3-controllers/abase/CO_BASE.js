@@ -91,7 +91,20 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
                 var merge = false;
                 if (grouppermission) {
                     for (var gper of grouppermission) {
-                        var permissions = eval("(" + gper.object + ")");
+                        var objects = eval("(" + gper.object + ")");
+                        for (var obj in objects) {
+                            var native = eval("CRUD_" + objects[obj].name + ".table.allow");
+                            for (var i in native) {
+                                if (i !== 'menu') {
+                                    if (!objects[obj].obj.table.allow.hasOwnProperty(i)) {
+                                        eval(`objects[obj].obj.table.allow.${i}=native[i]`);
+                                    }
+                                }
+                            }
+                        }
+                        var permissions = objects;
+
+
                         for (var i in permissions) {
                             if (merge) {
                                 if (eval(`typeof CRUD_${permissions[i].name} !=='undefined'`))
@@ -105,7 +118,18 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
                     }
                 }
                 if (userPermission) {
-                    var permissions = eval("(" + userPermission.object + ")");
+                    var objects = eval("(" + userPermission.object + ")");
+                    for (var obj in objects) {
+                        var native = eval("CRUD_" + objects[obj].name + ".table.allow");
+                        for (var i in native) {
+                            if (i !== 'menu') {
+                                if (!objects[obj].obj.table.allow.hasOwnProperty(i)) {
+                                    eval(`objects[obj].obj.table.allow.${i}=native[i]`);
+                                }
+                            }
+                        }
+                    }
+                    var permissions = objects;
                     for (var i in permissions) {
                         if (merge) {
                             if (eval(`typeof CRUD_${permissions[i].name} !=='undefined'`))
@@ -205,9 +229,34 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
                 SWEETALERT.stop();
                 eval(`${data.$scope.modelName}.permissions = {};`);
                 eval(`${data.$scope.modelName}.idPermission = '${data.$scope.permissionTable || data.$scope.modelName}-${data.row.id}';`);
+
                 DSON.merge(eval(`${data.$scope.modelName}.permissions`), CRUDNAMES, true);
+
                 if (result.data.length > 0) {
-                    eval(`${data.$scope.modelName}.permissions = eval("(" + result.data[0].object + ")")`);
+                    var objects = eval("(" + result.data[0].object + ")");
+                    var exists = [];
+                    var count = 0;
+                    for (var obj in objects) {
+                        count++;
+                        if (eval(`typeof CRUD_${objects[obj].name} !=='undefined'`)) {
+                            exists.push(objects[obj].name);
+                            var native = eval("CRUD_" + objects[obj].name + ".table.allow");
+                            for (var i in native) {
+                                if (i !== 'menu') {
+                                    if (!objects[obj].obj.table.allow.hasOwnProperty(i)) {
+                                        eval(`objects[obj].obj.table.allow.${i}=native[i]`);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    for (var w in CRUDNAMES) {
+                        if (exists.indexOf(CRUDNAMES[w].name) === -1) {
+                            objects[count] = CRUDNAMES[w];
+                            count++;
+                        }
+                    }
+                    eval(`${data.$scope.modelName}.permissions = objects`);
                 }
                 data.$scope.modal.modalView("templates/components/permissions", {
                     width: ENUM.modal.width.full,

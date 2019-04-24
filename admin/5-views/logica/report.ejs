@@ -33,6 +33,7 @@
                                 ];
                                 logica.charts.pie.onLoad = function () {
                                     logica.charts.pie.refresh();
+                                    logica.charts.pie_chart.resize();
                                 }
                             </script>
                         </div>
@@ -80,15 +81,15 @@
                             <%- CHART.rose("rose", scope, {}) %>
 
                             <script>
-                                <%= scope %>.rose_data = [
+                                logica.rose_data = [
                                     {value: 335, name: 'IE'},
                                     {value: 310, name: 'Opera'},
                                     {value: 234, name: 'Safari'},
                                     {value: 135, name: 'Firefox'},
                                     {value: 1548, name: 'Chrome'}
                                 ];
-                                <%= scope %>.charts.rose.onLoad = function () {
-                                    <%= scope %>.charts.rose.refresh();
+                                logica.charts.rose.onLoad = function () {
+                                    logica.charts.rose.refresh();
                                 }
                             </script>
                         </div>
@@ -108,7 +109,7 @@
                             <%- CHART.radar("radar", scope, {}) %>
 
                             <script>
-                                <%= scope %>.radar_data = {
+                                logica.radar_data = {
                                     legend: ['Allocated Budget', 'Actual Spending'],
                                     polar: [
                                         {text: 'Sales', max: 100},
@@ -129,8 +130,8 @@
                                         }
                                     ]
                                 };
-                                <%= scope %>.charts.radar.onLoad = function () {
-                                    <%= scope %>.charts.radar.refresh();
+                                logica.charts.radar.onLoad = function () {
+                                    logica.charts.radar.refresh();
                                 }
                             </script>
                         </div>
@@ -195,8 +196,8 @@
                                     }
                                 };
                                 var radius = [50, 60];
-                                <%= scope %>.donuts_legends = ['GoogleMaps', 'Facebook', 'Youtube', 'Google+', 'Weixin', 'Twitter', 'Skype', 'Messenger', 'Whatsapp', 'Instagram'];
-                                <%= scope %>.donuts_data = [
+                                logica.donuts_legends = ['GoogleMaps', 'Facebook', 'Youtube', 'Google+', 'Weixin', 'Twitter', 'Skype', 'Messenger', 'Whatsapp', 'Instagram'];
+                                logica.donuts_data = [
                                     {
                                         type: 'pie',
                                         center: ['10%', '32.5%'],
@@ -298,8 +299,8 @@
                                         ]
                                     }
                                 ];
-                                <%= scope %>.charts.donuts.onLoad = function () {
-                                    <%= scope %>.charts.donuts.refresh();
+                                logica.charts.donuts.onLoad = function () {
+                                    logica.charts.donuts.refresh();
                                 }
                             </script>
                         </div>
@@ -319,7 +320,7 @@
                             <%- CHART.line("line", scope, {}) %>
 
                             <script>
-                                <%= scope %>.line_data = {
+                                logica.line_data = {
                                     legend: ['Internet Explorer', 'Opera', 'Safari', 'Firefox', 'Chrome'],
                                     down: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
                                     data: [
@@ -356,8 +357,8 @@
                                     ]
                                 }
 
-                                        <%= scope %>.charts.line.onLoad = function () {
-                                    <%= scope %>.charts.line.refresh();
+                                logica.charts.line.onLoad = function () {
+                                    logica.charts.line.refresh();
                                 }
                             </script>
                         </div>
@@ -377,7 +378,7 @@
                             <%- CHART.line("area", scope, {}) %>
 
                             <script>
-                                <%= scope %>.area_data = {
+                                logica.area_data = {
                                     legend: ['Internet Explorer', 'Opera', 'Safari', 'Firefox', 'Chrome'],
                                     down: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
                                     data: [
@@ -412,8 +413,8 @@
                                     ]
                                 }
 
-                                        <%= scope %>.charts.area.onLoad = function () {
-                                    <%= scope %>.charts.area.refresh();
+                                logica.charts.area.onLoad = function () {
+                                    logica.charts.area.refresh();
                                 }
 
                             </script>
@@ -436,7 +437,7 @@
                             <%- CHART.columns("columns", scope, {}) %>
 
                             <script>
-                                <%= scope %>.columns_data = {
+                                logica.columns_data = {
                                     legend: ['Internet Explorer', 'Opera', 'Safari', 'Firefox', 'Chrome'],
                                     down: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
                                     data: [
@@ -463,8 +464,8 @@
                                     ]
                                 }
 
-                                        <%= scope %>.charts.columns.onLoad = function () {
-                                    <%= scope %>.charts.columns.refresh();
+                                logica.charts.columns.onLoad = function () {
+                                    logica.charts.columns.refresh();
                                 }
                             </script>
                         </div>
@@ -486,7 +487,7 @@
                             <%- CHART.columns("columnsstack", scope, {}) %>
 
                             <script>
-                                <%= scope %>.columnsstack_data = {
+                                logica.columnsstack_data = {
                                     legend: ['Internet Explorer', 'Opera', 'Safari', 'Firefox', 'Chrome'],
                                     down: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
                                     data: [
@@ -517,8 +518,8 @@
                                     ]
                                 }
 
-                                        <%= scope %>.charts.columnsstack.onLoad = function () {
-                                    <%= scope %>.charts.columnsstack.refresh();
+                                logica.charts.columnsstack.onLoad = function () {
+                                    logica.charts.columnsstack.refresh();
                                 }
                             </script>
                         </div>
@@ -540,7 +541,7 @@
                             <%- CHART.bar("bar", scope, {}) %>
 
                             <script>
-                                <%= scope %>.bar_data = {
+                                logica.bar_data = {
                                     legend: ['Year 2013', 'Year 2014'],
                                     left: ['Germany', 'France', 'Spain', 'Netherlands', 'Belgium'],
                                     data: [
@@ -567,8 +568,8 @@
                                     ]
                                 }
 
-                                        <%= scope %>.charts.bar.onLoad = function () {
-                                    <%= scope %>.charts.bar.refresh();
+                                logica.charts.bar.onLoad = function () {
+                                    logica.charts.bar.refresh();
                                 }
                             </script>
                         </div>
@@ -589,7 +590,7 @@
                             </div>
                             <%- CHART.bar("bar2", scope, {}) %>
                             <script>
-                                <%= scope %>.bar2_data = {
+                                logica.bar2_data = {
                                     legend: ['Internet Explorer', 'Opera', 'Safari', 'Firefox', 'Chrome'],
                                     left: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
                                     data: [
@@ -701,8 +702,8 @@
                                     ]
                                 }
 
-                                        <%= scope %>.charts.bar2.onLoad = function () {
-                                    <%= scope %>.charts.bar2.refresh();
+                                logica.charts.bar2.onLoad = function () {
+                                    logica.charts.bar2.refresh();
                                 }
                             </script>
 

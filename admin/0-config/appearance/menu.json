@@ -115,6 +115,11 @@
                   "text": "Groups",
                   "href": "#group",
                   "icon": "users4"
+                },
+                {
+                  "text": "Languages",
+                  "href": "#language",
+                  "icon": "earth"
                 }
               ]
             }

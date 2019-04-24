@@ -174,6 +174,10 @@ TABLE = {
                 }
             }
         };
+        $scope.changeFilter = function (changeFilter) {
+            $scope.fixFilters = changeFilter;
+            $scope.refresh();
+        };
         $scope.refresh = async function () {
             if (await $scope.triggers.table.before.load() === false)
                 return;
