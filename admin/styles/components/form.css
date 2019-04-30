@@ -1,0 +1,5 @@
+.remove-input-space input,
+.remove-input-space span,
+.remove-input-space textarea{ /* Remueve el espacio de la sangria */
+    padding-left: 0!important;
+}

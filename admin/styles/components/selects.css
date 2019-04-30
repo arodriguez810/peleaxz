@@ -1,3 +1,11 @@
-.select2-selection__rendered{
+.select2-selection__rendered {
     padding-left: 32px !important;
 }
+
+/*.select2-selection__rendered {*/
+    /*border-bottom: 1px solid #eee;*/
+/*}*/
+
+/*select[class*="select2-hidden-accessible"] + .select2 {*/
+    /*display: none;*/
+/*}*/

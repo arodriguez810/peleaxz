@@ -136,7 +136,7 @@ $(document).ready(function () {
     Pace.on('done', function () {
         if (firstPeace) {
 
-            setTimeout(function () {
+
                 $(".spinner222").addClass('afterSpinerLoad');
                 $('#baseController').show();
 
@@ -169,7 +169,7 @@ $(document).ready(function () {
                     FILE.runServerFile($(this))
                 });
 
-            }, 0);
+
             firstPeace = false;
         }
     });

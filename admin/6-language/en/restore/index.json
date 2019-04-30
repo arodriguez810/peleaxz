@@ -1,4 +1,5 @@
 {
   "Restoreconfigurationforthistable": "Restore configuration for this table",
-  "norestore":"There is no configuration to restore on this screen",
+  "norestore": "There is no configuration to restore on this screen",
+  "yesrestore": "This option removes all persisted configuration data for this table, sorting, columns reorder, current page, limit per page, filters, are you sure?"
 }

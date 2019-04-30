@@ -563,6 +563,28 @@ FORM = {
                     }
                 }
         };
+        $scope.form.selected = function (name) {
+            if (eval(`$scope.form.options.${name}.data`) !== undefined) {
+                var objectSelected = eval(`$scope.form.options.${name}.data`).filter(function (row) {
+                    var idtun = eval(`$scope.form.options.${name}.value`);
+                    return eval(`row.${idtun}`) == eval(`$scope.${name}`);
+                });
+                return objectSelected.length > 0 ? objectSelected[0] : null;
+            } else {
+                return null;
+            }
+        };
+        $scope.form.selectedMultiple = function (name) {
+            if (eval(`$scope.form.options.${name}.data`) !== undefined) {
+                var objectSelected = eval(`$scope.form.options.${name}.data`).filter(function (row) {
+                    var idtun = eval(`$scope.form.options.${name}.value`);
+                    return eval(`row.${idtun}`) == eval(`$scope.${name}`);
+                });
+                return objectSelected.length > 0 ? objectSelected[0] : null;
+            } else {
+                return null;
+            }
+        };
         $scope.form.loadDropDown = function (name) {
             var nameclean = name.replace(/\./g, '_');
             if ($scope.form !== null) {
@@ -600,7 +622,8 @@ FORM = {
                             return item.field === options.parent.myfield || options.parent.model;
                         });
                         if (exist.length) {
-                            exist[0].value = eval(`$scope.${options.parent.model}_object.${options.parent.sufield}`);
+                            if (eval(`$scope.${options.parent.model}_object !==null`))
+                                exist[0].value = eval(`$scope.${options.parent.model}_object.${options.parent.sufield}`);
                         }
                         else {
                             toquery.where.push({
@@ -624,20 +647,25 @@ FORM = {
                                 eval(`$scope.form.options.${name}.groupbydata = newData`);
                             }
                             eval(`$scope.form.options.${name}.data = info.data`);
+                            eval(`${$scope.modelName}.${name}_object = null;`);
                             if (eval(`$scope.form.options.${name}.data`) !== undefined) {
-                                var objectSelected = eval(`$scope.form.options.${name}.data`).filter(function (row) {
-                                    var idtun = eval(`$scope.form.options.${name}.value`);
-                                    return eval(`row.${idtun}`) == eval(`$scope.${name}`);
-                                });
-                                if (objectSelected.length > 0) {
-                                    eval(`${$scope.modelName}.${name}_object = objectSelected[0];`);
+                                if (eval(`$scope.${name}`) !== "[NULL]") {
+                                    var objectSelected = eval(`$scope.form.options.${name}.data`).filter(function (row) {
+                                        var idtun = eval(`$scope.form.options.${name}.value`);
+                                        return eval(`row.${idtun}`) == eval(`$scope.${name}`);
+                                    });
+                                    if (objectSelected.length > 0) {
+                                        eval(`${$scope.modelName}.${name}_object = objectSelected[0];`);
 
-                                    if (options.childs !== false) {
-                                        options.childs.forEach((child) => {
-                                            $scope.form.loadDropDown(child.model);
-                                        });
+                                        if (options.childs !== false) {
+                                            options.childs.forEach((child) => {
+                                                $scope.form.loadDropDown(child.model);
+                                            });
+                                        }
+                                        $scope.$scope.$digest();
+                                    } else {
+                                        eval(`${$scope.modelName}.${name}_object = null;`);
                                     }
-                                    $scope.$scope.$digest();
                                 }
                             }
 

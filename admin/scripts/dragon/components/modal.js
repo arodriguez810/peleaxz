@@ -69,7 +69,7 @@ MODAL = {
             );
             var animation = data.animation || "";
             var bgheader = data.header.bg || COLOR.primary;
-            var closeText = backMode ? "<=" + ARRAY.last(MODAL.historyObject).header.title : "&times;";
+            var closeText = backMode ? "<i class='icon-arrow-left8'></i>" + ARRAY.last(MODAL.historyObject).header.title : "&times;";
             var headercloseButton = data.header.closeButton ?
                 '    <button type="button" id=\'closeModal\' class="bg-' + bgheader + ' close cancelmodal" ' + closeModal + ">" + closeText + "</button>" : "";
             var h = data.header.h || "h6";

@@ -15,3 +15,12 @@
     left: 0;
     margin-top: -2px;
 }
+
+/**/
+table tr td{
+    font-size: 12px!important;
+}
+
+table tr th {
+    font-weight: normal;
+}

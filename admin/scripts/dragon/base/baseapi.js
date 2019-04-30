@@ -93,27 +93,11 @@ BASEAPI = {
             console.log('Error: ' + data);
         });
     },
-    listp: async function (model, parameters) {
-        $http = angular.injector(["ng"]).get("$http");
-        var http = new HTTP();
-        http.setToken($http);
-        var rootPath = '/api/' + model;
-        if (parameters.limit === 0) {
-            parameters.limit = Number.MAX_SAFE_INTEGER;
-        }
-        return await $http.post(rootPath + '/list', parameters).then(function (data) {
-            http.evaluate(data);
-            if (!http.evaluateTokenHTML(data)) {
-                return new Promise(function (resolve, reject) {
-                    resolve(data.data);
-                });
-            }
-        }, function (data) {
-            return new Promise(function (resolve, reject) {
-                reject('Error: ' + data);
-            });
+    listp: (model, parameters) => new Promise((resolve, reject) => {
+        BASEAPI.list(model, parameters, function (result) {
+            resolve(result);
         });
-    },
+    }),
     first: function (model, parameters, callBack) {
         $http = angular.injector(["ng"]).get("$http");
         var http = new HTTP();
@@ -133,6 +117,11 @@ BASEAPI = {
             console.log('Error: ' + data);
         });
     },
+    firstp: (model, parameters) => new Promise((resolve, reject) => {
+        BASEAPI.first(model, parameters, function (result) {
+            resolve(result);
+        });
+    }),
     get: function (model, id, callBack) {
         $http = angular.injector(["ng"]).get("$http");
         var http = new HTTP();
@@ -146,6 +135,11 @@ BASEAPI = {
             console.log('Error: ' + data);
         });
     },
+    getp: (model, id) => new Promise((resolve, reject) => {
+        BASEAPI.get(model, id, function (result) {
+            resolve(result);
+        });
+    }),
     insert: function (model, dataToInsert, callback) {
         $http = angular.injector(["ng"]).get("$http");
         var http = new HTTP();
@@ -159,6 +153,11 @@ BASEAPI = {
             console.log('Error: ' + data);
         });
     },
+    insertp: (model, dataToInsert) => new Promise((resolve, reject) => {
+        BASEAPI.insert(model, dataToInsert, function (result) {
+            resolve(result);
+        });
+    }),
     insertID: function (model, dataToInsert, field, value, callback) {
         $http = angular.injector(["ng"]).get("$http");
         var http = new HTTP();
@@ -176,6 +175,11 @@ BASEAPI = {
             console.log('Error: ' + data);
         });
     },
+    insertIDp: (model, dataToInsert, field, value) => new Promise((resolve, reject) => {
+        BASEAPI.insertID(model, dataToInsert, field, value, function (result) {
+            resolve(result);
+        });
+    }),
     update: function (model, id, dataToUpdate, callback) {
         $http = angular.injector(["ng"]).get("$http");
         var http = new HTTP();
@@ -189,6 +193,11 @@ BASEAPI = {
             console.log('Error: ' + data);
         });
     },
+    updatep: (model, id, dataToUpdate) => new Promise((resolve, reject) => {
+        BASEAPI.update(model, id, dataToUpdate, function (result) {
+            resolve(result);
+        });
+    }),
     updateall: function (model, dataToUpdate, callback) {
         $http = angular.injector(["ng"]).get("$http");
         var http = new HTTP();
@@ -202,6 +211,11 @@ BASEAPI = {
             console.log('Error: ' + data);
         });
     },
+    updateallp: (model, dataToUpdate) => new Promise((resolve, reject) => {
+        BASEAPI.updateall(model, dataToUpdate, function (result) {
+            resolve(result);
+        });
+    }),
     deleteall: function (model, dataToDelete, callback) {
         $http = angular.injector(["ng"]).get("$http");
         var http = new HTTP();
@@ -215,6 +229,11 @@ BASEAPI = {
             console.log('Error: ' + data);
         });
     },
+    deleteallp: (model, dataToDelete) => new Promise((resolve, reject) => {
+        BASEAPI.deleteall(model, dataToDelete, function (result) {
+            resolve(result);
+        });
+    }),
     delete: function (model, id, callback) {
         $http = angular.injector(["ng"]).get("$http");
         var http = new HTTP();
@@ -226,6 +245,11 @@ BASEAPI = {
             console.log('Error: ' + data);
         });
     },
+    deletep: (model, id) => new Promise((resolve, reject) => {
+        BASEAPI.delete(model, id, function (result) {
+            resolve(result);
+        });
+    }),
     mail: function (params, callback) {
         $http = angular.injector(["ng"]).get("$http");
         new HTTP().setToken($http);
@@ -236,5 +260,10 @@ BASEAPI = {
             SWEETALERT.stop();
             console.log('Error: ' + data);
         });
-    }
+    },
+    mailp: (params) => new Promise((resolve, reject) => {
+        BASEAPI.mail(params, function (result) {
+            resolve(result);
+        });
+    }),
 };

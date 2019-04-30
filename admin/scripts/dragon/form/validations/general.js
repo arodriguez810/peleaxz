@@ -5,7 +5,8 @@ VALIDATION = DSON.merge(VALIDATION, {
             return {
                 valid: (!DSON.oseaX(value) && value !== "[NULL]"),
                 message: MESSAGE.i('validations.Fieldisrequired'),
-                type: VALIDATION.types.error
+                type: VALIDATION.types.error,
+                visible: false
             };
         },
         equal: function (value, value2, field, field2) {

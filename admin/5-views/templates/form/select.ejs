@@ -116,47 +116,65 @@ var toclient = JSON.stringify(options);
             {{<%= model %>.form.options.<%= name %>.label}}
         </label>
 
-        <% if(options.allowlist){ %>
-            <a dragonlanguage="" title="MESSAGE.ic('mono.list')" id="list<%= model %>_<%= nameclean %>"
-               class="label bg-<%= TAG.table %> label-icon"
-               style="float: right;">
-                <i class="icon-list"></i>
+        <li class="dropdown" style="float: right;list-style: none">
+            <a href="#" class="dropdown-toggle legitRipple" data-toggle="dropdown"
+               aria-expanded="false">
+                <i dragonlanguage="" title="MESSAGE.i('mono.options')" class="icon-list-unordered"></i>
+                <span class="caret"></span>
             </a>
-        <% } %>
+            <ul class="dropdown-menu dropdown-menu-right">
+                <li ng-show="<%= scope %>.allow('export.Clipboard')">
+                    <a ng-click="<%= scope %>.export.go('Clipboard')"><i class="icon-copy3"></i>
+                        <language>MESSAGE.ic('mono.Clipboard')</language>
+                    </a>
+                </li>
 
-        <% if(!options.multiple){ %>
-            <a dragonlanguage="" title="MESSAGE.i('mono.Viewitem')"
-               ng-show="<%= model + "." + name %>!='[NULL]' && <%= model %>.form.options.<%= name %>.allowview"
-               id="view<%= model %>_<%= nameclean %>"
-               class="label bg-<%= TAG.table %> label-icon"
-               style="float: right;margin-right: 10px;">
-                <i class="icon-eye"></i>
-            </a>
-        <% } %>
+                <% if(options.refresh){ %>
+                    <li>
+                        <a dragonlanguage="" title="MESSAGE.i('mono.RefreshList')"
+                           id="reload<%= model %>_<%= nameclean %>"
+                        >
+                            <i class="icon-reload-alt"></i>
+                            <language>MESSAGE.ic('mono.RefreshList')</language>
+                        </a>
+                    </li>
+                <% } %>
+                <% if(options.allowlist){ %>
+                    <li>
+                        <a dragonlanguage="" title="MESSAGE.ic('mono.list')" id="list<%= model %>_<%= nameclean %>">
+                            <i class="icon-list"></i>
+                            <language>MESSAGE.ic('mono.list')</language>
+                        </a>
+                    </li>
+                <% } %>
+                <% if(!options.multiple){ %>
+                    <li ng-show="<%= model + "." + name %>!='[NULL]' && <%= model %>.form.options.<%= name %>.allowview">
+                        <a dragonlanguage="" title="MESSAGE.i('mono.Viewitem')"
 
-        <a dragonlanguage="" title="MESSAGE.i('mono.Edititem')"
-           ng-show="<%= model + "." + name %>!='[NULL]' &&  <%= model %>.form.options.<%= name %>.allowedit"
-           id="edit<%= model %>_<%= nameclean %>"
-           class="label bg-<%= TAG.table %> label-icon"
-           style="float: right;margin-right: 10px;">
-            <i class="icon-pencil"></i>
-        </a>
+                           id="view<%= model %>_<%= nameclean %>">
+                            <i class="icon-eye"></i>
+                            <language>MESSAGE.ic('mono.Viewitem')</language>
+                        </a>
+                    </li>
+                <% } %>
+                <li ng-show="<%= model %>.form.options.<%= name %>.allownew">
+                    <a dragonlanguage="" title="MESSAGE.i('mono.Additem')" id="new<%= model %>_<%= nameclean %>"
+                    >
+                        <i class="icon-plus-circle2"></i>
+                        <language>MESSAGE.ic('mono.Additem')</language>
+                    </a>
+                </li>
+                <li ng-show="<%= model + "." + name %>!='[NULL]' &&  <%= model %>.form.options.<%= name %>.allowedit">
+                    <a dragonlanguage="" title="MESSAGE.i('mono.Edititem')"
+                       id="edit<%= model %>_<%= nameclean %>">
+                        <i class="icon-pencil"></i>
+                        <language>MESSAGE.ic('mono.Edititem')</language>
+                    </a>
+                </li>
 
+            </ul>
+        </li>
 
-        <a dragonlanguage="" title="MESSAGE.i('mono.Additem')" id="new<%= model %>_<%= nameclean %>"
-           ng-show="<%= model %>.form.options.<%= name %>.allownew"
-           class="label bg-<%= TAG.table %> label-icon"
-           style="float: right;margin-right: 10px;">
-            <i class="icon-plus-circle2"></i>
-        </a>
-
-        <% if(options.refresh){ %>
-            <a dragonlanguage="" title="MESSAGE.i('mono.RefreshList')" id="reload<%= model %>_<%= nameclean %>"
-               class="label bg-<%= TAG.table %> label-icon"
-               style="float: right;margin-right: 10px;">
-                <i class="icon-reload-alt"></i>
-            </a>
-        <% } %>
 
         <select
                 <%= options.multiple ? "multiple='multiple'" : "" %>
@@ -164,7 +182,7 @@ var toclient = JSON.stringify(options);
                 ng-model="<%= model + "." + name %>"
                 name="<%= model %>_<%= nameclean %>"
                 ng-disabled="<%= model %>.form.options.<%= name %>.disabled"
-                class="form-control bootstrap-select">
+                class="form-control bootstrap-select js-example-basic-single">
             <% if(!options.allownull){ %>
                 <option></option>
             <% }else{ %>
@@ -203,7 +221,7 @@ var toclient = JSON.stringify(options);
         {{<%= model %>.form.options.<%= name %>.helptext}}
     </span>
         <span ng-show="<%= model %>.validate['<%= name %>'].messages.length>0" class="help-block">
-        <p class="text-{{validation.type}}"
+        <p class="text-{{validation.type}}" ng-show="validation.visible!==false"
            ng-repeat="(key,validation) in <%= model %>.validate['<%= name %>'].messages track by key">
                <i class="{{validation.icon}}"></i> {{validation.message}}
         </p>
@@ -280,7 +298,10 @@ var toclient = JSON.stringify(options);
         $('#view<%= model %>_<%= nameclean %>').click(function () {
             <%= model %>.
 
-            cell.openLink({column: "<%= options.column %>", value: <%= model %>.<%= name %>, field
+            cell.openLink({
+                table: "<%= options.table %>",
+                column: "<%= options.column %>",
+                value: <%= model %>.<%= name %>, field
         :
             "<%= name %>"
         })
@@ -290,4 +311,5 @@ var toclient = JSON.stringify(options);
             return false;
         });
     });
+    MESSAGE.run();
 </script>

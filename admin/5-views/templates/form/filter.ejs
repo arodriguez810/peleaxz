@@ -1,3 +1,6 @@
+<script>
+    <%= scope %>.refreshAngular();
+</script>
 <div class="row {{<%= scope %>.filters.colored(block)}}"
      ng-repeat="(key,block) in <%= scope %>.filters.blocks track by key"
      value="{{block}}">
@@ -118,22 +121,22 @@
                     class="form-control datetimeFilter"
                     placeholder="{{block.column.placeHolder || <%= scope %>.filters.label(block.column)}}">
 
-            <select
-                    multiple
-                    ng-click="event = $event" ng-change="<%= scope %>.filters.setReal(block,event)"
-                    ng-show="<%= scope %>.filters.showControl(['relation'],block.column) && block.operator.disabled!==true"
-                    style="display: inline;"
-                    ng-model="block.value"
-                    data-column="{{block.column}}"
-                    class="form-control bootstrap-select relationFilter"
+            <div ng-show="<%= scope %>.filters.showControl(['relation'],block.column) && block.operator.disabled!==true">
+                <select
+                        multiple
+                        ng-click="event = $event" ng-change="<%= scope %>.filters.setReal(block,event)"
 
-            >
-                <option ng-repeat="(key,item) in <%= scope %>.filters.getSelect(block) track by key"
-                        value="{{$eval('item.'+block.column.value)}}">
-                    {{$eval(block.column.text)}}
-                </option>
-            </select>
+                        ng-model="block.value"
+                        data-column="{{block.column}}"
+                        class="form-control bootstrap-select relationFilter"
 
+                >
+                    <option ng-repeat="(key,item) in <%= scope %>.filters.getSelect(block) track by key"
+                            value="{{$eval('item.'+block.column.value)}}">
+                        {{$eval(block.column.text)}}
+                    </option>
+                </select>
+            </div>
         </div>
     </div>
     <div class="col-sm-1 col-md-1">
@@ -146,8 +149,9 @@
     <div class="col-sm-1 col-md-1">
         <button type="button" role="button" ng-if="<%= scope %>.filters.visibleConnector(block)"
                 ng-click="<%= scope %>.filters.toggleConnector(block)"
-                class="btn {{<%= scope %>.filters.colorConnector(block)}} text-bold btn-block legitRipple text-left">
-            {{block.connector}}
+                class="btn {{<%= scope %>.filters.colorConnector(block)}} text-bold btn-block legitRipple text-left"
+                dragonlanguage="">
+            {{<%= scope %>.filters.connectorsLabel[block.connector]}}
         </button>
     </div>
     <div class="col-sm-4 col-md-1">
@@ -295,7 +299,13 @@
 
     });
 </script>
-
-
-
-
+<script>
+    if (<%= scope %>.
+    filters.blocks.length == 0
+    )
+    {
+        <%= scope %>.
+        filters.add();
+    }
+    <%= scope %>.refreshAngular();
+</script>

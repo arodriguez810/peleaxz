@@ -5,13 +5,19 @@ ERROR = {
     },
     regulate: function (error) {
         var regulated = MESSAGE.i('alerts.ClientDbError');
+        var regul = false
         if (error.indexOf('REFERENCE constraint') !== -1) {
+            regul = true;
+            return MESSAGE.i('error.dbreference');
+        }
+        if (error.indexOf('a foreign key constraint fails') !== -1) {
+            regul = true;
             return MESSAGE.i('error.dbreference');
         }
         if (CONFIG.mode !== 'developer') {
             return JSON.stringify({trueerror: error, regulated: regulated});
         } else {
-            return regulated;
+            return regul ? regulated : error;
         }
     },
     send: function (error) {

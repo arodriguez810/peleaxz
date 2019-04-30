@@ -125,7 +125,7 @@ TABLE = {
             } else
                 SWEETALERT.confirm({
                     message:
-                        "This option removes all persisted configuration data for this table, sorting, columns reorder, current page, limit per page, filters, are you sure?",
+                        MESSAGE.i('restore.yesrestore'),
                     confirm: function () {
                         STEP.register({
                             scope: $scope.modelName, action: "Restore Configuration",
@@ -198,7 +198,7 @@ TABLE = {
             if ($scope.hasModel("sortorder")) {
                 $scope.table.order = $scope.getModel("sortorder");
             }
-            setTimeout(function () {
+
                 if ($scope.table.loaded !== true) {
                     $scope.table.loaded = true;
                     dataToList = {
@@ -287,7 +287,7 @@ TABLE = {
                         }
                     );
                 }
-            }, 0);
+
         };
     }
 };

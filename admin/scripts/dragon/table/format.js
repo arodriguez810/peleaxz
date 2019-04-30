@@ -11,7 +11,7 @@ TABLEFORMAT = {
                 if (typeof column.format === "function")
                     titleLink = column.format(row);
                 column.sortable = false;
-                return String.format("<a class='btn bg-" + TAG.table + "'>{0}</a>", ICON.i('list', titleLink));
+                return String.format("<a class='dragonlink'>{0}</a>", ICON.i('list', titleLink));
             }
             if (column.link !== undefined) {
                 if (value === null)
@@ -27,12 +27,12 @@ TABLEFORMAT = {
                                 shorttext.substring(0, column.shorttext) + "..."
                             );
                         }
-                        return "<a class=' ver btn bg-" + TAG.table + "'>" + shorttext + "</a>";
+                        return "<a class='dragonlink'>" + shorttext + "</a>";
                     } else {
                         return `<span class='text-grey'>${key}</span>`;
                     }
                 } else {
-                    return "<a class='btn bg-" + TAG.table + "'>" + value + "</a>";
+                    return "<a class='dragonlink'>" + value + "</a>";
                 }
             }
             value = $scope.formatByType(column, row, key);
@@ -223,7 +223,7 @@ TABLEFORMAT = {
                         return String.format("<a data-dragonfile='/" + (column.folder + `/${value}`) + "' class='btn gallerybtn bg-" + TAG.table + "'>{0}</a>", ICON.i('images3'));
                     }
                     default: {
-                        return String.format("<a class='btn bg-" + TAG.table + "'>{0}</a>", ICON.i('files-empty'));
+                        return String.format("<a class='dragonlink'>{0}</a>", ICON.i('files-empty'));
                     }
                 }
             }
@@ -259,11 +259,11 @@ TABLEFORMAT = {
                     if (location.length > 1) {
                         var lat = location[0];
                         var lng = location[1];
-                        return "<a class='btn bg-" + TAG.table + "'>" + ICON.i("location4") + "</a>";
+                        return "<a class='dragonlink'>" + ICON.i("location4") + "</a>";
                     }
                 }
                 else if (column.formattype === "html") {
-                    return String.format("<a class='btn bg-" + TAG.table + "'>{0}</a>", ICON.i("html5"));
+                    return String.format("<a class='dragonlink'>{0}</a>", ICON.i("html5"));
                 }
                 else if (column.formattype === "color") {
                     return String.format("<a class='btn ' style='background-color: {1}' >{0}</a>", ICON.i("brush"), value);
@@ -277,21 +277,21 @@ TABLEFORMAT = {
                     switch (format) {
                         case "image": {
                             if (column.folder) {
-                                return String.format("<a class='btn bg-" + TAG.table + "'>{0}</a>", ICON.i('images3'), fileUrl);
+                                return String.format("<a class='dragonlink'>{0}</a>", ICON.i('images3'), fileUrl);
                             } else
-                                return String.format("<a class='btn bg-" + TAG.table + "'>{0}</a>", FILE.fileToIcon(value), fileUrl);
+                                return String.format("<a class='dragonlink'>{0}</a>", FILE.fileToIcon(value), fileUrl);
                         }
                         case "all": {
                             if (column.folder) {
-                                return String.format("<a class='btn bg-" + TAG.table + "'>{0}</a>", ICON.i(' files-empty'), fileUrl);
+                                return String.format("<a class='dragonlink'>{0}</a>", ICON.i(' files-empty'), fileUrl);
                             } else {
                                 if (FILE.noSupport(value)) {
-                                    return "<a download href='" + fileUrl + "' class='btn bg-" + TAG.table + "'>" + FILE.fileToIcon(value) + "</a>";
+                                    return "<a download href='" + fileUrl + "' class=''>" + FILE.fileToIcon(value) + "</a>";
                                 }
                                 if (FILE.isImage(value))
-                                    return String.format("<a class='btn bg-" + TAG.table + "'>{0}</a>", FILE.fileToIcon(value), fileUrl);
+                                    return String.format("<a class='dragonlink'>{0}</a>", FILE.fileToIcon(value), fileUrl);
                                 else
-                                    return "<a class='btn bg-" + TAG.table + "'>" + FILE.fileToIcon(value) + "</a>";
+                                    return "<a class='dragonlink'>" + FILE.fileToIcon(value) + "</a>";
                             }
                         }
                     }

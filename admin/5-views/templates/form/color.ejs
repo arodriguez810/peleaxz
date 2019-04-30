@@ -5,21 +5,22 @@ var options = {
     icon: {
         class: "none",
         position: "left",
-        color: TAG.table+"-800"
+        color: TAG.table + "-800"
     },
     helptext: '',
     posttype: "color",
     disabled: false
 
 };
-options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g,'_');
+options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g, '_');
 var toclient = JSON.stringify(options);
 %>
 <script>
     <%= model %>.triggers.table.before.control("<%= nameclean %>");
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
-    if(MESSAGE.exist('columns.<%= nameclean %>')){
-        <%= model %>.form.options.<%= name %>.placeholder = MESSAGE.i('columns.<%= nameclean %>');
+    if (MESSAGE.exist('columns.<%= nameclean %>')) {
+        <%= model %>.
+        form.options.<%= name %>.placeholder = MESSAGE.i('columns.<%= nameclean %>');
     }
     var isReadProgram = <%= model %>.form.isReadOnly('<%= name %>');
     if (isReadProgram !== false) {
@@ -43,7 +44,8 @@ var toclient = JSON.stringify(options);
             type="text"
             class="form-control">
 
-    <div style="margin: 10px;" class="form-control-feedback" ng-if="<%= model %>.form.options.<%= name %>.icon.class!=='none'">
+    <div style="margin: 10px;" class="form-control-feedback"
+         ng-if="<%= model %>.form.options.<%= name %>.icon.class!=='none'">
         <i class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} text-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}">
 
         </i>
@@ -54,7 +56,7 @@ var toclient = JSON.stringify(options);
     </span>
 
     <span ng-show="<%= model %>.validate['<%= name %>'].messages.length>0" class="help-block">
-        <p class="text-{{validation.type}}"
+        <p class="text-{{validation.type}}" ng-show="validation.visible!==false"
            ng-repeat="(key,validation) in <%= model %>.validate['<%= name %>'].messages track by key">
                <i class="{{validation.icon}}"></i> {{validation.message}}
         </p>
@@ -82,7 +84,8 @@ var toclient = JSON.stringify(options);
                 ["#600", "#783f04", "#7f6000", "#274e13", "#0c343d", "#073763", "#20124d", "#4c1130"]
             ]
         });
-        <%= model %>.triggers.table.after.control("<%= nameclean %>");
+        <%= model %>.
+        triggers.table.after.control("<%= nameclean %>");
         if (isReadProgram !== false) {
             if (isReadProgram !== undefined)
                 $('.sp-preview-inner').css('background-color', isReadProgram)
@@ -91,11 +94,12 @@ var toclient = JSON.stringify(options);
         $('[name="<%= model %>_<%= nameclean %>"]').change(function () {
 
             STEP.register({
-                    scope: "<%= model %>",
-                    action: "Change Color",
-                    field: "<%= name %>",
-                    value: <%= model %>.<%= name %>
-            });
+                scope: "<%= model %>",
+                action: "Change Color",
+                field: "<%= name %>",
+                value: <%= model %>.<%= name %>
+        })
+            ;
         });
     });
 </script>

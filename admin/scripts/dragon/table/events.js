@@ -28,49 +28,96 @@ TABLEEVENT = {
             );
         });
         $scope.cell.openLink = function (data) {
-            data.column = eval("eval(`CRUD_${$scope.modelName}`).table.columns." + data.column);
-            if (data.column.link && data.column.reference !== false) {
-                if (!DSON.oseaX(data.value)) {
-                    var mylink = data.column.link;
-                    var id = data.value;
-                    SWEETALERT.loading({message: mylink.modal.content.loadingContentText});
-                    var linkCrud = eval("CRUD_" + mylink.table);
-                    BASEAPI.list(mylink.table,
-                        {
-                            limit: 1,
-                            page: 1,
-                            orderby: linkCrud.table.key || "id",
-                            order: "asc",
-                            join: linkCrud.table.single,
-                            where: [
-                                {
-                                    field: linkCrud.table.key,
-                                    value: id
-                                }
-                            ]
-                        }
-                        , function (info) {
-                            SWEETALERT.stop();
-                            baseController.viewData = {
-                                from: $scope.modelName,
-                                to: mylink.table,
-                                data: [
+            if (!DSON.oseaX(data.column)) {
+                data.column = eval("eval(`CRUD_${$scope.modelName}`).table.columns." + data.column);
+                if (data.column.link && data.column.reference !== false) {
+                    if (!DSON.oseaX(data.value)) {
+                        var mylink = data.column.link;
+                        var id = data.value;
+                        SWEETALERT.loading({message: mylink.modal.content.loadingContentText});
+                        var linkCrud = eval("CRUD_" + mylink.table);
+                        BASEAPI.list(mylink.table,
+                            {
+                                limit: 1,
+                                page: 1,
+                                orderby: linkCrud.table.key || "id",
+                                order: "asc",
+                                join: linkCrud.table.single,
+                                where: [
                                     {
                                         field: linkCrud.table.key,
                                         value: id
                                     }
-                                ],
-                                onedata: info.data,
-                                crud: linkCrud
-                            };
-                            mylink.modal.content.sameController = true;
-                            var oldTitle = mylink.modal.header.title;
-                            mylink.modal.header.title = `${MESSAGE.ic('mono.quick')} ${$scope.columnLabel(data.column, data.field)} ${MESSAGE.i('mono.view')}`;
-                            $scope.modal.modalView(String.format("{0}", mylink.table), mylink.modal);
-                            mylink.modal.header.title = oldTitle;
+                                ]
+                            }
+                            , function (info) {
+                                SWEETALERT.stop();
+                                baseController.viewData = {
+                                    from: $scope.modelName,
+                                    to: mylink.table,
+                                    data: [
+                                        {
+                                            field: linkCrud.table.key,
+                                            value: id
+                                        }
+                                    ],
+                                    onedata: info.data,
+                                    crud: linkCrud
+                                };
+                                mylink.modal.content.sameController = true;
+                                var oldTitle = mylink.modal.header.title;
+                                mylink.modal.header.title = `${MESSAGE.ic('mono.quickview')} ${$scope.columnLabel(data.column, data.field)}`;
+                                $scope.modal.modalView(String.format("{0}", mylink.table), mylink.modal);
+                                mylink.modal.header.title = oldTitle;
 
-                        });
+                            });
+                    }
                 }
+            } else {
+                var id = data.value;
+                var linkCrud = eval("CRUD_" + data.table);
+                BASEAPI.list(data.table,
+                    {
+                        limit: 1,
+                        page: 1,
+                        orderby: linkCrud.table.key || "id",
+                        order: "asc",
+                        join: linkCrud.table.single,
+                        where: [
+                            {
+                                field: linkCrud.table.key,
+                                value: id
+                            }
+                        ]
+                    }
+                    , function (info) {
+                        SWEETALERT.stop();
+                        baseController.viewData = {
+                            from: $scope.modelName,
+                            to: data.table,
+                            data: [
+                                {
+                                    field: linkCrud.table.key,
+                                    value: id
+                                }
+                            ],
+                            onedata: info.data,
+                            crud: linkCrud
+                        };
+                        var modal = {
+                            header: {
+                                title: `${MESSAGE.ic('mono.quickview')}`,
+                                icon: "eye"
+                            },
+                            footer: {
+                                cancelButton: true
+                            },
+                            content: {
+                                loadingContentText: MESSAGE.i('actions.Loading')
+                            },
+                        };
+                        $scope.modal.modalView(String.format("{0}", data.table), modal);
+                    });
             }
         };
         $scope.cell.extendclick = function (data) {
@@ -184,7 +231,7 @@ TABLEEVENT = {
                 if (!DSON.oseaX(shorttext))
                     if (shorttext.length > data.column.shorttext) {
                         $scope.modal.simpleModal(data.value, {
-                            header: {title: `${MESSAGE.ic('mono.full')} ${MESSAGE.i('mono.text')} ${MESSAGE.i('mono.of')} ` + data.column.label}
+                            header: {title: `${MESSAGE.ic('mono.completetext')} ${MESSAGE.i('mono.of')} ` + data.column.label}
                         });
                     }
             } else {
@@ -527,7 +574,7 @@ TABLEEVENT = {
                 return item.selected === true;
             });
             if (forCopy.length === 0) {
-                SWEETALERT.show({message: MESSAGE.i('alerts.YMCopy')});
+                SWEETALERT.show({message: MESSAGE.i('alerts.YMCopys')});
                 return;
             }
 

@@ -43,6 +43,10 @@ FILTER = {
         ];
         if (eval(`CRUD_${$scope.modelName}`).table.filters !== undefined) {
             $scope.filters = {};
+            $scope.filters.connectorsLabel = {
+                AND: MESSAGE.ic('mono.and'),
+                OR: MESSAGE.ic('mono.or')
+            };
             $scope.filters.fields = eval(`CRUD_${$scope.modelName}`).table.filters.columns;
             $scope.filters.blocks = [];
             $scope.filters.lastFilter = [];
@@ -82,6 +86,7 @@ FILTER = {
                 endgroup: false,
                 connector: 'AND'
             };
+            $scope.firstTime = true;
             $scope.openFilters = function () {
                 $scope.filters.originals = $scope.filters.blocks.length;
                 $scope.modal.modalView($scope.modelName + '/filter', {
@@ -101,45 +106,51 @@ FILTER = {
 
                             },
                             end: function (data) {
-                                var loadonce = [];
-                                for (const filter of $scope.filters.fields) {
-                                    if (filter.type === FILTER.types.relation) {
-                                        if (loadonce.indexOf(filter.key) === -1) {
-                                            BASEAPI.list(filter.table, filter.query,
-                                                function (info) {
-                                                    eval(`$scope.filters.options.${filter.key} = info.data`);
-                                                    for (const block of $scope.filters.blocks) {
-                                                        if (block.column.type === FILTER.types.relation)
-                                                            block.value = block.finalValue;
-                                                    }
-                                                    $scope.$scope.$digest();
-                                                    if (filter.type === FILTER.types.relation) {
-                                                        $(".relationFilter").select2();
-                                                        $(".relationFilter").on('change', function (e) {
-                                                            $scope.$scope.$digest();
-                                                        });
-                                                    }
-                                                });
-                                        }
-                                        else {
-                                            for (const block of $scope.filters.blocks) {
-                                                if (block.column.type === FILTER.types.relation)
-                                                    block.value = block.finalValue;
+                                if (!$scope.firstTime) {
+                                    var loadonce = [];
+                                    for (const filter of $scope.filters.fields) {
+                                        if (filter.type === FILTER.types.relation) {
+                                            if (loadonce.indexOf(filter.key) === -1) {
+                                                BASEAPI.list(filter.table, filter.query,
+                                                    function (info) {
+                                                        eval(`$scope.filters.options.${filter.key} = info.data`);
+                                                        for (const block of $scope.filters.blocks) {
+                                                            if (block.column.type === FILTER.types.relation)
+                                                                block.value = block.finalValue;
+                                                        }
+                                                        $scope.$scope.$digest();
+                                                        if (filter.type === FILTER.types.relation) {
+                                                            $(".relationFilter").select2();
+                                                            $(".relationFilter").on('change', function (e) {
+                                                                $scope.$scope.$digest();
+                                                            });
+                                                        }
+                                                    });
                                             }
-                                            if (filter.type === FILTER.types.relation) {
-                                                $(".relationFilter").select2();
-                                                $(".relationFilter").on('change', function (e) {
-                                                    $scope.$scope.$digest();
-                                                });
+                                            else {
+                                                for (const block of $scope.filters.blocks) {
+                                                    if (block.column.type === FILTER.types.relation)
+                                                        block.value = block.finalValue;
+                                                }
+                                                if (filter.type === FILTER.types.relation) {
+                                                    $(".relationFilter").select2();
+                                                    $(".relationFilter").on('change', function (e) {
+                                                        $scope.$scope.$digest();
+                                                    });
+                                                }
                                             }
+                                            loadonce.push(filter.key);
                                         }
-                                        loadonce.push(filter.key);
                                     }
+                                } else {
+                                    $scope.firstTime = false;
                                 }
                             }
                         },
                     }
                 });
+
+
             };
             $scope.filters.changeType = function (block) {
                 block.value = "";
@@ -206,10 +217,17 @@ FILTER = {
                 return result;
             };
             $scope.filters.showControl = function (type, column) {
+                console.log(column.type);
                 var filterType = column.type === undefined ? 'string' : column.type;
+
                 return type.indexOf(filterType) !== -1;
             };
             $scope.filters.close = function () {
+                if ($scope.filters.blocks.length === 1) {
+                    if ($scope.filters.blocks[0].applied !== true) {
+                        $scope.filters.blocks = [];
+                    }
+                }
                 if (MODAL.history.length > 0)
                     MODAL.close($scope);
             };
@@ -344,7 +362,6 @@ FILTER = {
                     };
                     $scope.filters.blocks.push(newbloack);
                 }
-
                 $(".relationFilter").select2();
                 $(".relationFilter").on('change', function (e) {
                     $scope.$scope.$digest();
@@ -534,8 +551,10 @@ FILTER = {
                     return;
                 if (DSON.oseaX(block.value))
                     return;
+
+
                 if ([FILTER.types.integer].indexOf(block.column.type) !== -1)
-                    block.finalValue = $(control.currentTarget).cleanVal();
+                    block.finalValue = DSON.cleanNumber($(control.currentTarget).val());
                 else if ([FILTER.types.decimal].indexOf(block.column.type) !== -1) {
                     block.finalValue = Number(block.value.replaceAll(',', '')).toFixed(2);
                     block.finalValue = isNaN(block.finalValue) ? 0 : block.finalValue;

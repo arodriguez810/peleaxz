@@ -289,9 +289,11 @@ exports.defaultRequests = function (Model, params) {
     });
     params.app.post('/api/st_list', function (req, res) {
         params.secure.check(req, res, function () {
-            Model.all(req.query).then((data) => {
+            Model.all(req.query).then ((data) => {
                 if (data.error !== false) res.send(data.error);
                 res.json(data);
+            }).catch(err => {
+                res.json(err);
             });
         });
     });
@@ -308,6 +310,8 @@ exports.defaultRequests = function (Model, params) {
             Model.data(req.body).then((data) => {
                 if (data.error !== false) res.send(data.error);
                 res.json(data);
+            }).catch(err => {
+                res.json(err);
             });
         });
     });
@@ -324,6 +328,8 @@ exports.defaultRequests = function (Model, params) {
             Model.data(req.query).then((data) => {
                 if (data.error !== false) res.send(data.error);
                 res.json(data);
+            }).catch(err => {
+                res.json(err);
             });
         });
     });
@@ -332,6 +338,8 @@ exports.defaultRequests = function (Model, params) {
             Model.find(req.params.id).then((data) => {
                 if (data.error !== false) res.send(data.error);
                 res.json(data);
+            }).catch(err => {
+                res.json(err);
             });
         });
     });
@@ -340,6 +348,8 @@ exports.defaultRequests = function (Model, params) {
             Model.insert(req.body).then((data) => {
                 if (data.error !== false) res.send(data.error);
                 res.json(data);
+            }).catch(err => {
+                res.json(err);
             });
         });
     });
@@ -355,6 +365,8 @@ exports.defaultRequests = function (Model, params) {
             Model.insertID(req.body).then((data) => {
                 if (data.error !== false) res.send(data.error);
                 res.json(data);
+            }).catch(err => {
+                res.json(err);
             });
         });
     });
@@ -363,6 +375,8 @@ exports.defaultRequests = function (Model, params) {
             Model.update(req.body).then((data) => {
                 if (data.error !== false) res.send(data.error);
                 res.json(data);
+            }).catch(err => {
+                res.json(err);
             });
         });
     });
@@ -371,6 +385,8 @@ exports.defaultRequests = function (Model, params) {
             Model.delete(req.body).then((data) => {
                 if (data.error !== false) res.send(data.error);
                 res.json(data);
+            }).catch(err => {
+                res.json(err);
             });
         });
     });

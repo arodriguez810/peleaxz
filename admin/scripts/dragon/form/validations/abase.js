@@ -117,7 +117,8 @@ VALIDATION = {
                     icon: rule.type.replace(VALIDATION.types.error, 'danger').replace(VALIDATION.types.success, 'icon-checkmark4 text-success')
                         .replace('danger', 'icon-cancel-circle2 text-danger')
                         .replace(VALIDATION.types.warning, 'icon-notification2 text-warning'),
-                    type: rule.type.replace(VALIDATION.types.error, 'danger')
+                    type: rule.type.replace(VALIDATION.types.error, 'danger'),
+                    visible: rule.visible
                 });
             }
         var valid = (messages.length === 0 && type !== VALIDATION.types.error);

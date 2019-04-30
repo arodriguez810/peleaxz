@@ -57,7 +57,7 @@ var toclient = JSON.stringify(options);
     </span>
 
     <span ng-show="<%= model %>.validate['<%= name %>'].messages.length>0" class="help-block">
-       <p class="text-{{validation.type}}"
+       <p class="text-{{validation.type}}" ng-show="validation.visible!==false"
           ng-repeat="(key,validation) in <%= model %>.validate['<%= name %>'].messages track by key">
                <i class="{{validation.icon}}"></i> {{validation.message}}
         </p>

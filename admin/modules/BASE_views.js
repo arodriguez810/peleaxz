@@ -79,10 +79,12 @@ exports.runServices = function (services, prefix, params) {
             var service = config[0];
             var functionR = config[1];
             eval(`var serviceFunction = params.servicesFunctions["${service}"].gets.${functionR}`);
-            return await serviceFunction(req.query).then(result => {
+            return await serviceFunction(req.query).then (result => {
                 params.secure.check(req, res, function () {
                     res.json(result);
                 });
+            }).catch(err => {
+                res.json(err);
             });
         });
     }
@@ -94,10 +96,12 @@ exports.runServices = function (services, prefix, params) {
             var service = config[0];
             var functionR = config[1];
             eval(`var serviceFunction = params.servicesFunctions["${service}"].posts.${functionR}`);
-            return await serviceFunction(req.body).then(result => {
+            return await serviceFunction(req.body).then (result => {
                 params.secure.check(req, res, function () {
                     res.json(result);
                 });
+            }).catch(err => {
+                res.json(err);
             });
         });
     }
@@ -109,10 +113,12 @@ exports.runServices = function (services, prefix, params) {
             var service = config[0];
             var functionR = config[1];
             eval(`var serviceFunction = params.servicesFunctions["${service}"].puts.${functionR}`);
-            return await serviceFunction(req.body).then(result => {
+            return await serviceFunction(req.body).then (result => {
                 params.secure.check(req, res, function () {
                     res.json(result);
                 });
+            }).catch(err => {
+                res.json(err);
             });
         });
     }
@@ -124,10 +130,12 @@ exports.runServices = function (services, prefix, params) {
             var service = config[0];
             var functionR = config[1];
             eval(`var serviceFunction = params.servicesFunctions["${service}"].deletes.${functionR}`);
-            return await serviceFunction(req.body).then(result => {
+            return await serviceFunction(req.body).then (result => {
                 params.secure.check(req, res, function () {
                     res.json(result);
                 });
+            }).catch(err => {
+                res.json(err);
             });
         });
     }
@@ -427,7 +435,7 @@ exports.init = function (params) {
         });
     });
     params.app.get("/generalfiles/api/", function (req, res) {
-        params.secure.check(req, res, function () {
+        params.secure.check(req, res, function (test) {
             var fs = params.fs || require("fs");
             var folder = req.query.folder;
             var realPath = params.folders.files + "/" + folder;
@@ -494,8 +502,10 @@ exports.init = function (params) {
             var files = req.body.filename;
             var dirfile = __dirname + '/..' + params.S(files[0]).replaceAll('/', '\\');
 
-            params.csvtojson().fromFile(dirfile).then((jsonObj) => {
+            params.csvtojson().fromFile(dirfile).then ((jsonObj) => {
                 res.json(jsonObj);
+            }).catch(err => {
+                res.json(err);
             });
         });
     });

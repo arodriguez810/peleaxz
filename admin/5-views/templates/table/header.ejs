@@ -65,8 +65,9 @@
                 </ul>
             </li>
             <li class="dropdown visible-lg visible-md" ng-show="<%= scope %>.records.data.length>1">
-                <a title="Records Per Page" href="#" class="dropdown-toggle legitRipple" data-toggle="dropdown"
-                   aria-expanded="false">
+                <a dragonlanguage title="MESSAGE.i('navbar.RecordsPerPage')" href="#"
+                   class="dropdown-toggle legitRipple" data-toggle="dropdown"
+                   aria-expanded="false" dragonlanguage="">
                     <i dragonlanguage="" title="MESSAGE.i('navbar.RecordsPerPage')" class="icon-list"></i>
                     ({{<%= scope %>.table.currentLimit===0?'All':<%= scope %>.table.currentLimit}})
                     <span ng-show="<%= scope %>.getLimits().length>1" class="caret"></span>
@@ -79,14 +80,33 @@
                 </ul>
             </li>
             <li class="dropdown" ng-if="<%= scope %>.allow('filter') && <%= scope %>.filters!==undefined">
-                <a href="#" class="dropdown-toggle legitRipple" data-toggle="dropdown"
+                <a href="#"
+                    ng-show="<%= scope %>.filters.blocks.length"
+                   class="dropdown-toggle legitRipple" data-toggle="dropdown"
                    aria-expanded="false">
                     <i dragonlanguage="" title="MESSAGE.ic('mono.filters')" class=" icon-filter4 "></i>
                     <span ng-show="<%= scope %>.filters.blocks.length"
-                          class="label bg-<%= TAG.table %>-400">{{<%= scope %>.filters.blocks.length}}</span>
-                    <span class="caret"></span>
+                          class="label bg-<%= TAG.table %>-400">
+                        {{<%= scope %>.filters.blocks.length}}
+                    </span>
+                     
+                    <span class="caret" ng-show="<%= scope %>.filters.blocks.length"></span>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-right" dragonlanguage>
+                <a href="#"
+                   ng-show="!<%= scope %>.filters.blocks.length"
+                   ng-click="<%= scope %>.openFilters();"
+                   class="dropdown-toggle legitRipple" data-toggle="dropdown"
+                   aria-expanded="false">
+                    <i dragonlanguage="" title="MESSAGE.ic('mono.filters')" class=" icon-filter4 "></i>
+                    <span ng-show="<%= scope %>.filters.blocks.length"
+                          class="label bg-<%= TAG.table %>-400">
+                        {{<%= scope %>.filters.blocks.length}}
+                    </span>
+                     
+                    <span class="caret" ng-show="<%= scope %>.filters.blocks.length"></span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right" dragonlanguage
+                    ng-show="<%= scope %>.filters.blocks.length">
                     <li>
                         <a ng-click="<%= scope %>.openFilters();" class="legitRipple">
                             <language>MESSAGE.ic('mono.open')</language>

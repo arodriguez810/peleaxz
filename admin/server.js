@@ -299,6 +299,9 @@ ThereConfig.then(function (thereConfig) {
             var query = fs.readFileSync(`./${folders.models}/mssql/${sentence}`);
             queries.push(util.format("%s", query));
         }
+        if (!CONFIG.features.migrations) {
+            queries = ['select 1;'];
+        }
         modules.mssql.executeNonQueryArray(queries, PARAMS, false).then(x => {
             console.log('loaded mssql models');
             fs.readdir("./" + folders.models + "/scripts/mssql", function (err, mssentences) {
@@ -341,6 +344,9 @@ ThereConfig.then(function (thereConfig) {
             var sentence = myfiles[i];
             var query = fs.readFileSync(`./${folders.models}/mysql/${sentence}`);
             queries.push(util.format("%s", query));
+        }
+        if (!CONFIG.features.migrations) {
+            queries = ['select 1;'];
         }
 
         modules.mysql.executeNonQueryArray(queries, PARAMS, false).then(x => {
@@ -386,6 +392,9 @@ ThereConfig.then(function (thereConfig) {
             var sentence = orafiles[i];
             var query = fs.readFileSync(`./${folders.models}/oracle/${sentence}`);
             queries.push(util.format("%s", query));
+        }
+        if (!CONFIG.features.migrations) {
+            queries = ['select 1 from dual'];
         }
         modules.oracle.executeNonQueryArray(queries, PARAMS, false).then(x => {
             console.log('loaded oracle models');

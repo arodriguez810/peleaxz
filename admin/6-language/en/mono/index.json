@@ -75,6 +75,7 @@
   "RefreshList": "Refresh List",
   "Thereisnodataselected": "There is no data selected",
   "and": "and",
+  "or": "or",
   "items": "items",
   "Viewof": "View of",
   "of": "of",
@@ -98,6 +99,7 @@
   "filesof": "filesof",
   "DeletingMultipleRows": "Deleting Multiple Rows",
   "quick": "quick",
+  "quickview": "quick view",
   "view": "view",
   "options": "options",
   "downloading": "downloading",
@@ -144,5 +146,6 @@
   "selectLocation": "Select Location",
   "selectedLocation": "Location Selected",
   "uncheckall": "Uncheck All",
-  "checkall": "Check All"
+  "checkall": "Check All",
+  "completetext": "Complete Text"
 }

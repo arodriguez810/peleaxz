@@ -1,4 +1,5 @@
 {
   "Restoreconfigurationforthistable": "Restaurar la configuración para esta tabla",
-  "norestore": "No hay configuración para restaurar en esta pantalla"
+  "norestore": "No hay configuración para restaurar en esta pantalla",
+  "yesrestore": "Esta opción elimina todos los datos de configuración persistentes para esta tabla, clasificación, reordenación de columnas, página actual, límite por página y filtros, ¿estás seguro?"
 }

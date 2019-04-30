@@ -75,6 +75,7 @@
   "RefreshList": "Refrescar Lista",
   "Thereisnodataselected": "No hay data seleccionada",
   "and": "y",
+  "or": "o",
   "items": "elementos",
   "Viewof": "Vista de",
   "of": "de",
@@ -97,7 +98,8 @@
   "deleting": "eliminando",
   "filesof": "archivo de",
   "DeletingMultipleRows": "Eliminando varias filas",
-  "quick": "rapida",
+  "quick": "rápida",
+  "quickview": "vista rápida",
   "view": "vista",
   "options": "opciones",
   "downloading": "descargando",
@@ -144,5 +146,6 @@
   "selectLocation": "Selecciona Localización",
   "selectedLocation": "Localización Seleccionada",
   "uncheckall": "Quitar Todos",
-  "checkall": "Asignar Todos"
+  "checkall": "Asignar Todos",
+  "completetext": "Texto Completo"
 }

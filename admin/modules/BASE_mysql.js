@@ -18,6 +18,8 @@ class Database {
                     return reject(err);
                 this.close().then(d => {
                     resolve(rows);
+                }).catch(err => {
+                    reject(err);
                 });
             });
         });
@@ -213,6 +215,8 @@ exports.defaultRequests = function (Model, params) {
             Model.all(req.query).then((data) => {
                 if (data.error !== false) res.send(data.error);
                 res.json(data);
+            }).catch(err => {
+                res.json(err);
             });
         });
     });
@@ -228,6 +232,8 @@ exports.defaultRequests = function (Model, params) {
             Model.all(req.body).then((data) => {
                 if (data.error !== false) res.send(data.error);
                 res.json(data);
+            }).catch(err => {
+                res.json(err);
             });
         });
     });
@@ -236,6 +242,8 @@ exports.defaultRequests = function (Model, params) {
             Model.all(req.query).then((data) => {
                 if (data.error !== false) res.send(data.error);
                 res.json(data);
+            }).catch(err => {
+                res.json(err);
             });
         });
     });
@@ -244,6 +252,8 @@ exports.defaultRequests = function (Model, params) {
             Model.find(req.params.id).then((data) => {
                 if (data.error !== false) res.send(data.error);
                 res.json(data);
+            }).catch(err => {
+                res.json(err);
             });
         });
     });
@@ -252,6 +262,8 @@ exports.defaultRequests = function (Model, params) {
             Model.insert(req.body).then((data) => {
                 if (data.error !== false) res.send(data.error);
                 res.json(data);
+            }).catch(err => {
+                res.json(err);
             });
         });
     });
@@ -260,6 +272,8 @@ exports.defaultRequests = function (Model, params) {
             Model.insertID(req.body.insertData, req.body.field, req.body.value).then((data) => {
                 if (data.error !== false) res.send(data.error);
                 res.json(data);
+            }).catch(err => {
+                res.json(err);
             });
         });
     });
@@ -268,6 +282,8 @@ exports.defaultRequests = function (Model, params) {
             Model.update(req.body).then((data) => {
                 if (data.error !== false) res.send(data.error);
                 res.json(data);
+            }).catch(err => {
+                res.json(err);
             });
         });
     });
@@ -276,6 +292,8 @@ exports.defaultRequests = function (Model, params) {
             Model.delete(req.body).then((data) => {
                 if (data.error !== false) res.send(data.error);
                 res.json(data);
+            }).catch(err => {
+                res.json(err);
             });
         });
     });
@@ -406,6 +424,7 @@ exports.Model = function (tableName, params) {
                         connectors.push(connector);
                     } else {
                         if (obj.value !== undefined) {
+                            obj.value = obj.value.toString();
                             where.push(params.format(open + " {0} {1} {2} {4} {3}", field, operator, obj.value[0] === '$' ? obj.value.replace('$', '') : "'" + obj.value + "'", connector, close));
                             connectors.push(connector);
                         }

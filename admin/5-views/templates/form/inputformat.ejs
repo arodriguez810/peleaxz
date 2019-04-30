@@ -19,7 +19,9 @@ var options = {
 
 };
 
+
 options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g,'_');
+options.icon.spyce = options.icon.class === "none" ? "remove-input-space" : "";
 options.autocomplete = options.autocomplete ? "autocomplete='Off'" : '';
 options.format = options.format ? options.format : false;
 options.model = options.model ? options.model : false;
@@ -40,7 +42,7 @@ var toclient = JSON.stringify(options);
         <%= model %>.form.options.<%= name %>.placeholder = MESSAGE.i('columns.<%= nameclean %>');
     }
 </script>
-<div class="form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-{{::<%= model %>.form.options.<%= name %>.icon.position}}"
+<div class="<%= options.icon.spyce %> form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-{{::<%= model %>.form.options.<%= name %>.icon.position}}"
      id="input<%= model %>_<%= nameclean %>">
     <label
             class="control-label {{<%= model + "." + name %>?'is-visible animate':''}}">
@@ -68,7 +70,7 @@ var toclient = JSON.stringify(options);
 
     <span ng-if="<%= model %>.validate['<%= name %>'].messages.length>0" class="help-block">
 
-        <p class="text-{{validation.type}}"
+        <p class="text-{{validation.type}}" ng-show="validation.visible!==false"
            ng-repeat="(key,validation) in <%= model %>.validate['<%= name %>'].messages track by key">
                <i class="{{validation.icon}}"></i> {{validation.message}}
         </p>
