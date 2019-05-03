@@ -8,7 +8,7 @@ var options = {
         color: TAG.table + "-800"
     },
     helptext: '',
-    format: 'd/m/Y h:i',
+    format: 'd/m/Y h:i a',
     callformat: 'DD/MM/YYYY hh:mm a',
     posttype: "datetime",
     timepicker: true,
@@ -31,15 +31,14 @@ if (options.timepicker === false)
     options.posttype = 'date';
 if (options.datepicker === false)
     options.posttype = 'time';
-options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g,'_');
+options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g, '_');
 var toclient = JSON.stringify(options);
 %>
 <script>
     <%= model %>.triggers.table.before.control("<%= nameclean %>");
-    <%= model %>.form.schemas.select["<%= name %>"] =FORM.schemasType.datetime;
+    <%= model %>.form.schemas.select["<%= name %>"] = FORM.schemasType.datetime;
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
     <%= model %>.form.registerField("<%= name %>_DragonClean", "<%= toclient %>");
-
 
 
     if (MESSAGE.exist('columns.<%= nameclean %>')) {
@@ -115,10 +114,14 @@ var toclient = JSON.stringify(options);
 
         $.datetimepicker.setLocale(MESSAGE.current().code);
 
+        $('#<%= model %>_<%= nameclean %>').keypress(function (e) {
+            e.preventDefault();
+            return false;
+        });
         $('#<%= model %>_<%= nameclean %>').datetimepicker({
-            scrollMonth:false,
-            scrollTime:false,
-            scrollInput:false,
+            scrollMonth: false,
+            scrollTime: false,
+            scrollInput: false,
             format: '<%= options.format %>',
             timepicker: <%= options.timepicker %>,
             datepicker: <%= options.datepicker %>,
@@ -153,9 +156,8 @@ var toclient = JSON.stringify(options);
             else
                 {
                     <%= model %>.
-                    <%= name %>_DragonClean = moment(currentDateTime).format("YYYY-MM-DD H:mm a");
+                    <%= name %>_DragonClean = moment(currentDateTime).format("YYYY-MM-DD H:mm");
                 }
-
 
 
                 STEP.register({
@@ -183,7 +185,7 @@ var toclient = JSON.stringify(options);
                     if (jsOptions.maxDateTime)
                         this.setOptions({maxDateTime: eval(`<%= model %>.${jsOptions.maxDateTime}_DragonClean`)});
 
-                }else{
+                } else {
                     if (jsOptions.minTime)
                         this.setOptions({minTime: jsOptions.minTime});
                     if (jsOptions.minDate)
@@ -200,6 +202,7 @@ var toclient = JSON.stringify(options);
                 }
             }
         });
-        <%= model %>.triggers.table.after.control("<%= nameclean %>");
+        <%= model %>.
+        triggers.table.after.control("<%= nameclean %>");
     });
 </script>

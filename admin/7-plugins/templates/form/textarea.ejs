@@ -6,7 +6,7 @@ var options = {
     icon: {
         class: "none",
         position: "left",
-        color: TAG.table+"-800"
+        color: TAG.table + "-800"
     },
     helptext: '',
     format: '',
@@ -17,7 +17,7 @@ var options = {
     //maxlength: 10,
 
 };
-options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g,'_');
+options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g, '_');
 options.autocomplete = options.autocomplete ? "autocomplete='Off'" : '';
 options.format = options.format ? options.format : false;
 options.model = options.model ? options.model : false;
@@ -26,8 +26,9 @@ var toclient = JSON.stringify(options);
 <script>
     <%= model %>.triggers.table.before.control("<%= nameclean %>");
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
-    if(MESSAGE.exist('columns.<%= nameclean %>')){
-        <%= model %>.form.options.<%= name %>.placeholder = MESSAGE.i('columns.<%= nameclean %>');
+    if (MESSAGE.exist('columns.<%= nameclean %>')) {
+        <%= model %>.
+        form.options.<%= name %>.placeholder = MESSAGE.i('columns.<%= nameclean %>');
     }
 </script>
 <div class="form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
@@ -37,16 +38,16 @@ var toclient = JSON.stringify(options);
             class="control-label {{<%= model + "." + name %>?'is-visible animate':''}}">
         {{<%= model %>.form.options.<%= name %>.placeholder}}
     </label>
-    <textarea
-            ng-model="<%= model + "." + name %>" name="<%= model %>_<%= nameclean %>"
-            ng-readonly="<%= model %>.form.options.<%= name %>.readonly"
-            ng-disabled="<%= model %>.form.options.<%= name %>.disabled"
-            maxlength="{{<%= model %>.form.options.<%= name %>.maxlength}}"
-            ng-model-onblur
-            type="{{<%= model %>.form.options.<%= name %>.type}}"
+    <textarea rows=""
+              ng-model="<%= model + "." + name %>" name="<%= model %>_<%= nameclean %>"
+              ng-readonly="<%= model %>.form.options.<%= name %>.readonly"
+              ng-disabled="<%= model %>.form.options.<%= name %>.disabled"
+              maxlength="{{<%= model %>.form.options.<%= name %>.maxlength}}"
+              ng-model-onblur
+              type="{{<%= model %>.form.options.<%= name %>.type}}"
             <%= options.model ? "value='{{" + options.model + "}}'" : "" %>
-            class="form-control"
-            placeholder="{{<%= model %>.form.options.<%= name %>.placeholder}}"></textarea>
+              class="form-control"
+              placeholder="{{<%= model %>.form.options.<%= name %>.placeholder}}"></textarea>
 
     <div class="form-control-feedback">
         <i class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} text-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}">
@@ -67,7 +68,8 @@ var toclient = JSON.stringify(options);
 </div>
 <script>
     $(document).ready(function () {
-        <%= model %>.triggers.table.after.control("<%= nameclean %>");
+        <%= model %>.
+        triggers.table.after.control("<%= nameclean %>");
         <% if(options.format){ %>
         $('[name="<%= model %>_<%= nameclean %>"]').formatter({
             pattern: '<%= options.format %>'
@@ -82,20 +84,24 @@ var toclient = JSON.stringify(options);
         $('[name="<%= model %>_<%= nameclean %>"]').trigger("change");
         $('[name="<%= model %>_<%= nameclean %>"]').blur(function () {
             STEP.register({
-                    scope: "<%= model %>",
-                    action: "Change TextArea",
-                    field: "<%= name %>",
-                    value: <%= model %>.<%= name %>
-            });
+                scope: "<%= model %>",
+                action: "Change TextArea",
+                field: "<%= name %>",
+                value: <%= model %>.<%= name %>
+        })
+            ;
 
         });
-        var isReadProgram = <%= model %>.form.isReadOnly('<%= name %>');
-        if(isReadProgram!==false){
-            <%= model %>.form.options.<%= name %>.disabled = true;
-            if(isReadProgram!==undefined){
+        var isReadProgram = <%= model %>.
+        form.isReadOnly('<%= name %>');
+        if (isReadProgram !== false) {
+            <%= model %>.
+            form.options.<%= name %>.disabled = true;
+            if (isReadProgram !== undefined) {
                 <%= model %>.<%= name %> = isReadProgram;
                 $('[name="<%= model %>_<%= nameclean %>"]').html(isReadProgram)
             }
         }
+        autosize(document.querySelectorAll('textarea'));
     });
 </script>

@@ -25,4 +25,8 @@
           ng-mouseup="<%= scope %>.cell.mouseup(key,value,row)"
     ></span>
 
+    <span class="handle"
+          ng-show="key==='id' && <%= scope %>.dragrow"
+          ng-bind-html="<%= scope %>.drawHandler()">
+    </span>
 </td>

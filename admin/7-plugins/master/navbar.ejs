@@ -37,6 +37,7 @@
                     <i class="icon-loop"></i>
                 </a>
             </li>
+
             <li class="dropdown" ng-show="baseController.favorites.length">
                 <a href="#" class="dropdown-toggle legitRipple" data-toggle="dropdown" dragonlanguage
                    data-popup="tooltip"
@@ -85,6 +86,12 @@
                 <a class="sidebar-control" onclick="CONFIGURATION.OPEN()" data-popup="tooltip"
                    data-placement="bottom" data-container="body" dragonlanguage title="MESSAGE.i('mono.configuration')">
                     <i class=" icon-cog2"></i>
+                </a>
+            </li>
+            <li ng-if="baseController.features.onesignal===true && (baseController.isSuper || baseController.isAdmin)">
+                <a class="sidebar-control" href="#notifications" data-popup="tooltip"
+                   data-placement="bottom" data-container="body" dragonlanguage title="MESSAGE.i('mono.notifications')">
+                    <i class="icon-bubble-notification"></i>
                 </a>
             </li>
         </ul>

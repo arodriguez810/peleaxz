@@ -1,0 +1,26 @@
+<form>
+    <div class="panel panel-body login-form">
+        <div class="text-center" dragonlanguage="">
+            <div class="icon-object border-<%= COLOR.primary %>-800 text-<%= TAG.table %>"><i
+                        class="icon-spinner11"></i></div>
+            <h5 class="content-group">
+                <language>MESSAGE.ic('login.passwordrecovery')</language>
+                <small class="display-block">
+                    <language>MESSAGE.ic('login.willsendemail')</language>
+                </small>
+            </h5>
+        </div>
+
+        <div class="form-group has-feedback">
+            <%- FORM.input("forgotfield", scope, {placeholder: "User", icon: {class: "user"}}) %>
+            <div class="form-control-feedback">
+                <i class="icon-mail5 text-muted"></i>
+            </div>
+        </div>
+
+        <button type="submit" class="btn bg-pink-400 btn-block legitRipple" dragonlanguage="">
+            <language>MESSAGE.ic('login.resetpassword')</language>
+            <i class="icon-arrow-right14 position-right"></i>
+        </button>
+    </div>
+</form>

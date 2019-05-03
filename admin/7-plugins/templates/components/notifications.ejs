@@ -1,0 +1,31 @@
+<script>
+    <% scope %>.notificationList = null;
+    SERVICE.base_onesignal.views({limit: 10}, function (result) {
+        if (result.data.error === false) {
+            <% scope %>.notificationList = eval("(" + result.data.response.data + ")");
+        }
+    });
+</script>
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="panel panel-flat">
+            <div class="panel-footer"><a class="heading-elements-toggle"><i class="icon-more"></i></a>
+                <div class="heading-elements">
+
+                </div>
+            </div>
+            <div class="subcontent" style="margin-top: 10px;">
+                <div class="container-fluid">
+                    <div class="row">
+
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer"><a class="heading-elements-toggle"><i class="icon-more"></i></a>
+                <div class="heading-elements">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>F

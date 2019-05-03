@@ -1,0 +1,159 @@
+{
+  "storage": "files/storage",
+  "storageEntities": {
+    "st_user": {
+      "key": "id",
+      "type": "one",
+      "fields": [
+        "username",
+        "name",
+        "lastname",
+        "password",
+        "email",
+        "tipo",
+        "active",
+        "created",
+        "updated",
+        "deleted",
+        "user_created",
+        "user_updated",
+        "user_deleted"
+      ]
+    },
+    "group": {
+      "key": "id",
+      "type": "one",
+      "fields": [
+        "name",
+        "description",
+        "active",
+        "isAdmin",
+        "created",
+        "updated",
+        "deleted",
+        "user_created",
+        "user_updated",
+        "user_deleted"
+      ]
+    },
+    "user_group": {
+      "key": "id",
+      "type": "one",
+      "fields": [
+        "user",
+        "group",
+        "created",
+        "updated",
+        "deleted",
+        "tempid",
+        "user_created",
+        "user_updated",
+        "user_deleted"
+      ]
+    },
+    "permission": {
+      "type": "deep"
+    },
+    "menu": {
+      "type": "deep"
+    },
+    "audit": {
+      "key": "id",
+      "type": "one",
+      "fields": [
+        "entity",
+        "entityID",
+        "active",
+        "created",
+        "updated",
+        "deleted",
+        "user_created",
+        "user_updated",
+        "user_deleted"
+      ]
+    },
+    "notifications": {
+      "key": "id",
+      "type": "one",
+      "fields": [
+        "subject",
+        "showSegments",
+        "advance",
+        "schedule",
+        "count",
+        "interval",
+        "until",
+        "notificationID",
+        "sendAfter",
+        "headings",
+        "url",
+        "content",
+        "created",
+        "updated",
+        "deleted",
+        "user_created",
+        "user_updated",
+        "user_deleted"
+      ]
+    },
+    "segment": {
+      "key": "id",
+      "type": "one",
+      "fields": [
+        "name",
+        "description",
+        "created",
+        "updated",
+        "deleted",
+        "user_created",
+        "user_updated",
+        "user_deleted"
+      ]
+    },
+    "interval": {
+      "key": "id",
+      "type": "one",
+      "fields": [
+        "name",
+        "description",
+        "code",
+        "created",
+        "updated",
+        "deleted",
+        "user_created",
+        "user_updated",
+        "user_deleted"
+      ]
+    },
+    "notifications_segment": {
+      "key": "id",
+      "type": "one",
+      "fields": [
+        "notifications",
+        "segment",
+        "created",
+        "updated",
+        "deleted",
+        "tempid",
+        "user_created",
+        "user_updated",
+        "user_deleted"
+      ]
+    },
+    "user_notifications": {
+      "key": "id",
+      "type": "one",
+      "fields": [
+        "user",
+        "notifications",
+        "created",
+        "updated",
+        "deleted",
+        "tempid",
+        "user_created",
+        "user_updated",
+        "user_deleted"
+      ]
+    }
+  }
+}

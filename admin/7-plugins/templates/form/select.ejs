@@ -116,66 +116,69 @@ var toclient = JSON.stringify(options);
             {{<%= model %>.form.options.<%= name %>.label}}
         </label>
 
-        <li class="dropdown" style="float: right;list-style: none">
-            <a href="#" class="dropdown-toggle legitRipple" data-toggle="dropdown"
-               aria-expanded="false">
-                <i dragonlanguage="" title="MESSAGE.i('mono.options')" class="icon-list-unordered"></i>
-                <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-right">
-                <li ng-show="<%= scope %>.allow('export.Clipboard')">
-                    <a ng-click="<%= scope %>.export.go('Clipboard')"><i class="icon-copy3"></i>
-                        <language>MESSAGE.ic('mono.Clipboard')</language>
-                    </a>
-                </li>
+        <% if(options.allownew || options.allowedit || options.allowview || options.allowlist || options.refresh){ %>
+            <li class="dropdown" style="float: right;list-style: none">
+                <i dragonlanguage="" title="MESSAGE.i('mono.options')"
+                   class="text-<%= COLOR.primary %>-800 icon-list-unordered"></i>
+                <a href="#" class="dropdown-toggle legitRipple " data-toggle="dropdown"
+                   aria-expanded="false">
 
-                <% if(options.refresh){ %>
-                    <li>
-                        <a dragonlanguage="" title="MESSAGE.i('mono.RefreshList')"
-                           id="reload<%= model %>_<%= nameclean %>"
+                    <span class="caret"></span>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li ng-show="<%= scope %>.allow('export.Clipboard')">
+                        <a ng-click="<%= scope %>.export.go('Clipboard')"><i class="icon-copy3"></i>
+                            <language>MESSAGE.ic('mono.Clipboard')</language>
+                        </a>
+                    </li>
+
+                    <% if(options.refresh){ %>
+                        <li>
+                            <a dragonlanguage="" title="MESSAGE.i('mono.RefreshList')"
+                               id="reload<%= model %>_<%= nameclean %>"
+                            >
+                                <i class="icon-reload-alt"></i>
+                                <language>MESSAGE.ic('mono.RefreshList')</language>
+                            </a>
+                        </li>
+                    <% } %>
+                    <% if(options.allowlist){ %>
+                        <li>
+                            <a dragonlanguage="" title="MESSAGE.ic('mono.list')" id="list<%= model %>_<%= nameclean %>">
+                                <i class="icon-list"></i>
+                                <language>MESSAGE.ic('mono.list')</language>
+                            </a>
+                        </li>
+                    <% } %>
+                    <% if(!options.multiple){ %>
+                        <li ng-show="<%= model + "." + name %>!='[NULL]' && <%= model %>.form.options.<%= name %>.allowview">
+                            <a dragonlanguage="" title="MESSAGE.i('mono.Viewitem')"
+
+                               id="view<%= model %>_<%= nameclean %>">
+                                <i class="icon-eye"></i>
+                                <language>MESSAGE.ic('mono.Viewitem')</language>
+                            </a>
+                        </li>
+                    <% } %>
+                    <li ng-show="<%= model %>.form.options.<%= name %>.allownew">
+                        <a dragonlanguage="" title="MESSAGE.i('mono.Additem')" id="new<%= model %>_<%= nameclean %>"
                         >
-                            <i class="icon-reload-alt"></i>
-                            <language>MESSAGE.ic('mono.RefreshList')</language>
+                            <i class="icon-plus-circle2"></i>
+                            <language>MESSAGE.ic('mono.Additem')</language>
                         </a>
                     </li>
-                <% } %>
-                <% if(options.allowlist){ %>
-                    <li>
-                        <a dragonlanguage="" title="MESSAGE.ic('mono.list')" id="list<%= model %>_<%= nameclean %>">
-                            <i class="icon-list"></i>
-                            <language>MESSAGE.ic('mono.list')</language>
+                    <li ng-show="<%= model + "." + name %>!='[NULL]' &&  <%= model %>.form.options.<%= name %>.allowedit">
+                        <a dragonlanguage="" title="MESSAGE.i('mono.Edititem')"
+                           id="edit<%= model %>_<%= nameclean %>">
+                            <i class="icon-pencil"></i>
+                            <language>MESSAGE.ic('mono.Edititem')</language>
                         </a>
                     </li>
-                <% } %>
-                <% if(!options.multiple){ %>
-                    <li ng-show="<%= model + "." + name %>!='[NULL]' && <%= model %>.form.options.<%= name %>.allowview">
-                        <a dragonlanguage="" title="MESSAGE.i('mono.Viewitem')"
 
-                           id="view<%= model %>_<%= nameclean %>">
-                            <i class="icon-eye"></i>
-                            <language>MESSAGE.ic('mono.Viewitem')</language>
-                        </a>
-                    </li>
-                <% } %>
-                <li ng-show="<%= model %>.form.options.<%= name %>.allownew">
-                    <a dragonlanguage="" title="MESSAGE.i('mono.Additem')" id="new<%= model %>_<%= nameclean %>"
-                    >
-                        <i class="icon-plus-circle2"></i>
-                        <language>MESSAGE.ic('mono.Additem')</language>
-                    </a>
-                </li>
-                <li ng-show="<%= model + "." + name %>!='[NULL]' &&  <%= model %>.form.options.<%= name %>.allowedit">
-                    <a dragonlanguage="" title="MESSAGE.i('mono.Edititem')"
-                       id="edit<%= model %>_<%= nameclean %>">
-                        <i class="icon-pencil"></i>
-                        <language>MESSAGE.ic('mono.Edititem')</language>
-                    </a>
-                </li>
-
-            </ul>
-        </li>
-
-
+                </ul>
+            </li>
+        <% } %>
         <select
                 <%= options.multiple ? "multiple='multiple'" : "" %>
                 style="display: inline;"
