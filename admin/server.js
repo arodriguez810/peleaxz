@@ -15,7 +15,8 @@ var folders = {
     controllers: "3-controllers",
     crud: "4-crud",
     views: "5-views",
-    master: "views/master",
+    viewsDragon: "7-plugins",
+    master: "7-plugins/master",
     language: "6-language",
     scripts: "scripts",
     modules: "modules",
@@ -427,7 +428,7 @@ ThereConfig.then(function (thereConfig) {
     } else loadedMotors++;
     if (true) {
 
-        for (var i in CONFIG.storageEntities) {
+        for (var i in CONFIG.appEntities) {
             modelstorage.push(i);
         }
         console.log('loaded storage models');
@@ -435,13 +436,30 @@ ThereConfig.then(function (thereConfig) {
         for (var i in modelstorage) {
             var stringModel = S(allparams).replaceAll("@model@", modelstorage[i]).s;
             eval("STORAGEDB." + modelstorage[i] + " = new modules.storage.Model('" + modelstorage[i] + "'," + allparams + ");");
-            modules.storage.defaultRequests(eval(util.format("STORAGEDB.%s", modelstorage[i])), eval("(" + stringModel + ")"));
+            modules.storage.defaultRequests(eval(util.format("STORAGEDB.%s", modelstorage[i])), eval("(" + stringModel + ")"), folders.views);
         }
         console.log('loaded storage queries');
         loadedMotors++;
     } else loadedMotors++;
-    while (loadedMotors < 5) sleep(1);
 
+    if (true) {
+        for (var i in CONFIG.storageEntities) {
+            modelstorage.push(i);
+        }
+        var FIXA = [];
+        for (var i in CONFIG.storageEntities) {
+            FIXA.push(i);
+        }
+        console.log('loaded storage app models');
+        for (var i in FIXA) {
+            var stringModel = S(allparams).replaceAll("@model@", FIXA[i]).s;
+            eval("STORAGEDB." + FIXA[i] + " = new modules.storage.Model('" + FIXA[i] + "'," + allparams + ");");
+            modules.storage.defaultRequests(eval(util.format("STORAGEDB.%s", FIXA[i])), eval("(" + stringModel + ")"), folders.viewsDragon);
+        }
+        console.log('loaded storage app queries');
+        loadedMotors++;
+    } else loadedMotors++;
+    while (loadedMotors < 6) sleep(1);
     servicesFiles = getFiles("./" + folders.service + "/");
     var catalogs = [];
     var servicesFunctions = [];

@@ -26,6 +26,7 @@ CRUDDEFAULTS = {
         batch: true,
         persist: true,
         sortable: true,
+        dragrow: false,
         allow: {
             menu: true,
             add: true,

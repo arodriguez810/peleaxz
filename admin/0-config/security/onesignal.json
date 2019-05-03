@@ -2,8 +2,9 @@
   "onesignal": {
     "userAuthKey": "ZjI5ZDQyNDktOTE2ZC00MGM2LTkwNmQtYjNlZDRhYjdjZjM0",
     "app": {
-      "appAuthKey": "NzJkYTEwMDQtY2JiYS00YTA3LTkzODMtZGRlODNhNWEzZDZl",
-      "appId": "27b730f2-ca4a-4fc5-989f-3cc59e3a89db"
+      "appAuthKey": "MjY1ZDUyMTQtNjkyMS00YjNmLWIwNmQtNGNiNDMzODk1N2E0",
+      "appId": "beedfda1-9f88-4317-9493-6342a72e78b3",
+      "gmt": "GMT-0400"
     }
   }
 }

@@ -1,8 +1,27 @@
-CRUD_group = {};
-DSON.keepmerge(CRUD_group, CRUDDEFAULTS);
-DSON.keepmerge(CRUD_group, {
+CRUD_notifications = {};
+DSON.keepmerge(CRUD_notifications, CRUDDEFAULTS);
+DSON.keepmerge(CRUD_notifications, {
     table: {
         engine: 'ms',
+        allow: {
+            menu: true,
+            add: true,
+            edit: true,
+            view: true,
+            remove: true,
+            active: false,
+            filter: true,
+            import: true,
+            copy: true,
+            export: {
+                Clipboard: true,
+                PDF: true,
+                CSV: true,
+                XLS: true,
+                DOC: true
+            },
+            actions: true,
+        },
         columns: {
             id: {
                 label: "ID",
@@ -10,26 +29,15 @@ DSON.keepmerge(CRUD_group, {
                 class: "text-left",
                 exportExample: false
             },
-            name: {
-                label: "name",
+            subject: {
+                label: "subject",
                 shorttext: 20
             },
-            description: {
-                label: "description",
+            content: {
+                label: "content",
                 sortable: false,
                 shorttext: 20,
                 null: "<span class='text-grey'>[NULL]</span>"
-            },
-            active: {
-                visible: true,
-                sorttype: "bool",
-                formattype: "bool"
-            },
-            isAdmin: {
-                label: "Admin",
-                visible: true,
-                sorttype: "bool",
-                formattype: "bool"
             },
             created: {
                 visible: false,

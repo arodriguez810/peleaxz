@@ -1,4 +1,4 @@
-exports.LoadEJS = function (files, params) {
+exports.LoadEJS = function (files, params, folder) {
     for (var i in files) {
         var file = files[i];
         var viewName = params.S(file).contains("index.ejs") ? "" : file.replace(".ejs", "");
@@ -63,7 +63,78 @@ exports.LoadEJS = function (files, params) {
                         CONTROLLERSNAMES: CONTROLLERSNAMES
                     };
 
-                    res.render("../" + params.folders.views + "/" + realPath, send);
+                    res.render("../" + (folder || params.folders.views) + "/" + realPath, send);
+                });
+            }
+        );
+    }
+};
+exports.LoadEJSDragon = function (files, params, folder) {
+    for (var i in files) {
+        var file = files[i];
+        var viewName = params.S(file).contains("index.ejs") ? "" : file.replace(".ejs", "");
+        params.app.get(params.util.format("/%s%s", params.modelName === "base" ? "" : params.modelName + "/", viewName),
+            function (req, res) {
+                params.secure.check(req, res, async function () {
+                    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;
+                    if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
+                    var path = req.originalUrl;
+                    var realPath = path.split("?");
+                    var query = "";
+                    if (realPath.length > 1) {
+                        query = realPath[1];
+                        realPath = realPath[0];
+                    } else {
+                        if (realPath[0] === "/") realPath = realPath[0] + "/base";
+                        else {
+                            if (realPath[0].split("/").length > 1) realPath = realPath[0];
+                            else realPath = realPath[0] + "/index";
+                        }
+                    }
+
+                    var models = params.models
+                        .concat(params.modelsql)
+                        .concat(params.modelmysql)
+                        .concat(params.modeloracle).concat(params.modelstorage);
+                    var tags = params.CONFIG.ui.colors.tag;
+                    var newtags = {};
+                    for (var tag in tags) {
+                        var itag = tags[tag];
+                        var largeVar = "params.CONFIG.ui.colors." + tags[tag];
+                        eval("newtags." + tag + " = " + largeVar + '===undefined ? "' + itag + '" : ' + largeVar + ";");
+                    }
+
+
+                    var CONTROLLERSNAMES = [];
+                    for (var CONTROLLER of params.controllersjs) {
+                        var name = CONTROLLER.split('CO_')[1].split('.js')[0];
+                        if (["BASE"].indexOf(name) === -1)
+                            CONTROLLERSNAMES.push({id: name, name: name});
+                    }
+
+                    var send = {
+                        scope: params.modelName,
+                        THEMES: params.themes,
+                        session: params.session,
+                        localjs: params.localjs,
+                        controllersjs: params.controllersjs,
+                        localStyles: params.localStyles,
+                        crudjs: params.crudjs,
+                        CONFIG: params.CONFIG,
+                        LANGUAGE: params.LANGUAGE,
+                        SHOWLANGS: params.SHOWLANGS,
+                        COLOR: params.CONFIG.ui.colors,
+                        TAG: newtags,
+                        models: models,
+                        FOLDERS: params.folders,
+                        DATA: req.query,
+                        SERVICES: params.catalogs,
+                        params: params,
+                        localserver: localserver,
+                        CONTROLLERSNAMES: CONTROLLERSNAMES
+                    };
+
+                    res.render("../" + (folder || params.folders.viewsDragon) + "/" + realPath, send);
                 });
             }
         );
@@ -79,7 +150,7 @@ exports.runServices = function (services, prefix, params) {
             var service = config[0];
             var functionR = config[1];
             eval(`var serviceFunction = params.servicesFunctions["${service}"].gets.${functionR}`);
-            return await serviceFunction(req.query).then (result => {
+            return await serviceFunction(req.query).then(result => {
                 params.secure.check(req, res, function () {
                     res.json(result);
                 });
@@ -96,7 +167,7 @@ exports.runServices = function (services, prefix, params) {
             var service = config[0];
             var functionR = config[1];
             eval(`var serviceFunction = params.servicesFunctions["${service}"].posts.${functionR}`);
-            return await serviceFunction(req.body).then (result => {
+            return await serviceFunction(req.body).then(result => {
                 params.secure.check(req, res, function () {
                     res.json(result);
                 });
@@ -113,7 +184,7 @@ exports.runServices = function (services, prefix, params) {
             var service = config[0];
             var functionR = config[1];
             eval(`var serviceFunction = params.servicesFunctions["${service}"].puts.${functionR}`);
-            return await serviceFunction(req.body).then (result => {
+            return await serviceFunction(req.body).then(result => {
                 params.secure.check(req, res, function () {
                     res.json(result);
                 });
@@ -130,7 +201,7 @@ exports.runServices = function (services, prefix, params) {
             var service = config[0];
             var functionR = config[1];
             eval(`var serviceFunction = params.servicesFunctions["${service}"].deletes.${functionR}`);
-            return await serviceFunction(req.body).then (result => {
+            return await serviceFunction(req.body).then(result => {
                 params.secure.check(req, res, function () {
                     res.json(result);
                 });
@@ -347,8 +418,12 @@ exports.loadEJSSimple = function (folder, prefix, params) {
 };
 exports.init = function (params) {
     var excludes = [
-        params.folders.views + "//base",
-        params.folders.views + "//master"
+        params.folders.viewsDragon + "//base",
+        params.folders.viewsDragon + "//master"
+    ];
+    var excludesDragon = [
+        params.folders.viewsDragon + "//base",
+        params.folders.viewsDragon + "//master"
     ];
     var models = params.models
         .concat(params.modelsql).concat(params.modelmysql)
@@ -356,13 +431,17 @@ exports.init = function (params) {
     models.forEach(element => {
         excludes.push(params.folders.views + "//" + element);
     });
+    models.forEach(element => {
+        excludesDragon.push(params.folders.viewsDragon + "//" + element);
+    });
     params.modelName = "base";
     params.fs.readdir(
-        params.util.format("./" + params.folders.views + "/%s", params.modelName), function (err, files) {
+        params.util.format("./" + params.folders.viewsDragon + "/%s", params.modelName), function (err, files) {
             params.modelName = "base";
-            exports.LoadEJS(files, params);
+            exports.LoadEJSDragon(files, params);
         }
     );
+
     var getFiles = function (exclude, dir, filelist, prefix) {
         var fs = params.fs || require("fs"),
             files = fs.readdirSync(dir);
@@ -384,7 +463,21 @@ exports.init = function (params) {
         });
         return filelist;
     };
-    var autroute = getFiles(excludes, params.folders.views + "/");
+
+
+    var autroute =
+        getFiles(excludesDragon, params.folders.viewsDragon + "/");
+    autroute.forEach(element => {
+        exports.loadEJSSimple(
+            "./" + params.folders.viewsDragon + "/" + element.replace(".ejs", ""),
+            element.replace(".ejs", ""),
+            params
+        );
+    });
+
+
+    autroute =
+        getFiles(excludes, params.folders.views + "/");
     autroute.forEach(element => {
         exports.loadEJSSimple(
             "./" + params.folders.views + "/" + element.replace(".ejs", ""),
@@ -392,6 +485,8 @@ exports.init = function (params) {
             params
         );
     });
+
+
     deleteFolderRecursive = function (path) {
         var files = [];
         if (fs.existsSync(path)) {
@@ -502,7 +597,7 @@ exports.init = function (params) {
             var files = req.body.filename;
             var dirfile = __dirname + '/..' + params.S(files[0]).replaceAll('/', '\\');
 
-            params.csvtojson().fromFile(dirfile).then ((jsonObj) => {
+            params.csvtojson().fromFile(dirfile).then((jsonObj) => {
                 res.json(jsonObj);
             }).catch(err => {
                 res.json(err);
@@ -616,7 +711,7 @@ exports.init = function (params) {
                 });
             }
             if (req.body.template) {
-                params.app.render("../" + params.folders.views + "/templates/" + req.body.template,
+                params.app.render("../" + params.folders.viewsDragon + "/templates/" + req.body.template,
                     {
                         session: params.session,
                         CONFIG: params.CONFIG,
@@ -688,5 +783,5 @@ exports.init = function (params) {
             res.json({error: false, saved: true});
         });
     });
-    exports.loadEJSSimple("./" + params.folders.views + "/master/error", "error", params);
+    exports.loadEJSSimple("./" + params.folders.viewsDragon + "/master/error", "error", params);
 };

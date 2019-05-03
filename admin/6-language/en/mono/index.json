@@ -147,5 +147,9 @@
   "selectedLocation": "Location Selected",
   "uncheckall": "Uncheck All",
   "checkall": "Check All",
-  "completetext": "Complete Text"
+  "completetext": "Complete Text",
+  "notifications": "notifications",
+  "stopnotification": "stop notification",
+  "send": "send",
+  "sended": "sended"
 }

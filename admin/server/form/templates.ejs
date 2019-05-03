@@ -1,7 +1,7 @@
 <%
 CHART = {
     template: function (view, data) {
-        return include('../../5-views/templates/' + view, data);
+        return include('../../7-plugins/templates/' + view, data);
     },
     pie: function (name, model, options) {
         return CHART.template('charts/pie', {name: name, model: model, opts: options});
@@ -31,7 +31,7 @@ CHART = {
 }
 FORM = {
     template: function (view, data) {
-        return include('../../5-views/templates/' + view, data);
+        return include('../../7-plugins/templates/' + view, data);
     },
     checkbox: function (name, model, options) {
         return FORM.template('form/checkbox', {name: name, model: model, opts: options});

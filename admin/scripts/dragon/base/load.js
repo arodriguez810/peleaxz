@@ -1,8 +1,10 @@
-outanimation = "BounceOutLeft";
-inanimation = "BounceInRight";
 LOAD = function () {
+    outanimation = CONFIG.ui.animation.outanimation;
+    inanimation = CONFIG.ui.animation.inanimation;
+
     this.loadContentScope = function (view, id, loadingText, callback, baseDiv, controller, $scope) {
         baseDiv = baseDiv === undefined ? true : baseDiv;
+
         var thisid = "#" + id;
         if (view === "") {
             this.template('error/base', {
@@ -11,8 +13,9 @@ LOAD = function () {
             }, function (html) {
 
                 $("#" + id).html(html);
-                animation.playPure($("#" + id), inanimation, function () {
-                });
+                if (!DSON.oseaX(inanimation))
+                    animation.playPure($("#" + id), inanimation, function () {
+                    });
                 $("#" + id).show();
                 MESSAGE.run();
             });
@@ -28,8 +31,9 @@ LOAD = function () {
                 statusText: MESSAGE.i('alerts.permissiondenied')
             }, function (html) {
                 $("#" + id).html(html);
-                animation.playPure($("#" + id), inanimation, function () {
-                });
+                if (!DSON.oseaX(inanimation))
+                    animation.playPure($("#" + id), inanimation, function () {
+                    });
                 $("#" + id).show();
                 MESSAGE.run();
             });
@@ -40,6 +44,7 @@ LOAD = function () {
             return;
         }
         $http = angular.injector(["ng"]).get("$http");
+
         new HTTP().setToken($http);
         $http.get(view + `?scope=${controller || $scope.modelName}`, {}).then(
             function (data) {
@@ -47,8 +52,9 @@ LOAD = function () {
                 http.evaluate(data);
                 if (!http.evaluateTokenHTML(data))
                     $(thisid).html($scope.returnBuild(data.data));
-                new ANIMATION().playPure($(thisid), inanimation, function () {
-                });
+                if (!DSON.oseaX(inanimation))
+                    new ANIMATION().playPure($(thisid), inanimation, function () {
+                    });
                 $(thisid).show();
                 MESSAGE.run();
                 callback(true);
@@ -63,8 +69,9 @@ LOAD = function () {
                             description: view + `?scope=${controller || $scope.modelName} ` + data.statusText,
                         });
                         $(thisid).html($scope.returnBuild(template.data));
-                        animation.playPure($(thisid), inanimation, function () {
-                        });
+                        if (!DSON.oseaX(inanimation))
+                            animation.playPure($(thisid), inanimation, function () {
+                            });
                         $(thisid).show();
                         MESSAGE.run();
                         callback(true);
@@ -114,8 +121,9 @@ LOAD = function () {
                 statusText: MESSAGE.i('alerts.permissiondenied')
             }, function (html) {
                 $("#content").html(html);
-                animation.playPure($('#content'), inanimation, function () {
-                });
+                if (!DSON.oseaX(inanimation))
+                    animation.playPure($('#content'), inanimation, function () {
+                    });
                 $("#content").show();
                 MESSAGE.run();
             });
@@ -127,9 +135,11 @@ LOAD = function () {
                 http.evaluate(data);
                 if (!http.evaluateTokenHTML(data))
                     $("#content").html($compile(data.data)($scope));
-                new ANIMATION().playPure($('#content'), inanimation, function () {
 
-                });
+                if (!DSON.oseaX(inanimation))
+                    new ANIMATION().playPure($('#content'), inanimation, function () {
+
+                    });
                 $("#content").show();
                 MESSAGE.run();
             },
@@ -143,8 +153,9 @@ LOAD = function () {
                     statusText: MESSAGE.i('error.e' + data.status)
                 }, function (html) {
                     $("#content").html(html);
-                    animation.playPure($('#content'), inanimation, function () {
-                    });
+                    if (!DSON.oseaX(inanimation))
+                        animation.playPure($('#content'), inanimation, function () {
+                        });
                     $("#content").show();
                     MESSAGE.run();
                 });

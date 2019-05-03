@@ -88,14 +88,18 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
             }
 
             if (result.data.length > 0) {
-                var merge = false;
+                for (var CONTROLLER of CONTROLLERSNAMES) {
+                    if (eval(`typeof CRUD_${CONTROLLER} !== 'undefined'`)) {
+                        eval(`DSON.allvalue(CRUD_${CONTROLLER}.table.allow,false)`);
+                    }
+                }
                 if (grouppermission) {
                     for (var gper of grouppermission) {
                         var objects = eval("(" + gper.object + ")");
                         for (var obj in objects) {
-                            var native = eval("CRUD_" + objects[obj].name + ".table.allow");
-                            for (var i in native) {
-                                if (i !== 'menu') {
+                            if (eval(`typeof CRUD_${objects[obj].name} !=='undefined'`)) {
+                                var native = eval("CRUD_" + objects[obj].name + ".table.allow");
+                                for (var i in native) {
                                     if (!objects[obj].obj.table.allow.hasOwnProperty(i)) {
                                         eval(`objects[obj].obj.table.allow.${i}=native[i]`);
                                     }
@@ -103,41 +107,29 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
                             }
                         }
                         var permissions = objects;
-
-
+                        console.log('group', permissions);
                         for (var i in permissions) {
-                            if (merge) {
-                                if (eval(`typeof CRUD_${permissions[i].name} !=='undefined'`))
-                                    eval(`DSON.mergeBool(permissions[i].obj.table.allow,CRUD_${permissions[i].name}.table.allow);`);
-                            } else {
-                                if (eval(`typeof CRUD_${permissions[i].name} !=='undefined'`))
-                                    eval(`CRUD_${permissions[i].name}.table.allow = permissions[i].obj.table.allow`);
-                            }
+                            if (eval(`typeof CRUD_${permissions[i].name} !=='undefined'`))
+                                eval(`DSON.mergeBool(permissions[i].obj.table.allow,CRUD_${permissions[i].name}.table.allow);`);
                         }
-                        merge = true;
                     }
                 }
+
                 if (userPermission) {
                     var objects = eval("(" + userPermission.object + ")");
                     for (var obj in objects) {
                         var native = eval("CRUD_" + objects[obj].name + ".table.allow");
                         for (var i in native) {
-                            if (i !== 'menu') {
-                                if (!objects[obj].obj.table.allow.hasOwnProperty(i)) {
-                                    eval(`objects[obj].obj.table.allow.${i}=native[i]`);
-                                }
+                            if (!objects[obj].obj.table.allow.hasOwnProperty(i)) {
+                                eval(`objects[obj].obj.table.allow.${i}=native[i]`);
                             }
                         }
                     }
                     var permissions = objects;
+                    console.log('user', permissions);
                     for (var i in permissions) {
-                        if (merge) {
-                            if (eval(`typeof CRUD_${permissions[i].name} !=='undefined'`))
-                                eval(`DSON.mergeBool(permissions[i].obj.table.allow,CRUD_${permissions[i].name}.table.allow);`);
-                        } else {
-                            if (eval(`typeof CRUD_${permissions[i].name} !=='undefined'`))
-                                eval(`CRUD_${permissions[i].name}.table.allow = permissions[i].obj.table.allow`);
-                        }
+                        if (eval(`typeof CRUD_${permissions[i].name} !=='undefined'`))
+                            eval(`DSON.mergeBool(permissions[i].obj.table.allow,CRUD_${permissions[i].name}.table.allow);`);
                     }
                 }
             }
@@ -147,8 +139,6 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
                     if (eval(`CRUD_${CONTROLLER}.table.allow.menu`) !== true) {
                         MENU.hideMenus(CONTROLLER);
                     }
-                    if (eval(`JSON.stringify(CONFIG.menus).indexOf('#${CONTROLLER}')===-1;`))
-                        (eval(`delete CRUD_${CONTROLLER}.table.allow.menu`))
 
                     CRUDNAMES.push(
                         {
@@ -186,7 +176,6 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
             baseController.favorites = newarray;
         }
     };
-
     baseController.favorite = function (href) {
         if (STORAGE.exist('favorites')) {
             var stored = STORAGE.get('favorites');
@@ -199,8 +188,6 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
             baseController.favorites = newarray;
         }
     };
-
-
     var permissionOptions = {
         text: (data) => {
             return "";
@@ -242,10 +229,8 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
                             exists.push(objects[obj].name);
                             var native = eval("CRUD_" + objects[obj].name + ".table.allow");
                             for (var i in native) {
-                                if (i !== 'menu') {
-                                    if (!objects[obj].obj.table.allow.hasOwnProperty(i)) {
-                                        eval(`objects[obj].obj.table.allow.${i}=native[i]`);
-                                    }
+                                if (!objects[obj].obj.table.allow.hasOwnProperty(i)) {
+                                    eval(`objects[obj].obj.table.allow.${i}=native[i]`);
                                 }
                             }
                         }
@@ -316,6 +301,7 @@ GARBAGECOLECTOR = function (exclude, ignoreChangeMenu) {
                         eval(`
                     if(${item}.cleanForm){
                         if(${item}!==null){
+                          if(${item}.destroyForm!==false)
                           if(${item}.form!==undefined){ 
                               eval('delete ${item}.'+CRUD_${item}.table.key);
                               for(var field of ${item}.form.fileds){
@@ -342,10 +328,11 @@ RUN_A = function (conrollerName, inside, $scope, $http, $compile) {
     inside.plural = pluralize(inside.singular);
     inside.$scope = $scope;
     COMPILE.run(inside, $scope, $compile);
-    PERMISSIONS.run(inside);
     STORAGE.run(inside);
+    PERMISSIONS.run(inside);
     FORM.run(inside, $http);
     VALIDATION.run(inside);
+    MODAL.run(inside, $compile);
     inside.refreshAngular = function () {
         inside.$scope.$digest();
     };

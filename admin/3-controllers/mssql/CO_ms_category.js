@@ -1,5 +1,6 @@
 app.controller("ms_category", function ($scope, $http, $compile) {
     ms_category = this;
+    ms_category.destroyForm = false;
     RUNCONTROLLER("ms_category", ms_category, $scope, $http, $compile);
     ms_category.plural = "hola";
     ms_category.formulary = function (data, mode, defaultData) {

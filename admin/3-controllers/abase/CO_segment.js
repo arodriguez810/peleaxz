@@ -1,17 +1,15 @@
-app.controller("group", function ($scope, $http, $compile) {
-    group = this;
-    RUNCONTROLLER("group", group, $scope, $http, $compile);
-    group.formulary = function (data, mode, defaultData) {
-        if (group !== undefined) {
-            RUN_B("group", group, $scope, $http, $compile);
-            group.form.schemas.insert = {};
-            group.form.schemas.select = {};
-            group.form.readonly = {};
-            group.createForm(data, mode, defaultData);
-            group.$scope.$watch('group.name', function (value) {
+app.controller("segment", function ($scope, $http, $compile) {
+    segment = this;
+    RUNCONTROLLER("segment", segment, $scope, $http, $compile);
+    segment.formulary = function (data, mode, defaultData) {
+        if (segment !== undefined) {
+            RUN_B("segment", segment, $scope, $http, $compile);
+            segment.form.readonly = {};
+            segment.createForm(data, mode, defaultData);
+            segment.$scope.$watch('segment.name', function (value) {
                 var rules = [];
                 rules.push(VALIDATION.general.required(value));
-                VALIDATION.validate(group, "name", rules);
+                VALIDATION.validate(segment, "name", rules);
             });
         }
     };

@@ -21,6 +21,8 @@ DSON = {
                     DSON.mergeBool(from[i], to[i]);
                 } else if (to[i] === false) {
                     to[i] = from[i];
+                } else if (!to.hasOwnProperty(i)) {
+                    to[i] = false;
                 }
             }
         }

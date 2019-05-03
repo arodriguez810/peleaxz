@@ -107,9 +107,10 @@ $(document).ready(function () {
         CHANGINGMENU = true;
         $("body").removeClass("sidebar-mobile-main");
         FIXELEMENT.elements = [];
-        new ANIMATION().playPure($('#content'), outanimation, function () {
-            ANGULARJS.get('baseController').base();
-        });
+        if (!DSON.oseaX(outanimation))
+            new ANIMATION().playPure($('#content'), outanimation, function () {
+                ANGULARJS.get('baseController').base();
+            });
 
     });
 });

@@ -2,7 +2,7 @@ PAGINATOR = {
     run: function ($scope) {
         $scope.getLimits = function () {
             var limits = eval(`CRUD_${$scope.modelName}`).table.limits || [10, 50, 100, 0];
-            if(limits.length===0)
+            if (limits.length === 0)
                 return [10];
             else return limits;
         };
@@ -99,13 +99,15 @@ PAGINATOR = {
         };
     },
     make: function ($scope, data) {
+        $scope.records = {};
+        delete $scope.records;
         $scope.records = data;
         $scope.table.totalPages = data.totalPage;
         $scope.table.totalCount = data.totalCount;
         $scope.table.currentCount = parseInt(data.count);
         $scope.table.pages = [];
         var paginartorRagen = 10;
-        var halfOfRange = Math.ceil(paginartorRagen/2);
+        var halfOfRange = Math.ceil(paginartorRagen / 2);
         var initPaginator = $scope.table.currentPage - halfOfRange;
         initPaginator = initPaginator <= 0 ? 1 : initPaginator;
         initPaginator = initPaginator > (data.totalPage - paginartorRagen) ? (data.totalPage - paginartorRagen) : initPaginator;

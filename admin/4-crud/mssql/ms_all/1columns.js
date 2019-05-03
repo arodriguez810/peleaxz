@@ -198,7 +198,7 @@ DSON.keepmerge(CRUD_ms_all,
                 },
                 salary: {
                     label: "salary",
-                    formattype: "numeric:0,0.00",
+                    formattype: "numeric:$ 0,0.00",
                     sorttype: "numeric",
                     class: "text-right",
                     exportExample: "[money]",

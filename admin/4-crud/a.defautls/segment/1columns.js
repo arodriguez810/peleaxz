@@ -1,6 +1,6 @@
-CRUD_group = {};
-DSON.keepmerge(CRUD_group, CRUDDEFAULTS);
-DSON.keepmerge(CRUD_group, {
+CRUD_segment = {};
+DSON.keepmerge(CRUD_segment, CRUDDEFAULTS);
+DSON.keepmerge(CRUD_segment, {
     table: {
         engine: 'ms',
         columns: {
@@ -21,12 +21,6 @@ DSON.keepmerge(CRUD_group, {
                 null: "<span class='text-grey'>[NULL]</span>"
             },
             active: {
-                visible: true,
-                sorttype: "bool",
-                formattype: "bool"
-            },
-            isAdmin: {
-                label: "Admin",
                 visible: true,
                 sorttype: "bool",
                 formattype: "bool"

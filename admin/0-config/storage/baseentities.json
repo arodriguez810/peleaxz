@@ -1,25 +1,6 @@
 {
   "storage": "files/storage",
   "storageEntities": {
-    "st_user": {
-      "key": "id",
-      "type": "one",
-      "fields": [
-        "username",
-        "name",
-        "lastname",
-        "password",
-        "email",
-        "tipo",
-        "active",
-        "created",
-        "updated",
-        "deleted",
-        "user_created",
-        "user_updated",
-        "user_deleted"
-      ]
-    },
     "group": {
       "key": "id",
       "type": "one",

@@ -1,4 +1,4 @@
-CRUD_group = DSON.merge(CRUD_group,
+CRUD_segment = DSON.merge(CRUD_segment,
     {
         table: {
             filters: {
@@ -30,11 +30,6 @@ CRUD_group = DSON.merge(CRUD_group,
                     {
                         key: 'active',
                         label: 'Active',
-                        type: FILTER.types.bool,
-                    },
-                    {
-                        key: 'isAdmin',
-                        label: 'Admin',
                         type: FILTER.types.bool,
                     }
                 ]

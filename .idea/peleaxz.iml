@@ -22,15 +22,15 @@
       <sourceFolder url="file://$MODULE_DIR$/admin/3-controllers/abase" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/3-controllers/auth" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/3-controllers" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/5-views/auth" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/5-views/base" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/5-views/master" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/5-views/master/error" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/5-views/templates/components" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/5-views/templates/docx" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/5-views/templates/form" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/5-views/templates/pdf" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/5-views/templates/table" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/auth" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/base" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/master" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/master/error" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/templates/components" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/templates/docx" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/templates/form" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/templates/pdf" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/templates/table" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/restore" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/table" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/validations" isTestSource="true" />
@@ -55,8 +55,8 @@
       <sourceFolder url="file://$MODULE_DIR$/admin/server/scripts" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/styles/pages" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/modules" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/5-views/templates/email" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/5-views/group" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/templates/email" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/group" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/4-crud/a.defautls/group" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/styles" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/styles/base" isTestSource="true" />
@@ -76,16 +76,24 @@
       <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/ms_all" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/navbar" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/permissions" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/5-views/configuration" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/5-views/templates/header" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/5-views/templates" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/5-views/templates/charts" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/configuration" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/templates/header" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/templates" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/templates/charts" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/recode" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/5-views" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/5-views/language" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/language" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/4-crud/a.defautls/language" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/4-crud/a.defautls" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/4-crud/a.defautls/notification" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/4-crud/a.defautls/notifications" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/notifications" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/4-crud/a.defautls/segment" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/segment" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/4-crud" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/4-crud/a.defautls" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/4-crud/a.defautls/interval" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/interval" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/5-views" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/.tmp" />
       <excludeFolder url="file://$MODULE_DIR$/admin/assets" />
       <excludeFolder url="file://$MODULE_DIR$/admin/defaults" />

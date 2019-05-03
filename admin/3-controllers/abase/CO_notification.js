@@ -1,59 +1,66 @@
-app.controller("configuration", function ($scope, $http, $compile) {
-    configuration = this;
-    RUNCONTROLLER("configuration", configuration, $scope, $http, $compile);
-    RUN_B("configuration", configuration, $scope, $http, $compile);
-    configuration.config = {};
-    DSON.merge(configuration.config, CONFIG, true);
-    configuration.configurationClose = function () {
-        MODAL.close(configuration);
-    };
-    var user = new SESSION().current();
-
-    configuration.mode = user.super ? 'super' : 'admin';
-
-    configuration.$scope.$watch('configuration.config.appName', function (value) {
-        var rules = [];
-        rules.push(VALIDATION.general.required(value));
-        VALIDATION.validate(configuration, "config.appName", rules);
-    });
-
-    configuration.$scope.$watch('configuration.config.ui.colors.primary', function (value) {
-        configuration.config.ui.colors.menu = value;
-    });
-
-    configuration.saveConfiguration = function () {
-        if (user.super)
-            VALIDATION.save(configuration, function () {
-                SWEETALERT.confirm({
-                    message:
-                        MESSAGE.i('alerts.saveConfigSuper'),
-                    confirm: function () {
-                        SWEETALERT.loading({message: MESSAGE.ic('mono.procesing')});
-                        BASEAPI.ajax.post('dragon/api/saveConfigSuper', {json: JSON.stringify(configuration.config)}, function () {
-                            SWEETALERT.loading({message: MESSAGE.ic('mono.restarting')});
-                            setTimeout(() => {
-                                location.reload();
-                            }, 5000);
-                        });
-                    }
-                });
-            });
-        else
-            VALIDATION.save(configuration, function () {
-                SWEETALERT.confirm({
-                    message:
-                        MESSAGE.i('alerts.saveConfig'),
-                    confirm: function () {
-                        SWEETALERT.loading({message: MESSAGE.ic('mono.procesing')});
-                        BASEAPI.ajax.post('dragon/api/saveConfig', {json: JSON.stringify(configuration.config)}, function () {
-                            SWEETALERT.loading({message: MESSAGE.ic('mono.saving')});
-                            setTimeout(() => {
-                                location.reload();
-                            }, 5000);
-                        });
-                    }
-                });
+app.controller("notifications", function ($scope, $http, $compile) {
+    notifications = this;
+    RUNCONTROLLER("notifications", notifications, $scope, $http, $compile);
+    notifications.stop = function () {
+        if (!DSON.oseaX(notifications.notificationID))
+            SERVICE.base_onesignal.cancel({id: notifications.notificationID}, function (result) {
+                console.log(result);
             });
     };
+    notifications.send = function () {
+        SWEETALERT.loading({message: MESSAGE.i('actions.Loading')});
+        var notificationObj = {
+            contents: {en: notifications.content}
+        };
+        if (notifications.advance) {
+            if (!DSON.oseaX(notifications.sendAfter))
+                notificationObj.send_after = notifications.sendAfter_DragonClean + " " + CONFIG.onesignal.app.gmt;
+            if (!DSON.oseaX(notifications.headings))
+                notificationObj.headings = {en: notifications.headings};
+            if (!DSON.oseaX(notifications.url))
+                notificationObj.url = notifications.url;
+        }
+        if (!notifications.showSegments) {
+            notificationObj.included_segments = notifications.segments;
+            SERVICE.base_onesignal.send(notificationObj, function (result) {
+                if (result.data.response.data.errors === undefined) {
+                    notifications.notificationID = result.data.response.data.id;
+                    notifications.pages.form.save();
+                }
+                else {
 
+                    SWEETALERT.show({type: 'error', message: JSON.stringify(result.data.response.data.errors)});
+                }
+            });
+        } else {
+            notificationObj.users = notifications.users;
+            SERVICE.base_onesignal.send(notificationObj, function (result) {
+                if (result.data.response.data.errors === undefined) {
+                    notifications.notificationID = result.data.response.data.id;
+                    notifications.pages.form.save();
+                }
+                else {
+                    SWEETALERT.show({type: 'error', message: JSON.stringify(result.data.response.data.errors)});
+                }
+            });
+        }
+    };
+    notifications.formulary = function (data, mode, defaultData) {
+        if (notifications !== undefined) {
+            RUN_B("notifications", notifications, $scope, $http, $compile);
+            notifications.form.readonly = {notificationID: notifications.notificationID};
+
+            notifications.createForm(data, mode, defaultData);
+            notifications.$scope.$watch('notifications.subject', function (value) {
+                var rules = [];
+                rules.push(VALIDATION.general.required(value));
+                VALIDATION.validate(notifications, "subject", rules);
+            });
+            notifications.$scope.$watch('notifications.content', function (value) {
+                var rules = [];
+                rules.push(VALIDATION.general.required(value));
+                VALIDATION.validate(notifications, "content", rules);
+            });
+        }
+    };
 });

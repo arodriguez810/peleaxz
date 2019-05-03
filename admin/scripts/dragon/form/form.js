@@ -214,7 +214,7 @@ FORM = {
                             if ($scope.form.fileds.indexOf(name + '_DragonClean') !== -1) {
                                 finalValue = eval(`$scope.${name}_DragonClean`);
                             }
-                            eval(`$scope.form.lastPrepare.${name} = '${finalValue}'`);
+                            eval(`$scope.form.lastPrepare.${name} = \`${finalValue}\``);
                         }
                 }
             }
@@ -246,6 +246,16 @@ FORM = {
                     if (conti === false) {
                         return;
                     }
+
+                    var crud = eval(`CRUD_${$scope.modelName}`);
+                    if (crud.table.dragrow !== false) {
+                        var last = await BASEAPI.firstp($scope.tableOrMethod, {
+                            order: 'desc',
+                            orderby: crud.table.dragrow
+                        });
+                        $scope.form.inserting[crud.table.dragrow] = (parseInt(last[crud.table.dragrow]) + 1).toString();
+                    }
+
                     BASEAPI.insertID($scope.tableOrMethod, $scope.form.inserting, $scope.form.fieldExGET, $scope.form.valueExGET, async function (result) {
                         if (result.data.error === false) {
                             SWEETALERT.loading({message: MESSAGE.i('mono.Preparingfilesandrelations')});
@@ -821,13 +831,16 @@ FORM = {
                 $scope.form.fileds.forEach((field) => {
                     eval(`delete $scope.${field}`);
                 });
-                $scope.form = {};
+                if ($scope.destroyForm !== false) {
+                    $scope.form = {};
+                }
                 $scope.open = {};
                 $scope.pages = {};
                 $scope.validation.destroy();
             }
         };
         $scope.openForm = async function (mode) {
+
             if (await $scope.triggers.table.before.open() === false)
                 return;
             if ($scope.form !== null) {
@@ -896,7 +909,6 @@ FORM = {
                 $scope.pages.form.close = function (pre, post) {
                     if ($scope.form !== null)
                         if ($scope.form.hasChanged) {
-
                             if ($scope.refresh !== undefined)
                                 $scope.refresh();
                         }
@@ -1047,10 +1059,10 @@ FORM = {
                     $scope.open.query = data;
                     BASEAPI.first($scope.tableOrMethod, $scope.open.query, function (data) {
                         for (var i in data) {
-                            var item = eval(`'${eval(`data.${i}`)}'`);
-                            eval(`$scope.open.default.${i} = '${item}';`);
+                            var item = eval(` \`${eval(`data.${i}`)}\``);
+                            eval(`$scope.open.default.${i} = \`${item}\`;`);
                             if (item !== 'null' && item !== undefined)
-                                eval(`$scope.${i} = '${item}';`);
+                                eval(`$scope.${i} = \`${item}\`;`);
                         }
                         $scope.openForm(mode);
                     });

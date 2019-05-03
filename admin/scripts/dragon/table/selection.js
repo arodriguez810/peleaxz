@@ -16,6 +16,11 @@ TABLESELECTION = {
             }
             return "";
         };
+
+        $scope.drawHandler = function () {
+            return "<i class=\"text-" + COLOR.primary + " " + "icon-sort" + " \"></i>";
+        };
+
         $scope.columnToSelect = function () {
             var columns = $scope.columns();
             for (var key in columns) {

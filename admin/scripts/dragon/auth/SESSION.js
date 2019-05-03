@@ -20,12 +20,15 @@ SESSION = function () {
     };
     this.ifLogoffRedirec = function (view) {
         var href = view || location.href;
+
         if (href.indexOf('auth/login') === -1) {
-            if (!this.isLogged()) {
-                MODAL.closeAll();
-                var http = new HTTP();
-                http.redirecttag('auth/login');
-                return true;
+            if (href.indexOf('auth/forgot') === -1) {
+                if (!this.isLogged()) {
+                    MODAL.closeAll();
+                    var http = new HTTP();
+                    http.redirecttag('auth/login');
+                    return true;
+                }
             }
         }
         return false;

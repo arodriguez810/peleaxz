@@ -1,4 +1,4 @@
-CRUD_segment = DSON.merge(CRUD_segment,
+CRUD_interval = DSON.merge(CRUD_interval,
     {
         table: {
             filters: {

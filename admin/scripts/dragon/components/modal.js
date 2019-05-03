@@ -50,6 +50,7 @@ MODAL = {
             return ARRAY.last(MODAL.historyObject);
         };
         $scope.modal.add = function (data) {
+
             data.id += +new Date().getTime();
             var buttonsHtml = "";
             data.footer.cancelButton = data.footer.cancelButton === undefined ? true : data.footer.cancelButton;
@@ -208,6 +209,7 @@ MODAL = {
             baseController.viewData = undefined;
         };
         $scope.modal.modalView = function (view, options) {
+
             var id = view.replaceAll("/", "_").replaceAll("#", "_").replaceAll(".", "_");
             var properties = {
                 id: id,

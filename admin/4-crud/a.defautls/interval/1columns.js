@@ -1,6 +1,6 @@
-CRUD_segment = {};
-DSON.keepmerge(CRUD_segment, CRUDDEFAULTS);
-DSON.keepmerge(CRUD_segment, {
+CRUD_interval = {};
+DSON.keepmerge(CRUD_interval, CRUDDEFAULTS);
+DSON.keepmerge(CRUD_interval, {
     table: {
         engine: 'ms',
         columns: {
@@ -12,6 +12,10 @@ DSON.keepmerge(CRUD_segment, {
             },
             name: {
                 label: "name",
+                shorttext: 20
+            },
+            code: {
+                label: "code",
                 shorttext: 20
             },
             description: {

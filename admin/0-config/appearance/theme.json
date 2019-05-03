@@ -1,10 +1,14 @@
 {
   "hidemenus": [],
   "ui": {
+    "animation": {
+      "outanimation": "BounceOutLeft",
+      "inanimation": "BounceInRight"
+    },
     "colors": {
-      "primary": "blue",
-      "menu": "blue",
-      "info": "blue",
+      "primary": "grey",
+      "menu": "grey",
+      "info": "grey",
       "logo": "logowhite",
       "danger": "danger",
       "success": "success",

@@ -1,7 +1,8 @@
 var params = {};
 exports.run = async function (_params) {
     params = _params;
-    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
+    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;
+    if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
 };
 exports.api = {
     gets: {},
@@ -12,13 +13,14 @@ exports.api = {
             if (request.contents === undefined)
                 return {error: "contents is required!"};
 
+            for (var user in request.users)
+                request.users[user] = request.users[user].toString();
+
             if (request.users !== undefined) {
                 request.include_player_ids = [];
-                console.log(request.users);
                 var users = await params.storage.getItem('onesignalUsers') || [];
-
                 for (var user of users) {
-                    if (request.users.indexOf(user.id) !== -1) {
+                    if (request.users.indexOf(user.id.toString()) !== -1) {
                         for (var player of user.players) {
                             request.include_player_ids.push(player);
                         }

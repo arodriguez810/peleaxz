@@ -147,5 +147,9 @@
   "selectedLocation": "Localización Seleccionada",
   "uncheckall": "Quitar Todos",
   "checkall": "Asignar Todos",
-  "completetext": "Texto Completo"
+  "completetext": "Texto Completo",
+  "notifications": "notificaciones",
+  "send": "enviar",
+  "sended": "enviado",
+  "stopnotification": "parar notificación"
 }

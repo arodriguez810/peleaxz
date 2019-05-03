@@ -1,6 +1,7 @@
 app.controller("auth", function ($scope, $http, $compile) {
     auth = this;
-    RUN_A("auth", auth, $scope, $http, $compile);
+    RUNCONTROLLER("auth", auth, $scope, $http, $compile);
+    RUN_B("auth", auth, $scope, $http, $compile);
 
     $scope.$watch('auth.username', function (value) {
         var rules = [];
@@ -19,6 +20,50 @@ app.controller("auth", function ($scope, $http, $compile) {
         }
         return validation;
     });
+    auth.sendForgotPassword = async function () {
+        var where = {where: [{field: CONFIG.users.fields.email, value: auth.forgotfield}]};
+        var user = await BASEAPI.firstp(CONFIG.users.model, where);
+        for (var i in CONFIG.users.addFields) {
+            var calc = CONFIG.users.addFields[i];
+            eval(`user.${i} = function () { return ${calc};}`);
+        }
+        if (user !== undefined) {
+            BASEAPI.mail({
+                "to": auth.forgotfield,
+                "subject": `${CONFIG.appName} - ${MESSAGE.ic('login.passwordrecovery')}`,
+                "name": session.current().fullName(),
+                "template": 'email/usersenderror',
+                "fields": {
+                    profileimage: '',
+                    name: session.current().fullName(),
+                    username: eval(`session.current().${CONFIG.users.fields.username}`),
+                    error: error,
+                    phone: CONFIG.support.phone,
+                    type: "Database Error",
+                }
+            }, function (result) {
+                SWEETALERT.stop();
+                SWEETALERT.show({message: MESSAGE.i('alerts.providerError')});
+            });
+        }
+
+    };
+    auth.forgotPassword = function () {
+        auth.modal.modalView("auth/forgot", {
+            width: ENUM.modal.width.large,
+            header: {
+                title: MESSAGE.ic("login.forgotpassword"),
+                icon: "user-block"
+            },
+            footer: {
+                cancelButton: false
+            },
+            content: {
+                loadingContentText: `${MESSAGE.i('actions.Loading')}...`,
+                sameController: true
+            },
+        });
+    };
     auth.makeLogin = function () {
         SWEETALERT.loading("Validating credentials");
         SERVICE.base_auth.login({

@@ -5,6 +5,10 @@
       "module": "express"
     },
     {
+      "var": "ejs",
+      "module": "ejs"
+    },
+    {
       "var": "compression",
       "module": "compression"
     },

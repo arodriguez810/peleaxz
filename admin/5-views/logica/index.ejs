@@ -1,6 +1,6 @@
 <div id="<%= scope %>" ng-controller="<%= scope %> as <%= scope %>">
     <div class="panel panel-flat">
-        <%- include('../templates/header/begin',{scope:scope}); %>
+        <%- include('../../7-plugins/templates/header/begin',{scope:scope}); %>
         <ul class="breadcrumb-elements visible-elements">
             <li dragonlanguage="">
                 <a onclick="alert('Holaaaa')">
@@ -8,7 +8,7 @@
                 </a>
             </li>
         </ul>
-        <%- include('../templates/header/end',{scope:scope}); %>
+        <%- include('../../7-plugins/templates/header/end',{scope:scope}); %>
         <div class="subcontent">
             <%- FORM.mask("ver", scope, {
                 mask: "integer"

@@ -217,7 +217,6 @@ FILTER = {
                 return result;
             };
             $scope.filters.showControl = function (type, column) {
-                console.log(column.type);
                 var filterType = column.type === undefined ? 'string' : column.type;
 
                 return type.indexOf(filterType) !== -1;
@@ -322,6 +321,7 @@ FILTER = {
                 if (DSON.oseaX(close))
                     $scope.filters.close();
                 $scope.refresh();
+                $scope.goPage(1);
                 MESSAGE.run();
             };
             $scope.filters.clearApply = function () {

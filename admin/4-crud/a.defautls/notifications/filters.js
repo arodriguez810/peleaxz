@@ -1,4 +1,4 @@
-CRUD_group = DSON.merge(CRUD_group,
+CRUD_notifications = DSON.merge(CRUD_notifications,
     {
         table: {
             filters: {
@@ -10,15 +10,15 @@ CRUD_group = DSON.merge(CRUD_group,
                         placeholder: 'ID'
                     },
                     {
-                        key: 'name',
-                        label: 'Name',
+                        key: 'subject',
+                        label: 'Subject',
                         type: FILTER.types.string,
-                        placeholder: 'Name',
+                        placeholder: 'Subject',
                         maxlength: 50
                     },
                     {
-                        key: 'description',
-                        label: 'Description',
+                        key: 'content',
+                        label: 'Content',
                         type: FILTER.types.string,
                         maxlength: 200
                     },
@@ -26,16 +26,6 @@ CRUD_group = DSON.merge(CRUD_group,
                         key: 'created',
                         label: 'Created',
                         type: FILTER.types.datetime,
-                    },
-                    {
-                        key: 'active',
-                        label: 'Active',
-                        type: FILTER.types.bool,
-                    },
-                    {
-                        key: 'isAdmin',
-                        label: 'Admin',
-                        type: FILTER.types.bool,
                     }
                 ]
             }

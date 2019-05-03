@@ -1,11 +1,11 @@
-CONFIGURATION = {
+NOTIFICATION = {
     OPEN: function () {
         var user = new SESSION().current();
         var modal = {
             width: 'modal-full',
             header: {
-                title: MESSAGE.ic('mono.configuration') + (user.super ? ' Super Admin' : ' Admin'),
-                icon: "cog2"
+                title: MESSAGE.ic('mono.notifications'),
+                icon: "bubble-notification"
             },
             footer: {
                 cancelButton: false
@@ -15,9 +15,6 @@ CONFIGURATION = {
                 sameController: 'configuration'
             },
         };
-        if (user.super)
-            baseController.currentModel.modal.modalView("configuration", modal);
-        else
-            baseController.currentModel.modal.modalView("configuration/soft", modal);
+        baseController.currentModel.modal.modalView("templates/components/notifications", modal);
     }
 };

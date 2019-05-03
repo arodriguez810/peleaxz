@@ -3,5 +3,10 @@
   "Enteryourcredentialsbelow": "Enter your credentials below",
   "Remember": "Remember",
   "invalid": "Invalid credentials, please try again",
-  "blocked": "Your account has been blocked, please try in the next ${CONFIG.users.unlockTime} minutes"
+  "blocked": "Your account has been blocked, please try in the next ${CONFIG.users.unlockTime} minutes",
+  "forgotpassword": "Forgot password",
+  "passwordrecovery": "Password recovery",
+  "willsendemail": "We'll send you instructions in email",
+  "resetpassword": "Reset password",
+  "youremail": "Your email"
 }

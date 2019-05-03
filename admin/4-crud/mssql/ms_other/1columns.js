@@ -3,6 +3,8 @@ DSON.keepmerge(CRUD_ms_other, CRUDDEFAULTS);
 DSON.keepmerge(CRUD_ms_other, {
     table: {
         engine: 'ms',
+        dragrow: 'num',
+        sortable: false,
         columns: {
             id: {
                 label: "ID",
@@ -55,6 +57,12 @@ DSON.keepmerge(CRUD_ms_other, {
                 exportExample: false
             },
             user_deleted: {
+                visible: false,
+                visibleDetail: false,
+                export: false,
+                exportExample: false
+            },
+            num: {
                 visible: false,
                 visibleDetail: false,
                 export: false,

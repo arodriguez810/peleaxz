@@ -1,6 +1,7 @@
 SORTABLE = {
     run: function ($scope) {
-        var firstColumn = eval(`CRUD_${$scope.modelName}`).table.key || "id";
+        var firstColumn = $scope.dragrow ? $scope.dragrow : (eval(`CRUD_${$scope.modelName}`).table.key || "id");
+
         for (var i in eval(`CRUD_${$scope.modelName}`).table.columns) {
             eval(`CRUD_${$scope.modelName}`).table.columns[i].sorted = false;
             eval(`CRUD_${$scope.modelName}`).table.columns[i].order = "asc";
@@ -41,7 +42,7 @@ SORTABLE = {
             return icon;
         };
         $scope.resetSort = function () {
-            var firstColumn = eval(`CRUD_${$scope.modelName}`).table.key || "id";
+            var firstColumn = $scope.dragrow ? $scope.dragrow : (eval(`CRUD_${$scope.modelName}`).table.key || "id");
             for (var i in eval(`CRUD_${$scope.modelName}`).table.columns) {
                 eval(`CRUD_${$scope.modelName}`).table.columns[i].sorted = false;
                 eval(`CRUD_${$scope.modelName}`).table.columns[i].order = "asc";

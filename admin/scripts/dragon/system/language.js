@@ -52,7 +52,7 @@ MESSAGE = {
                 if (strict.length > 1)
                     MESSAGE.register(lan, strict[0], strict[1]);
                 else {
-                    SWEETALERT.show(`The langage key ${key} don't have folder, please change`);
+                    SWEETALERT.show({message: `The langage key ${key} don't have folder, please change`});
                 }
             }
             return defaulttext || `[${lan}.${key}]`;
@@ -75,7 +75,7 @@ MESSAGE = {
         if (!eval(`LANGUAGE.${lan}.hasOwnProperty('${key.split('.')[0]}')`))
             return false;
         var exist = eval(`LANGUAGE.${lan}.${key.split('.')[0]}.hasOwnProperty('${key.split('.')[1]}')`);
-        if(!exist){
+        if (!exist) {
 
         }
         return exist;
