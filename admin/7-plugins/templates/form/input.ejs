@@ -75,7 +75,7 @@ var toclient = JSON.stringify(options);
 <script>
     <%= model %>.triggers.table.after.control("<%= nameclean %>");
     <% if(options.maxlength){ %>
-    $('[name="<%= model %>_<%= nameclean %>"]').maxlength();
+    //$('[name="<%= model %>_<%= nameclean %>"]').maxlength();
     <% } %>
 
     $('[name="<%= model %>_<%= nameclean %>"]').blur(function () {

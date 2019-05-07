@@ -3,6 +3,7 @@ TABLE = {
         $scope.records = [];
         $scope.table.loading = false;
         $scope.table.is = {};
+        $scope.table.loaded = false;
         $scope.table.is.loading = true;
         $scope.funcWidth = eval(`CRUD_${$scope.modelName}`).table.width;
         $scope.report = eval(`CRUD_${$scope.modelName}`).table.report;
@@ -250,7 +251,7 @@ TABLE = {
             delete dataToList.where;
 
             if ($scope.table.loaded !== true) {
-                $scope.table.loaded = true;
+
                 dataToList.where = $scope.fixFiltersApply();
                 $scope.filtersApply(dataToList);
                 if (RELATIONS.anonymous[$scope.modelName] !== undefined) {
@@ -268,13 +269,16 @@ TABLE = {
                     }
                 }
 
-
+                $scope.refreshAngular();
                 BASEAPI.list(
                     $scope.tableOrView,
                     dataToList,
                     function (data) {
+
                         $scope.afterData(data);
+                        $scope.table.loaded = true;
                         $scope.refreshAngular();
+
                         DRAG.run($scope);
                     }
                 );

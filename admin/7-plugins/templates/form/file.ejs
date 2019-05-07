@@ -3,6 +3,8 @@ var name = name || "";
 var options = {
     text: params.capitalize(name),
     title: `Upload ${params.capitalize(name)}`,
+    show: false,
+    image: 70,
     icon: {
         class: "upload",
         position: "left",
@@ -17,18 +19,19 @@ var options = {
     columns: 1,
     posttype: "file"
 };
-options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g,'_');
+options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g, '_');
 options.color = options.type === "form" ? "{{" + model + ".validation.stateDefault()}}" : options.icon.color;
 var toclient = JSON.stringify(options);
 %>
 <script>
     <%= model %>.triggers.table.before.control("<%= nameclean %>");
     var keyColumn = eval(`CRUD_<%= model %>`).table.key;
-    <%= model %>.form.schemas.insert["<%= name %>"] =FORM.schemasType.upload;
+    <%= model %>.form.schemas.insert["<%= name %>"] = FORM.schemasType.upload;
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
     <%= model %>.form.registerField("<%= name %>_DragonCountFile", "<%= toclient %>");
-    if(MESSAGE.exist('columns.<%= nameclean %>')){
-        <%= model %>.form.options.<%= name %>.text = MESSAGE.i('columns.<%= nameclean %>');
+    if (MESSAGE.exist('columns.<%= nameclean %>')) {
+        <%= model %>.
+        form.options.<%= name %>.text = MESSAGE.i('columns.<%= nameclean %>');
     }
     <%= model %>.<%= name %>_DragonCountFile = 0;
     var thisID = eval(`<%= model %>.${keyColumn}`);
@@ -40,7 +43,11 @@ var toclient = JSON.stringify(options);
             class="control-label is-visible animate">
         {{<%= model %>.form.options.<%= name %>.title}}
     </label>
-
+    <br>
+    <% if(options.show === 'image'){ %>
+        <img id="showImage<%= model %>_<%= nameclean %>" style="max-height: <%= options.image %>px;"
+             src="assets/images/placeholder.jpg" alt="">
+    <% } %>
     <button name="<%= model %>_<%= nameclean %>"
             type="button"
             role="button"
@@ -70,7 +77,31 @@ var toclient = JSON.stringify(options);
 
 
     function ShowCount<%= name %>(direct) {
-        if (amLoad<%= name %> || direct===true) {
+        <% if(options.show === 'image'){ %>
+
+        $("[amclone='true']").remove();
+        FILE.server(<%= model %>.form.options.<%= name %>.folder, function (files) {
+            if (files.length > 0) {
+                files.forEach((file) => {
+                    var theClone = $("#showImage<%= model %>_<%= nameclean %>").clone();
+                    theClone.attr('amclone', true);
+                    FILE.addSourceToElement(theClone, file.url);
+                    theClone.show();
+                    $("#showImage<%= model %>_<%= nameclean %>").after(theClone);
+                });
+            } else {
+                var theClone = $("#showImage<%= model %>_<%= nameclean %>").clone();
+                theClone.attr('amclone', true);
+                FILE.addSourceToElement(theClone, "assets/images/placeholder.jpg");
+                theClone.show();
+                $("#showImage<%= model %>_<%= nameclean %>").after(theClone);
+            }
+            $("#showImage<%= model %>_<%= nameclean %>").hide();
+        }
+    )
+        ;
+        <% } %>
+        if (amLoad<%= name %> || direct === true) {
             BASEAPI.ajax.get(new HTTP().path(["files", "api"]), {folder: <%= model %>.form.options.<%= name %>.folder
         },
 

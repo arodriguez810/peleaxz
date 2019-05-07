@@ -4,7 +4,14 @@ app.controller("notifications", function ($scope, $http, $compile) {
     notifications.stop = function () {
         if (!DSON.oseaX(notifications.notificationID))
             SERVICE.base_onesignal.cancel({id: notifications.notificationID}, function (result) {
+                result.data.response.data = DSON.EO(result.data.response.data);
                 console.log(result);
+                if (result.data.response.data.errors === undefined) {
+                    SWEETALERT.show({message: MESSAGE.ic('mono.notificationstoped')});
+                } else {
+                    SWEETALERT.show({type: 'error', message: JSON.stringify(result.data.response.data.errors)});
+                }
+
             });
     };
     notifications.send = function () {
@@ -25,7 +32,7 @@ app.controller("notifications", function ($scope, $http, $compile) {
             SERVICE.base_onesignal.send(notificationObj, function (result) {
                 if (result.data.response.data.errors === undefined) {
                     notifications.notificationID = result.data.response.data.id;
-                    notifications.pages.form.save();
+                    notifications.pages.form.save(undefined, undefined, false);
                 }
                 else {
 
@@ -37,7 +44,7 @@ app.controller("notifications", function ($scope, $http, $compile) {
             SERVICE.base_onesignal.send(notificationObj, function (result) {
                 if (result.data.response.data.errors === undefined) {
                     notifications.notificationID = result.data.response.data.id;
-                    notifications.pages.form.save();
+                    notifications.pages.form.save(undefined, undefined, false);
                 }
                 else {
                     SWEETALERT.show({type: 'error', message: JSON.stringify(result.data.response.data.errors)});

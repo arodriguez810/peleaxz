@@ -13,8 +13,6 @@ exports.api = {
     gets: {},
     posts: {
         login: async function (request) {
-
-
             var config = params.CONFIG.users;
             var key = `${config.engine}-${request.username}`;
             var attemps = await params.storage.getItem(key);
@@ -115,6 +113,60 @@ exports.api = {
                     await params.storage.setItem(`${config.engine}-${request.username}`, data.attemps, {ttl: config.unlockTime * 60000});
                 }
                 return data;
+            });
+        },
+        md5: async function (request) {
+            var mdf5 = params.md5(params.CONFIG.appKey + request.value);
+            return {md5: mdf5};
+        },
+        matchtoken: async function (request) {
+            var config = params.CONFIG.users;
+            var user = false;
+            eval(`module = params.modules.${config.engine};`);
+            var users = new module.Model(config.model, params);
+            return await users.where({field: "$1", value: "$1"}).then(result => {
+                for (var usr of result.data) {
+                    var date = new Date();
+                    var generate = `${date.getFullYear()}${date.getMonth()}${date.getDay()}${usr[config.fields.id]}`;
+                    var mdf5 = params.md5(params.CONFIG.appKey + generate);
+                    console.log(usr, mdf5, request.restore);
+                    if (mdf5 === request.restore) {
+                        user = usr;
+                        break;
+                    }
+                }
+                return {user: user};
+            }).catch(err => {
+                console.log(err);
+                return {user: user};
+            });
+        },
+        changePassword: async function (request) {
+            var config = params.CONFIG.users;
+            eval(`module = params.modules.${config.engine};`);
+            var users = new module.Model(config.model, params);
+            return await users.where({field: "$1", value: "$1"}).then(async result => {
+                for (var usr of result.data) {
+                    var date = new Date();
+                    var generate = `${date.getFullYear()}${date.getMonth()}${date.getDay()}${usr[config.fields.id]}`;
+                    var mdf5 = params.md5(params.CONFIG.appKey + generate);
+                    console.log(usr, mdf5, request.restore);
+                    if (mdf5 === request.restore) {
+                        user = usr;
+                        var newpassword = params.md5(params.CONFIG.appKey + request.newpassword);
+                        return await users.update({
+                            password: newpassword,
+                            where: [{field: config.fields.id, value: usr[config.fields.id]}]
+                        }).then(upda => {
+                            return {success: true};
+                        });
+                        break;
+                    }
+                }
+                return {success: false};
+            }).catch(err => {
+                console.log(err);
+                return {success: false};
             });
         },
     },

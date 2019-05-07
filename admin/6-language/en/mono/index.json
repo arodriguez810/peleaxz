@@ -4,6 +4,7 @@
   "to": "to",
   "please": "please",
   "save": "save",
+  "saveAndContinue": "save and continue",
   "saving": "guardando",
   "close": "close",
   "wait": "wait",
@@ -92,6 +93,8 @@
   "edit": "edit",
   "full": "full",
   "text": "text",
+  "password": "password",
+  "repeatpassword": "repeat password",
   "ViewPassword": "View Password",
   "session": "session",
   "Thereisnofilestoshow": "There is no files to show.",
@@ -151,5 +154,7 @@
   "notifications": "notifications",
   "stopnotification": "stop notification",
   "send": "send",
-  "sended": "sended"
+  "sended": "sended",
+  "notificationstoped": "notification has stoped",
+  "procesing": "procesing"
 }

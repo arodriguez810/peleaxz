@@ -1,4 +1,20 @@
 HTTP = function () {
+    this.hrefToObj = function () {
+        var newobj = {};
+        var url = location.href.split("?");
+        if (url.length > 1) {
+            var queries = url[1].split("&");
+            for (var i in queries) {
+                var values = queries[i].split("=");
+                if (values.length > 1) {
+                    var key = values[0];
+                    var value = values[1];
+                    eval(`newobj.${key} = value`);
+                }
+            }
+        }
+        return newobj;
+    };
     this.objToQuery = function (obj) {
         var str = [];
         for (var p in obj)
@@ -107,10 +123,13 @@ $(document).ready(function () {
         CHANGINGMENU = true;
         $("body").removeClass("sidebar-mobile-main");
         FIXELEMENT.elements = [];
-        if (!DSON.oseaX(outanimation))
+        if (!DSON.oseaX(outanimation)) {
             new ANIMATION().playPure($('#content'), outanimation, function () {
                 ANGULARJS.get('baseController').base();
             });
+        } else {
+            ANGULARJS.get('baseController').base();
+        }
 
     });
 });

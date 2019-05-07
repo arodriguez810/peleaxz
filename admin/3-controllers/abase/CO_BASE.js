@@ -107,7 +107,6 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
                             }
                         }
                         var permissions = objects;
-                        console.log('group', permissions);
                         for (var i in permissions) {
                             if (eval(`typeof CRUD_${permissions[i].name} !=='undefined'`))
                                 eval(`DSON.mergeBool(permissions[i].obj.table.allow,CRUD_${permissions[i].name}.table.allow);`);
@@ -126,7 +125,6 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
                         }
                     }
                     var permissions = objects;
-                    console.log('user', permissions);
                     for (var i in permissions) {
                         if (eval(`typeof CRUD_${permissions[i].name} !=='undefined'`))
                             eval(`DSON.mergeBool(permissions[i].obj.table.allow,CRUD_${permissions[i].name}.table.allow);`);
@@ -216,7 +214,7 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
                 SWEETALERT.stop();
                 eval(`${data.$scope.modelName}.permissions = {};`);
                 eval(`${data.$scope.modelName}.idPermission = '${data.$scope.permissionTable || data.$scope.modelName}-${data.row.id}';`);
-
+                
                 DSON.merge(eval(`${data.$scope.modelName}.permissions`), CRUDNAMES, true);
 
                 if (result.data.length > 0) {
@@ -302,6 +300,7 @@ GARBAGECOLECTOR = function (exclude, ignoreChangeMenu) {
                     if(${item}.cleanForm){
                         if(${item}!==null){
                           if(${item}.destroyForm!==false)
+                          if(${item}.form!==null) 
                           if(${item}.form!==undefined){ 
                               eval('delete ${item}.'+CRUD_${item}.table.key);
                               for(var field of ${item}.form.fileds){

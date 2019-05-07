@@ -219,221 +219,257 @@ FORM = {
                 }
             }
         };
-        $scope.form.saveAction = async function () {
+        $scope.form.saveAction = async function (close) {
             if ($scope.form !== null) {
                 $scope.form.hasChanged = true;
-                $scope.form.makeInsert();
-                SWEETALERT.loading({message: MESSAGE.ic('mono.saving')});
-                if ($scope.form.mode === FORM.modes.new) {
-                    for (var i in CONFIG.audit.insert) {
-                        var audit = CONFIG.audit.insert[i];
-                        if (eval(`CRUD_${$scope.modelName}`).table.columns[i] !== undefined)
-                            eval(`$scope.form.inserting.${i} = '${eval(audit)}';`);
+                var emptyRelations = [];
+                for (const field of $scope.form.fileds) {
+                    if (eval(`$scope.form.schemas.insert.${field}`) === FORM.schemasType.relation) {
+                        var table = eval(`$scope.form.options.${field}.table`);
+                        if (table !== undefined) {
+                            if (eval(`${table}.records.data.length`) === 0) {
+                                emptyRelations.push(eval(`${table}.plural`));
+                            }
+                        }
                     }
-                    if ($scope.form.before.insert({
-                        inserting: $scope.form.inserting,
-                        uploading: $scope.form.uploading,
-                        multipleRelations: $scope.form.multipleRelations,
-                        relations: $scope.form.relations,
-                    }))
-                        return;
-                    var conti = await $scope.triggers.table.before.insert({
-                        inserting: $scope.form.inserting,
-                        uploading: $scope.form.uploading,
-                        multipleRelations: $scope.form.multipleRelations,
-                        relations: $scope.form.relations,
-                    });
-                    if (conti === false) {
-                        return;
-                    }
+                }
 
-                    var crud = eval(`CRUD_${$scope.modelName}`);
-                    if (crud.table.dragrow !== false) {
-                        var last = await BASEAPI.firstp($scope.tableOrMethod, {
-                            order: 'desc',
-                            orderby: crud.table.dragrow
-                        });
-                        $scope.form.inserting[crud.table.dragrow] = (parseInt(last[crud.table.dragrow]) + 1).toString();
-                    }
-
-                    BASEAPI.insertID($scope.tableOrMethod, $scope.form.inserting, $scope.form.fieldExGET, $scope.form.valueExGET, async function (result) {
-                        if (result.data.error === false) {
-                            SWEETALERT.loading({message: MESSAGE.i('mono.Preparingfilesandrelations')});
-                            var savedRow = result.data.data[0];
-                            $scope.form.after.insert({
-                                inserted: savedRow,
-                                inserting: $scope.form.inserting,
-                                uploading: $scope.form.uploading,
-                                multipleRelations: $scope.form.multipleRelations,
-                                relations: $scope.form.relations,
-                            });
-
-
-                            $scope.triggers.table.after.insert({
-                                inserted: savedRow,
-                                inserting: $scope.form.inserting,
-                                uploading: $scope.form.uploading,
-                                multipleRelations: $scope.form.multipleRelations,
-                                relations: $scope.form.relations,
-                            });
-
-                            var firstColumn = eval(`CRUD_${$scope.modelName}`).table.key || "id";
-                            var DRAGONID = eval(`savedRow.${firstColumn}`);
-                            $scope.form.mode = FORM.modes.edit;
-                            $scope.pages.form.subRequestCompleteVar = 0;
-                            $scope.pages.form.subRequestCompleteProgress = 0;
-                            $scope.pages.form.subRequestCompleteVar =
-                                ($scope.form.uploading.length > 0 ? 1 : 0)
-                                + $scope.form.multipleRelations.length
-                                + $scope.form.relations.length;
-
-                            if ($scope.pages !== null)
-                                if ($scope.pages.form.subRequestCompleteVar === 0) {
-                                    $scope.pages.form.close();
-                                    SWEETALERT.stop();
-                                }
-                            if ($scope.form !== null)
-                                if ($scope.form.uploading !== undefined)
-                                    if ($scope.form.uploading.length > 0) {
-                                        for (var file of $scope.form.uploading)
-                                            file.to = file.to.replace('$id', DRAGONID);
-                                        BASEAPI.ajax.post(new HTTP().path(["files", "api", "move"]), {moves: $scope.form.uploading}, function (data) {
-                                            $scope.pages.form.subRequestComplete();
-                                        });
-                                    }
-                            if ($scope.form !== null)
-                                if ($scope.form.relations !== undefined)
-                                    if ($scope.form.relations.length > 0) {
-                                        for (var relation of $scope.form.relations) {
-                                            for (var frel of relation.data) {
-                                                for (var i in frel) {
-                                                    var vi = frel[i].replace('$id', DRAGONID);
-                                                    eval(`frel.${i} = vi`);
-                                                }
-                                            }
-                                            BASEAPI.insert(relation.config.toTable, relation.data, function (data) {
-                                                $scope.pages.form.subRequestComplete();
-                                            });
-                                        }
-                                    }
-                            if ($scope.form !== null)
-                                if ($scope.form.multipleRelations !== undefined)
-                                    if ($scope.form.multipleRelations.length > 0) {
-                                        for (var relation of $scope.form.multipleRelations) {
-                                            var dataToUpdate = {};
-                                            var dataToWhere = [];
-                                            for (var frel of relation.config.where) {
-                                                for (var i in frel) {
-                                                    var vi = frel[i].replace('$id', relation.tempID);
-                                                    eval(`frel.${i} = vi`);
-                                                }
-                                                dataToWhere.push(frel);
-                                            }
-                                            for (var i in relation.config.update) {
-                                                var vi = relation.config.update[i].replace('$id', DRAGONID);
-                                                eval(`dataToUpdate.${i} = vi`);
-                                            }
-                                            dataToUpdate.where = dataToWhere;
-                                            BASEAPI.updateall(relation.config.toTable, dataToUpdate, function (udata) {
-                                                $scope.pages.form.subRequestComplete();
-                                            });
-                                        }
-                                    }
-                        } else {
-                            SWEETALERT.stop();
-                            ERROR.alert(result.data, ERROR.category.database);
+                if (emptyRelations.length > 0) {
+                    SWEETALERT.confirm({
+                        message:
+                            MESSAGE.ieval('alerts.emptyRelations', {relations: DSON.ULALIA(emptyRelations)}),
+                        confirm: function () {
+                            $scope.form.saveSubAction(close);
                         }
                     });
+                    return;
+                } else {
+                    $scope.form.saveSubAction(close);
                 }
-                if ($scope.form.mode === FORM.modes.edit) {
-                    var firstColumn = eval(`CRUD_${$scope.modelName}`).table.key || "id";
-                    var dataToWhere = [{field: firstColumn, value: eval(`$scope.${firstColumn}`)}];
-                    var dataToUpdate = $scope.form.inserting;
-                    dataToUpdate.where = dataToWhere;
-                    for (var i in CONFIG.audit.update) {
-                        var audit = CONFIG.audit.update[i];
-                        if (eval(`CRUD_${$scope.modelName}`).table.columns[i] !== undefined)
-                            eval(`$scope.form.inserting.${i} = '${eval(audit)}';`);
-                    }
-                    if ($scope.form.before.update({
-                        updating: $scope.form.inserting,
-                        uploading: $scope.form.uploading,
-                        multipleRelations: $scope.form.multipleRelations,
-                        relations: $scope.form.relations,
-                    })) return;
 
-                    if (await $scope.triggers.table.before.update({
-                        updating: $scope.form.inserting,
-                        uploading: $scope.form.uploading,
-                        multipleRelations: $scope.form.multipleRelations,
-                        relations: $scope.form.relations,
-                    }) === false)
-                        return;
+            }
+        };
+        $scope.form.saveSubAction = async function (close) {
+            $scope.form.makeInsert();
+            SWEETALERT.loading({message: MESSAGE.ic('mono.saving')});
+            if ($scope.form.mode === FORM.modes.new) {
+                for (var i in CONFIG.audit.insert) {
+                    var audit = CONFIG.audit.insert[i];
+                    if (eval(`CRUD_${$scope.modelName}`).table.columns[i] !== undefined)
+                        eval(`$scope.form.inserting.${i} = '${eval(audit)}';`);
+                }
+                if ($scope.form.before.insert({
+                    inserting: $scope.form.inserting,
+                    uploading: $scope.form.uploading,
+                    multipleRelations: $scope.form.multipleRelations,
+                    relations: $scope.form.relations,
+                }))
+                    return;
+                var conti = await $scope.triggers.table.before.insert({
+                    inserting: $scope.form.inserting,
+                    uploading: $scope.form.uploading,
+                    multipleRelations: $scope.form.multipleRelations,
+                    relations: $scope.form.relations,
+                });
+                if (conti === false) {
+                    return;
+                }
 
-                    BASEAPI.updateall($scope.tableOrMethod, dataToUpdate, function (result) {
-                        if (result.data.error === false) {
-                            if ($scope.form !== null) {
-                                $scope.form.after.update({
-                                    updating: $scope.form.inserting,
-                                    uploading: $scope.form.uploading,
-                                    multipleRelations: $scope.form.multipleRelations,
-                                    relations: $scope.form.relations,
-                                });
+                var crud = eval(`CRUD_${$scope.modelName}`);
+                if (crud.table.dragrow !== false) {
+                    var last = await BASEAPI.firstp($scope.tableOrMethod, {
+                        order: 'desc',
+                        orderby: crud.table.dragrow
+                    });
+                    if (last === undefined)
+                        $scope.form.inserting[crud.table.dragrow] = "1";
+                    else
+                        $scope.form.inserting[crud.table.dragrow] = (parseInt(last[crud.table.dragrow]) + 1).toString();
+                }
 
-                                $scope.triggers.table.after.update({
-                                    updating: $scope.form.inserting,
-                                    uploading: $scope.form.uploading,
-                                    multipleRelations: $scope.form.multipleRelations,
-                                    relations: $scope.form.relations,
-                                });
-                            }
-                            SWEETALERT.loading({message: MESSAGE.i('mono.Preparingfilesandrelations')});
-                            var firstColumn = eval(`CRUD_${$scope.modelName}`).table.key || "id";
-                            var DRAGONID = eval(`$scope.${firstColumn}`);
-                            if ($scope.form !== null)
-                                $scope.form.mode = FORM.modes.edit;
-                            if ($scope.pages !== null)
-                                $scope.pages.form.subRequestCompleteVar = 0;
-                            if ($scope.pages !== null)
-                                $scope.pages.form.subRequestCompleteProgress = 0;
-                            if ($scope.pages !== null)
-                                $scope.pages.form.subRequestCompleteVar = $scope.form.relations.length;
+                BASEAPI.insertID($scope.tableOrMethod, $scope.form.inserting, $scope.form.fieldExGET, $scope.form.valueExGET, async function (result) {
+                    if (result.data.error === false) {
+
+                        SWEETALERT.loading({message: MESSAGE.i('mono.Preparingfilesandrelations')});
+                        var savedRow = result.data.data[0];
+                        $scope.form.after.insert({
+                            inserted: savedRow,
+                            inserting: $scope.form.inserting,
+                            uploading: $scope.form.uploading,
+                            multipleRelations: $scope.form.multipleRelations,
+                            relations: $scope.form.relations,
+                        });
+
+                        $scope.triggers.table.after.insert({
+                            inserted: savedRow,
+                            inserting: $scope.form.inserting,
+                            uploading: $scope.form.uploading,
+                            multipleRelations: $scope.form.multipleRelations,
+                            relations: $scope.form.relations,
+                        });
+
+                        var firstColumn = eval(`CRUD_${$scope.modelName}`).table.key || "id";
+                        var DRAGONID = eval(`savedRow.${firstColumn}`);
+                        if (!DSON.oseaX(CURRENTPRUDENTS)) {
+                            PRUDENTS[CURRENTPRUDENTS] = DRAGONID;
+                            CURRENTPRUDENTS = "";
+                        }
+                        $scope.form.mode = FORM.modes.edit;
+                        $scope.pages.form.subRequestCompleteVar = 0;
+                        $scope.pages.form.subRequestCompleteProgress = 0;
+                        $scope.pages.form.subRequestCompleteVar =
+                            ($scope.form.uploading.length > 0 ? 1 : 0)
+                            + $scope.form.multipleRelations.length
+                            + $scope.form.relations.length;
+
+                        if ($scope.pages !== null)
                             if ($scope.pages.form.subRequestCompleteVar === 0) {
-                                $scope.pages.form.close();
+                                if (close !== false)
+                                    $scope.pages.form.close();
                                 SWEETALERT.stop();
                             }
-                            if ($scope.form !== null)
-                                if ($scope.form.relations !== undefined) {
-                                    if ($scope.form.relations.length > 0) {
-                                        for (var relation of $scope.form.relations) {
-                                            for (var frel of relation.data) {
-                                                for (var i in frel) {
-                                                    var vi = frel[i].replace('$id', DRAGONID);
-                                                    eval(`frel.${i} = vi`);
-                                                }
+                        if ($scope.form !== null)
+                            if ($scope.form.uploading !== undefined)
+                                if ($scope.form.uploading.length > 0) {
+                                    for (var file of $scope.form.uploading)
+                                        file.to = file.to.replace('$id', DRAGONID);
+                                    BASEAPI.ajax.post(new HTTP().path(["files", "api", "move"]), {moves: $scope.form.uploading}, function (data) {
+                                        $scope.pages.form.subRequestComplete(close);
+                                    });
+                                }
+                        if ($scope.form !== null)
+                            if ($scope.form.relations !== undefined)
+                                if ($scope.form.relations.length > 0) {
+                                    for (var relation of $scope.form.relations) {
+                                        for (var frel of relation.data) {
+                                            for (var i in frel) {
+                                                var vi = frel[i].replace('$id', DRAGONID);
+                                                eval(`frel.${i} = vi`);
                                             }
-                                            for (var i in  relation.config.fieldsUpdate) {
-                                                var vi = relation.config.fieldsUpdate[i].replace('$id', DRAGONID);
-                                                eval(`relation.config.fieldsUpdate.${i} = vi`);
-                                            }
-                                            var whereDelete = [];
-                                            whereDelete.push(relation.config.fieldsUpdate)
-
-
-                                            BASEAPI.deleteall(relation.config.toTable, whereDelete, function (ddata) {
-                                                BASEAPI.insert(relation.config.toTable, relation.data, function (data) {
-                                                    $scope.pages.form.subRequestComplete();
-                                                });
-                                            });
                                         }
+                                        BASEAPI.insert(relation.config.toTable, relation.data, function (data) {
+                                            $scope.pages.form.subRequestComplete(close);
+                                        });
                                     }
                                 }
-                        } else {
-                            SWEETALERT.stop();
-                            ERROR.alert(result.data, ERROR.category.database);
-                        }
-                    });
+                        if ($scope.form !== null)
+                            if ($scope.form.multipleRelations !== undefined)
+                                if ($scope.form.multipleRelations.length > 0) {
+                                    for (var relation of $scope.form.multipleRelations) {
+                                        var dataToUpdate = {};
+                                        var dataToWhere = [];
+                                        for (var frel of relation.config.where) {
+                                            for (var i in frel) {
+                                                var vi = frel[i].replace('$id', relation.tempID);
+                                                eval(`frel.${i} = vi`);
+                                            }
+                                            dataToWhere.push(frel);
+                                        }
+                                        for (var i in relation.config.update) {
+                                            var vi = relation.config.update[i].replace('$id', DRAGONID);
+                                            eval(`dataToUpdate.${i} = vi`);
+                                        }
+                                        dataToUpdate.where = dataToWhere;
+                                        BASEAPI.updateall(relation.config.toTable, dataToUpdate, function (udata) {
+                                            $scope.pages.form.subRequestComplete(close);
+                                        });
+                                    }
+                                }
+                    } else {
+                        SWEETALERT.stop();
+                        ERROR.alert(result.data, ERROR.category.database);
+                    }
+                });
+            }
+            if ($scope.form.mode === FORM.modes.edit) {
+                var firstColumn = eval(`CRUD_${$scope.modelName}`).table.key || "id";
+                var dataToWhere = [{field: firstColumn, value: eval(`$scope.${firstColumn}`)}];
+                var dataToUpdate = $scope.form.inserting;
+                dataToUpdate.where = dataToWhere;
+                for (var i in CONFIG.audit.update) {
+                    var audit = CONFIG.audit.update[i];
+                    if (eval(`CRUD_${$scope.modelName}`).table.columns[i] !== undefined)
+                        eval(`$scope.form.inserting.${i} = '${eval(audit)}';`);
                 }
+                if ($scope.form.before.update({
+                    updating: $scope.form.inserting,
+                    uploading: $scope.form.uploading,
+                    multipleRelations: $scope.form.multipleRelations,
+                    relations: $scope.form.relations,
+                })) return;
+
+                if (await $scope.triggers.table.before.update({
+                    updating: $scope.form.inserting,
+                    uploading: $scope.form.uploading,
+                    multipleRelations: $scope.form.multipleRelations,
+                    relations: $scope.form.relations,
+                }) === false)
+                    return;
+
+                BASEAPI.updateall($scope.tableOrMethod, dataToUpdate, function (result) {
+                    if (result.data.error === false) {
+                        if ($scope.form !== null) {
+                            $scope.form.after.update({
+                                updating: $scope.form.inserting,
+                                uploading: $scope.form.uploading,
+                                multipleRelations: $scope.form.multipleRelations,
+                                relations: $scope.form.relations,
+                            });
+
+                            $scope.triggers.table.after.update({
+                                updating: $scope.form.inserting,
+                                uploading: $scope.form.uploading,
+                                multipleRelations: $scope.form.multipleRelations,
+                                relations: $scope.form.relations,
+                            });
+                        }
+                        SWEETALERT.loading({message: MESSAGE.i('mono.Preparingfilesandrelations')});
+                        var firstColumn = eval(`CRUD_${$scope.modelName}`).table.key || "id";
+                        var DRAGONID = eval(`$scope.${firstColumn}`);
+                        if ($scope.form !== null)
+                            $scope.form.mode = FORM.modes.edit;
+                        if ($scope.pages !== null)
+                            $scope.pages.form.subRequestCompleteVar = 0;
+                        if ($scope.pages !== null)
+                            $scope.pages.form.subRequestCompleteProgress = 0;
+                        if ($scope.pages !== null)
+                            $scope.pages.form.subRequestCompleteVar = $scope.form.relations.length;
+                        if ($scope.pages.form.subRequestCompleteVar === 0) {
+                            if (close !== false)
+                                $scope.pages.form.close();
+                            SWEETALERT.stop();
+                        }
+                        if ($scope.form !== null)
+                            if ($scope.form.relations !== undefined) {
+                                if ($scope.form.relations.length > 0) {
+                                    for (var relation of $scope.form.relations) {
+                                        for (var frel of relation.data) {
+                                            for (var i in frel) {
+                                                var vi = frel[i].replace('$id', DRAGONID);
+                                                eval(`frel.${i} = vi`);
+                                            }
+                                        }
+                                        for (var i in  relation.config.fieldsUpdate) {
+                                            var vi = relation.config.fieldsUpdate[i].replace('$id', DRAGONID);
+                                            eval(`relation.config.fieldsUpdate.${i} = vi`);
+                                        }
+                                        var whereDelete = [];
+                                        whereDelete.push(relation.config.fieldsUpdate)
+
+
+                                        BASEAPI.deleteall(relation.config.toTable, whereDelete, function (ddata) {
+                                            BASEAPI.insert(relation.config.toTable, relation.data, function (data) {
+                                                $scope.pages.form.subRequestComplete(close);
+                                            });
+                                        });
+                                    }
+                                }
+                            }
+                    } else {
+                        SWEETALERT.stop();
+                        ERROR.alert(result.data, ERROR.category.database);
+                    }
+                });
             }
         };
         $scope.form.makeInsert = function (exclude) {
@@ -847,11 +883,11 @@ FORM = {
                 $scope.pages.form.isOpen = true;
                 $scope.pages.form.subRequestCompleteVar = 0;
                 $scope.pages.form.subRequestCompleteProgress = 0;
-                $scope.pages.form.save = function (pre, post) {
+                $scope.pages.form.save = function (pre, post, close) {
                     var newRecord = {};
                     var state = $scope.validation.statePure();
                     if (state === VALIDATION.types.success) {
-                        $scope.form.saveAction();
+                        $scope.form.saveAction(close);
                     } else {
                         if (state === VALIDATION.types.warning) {
                             SWEETALERT.confirm({
@@ -884,10 +920,11 @@ FORM = {
                         });
                     }, 500);
                 };
-                $scope.pages.form.subRequestComplete = function () {
+                $scope.pages.form.subRequestComplete = function (close) {
                     $scope.pages.form.subRequestCompleteProgress++;
                     if ($scope.pages.form.subRequestCompleteProgress === $scope.pages.form.subRequestCompleteVar) {
-                        $scope.pages.form.close();
+                        if (close !== false)
+                            $scope.pages.form.close();
                         SWEETALERT.stop();
                     } else {
 

@@ -9,6 +9,15 @@ SESSION = function () {
         }
         return obj;
     };
+    this.runFunction = function (obj) {
+        if (!DSON.oseaX(obj)) {
+            for (var i in CONFIG.users.addFields) {
+                var calc = CONFIG.users.addFields[i];
+                eval(`obj.${i} = function () { return ${calc};}`);
+            }
+        }
+        return obj;
+    };
     this.register = function (data) {
         STORAGE.add("APPSESSION", data);
     };
@@ -23,11 +32,13 @@ SESSION = function () {
 
         if (href.indexOf('auth/login') === -1) {
             if (href.indexOf('auth/forgot') === -1) {
-                if (!this.isLogged()) {
-                    MODAL.closeAll();
-                    var http = new HTTP();
-                    http.redirecttag('auth/login');
-                    return true;
+                if (href.indexOf('auth/restore') === -1) {
+                    if (!this.isLogged()) {
+                        MODAL.closeAll();
+                        var http = new HTTP();
+                        http.redirecttag('auth/login');
+                        return true;
+                    }
                 }
             }
         }

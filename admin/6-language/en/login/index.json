@@ -8,5 +8,13 @@
   "passwordrecovery": "Password recovery",
   "willsendemail": "We'll send you instructions in email",
   "resetpassword": "Reset password",
-  "youremail": "Your email"
+  "youremail": "Your email",
+  "restoreemailsend": "restore password email sent",
+  "button": "Recover my password",
+  "expire": "This link has expired, plese click forgot password again for renew link",
+  "passwordrestored": "passsword restored!",
+  "a": "recover your password.",
+  "b": "Looks like you lost your password?",
+  "c": "We’re here to help. Click on the button below to change your password.",
+  "d": "If you didn’t ask to recover your password, please ignore this email."
 }

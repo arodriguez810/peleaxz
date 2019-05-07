@@ -2,8 +2,8 @@
   "hidemenus": [],
   "ui": {
     "animation": {
-      "outanimation": "BounceOutLeft",
-      "inanimation": "BounceInRight"
+      "outanimation": "",
+      "inanimation": ""
     },
     "colors": {
       "primary": "grey",

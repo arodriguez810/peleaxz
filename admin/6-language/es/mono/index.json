@@ -4,6 +4,7 @@
   "to": "a",
   "please": "porfavor",
   "save": "guardar",
+  "saveAndContinue": "guardar y continuar",
   "saving": "guardando",
   "close": "cerrar",
   "wait": "espera",
@@ -92,6 +93,8 @@
   "edit": "editar",
   "full": "Completo",
   "text": "texto",
+  "password": "contraseña",
+  "repeatpassword": "repetir contraseña",
   "ViewPassword": "Ver Contraseña",
   "session": "sessión",
   "Thereisnofilestoshow": "No hay archivos a mostrar.",
@@ -151,5 +154,7 @@
   "notifications": "notificaciones",
   "send": "enviar",
   "sended": "enviado",
-  "stopnotification": "parar notificación"
+  "stopnotification": "parar notificación",
+  "notificationstoped": "la notificación fue detenida",
+  "procesing": "procesando"
 }

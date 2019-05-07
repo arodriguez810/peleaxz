@@ -1,7 +1,7 @@
 <script>
     RUNTABLE('<%= scope %>');
 </script>
-<div class="dragon-panel" id="<%= scope %>TablePanel" style="overflow-x: scroll;overflow-y: visible">
+<div ng-show="<%= scope %>.table.loaded" class="dragon-panel" id="<%= scope %>TablePanel" style="overflow-x: scroll;overflow-y: visible">
     <!--Table List -->
 
     <div dragonlanguage=""

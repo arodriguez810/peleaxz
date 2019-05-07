@@ -3,14 +3,19 @@
             <i class="position-right"></i>
         </span>
 
-    <button type="button"  class="btn bg-<%= COLOR.warning %> btn-labeled btn-xs pull-right"
+    <button type="button" class="btn bg-<%= COLOR.warning %> btn-labeled btn-xs pull-right"
             ng-click="<%= model %>.pages.form.close()">
         <b><i class="icon-cross2"></i></b>
         <language>MESSAGE.i('mono.cancel')</language>
     </button>
-    <button type="button" role="button" class="btn bg-<%= COLOR.success %> btn-labeled btn-xs pull-right"
+    <button type="button" role="button" class="btn bg-<%= COLOR.success %>-800 btn-labeled btn-xs pull-right"
             ng-click="<%= model %>.pages.form.save()">
         <b><i class="icon-floppy-disk"></i></b>
         <language>MESSAGE.i('mono.save')</language>
+    </button>
+    <button type="button" ng-show="<%= model %>.form.mode!=='new'" role="button" class="btn bg-<%= COLOR.success %>-300 btn-labeled btn-xs pull-right"
+            ng-click="<%= model %>.pages.form.save(undefined,undefined,false)">
+        <b><i class="icon-floppy-disks"></i></b>
+        <language>MESSAGE.i('mono.saveAndContinue')</language>
     </button>
 </div>

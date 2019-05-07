@@ -7,5 +7,6 @@
   "Numbermustbebetween": "Number must be between",
   "Valuemaynotbereal": "Value may not be real",
   "Colorisnotallowed": "Color is not allowed",
-  "Isnotavalidemail": "Is not a valid email"
+  "Isnotavalidemail": "Is not a valid email",
+  "fieldPassword": "${field} must be equal to ${field2}"
 }

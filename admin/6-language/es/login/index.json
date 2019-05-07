@@ -8,5 +8,13 @@
   "passwordrecovery": "recuperar contraseña",
   "willsendemail": "te enviaremos las instrucciones por correo",
   "resetpassword": "resetear contraseña",
-  "youremail": "Tu correo"
+  "youremail": "Tu correo",
+  "restoreemailsend": "correo para restablecer la contraseña ha sido enviado",
+  "expire": "Este link ha expirado, favor dar clic en olvidó contraseña para un link nuevo",
+  "button": "Recuperar mi contraseña",
+  "passwordrestored": "contraseña restaurada!",
+  "a": "recupera tu contraseña.",
+  "b": "Parece que has perdido tu contraseña?",
+  "c": "Estamos aquí para ayudar. Haga clic en el botón de abajo para cambiar su contraseña.",
+  "d": "Si no solicitó recuperar su contraseña, ignore este correo electrónico."
 }

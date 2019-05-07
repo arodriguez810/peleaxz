@@ -11,6 +11,21 @@ DSON = {
     OSO: function (object) {
         return eval("(" + JSON.stringify(object) + ")");
     },
+    EO: function (string) {
+        return eval("(" + string + ")");
+    },
+    ULALIA: function (arays) {
+        return `<ul><li>${arays.join("</li><li>")}</li></ul>`;
+    },
+    OMG: function (id, scope) {
+        eval(`${scope}.loadImage${id} = function () {
+            FILE.runServerFile($("#${id}"));
+        }`);
+        if (`${scope}.form.beginFunctions.indexOf('${scope}.loadImage${id}();')===-1`) {
+            //eval(`${scope}.form.beginFunctions.push('${scope}.loadImage${id}();');`);
+        }
+        eval(`${scope}.loadImage${id}();`);
+    },
     equals: function (obj1, obj2) {
         return JSON.stringify(obj1) === JSON.stringify(obj2);
     },

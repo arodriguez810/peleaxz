@@ -12,5 +12,8 @@
   "Security": "Security",
   "SMTP": "SMTP",
   "Database": "Database",
-  "expireExp": "Days(d),Hours(h),Minutes(M),Seconds(S)"
+  "newpassword": "New Password",
+  "confirmpassword": "Confirm Password",
+  "expireExp": "Days(d),Hours(h),Minutes(M),Seconds(S)",
+  "forgotfield": "Email"
 }

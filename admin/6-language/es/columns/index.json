@@ -38,7 +38,6 @@
   "config_users_fields_password": "Campo Contraseña",
   "config_users_expire": "Tiempo de expiración para la sessión",
   "expireExp": "Dias(d),Horas(h),Minutos(M),Segundos(S)",
-
   "config_users_attempts": "Limite de intentos fallidos",
   "config_users_unlockTime": "Tiempo para desbloqueo",
   "config_domain": "Dominio",
@@ -71,5 +70,8 @@
   "config_mysql_port": "Puerto",
   "config_oracle_user": "Usuario",
   "config_oracle_password": "Contraseña",
-  "config_oracle_connectString": "TNS"
+  "config_oracle_connectString": "TNS",
+  "newpassword": "Nueva Contraseña",
+  "confirmpassword": "Confirmar Contraseña",
+  "forgotfield": "Correo"
 }

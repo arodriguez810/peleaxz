@@ -6,7 +6,7 @@ var options = {
     icon: {
         class: "none",
         position: "left",
-        color: TAG.table+"-800"
+        color: TAG.table + "-800"
     },
     helptext: '',
     format: '',
@@ -20,7 +20,7 @@ var options = {
 };
 
 
-options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g,'_');
+options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g, '_');
 options.icon.spyce = options.icon.class === "none" ? "remove-input-space" : "";
 options.autocomplete = options.autocomplete ? "autocomplete='Off'" : '';
 options.format = options.format ? options.format : false;
@@ -30,16 +30,16 @@ var toclient = JSON.stringify(options);
 <script>
     <%= model %>.triggers.table.before.control("<%= nameclean %>");
     <% if(options.isNumber){ %>
-        <%= model %>.form.schemas.select["<%= name %>"] =FORM.schemasType.decimal;
+    <%= model %>.form.schemas.select["<%= name %>"] = FORM.schemasType.decimal;
     <% } %>
 
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
     <%= model %>.form.registerField("<%= name %>_DragonClean", "<%= toclient %>");
 
 
-
-    if(MESSAGE.exist('columns.<%= nameclean %>')){
-        <%= model %>.form.options.<%= name %>.placeholder = MESSAGE.i('columns.<%= nameclean %>');
+    if (MESSAGE.exist('columns.<%= nameclean %>')) {
+        <%= model %>.
+        form.options.<%= name %>.placeholder = MESSAGE.i('columns.<%= nameclean %>');
     }
 </script>
 <div class="<%= options.icon.spyce %> form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-{{::<%= model %>.form.options.<%= name %>.icon.position}}"
@@ -82,27 +82,29 @@ var toclient = JSON.stringify(options);
     var formaty =<%= model %>.form.options.<%= name %>.format;
     $('[name="<%= model %>_<%= nameclean %>"]').mask(formaty.mask, formaty.options);
     <% if(options.maxlength){ %>
-        $('[name="<%= model %>_<%= nameclean %>"]').maxlength();
+    //$('[name="<%= model %>_<%= nameclean %>"]').maxlength();
     <% } %>
 
     $('[name="<%= model %>_<%= nameclean %>"]').blur(function () {
 
         $me = $(this).val();
         $me = $me.replace(/\./g, 'POINT').replace(/\W/g, '').replace(/POINT/g, '.').replace(/[a-z]/gi, '');
-        <%= model %>.<%= name %>_DragonClean = $me;
+        <%= model %>.
+        <%= name %>_DragonClean = $me;
 
         STEP.register({
             scope: "<%= model %>",
             action: "Change Format Text",
             field: "<%= name %>",
             value: <%= model %>.<%= name %>
-        });
+    })
+        ;
     });
 
     $('[name="<%= model %>_<%= nameclean %>"]').trigger('blur');
 
     var isReadProgram = <%= model %>.form.isReadOnly('<%= name %>');
-    if (isReadProgram !== false){
+    if (isReadProgram !== false) {
         <%= model %>.
         form.options.<%= name %>.disabled = true;
         if (isReadProgram !== undefined) {

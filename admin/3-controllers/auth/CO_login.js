@@ -1,8 +1,12 @@
 app.controller("auth", function ($scope, $http, $compile) {
     auth = this;
+
+
     RUNCONTROLLER("auth", auth, $scope, $http, $compile);
     RUN_B("auth", auth, $scope, $http, $compile);
 
+    var http = new HTTP();
+    auth.queries = http.hrefToObj();
     $scope.$watch('auth.username', function (value) {
         var rules = [];
         rules.push(VALIDATION.general.required(value));
@@ -20,33 +24,90 @@ app.controller("auth", function ($scope, $http, $compile) {
         }
         return validation;
     });
-    auth.sendForgotPassword = async function () {
-        var where = {where: [{field: CONFIG.users.fields.email, value: auth.forgotfield}]};
-        var user = await BASEAPI.firstp(CONFIG.users.model, where);
-        for (var i in CONFIG.users.addFields) {
-            var calc = CONFIG.users.addFields[i];
-            eval(`user.${i} = function () { return ${calc};}`);
-        }
-        if (user !== undefined) {
-            BASEAPI.mail({
-                "to": auth.forgotfield,
-                "subject": `${CONFIG.appName} - ${MESSAGE.ic('login.passwordrecovery')}`,
-                "name": session.current().fullName(),
-                "template": 'email/usersenderror',
-                "fields": {
-                    profileimage: '',
-                    name: session.current().fullName(),
-                    username: eval(`session.current().${CONFIG.users.fields.username}`),
-                    error: error,
-                    phone: CONFIG.support.phone,
-                    type: "Database Error",
-                }
-            }, function (result) {
-                SWEETALERT.stop();
-                SWEETALERT.show({message: MESSAGE.i('alerts.providerError')});
-            });
-        }
+    $scope.$watch('auth.forgotfield', function (value) {
+        var rules = [];
+        rules.push(VALIDATION.general.required(value));
+        rules.push(VALIDATION.text.email(value));
+        VALIDATION.validate(auth, "forgotfield", rules);
+    });
+    var repeatPasswordMessage = MESSAGE.ic('mono.repeatpassword');
+    var passwordMessage = MESSAGE.ic('mono.password');
+    $scope.$watch('auth.newpassword', function (value) {
+        var rules = [];
+        rules.push(VALIDATION.general.required(value));
+        rules.push(VALIDATION.general.equal(value, auth.repeatPassword, passwordMessage, repeatPasswordMessage));
+        VALIDATION.validate(auth, "newpassword", rules)
 
+        var rulesRepeat = [];
+        rulesRepeat.push(VALIDATION.general.equal(auth.repeatPassword, value, repeatPasswordMessage, passwordMessage));
+        VALIDATION.validate(auth, "confirmpassword", rulesRepeat);
+    });
+    $scope.$watch('auth.confirmpassword', function (value) {
+        var rules = [];
+        rules.push(VALIDATION.general.required(value));
+        rules.push(VALIDATION.general.equal(value, auth.newpassword, repeatPasswordMessage, passwordMessage));
+        VALIDATION.validate(auth, "confirmpassword", rules);
+
+        var rulesRepeat = [];
+        rulesRepeat.push(VALIDATION.general.equal(auth.newpassword, value, passwordMessage, repeatPasswordMessage));
+        VALIDATION.validate(auth, "newpassword", rulesRepeat)
+    });
+    auth.sendForgotPassword = async function () {
+        VALIDATION.save(auth, async function () {
+            var animation = new ANIMATION();
+
+            var where = {where: [{field: CONFIG.users.fields.email, value: auth.forgotfield}]};
+            var user = await
+                BASEAPI.firstp(CONFIG.users.model, where);
+            if (user !== null) {
+                user = new SESSION().runFunction(user);
+                animation.loadingPure($("#idsend"), "", $("#spinersend"), '30');
+                var date = new Date();
+                var token = `${date.getFullYear()}${date.getMonth()}${date.getDay()}${user.getID()}`;
+                SERVICE.base_auth.md5({value: token}, function (result) {
+                    BASEAPI.mail({
+                        "to": eval(`user.${CONFIG.users.fields.email}`),
+                        "subject": `${CONFIG.appName} - ${MESSAGE.ic('login.passwordrecovery')}`,
+                        "name": user.fullName(),
+                        "template": 'email/forgotpassword',
+                        "fields": {
+                            name: user.fullName(),
+                            username: eval(`user.${CONFIG.users.fields.username}`),
+                            phone: CONFIG.support.phone,
+                            "button": MESSAGE.i('login.button'),
+                            "a": MESSAGE.i('login.a'),
+                            "b": MESSAGE.i('login.b'),
+                            "c": MESSAGE.i('login.c'),
+                            "d": MESSAGE.i('login.d'),
+                            "url": new HTTP().path(["#auth", `login?restore=${result.data.md5}`])
+                        }
+                    }, function (result) {
+                        animation.stoploading($("#idsend"), $("#spinersend"));
+                        SWEETALERT.show({message: MESSAGE.i('login.restoreemailsend')});
+                    });
+                });
+
+            } else {
+                SWEETALERT.show({message: MESSAGE.i('login.restoreemailsend')});
+            }
+        }, ["forgotfield"]);
+
+    };
+    auth.restorePassword = async function () {
+        VALIDATION.save(auth, async function () {
+            var animation = new ANIMATION();
+            animation.loadingPure($("#idsend"), "", $("#spinersend"), '30');
+            SERVICE.base_auth.changePassword({
+                restore: auth.queries.restore,
+                newpassword: auth.newpassword
+            }, function (result) {
+                animation.stoploading($("#idsend"), $("#spinersend"));
+                if (result.data.success) {
+                    SWEETALERT.show({message: MESSAGE.i('login.passwordrestored')});
+                    MODAL.close(auth);
+                }
+            });
+        }, ["newpassword", "confirmpassword"]);
     };
     auth.forgotPassword = function () {
         auth.modal.modalView("auth/forgot", {
@@ -100,23 +161,36 @@ app.controller("auth", function ($scope, $http, $compile) {
         });
     };
     auth.login_click = function () {
-        if (auth.validation.state() === "warning") {
-            SWEETALERT.confirm({
-                type: "warning",
-                title: "Warnings",
-                message: MESSAGE.i('alerts.preventClose'),
-                confirm: function () {
-                    auth.makeLogin();
-                }
-            });
-            return;
-        }
-        if (auth.validation.state() === "success") {
+        VALIDATION.save(auth, async function () {
             auth.makeLogin();
-            return;
-        }
-        SWEETALERT.show({
-            message: MESSAGE.i('alerts.ContainsError')
         });
     };
+    if (auth.queries.restore !== undefined) {
+        SWEETALERT.loading({message: MESSAGE.ic('mono.procesing')});
+        SERVICE.base_auth.matchtoken({restore: auth.queries.restore}, function (result) {
+            SWEETALERT.stop();
+            if (result.data.user !== false) {
+                auth.restoreUser = new SESSION().runFunction(result.data.user);
+                auth.modal.modalView("auth/restore", {
+                    width: ENUM.modal.width.large,
+                    header: {
+                        title: MESSAGE.ic("login.resetpassword"),
+                        icon: "lock"
+                    },
+                    footer: {
+                        cancelButton: false
+                    },
+                    content: {
+                        loadingContentText: `${MESSAGE.i('actions.Loading')}...`,
+                        sameController: true
+                    },
+                });
+            } else {
+                SWEETALERT.show({message: MESSAGE.i('login.expire')});
+            }
+        });
+
+    }
+
+
 });

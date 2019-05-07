@@ -125,7 +125,7 @@
                     <a class="dropdown-toggle legitRipple" data-toggle="dropdown" aria-expanded="false">
 
                         <img id="profileImage"
-                             data-dragonfile="/my_user/profileimage/{{::baseController.userID}}"
+                             data-dragonfile="/<%= CONFIG.users.path %>/profileimage/{{::baseController.userID}}"
                              src="assets/images/placeholder.jpg" alt="">
 
                         <span>{{::baseController.fullName}}</span>
@@ -136,7 +136,7 @@
                         <!--<li><a href="#"><i class="icon-coins"></i> My balance</a></li>-->
                         <!--<li><a href="#"><span class="badge badge-warning pull-right">58</span> <i class="icon-comment-discussion"></i> Messages</a></li>-->
                         <!--<li class="divider"></li>-->
-                        <!--<li><a href="#"><i class="icon-cog5"></i> Account settings</a></li>-->
+                        <!--<li><a href="#"><i class="icon-cog5"></i> Account settings </a></li>-->
                         <li>
                             <a onclick="new SESSION().logoff()" dragonlanguage><i class="icon-switch2"></i>
                                 <language>MESSAGE.i('navbar.Logout')</language>

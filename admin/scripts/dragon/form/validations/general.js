@@ -26,14 +26,6 @@ VALIDATION = DSON.merge(VALIDATION, {
                 message: MESSAGE.ieval('validations.greaterThan', {field: field, field2: field2}),
                 type: VALIDATION.types.error
             };
-        },
-        reglapropia: function (value) {
-            value = value || "";
-            return {
-                valid: (value === "bueno"),
-                message: "Opps no es bueno",
-                type: VALIDATION.types.error
-            };
         }
     }
 });

@@ -1,0 +1,126 @@
+<%
+var name = name || "";
+var options = {
+    helptext: '',
+    width: '70'
+};
+options = OBJECT.merge(options, opts);
+var nameclean = name.replace(/\./g, '_');
+options.model = options.model ? options.model : false;
+options.permission = options.permission || "CRUD_" + options.table;
+var toclient = JSON.stringify(options);
+%>
+<script>
+
+    <%= model %>.triggers.table.before.control("<%= nameclean %>");
+
+</script>
+
+<div class="form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
+     id="input<%= model %>_<%= nameclean %>">
+    <label class="control-label is-visible animate">
+        {{<%= model %>.form.options.<%= name %>.label}}
+    </label>
+
+
+    <img id="userImage" style="max-height: <%= options.width %>px;"
+         data-dragonfile="<%= options.path %>"
+         src="assets/images/placeholder.jpg" alt="">
+
+
+    <div class="form-control-feedback">
+        <i
+                id="icon<%= name %>"
+                class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} text-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}">
+
+        </i>
+    </div>
+    <span ng-if="<%= model %>.form.options.<%= name %>.helptext!=''"
+          class="help-block text-muted">
+        {{<%= model %>.form.options.<%= name %>.helptext}}
+    </span>
+</div>
+
+<script>
+    $(document).ready(function () {
+        <%= model %>.
+        form.beginFunctions.push(`<%= model %>.form.loadDropDown("<%= name %>");`);
+        <%= model %>.
+        <%= name %>_object = {};
+        $('[name="<%= model %>_<%= nameclean %>"]').change(function () {
+            var selectedss = $(this).children("option:selected").data('object');
+
+            <%= model %>.
+            <%= nameclean %>_object = selectedss;
+
+            STEP.register({
+                scope: "<%= model %>",
+                action: "Change DropDown",
+                field: "<%= name %>",
+                value: <%= model %>.<%= name %>
+        })
+            ;
+
+
+        });
+
+        $('#reload<%= model %>_<%= nameclean %>').click(function () {
+            <%= model %>.
+            form.loadDropDown("<%= name %>");
+            return false;
+        });
+        $('#new<%= model %>_<%= nameclean %>').click(function () {
+            <%= options.table %>.
+            formulary(null, 'new');
+            return false;
+        });
+        $('#list<%= model %>_<%= nameclean %>').click(function () {
+            baseController.viewData = {};
+            var modal = {
+                    header: {
+                        title: MESSAGE.i('mono.Listof') + <%= options.table %>.plural,
+                    icon: "list"
+                },
+                footer: {
+                    cancelButton: true
+                },
+                content: {
+                    loadingContentText: MESSAGE.i('actions.Loading'),
+                }
+        }
+            <%= options.table %>.
+            modal.modalView(String.format("{0}", "<%= options.table %>"), modal);
+            return false;
+        });
+
+        $('#edit<%= model %>_<%= nameclean %>').click(function () {
+            <%= options.table %>.
+            formulary({
+                where: [{
+                    field: <%= 'CRUD_' + options.table %>.table.key,
+                    value
+        : <%= model %>.<%= name %>}]
+        },
+            FORM.modes.edit, {}
+        )
+            ;
+            return false;
+        });
+        $('#view<%= model %>_<%= nameclean %>').click(function () {
+            <%= model %>.
+
+            cell.openLink({
+                table: "<%= options.table %>",
+                column: "<%= options.column %>",
+                value: <%= model %>.<%= name %>, field
+        :
+            "<%= name %>"
+        })
+            ;
+
+
+            return false;
+        });
+    });
+    MESSAGE.run();
+</script>

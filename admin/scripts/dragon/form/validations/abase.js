@@ -126,8 +126,8 @@ VALIDATION = {
         scope.validate[field] = {valid: valid, messages: messages, type: type};
         return {valid: valid, messages: messages, type: type};
     },
-    save: function (scope, save) {
-        var state = scope.validation.statePure();
+    save: function (scope, save, direct) {
+        var state = scope.validation.statePure(direct);
         if (state === VALIDATION.types.success) {
             save();
         } else {

@@ -6,17 +6,15 @@
         <div class="panel" ng-repeat="(key,message) in <%= scope %>.MMessages track by key">
             <div class="panel-heading bg-<%= TAG.table %>">
                 <h6 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion1" href="#accordion-group{{key}}">{{key}}</a>
+                    <a>{{key}}</a>
                 </h6>
             </div>
-            <div id="accordion-group{{key}}" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <ul>
-                        <li ng-repeat="(index,obj) in message.messages track by index" >
-                            "{{obj}}":"{{obj}}",
-                        </li>
-                    </ul>
-                </div>
+            <div class="panel-body">
+                <ul>
+                    <li ng-repeat="(index,obj) in message.messages track by index">
+                        "{{obj}}":"{{obj}}",
+                    </li>
+                </ul>
             </div>
         </div>
     </div>

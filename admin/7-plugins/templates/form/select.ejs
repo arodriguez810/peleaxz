@@ -62,7 +62,7 @@ var toclient = JSON.stringify(options);
 
     <%= model %>.triggers.table.before.control("<%= nameclean %>");
     if (DSON.oseaX(<%= model + "." + name %>))
-            <%= model + "." + name %> = "[NULL]";
+            <%= model + "." + nameclean %> = "[NULL]";
 
     <% if(options.multiple){ %>
     <%= model %>.<%= nameclean %> = [];
@@ -234,9 +234,18 @@ var toclient = JSON.stringify(options);
 </div>
 <% } %>
 <script>
+    function reloadMe<%= model %>_<%= nameclean %>() {
+        if(PRUDENTS["<%= options.table %>"]!==undefined){
+            <%= model %>.<%= nameclean %> = PRUDENTS["<%= options.table %>"].toString();
+            delete PRUDENTS["<%= options.table %>"];
+        }
+        <%= model %>.form.loadDropDown("<%= name %>");
+    }
     $(document).ready(function () {
         <%= model %>.
-        form.beginFunctions.push(`<%= model %>.form.loadDropDown("<%= name %>");`);
+        form.beginFunctions.push(`reloadMe<%= model %>_<%= nameclean %>();`);
+        
+
         <%= model %>.
         <%= name %>_object = {};
         $('[name="<%= model %>_<%= nameclean %>"]').change(function () {
@@ -262,8 +271,8 @@ var toclient = JSON.stringify(options);
             return false;
         });
         $('#new<%= model %>_<%= nameclean %>').click(function () {
-            <%= options.table %>.
-            formulary(null, 'new');
+            CURRENTPRUDENTS = "<%= options.table %>";
+            <%= options.table %>.formulary(null, 'new');
             return false;
         });
         $('#list<%= model %>_<%= nameclean %>').click(function () {

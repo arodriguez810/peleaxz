@@ -95,6 +95,9 @@ LOAD = function () {
         }
         if (new SESSION().ifLogoffRedirec(view))
             return;
+        if (view.indexOf("?") !== -1) {
+            view = view.split("?")[0];
+        }
         MENU.setActive(view);
         this.loadContentView(view, $scope, $http, $compile);
     };

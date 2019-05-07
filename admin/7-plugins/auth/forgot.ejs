@@ -12,15 +12,16 @@
         </div>
 
         <div class="form-group has-feedback">
-            <%- FORM.input("forgotfield", scope, {placeholder: "User", icon: {class: "user"}}) %>
+            <%- FORM.input("forgotfield", scope, {icon: {class: "user"}}) %>
             <div class="form-control-feedback">
                 <i class="icon-mail5 text-muted"></i>
             </div>
         </div>
 
-        <button type="submit" class="btn bg-pink-400 btn-block legitRipple" dragonlanguage="">
+        <button ng-click="auth.sendForgotPassword();" type="button" id="idsend" role="button"
+                class="btn bg-<%= COLOR.success %> btn-block legitRipple" dragonlanguage="">
             <language>MESSAGE.ic('login.resetpassword')</language>
-            <i class="icon-arrow-right14 position-right"></i>
+            <i id="spinersend" class="icon-arrow-right14 position-right"></i>
         </button>
     </div>
 </form>

@@ -36,4 +36,5 @@
   "permissiondenied": "You do not have enough permissions to access this option, if it is on this screen it could only be by the option of favorites. If you are aware that you should not have permissions please delete it but contact the administrator",
   "saveConfig": "When saving the configuration of the application the server will change and it will take a few seconds, you must be sure of all the changed paramenters since the mishandling of some may cause the server not run well, even though you are sure you want to save these changes anyway?",
   "saveConfigSuper": "When saving the configuration of the application the server will restart and it will take a few seconds to start, you must be sure of all the changed paramenters since the mishandling of some may cause the server not to start, even though you are sure you want to save these changes anyway?",
+  "emptyRelations": "This form contains the following empty relations ${relations} do you want to save anyway?"
 }
