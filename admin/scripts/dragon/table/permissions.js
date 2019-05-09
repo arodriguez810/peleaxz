@@ -65,6 +65,14 @@ PERMISSIONS = {
                 return capitalize(name.replaceAll('_', ' '));
             }
         };
+        $scope.moduleNameShort = function (name, length) {
+            var nameD = $scope.moduleName(name);
+            if (nameD.length > length) {
+                return nameD.substring(0, length) + "...";
+            }
+            return nameD;
+        };
+
         $scope.boolIcon = function (value) {
             return value === true ? ' icon-checkbox-checked' : ' icon-checkbox-unchecked';
         };

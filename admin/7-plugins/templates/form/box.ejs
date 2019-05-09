@@ -1,0 +1,355 @@
+<%
+var name = name || "";
+var options = {
+    label: params.capitalize(name),
+    default: 'Select ' + params.capitalize(name),
+    icon: {
+        class: "none",
+        position: "left",
+        color: TAG.table + "-800"
+    },
+    max: 99999999,
+    height: false,
+    allownull: true,
+    allownew: true,
+    allowedit: true,
+    allowview: true,
+    allowlist: true,
+    refresh: true,
+    multiple: true,
+    disabled: false,
+    helptext: '',
+    value: "id",
+    text: "item.name",
+    //table: "",
+    get: {
+        table: '',
+        field: ''
+    },
+    parent: false,
+    childs: false,
+    query: {
+        limit: 0,
+        page: 1,
+        where: [],
+        orderby: "id",
+        order: "asc",
+        distinct: false
+        // join: [
+        //     {
+        //         table: "ms_category",
+        //         base: "category",
+        //         field: "id",
+        //         columns: ["id", "name"]
+        //     },
+        //     {
+        //         table: "otratable",
+        //         base: "ms_category_id",
+        //         field: "id",
+        //         columns: ["id", "name"]
+        //     }
+        // ]
+    },
+    groupby: "",
+    data: [],
+    posttype: "select"
+};
+options = OBJECT.merge(options, opts);
+var nameclean = name.replace(/\./g, '_');
+options.model = options.model ? options.model : false;
+options.permission = options.permission || "CRUD_" + options.table;
+var toclient = JSON.stringify(options);
+%>
+<script>
+    <%= model %> .viewmoremessage = MESSAGE.ic('mono.completetext');
+    <%= model %> .listmessage = MESSAGE.ic('mono.viewmore');
+    <%= model %>.triggers.table.before.control("<%= nameclean %>");
+    if (DSON.oseaX(<%= model + "." + name %>))
+            <%= model + "." + nameclean %> = "[NULL]";
+
+    <% if(options.multiple){ %>
+    <%= model %>.<%= nameclean %> = [];
+    <%= model %>.form.schemas.insert["<%= name %>"] = FORM.schemasType.selectMultiple;
+    <%= model %>.form.schemas.select["<%= name %>"] = `{
+                    toTable: "<%= options.table %>",
+                    text: MESSAGE.i('actions.Loading'),
+                    fields: {
+                        <%= options.get.fieldTo %>: "$id",
+                    },
+                }`;
+    <% } %>
+
+    <%= model %>.form.registerField("<%= name %>", "<%= toclient %>", "'[NULL]'");
+    <%= model %>.form.options.<%= name %>.default = `${MESSAGE.ic('mono.select')} <%= name %>`;
+    if (MESSAGE.exist('columns.<%= nameclean %>')) {
+        <%= model %>.
+        form.options.<%= name %>.label = MESSAGE.i('columns.<%= nameclean %>');
+        <%= model %>.
+        form.options.<%= name %>.default = `${MESSAGE.ic('mono.select')} ` + MESSAGE.i('columns.<%= nameclean %>');
+    }
+
+
+    var isReadProgram = <%= model %>.form.isReadOnly('<%= name %>');
+    if (isReadProgram !== false) {
+        <%= model %>.
+        form.options.<%= name %>.disabled = true;
+        if (isReadProgram !== undefined) {
+            <%= model %>.<%= name %> = isReadProgram;
+        }
+    }
+    <%= model %>.form.loadDropDown("<%= name %>", false);
+
+    var permissions = eval('<%= options.permission %>');
+    if (!permissions.table.allow.edit)
+            <%= model %>.
+    form.options.<%= name %>.allowedit = false;
+    if (!permissions.table.allow.view)
+            <%= model %>.
+    form.options.<%= name %>.allowview = false;
+    if (!permissions.table.allow.add)
+            <%= model %>.
+    form.options.<%= name %>.allownew = false;
+</script>
+<% if (model !== options.table){ %>
+<div id="<%= options.table %>" ng-controller="<%= options.table %> as <%= options.table %>">
+    <% } %>
+    <div class="form-group-material form-group has-feedback  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
+         id="input<%= model %>_<%= nameclean %>">
+        <div
+                <%= options.multiple ? "multiple='multiple'" : "" %>
+                ng-model="<%= model + "." + name %>"
+                name="<%= model %>_<%= nameclean %>"
+                ng-disabled="<%= model %>.form.options.<%= name %>.disabled"
+                class="panel "
+                style="<%= options.height !== false ? ('min-height: ' + options.height + 'px;') : '' %>">
+
+            <div class="panel-heading  bg-<%= COLOR.info %>  border-bottom-<%= COLOR.primary %> "
+                 style="padding-top: 3px;padding-bottom: 3px">
+                <h6 class="panel-title">
+                    {{<%= model %>.form.options.<%= name %>.label}}
+                </h6>
+                <div class="heading-elements" style="height: 0px;">
+                    <div class="form-group has-feedback has-feedback-left">
+                        <% if(options.allownew || options.allowedit || options.allowview || options.allowlist || options.refresh){ %>
+                            <li class="dropdown" style="float: right;list-style: none;margin-top: 8px;">
+                                <i dragonlanguage="" title="MESSAGE.i('mono.options')"
+                                   class="icon-list-unordered"></i>
+                                <a href="#" class="dropdown-toggle legitRipple " data-toggle="dropdown"
+                                   aria-expanded="false">
+
+                                    <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu dropdown-menu-right">
+
+                                    <% if(options.refresh){ %>
+                                        <li>
+                                            <a dragonlanguage="" title="MESSAGE.i('mono.refresh')"
+                                               id="reload<%= model %>_<%= nameclean %>"
+                                            >
+                                                <i class="icon-reload-alt"></i>
+                                                <language>MESSAGE.ic('mono.refresh')</language>
+                                            </a>
+                                        </li>
+                                    <% } %>
+                                    <% if(options.allowlist){ %>
+                                        <li>
+                                            <a dragonlanguage="" title="MESSAGE.ic('mono.list')"
+                                               id="list<%= model %>_<%= nameclean %>">
+                                                <i class="icon-pencil7"></i>
+                                                <language>MESSAGE.ic('mono.list')</language>
+                                            </a>
+                                        </li>
+                                    <% } %>
+                                    <li ng-show="<%= model %>.form.options.<%= name %>.allownew">
+                                        <a dragonlanguage="" title="MESSAGE.i('mono.Additem')"
+                                           id="new<%= model %>_<%= nameclean %>"
+                                        >
+                                            <i class="icon-plus-circle2"></i>
+                                            <language>MESSAGE.ic('mono.Additem')</language>
+                                        </a>
+                                    </li>
+
+
+                                </ul>
+                            </li>
+                        <% } %>
+                    </div>
+                </div>
+
+            </div>
+            <% if(options.multiple){ %>
+                <div style="margin-top: 8px;">
+                    <% if(options.groupby){ %>
+                        <ul style="padding-right: 25px;padding-top: 10px;padding-bottom: 10px;"
+                            ng-repeat="(key,categories) in <%= model %>.form.options.<%= name %>.groupbydata track by
+                            key"
+                            label="{{key}}">
+                            <li
+                                    data-object="{{item}}" ng-repeat="(i,item) in categories"
+                                    value="item.{{<%= options.value %>}} track by i">
+                                {{<%= options.text %>.substring(0,<%= options.max %>)}}
+
+                                <a ng-show="<%= options.text %>.length><%= options.max %>"
+                                   ng-click="<%= options.table %>.viewmore(<%= options.text %>,<%= options.max %>);">
+                                    ...{{<%= model %>.viewmoremessage}}
+                                </a>
+                            </li>
+                            <li>
+                                <a id="list<%= model %>_<%= nameclean %>2">
+                                    {{<%= model %> .listmessage}}
+                                </a>
+                            </li>
+                        </ul>
+                    <% } else{ %>
+                        <ul style="padding-right: 25px;padding-top: 10px;padding-bottom: 10px;">
+                            <li data-object="{{item}}"
+                                ng-repeat="(key,item) in <%= model %>.form.options.<%= name %>.data track by key"
+                                value="{{item.<%= options.value %>}}">
+                                {{<%= options.text %>.substring(0,<%= options.max %>)}}
+
+                                <a ng-show="<%= options.text %>.length><%= options.max %>"
+                                   ng-click="<%= options.table %>.viewmore(<%= options.text %>,<%= options.max %>);">
+                                    ...{{<%= model %>.viewmoremessage}}
+                                </a>
+                            </li>
+                            <li>
+                                <a id="list<%= model %>_<%= nameclean %>2">
+                                    {{<%= model %> .listmessage}}
+                                </a>
+                            </li>
+                        </ul>
+                    <% } %>
+                </div>
+            <% }else{ %>
+                <div style="margin-top: 8px;">
+                    <ul style="padding-right: 25px;padding-top: 10px;padding-bottom: 10px;">
+                        <li data-object="{{item}}" style="list-style: none"
+                            ng-repeat="(key,item) in <%= model %>.form.options.<%= name %>.data track by key"
+                            value="{{item.<%= options.value %>}}">
+                            <p>
+                                {{<%= options.text %>.substring(0,<%= options.max %>)}}
+
+                                <a ng-show="<%= options.text %>.length><%= options.max %>"
+                                   ng-click="<%= options.table %>.viewmore(<%= options.text %>,<%= options.max %>);">
+                                    ...{{<%= model %>.viewmoremessage}}
+                                </a>
+
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            <% } %>
+        </div>
+
+
+        <div class="form-control-feedback">
+            <i
+                    id="icon<%= name %>"
+                    class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} text-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}">
+
+            </i>
+        </div>
+        <span ng-if="<%= model %>.form.options.<%= name %>.helptext!=''"
+              class="help-block text-muted">
+        {{<%= model %>.form.options.<%= name %>.helptext}}
+    </span>
+    </div>
+    <% if (model !== options.table){ %>
+</div>
+<% } %>
+<script>
+    function reloadMe<%= model %>_<%= nameclean %>() {
+
+        <%= model %>.
+        form.loadDropDown("<%= name %>", false);
+    }
+
+    $(document).ready(function () {
+        <%= model %>.
+        form.beginFunctions.push(`reloadMe<%= model %>_<%= nameclean %>();`);
+
+
+        <%= model %>.
+        <%= name %>_object = {};
+        $('[name="<%= model %>_<%= nameclean %>"]').change(function () {
+            var selectedss = $(this).children("option:selected").data('object');
+
+            <%= model %>.
+            <%= nameclean %>_object = selectedss;
+
+            STEP.register({
+                scope: "<%= model %>",
+                action: "Change DropDown",
+                field: "<%= name %>",
+                value: <%= model %>.<%= name %>
+        })
+            ;
+
+
+        });
+
+        $('#reload<%= model %>_<%= nameclean %>').click(function () {
+            <%= model %>.
+            form.loadDropDown("<%= name %>", false);
+            return false;
+        });
+        $('#new<%= model %>_<%= nameclean %>').click(function () {
+            <%= options.table %>.
+            formulary(null, 'new');
+            return false;
+        });
+
+        $('#list<%= model %>_<%= nameclean %>2').click(function () {
+            $('#list<%= model %>_<%= nameclean %>').trigger('click');
+        });
+        $('#list<%= model %>_<%= nameclean %>').click(function () {
+            baseController.viewData = {};
+            var modal = {
+                    header: {
+                        title: MESSAGE.i('mono.Listof') + <%= options.table %>.plural,
+                    icon: "list"
+                },
+                footer: {
+                    cancelButton: true
+                },
+                content: {
+                    loadingContentText: MESSAGE.i('actions.Loading'),
+                }
+        }
+            <%= options.table %>.
+            modal.modalView(String.format("{0}", "<%= options.table %>"), modal);
+            return false;
+        });
+
+        $('#edit<%= model %>_<%= nameclean %>').click(function () {
+            <%= options.table %>.
+            formulary({
+                where: [{
+                    field: <%= 'CRUD_' + options.table %>.table.key,
+                    value
+        : <%= model %>.<%= name %>}]
+        },
+            FORM.modes.edit, {}
+        )
+            ;
+            return false;
+        });
+        $('#view<%= model %>_<%= nameclean %>').click(function () {
+            <%= model %>.
+
+            cell.openLink({
+                table: "<%= options.table %>",
+                column: "<%= options.column %>",
+                value: <%= model %>.<%= name %>, field
+        :
+            "<%= name %>"
+        })
+            ;
+
+
+            return false;
+        });
+    });
+    MESSAGE.run();
+</script>

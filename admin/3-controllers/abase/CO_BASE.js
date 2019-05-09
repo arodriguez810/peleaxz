@@ -90,7 +90,8 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
             if (result.data.length > 0) {
                 for (var CONTROLLER of CONTROLLERSNAMES) {
                     if (eval(`typeof CRUD_${CONTROLLER} !== 'undefined'`)) {
-                        eval(`DSON.allvalue(CRUD_${CONTROLLER}.table.allow,false)`);
+                        if (CONFIG.permissions.excludes.indexOf(CONTROLLER) === -1)
+                            eval(`DSON.allvalue(CRUD_${CONTROLLER}.table.allow,false)`);
                     }
                 }
                 if (grouppermission) {
@@ -108,8 +109,10 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
                         }
                         var permissions = objects;
                         for (var i in permissions) {
-                            if (eval(`typeof CRUD_${permissions[i].name} !=='undefined'`))
-                                eval(`DSON.mergeBool(permissions[i].obj.table.allow,CRUD_${permissions[i].name}.table.allow);`);
+                            if (eval(`typeof CRUD_${permissions[i].name} !=='undefined'`)) {
+                                if (CONFIG.permissions.excludes.indexOf(permissions[i].name) === -1)
+                                    eval(`DSON.mergeBool(permissions[i].obj.table.allow,CRUD_${permissions[i].name}.table.allow);`);
+                            }
                         }
                     }
                 }
@@ -127,23 +130,26 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
                     var permissions = objects;
                     for (var i in permissions) {
                         if (eval(`typeof CRUD_${permissions[i].name} !=='undefined'`))
-                            eval(`DSON.mergeBool(permissions[i].obj.table.allow,CRUD_${permissions[i].name}.table.allow);`);
+                            if (CONFIG.permissions.excludes.indexOf(permissions[i].name) === -1)
+                                eval(`DSON.mergeBool(permissions[i].obj.table.allow,CRUD_${permissions[i].name}.table.allow);`);
                     }
                 }
             }
             CRUDNAMES = [];
             for (var CONTROLLER of CONTROLLERSNAMES) {
                 if (eval(`typeof CRUD_${CONTROLLER} !== 'undefined'`)) {
-                    if (eval(`CRUD_${CONTROLLER}.table.allow.menu`) !== true) {
-                        MENU.hideMenus(CONTROLLER);
-                    }
-
-                    CRUDNAMES.push(
-                        {
-                            name: `${CONTROLLER}`,
-                            obj: (eval(`CRUD_${CONTROLLER}`))
+                    if (CONFIG.permissions.excludes.indexOf(CONTROLLER) === -1) {
+                        if (eval(`CRUD_${CONTROLLER}.table.allow.menu`) !== true) {
+                            MENU.hideMenus(CONTROLLER);
                         }
-                    )
+
+                        CRUDNAMES.push(
+                            {
+                                name: `${CONTROLLER}`,
+                                obj: (eval(`CRUD_${CONTROLLER}`))
+                            }
+                        )
+                    }
                 }
             }
         });
@@ -214,13 +220,20 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
                 SWEETALERT.stop();
                 eval(`${data.$scope.modelName}.permissions = {};`);
                 eval(`${data.$scope.modelName}.idPermission = '${data.$scope.permissionTable || data.$scope.modelName}-${data.row.id}';`);
-                
+
+
                 DSON.merge(eval(`${data.$scope.modelName}.permissions`), CRUDNAMES, true);
 
                 if (result.data.length > 0) {
                     var objects = eval("(" + result.data[0].object + ")");
                     var exists = [];
                     var count = 0;
+                    for (var obj in objects) {
+                        if (CONFIG.permissions.excludes.indexOf(objects[obj].name) !== -1) {
+                            delete objects[obj];
+                        }
+                    }
+                    console.log(objects);
                     for (var obj in objects) {
                         count++;
                         if (eval(`typeof CRUD_${objects[obj].name} !=='undefined'`)) {

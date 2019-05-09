@@ -2,6 +2,7 @@ app.controller("ms_product", function ($scope, $http, $compile) {
     ms_product = this;
     RUNCONTROLLER("ms_product", ms_product, $scope, $http, $compile);
     ms_product.formulary = function (data, mode, defaultData) {
+        console.log('new');
         if (ms_product !== undefined) {
             RUN_B("ms_product", ms_product, $scope, $http, $compile);
             ms_product.custom = [1, 2, 3];
@@ -14,7 +15,7 @@ app.controller("ms_product", function ($scope, $http, $compile) {
                 }
             ];
             ms_product.form.onload = function (name) {
-                alert(name + " loaded");
+                //alert(name + " loaded");
             };
             ms_product.createForm(data, mode, defaultData);
             $scope.$watch('ms_product.name', function (value) {

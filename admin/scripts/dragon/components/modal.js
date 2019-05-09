@@ -18,7 +18,7 @@ MODAL = {
         if (typeof  baseController !== "undefined")
             baseController.viewData = undefined;
     },
-    close: function ($scope) {
+    close: function ($scope, callback) {
         var last = ARRAY.last(MODAL.history);
         STEP.register({
             scope: $scope ? $scope.modelName : '',
@@ -39,8 +39,23 @@ MODAL = {
         } else {
             baseController.viewData = undefined;
         }
+        if (typeof callback === "function")
+            callback();
     },
     run: function ($scope) {
+        $scope.viewmore = function (text, length) {
+            if (text.length > length) {
+                $scope.modal.simpleModal(text, {
+                    header: {title: `${MESSAGE.ic('mono.completetext')} ${MESSAGE.i('mono.of')} ` + $scope.plural}
+                });
+            }
+        };
+        $scope.viewless = function (text, length) {
+            if (text.length > length) {
+                return text.substring(0, length) + "..."
+            }
+            return text;
+        };
         $scope.modal = {};
         $scope.modal.DOMID = "modalpool";
         $scope.modal.isOpen = function () {

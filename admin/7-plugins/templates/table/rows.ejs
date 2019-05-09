@@ -26,7 +26,8 @@
     ></span>
 
     <span class="handle"
-          ng-show="key==='id' && <%= scope %>.dragrow"
+
+          ng-show="value.drag===true && <%= scope %>.dragrow"
           ng-bind-html="<%= scope %>.drawHandler()">
     </span>
 </td>

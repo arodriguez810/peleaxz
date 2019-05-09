@@ -1,3 +1,12 @@
+String.prototype.lines = function () {
+    return this.split(/\r*\n/);
+};
+
+function has_scrollbar(name) {
+    var elem = document.getElementById(name);
+    return elem.clientHeight < elem.scrollHeight;
+}
+
 DSON = {
     substringif: function (str, len) {
         return str.length >= len ? str.substring(0, len) : str;

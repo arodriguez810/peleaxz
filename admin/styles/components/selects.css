@@ -2,10 +2,18 @@
     padding-left: 32px !important;
 }
 
+.select2 {
+    margin-top: 6px;
+}
+
+textarea {
+    resize: none;
+}
+
 /*.select2-selection__rendered {*/
-    /*border-bottom: 1px solid #eee;*/
+/*border-bottom: 1px solid #eee;*/
 /*}*/
 
 /*select[class*="select2-hidden-accessible"] + .select2 {*/
-    /*display: none;*/
+/*display: none;*/
 /*}*/

@@ -346,8 +346,10 @@ TABLEEVENT = {
             }
             var where = [];
 
-            for (const deletekey of eval(`CRUD_${$scope.modelName}`).table.deletekeys)
-                where.push({field: deletekey, value: eval("row." + deletekey)});
+            for (const deletekey of eval(`CRUD_${$scope.modelName}`).table.deletekeys) {
+                if (row !== undefined)
+                    where.push({field: deletekey, value: eval("row." + deletekey)});
+            }
             if ($scope.beforeDelete(row)) return;
             $scope.procesingRowErrors = [];
             BASEAPI.deleteall($scope.tableOrMethod, where, function (result) {

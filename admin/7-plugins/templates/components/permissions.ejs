@@ -90,10 +90,14 @@
                                        class="indicador-padding btn border-{{<%= scope %>.moduleColor(module.obj.table.allow)}} text-{{<%= scope %>.moduleColor(module.obj.table.allow)}} btn-flat btn-rounded btn-icon btn-xs valign-text-bottom legitRipple"
                                        data-toggle="dropdown">
                                         <i class="icon-arrow-down5"></i>
-                                        {{<%= scope %>.moduleName(module.name)}}
+                                        {{<%= scope %>.moduleNameShort(module.name,10)}}
                                     </a>
+
                                     <ul class="dropdown-menu dropdown-menu-left"
                                         style="width: 100%; min-width: 438px!important; margin-top: 0; float: none;">
+                                        <li>
+                                            <label>{{<%= scope %>.moduleName(module.name)}}</label>
+                                        </li>
                                         <li ng-if="!<%= scope %>.isObject(module.obj.table.allow[aKey])"
                                             ng-repeat="(aKey,action) in module.obj.table.allow"
                                             class="col-md-4 col-sm-12">

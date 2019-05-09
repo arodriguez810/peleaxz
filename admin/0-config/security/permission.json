@@ -3,6 +3,9 @@
     "entities": [
       "my_user",
       "group"
+    ],
+    "excludes": [
+      "st_user"
     ]
   }
 }

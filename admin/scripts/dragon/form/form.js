@@ -324,8 +324,7 @@ FORM = {
 
                         if ($scope.pages !== null)
                             if ($scope.pages.form.subRequestCompleteVar === 0) {
-                                if (close !== false)
-                                    $scope.pages.form.close();
+                                $scope.pages.form.close(undefined,undefined,close);
                                 SWEETALERT.stop();
                             }
                         if ($scope.form !== null)
@@ -435,8 +434,8 @@ FORM = {
                         if ($scope.pages !== null)
                             $scope.pages.form.subRequestCompleteVar = $scope.form.relations.length;
                         if ($scope.pages.form.subRequestCompleteVar === 0) {
-                            if (close !== false)
-                                $scope.pages.form.close();
+
+                            $scope.pages.form.close(undefined,undefined,close);
                             SWEETALERT.stop();
                         }
                         if ($scope.form !== null)
@@ -582,11 +581,15 @@ FORM = {
                                 break;
                             }
                             case FORM.schemasType.checkbox: {
-                                var truorfalse = eval(`$scope.form.lastPrepare.${field}`).toString();
-                                if (truorfalse === "true")
-                                    eval(`$scope.form.inserting.${field} = '1'`);
-                                else
+                                if (eval(`$scope.form.lastPrepare.${field}`) !== undefined) {
+                                    var truorfalse = eval(`$scope.form.lastPrepare.${field}`).toString();
+                                    if (truorfalse === "true")
+                                        eval(`$scope.form.inserting.${field} = '1'`);
+                                    else
+                                        eval(`$scope.form.inserting.${field} = '0'`);
+                                } else {
                                     eval(`$scope.form.inserting.${field} = '0'`);
+                                }
                                 break;
                             }
                             case FORM.schemasType.calculated: {
@@ -631,7 +634,7 @@ FORM = {
                 return null;
             }
         };
-        $scope.form.loadDropDown = function (name) {
+        $scope.form.loadDropDownList = function (name) {
             var nameclean = name.replace(/\./g, '_');
             if ($scope.form !== null) {
                 var animation = new ANIMATION();
@@ -778,7 +781,160 @@ FORM = {
                 }
             }
         };
-        $scope.form.callSelect2 = function (name, options) {
+        $scope.form.loadDropDown = function (name, select2) {
+            var nameclean = name.replace(/\./g, '_');
+            if ($scope.form !== null) {
+                var animation = new ANIMATION();
+                var options = eval(`$scope.form.options.${name}`);
+                animation.loading(`#input${$scope.modelName}_${name}`, "", `#icon${name}`, '30');
+                if (options) {
+                    if (!options.simple) {
+                        eval(`var crud = CRUD_${options.table}`);
+                        if (crud.table.single)
+                            options.query.join = crud.table.single;
+                        var toquery = DSON.merge(options.query, {});
+                        if ($scope.selectQueries[name]) {
+                            var toConsult = $scope.selectQueries[name];
+                            toquery.where = toquery.where.filter((wh) => {
+                                return wh.selecter !== true;
+                            });
+                            if (toConsult.length > 0) {
+                                if (!DSON.oseaX(toquery.where)) {
+                                    for (var optadd in toConsult) {
+                                        toConsult[optadd].selecter = true;
+                                        toquery.where.push(toConsult[optadd]);
+                                    }
+                                } else {
+                                    for (var optadd in toConsult)
+                                        toConsult[optadd].selecter = true;
+                                    toquery.where = toConsult;
+                                }
+                            }
+                        }
+
+                        if (options.parent !== false) {
+                            if (DSON.oseaX(toquery.where))
+                                toquery.where = [];
+                            var exist = toquery.where.filter((item) => {
+                                return item.field === options.parent.myfield || options.parent.model;
+                            });
+                            if (exist.length) {
+                                if (eval(`$scope.${options.parent.model}_object !==null`))
+                                    exist[0].value = eval(`$scope.${options.parent.model}_object.${options.parent.sufield}`);
+                            }
+                            else {
+                                toquery.where.push({
+                                    field: options.parent.myfield || options.parent.model,
+                                    value: eval(`$scope.${options.parent.model}_object.${options.parent.sufield}`)
+                                });
+                            }
+                        }
+                        BASEAPI.list(options.table, toquery,
+                            function (info) {
+                                if (!DSON.oseaX(options.groupby)) {
+                                    var newData = {};
+                                    for (const i in info.data) {
+                                        var item = info.data[i];
+                                        var groupbyValue = eval(`item.${options.groupby}`);
+                                        if (DSON.oseaX(eval(`newData.${groupbyValue}`))) {
+                                            eval(`newData.${groupbyValue} = [];`);
+                                        }
+                                        eval(`newData.${groupbyValue}.push(item)`);
+                                    }
+                                    eval(`$scope.form.options.${name}.groupbydata = newData`);
+                                }
+                                eval(`$scope.form.options.${name}.data = info.data`);
+                                eval(`${$scope.modelName}.${name}_object = null;`);
+                                if (eval(`$scope.form.options.${name}.data`) !== undefined) {
+                                    if (eval(`$scope.${name}`) !== "[NULL]") {
+                                        var objectSelected = eval(`$scope.form.options.${name}.data`).filter(function (row) {
+                                            var idtun = eval(`$scope.form.options.${name}.value`);
+                                            return eval(`row.${idtun}`) == eval(`$scope.${name}`);
+                                        });
+                                        if (objectSelected.length > 0) {
+                                            eval(`${$scope.modelName}.${name}_object = objectSelected[0];`);
+
+                                            if (options.childs !== false) {
+                                                options.childs.forEach((child) => {
+                                                    $scope.form.loadDropDown(child.model);
+                                                });
+                                            }
+                                            $scope.$scope.$digest();
+                                        } else {
+                                            eval(`${$scope.modelName}.${name}_object = null;`);
+                                        }
+                                    }
+                                }
+
+                                if (!options.multiple)
+                                    animation.stoploading(`#input${$scope.modelName}_${name}`, `#icon${name}`);
+                                if (options.multiple) {
+                                    if (eval(`$scope.${name}.length<=0`))
+                                        eval(`$scope.${name}=[];`);
+                                    if (!$scope.form.isReadOnly(name)) {
+                                        var lastWhere = [];
+                                        if (eval(`$scope.${options.get.fieldFrom}`) !== undefined) {
+                                            lastWhere.push({
+                                                field: options.get.fieldTo,
+                                                value: eval(`$scope.${options.get.fieldFrom}`)
+                                            });
+                                            BASEAPI.list(options.get.table, {
+                                                limit: 99999,
+                                                page: 1,
+                                                orderby: options.get.fieldTo,
+                                                order: "asc",
+                                                where: lastWhere
+                                            }, function (selectedy) {
+                                                if (eval(`$scope.${name} ==='[NULL]'`))
+                                                    eval(`$scope.${name}=[];`);
+                                                if (eval(`$scope.${name}.length<=0`))
+                                                    selectedy.data.forEach((item) => {
+                                                        eval(`$scope.${name}.push('${eval(`item.${options.get.field}`)}')`);
+                                                    });
+                                                animation.stoploading(`#input${$scope.modelName}_${name}`, `#icon${name}`);
+                                                $scope.form.callSelect2(name, options, select2);
+                                            });
+                                        } else {
+                                            animation.stoploading(`#input${$scope.modelName}_${name}`, `#icon${name}`);
+                                            $scope.form.callSelect2(name, options, select2);
+                                        }
+                                    } else {
+                                        if (eval(`$scope.${name}.length<=0`))
+                                            eval(`$scope.${name}=$scope.form.isReadOnly('${name}');`);
+                                        animation.stoploading(`#input${$scope.modelName}_${name}`, `#icon${name}`);
+                                        $scope.form.callSelect2(name, options, select2);
+                                    }
+                                } else {
+                                    $scope.form.callSelect2(name, options, select2);
+                                }
+                            });
+                    } else {
+                        var info = {};
+                        info.data = options.data;
+                        if (!DSON.oseaX(options.groupby)) {
+                            var newData = {};
+                            for (const i in info.data) {
+                                var item = info.data[i];
+                                var groupbyValue = eval(`item.${options.groupby}`);
+                                if (DSON.oseaX(eval(`newData.${groupbyValue}`))) {
+                                    eval(`newData.${groupbyValue} = [];`);
+                                }
+                                eval(`newData.${groupbyValue}.push(item)`);
+                            }
+                            eval(`$scope.form.options.${name}.groupbydata = newData`);
+                        }
+                        eval(`$scope.form.options.${name}.data = info.data`);
+                        animation.stoploading(`#input${$scope.modelName}_${name}`, `#icon${name}`);
+                        $scope.form.callSelect2(name, options);
+                    }
+                }
+            }
+        };
+        $scope.form.callSelect2 = function (name, options, select2) {
+            if (select2 === false) {
+                $scope.$scope.$digest();
+                return;
+            }
             if ($scope.form !== null) {
                 var nameclean = name.replace(/\./g, '_');
                 if (!options.simple) {
@@ -923,8 +1079,7 @@ FORM = {
                 $scope.pages.form.subRequestComplete = function (close) {
                     $scope.pages.form.subRequestCompleteProgress++;
                     if ($scope.pages.form.subRequestCompleteProgress === $scope.pages.form.subRequestCompleteVar) {
-                        if (close !== false)
-                            $scope.pages.form.close();
+                        $scope.pages.form.close(undefined,undefined,close);
                         SWEETALERT.stop();
                     } else {
 
@@ -933,17 +1088,25 @@ FORM = {
                 $scope.pages.form.beforeOpen = function () {
 
                 };
-                $scope.pages.form.onClose = function () {
+                $scope.pages.form.onClose = function (close) {
 
                     $scope.pages.form.isOpen = false;
                     if ($scope.form !== null) {
                         $scope.form.destroy();
                         if ($scope.form.hasChanged)
-                            if ($scope.refresh !== undefined)
-                                $scope.refresh();
+                            if ($scope.refresh !== undefined) {
+                                if (close === false) {
+                                    setTimeout(function () {
+                                        $scope.formulary(null, 'new');
+                                    },500);
+                                    return;
+                                } else
+                                    $scope.refresh();
+                            }
                     }
+
                 };
-                $scope.pages.form.close = function (pre, post) {
+                $scope.pages.form.close = function (pre, post, close) {
                     if ($scope.form !== null)
                         if ($scope.form.hasChanged) {
                             if ($scope.refresh !== undefined)
@@ -956,27 +1119,48 @@ FORM = {
                                 SWEETALERT.confirm({
                                     message: MESSAGE.i('alerts.CloseToComplete'),
                                     confirm: function () {
-                                        if ($scope.form.target === FORM.targets.modal)
+                                        if ($scope.form.target === FORM.targets.modal) {
                                             MODAL.close($scope);
+                                            if (close === false) {
+                                                setTimeout(function () {
+                                                    $scope.formulary(null, 'new');
+                                                },500);
+                                                return;
+                                            }
+                                        }
 
                                         if ($scope.pages.form)
-                                            $scope.pages.form.onClose();
+                                            $scope.pages.form.onClose(close);
                                     }
                                 });
                             else {
                                 if ($scope.form !== null)
-                                    if ($scope.form.target === FORM.targets.modal)
+                                    if ($scope.form.target === FORM.targets.modal) {
                                         MODAL.close($scope);
+                                        if (close === false) {
+                                            setTimeout(function () {
+                                                $scope.formulary(null, 'new');
+                                            },500);
+                                            return;
+                                        }
+                                    }
                                 if ($scope.pages !== null)
                                     if ($scope.pages.form)
-                                        $scope.pages.form.onClose();
+                                        $scope.pages.form.onClose(close);
                             }
                         } else {
-                            if ($scope.form.target === FORM.targets.modal)
+                            if ($scope.form.target === FORM.targets.modal) {
                                 MODAL.close($scope);
+                                if (close === false) {
+                                    setTimeout(function () {
+                                        $scope.formulary(null, 'new');
+                                    },500);
+                                    return;
+                                }
+                            }
                             if ($scope.pages !== null)
                                 if ($scope.pages.form)
-                                    $scope.pages.form.onClose();
+                                    $scope.pages.form.onClose(close);
                         }
                     if (typeof post === "function") post();
 
@@ -1108,5 +1292,6 @@ FORM = {
                 }
             }
         };
+
     }
 };

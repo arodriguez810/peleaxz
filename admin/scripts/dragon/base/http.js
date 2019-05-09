@@ -119,6 +119,33 @@ HTTP = function () {
     }
 };
 $(document).ready(function () {
+    $(document).on('click', '.modalmenu', function () {
+        var $me = $(this);
+        var width = $me.data('modal');
+        var icon = $me.find('i:eq(0)').attr('class');
+        var title = $me.find('language:eq(0)').html();
+        var link = $me.attr('href').replace('#', '');
+        var paths = link.split('/');
+        if (paths.length > 0) {
+            $("body").removeClass("sidebar-mobile-main");
+            var controller = paths[0];
+            baseController.currentModel.modal.modalView(link, {
+                width: width,
+                header: {
+                    title: title,
+                    icon: icon.replace('icon-', '')
+                },
+                footer: {
+                    cancelButton: false
+                },
+                content: {
+                    loadingContentText: `${MESSAGE.i('actions.Loading')}...`,
+                    sameController: controller
+                },
+            });
+        }
+        return false;
+    });
     $(window).bind('hashchange', function () { //detect hash change
         CHANGINGMENU = true;
         $("body").removeClass("sidebar-mobile-main");

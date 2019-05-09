@@ -8,6 +8,7 @@ var options = {
         position: "left",
         color: TAG.table + "-800"
     },
+    pin: '80',
     helptext: '',
     format: '',
     readonly: false,
@@ -40,6 +41,7 @@ var toclient = JSON.stringify(options);
     </label>
     <textarea rows=""
               ng-model="<%= model + "." + name %>" name="<%= model %>_<%= nameclean %>"
+              id="<%= model %>_<%= nameclean %>"
               ng-readonly="<%= model %>.form.options.<%= name %>.readonly"
               ng-disabled="<%= model %>.form.options.<%= name %>.disabled"
               maxlength="{{<%= model %>.form.options.<%= name %>.maxlength}}"
@@ -69,6 +71,8 @@ var toclient = JSON.stringify(options);
 <script>
     $(document).ready(function () {
         <%= model %>.
+        form.options.<%= name %>.autosize = false;
+        <%= model %>.
         triggers.table.after.control("<%= nameclean %>");
         <% if(options.format){ %>
         $('[name="<%= model %>_<%= nameclean %>"]').formatter({
@@ -78,10 +82,43 @@ var toclient = JSON.stringify(options);
         <% if(options.maxlength){ %>
         //$('[name="<%= model %>_<%= nameclean %>"]').maxlength();
         <% } %>
+        function resizeme<%= model %>_<%= nameclean %>() {
+            if (!DSON.oseaX($('[name="<%= model %>_<%= nameclean %>"]').val().lines().length > 1)) {
+                if (<%= model %>.
+                form.options.<%= name %>.autosize === false
+            )
+                {
+                    <%= model %>.
+                    form.options.<%= name %>.autosize = true;
+                    $('[name="<%= model %>_<%= nameclean %>"]').css('max-height', "");
+                    autosize(document.querySelectorAll('textarea'));
+                }
+            } else {
+                if ($('[name="<%= model %>_<%= nameclean %>"]').val().length><%= options.pin %>) {
+                    if (<%= model %>.form.options.<%= name %>.autosize === false)
+                    {
+                        <%= model %>.
+                        form.options.<%= name %>.autosize = true;
+                        $('[name="<%= model %>_<%= nameclean %>"]').css('max-height', "");
+                        autosize(document.querySelectorAll('textarea'));
+                    }
+                    return;
+                }
+                <%= model %>.
+                form.options.<%= name %>.autosize = false;
+                $('[name="<%= model %>_<%= nameclean %>"]').css('max-height', 38);
+
+            }
+        }
+
         $('[name="<%= model %>_<%= nameclean %>"]').keyup(function () {
+
+            resizeme<%= model %>_<%= nameclean %>();
             $(this).trigger("change");
+
         });
         $('[name="<%= model %>_<%= nameclean %>"]').trigger("change");
+        resizeme<%= model %>_<%= nameclean %>();
         $('[name="<%= model %>_<%= nameclean %>"]').blur(function () {
             STEP.register({
                 scope: "<%= model %>",
@@ -102,6 +139,7 @@ var toclient = JSON.stringify(options);
                 $('[name="<%= model %>_<%= nameclean %>"]').html(isReadProgram)
             }
         }
-        autosize(document.querySelectorAll('textarea'));
+
+
     });
 </script>

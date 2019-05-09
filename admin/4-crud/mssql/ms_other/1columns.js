@@ -10,11 +10,13 @@ DSON.keepmerge(CRUD_ms_other, {
                 label: "ID",
                 sorttype: "numeric",
                 class: "text-left",
-                exportExample: false
+                exportExample: false,
+                visible: false
             },
             name: {
                 label: "name",
-                shorttext: 20
+                shorttext: 20,
+                drag: true
             },
             description: {
                 label: "description",
