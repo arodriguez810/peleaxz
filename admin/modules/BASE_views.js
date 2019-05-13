@@ -663,6 +663,9 @@ exports.init = function (params) {
                 ext = "." + ext[ext.length - 1];
                 var dir = __dirname + '/../' + params.folders.files + '/' + req.body.folder;
                 var filename = dir + "/" + (file.originalname + '___' + file.filename) + ext;
+                if (req.body.filename !== '' && req.body.filename !== undefined) {
+                    filename = dir + "/" + req.body.filename;
+                }
                 uploaded.push(filename);
                 if (!fs.existsSync(dir))
                     params.shelljs.mkdir('-p', dir);
@@ -772,7 +775,7 @@ exports.init = function (params) {
                     if (!fs.existsSync(dirsec))
                         params.shelljs.mkdir('-p', dirsec);
 
-                    var file = __dirname + '/../' + params.folders.language + '/' + lan + '/' + section + '/' + 'z_saved.json';
+                    var file = __dirname + '/../' + params.folders.language + '/' + lan + '/' + section + '/' + 'index.json';
                     fs.writeFile(file, JSON.stringify(languages[lan][section]), function (err, data) {
                         if (err) {
                             res.json({error: err});

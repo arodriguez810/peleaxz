@@ -11,6 +11,7 @@
     <%= DATA.scope %>.galleryFiles.data.files = [];
     <%= DATA.scope %>.galleryFiles.upload = false;
     <%= DATA.scope %>.galleryFiles.rootFolder = viewModel.root;
+    <%= DATA.scope %>.galleryFiles.fileName = viewModel.file;
     var firstThis = true;
     <%= DATA.scope %>.galleryFiles.refresh = function () {
         var http = new HTTP();
@@ -241,6 +242,7 @@
         <form class="dropzone" id="filesForm" method="post" enctype="multipart/form-data">
             <input type="hidden" name="folder" value="{{<%= DATA.scope %>.galleryFiles.rootFolder}}">
             <input type="hidden" name="user" value="{{baseController.userID}}">
+            <input type="hidden" name="filename" value="{{<%= DATA.scope %>.galleryFiles.fileName}}">
         </form>
     </div>
 </div>

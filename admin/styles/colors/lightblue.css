@@ -152,3 +152,7 @@
 .text-lightblue-800:focus {
     color: #00838F !important;
 }
+.nav-lightblue li.active {
+    border-bottom: #00838F 1px solid;
+    border-block-width: 2px;
+}

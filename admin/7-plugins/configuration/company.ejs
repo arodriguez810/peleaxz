@@ -8,15 +8,15 @@
     <div class="panel-body">
         <div class="row">
 
-            <div class="col-sm-4 col-md-4 remove-input-space ">
+            <div class="col-sm-4 col-md-4  ">
                 <%- FORM.input("config.appName", scope, {maxlength: 50, placeholder: "Name"}) %>
             </div>
 
-            <div class="col-sm-4 col-md-4 remove-input-space ">
+            <div class="col-sm-4 col-md-4  ">
                 <%- FORM.input("config.logo", scope, {maxlength: 50, placeholder: "Logo Text"}) %>
             </div>
 
-            <div class="col-sm-4 col-md-4 remove-input-space">
+            <div class="col-sm-4 col-md-4 ">
                 <%-
                 FORM.selectsimple("config.language", scope, {
                     label: "Default Language",
@@ -29,7 +29,7 @@
         </div>
 
         <div class="row">
-            <div class="col-sm-4 col-md-4 remove-input-space " ng-show="configuration.mode!=='admin'">
+            <div class="col-sm-4 col-md-4  " ng-show="configuration.mode!=='admin'">
                 <%- FORM.password("config.appKey", scope,
                         {
                             maxlength: 50,
@@ -50,7 +50,7 @@
                 }) %>
             </div>
 
-            <div class="col-sm-4 col-md-4 remove-input-space">
+            <div class="col-sm-4 col-md-4 ">
                 <%-
                 FORM.selectsimple("config.home", scope, {
                     label: "Home Page",
@@ -62,11 +62,27 @@
 
 
         <div class="row">
-            <div class="col-sm-4 col-md-4 remove-input-space " ng-show="configuration.mode!=='admin'">
+            <div class="col-sm-4 col-md-4  " ng-show="configuration.mode!=='admin'">
                 <%- FORM.inputview("config.filePath", scope, {
                     maxlength: 50,
                     placeholder: "File Folder",
                     icon: {class: "folder"}
+                }) %>
+            </div>
+            <div class="col-sm-4 col-md-4  ">
+                <%- FORM.file("loginSplash", scope, {
+                    folder: 'configuration/splash/',
+                    file: 'splash.png',
+                    show: 'image',
+                    text: 'Splash Image'
+                }) %>
+            </div>
+            <div class="col-sm-4 col-md-4  ">
+                <%- FORM.file("logo", scope, {
+                    folder: 'configuration/logo/',
+                    file: 'logo.png',
+                    show: 'image',
+                    text: 'Logo'
                 }) %>
             </div>
         </div>
@@ -84,7 +100,7 @@
 
         <div class="row">
 
-            <div class="col-sm-4 col-md-4 remove-input-space ">
+            <div class="col-sm-4 col-md-4  ">
                 <%- FORM.input("config.support.email", scope, {
                     maxlength: 50,
                     placeholder: "Email",
@@ -92,7 +108,7 @@
                 }) %>
             </div>
 
-            <div class="col-sm-4 col-md-4 remove-input-space ">
+            <div class="col-sm-4 col-md-4  ">
                 <%- FORM.input("config.support.phone", scope, {
                     maxlength: 20,
                     placeholder: "Phone",
@@ -302,7 +318,7 @@
 
         <div class="row">
 
-            <div class="col-sm-4 col-md-4 remove-input-space ">
+            <div class="col-sm-4 col-md-4  ">
                 <%- FORM.input("config.developerBy.name", scope, {
                     maxlength: 50,
                     placeholder: "Name",
@@ -310,7 +326,7 @@
                 }) %>
             </div>
 
-            <div class="col-sm-4 col-md-4 remove-input-space ">
+            <div class="col-sm-4 col-md-4  ">
                 <%- FORM.input("config.developerBy.profile", scope, {
                     maxlength: 50,
                     placeholder: "Profile",
@@ -318,7 +334,7 @@
                 }) %>
             </div>
 
-            <div class="col-sm-4 col-md-4 remove-input-space ">
+            <div class="col-sm-4 col-md-4  ">
                 <%- FORM.input("config.developerBy.site", scope, {
                     maxlength: 50,
                     placeholder: "Site",

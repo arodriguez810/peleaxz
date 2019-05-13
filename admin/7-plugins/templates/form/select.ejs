@@ -235,12 +235,14 @@ var toclient = JSON.stringify(options);
 <% } %>
 <script>
     function reloadMe<%= model %>_<%= nameclean %>() {
-        if(PRUDENTS["<%= options.table %>"]!==undefined){
+        if (PRUDENTS["<%= options.table %>"] !== undefined) {
             <%= model %>.<%= nameclean %> = PRUDENTS["<%= options.table %>"].toString();
             delete PRUDENTS["<%= options.table %>"];
         }
-        <%= model %>.form.loadDropDown("<%= name %>");
+        <%= model %>.
+        form.loadDropDown("<%= name %>");
     }
+
     $(document).ready(function () {
         <%= model %>.
         form.beginFunctions.push(`reloadMe<%= model %>_<%= nameclean %>();`);
@@ -272,7 +274,8 @@ var toclient = JSON.stringify(options);
         });
         $('#new<%= model %>_<%= nameclean %>').click(function () {
             CURRENTPRUDENTS = "<%= options.table %>";
-            <%= options.table %>.formulary(null, 'new');
+            <%= options.table %>.
+            formulary(null, 'new');
             return false;
         });
         $('#list<%= model %>_<%= nameclean %>').click(function () {

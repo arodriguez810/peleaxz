@@ -153,3 +153,7 @@
     color: #C62828 !important;
 }
 
+.nav-red li.active {
+    border-bottom: #C62828 1px solid;
+    border-block-width: 2px;
+}

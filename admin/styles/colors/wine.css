@@ -153,3 +153,7 @@
     color: #901637 !important;
 }
 
+.nav-wine li.active {
+    border-bottom: #901637 1px solid;
+    border-block-width: 2px;
+}

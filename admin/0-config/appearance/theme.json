@@ -6,9 +6,9 @@
       "inanimation": ""
     },
     "colors": {
-      "primary": "grey",
-      "menu": "grey",
-      "info": "grey",
+      "primary": "lightblue",
+      "menu": "lightblue",
+      "info": "lightblue",
       "logo": "logowhite",
       "danger": "danger",
       "success": "success",

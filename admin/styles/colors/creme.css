@@ -152,3 +152,7 @@
 .text-creme-800:focus {
     color: #7d4c3a !important;
 }
+.nav-creme li.active {
+    border-bottom: #7d4c3a 1px solid;
+    border-block-width: 2px;
+}

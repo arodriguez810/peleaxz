@@ -1,8 +1,8 @@
 app.controller("language", function ($scope, $http, $compile) {
     language = this;
-    language.LANGUAGE = LANGUAGE;
     RUNCONTROLLER("language", language, $scope, $http, $compile);
     RUN_B("language", language, $scope, $http, $compile);
+    language.LANGUAGE = LANGUAGE;
     language.langText = "";
     language.sectText = "";
     language.fieldText = "";

@@ -152,3 +152,7 @@
 .text-slate-800:focus {
     color: #37474F !important;
 }
+.nav-slate li.active {
+    border-bottom: #37474F 1px solid;
+    border-block-width: 2px;
+}

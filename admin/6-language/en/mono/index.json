@@ -4,7 +4,7 @@
   "to": "to",
   "please": "please",
   "save": "save",
-  "saveAndContinue": "save and continue",
+  "saveAndContinue": "and continue",
   "saving": "guardando",
   "close": "close",
   "wait": "wait",
@@ -157,5 +157,8 @@
   "send": "send",
   "sended": "sended",
   "notificationstoped": "notification has stoped",
-  "procesing": "procesing"
+  "procesing": "procesing",
+  "upload": "upload",
+  "myprofile": "My profile",
+  "messages": "messages"
 }

@@ -4,7 +4,7 @@
 <div id="<%= scope %>" ng-controller="<%= scope %> as <%= scope %>">
     <div class="row" style="overflow: hidden">
         <div class="col-lg-9 hidden-xs hidden-sm">
-            <img style="width: 113%" src="assets/images/login_cover.png">
+            <img style="width: 113%" src="files/configuration/splash/splash.png">
         </div>
         <div class="col-lg-3 col-xs-12">
             <div class="panel panel-body">
@@ -29,7 +29,8 @@
                 <%- FORM.button("login", scope, {text: "SING IN", type: "form", icon: {class: "circle-right2"}}) %>
                 <div class="text-center" dragonlanguage>
                     <a ng-click="<%= scope %>.forgotPassword()">
-                        <language>MESSAGE.ic('login.forgotpassword')</language>?
+                        <language>MESSAGE.ic('login.forgotpassword')</language>
+                        ?
                     </a>
                 </div>
                 <% for(var i = 1;i < 14;i++){ %>

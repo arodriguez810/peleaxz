@@ -2,7 +2,7 @@
 var name = name || "";
 var options = {
     text: params.capitalize(name),
-    title: `Upload ${params.capitalize(name)}`,
+    title: `${params.capitalize(name)}`,
     show: false,
     image: 70,
     imagefloat: 'left',
@@ -13,8 +13,11 @@ var options = {
     },
     type: "normal",
     folder: `${model}/temp_files/${name}/` + new Date().getTime(),
+    read: '',
     maxsize_mb: 10,
     maxfiles: 1,
+    file: '',
+    trigger: false,
     acceptedFiles: null,
     width: "modal-full",
     columns: 1,
@@ -25,6 +28,7 @@ options.color = options.type === "form" ? "{{" + model + ".validation.stateDefau
 var toclient = JSON.stringify(options);
 %>
 <script>
+    <%= model %>.filesMessages = MESSAGE.ic("mono.files");
     <%= model %>.triggers.table.before.control("<%= nameclean %>");
     var keyColumn = eval(`CRUD_<%= model %>`).table.key;
     <%= model %>.form.schemas.insert["<%= name %>"] = FORM.schemasType.upload;
@@ -32,18 +36,25 @@ var toclient = JSON.stringify(options);
     <%= model %>.form.registerField("<%= name %>_DragonCountFile", "<%= toclient %>");
     if (MESSAGE.exist('columns.<%= nameclean %>')) {
         <%= model %>.
-        form.options.<%= name %>.text = MESSAGE.i('columns.<%= nameclean %>');
+        form.options.<%= name %>.text = MESSAGE.ic('columns.<%= nameclean %>');
+    }else{
+
     }
     <%= model %>.<%= name %>_DragonCountFile = 0;
     var thisID = eval(`<%= model %>.${keyColumn}`);
 
+    if (<%= model %>.
+    form.options.<%= name %>.file !== ''
+    )
+    {
+        thisID = <%= model %>.
+        form.options.<%= name %>.file;
+    }
+
 </script>
 <div class="form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
      id="input<%= model %>_<%= nameclean %>">
-    <label
-            class="control-label is-visible animate">
-        {{<%= model %>.form.options.<%= name %>.title}}
-    </label>
+
     <% if(options.show === 'image'){ %>
         <img id="showImage<%= model %>_<%= nameclean %>"
              style="max-height: <%= options.image %>px;float: <%= options.imagefloat %>"
@@ -54,7 +65,7 @@ var toclient = JSON.stringify(options);
             role="button"
             class="btn bg-<%= options.color %>-600 btn-block legitRipple">
         <%= options.model ? "{{" + options.model + "}}" : "" %>
-        {{<%= model %>.<%= name %>_DragonCountFile>0? <%= model %>.<%= name %>_DragonCountFile + " Files" :""}}
+        {{<%= model %>.<%= name %>_DragonCountFile>0? (<%= model %>.filesMessages + " " + "(" + <%= model %>.<%= name %>_DragonCountFile+")") :""}}  {{<%= model %>.form.options.<%= name %>.text}}
         <i class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} position-{{<%= model %>.form.options.<%= name %>.icon.position}}"></i>
     </button>
 
@@ -120,8 +131,13 @@ var toclient = JSON.stringify(options);
     }
 
     if (!DSON.oseaX(thisID)) {
-        <%= model %>.
-        form.options.<%= name %>.folder = `<%= model %>/<%= name %>/${thisID}`;
+        if (<%= model %>.
+        form.options.<%= name %>.file === ''
+    )
+        {
+            <%= model %>.
+            form.options.<%= name %>.folder = `<%= model %>/<%= name %>/${thisID}`;
+        }
         ShowCount<%= name %>(true);
     }
 
@@ -140,8 +156,11 @@ var toclient = JSON.stringify(options);
             form.options.<%= name %>.folder;
             baseController.viewData = {
                 root: root,
-                scope: <%= model %>,
-                maxsize: <%= model %>.form.options.<%= name %>.maxsize_mb,
+                file:<%= model %>.form.options.<%= name %>.file,
+                scope
+        : <%= model %>,
+            maxsize: <%= model %>.
+            form.options.<%= name %>.maxsize_mb,
                 maxfiles
         : <%= model %>.
             form.options.<%= name %>.maxfiles,

@@ -173,3 +173,7 @@
     color: #000 !important;
 }
 
+.nav-yellow li.active {
+    border-bottom: #ffe100 1px solid;
+    border-block-width: 2px;
+}

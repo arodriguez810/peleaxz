@@ -86,7 +86,6 @@ for (var i in CONFIG.modules) {
     localModulesVars.push(module.var);
     eval("var " + module.var + " = require('" + module.module + "');");
 }
-
 storage.init({
     dir: CONFIG.storage,
     stringify: JSON.stringify,
@@ -97,7 +96,6 @@ storage.init({
     expiredInterval: 2 * 60 * 1000,
     forgiveParseErrors: false
 });
-
 var ThereConfig = storage.getItem("configuration") || [];
 
 ThereConfig.then(function (thereConfig) {
@@ -441,7 +439,6 @@ ThereConfig.then(function (thereConfig) {
         console.log('loaded storage queries');
         loadedMotors++;
     } else loadedMotors++;
-
     if (true) {
         for (var i in CONFIG.storageEntities) {
             modelstorage.push(i);

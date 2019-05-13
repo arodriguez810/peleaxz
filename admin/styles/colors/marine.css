@@ -152,3 +152,7 @@
 .text-marine-800:focus {
     color: #2828c6 !important;
 }
+.nav-marine li.active {
+    border-bottom: #2828c6 1px solid;
+    border-block-width: 2px;
+}

@@ -71,6 +71,7 @@
   "config_oracle_user": "Usuario",
   "config_oracle_password": "Contraseña",
   "config_oracle_connectString": "TNS",
+  "loginSplash": "Fondo del login",
   "newpassword": "Nueva Contraseña",
   "confirmpassword": "Confirmar Contraseña",
   "forgotfield": "Correo"

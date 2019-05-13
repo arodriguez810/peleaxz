@@ -34,7 +34,6 @@ exports.insertQuery = async function (table, data, params, get, getvalue) {
                 columns.push(property.replace('$', ''));
             else
                 columns.push("[" + property + "]");
-
             if (value[0] === "$")
                 values.push(value.replace('$', ''));
             else if (value[0] === "#")

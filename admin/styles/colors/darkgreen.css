@@ -152,3 +152,7 @@
 .text-darkgreen-800:focus {
     color: #2E7D32 !important;
 }
+.nav-darkgreen li.active {
+    border-bottom: #2E7D32 1px solid;
+    border-block-width: 2px;
+}

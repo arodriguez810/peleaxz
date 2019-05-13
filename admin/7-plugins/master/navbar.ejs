@@ -2,7 +2,7 @@
 <div class="navbar navbar-inverse  bg-<%= TAG.navbar %>-800" ng-show="baseController.isLogged">
     <div class="navbar-header  bg-<%= COLOR.primary %>-800">
         <a class="visible-lg visible-md visible-sm navbar-brand bg-<%= COLOR.primary %>-800 sidebar-mobile-main-toggle">
-            <img style="float: left !important;" src="assets/images/<%= COLOR.logo %>.svg" alt="">
+            <img style="float: left !important;" src="files/configuration/logo/logo.png" alt="">
             <span class="navbar-brand-text" style="float: left;padding-left: 10px;"> <%= CONFIG.logo %></span>
         </a>
         <a class="visible-xs navbar-brand bg-<%= COLOR.primary %>-800 sidebar-mobile-main-toggle">
@@ -70,7 +70,7 @@
                     <span class="badge bg-<%= TAG.table %>" ng-model="baseController.WARNINGREQUESTS.length"></span>
                 </a>
             </li>
-            <li ng-if="baseController.features.fileManager===true">
+            <li ng-if="baseController.features.fileManager===true && (baseController.isSuper || baseController.isAdmin)">
                 <a class="sidebar-control" onclick="FILEMANAGER.OPEN(['/'])" data-popup="tooltip"
                    data-placement="bottom" data-container="body" dragonlanguage title="MESSAGE.i('navbar.FileManager')">
                     <i class="icon-folder-open"></i>
@@ -89,13 +89,26 @@
                 </a>
             </li>
             <li ng-if="baseController.features.onesignal===true && (baseController.isSuper || baseController.isAdmin)">
-                <a class="sidebar-control" href="#notifications" data-popup="tooltip"
+                <a class="sidebar-control"
+                   onclick="MODAL.rawModal(MESSAGE.ic('mono.notifications'),'notifications','bubble-notification',undefined,'notifications');"
+                   data-popup="tooltip"
                    data-placement="bottom" data-container="body" dragonlanguage title="MESSAGE.i('mono.notifications')">
                     <i class="icon-bubble-notification"></i>
                 </a>
             </li>
         </ul>
         <ul class="nav navbar-nav">
+
+            <li ng-if="baseController.mode==='developer'">
+                <a class="sidebar-control"
+                   onclick="MODAL.rawModal(MESSAGE.ic('mono.messages'),'language','comment',undefined,'language');"
+                   data-popup="tooltip"
+                   data-placement="bottom" data-container="body" dragonlanguage
+                   title="MESSAGE.ic('mono.messages')">
+                    <i class=" icon-comment"></i>
+                </a>
+            </li>
+
             <li ng-if="baseController.features.multilanguage===true && baseController.mode==='developer'">
                 <a class="sidebar-control" onclick="MESSAGE.OPEN()" data-popup="tooltip"
                    data-placement="bottom" data-container="body" dragonlanguage
@@ -132,8 +145,12 @@
                         <i class="caret"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
-                        <!--<li><a href="#"><i class="icon-user-plus"></i> My profile</a></li>-->
-                        <!--<li><a href="#"><i class="icon-coins"></i> My balance</a></li>-->
+                        <li dragonlanguage="">
+                            <a onclick="MODAL.rawModal(MESSAGE.ic('mono.myprofile'), '<%= CONFIG.users.path %>/myprofile', 'user', 'modal-full', '<%= CONFIG.users.path %>')">
+                                <i class="icon-user-plus"></i>
+                                <language>MESSAGE.ic('mono.myprofile')</language>
+                            </a>
+                        </li>
                         <!--<li><a href="#"><span class="badge badge-warning pull-right">58</span> <i class="icon-comment-discussion"></i> Messages</a></li>-->
                         <!--<li class="divider"></li>-->
                         <!--<li><a href="#"><i class="icon-cog5"></i> Account settings </a></li>-->

@@ -1,9 +1,9 @@
 <div class="row">
-    <div class="col-sm-4 col-md-3 remove-input-space ">
+    <div class="col-sm-4 col-md-3  ">
         <%- FORM.input("config.smtp.host", scope, {maxlength: 50, placeholder: "Host", icon: {class: "none"}}) %>
     </div>
 
-    <div class="col-sm-2 col-md-3 remove-input-space ">
+    <div class="col-sm-2 col-md-3  ">
         <%- FORM.input("config.smtp.port", scope, {
             maxlength: 4,
             isNumber: true,
@@ -12,7 +12,7 @@
         }) %>
     </div>
 
-    <div class="col-sm-4 col-md-3 remove-input-space ">
+    <div class="col-sm-4 col-md-3  ">
         <%- FORM.checkbox("config.smtp.secure", scope, {text: 'SSL', size: 'switchery-sm'}) %>
     </div>
 
@@ -20,10 +20,10 @@
 </div>
 
 <div class="row">
-    <div class="col-sm-4 col-md-3 remove-input-space ">
+    <div class="col-sm-4 col-md-3  ">
         <%- FORM.input("config.smtp.auth.user", scope, {maxlength: 50, placeholder: "Email", icon: {class: "mail5"}}) %>
     </div>
-    <div class="col-sm-4 col-md-3 remove-input-space ">
+    <div class="col-sm-4 col-md-3  ">
         <%- FORM.password("config.smtp.auth.pass", scope, {
             maxlength: 50,
             normal: true,
@@ -32,7 +32,7 @@
         }) %>
     </div>
 
-    <div class="col-sm-4 col-md-3 remove-input-space ">
+    <div class="col-sm-4 col-md-3  ">
         <%- FORM.input("config.smptOptions.sender", scope, {
             maxlength: 50,
             normal: true,
@@ -41,7 +41,7 @@
         }) %>
     </div>
 
-    <div class="col-sm-4 col-md-3 remove-input-space ">
+    <div class="col-sm-4 col-md-3  ">
         <%- FORM.input("config.smptOptions.name", scope, {
             maxlength: 50,
             normal: true,

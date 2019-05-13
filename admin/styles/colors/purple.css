@@ -152,3 +152,7 @@
 .text-purple-800:focus {
     color: #4527A0 !important;
 }
+.nav-purple li.active {
+    border-bottom: #4527A0 1px solid;
+    border-block-width: 2px;
+}

@@ -64,11 +64,16 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
         baseController.userID = session.current().getID();
         baseController.fullName = session.current().fullName();
         GROUPS = new SESSION().current().onlygroups;
+        SWEETALERT.loading({message: MESSAGE.ic('actions.Loading') + " " + MESSAGE.ic('actions.permissions')});
+        var entitiesPermission = [];
+        for (var pers of CONFIG.permissions.entities) {
+            entitiesPermission.push(`${pers}-${baseController.userID}`)
+        }
         BASEAPI.list('permission', {
             where: [
                 {
                     "field": "id",
-                    "value": `${CONFIG.permissions.entities[0]}-${baseController.userID}`,
+                    "value": entitiesPermission,
                     "connector": "OR"
                 },
                 {
@@ -77,6 +82,7 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
                 }
             ]
         }, function (result) {
+            SWEETALERT.stop();
             var userPermission = null;
             var grouppermission = [];
             for (var permissionD of result.data) {
@@ -277,6 +283,10 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
         eval(`CRUD_${entity}.table.allow.permission = true;`);
         eval(`CRUD_${entity}.table.options.push(permissionOptions)`);
     }
+    for (var entity of CONFIG.permissions.terms) {
+        eval(`CRUD_${entity.name}.table.allow.permission = true;`);
+        eval(`CRUD_${entity.name}.table.options.push(permissionOptions)`);
+    }
 });
 
 CHILDSCOPES = [];
@@ -337,7 +347,11 @@ RUN_A = function (conrollerName, inside, $scope, $http, $compile) {
     inside.MENU = MENU.current;
     inside.modelName = conrollerName;
     inside.singular = inside.modelName.split('_').length > 1 ? inside.modelName.split('_')[1] : inside.modelName.split('_')[0];
-    inside.plural = pluralize(inside.singular);
+    if (MESSAGE.exist(`columns.${inside.singular}`))
+        inside.singular = MESSAGE.ic(`columns.${inside.singular}`);
+    inside.plural = pluralize(capitalize(inside.singular.replace(/_/g, " ")));
+    if (MESSAGE.exist(`columns.${inside.singular}_plural`))
+        inside.plural = MESSAGE.ic(`columns.${inside.singular}_plural`);
     inside.$scope = $scope;
     COMPILE.run(inside, $scope, $compile);
     STORAGE.run(inside);
@@ -411,7 +425,11 @@ RUNCONTROLLER = function (conrollerName, inside, $scope, $http, $compile) {
     };
     GARBAGECOLECTOR(inside.extraExclude || inside.modelName);
     inside.singular = inside.modelName;
-    inside.plural = pluralize(inside.singular);
+    if (MESSAGE.exist(`columns.${inside.singular}`))
+        inside.singular = MESSAGE.ic(`columns.${inside.singular}`);
+    inside.plural = pluralize(capitalize(inside.singular.replace(/_/g, " ")));
+    if (MESSAGE.exist(`columns.${inside.singular}_plural`))
+        inside.plural = MESSAGE.ic(`columns.${inside.singular}_plural`);
     inside.$scope = $scope;
     COMPILE.run(inside, $scope, $compile);
     STORAGE.run(inside);

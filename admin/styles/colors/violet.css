@@ -152,3 +152,7 @@
 .text-violet-800:focus {
     color: #6A1B9A !important;
 }
+.nav-violet li.active {
+    border-bottom: #6A1B9A 1px solid;
+    border-block-width: 2px;
+}

@@ -152,3 +152,7 @@
 .text-brown-800:focus {
     color: #4E342E !important;
 }
+.nav-brown li.active {
+    border-bottom: #4E342E 1px solid;
+    border-block-width: 2px;
+}

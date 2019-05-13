@@ -4,7 +4,7 @@
   "to": "a",
   "please": "porfavor",
   "save": "guardar",
-  "saveAndContinue": "guardar y continuar",
+  "saveAndContinue": "y continuar",
   "saving": "guardando",
   "close": "cerrar",
   "wait": "espera",
@@ -38,7 +38,7 @@
   "NotExistin": "No Existe",
   "IsTrue": "Verdadero",
   "IsFalse": "Falso",
-  "refresing": "regrescando",
+  "refresing": "refrescando",
   "Clipboard": "portapapaeles",
   "Exportas": "Exportar como",
   "import": "importar",
@@ -157,5 +157,12 @@
   "sended": "enviado",
   "stopnotification": "parar notificación",
   "notificationstoped": "la notificación fue detenida",
-  "procesing": "procesando"
+  "procesing": "procesando",
+  "upload": "subir",
+  "myprofile": "Mi perfil",
+  "messages": "mensajes",
+  "languagemanager": "Gestionar Mensajes",
+  "addnewlanguage": "Agregar Lenguaje",
+  "addsection": "Agregar Sección",
+  "additem": "Agregar Elemento"
 }

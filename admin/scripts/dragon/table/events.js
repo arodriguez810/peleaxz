@@ -370,8 +370,10 @@ TABLEEVENT = {
                     $scope.records.data = $scope.records.data.filter(function (item) {
                         var goOut = 0;
                         for (const deletekey of eval(`CRUD_${$scope.modelName}`).table.deletekeys) {
-                            if (eval("item." + deletekey) === eval("row." + deletekey))
-                                goOut++;
+                            if (row !== undefined) {
+                                if (eval("item." + deletekey) === eval("row." + deletekey))
+                                    goOut++;
+                            }
                         }
                         if (goOut === eval(`CRUD_${$scope.modelName}`).table.deletekeys.length) {
                             item.rowdeleted = true;

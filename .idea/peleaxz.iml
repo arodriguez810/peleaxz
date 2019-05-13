@@ -88,12 +88,13 @@
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/notifications" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/4-crud/a.defautls/segment" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/segment" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/4-crud" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/4-crud/a.defautls" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/4-crud/a.defautls/interval" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/interval" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/5-views" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/4-crud" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/4-crud/a.defautls" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/4-crud/a.defautls/configuration" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/.tmp" />
       <excludeFolder url="file://$MODULE_DIR$/admin/assets" />
       <excludeFolder url="file://$MODULE_DIR$/admin/defaults" />

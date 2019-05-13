@@ -129,20 +129,8 @@ $(document).ready(function () {
         if (paths.length > 0) {
             $("body").removeClass("sidebar-mobile-main");
             var controller = paths[0];
-            baseController.currentModel.modal.modalView(link, {
-                width: width,
-                header: {
-                    title: title,
-                    icon: icon.replace('icon-', '')
-                },
-                footer: {
-                    cancelButton: false
-                },
-                content: {
-                    loadingContentText: `${MESSAGE.i('actions.Loading')}...`,
-                    sameController: controller
-                },
-            });
+            MENUMODAL = true;
+            MODAL.rawModal(title, link, icon.replace('icon-', ''), width, controller);
         }
         return false;
     });

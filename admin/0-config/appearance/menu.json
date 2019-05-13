@@ -60,7 +60,8 @@
                 {
                   "text": "Product",
                   "href": "#ms_product",
-                  "icon": "apple2"
+                  "icon": "apple2",
+                  "modal": "modal-full"
                 },
                 {
                   "text": "Product Otro",

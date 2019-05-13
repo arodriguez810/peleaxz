@@ -2,6 +2,23 @@ MODAL = {
     historyObject: [],
     history: [],
     viewData: [],
+    rawModal: function (title, link, icon, width, controller) {
+        MENUMODAL = true;
+        baseController.currentModel.modal.modalView(link, {
+            width: width || ENUM.modal.width.full,
+            header: {
+                title: title || '',
+                icon: icon || ''
+            },
+            footer: {
+                cancelButton: false
+            },
+            content: {
+                loadingContentText: `${MESSAGE.i('actions.Loading')}...`,
+                sameController: controller || true
+            },
+        });
+    },
     getViewData: function () {
         return ARRAY.last(MODAL.historyObject).viewData;
     },
@@ -41,6 +58,12 @@ MODAL = {
         }
         if (typeof callback === "function")
             callback();
+        if (MODAL.historyObject.length < 1) {
+            if (MENUMODAL) {
+                ANGULARJS.get('baseController').base();
+                MENUMODAL = false;
+            }
+        }
     },
     run: function ($scope) {
         $scope.viewmore = function (text, length) {
@@ -101,7 +124,7 @@ MODAL = {
             var cancelText = backMode ? MESSAGE.ic('mono.back') : MESSAGE.ic('mono.close');
             var cancelButton = data.footer.cancelButton
                 ? '    <button type="button" class="btn btn-labeled bg-' + TAG.table + '" ' + closeModal + " > <b><i class=\"icon-cross2\"></i></b>" + cancelText + "</button>" : "";
-            var html = String.format('<div id="modal' + data.id + '" class="modal {0}"  data-backdrop="false">', animation) +
+            var html = String.format('<div id="modal' + data.id + '" class="modal {0}"  data-backdrop="static" data-keyboard="false">', animation) +
                 ' <div class="modal-dialog ' + data.width + ' ">' +
                 '  <div class="modal-content">' +
                 '   <div class="modal-header bg-' + bgheader + '">' + headercloseButton +

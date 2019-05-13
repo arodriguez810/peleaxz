@@ -1,8 +1,13 @@
 {
   "permissions": {
     "entities": [
-      "my_user",
-      "group"
+      "my_user"
+    ],
+    "terms": [
+      {
+        "name": "group",
+        "relation": "user_group"
+      }
     ],
     "excludes": [
       "st_user"

@@ -13,6 +13,7 @@ exports.api = {
     gets: {},
     posts: {
         login: async function (request) {
+
             var config = params.CONFIG.users;
             var key = `${config.engine}-${request.username}`;
             var attemps = await params.storage.getItem(key);
@@ -74,30 +75,39 @@ exports.api = {
                         data.data[0].players = players;
                     }
 
-                    data.data[0].super = config.super.indexOf(request.username.toLowerCase()) !== -1;
-                    var groups = await params.storage.getItem('group') || [];
-                    var user_groups = await params.storage.getItem('user_group') || [];
-                    user_groups = user_groups.filter((user_group) => {
-                        return user_group.user == eval(`data.data[0].${config.fields.id}`);
-                    });
-                    data.data[0].groupadmin = false;
-                    user_groups.forEach((ug) => {
-                        var group = groups.filter((g) => {
-                            return g.id == ug.group;
-                        });
-                        if (group.length > 0) {
-                            ug.groupinfo = group[0];
-                            if (group[0].isAdmin == "1")
-                                data.data[0].groupadmin = true;
-                        }
-                    });
 
-                    data.data[0].groups = user_groups;
-                    var groups = [];
-                    for (var item of user_groups) {
-                        groups.push(`group-${item.group}`);
+                    data.data[0].super = config.super.indexOf(request.username.toLowerCase()) !== -1;
+
+                    data.data[0].groups = [];
+                    data.data[0].onlygroups = [];
+                    for (var term of params.CONFIG.permissions.terms) {
+                        var groups = await params.storage.getItem(term.name) || [];
+                        var user_groups = await params.storage.getItem(term.relation) || [];
+                        user_groups = user_groups.filter((user_group) => {
+                            return user_group.user == eval(`data.data[0].${config.fields.id}`);
+                        });
+                        data.data[0].groupadmin = false;
+                        user_groups.forEach((ug) => {
+                            var group = groups.filter((g) => {
+                                return g.id == eval(`ug.${term.name}`);
+                            });
+                            if (group.length > 0) {
+                                ug.groupinfo = group[0];
+                                if (group[0].isAdmin == "1")
+                                    data.data[0].groupadmin = true;
+                            }
+                        });
+                        for (var x of user_groups)
+                            data.data[0].groups.push(x);
+                        var groups = [];
+                        for (var item of user_groups) {
+                            groups.push(`${term.name}-${item[term.name]}`);
+                        }
+                        for (var w of groups)
+                            data.data[0].onlygroups.push(w);
                     }
-                    data.data[0].onlygroups = groups;
+                    console.log(data.data[0]);
+
                     data.data[0].token = params.jwt.sign(
                         {
                             username: eval(`data.data[0].${config.fields.username}`),

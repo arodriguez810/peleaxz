@@ -79,15 +79,15 @@ var toclient = JSON.stringify(options);
             class="control-label {{<%= model + "." + name %>?'is-visible animate':''}}">
         {{<%= model %>.form.options.<%= name %>.placeholder}}
     </label>
-    <input
-            ng-model="<%= model + "." + name %>"
-            id="<%= model %>_<%= nameclean %>"
-            name="<%= model %>_<%= nameclean %>"
-            type="text"
-            ng-model-onblur
-            class="form-control"
-            ng-disabled="<%= model %>.form.options.<%= name %>.disabled"
-            placeholder="{{<%= model %>.form.options.<%= name %>.placeholder}}"
+    <input autocomplete="off"
+           ng-model="<%= model + "." + name %>"
+           id="<%= model %>_<%= nameclean %>"
+           name="<%= model %>_<%= nameclean %>"
+           type="text"
+           ng-model-onblur
+           class="form-control"
+           ng-disabled="<%= model %>.form.options.<%= name %>.disabled"
+           placeholder="{{<%= model %>.form.options.<%= name %>.placeholder}}"
     >
 
     <div style="margin: 10px;" class="form-control-feedback">

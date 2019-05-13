@@ -324,7 +324,7 @@ FORM = {
 
                         if ($scope.pages !== null)
                             if ($scope.pages.form.subRequestCompleteVar === 0) {
-                                $scope.pages.form.close(undefined,undefined,close);
+                                $scope.pages.form.close(undefined, undefined, close);
                                 SWEETALERT.stop();
                             }
                         if ($scope.form !== null)
@@ -435,7 +435,7 @@ FORM = {
                             $scope.pages.form.subRequestCompleteVar = $scope.form.relations.length;
                         if ($scope.pages.form.subRequestCompleteVar === 0) {
 
-                            $scope.pages.form.close(undefined,undefined,close);
+                            $scope.pages.form.close(undefined, undefined, close);
                             SWEETALERT.stop();
                         }
                         if ($scope.form !== null)
@@ -1018,17 +1018,22 @@ FORM = {
         $scope.form.validate = function (validations) {
 
         };
-        $scope.form.destroy = function () {
+        $scope.form.destroy = function (close) {
             if ($scope.form !== null) {
                 $scope.form.fileds.forEach((field) => {
                     eval(`delete $scope.${field}`);
                 });
-                if ($scope.destroyForm !== false) {
-                    $scope.form = {};
+                $scope.form.mode = 'new';
+                if (close !== false) {
+                    if ($scope.destroyForm !== false) {
+                        $scope.form = {};
+                    }
+                    $scope.open = {};
+                    $scope.pages = {};
+                    $scope.validation.destroy();
+                } else {
+                    $scope.refreshAngular();
                 }
-                $scope.open = {};
-                $scope.pages = {};
-                $scope.validation.destroy();
             }
         };
         $scope.openForm = async function (mode) {
@@ -1050,7 +1055,7 @@ FORM = {
                                 message:
                                     MESSAGE.i('alerts.preventClose'),
                                 confirm: function () {
-                                    $scope.form.saveAction();
+                                    $scope.form.saveAction(close);
                                 }
                             });
                         } else {
@@ -1079,7 +1084,7 @@ FORM = {
                 $scope.pages.form.subRequestComplete = function (close) {
                     $scope.pages.form.subRequestCompleteProgress++;
                     if ($scope.pages.form.subRequestCompleteProgress === $scope.pages.form.subRequestCompleteVar) {
-                        $scope.pages.form.close(undefined,undefined,close);
+                        $scope.pages.form.close(undefined, undefined, close);
                         SWEETALERT.stop();
                     } else {
 
@@ -1092,13 +1097,12 @@ FORM = {
 
                     $scope.pages.form.isOpen = false;
                     if ($scope.form !== null) {
-                        $scope.form.destroy();
+                        $scope.form.destroy(close);
                         if ($scope.form.hasChanged)
                             if ($scope.refresh !== undefined) {
                                 if (close === false) {
-                                    setTimeout(function () {
-                                        $scope.formulary(null, 'new');
-                                    },500);
+
+
                                     return;
                                 } else
                                     $scope.refresh();
@@ -1120,15 +1124,9 @@ FORM = {
                                     message: MESSAGE.i('alerts.CloseToComplete'),
                                     confirm: function () {
                                         if ($scope.form.target === FORM.targets.modal) {
-                                            MODAL.close($scope);
-                                            if (close === false) {
-                                                setTimeout(function () {
-                                                    $scope.formulary(null, 'new');
-                                                },500);
-                                                return;
-                                            }
+                                            if (close !== false)
+                                                MODAL.close($scope);
                                         }
-
                                         if ($scope.pages.form)
                                             $scope.pages.form.onClose(close);
                                     }
@@ -1136,13 +1134,8 @@ FORM = {
                             else {
                                 if ($scope.form !== null)
                                     if ($scope.form.target === FORM.targets.modal) {
-                                        MODAL.close($scope);
-                                        if (close === false) {
-                                            setTimeout(function () {
-                                                $scope.formulary(null, 'new');
-                                            },500);
-                                            return;
-                                        }
+                                        if (close !== false)
+                                            MODAL.close($scope);
                                     }
                                 if ($scope.pages !== null)
                                     if ($scope.pages.form)
@@ -1150,13 +1143,8 @@ FORM = {
                             }
                         } else {
                             if ($scope.form.target === FORM.targets.modal) {
-                                MODAL.close($scope);
-                                if (close === false) {
-                                    setTimeout(function () {
-                                        $scope.formulary(null, 'new');
-                                    },500);
-                                    return;
-                                }
+                                if (close !== false)
+                                    MODAL.close($scope);
                             }
                             if ($scope.pages !== null)
                                 if ($scope.pages.form)
@@ -1220,7 +1208,7 @@ FORM = {
                                             $scope.pages.form.isOpen = false;
                                         }
                                         if ($scope.form !== null) {
-                                            $scope.form.destroy();
+                                            $scope.form.destroy(close);
                                             if ($scope.form.hasChanged)
                                                 if ($scope.refresh !== undefined)
                                                     $scope.refresh();

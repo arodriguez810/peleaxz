@@ -153,3 +153,7 @@
     color: #00695C !important;
 }
 
+.nav-teal li.active {
+    border-bottom: #00695C 1px solid;
+    border-block-width: 2px;
+}

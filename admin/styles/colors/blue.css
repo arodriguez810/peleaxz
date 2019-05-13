@@ -152,3 +152,7 @@
 .text-blue-800:focus {
     color: #0277BD !important;
 }
+.nav-blue li.active {
+    border-bottom: #0277BD 1px solid;
+    border-block-width: 2px;
+}

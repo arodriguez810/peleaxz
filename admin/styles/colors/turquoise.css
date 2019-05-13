@@ -152,3 +152,7 @@
 .text-turquoise-800:focus {
     color: #419f9e !important;
 }
+.nav-turquoise li.active {
+    border-bottom: #419f9e 1px solid;
+    border-block-width: 2px;
+}

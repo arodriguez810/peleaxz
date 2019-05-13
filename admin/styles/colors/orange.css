@@ -153,3 +153,7 @@
     color: #EF6C00 !important;
 }
 
+.nav-orange li.active {
+    border-bottom: #EF6C00 1px solid;
+    border-block-width: 2px;
+}

@@ -3,6 +3,7 @@ LOAD = function () {
     inanimation = CONFIG.ui.animation.inanimation;
 
     this.loadContentScope = function (view, id, loadingText, callback, baseDiv, controller, $scope) {
+        controller = controller === false ? undefined : controller;
         baseDiv = baseDiv === undefined ? true : baseDiv;
 
         var thisid = "#" + id;
@@ -60,7 +61,8 @@ LOAD = function () {
                 callback(true);
             },
             function (data) {
-                $http.get("error/error" + "?scope=" + controller || $scope.modelName, {}).then(
+                console.log(data);
+                $http.get("error/error" + "?scope=" + (controller || $scope.modelName), {}).then(
                     function (template) {
                         $scope.httpError = data;
                         STEP.register({

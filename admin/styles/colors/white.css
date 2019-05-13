@@ -172,3 +172,7 @@
 .nav-tabs.bg-white-800 > li > a {
     color: #000 !important;
 }
+.nav-white li.active {
+    border-bottom: #fff8f5 1px solid;
+    border-block-width: 2px;
+}
