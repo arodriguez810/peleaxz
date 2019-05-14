@@ -23,7 +23,7 @@
   "AYSDeleteFileFolder": "¿Está seguro de que desea eliminar estos archivos / carpetas ?, si se trata de una carpeta, todos los archivos que contiene serán eliminados de forma recursiva",
   "EnterPage": "Introduzca el número de página entre {0} a {1}",
   "PageGreater": "La página debe ser mayor que 1 y menor que",
-  "upload": "Soltar archivos para subir <span> o HACER CLIC </span>",
+  "upload": "Soltar archivos para subir o HACER CLIC",
   "SelectorDropFiles": "Seleccionar o eliminar archivos",
   "AYSCloseSession": "¿Está seguro de que desea cerrar la sesión?",
   "SessionEnd": "Su sesión ha finalizado, por favor inicie sesión",
@@ -36,5 +36,6 @@
   "permissiondenied": "No tienes los suficientes permisos para acceder a esta opción, si está en esta pantalla solo pudo ser por la opción de favoritos. Si esta consciente de que no debe tener permisos favor eliminarla sino contacte al administrador",
   "saveConfig": "Al guardar la configuración de la aplcicación el servidor cambiará y tardará unos segundos, debe estar seguro de todos los parámentros cambiados ya que el mal manejo de alguno puede causar que el servidor no funcione bien, aun así estas seguro que deseas guardar estos cambios?",
   "saveConfigSuper": "Al guardar la configuración de la aplcicación el servidor se reiniciará y tardará unos segundos en iniciar, debe estar seguro de todos los parámentros cambiados ya que el mal manejo de alguno puede causar que el servidor no inicie, aun así estas seguro que deseas guardar estos cambios?",
-  "emptyRelations": "Este formulario contiene las siguientes relaciones vacías ${relations} deseas guardar de todos modos?"
+  "emptyRelations": "Este formulario contiene las siguientes relaciones vacías ${relations} deseas guardar de todos modos?",
+  "saveConfigSuperLanguage": "Esta opción cambia los mensajes de la aplicación completa, esta seguro que desea guardar de todos modos?"
 }

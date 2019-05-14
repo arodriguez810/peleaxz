@@ -1,12 +1,1 @@
-{
-  "Youmustselectatleast": "Debes seleccionar por lo menos",
-  "Werecommendthatyouselectatleast": "Te recomendamos que por lo menos selecciones",
-  "Youmustuploadbetween": "Debes subir entre",
-  "Youmustuploadatleast": "Debes subir por lo menos",
-  "Fieldisrequired": "Campo requerido",
-  "Numbermustbebetween": "El número debe ser entre",
-  "Valuemaynotbereal": "El valor puede que no sea real",
-  "Colorisnotallowed": "Color no permitido",
-  "Isnotavalidemail": "Correo inválido",
-  "fieldPassword": "${field} debe de ser igual que ${field2}"
-}
+{"Youmustselectatleast":"Debes seleccionar por lo menos","Werecommendthatyouselectatleast":"Te recomendamos que por lo menos selecciones","Youmustuploadbetween":"Debes subir entre","Youmustuploadatleast":"Debes subir por lo menos","Fieldisrequired":"Campo requerido","Numbermustbebetween":"El número debe ser entre","Valuemaynotbereal":"El valor puede que no sea real","Colorisnotallowed":"Color no permitido","Isnotavalidemail":"Correo inválido","fieldPassword":"${field} debe de ser igual que ${field2}"}

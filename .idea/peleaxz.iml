@@ -3,22 +3,22 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/admin/0-config" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/0-config/appearance" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/0-config/db" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/0-config/developer" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/0-config/security" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/0-config/storage" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/1-models/mongo" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/1-models/mssql" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/1-models/mysql" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/1-models/oracle" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/1-models/scripts" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/1-models/scripts/mssql" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/1-models/scripts/mysql" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/1-models/scripts/oracle" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/1-models" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/2-service" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/2-service/base" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/config/appearance" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/config/db" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/config/developer" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/config/security" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/config/storage" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/2-models/mongo" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/2-models/mssql" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/2-models/mysql" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/2-models/oracle" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/2-models/scripts" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/2-models/scripts/mssql" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/2-models/scripts/mysql" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/2-models/scripts/oracle" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/2-models" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/1-service" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/1-service/base" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/3-controllers/abase" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/3-controllers/auth" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/3-controllers" isTestSource="true" />
@@ -57,7 +57,7 @@
       <sourceFolder url="file://$MODULE_DIR$/admin/modules" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/templates/email" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/group" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/4-crud/a.defautls/group" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/cruds/group" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/styles" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/styles/base" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/styles/colors" isTestSource="true" />
@@ -82,19 +82,23 @@
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/templates/charts" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/recode" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/language" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/4-crud/a.defautls/language" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/cruds/language" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/4-crud/a.defautls/notification" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/4-crud/a.defautls/notifications" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/cruds/notifications" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/notifications" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/4-crud/a.defautls/segment" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/cruds/segment" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/segment" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/4-crud/a.defautls/interval" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/cruds/interval" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/interval" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/5-views" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/4-crud" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/4-crud/a.defautls" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/4-crud/a.defautls/configuration" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/cruds/configuration" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/controllers" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/cruds" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/config" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/.tmp" />
       <excludeFolder url="file://$MODULE_DIR$/admin/assets" />
       <excludeFolder url="file://$MODULE_DIR$/admin/defaults" />

@@ -1,5 +1,13 @@
 <%
-var name = name || "";
+
+if(DATA.name!==undefined){
+    var name, model, opts;
+    name = DATA.name;
+    model = DATA.model;
+    opts = DATA.opts;
+}
+console.log(JSON.stringify(opts));
+var name  = name || "";
 var options = {
     placeholder: params.capitalize(name),
     type: "text",

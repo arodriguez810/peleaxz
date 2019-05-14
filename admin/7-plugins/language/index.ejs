@@ -46,7 +46,7 @@
                                         <div class="col-md-6"
                                              ng-repeat="(key,value) in $eval('<%= scope %>.LANGUAGE.' + keyAbuelo + '.' + keyPapa)">
                                             <br>
-                                            <label for="lang-text">{{key}}:</label>
+                                            <label for="lang-text" style="font-weight: bold">{{key}}:</label>
                                             <input ng-model-onblur name="lang-text"
                                                       ng-model="<%= scope %>.LANGUAGE[keyAbuelo][keyPapa][key]"
                                                       class="form-control">

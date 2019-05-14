@@ -71,6 +71,8 @@
         CONFIG = eval("(" + CONFIG.replaceAll("&#34;", '"') + ")");
         LANGUAGE = "<%= JSON.stringify(LANGUAGE) %>";
         LANGUAGE = eval("(" + LANGUAGE.replaceAll("&#34;", '"') + ")");
+        CONTROLS = "<%= JSON.stringify(controls) %>";
+        CONTROLS = eval("(" + CONTROLS.replaceAll("&#34;", '"') + ")");
         SHOWLANGS = "<%= JSON.stringify(SHOWLANGS) %>";
         SHOWLANGS = eval("(" + SHOWLANGS.replaceAll("&#34;", '"') + ")");
         COLOR = "<%= JSON.stringify(COLOR) %>";
@@ -135,11 +137,11 @@
     <script type="text/javascript" src="assets/js/plugins/date/jquery.datetimepicker.full.min.js"></script>
     <script type="text/javascript" src="assets/js/plugins/date/yearpicker.js"></script>
     <% crudjs.forEach(function(item){ %>
-        <script src="<%= FOLDERS.crud %>/<%= item %>"></script>
+        <script src="<%= item %>"></script>
     <% }); %>
 
     <% controllersjs.forEach(function(item){ if(item != undefined){ %>
-        <script src="<%= FOLDERS.controllers %>/<%= item %>"></script>
+        <script src="<%= item %>"></script>
     <% }}); %>
 
     <% localserver.forEach(function (item) {

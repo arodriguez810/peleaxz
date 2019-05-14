@@ -29,6 +29,15 @@ app.controller("language", function ($scope, $http, $compile) {
         MODAL.close(language);
         SWEETALERT.show({message: "Saved"});
     };
+    language.addfield = function (key1, key2) {
+        language.key1 = key1;
+        language.key2 = key2;
+        language.LANGUAGE[language.key1][language.key2][language.fieldText] = language.descText;
+        language.fieldText = "";
+        language.descText = "";
+        MODAL.close(language);
+        SWEETALERT.show({message: "Saved"});
+    };
     language.openmodalLanguage = function () {
         language.modal.modalView("language/langform", {
             width: 'modal-full',
@@ -78,22 +87,19 @@ app.controller("language", function ($scope, $http, $compile) {
         });
     };
     language.savelanguage = function () {
-        SWEETALERT.loading({message: MESSAGE.ic('mono.saving')});
-        BASEAPI.deleteall('language', {
-            "where": [
-                {
-                    "value": `language`
+        VALIDATION.save(language, function () {
+            SWEETALERT.confirm({
+                message:
+                    MESSAGE.i('alerts.saveConfigSuperLanguage'),
+                confirm: function () {
+                    SWEETALERT.loading({message: MESSAGE.ic('mono.procesing')});
+                    BASEAPI.ajax.post('dragon/api/saveLanguages', {json: JSON.stringify(language.LANGUAGE)}, function () {
+                        SWEETALERT.loading({message: MESSAGE.ic('mono.restarting')});
+                        setTimeout(() => {
+                            location.reload();
+                        }, 15000);
+                    });
                 }
-            ]
-        }, function (deleted) {
-            BASEAPI.insert('language', {
-                "insertData": {
-                    "id": `language`,
-                    "object": JSON.stringify(language.LANGUAGE)
-                }
-            }, function (insert) {
-                SWEETALERT.stop();
-                SWEETALERT.show({message: "Saved"});
             });
         });
     };

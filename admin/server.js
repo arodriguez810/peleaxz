@@ -10,23 +10,28 @@ function repeatStringNumTimes(string, times) {
 var lines = process.stdout.getWindowSize()[1];
 for (var i = 0; i < lines; i++) console.log("\r\n");
 var folders = {
-    models: "1-models",
-    service: "2-service",
+    models: "2-models",
+    service: "1-service",
     controllers: "3-controllers",
+    controllersBase: "7-plugins/application/controllers",
+    crudBase: "7-plugins/application/cruds",
     crud: "4-crud",
     views: "5-views",
     viewsDragon: "7-plugins",
+    fields: "7-plugins/templates/form",
     master: "7-plugins/master",
     language: "6-language",
     scripts: "scripts",
     modules: "modules",
     config: "0-config",
+    configBase: "7-plugins/application/config",
     styles: "styles",
     server: "server",
     files: "files",
     themes: "styles/colors",
 };
-var modules = {}, localjs = [], localModules = [], localModulesVars = [], modulesList = [], developer = {}, themes = [];
+var modules = {}, controls = [], localjs = [], localModules = [], localModulesVars = [], modulesList = [],
+    developer = {}, themes = [];
 //var modules = {}, localjs = [], localModules = [], localModulesVars = [], modulesList = [], developer = {},themes=[];
 var fs = require("fs");
 var getFiles = function (dir, filelist, prefix) {
@@ -44,16 +49,37 @@ var getFiles = function (dir, filelist, prefix) {
     return filelist;
 };
 var CONFIG = {};
+mergeObject = function (from, to) {
+    for (var i in from) {
+        if (to.hasOwnProperty(i)) {
+            if (typeof to[i] === 'object') {
+                mergeObject(from[i], to[i]);
+            } else {
+                to[i] = from[i];
+            }
+        } else {
+            to[i] = from[i];
+        }
+    }
+};
+//base
+configs = getFiles("./" + folders.configBase + "/");
+configs = configs.filter(function (file) {
+    return file.indexOf('.disabled') === -1;
+});
+configs.forEach(function (config) {
+    var file = eval("(" + fs.readFileSync(folders.configBase + "/" + config) + ")");
+    mergeObject(file, CONFIG);
+});
+
 configs = getFiles("./" + folders.config + "/");
 configs = configs.filter(function (file) {
     return file.indexOf('.disabled') === -1;
 });
 configs.forEach(function (config) {
     var file = eval("(" + fs.readFileSync(folders.config + "/" + config) + ")");
-    Object.assign(CONFIG, file);
+    mergeObject(file, CONFIG);
 });
-
-
 var LANGUAGE = {};
 languages = getFiles("./" + folders.language + "/");
 THEMES = getFiles("./" + folders.themes + "/");
@@ -123,9 +149,32 @@ ThereConfig.then(function (thereConfig) {
 
     localStyles = getFiles("./" + folders.styles + "/");
     localjs = getFiles("./" + folders.scripts + "/");
+    controls = getFiles("./" + folders.fields + "/");
     localserver = getFiles("./" + folders.server + "/");
-    controllersjs = getFiles("./" + folders.controllers + "/");
-    crudjs = getFiles("./" + folders.crud + "/");
+
+    //base
+    controllersjs = getFiles("./" + folders.controllersBase + "/");
+    for (var ctr in controllersjs)
+        controllersjs[ctr] = folders.controllersBase + "/" + controllersjs[ctr];
+    //custom
+    controllersjsCustom = getFiles("./" + folders.controllers + "/");
+    for (var ctr in controllersjsCustom)
+        controllersjsCustom[ctr] = folders.controllers + "/" + controllersjsCustom[ctr];
+    //merge
+    for (var ctr of controllersjsCustom)
+        controllersjs.push(ctr);
+
+    //base
+    crudjs = getFiles("./" + folders.crudBase + "/");
+    for (var ctr in crudjs)
+        crudjs[ctr] = folders.crudBase + "/" + crudjs[ctr];
+    //custom
+    crudCustom = getFiles("./" + folders.crud + "/");
+    for (var ctr in crudCustom)
+        crudCustom[ctr] = folders.crud + "/" + crudCustom[ctr];
+    //merge
+    for (var ctr of crudCustom)
+        crudjs.push(ctr);
 //******* Load Custom Modules********//
 
 //******* App Configuration ********//
@@ -208,6 +257,7 @@ ThereConfig.then(function (thereConfig) {
     allparams += "      jwt:jwt,";
     allparams += "      rimraf:rimraf,";
     allparams += "      localjs:localjs,";
+    allparams += "      controls:controls,";
     allparams += "      localStyles:localStyles,";
     allparams += "      controllersjs:controllersjs,";
     allparams += "      localserver:localserver,";

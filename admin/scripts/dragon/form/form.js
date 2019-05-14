@@ -868,7 +868,8 @@ FORM = {
 
                                 if (!options.multiple)
                                     animation.stoploading(`#input${$scope.modelName}_${name}`, `#icon${name}`);
-                                if (options.multiple) {
+                                if (options.multiple && select2 !== false) {
+
                                     if (eval(`$scope.${name}.length<=0`))
                                         eval(`$scope.${name}=[];`);
                                     if (!$scope.form.isReadOnly(name)) {
@@ -905,6 +906,7 @@ FORM = {
                                         $scope.form.callSelect2(name, options, select2);
                                     }
                                 } else {
+                                    animation.stoploading(`#input${$scope.modelName}_${name}`, `#icon${name}`);
                                     $scope.form.callSelect2(name, options, select2);
                                 }
                             });

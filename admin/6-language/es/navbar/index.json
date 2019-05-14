@@ -1,16 +1,1 @@
-{
-  "LiteMenu": "Menu Pequeños",
-  "HideMenu": "Esconder menu",
-  "RestoreallConfiguration": "Restaurar todas las configuraciones",
-  "RequestManager": "Manejador de peticiones HTTP",
-  "FileManager": "Manejador de Archivos",
-  "StepManager": "Manejador de pasos",
-  "Favorites": "Favoritos",
-  "Logout": "Cerrar Sesión",
-  "AddToFavorite": "Añadir a favoritos",
-  "MessageManager": "Manejador de mnsajes",
-  "RecordsPerPage": "Registros por pagina",
-  "DonwloadExample": "Descargar ejemplo",
-  "HideColumns": "Ocultar Columna",
-  "ShowColumns": "Mostrar Columna"
-}
+{"LiteMenu":"Menu Pequeños","HideMenu":"Esconder menu","RestoreallConfiguration":"Restaurar todas las configuraciones","RequestManager":"Manejador de peticiones HTTP","FileManager":"Manejador de Archivos","StepManager":"Manejador de pasos","Favorites":"Favoritos","Logout":"Cerrar Sesión","AddToFavorite":"Añadir a favoritos","MessageManager":"Manejador de mnsajes","RecordsPerPage":"Registros por pagina","DonwloadExample":"Descargar ejemplo","HideColumns":"Ocultar Columna","ShowColumns":"Mostrar Columna"}

@@ -135,6 +135,61 @@
         "user_updated",
         "user_deleted"
       ]
+    },
+    "customfield": {
+      "key": "id",
+      "type": "one",
+      "fields": [
+        "name",
+        "variable",
+        "length",
+        "elements",
+        "multiple",
+        "parent",
+        "type",
+        "isDecimal",
+        "positions",
+        "fileCount",
+        "documentType",
+        "active",
+        "created",
+        "updated",
+        "deleted",
+        "user_created",
+        "user_updated",
+        "user_deleted"
+      ]
+    },
+    "customfield_subelement": {
+      "key": "id",
+      "type": "one",
+      "fields": [
+        "element",
+        "elements",
+        "active",
+        "created",
+        "updated",
+        "deleted",
+        "user_created",
+        "user_updated",
+        "user_deleted",
+        "tempid"
+      ]
+    },
+    "fieldtype": {
+      "key": "id",
+      "type": "one",
+      "fields": [
+        "name",
+        "description",
+        "active",
+        "created",
+        "updated",
+        "deleted",
+        "user_created",
+        "user_updated",
+        "user_deleted"
+      ]
     }
   }
 }

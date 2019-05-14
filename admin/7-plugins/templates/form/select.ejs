@@ -1,5 +1,11 @@
 <%
-var name = name || "";
+if(DATA.name!==undefined){
+    var name, model, opts;
+    name = DATA.name;
+    model = DATA.model;
+    opts = DATA.opts;
+}
+var name  = name || "";
 var options = {
     label: params.capitalize(name),
     default: 'Select ' + params.capitalize(name),
@@ -127,11 +133,7 @@ var toclient = JSON.stringify(options);
                 </a>
 
                 <ul class="dropdown-menu dropdown-menu-right">
-                    <li ng-show="<%= scope %>.allow('export.Clipboard')">
-                        <a ng-click="<%= scope %>.export.go('Clipboard')"><i class="icon-copy3"></i>
-                            <language>MESSAGE.ic('mono.Clipboard')</language>
-                        </a>
-                    </li>
+
 
                     <% if(options.refresh){ %>
                         <li>

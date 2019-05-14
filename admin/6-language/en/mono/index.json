@@ -160,5 +160,9 @@
   "procesing": "procesing",
   "upload": "upload",
   "myprofile": "My profile",
-  "messages": "messages"
+  "messages": "messages",
+  "languagemanager": "Message Manager",
+  "addnewlanguage": "New Language",
+  "addsection": "New Section",
+  "additem": "New Item"
 }

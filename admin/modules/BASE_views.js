@@ -46,6 +46,7 @@ exports.LoadEJS = function (files, params, folder) {
                         THEMES: params.themes,
                         session: params.session,
                         localjs: params.localjs,
+                        controls: params.controls,
                         controllersjs: params.controllersjs,
                         localStyles: params.localStyles,
                         crudjs: params.crudjs,
@@ -117,6 +118,7 @@ exports.LoadEJSDragon = function (files, params, folder) {
                         THEMES: params.themes,
                         session: params.session,
                         localjs: params.localjs,
+                        controls: params.controls,
                         controllersjs: params.controllersjs,
                         localStyles: params.localStyles,
                         crudjs: params.crudjs,
@@ -217,7 +219,6 @@ exports.loadEJSSimple = function (folder, prefix, params) {
         for (var i in files) {
             var file = files[i];
             var viewName = params.S(file).contains("index.ejs") ? "" : "/" + file.replace(".ejs", "");
-
             params.app.get(params.util.format("/%s%s", prefix, viewName), function (req, res) {
                 params.secure.check(req, res, async function () {
                     params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;
@@ -255,6 +256,7 @@ exports.loadEJSSimple = function (folder, prefix, params) {
                         THEMES: params.themes,
                         session: params.session,
                         localjs: params.localjs,
+                        controls: params.controls,
                         controllersjs: params.controllersjs,
                         localStyles: params.localStyles,
                         crudjs: params.crudjs,
@@ -313,6 +315,7 @@ exports.loadEJSSimple = function (folder, prefix, params) {
                     THEMES: params.themes,
                     session: params.session,
                     localjs: params.localjs,
+                    controls: params.controls,
                     controllersjs: params.controllersjs,
                     localStyles: params.localStyles,
                     crudjs: params.crudjs,
@@ -416,6 +419,75 @@ exports.loadEJSSimple = function (folder, prefix, params) {
         }
     });
 };
+exports.loadEJSSimplePOST = function (folder, prefix, params) {
+    params.fs.readdir(folder, function (err, files) {
+        for (var i in files) {
+            var file = files[i];
+            var viewName = params.S(file).contains("index.ejs") ? "" : "/" + file.replace(".ejs", "");
+            params.app.post(params.util.format("/%s%s", prefix, viewName), function (req, res) {
+                params.secure.check(req, res, async function () {
+                    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;
+                    if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
+                    var path = req.originalUrl;
+                    var realPath = path.split("?");
+                    var viewN = realPath[0].split("/");
+
+                    var models = params.models
+                        .concat(params.modelsql)
+                        .concat(params.modelmysql)
+                        .concat(params.modeloracle)
+                        .concat(params.modelstorage);
+                    var tags = params.CONFIG.ui.colors.tag;
+                    var newtags = {};
+                    for (var tag in tags) {
+                        var itag = tags[tag];
+                        var largeVar = "params.CONFIG.ui.colors." + tags[tag];
+                        eval(
+                            "newtags." + tag + " = " + largeVar + '===undefined ? "' + itag + '" : ' + largeVar + ";"
+                        );
+                    }
+                    var modelName = viewN.filter(function (item) {
+                        return item !== '';
+                    });
+
+                    var CONTROLLERSNAMES = [];
+                    for (var CONTROLLER of params.controllersjs) {
+                        var name = CONTROLLER.split('CO_')[1].split('.js')[0];
+                        if (["BASE"].indexOf(name) === -1)
+                            CONTROLLERSNAMES.push({id: name, name: name});
+                    }
+                    var send = {
+                        scope: req.query.scope,
+                        THEMES: params.themes,
+                        session: params.session,
+                        localjs: params.localjs,
+                        controls: params.controls,
+                        controllersjs: params.controllersjs,
+                        localStyles: params.localStyles,
+                        crudjs: params.crudjs,
+                        CONFIG: params.CONFIG,
+                        LANGUAGE: params.LANGUAGE,
+                        SHOWLANGS: params.SHOWLANGS,
+                        COLOR: params.CONFIG.ui.colors,
+                        TAG: newtags,
+                        models: models,
+                        FOLDERS: params.folders,
+                        DATA: req.body,
+                        SERVICES: params.catalogs,
+                        params: params,
+                        localserver: localserver,
+                        CONTROLLERSNAMES: CONTROLLERSNAMES
+                    };
+                    var viewfinal = viewN[viewN.length - 1];
+                    if (modelName.length == 1)
+                        viewfinal = "index";
+                    res.render("." + folder + "/" + viewfinal, send);
+                });
+            });
+        }
+    });
+};
+
 exports.init = function (params) {
     var excludes = [
         params.folders.viewsDragon + "//base",
@@ -426,8 +498,10 @@ exports.init = function (params) {
         params.folders.viewsDragon + "//master"
     ];
     var models = params.models
-        .concat(params.modelsql).concat(params.modelmysql)
-        .concat(params.modeloracle).concat(params.modelstorage);
+        .concat(params.modelsql)
+        .concat(params.modelmysql)
+        .concat(params.modeloracle)
+        .concat(params.modelstorage);
     models.forEach(element => {
         excludes.push(params.folders.views + "//" + element);
     });
@@ -441,7 +515,6 @@ exports.init = function (params) {
             exports.LoadEJSDragon(files, params);
         }
     );
-
     var getFiles = function (exclude, dir, filelist, prefix) {
         var fs = params.fs || require("fs"),
             files = fs.readdirSync(dir);
@@ -463,10 +536,7 @@ exports.init = function (params) {
         });
         return filelist;
     };
-
-
-    var autroute =
-        getFiles(excludesDragon, params.folders.viewsDragon + "/");
+    var autroute = getFiles(excludesDragon, params.folders.viewsDragon + "/");
     autroute.forEach(element => {
         exports.loadEJSSimple(
             "./" + params.folders.viewsDragon + "/" + element.replace(".ejs", ""),
@@ -474,19 +544,14 @@ exports.init = function (params) {
             params
         );
     });
-
-
-    autroute =
-        getFiles(excludes, params.folders.views + "/");
+    autroute = getFiles(excludes, params.folders.views + "/");
     autroute.forEach(element => {
         exports.loadEJSSimple(
             "./" + params.folders.views + "/" + element.replace(".ejs", ""),
-            element.replace(".ejs", ""),
-            params
+            element.replace(".ejs", ""), params
         );
     });
-
-
+    exports.loadEJSSimplePOST("./" + params.folders.fields, "dragoncontrol", params);
     deleteFolderRecursive = function (path) {
         var files = [];
         if (fs.existsSync(path)) {

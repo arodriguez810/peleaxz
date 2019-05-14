@@ -52,6 +52,12 @@ app.controller("my_user", function ($scope, $http, $compile) {
                 rules.push(VALIDATION.general.required(value));
                 VALIDATION.validate(my_user, "lastname", rules);
             });
+            my_user.$scope.$watch('my_user.group', function (value) {
+                console.log(value);
+                var rules = [];
+                rules.push(VALIDATION.general.required(value));
+                VALIDATION.validate(my_user, "group", rules);
+            });
             my_user.$scope.$watch('my_user.username', function (value) {
                 var rules = [];
                 rules.push(VALIDATION.general.required(value));
@@ -67,6 +73,7 @@ app.controller("my_user", function ($scope, $http, $compile) {
                 rules.push(VALIDATION.general.required(value));
                 VALIDATION.validate(my_user, "email", rules);
             });
+
         }
     };
 });

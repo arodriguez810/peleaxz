@@ -288,7 +288,6 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
         eval(`CRUD_${entity.name}.table.options.push(permissionOptions)`);
     }
 });
-
 CHILDSCOPES = [];
 REMOVELASTCHILDSCOPE = function () {
     ARRAY.last(CHILDSCOPES).$destroy();
@@ -300,7 +299,6 @@ REMOVEALLCHILDSCOPE = function () {
     });
     CHILDSCOPES = [];
 };
-
 GARBAGECOLECTOR = function (exclude, ignoreChangeMenu) {
     if (!Array.isArray(exclude))
         exclude = [exclude];
@@ -341,7 +339,6 @@ GARBAGECOLECTOR = function (exclude, ignoreChangeMenu) {
             });
     CHANGINGMENU = false;
 };
-
 RUN_A = function (conrollerName, inside, $scope, $http, $compile) {
     TRIGGER.run(inside);
     inside.MENU = MENU.current;
@@ -368,13 +365,11 @@ RUN_A = function (conrollerName, inside, $scope, $http, $compile) {
         baseController.currentModel = inside;
     }
 };
-
 RUN_B = function (conrollerName, inside, $scope, $http, $compile) {
-
     FORM.run(inside, $http);
+    CONTROL.run(inside, $compile);
     VALIDATION.run(inside);
 };
-
 RUNTABLE = function (inside) {
 
     if (eval(`${inside}`).crudConfig !== undefined)

@@ -39,7 +39,7 @@ DSON = {
         return JSON.stringify(obj1) === JSON.stringify(obj2);
     },
     mergeBool: function (from, to, naturally) {
-        for (var i in to) {
+        for (var i in from) {
             if (from.hasOwnProperty(i)) {
                 if (typeof to[i] === 'object') {
                     DSON.mergeBool(from[i], to[i]);

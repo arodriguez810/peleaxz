@@ -1,5 +1,11 @@
 <%
-var name = name || "";
+if(DATA.name!==undefined){
+    var name, model, opts;
+    name = DATA.name;
+    model = DATA.model;
+    opts = DATA.opts;
+}
+var name  = name || "";
 var options = {
     placeholder: params.capitalize(name),
     helptext: '',

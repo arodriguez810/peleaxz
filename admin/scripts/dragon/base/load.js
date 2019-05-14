@@ -178,6 +178,22 @@ LOAD = function () {
                     callback(data.data);
             },
             function (data) {
+                callback(false);
+            }
+        );
+    };
+    this.templatePost = function (view, params, callback) {
+        $http = angular.injector(["ng"]).get("$http");
+        var http = new HTTP();
+        http.setToken($http);
+        $http.post(view, params).then(
+            function (data) {
+                http.evaluate(data);
+                if (!http.evaluateTokenHTML(data))
+                    callback(data.data);
+            },
+            function (data) {
+                callback(false);
             }
         );
     };

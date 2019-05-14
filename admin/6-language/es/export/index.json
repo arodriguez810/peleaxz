@@ -1,9 +1,1 @@
-{
-  "ColumnsinFirstRow": "Columnas en la primera fila",
-  "ColumnsPosition": "Posición de las columnas",
-  "OriginalFormat": "Formato Original",
-  "Exampletoimportrecords": "Ejemplo para importar registros",
-  "Importfilesof": "Importar archivos de",
-  "Exampletoimport": "Ejemplo para importar",
-  "used": "Este archivo será usado para impotar datos a la entidad corresponiente."
-}
+{"ColumnsinFirstRow":"Columnas en la primera fila","ColumnsPosition":"Posición de las columnas","OriginalFormat":"Formato Original","Exampletoimportrecords":"Ejemplo para importar registros","Importfilesof":"Importar archivos de","Exampletoimport":"Ejemplo para importar","used":"Este archivo será usado para impotar datos a la entidad corresponiente."}
