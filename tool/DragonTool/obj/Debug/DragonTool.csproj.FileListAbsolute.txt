@@ -1,10 +1,10 @@
 C:\wamp\www\peleaxz\tool\DragonTool\bin\Debug\DragonTool.exe.config
 C:\wamp\www\peleaxz\tool\DragonTool\bin\Debug\DragonTool.exe
 C:\wamp\www\peleaxz\tool\DragonTool\bin\Debug\DragonTool.pdb
-C:\wamp\www\peleaxz\tool\DragonTool\obj\Debug\DragonTool.csprojAssemblyReference.cache
 C:\wamp\www\peleaxz\tool\DragonTool\obj\Debug\DragonTool.Properties.Resources.resources
 C:\wamp\www\peleaxz\tool\DragonTool\obj\Debug\DragonTool.csproj.GenerateResource.cache
-C:\wamp\www\peleaxz\tool\DragonTool\obj\Debug\DragonTool.csproj.CoreCompileInputs.cache
 C:\wamp\www\peleaxz\tool\DragonTool\obj\Debug\DragonTool.exe
 C:\wamp\www\peleaxz\tool\DragonTool\obj\Debug\DragonTool.pdb
 C:\wamp\www\peleaxz\tool\DragonTool\obj\Debug\DragonTool.Form1.resources
+C:\wamp\www\peleaxz\tool\DragonTool\obj\Debug\DragonTool.csprojResolveAssemblyReference.cache
+C:\wamp\www\peleaxz\tool\DragonTool\obj\Debug\DragonTool.Migrate.resources

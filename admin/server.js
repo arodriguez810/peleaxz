@@ -32,7 +32,6 @@ var folders = {
 };
 var modules = {}, controls = [], localjs = [], localModules = [], localModulesVars = [], modulesList = [],
     developer = {}, themes = [];
-//var modules = {}, localjs = [], localModules = [], localModulesVars = [], modulesList = [], developer = {},themes=[];
 var fs = require("fs");
 var getFiles = function (dir, filelist, prefix) {
     var fs = fs || require("fs"),
@@ -131,8 +130,8 @@ ThereConfig.then(function (thereConfig) {
         SHOWLANGSConsole.push(lan.name);
     SHOWLANGS = CONFIG.languages;
 
-
-    oracle.autoCommit = true;
+    if (CONFIG.oracle !== undefined)
+        oracle.autoCommit = true;
     var upload = multer({dest: folders.files + '/uploads/'});
 
     var jsoncsv = require('express-json-csv')(express);
@@ -266,7 +265,8 @@ ThereConfig.then(function (thereConfig) {
     allparams += "      models:models,";
     allparams += "      mssql:mssql,";
     allparams += "      mysql:mysql,";
-    allparams += "      oracle:oracle,";
+    if (CONFIG.oracle !== undefined)
+        allparams += "      oracle:oracle,";
     allparams += "      CONFIG:CONFIG,";
     allparams += "      LANGUAGE:LANGUAGE,";
     allparams += "      SHOWLANGS:SHOWLANGS,";

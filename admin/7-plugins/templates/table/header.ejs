@@ -126,7 +126,7 @@
                         </a>
                     </li>
                     <li ng-if="<%= scope %>.filters.blocksDescription().length>0">
-                        <a dragonlanguage="" ng-click="<%= scope %>.filters.clearApply();" class="legitRipple"
+                        <a dragonlanguage="" ng-click="<%= scope %>.filters.clearApply(true);" class="legitRipple"
                            title="Filter">
                             <language>MESSAGE.i('mono.ClearAll')</language>
                         </a>

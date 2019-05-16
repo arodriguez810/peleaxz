@@ -293,9 +293,9 @@ FILTER = {
             $scope.filters.clear = function () {
                 $scope.filters.blocks = [];
             };
-            $scope.filters.clearApply = function () {
+            $scope.filters.clearApply = function (close) {
                 $scope.filters.clear();
-                $scope.filters.apply();
+                $scope.filters.apply(close);
             };
             $scope.filters.apply = function (close) {
                 if ($scope.filters.blocks.length > 0) {
@@ -324,12 +324,12 @@ FILTER = {
                 $scope.goPage(1);
                 MESSAGE.run();
             };
-            $scope.filters.clearApply = function () {
+            $scope.filters.clearApply = function (close) {
                 STEP.register({
                     scope: $scope.modelName, action: `Clear All Filters`
                 });
                 $scope.filters.blocks = [];
-                $scope.filters.apply();
+                $scope.filters.apply(close);
             };
             $scope.filters.add = function () {
                 if ($scope.filters.blocks.length === 0) {

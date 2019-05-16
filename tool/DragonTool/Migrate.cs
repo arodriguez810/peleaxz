@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -13,12 +12,8 @@ using System.Windows.Forms;
 
 namespace DragonTool
 {
-    public partial class Form1 : Form
+    public partial class Migrate : Form
     {
-        public Form1()
-        {
-            InitializeComponent();
-        }
         public void setStyles(dynamic control)
         {
             this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
@@ -71,54 +66,71 @@ namespace DragonTool
                 }
             }
         }
-
-        private void Form1_Load(object sender, EventArgs e)
+        private void Migrate_Load(object sender, EventArgs e)
         {
             setStyles(this);
-        }
-
-        Process p = new Process();
-
-        private void btnRunServer_Click(object sender, EventArgs e)
-        {
-            string path = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
-            StreamReader read = new StreamReader(Path.Combine(path, "start.info"));
-            string server = read.ReadToEnd();
-            read.Close();
-            try
-            {
-                p.Kill();
-            }
-            catch (Exception)
-            {
-
-            }
-            ProcessStartInfo psi = new ProcessStartInfo();
-            psi.Verb = "runas";
-            psi.FileName = "C:\\Windows\\System32\\cmd.exe";
-            psi.Arguments = $"/k \"C:\\Program Files\\nodejs\\nodevars.bat\"& cd {path}& {server}";
-            p.StartInfo = psi;
-            try
-            {
-                p.Start();
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
 
         }
-
-        private void button1_Click_1(object sender, EventArgs e)
+        public Migrate()
         {
+            InitializeComponent();
+        }
 
-            Migrate form = new Migrate();
-            form.ShowDialog();
+        private static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
+        {
+            DirectoryInfo dir = new DirectoryInfo(sourceDirName);
+            if (!dir.Exists)
+            {
+                throw new DirectoryNotFoundException(
+                    "Source directory does not exist or could not be found: "
+                    + sourceDirName);
+            }
+            DirectoryInfo[] dirs = dir.GetDirectories();
+            if (!Directory.Exists(destDirName))
+            {
+                Directory.CreateDirectory(destDirName);
+            }
+            FileInfo[] files = dir.GetFiles();
+            foreach (FileInfo file in files)
+            {
+                string temppath = Path.Combine(destDirName, file.Name);
+                file.CopyTo(temppath, true);
+            }
+            if (copySubDirs)
+            {
+                foreach (DirectoryInfo subdir in dirs)
+                {
+                    string temppath = Path.Combine(destDirName, subdir.Name);
+                    DirectoryCopy(subdir.FullName, temppath, copySubDirs);
+                }
+            }
+        }
+
+        private void btnMigrar_Click(object sender, EventArgs e)
+        {
+            string alfa = txtAlfa.Text;
+            string[] fileToMigrate = txtPaths.Text.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+            string[] betas = txtBetas.Text.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+            string[] ignores = txtIgnores.Text.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (var beta in betas)
+            {
+                foreach (var file in fileToMigrate)
+                {
+                    string name = Path.Combine(alfa, file);
+                    string destiny = Path.Combine(beta, file);
+
+                    FileAttributes attr = File.GetAttributes(name);
+                    if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
+                    {
+                        DirectoryCopy(name, destiny, true);
+                    }
+                    else
+                    {
+                        File.Copy(name, destiny, true);
+                    }
+                }
+            }
         }
     }
 }
+

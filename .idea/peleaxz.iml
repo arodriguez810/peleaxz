@@ -4,7 +4,6 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/admin/0-config" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/config/appearance" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/config/db" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/config/developer" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/config/security" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/config/storage" isTestSource="true" />
