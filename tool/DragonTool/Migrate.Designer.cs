@@ -42,13 +42,11 @@
             // txtPaths
             // 
             this.txtPaths.Location = new System.Drawing.Point(14, 34);
-            this.txtPaths.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtPaths.Margin = new System.Windows.Forms.Padding(5);
             this.txtPaths.Multiline = true;
             this.txtPaths.Name = "txtPaths";
             this.txtPaths.Size = new System.Drawing.Size(154, 405);
             this.txtPaths.TabIndex = 0;
-            this.txtPaths.Text = "1-service\r\n6-language\r\n7-plugins\r\nmodules\r\nrecode\r\nscripts\r\nserver\r\nstyles\r\nnode_" +
-    "modules.zip\r\npackage.json\r\npackage-lock.json\r\nserver.js\r\nstart.exe\r\nstart.info";
             // 
             // label1
             // 
@@ -85,7 +83,6 @@
             this.txtAlfa.Name = "txtAlfa";
             this.txtAlfa.Size = new System.Drawing.Size(502, 26);
             this.txtAlfa.TabIndex = 4;
-            this.txtAlfa.Text = "C:\\wamp\\www\\peleaxz\\admin";
             // 
             // txtBetas
             // 
@@ -94,8 +91,6 @@
             this.txtBetas.Name = "txtBetas";
             this.txtBetas.Size = new System.Drawing.Size(502, 341);
             this.txtBetas.TabIndex = 5;
-            this.txtBetas.Text = "C:\\wamp\\www\\requerimiento\\admin\r\nC:\\wamp\\www\\planificacion-dragon\\admin\r\nC:\\wamp\\" +
-    "www\\projectmanager\\admin\r\nC:\\wamp\\www\\dragon\\admin";
             // 
             // label3
             // 
@@ -142,7 +137,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtPaths);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "Migrate";
             this.Text = "Migrate";
             this.Load += new System.EventHandler(this.Migrate_Load);

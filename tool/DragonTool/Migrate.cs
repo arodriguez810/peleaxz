@@ -74,6 +74,15 @@ namespace DragonTool
         public Migrate()
         {
             InitializeComponent();
+            StreamReader Alfa = new StreamReader("Alfa");
+            StreamReader Betas = new StreamReader("Betas");
+            StreamReader Ignores = new StreamReader("Ignores");
+            StreamReader Paths = new StreamReader("Paths");
+
+            txtAlfa.Text = Alfa.ReadToEnd(); Alfa.Close();
+            txtBetas.Text = Betas.ReadToEnd(); Betas.Close();
+            txtIgnores.Text = Ignores.ReadToEnd(); Ignores.Close();
+            txtPaths.Text = Paths.ReadToEnd(); Paths.Close();
         }
 
         private static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
