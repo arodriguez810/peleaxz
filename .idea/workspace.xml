@@ -445,7 +445,7 @@
     <dismissed value="$PROJECT_DIR$/admin/assets/js/plugins/iziToast/iziToast-master/package.json" />
     <dismissed value="$PROJECT_DIR$/helper/package.json" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="8" />
     <option name="y" value="152" />
     <option name="width" value="1364" />
@@ -682,12 +682,12 @@
       <workItem from="1557506321837" duration="8849000" />
       <workItem from="1557519561883" duration="12418000" />
       <workItem from="1557618299742" duration="10948000" />
-      <workItem from="1557691885320" duration="53142000" />
+      <workItem from="1557691885320" duration="53538000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3577890000" />
+    <option name="totallyTimeSpent" value="3578286000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -699,7 +699,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="32" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="32" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
