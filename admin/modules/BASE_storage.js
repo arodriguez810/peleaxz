@@ -10,6 +10,8 @@ exports.insertQuery = async function (table, data, params, where, index) {
     var lastIndex = await params.storage.getItem(indexKey) || 1;
     var indexBackup = await params.storage.getItem(indexKey) || 1;
     var entity = eval(`params.CONFIG.storageEntities.${table}`);
+    if (!entity)
+        entity = eval(`params.CONFIG.appEntities.${table}`);
     var datas = (Array.isArray(data)) ? data : [data];
     try {
         var rowinserting = 1;
@@ -60,6 +62,8 @@ exports.update = async function (table, data, where, params) {
         wherefinal = exports.makeWhere(where, params);
     }
     var entity = eval(`params.CONFIG.storageEntities.${table}`);
+    if (!entity)
+        entity = eval(`params.CONFIG.appEntities.${table}`);
     var records = await params.storage.getItem(table) || [];
     var backup = await params.storage.getItem(table) || [];
     var datas = (Array.isArray(data)) ? data : [data];
@@ -108,6 +112,8 @@ exports.delete = async function (table, params, where) {
         wherefinal = exports.makeWhere(where, params);
     }
     var entity = eval(`params.CONFIG.storageEntities.${table}`);
+    if (!entity)
+        entity = eval(`params.CONFIG.appEntities.${table}`);
     var records = await params.storage.getItem(table) || [];
     var backup = await params.storage.getItem(table) || [];
     try {
@@ -245,6 +251,8 @@ exports.data = async function (table, params, where, index) {
     if (wherefinal !== undefined)
         wherefinal = wherefinal.replace('AND', '&&').replace('OR', '||');
     var entity = eval(`params.CONFIG.storageEntities.${table}`);
+    if (!entity)
+        entity = eval(`params.CONFIG.appEntities.${table}`);
     var indexKey = table + "_index";
     var lastID = await params.storage.getItem(indexKey) || 1;
     lastID = lastID - 1;
@@ -289,7 +297,7 @@ exports.data = async function (table, params, where, index) {
 exports.defaultRequests = function (Model, params, folder) {
     params.modelName = Model.tableName;
     params.fs.readdir(params.util.format('./' + (folder || params.folders.views) + '/%s', params.modelName), function (err, files) {
-        params.modules.views.LoadEJSDragon(files, params, (folder || params.folders.views));
+        params.modules.views.LoadEJSDragon(files, params, folder);
     });
     params.app.post('/api/st_list', function (req, res) {
         params.secure.check(req, res, function () {
