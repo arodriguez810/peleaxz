@@ -231,7 +231,7 @@ EXPORT = {
                                     $scope.modal.simpleModal(`<div style="overflow: auto;height: 500px;width: 100%">${$scope.export.Preview}</div>`,
                                         {
                                             width: "modal-full",
-                                            header: {title: `${MESSAGE.ic('mono.Exportto')} ${type} ${MESSAGE.i('mono.of')} ${dataToExport.length} ${MESSAGE.i('mono.rows')}`},
+                                            header: {title: `${MESSAGE.ic('mono.export')} ${type} ${MESSAGE.i('mono.of')} ${dataToExport.length} ${MESSAGE.i('mono.rows')}`},
                                             footer: {
                                                 buttons: [
                                                     {

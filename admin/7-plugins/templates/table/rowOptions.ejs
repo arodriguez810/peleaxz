@@ -1,6 +1,6 @@
 <td class="text-center dragon-actions" oncontextmenu="return false;"
     ng-show="(<%= scope %>.allow(['edit','remove','active','view','copy']))">
-    <ul class="icons-list" style="z-index: 99999" ng-show="<%= scope %>.rowDeleted(row)===''">
+    <ul class="icons-list dragon-action" style="z-index: 99999" ng-show="<%= scope %>.rowDeleted(row)===''">
         <li ng-repeat="(min, option) in <%= scope %>.getOptions(false) track by min"
             ng-show="<%= scope %>.allow(<%= scope %>.option.permission(option,row)) && <%= scope %>.option.show(option,row)">
             <a
@@ -14,10 +14,11 @@
                 <li ng-repeat="(item, menu) in option.menus track by item"
                     ng-show="<%= scope %>.allow(<%= scope %>.option.permission(menu,row)) && <%= scope %>.option.show(menu,row)">
                     <a
+                             class=""
                             title="{{<%= scope %>.option.text(menu,row)}}"
                             data-action="{{<%= scope %>.option.action(menu,row)}}"
                             ng-click="<%= scope %>.option.click(menu,row)">
-                        <i class="icon-{{<%= scope %>.option.icon(menu,row)}}"></i>
+                        <i class="icon-{{<%= scope %>.option.icon(menu,row)}} "></i>
                         {{<%= scope %>.option.text(menu,row)}}
                     </a>
                 </li>
