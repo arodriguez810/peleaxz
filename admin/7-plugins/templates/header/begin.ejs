@@ -22,13 +22,5 @@
                     <i class="{{<%= scope %>.MENU.menu.icon}} position-left"></i>
                     {{<%= scope %>.MENU.menu.text}}
                 </a>
-                <a
-                        ng-show="!<%= scope %>.menu.already(baseController,'#<%= scope %>')"
-                        ng-click="<%= scope %>.favorite(baseController);"
-                        class="text-<%= COLOR.primary %>-700 legitRipple"
-                >
-                    <i dragonlanguage="" title="MESSAGE.i('navbar.AddToFavorite')"
-                       class="icon-heart5"></i> 
-                </a>
             </li>
         </ul>

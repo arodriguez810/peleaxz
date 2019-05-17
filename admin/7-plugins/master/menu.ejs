@@ -26,11 +26,10 @@
                             </a>
                             <% if(menu.menus){ %>
                                 <ul>
-
                                     <% /*2*/ for(var menu2 of menu.menus) { %>
                                         <% if(!menu2.class){ %>
                                         <li>
-                                            <a data-modal="<%=menu2.modal%>" href="<%= menu2.href %>" class="bg-<%= COLOR.menu %>-800" <%=menu2.modal?"modalmenu":""%>>
+                                            <a data-modal="<%=menu2.modal%>" href="<%= menu2.href %>" class="bg-<%= COLOR.menu %>-800 <%=menu2.modal?"modalmenu":""%>">
                                                 <i class="icon-<%= menu2.icon %>"></i>
                                                 <span><language>MESSAGE.ispace('menu.<%= menu2.text %>','<%= menu2.text %>')</language></span>
                                             </a>

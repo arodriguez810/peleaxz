@@ -1,13 +1,16 @@
 <script>
     RUNTABLE('<%= scope %>');
 </script>
-<div ng-show="<%= scope %>.table.loaded" class="dragon-panel" id="<%= scope %>TablePanel" style="overflow-x: scroll;overflow-y: visible">
+<div ng-show="<%= scope %>.table.loaded" class="dragon-panel" id="<%= scope %>TablePanel"
+     style="overflow-x: scroll;overflow-y: visible">
     <!--Table List -->
 
     <div dragonlanguage=""
          ng-show="<%= scope %>.records.data.length<=0"
          class="alert alpha-<%= TAG.table %> border-<%= TAG.table %> alert-styled-left">
-        <language>MESSAGE.i('table.nodata')</language>
+        <b>
+            <language>MESSAGE.i('table.nodata')</language>
+        </b>
     </div>
 
     <div class="visible-md visible-lg" style="display: inline" ng-show="<%= scope %>.filters.lastFilter.length>0">

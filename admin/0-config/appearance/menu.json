@@ -1,11 +1,6 @@
 {
   "menus": [
     {
-      "text": "Dashboard",
-      "href": "#logica/report",
-      "icon": "chart"
-    },
-    {
       "text": "Grant Parent",
       "href": "#",
       "icon": "tree5",
@@ -15,6 +10,11 @@
           "href": "#",
           "icon": "graduation2",
           "menus": [
+            {
+              "text": "Dashboard",
+              "href": "#logica/report",
+              "icon": "chart"
+            },
             {
               "text": "Categories",
               "href": "#my_category",

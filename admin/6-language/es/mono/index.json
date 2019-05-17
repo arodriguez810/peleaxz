@@ -164,5 +164,7 @@
   "languagemanager": "Gestionar Mensajes",
   "addnewlanguage": "Agregar Lenguaje",
   "addsection": "Agregar Sección",
-  "additem": "Agregar Elemento"
+  "additem": "Agregar Elemento",
+  "restore": "Restaurar",
+  "Sameasimage": "Guardar como imágen"
 }

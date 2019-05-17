@@ -164,5 +164,7 @@
   "languagemanager": "Message Manager",
   "addnewlanguage": "New Language",
   "addsection": "New Section",
-  "additem": "New Item"
+  "additem": "New Item",
+  "restore": "Restore",
+  "Sameasimage": "Same as image"
 }

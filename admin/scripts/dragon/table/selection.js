@@ -18,7 +18,7 @@ TABLESELECTION = {
         };
 
         $scope.drawHandler = function () {
-            return "<i class=\"text-" + COLOR.primary + " " + "icon-sort" + " \"></i>";
+            return "<i class=\"text-" + COLOR.info + "-300 " + "icon-sort" + " \"></i>";
         };
 
         $scope.columnToSelect = function () {

@@ -201,7 +201,7 @@ var toclient = JSON.stringify(options);
                                     ...{{<%= model %>.viewmoremessage}}
                                 </a>
                             </li>
-                            <li>
+                            <li ng-show="<%= model %>.form.options.<%= name %>.info.totalPage>1">
                                 <a id="list<%= model %>_<%= nameclean %>2">
                                     {{<%= model %> .listmessage}}
                                 </a>
@@ -219,7 +219,7 @@ var toclient = JSON.stringify(options);
                                     ...{{<%= model %>.viewmoremessage}}
                                 </a>
                             </li>
-                            <li>
+                            <li ng-show="<%= model %>.form.options.<%= name %>.info.totalPage>1">
                                 <a id="list<%= model %>_<%= nameclean %>2">
                                     {{<%= model %> .listmessage}}
                                 </a>

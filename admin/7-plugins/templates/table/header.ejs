@@ -42,7 +42,7 @@
                        class="icon-loop"></i> 
                 </a>
             </li>
-            <li class="dropdown visible-lg visible-md" dragonlanguage="" ng-if="<%= scope %>.hideColumnsCount()">
+            <li class="dropdown visible-lg visible-md" dragonlanguage="" ng-show="<%= scope %>.hideColumnsCount()">
                 <a href="#" class="dropdown-toggle legitRipple" data-toggle="dropdown"
                    aria-expanded="false">
                     <i dragonlanguage="" title="MESSAGE.i('navbar.HideColumns')" class=" icon-list3 "></i>
@@ -51,7 +51,7 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">
                     <li ng-repeat="(keyblock,item) in <%= scope %>.columns() track by keyblock"
-                        ng-if="item.visible===false">
+                        ng-show="item.visible===false">
                         <a class="legitRipple" title="Column" ng-click="<%= scope %>.showColumn(keyblock);">
                             {{<%= scope %>.columnLabel(item,keyblock,false)}}
                             <i dragonlanguage="" title="MESSAGE.i('navbar.ShowColumns')" class="icon-eye-plus"></i>
@@ -81,7 +81,7 @@
             </li>
             <li class="dropdown" ng-if="<%= scope %>.allow('filter') && <%= scope %>.filters!==undefined">
                 <a href="#"
-                    ng-show="<%= scope %>.filters.blocks.length"
+                   ng-show="<%= scope %>.filters.blocks.length"
                    class="dropdown-toggle legitRipple" data-toggle="dropdown"
                    aria-expanded="false">
                     <i dragonlanguage="" title="MESSAGE.ic('mono.filters')" class=" icon-filter4 "></i>

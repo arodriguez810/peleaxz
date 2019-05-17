@@ -696,6 +696,7 @@ FORM = {
                                 eval(`$scope.form.options.${name}.groupbydata = newData`);
                             }
                             eval(`$scope.form.options.${name}.data = info.data`);
+                            eval(`$scope.form.options.${name}.info = info`);
                             eval(`${$scope.modelName}.${name}_object = null;`);
                             if (eval(`$scope.form.options.${name}.data`) !== undefined) {
                                 if (eval(`$scope.${name}`) !== "[NULL]") {
@@ -844,6 +845,7 @@ FORM = {
                                     eval(`$scope.form.options.${name}.groupbydata = newData`);
                                 }
                                 eval(`$scope.form.options.${name}.data = info.data`);
+                                eval(`$scope.form.options.${name}.info = info`);
                                 eval(`${$scope.modelName}.${name}_object = null;`);
                                 if (eval(`$scope.form.options.${name}.data`) !== undefined) {
                                     if (eval(`$scope.${name}`) !== "[NULL]") {
@@ -1007,6 +1009,7 @@ FORM = {
                             eval(`options.groupbydata = newData`);
                         }
                         eval(`options.data = info.data`);
+                        eval(`options.info = info`);
 
                         animation.stoploading(`#input${name}`, `#icon${name}`);
                         $scope.form.callSelect2(name, options);
