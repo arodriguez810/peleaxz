@@ -17,10 +17,19 @@
 }
 
 /**/
-table tr td{
-    font-size: 12px!important;
+table tr td {
+    font-size: 12px !important;
 }
 
 table tr th {
     font-weight: normal;
+}
+
+.breadcrumb a {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.table > thead > tr > th {
+    font-size: 13px;
 }
