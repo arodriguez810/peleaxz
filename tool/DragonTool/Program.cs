@@ -16,7 +16,7 @@ namespace DragonTool
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Migrate());
+            Application.Run(new Form1());
         }
     }
 }

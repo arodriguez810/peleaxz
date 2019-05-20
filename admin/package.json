@@ -37,6 +37,7 @@
     "nodemailer": "^5.1.1",
     "office-to-pdf": "^4.0.0",
     "onesignal-node": "^2.0.1",
+    "open": "^6.3.0",
     "oracledb": "^3.1.2",
     "phantom-html2pdf": "^4.0.1",
     "phantomjs": "^2.1.7",

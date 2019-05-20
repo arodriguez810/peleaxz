@@ -79,6 +79,7 @@ configs.forEach(function (config) {
     var file = eval("(" + fs.readFileSync(folders.config + "/" + config) + ")");
     mergeObject(file, CONFIG);
 });
+
 var LANGUAGE = {};
 languages = getFiles("./" + folders.language + "/");
 THEMES = getFiles("./" + folders.themes + "/");
@@ -110,6 +111,23 @@ for (var i in CONFIG.modules) {
     localModules.push(module.module);
     localModulesVars.push(module.var);
     eval("var " + module.var + " = require('" + module.module + "');");
+}
+if (CONFIG.domain === true) {
+    var ifaces = os.networkInterfaces();
+    Object.keys(ifaces).forEach(function (ifname) {
+        var alias = 0;
+        ifaces[ifname].forEach(function (iface) {
+            if ('IPv4' !== iface.family || iface.internal !== false) {
+                return;
+            }
+            if (alias >= 1) {
+                CONFIG.domain = iface.address;
+            } else {
+                CONFIG.domain = iface.address;
+            }
+            ++alias;
+        });
+    });
 }
 storage.init({
     dir: CONFIG.storage,
@@ -545,8 +563,9 @@ ThereConfig.then(function (thereConfig) {
     console.log("");
     console.log("");
     console.log("*************".pxz + CONFIG.appName.pxz + "**************".pxz);
-    console.log("Server : ".pxz + `${CONFIG.ssl === true ? 'https://' : 'http://'}${CONFIG.subdomain !== '' ? CONFIG.subdomain + '.' : ''}${CONFIG.domain}:${CONFIG.port === 80 ? '' : CONFIG.port}` + repeatStringNumTimes(" ", 25 - `${CONFIG.ssl === true ? 'https://' : 'http://'}${CONFIG.subdomain !== '' ? CONFIG.subdomain + '.' : ''}${CONFIG.domain}:${CONFIG.port === 80 ? '' : CONFIG.port}`.length) + "         ".pxz);
+    var urlsha = `${CONFIG.ssl === true ? 'https://' : 'http://'}${CONFIG.subdomain !== '' ? CONFIG.subdomain + '.' : ''}${CONFIG.domain}:${CONFIG.port === 80 ? '' : CONFIG.port}`;
+    console.log("Server : ".pxz + urlsha + repeatStringNumTimes(" ", 25 - urlsha.length) + "         ".pxz);
     console.log("CONFIG : ".pxz + (thereConfig !== undefined ? 'saved' : 'base') + repeatStringNumTimes(" ", 25 - (thereConfig !== undefined ? 'saved' : 'base').length) + "         ".pxz);
-    console.log("Version: ".pxz + "2.0" + repeatStringNumTimes(" ", 25 - 3) + "         ".pxz);
+    console.log("Version: ".pxz + CONFIG.version.base + repeatStringNumTimes(" ", 25 - 3) + "         ".pxz);
     console.log("*******************************************".pxz);
 });

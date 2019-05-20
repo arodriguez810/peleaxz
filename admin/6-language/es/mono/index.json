@@ -166,5 +166,9 @@
   "addsection": "Agregar Sección",
   "additem": "Agregar Elemento",
   "restore": "Restaurar",
-  "Sameasimage": "Guardar como imágen"
+  "Sameasimage": "Guardar como imágen",
+  "about": "acerca de",
+  "version": "versión",
+  "baseversion": "versión base",
+  "generatemobile": "Generar Applicación Móvil"
 }

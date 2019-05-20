@@ -166,5 +166,9 @@
   "addsection": "New Section",
   "additem": "New Item",
   "restore": "Restore",
-  "Sameasimage": "Same as image"
+  "Sameasimage": "Same as image",
+  "about": "about",
+  "version": "version",
+  "baseversion": "base version",
+  "generatemobile": "Generate Mobile App"
 }

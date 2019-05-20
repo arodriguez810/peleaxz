@@ -94,10 +94,12 @@
       <sourceFolder url="file://$MODULE_DIR$/admin/4-crud/a.defautls" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/cruds/configuration" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/controllers" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/cruds" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/config" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/cruds" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/cruds/information" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/information" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/.tmp" />
       <excludeFolder url="file://$MODULE_DIR$/admin/assets" />
       <excludeFolder url="file://$MODULE_DIR$/admin/defaults" />
@@ -106,6 +108,8 @@
       <excludeFolder url="file://$MODULE_DIR$/db" />
       <excludeFolder url="file://$MODULE_DIR$/documentation" />
       <excludeFolder url="file://$MODULE_DIR$/helper" />
+      <excludeFolder url="file://$MODULE_DIR$/mobile/platforms" />
+      <excludeFolder url="file://$MODULE_DIR$/mobile/www" />
       <excludeFolder url="file://$MODULE_DIR$/mongo" />
       <excludeFolder url="file://$MODULE_DIR$/programs" />
       <excludeFolder url="file://$MODULE_DIR$/temp" />

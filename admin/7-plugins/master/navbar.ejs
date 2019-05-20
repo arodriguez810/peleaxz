@@ -129,6 +129,15 @@
                     </li>
                 </ul>
             </li>
+            <li ng-if="(baseController.isSuper || baseController.isAdmin)">
+                <a class="sidebar-control"
+                   onclick="MODAL.rawModal(MESSAGE.ic('mono.generatemobile'), 'information/mobile', 'mobile', 'modal-lg', 'information')"
+                   data-popup="tooltip"
+                   data-placement="bottom" data-container="body" dragonlanguage
+                   title="MESSAGE.ic('mono.generatemobile')">
+                    <i class="icon-mobile"></i>
+                </a>
+            </li>
         </ul>
         <div class="navbar-right" ng-show="baseController.isLogged">
 
@@ -151,8 +160,14 @@
                                 <language>MESSAGE.ic('mono.myprofile')</language>
                             </a>
                         </li>
+                        <li dragonlanguage="">
+                            <a onclick="MODAL.rawModal(MESSAGE.ic('mono.about'), 'information/about', 'info3', 'modal-full', 'information')">
+                                <i class="icon-info3"></i>
+                                <language>MESSAGE.ic('mono.about')</language>
+                            </a>
+                        </li>
                         <!--<li><a href="#"><span class="badge badge-warning pull-right">58</span> <i class="icon-comment-discussion"></i> Messages</a></li>-->
-                        <!--<li class="divider"></li>-->
+                        <li class="divider"></li>
                         <!--<li><a href="#"><i class="icon-cog5"></i> Account settings </a></li>-->
                         <li>
                             <a onclick="new SESSION().logoff()" dragonlanguage><i class="icon-switch2"></i>

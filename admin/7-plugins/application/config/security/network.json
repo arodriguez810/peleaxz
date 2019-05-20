@@ -1,5 +1,6 @@
 {
-  "domain": "localhost",
+  "browser": "firefox",
+  "domain": true,
   "subdomain": "",
   "ssl": false,
   "port": "8090"

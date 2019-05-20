@@ -851,5 +851,29 @@ exports.init = function (params) {
             res.json({error: false, saved: true});
         });
     });
+    params.app.post("/dragon/api/generateMobile", function (req, res) {
+        params.secure.check(req, res, function () {
+            var fs = params.fs || require("fs");
+            var languages = eval("(" + req.body.json + ")");
+            for (var lan in languages) {
+                var dirlan = __dirname + '/../' + params.folders.language + '/' + lan;
+                if (!fs.existsSync(dirlan))
+                    params.shelljs.mkdir('-p', dirlan);
+                for (var section in languages[lan]) {
+                    var dirsec = __dirname + '/../' + params.folders.language + '/' + lan + '/' + section;
+                    if (!fs.existsSync(dirsec))
+                        params.shelljs.mkdir('-p', dirsec);
+
+                    var file = __dirname + '/../' + params.folders.language + '/' + lan + '/' + section + '/' + 'index.json';
+                    fs.writeFile(file, JSON.stringify(languages[lan][section]), function (err, data) {
+                        if (err) {
+                            res.json({error: err});
+                        }
+                    });
+                }
+            }
+            res.json({error: false, saved: true});
+        });
+    });
     exports.loadEJSSimple("./" + params.folders.viewsDragon + "/master/error", "error", params);
 };

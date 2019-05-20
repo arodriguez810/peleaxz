@@ -5,6 +5,14 @@
       "module": "express"
     },
     {
+      "var": "os",
+      "module": "os"
+    },
+    {
+      "var": "open",
+      "module": "open"
+    },
+    {
       "var": "ejs",
       "module": "ejs"
     },
