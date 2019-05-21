@@ -1,4 +1,4 @@
-CRUD_ms_all = DSON.merge(CRUD_ms_all,
+CRUD_texts = DSON.merge(CRUD_texts,
     {
         table: {
             filters: {
@@ -13,8 +13,43 @@ CRUD_ms_all = DSON.merge(CRUD_ms_all,
                         key: 'basic',
                         label: 'Basic',
                         type: FILTER.types.string,
-                        placeholder: 'Name',
-                        maxlength: 50
+                        placeholder: 'Basic',
+                        maxlength: 20
+                    },
+                    {
+                        key: 'mask',
+                        label: 'Mask',
+                        type: FILTER.types.string,
+                        placeholder: 'mask',
+                        maxlength: 20
+                    },
+                    {
+                        key: 'format',
+                        label: 'format',
+                        type: FILTER.types.string,
+                        placeholder: 'format',
+                        maxlength: 20
+                    },
+                    {
+                        key: 'readonly',
+                        label: 'readonly',
+                        type: FILTER.types.string,
+                        placeholder: 'readonly',
+                        maxlength: 20
+                    },
+                    {
+                        key: 'normalpassword',
+                        label: 'normal password',
+                        type: FILTER.types.string,
+                        placeholder: 'normalpassword',
+                        maxlength: 20
+                    },
+                    {
+                        key: 'passwordplus',
+                        label: 'password plus',
+                        type: FILTER.types.string,
+                        placeholder: 'passwordplus',
+                        maxlength: 20
                     }
                 ]
             }

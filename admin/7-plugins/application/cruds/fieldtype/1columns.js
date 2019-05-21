@@ -1,6 +1,6 @@
-CRUD_segment = {};
-DSON.keepmerge(CRUD_segment, CRUDDEFAULTS);
-DSON.keepmerge(CRUD_segment, {
+CRUD_fieldtype = {};
+DSON.keepmerge(CRUD_fieldtype, CRUDDEFAULTS);
+DSON.keepmerge(CRUD_fieldtype, {
     table: {
         engine: 'ms',
         columns: {

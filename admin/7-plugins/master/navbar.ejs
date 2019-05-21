@@ -35,32 +35,8 @@
                    data-placement="bottom" data-container="body" dragonlanguage
                    title="MESSAGE.i('navbar.RestoreallConfiguration')">
                     <i class="icon-loop"></i>
+                    <span class="hidden-lg"><language>MESSAGE.i('navbar.RestoreallConfiguration')</language></span>
                 </a>
-            </li>
-
-            <li class="dropdown" ng-show="baseController.favorites.length">
-                <a href="#" class="dropdown-toggle legitRipple" data-toggle="dropdown" dragonlanguage
-                   data-popup="tooltip"
-                   data-placement="bottom" data-container="body"
-                   title="MESSAGE.i('navbar.Favorites')"
-                   aria-expanded="false">
-                    <i class="icon-heart5"></i>
-                </a>
-                <div class="dropdown-menu dropdown-content">
-                    <ul class="media-list dropdown-content-body width-100">
-                        <li ng-repeat="(key,menu) in baseController.favorites track by key" class="media">
-                            <div class="" style="width:220px">
-                                <a style="min-width: 200px;float: left;margin-bottom:10px" href="{{menu.href}}"
-                                   class="btn border-<%= COLOR.primary %> text-<%= COLOR.info %> btn-flat btn-icon btn-sm legitRipple">
-                                    <i class="{{menu.icon}}"></i>
-                                    {{menu.text}}
-                                </a>
-                                <i style="float: right;margin-top:5%;cursor: pointer"
-                                   ng-click="baseController.deleteFavorite(menu.href)" class="icon-trash"></i>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
             </li>
             <li ng-if="baseController.mode==='developer'">
                 <a class="sidebar-control" onclick="new HTTP().openManager()" data-popup="tooltip"
@@ -96,8 +72,18 @@
                     <i class="icon-bubble-notification"></i>
                 </a>
             </li>
+            <li ng-if="baseController.features.customfields===true">
+                <a class="sidebar-control"
+                   onclick="MODAL.rawModal(MESSAGE.ic('mono.customfield'),'customfield','magic-wand',undefined,'customfield');"
+                   data-popup="tooltip"
+                   data-placement="bottom" data-container="body" dragonlanguage
+                   title="MESSAGE.ic('mono.customfield')">
+                    <i class=" icon-magic-wand"></i>
+                </a>
+            </li>
         </ul>
         <ul class="nav navbar-nav">
+
 
             <li ng-if="baseController.mode==='developer'">
                 <a class="sidebar-control"
@@ -108,6 +94,7 @@
                     <i class=" icon-comment"></i>
                 </a>
             </li>
+
 
             <li ng-if="baseController.features.multilanguage===true && baseController.mode==='developer'">
                 <a class="sidebar-control" onclick="MESSAGE.OPEN()" data-popup="tooltip"

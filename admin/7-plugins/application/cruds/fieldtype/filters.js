@@ -1,4 +1,4 @@
-CRUD_segment = DSON.merge(CRUD_segment,
+CRUD_fieldtype = DSON.merge(CRUD_fieldtype,
     {
         table: {
             filters: {
@@ -14,6 +14,13 @@ CRUD_segment = DSON.merge(CRUD_segment,
                         label: 'Name',
                         type: FILTER.types.string,
                         placeholder: 'Name',
+                        maxlength: 50
+                    },
+                    {
+                        key: 'key',
+                        label: 'Key',
+                        type: FILTER.types.string,
+                        placeholder: 'Key',
                         maxlength: 50
                     },
                     {

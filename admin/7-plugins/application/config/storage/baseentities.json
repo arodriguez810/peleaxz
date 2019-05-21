@@ -139,8 +139,10 @@
     "customfield": {
       "key": "id",
       "type": "one",
+      "open": true,
       "fields": [
         "name",
+        "description",
         "variable",
         "length",
         "elements",
@@ -150,7 +152,22 @@
         "isDecimal",
         "positions",
         "fileCount",
+        "multiplefile",
         "documentType",
+        "active",
+        "created",
+        "updated",
+        "user_created",
+        "user_updated"
+      ]
+    },
+    "fieldtype": {
+      "key": "id",
+      "type": "one",
+      "fields": [
+        "name",
+        "key",
+        "description",
         "active",
         "created",
         "updated",
@@ -160,27 +177,12 @@
         "user_deleted"
       ]
     },
-    "customfield_subelement": {
-      "key": "id",
-      "type": "one",
-      "fields": [
-        "element",
-        "elements",
-        "active",
-        "created",
-        "updated",
-        "deleted",
-        "user_created",
-        "user_updated",
-        "user_deleted",
-        "tempid"
-      ]
-    },
-    "fieldtype": {
+    "mime": {
       "key": "id",
       "type": "one",
       "fields": [
         "name",
+        "key",
         "description",
         "active",
         "created",

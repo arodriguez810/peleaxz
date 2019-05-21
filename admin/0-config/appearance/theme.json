@@ -6,9 +6,9 @@
       "inanimation": ""
     },
     "colors": {
-      "primary": "marine",
-      "menu": "marine",
-      "info": "marine",
+      "primary": "orange",
+      "menu": "orange",
+      "info": "orange",
       "logo": "logowhite",
       "danger": "danger",
       "success": "success",

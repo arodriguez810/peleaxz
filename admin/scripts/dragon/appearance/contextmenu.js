@@ -4,12 +4,6 @@ $(document).ready(function () {
         var currentRowMenu = myTD.parent().find('.icons-list:eq(0)');
         switch (event.which) {
             case 1: {
-                $(".dragon-action").each(function (item) {
-                    var td = $(this).parent();
-                    if (!td.hasClass('dragon-actions')) {
-                        td.parent().find('.dragon-actions').append($(this));
-                    }
-                });
                 break;
             }
             case 2: {

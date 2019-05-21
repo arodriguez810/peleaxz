@@ -11,6 +11,9 @@ DSON = {
     substringif: function (str, len) {
         return str.length >= len ? str.substring(0, len) : str;
     },
+    cleanSpace: function (str) {
+        return str.split(' ').join('_');
+    },
     template: function (templatestring, t) {
         return new Function("return `" + templatestring + "`;").call(t);
     },

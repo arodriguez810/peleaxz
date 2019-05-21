@@ -1,7 +1,8 @@
-CRUD_customfield = {};
-DSON.keepmerge(CRUD_customfield, CRUDDEFAULTS);
-DSON.keepmerge(CRUD_customfield, {
+CRUD_mime = {};
+DSON.keepmerge(CRUD_mime, CRUDDEFAULTS);
+DSON.keepmerge(CRUD_mime, {
     table: {
+        engine: 'ms',
         columns: {
             id: {
                 label: "ID",
@@ -13,18 +14,10 @@ DSON.keepmerge(CRUD_customfield, {
                 label: "name",
                 shorttext: 20
             },
-            variable: {
-                label: "Variable",
-                shorttext: 20
-            },
-            type: {
-                label: "Type",
-                shorttext: 20
-            },
             description: {
                 label: "description",
                 sortable: false,
-                shorttext: 60,
+                shorttext: 20,
                 null: "<span class='text-grey'>[NULL]</span>"
             },
             active: {
@@ -41,6 +34,11 @@ DSON.keepmerge(CRUD_customfield, {
                 visible: false,
                 exportExample: false
             },
+            deleted: {
+                visible: false,
+                visibleDetail: false,
+                exportExample: false
+            },
             user_created: {
                 visible: false,
                 visibleDetail: false,
@@ -48,6 +46,12 @@ DSON.keepmerge(CRUD_customfield, {
                 exportExample: false
             },
             user_updated: {
+                visible: false,
+                visibleDetail: false,
+                export: false,
+                exportExample: false
+            },
+            user_deleted: {
                 visible: false,
                 visibleDetail: false,
                 export: false,

@@ -1,106 +1,24 @@
 {
   "menus": [
     {
-      "text": "Grant Parent",
+      "text": "Dragon Menu",
       "href": "#",
-      "icon": "tree5",
+      "icon": "ampersand",
       "menus": [
         {
-          "text": "Nuevos",
+          "text": "Examples",
           "href": "#",
-          "icon": "graduation2",
+          "icon": "stackoverflow",
           "menus": [
             {
-              "text": "Dashboard",
-              "href": "#logica/report",
-              "icon": "chart"
+              "text": "Texts",
+              "href": "#texts",
+              "icon": "typography"
             },
             {
-              "text": "Categories",
-              "href": "#my_category",
-              "icon": "price-tag2"
-            },
-            {
-              "text": "Products",
-              "href": "#my_product",
-              "icon": "cart5"
-            },
-            {
-              "text": "Logica",
-              "href": "#logica",
-              "icon": "calculator3"
-            }
-          ]
-        },
-        {
-          "text": "Parent",
-          "href": "#",
-          "icon": "graduation2",
-          "menus": [
-            {
-              "text": "Tutorial",
-              "href": "#ms_all",
-              "icon": "user"
-            },
-            {
-              "text": "Child",
-              "href": "#ms_child",
-              "icon": "archive"
-            },
-            {
-              "text": "Other",
-              "href": "#ms_other",
-              "icon": "cube"
-            },
-            {
-              "text": "Parent 2",
-              "href": "#",
-              "icon": "list",
-              "menus": [
-                {
-                  "text": "Product",
-                  "href": "#ms_product",
-                  "icon": "apple2",
-                  "modal": "modal-full"
-                },
-                {
-                  "text": "Product Otro",
-                  "href": "#otronombre",
-                  "icon": "apple2"
-                },
-                {
-                  "text": "Category",
-                  "href": "#ms_category",
-                  "icon": "list2"
-                }
-              ]
-            },
-            {
-              "text": "Multi DB",
-              "href": "#",
-              "icon": "equalizer3",
-              "menus": [
-                {
-                  "text": "Users",
-                  "href": "#ms_user",
-                  "icon": "user"
-                },
-                {
-                  "text": "Oracle Users",
-                  "href": "#oc_user",
-                  "icon": "user"
-                },
-                {
-                  "text": "Storage Users",
-                  "href": "#st_user",
-                  "icon": "users2"
-                },
-                {
-                  "text": "User Report",
-                  "href": "#ms_vwuser",
-                  "icon": "user"
-                }
-              ]
+              "text": "Dates",
+              "href": "#dates",
+              "icon": "calendar"
             },
             {
               "text": "Administration",
@@ -116,11 +34,6 @@
                   "text": "Groups",
                   "href": "#group",
                   "icon": "users4"
-                },
-                {
-                  "text": "Languages",
-                  "href": "#language",
-                  "icon": "earth"
                 }
               ]
             }

@@ -89,7 +89,7 @@
         </div>
         <div class="row">
             <div class="col-sm-4 col-md-4">
-                <%- FORM.file("image", scope) %>
+                <%- FORM.file("image", scope,{acceptedFiles:"*image"}) %>
             </div>
             <div class="col-sm-4 col-md-4">
                 <%- FORM.file("gallery", scope, {maxfiles: 4, columns: 2}) %>

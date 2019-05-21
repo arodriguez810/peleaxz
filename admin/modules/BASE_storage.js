@@ -18,7 +18,7 @@ exports.insertQuery = async function (table, data, params, where, index) {
         for (var m in datas) {
             var row = datas[m];
             for (var property in row) {
-                if (entity.type === 'one') {
+                if (entity.type === 'one' && entity.open !== true) {
                     if (entity.fields.indexOf(property) === -1) {
                         await params.storage.setItem(indexKey, indexBackup);
                         await params.storage.setItem(table, backup);
@@ -74,12 +74,13 @@ exports.update = async function (table, data, where, params) {
             datas.forEach(async function (update) {
                 if (eval(wherefinal)) {
                     for (var property in update) {
-                        if (entity.type === 'one') {
+                        if (entity.type === 'one' && entity.open !== true) {
                             if (entity.fields.indexOf(property) === -1) {
                                 causeInvalid = property;
                                 return;
                             }
                         }
+                        console.log(`row.${property} = update.${property}`);
                         eval(`row.${property} = update.${property}`);
                     }
                     updated.push(row);
@@ -89,7 +90,7 @@ exports.update = async function (table, data, where, params) {
                 return;
         });
 
-        if (causeInvalid !== false) {
+        if (causeInvalid !== false && entity.open !== true) {
             await params.storage.setItem(table, backup);
             return {
                 query: wherefinal,

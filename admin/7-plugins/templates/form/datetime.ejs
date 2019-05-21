@@ -1,11 +1,11 @@
 <%
-if(DATA.name!==undefined){
+if (DATA.name !== undefined) {
     var name, model, opts;
     name = DATA.name;
     model = DATA.model;
     opts = DATA.opts;
 }
-var name  = name || "";
+var name = name || "";
 var options = {
     placeholder: params.capitalize(name),
     icon: {
@@ -208,7 +208,6 @@ var toclient = JSON.stringify(options);
                 }
             }
         });
-        <%= model %>.
-        triggers.table.after.control("<%= nameclean %>");
+        <%= model %>.triggers.table.after.control("<%= nameclean %>");
     });
 </script>

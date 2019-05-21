@@ -99,7 +99,7 @@ languages.forEach(function (languages) {
         if (lany.indexOf('.json') === -1)
             eval(`if(LANGUAGE.${nedted + lany}===undefined)LANGUAGE.${nedted + lany}={};`);
         else {
-            eval(`LANGUAGE.${nedted.substr(0, nedted.length - 1)}=lan;`);
+            mergeObject(lan, eval(`LANGUAGE.${nedted.substr(0, nedted.length - 1)}`));
         }
         nedted += `${lany}.`;
     }

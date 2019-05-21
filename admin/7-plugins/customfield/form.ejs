@@ -5,15 +5,82 @@
                 <%- FORM.input("name", scope, {maxlength: 50}) %>
             </div>
             <div class="col-sm-4 col-md-4">
-                <%- FORM.input("key", scope, {maxlength: 15}) %>
+                <%- FORM.input("variable", scope, {maxlength: 15}) %>
             </div>
             <div class="col-sm-4 col-md-4">
-                <%- FORM.checkbox("active", scope, {text: 'Active?'}) %>
+                <%- FORM.select("type", scope, {
+                    column: "name",
+                    table: "fieldtype",
+                    icon: {class: "archive"}
+                }) %>
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-12 col-md-12">
+            <div ng-show="['list'].indexOf(customfield.type_object.key)!==-1">
+                <div class="col-sm-3 col-md-3">
+                    <%- FORM.select("parent", scope, {
+                        column: "name",
+                        self: false,
+                        table: "customfield",
+                        icon: {class: "archive"}
+                    }) %>
+                </div>
+                <div class="col-sm-2 col-md-2">
+                    <%- FORM.checkbox("multiple", scope, {text: 'Multiple?'}) %>
+                </div>
+                <div class="col-sm-7 col-md-7" ng-show="!customfield.parent_object.elements">
+                    <%- FORM.tags("elements", scope) %>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12" id="subelements">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-md-4"
+                 ng-show="['textbox','textarea','int'].indexOf(customfield.type_object.key)!==-1">
+                <%- FORM.format("length", scope, {
+                    isNumber: false,
+                    icon: {position: "right"},
+                    format: {mask: "####", options: {reverse: true}}
+                }) %>
+            </div>
+            <div ng-show="['int'].indexOf(customfield.type_object.key)!==-1">
+                <div class="col-sm-2 col-md-2">
+                    <%- FORM.checkbox("isDecimal", scope) %>
+                </div>
+                <div class="col-sm-4 col-md-4" ng-show="customfield.isDecimal">
+                    <%- FORM.format("positions", scope, {
+                        isNumber: false,
+                        icon: {position: "right"},
+                        format: {mask: "#", options: {reverse: true}}
+                    }) %>
+                </div>
+            </div>
+            <div ng-show="['file'].indexOf(customfield.type_object.key)!==-1">
+                <div class="col-sm-4 col-md-4">
+                    <%- FORM.select("documentType", scope, {
+                        column: "name",
+                        self: false,
+                        value: "key",
+                        table: "mime",
+                        icon: {class: "archive"}
+                    }) %>
+                </div>
+                <div class="col-sm-2 col-md-2">
+                    <%- FORM.checkbox("multiplefile", scope) %>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-md-8">
                 <%- FORM.textarea("description", scope, {maxlength: 200}) %>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.checkbox("active", scope, {text: 'Active?'}) %>
             </div>
         </div>
     </div>

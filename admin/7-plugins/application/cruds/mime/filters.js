@@ -1,4 +1,4 @@
-CRUD_customfield = DSON.merge(CRUD_customfield,
+CRUD_mime = DSON.merge(CRUD_mime,
     {
         table: {
             filters: {
@@ -14,6 +14,13 @@ CRUD_customfield = DSON.merge(CRUD_customfield,
                         label: 'Name',
                         type: FILTER.types.string,
                         placeholder: 'Name',
+                        maxlength: 50
+                    },
+                    {
+                        key: 'key',
+                        label: 'Key',
+                        type: FILTER.types.string,
+                        placeholder: 'Key',
                         maxlength: 50
                     },
                     {

@@ -1,11 +1,11 @@
 <%
-if(DATA.name!==undefined){
+if (DATA.name !== undefined) {
     var name, model, opts;
     name = DATA.name;
     model = DATA.model;
     opts = DATA.opts;
 }
-var name  = name || "";
+var name = name || "";
 var options = {
     label: params.capitalize(name),
     default: 'Select ' + params.capitalize(name),
@@ -14,6 +14,7 @@ var options = {
         position: "left",
         color: TAG.table + "-800"
     },
+    self: true,
     allownull: true,
     allownew: true,
     allowedit: true,
@@ -134,7 +135,6 @@ var toclient = JSON.stringify(options);
 
                 <ul class="dropdown-menu dropdown-menu-right">
 
-
                     <% if(options.refresh){ %>
                         <li>
                             <a dragonlanguage="" title="MESSAGE.i('mono.RefreshList')"
@@ -199,13 +199,17 @@ var toclient = JSON.stringify(options);
             <% if(options.groupby){ %>
                 <optgroup ng-repeat="(key,categories) in <%= model %>.form.options.<%= name %>.groupbydata track by key"
                           label="{{key}}">
-                    <option data-object="{{item}}" ng-repeat="(i,item) in categories"
+                    <option
+
+                            ng-if="<%= (options.self === true ? 'true' : ('item.' + options.value + '!=' + model + '.' + options.value)) %>"
+                            data-object="{{item}}" ng-repeat="(i,item) in categories"
                             value="item.{{<%= options.value %>}} track by i">
                         {{<%= options.text %>}}
                     </option>
                 </optgroup>
             <% } else{ %>
                 <option data-object="{{item}}"
+                        ng-if="<%= (options.self === true ? 'true' : ('item.' + options.value + '!=' + model + '.' + options.value)) %>"
                         ng-repeat="(key,item) in <%= model %>.form.options.<%= name %>.data track by key"
                         value="{{item.<%= options.value %>}}">
                     {{<%= options.text %>}}

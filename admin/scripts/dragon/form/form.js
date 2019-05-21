@@ -163,7 +163,7 @@ FORM = {
                         } else if (properties.timepicker === false) {
                             eval(`$scope.${name}_DragonClean = moment(date).format("YYYY-MM-DD")`);
                         } else {
-                            eval(`$scope.${name}_DragonClean = moment(date).format("YYYY-MM-DD HH:mm a")`);
+                            eval(`$scope.${name}_DragonClean = moment(date).format("YYYY-MM-DD HH:mm")`);
                         }
                         newValue = moment(date).format(properties.callformat);
                         return newValue;
@@ -613,6 +613,9 @@ FORM = {
                 }
         };
         $scope.form.selected = function (name) {
+            if (eval(`$scope.form.options.${name}===undefined`)) {
+                return null;
+            }
             if (eval(`$scope.form.options.${name}.data`) !== undefined) {
                 var objectSelected = eval(`$scope.form.options.${name}.data`).filter(function (row) {
                     var idtun = eval(`$scope.form.options.${name}.value`);

@@ -34,6 +34,27 @@ TABLE = {
                 }, 500);
             }
         };
+        $scope.runMagicColum = (column, table, key, description) => new Promise(async (resolve, reject) => {
+            key = key || "id";
+            description = description || "name";
+            if (eval(`typeof ${column}List === 'undefined'`)) {
+                var result = await BASEAPI.listp(table, {});
+                eval(`${column}List = result;`);
+                eval(`${column}List = ${column}List.data;`);
+            }
+
+            eval(`${$scope.modelName}.records.data.forEach(row => {
+                var thistype = ${column}List.filter(d => {
+                    if (row.${column} !== undefined)
+                        return d.${key}.toString() === row.${column}.toString();
+                    return false;
+                });
+                if (thistype.length > 0)
+                    row.${column} = thistype[0].${description};
+            });
+            ${$scope.modelName}.refreshAngular();`);
+            resolve(true);
+        });
         $scope.width = function () {
             if (!DSON.oseaX(eval(`CRUD_${$scope.modelName}`).table.width)) {
                 return "";

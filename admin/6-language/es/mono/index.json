@@ -170,5 +170,6 @@
   "about": "acerca de",
   "version": "versión",
   "baseversion": "versión base",
-  "generatemobile": "Generar Applicación Móvil"
+  "generatemobile": "Generar Applicación Móvil",
+  "customfield": "Campos Personalizados"
 }

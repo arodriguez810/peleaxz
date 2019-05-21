@@ -1,40 +1,45 @@
-app.controller("child", function ($scope, $http, $compile) {
-    child = this;
-    child.fixFilters = [
+app.controller("texts", function ($scope, $http, $compile) {
+    texts = this;
+    texts.fixFilters = [
         {
             field: 'id',
             operator: ">",
             value: 0
         }
     ];
-    RUNCONTROLLER("child", child, $scope, $http, $compile);
-    child.singular = "Singular";
-    child.formulary = function (data, mode, defaultData) {
-        if (child !== undefined) {
-            RUN_B("child", child, $scope, $http, $compile);
+    RUNCONTROLLER("texts", texts, $scope, $http, $compile);
+    //asignar text singular pero se recomienda por language
+    //texts.singular = "Singular";
+
+    //asignar text plural pero se recomienda por language
+    //texts.plural = "Singular";
+    texts.formulary = function (data, mode, defaultData) {
+        if (texts !== undefined) {
+            RUN_B("texts", texts, $scope, $http, $compile);
 
             //tamaño del modal
-            //child.form.modalWidth = ENUM.modal.width.full;
+            //texts.form.modalWidth = ENUM.modal.width.full;
 
             //Titulos personalizados para el form
-            // child.form.titles = {
+            // texts.form.titles = {
             //     new: "Nuevos Texts",
             //     edit: "`Editar ALL - ${$scope.name}`",
             //     view: "`Ver ALL - ${$scope.name}`"
             // };
 
             //valores que no estan en el formulario para enviar a guardar
-            child.form.readonly = {};
+            texts.form.readonly = {};
 
             //metodo para crear el form
-            child.createForm(data, mode, defaultData);
+            texts.createForm(data, mode, defaultData);
 
             //validaciones y onchange por campo
-            $scope.$watch('child.basic', function (value) {
+            $scope.$watch('texts.basic', function (value) {
                 var rules = [];
                 rules.push(VALIDATION.general.required(value));
                 rules.push(VALIDATION.text.realdata(value));
-                VALIDATION.validate(child, "name", rules);
+                texts.readonly = value;
+                VALIDATION.validate(texts, "basic", rules);
             });
         }
     };
