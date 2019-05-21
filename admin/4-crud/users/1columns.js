@@ -1,6 +1,6 @@
-CRUD_my_user = {};
-DSON.keepmerge(CRUD_my_user, CRUDDEFAULTS);
-DSON.keepmerge(CRUD_my_user, {
+CRUD_users = {};
+DSON.keepmerge(CRUD_users, CRUDDEFAULTS);
+DSON.keepmerge(CRUD_users, {
     table: {
         engine: 'my',
         columns: {
@@ -24,7 +24,7 @@ DSON.keepmerge(CRUD_my_user, {
             },
             image: {
                 label: "Profile Image",
-                folder: "my_user/profileimage/${this.id}",
+                folder: "users/profileimage/${this.id}",
                 files: {
                     maxsize: 20,
                     maxfiles: 2,

@@ -280,12 +280,16 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
         }
     };
     for (var entity of CONFIG.permissions.entities) {
-        eval(`CRUD_${entity}.table.allow.permission = true;`);
-        eval(`CRUD_${entity}.table.options.push(permissionOptions)`);
+        if (eval(`typeof CRUD_${entity}!=='undefined'`)) {
+            eval(`CRUD_${entity}.table.allow.permission = true;`);
+            eval(`CRUD_${entity}.table.options.push(permissionOptions)`);
+        }
     }
     for (var entity of CONFIG.permissions.terms) {
-        eval(`CRUD_${entity.name}.table.allow.permission = true;`);
-        eval(`CRUD_${entity.name}.table.options.push(permissionOptions)`);
+        if (eval(`typeof CRUD_${entity.name}!=='undefined'`)) {
+            eval(`CRUD_${entity.name}.table.allow.permission = true;`);
+            eval(`CRUD_${entity.name}.table.options.push(permissionOptions)`);
+        }
     }
 });
 CHILDSCOPES = [];

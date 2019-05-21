@@ -27,7 +27,7 @@
               "menus": [
                 {
                   "text": "Users",
-                  "href": "#my_user",
+                  "href": "#users",
                   "icon": "user"
                 },
                 {

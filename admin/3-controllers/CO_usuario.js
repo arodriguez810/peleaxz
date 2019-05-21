@@ -1,77 +1,77 @@
-app.controller("usuario", function ($scope, $http, $compile) {
-    usuario = this;
-    RUNCONTROLLER("usuario", usuario, $scope, $http, $compile);
+app.controller("users", function ($scope, $http, $compile) {
+    users = this;
+    RUNCONTROLLER("users", users, $scope, $http, $compile);
 
-    usuario.permissionTable = "usuario";
+    users.permissionTable = "users";
 
-    usuario.beforeDelete = function (data) {
+    users.beforeDelete = function (data) {
         alert("sure bye?");
         return false;
     };
-    usuario.afterDelete = function (data) {
+    users.afterDelete = function (data) {
         alert("good bye ");
         return false;
     };
-    usuario.formulary = function (data, mode, defaultData) {
-        if (usuario !== undefined) {
-            RUN_B("usuario", usuario, $scope, $http, $compile);
+    users.formulary = function (data, mode, defaultData) {
+        if (users !== undefined) {
+            RUN_B("users", users, $scope, $http, $compile);
 
-            usuario.form.before.insert = function (data) {
+            users.form.before.insert = function (data) {
                 if (data.inserting.username === "mmm") {
                     SWEETALERT.show({message: `El nombre ${data.inserting.username} no es permitido`});
                     return true;
                 }
                 return false;
             };
-            // usuario.form.before.update = function (data) {
+            // users.form.before.update = function (data) {
             //     if (data.updating.username === "admin") {
             //         SWEETALERT.show({message: "El admin no se puede actualizar"});
             //         return true;
             //     }
             //     return false;
             // };
-            usuario.form.after.insert = function (data) {
+            users.form.after.insert = function (data) {
                 alert("Bienvenido " + data.inserting.username);
                 return false;
             };
-            usuario.form.after.update = function (data) {
+            users.form.after.update = function (data) {
                 alert("Disfruta tus nuevos datos " + data.updating.username);
                 return false;
             };
 
-            usuario.form.readonly = {};
-            usuario.createForm(data, mode, defaultData);
+            users.form.readonly = {};
+            users.createForm(data, mode, defaultData);
 
-            usuario.$scope.$watch('usuario.name', function (value) {
+            users.$scope.$watch('users.name', function (value) {
                 var rules = [];
                 rules.push(VALIDATION.general.required(value));
-                VALIDATION.validate(usuario, "name", rules);
+                VALIDATION.validate(users, "name", rules);
             });
-            usuario.$scope.$watch('usuario.lastname', function (value) {
+            users.$scope.$watch('users.lastname', function (value) {
                 var rules = [];
                 rules.push(VALIDATION.general.required(value));
-                VALIDATION.validate(usuario, "lastname", rules);
+                VALIDATION.validate(users, "lastname", rules);
             });
-            usuario.$scope.$watch('usuario.group', function (value) {
+            users.$scope.$watch('users.group', function (value) {
                 console.log(value);
                 var rules = [];
                 rules.push(VALIDATION.general.required(value));
-                VALIDATION.validate(usuario, "group", rules);
+                VALIDATION.validate(users, "group", rules);
             });
-            usuario.$scope.$watch('usuario.username', function (value) {
+            users.$scope.$watch('users.username', function (value) {
                 var rules = [];
                 rules.push(VALIDATION.general.required(value));
-                VALIDATION.validate(usuario, "username", rules);
+                VALIDATION.validate(users, "username", rules);
             });
-            usuario.$scope.$watch('usuario.password', function (value) {
+            users.$scope.$watch('users.password', function (value) {
                 var rules = [];
                 rules.push(VALIDATION.general.required(value));
-                VALIDATION.validate(usuario, "password", rules);
+                VALIDATION.validate(users, "password", rules);
             });
-            usuario.$scope.$watch('usuario.email', function (value) {
+            users.$scope.$watch('users.email', function (value) {
                 var rules = [];
                 rules.push(VALIDATION.general.required(value));
-                VALIDATION.validate(usuario, "email", rules);
+                VALIDATION.validate(users, "email", rules);
             });
 
         }

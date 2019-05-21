@@ -1,7 +1,7 @@
 {
   "permissions": {
     "entities": [
-      "my_user"
+      "users"
     ],
     "terms": [
       {
