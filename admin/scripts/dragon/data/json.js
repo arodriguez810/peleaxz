@@ -74,6 +74,9 @@ DSON = {
         $.extend(deep || true, from, to);
     },
     oseaX: function (obj) {
+        if (Array.isArray(obj)) {
+            return obj.length === 0;
+        }
         return (
             obj === undefined || obj === null || obj === "" || obj <= 0 || obj === "0"
         );

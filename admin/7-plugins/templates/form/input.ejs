@@ -1,20 +1,19 @@
 <%
-
-if(DATA.name!==undefined){
+if (DATA.name !== undefined) {
     var name, model, opts;
     name = DATA.name;
     model = DATA.model;
     opts = DATA.opts;
 }
 console.log(JSON.stringify(opts));
-var name  = name || "";
+var name = name || "";
 var options = {
     placeholder: params.capitalize(name),
     type: "text",
     icon: {
         class: "none",
         position: "left",
-        color: TAG.table+"-800"
+        color: TAG.table + "-800"
     },
     helptext: '',
     format: '',
@@ -22,13 +21,14 @@ var options = {
     disabled: false,
     autocomplete: '',
     posttype: "text",
-    isNumber: false
+    isNumber: false,
+    hint: null
     //maxlength: 10,
 
 };
 
 
-options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g,'_');
+options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g, '_');
 options.icon.spyce = options.icon.class === "none" ? "remove-input-space" : "";
 options.autocomplete = options.autocomplete ? "autocomplete='Off'" : '';
 options.format = options.format ? options.format : false;
@@ -41,16 +41,23 @@ var toclient = JSON.stringify(options);
     <% if(options.format || options.isNumber){ %>
     <%= model %>.form.registerField("<%= name %>_DragonClean", "<%= toclient %>");
     <% } %>
-    if(MESSAGE.exist('columns.<%= nameclean %>')){
-        <%= model %>.form.options.<%= name %>.placeholder = MESSAGE.i('columns.<%= nameclean %>');
+    if (MESSAGE.exist('columns.<%= nameclean %>')) {
+        <%= model %>.
+        form.options.<%= name %>.placeholder = MESSAGE.i('columns.<%= nameclean %>');
     }
 </script>
 <div class="<%= options.icon.spyce %> form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-{{::<%= model %>.form.options.<%= name %>.icon.position}}"
      id="input<%= model %>_<%= nameclean %>">
     <label
-            class="control-label {{<%= model + "." + name %>?'is-visible animate':''}}">
+            class="control-label {{<%= model + "." + name %>?'is-visible animate':(<%= model + "." + name %>==0?'is-visible animate':'')}}">
         {{<%= model %>.form.options.<%= name %>.placeholder}}
+        <% if(options.popover){ %>
+            <i
+                    id="popover<%= model %>_<%= nameclean %>" class="icon-help">
+            </i>
+        <% } %>
     </label>
+
     <input
             ng-model="<%= model + "." + name %>" name="<%= model %>_<%= nameclean %>"
             ng-readonly="<%= model %>.form.options.<%= name %>.readonly"
@@ -81,22 +88,28 @@ var toclient = JSON.stringify(options);
 </div>
 
 <script>
+
     <%= model %>.triggers.table.after.control("<%= nameclean %>");
     <% if(options.maxlength){ %>
     //$('[name="<%= model %>_<%= nameclean %>"]').maxlength();
     <% } %>
 
     $('[name="<%= model %>_<%= nameclean %>"]').blur(function () {
-
         STEP.register({
             scope: "<%= model %>",
             action: "Change Text",
             field: "<%= name %>",
             value: <%= model %>.<%= name %>
-        });
+    })
+        ;
     });
-
-
+    <% if(options.popover){ %>
+    $('#popover<%= model %>_<%= nameclean %>').popover({
+        title: eval("`"+<%= model %>.form.options.<%= name %>.popover.title+"`"),
+        content: eval("`"+<%= model %>.form.options.<%= name %>.popover.content+"`"),
+        trigger: 'click'
+    });
+    <% } %>
     var isReadProgram = <%= model %>.
     form.isReadOnly('<%= name %>');
     if (isReadProgram !== false) {

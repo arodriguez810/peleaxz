@@ -63,6 +63,7 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
         baseController.isAdmin = session.current().groupadmin;
         baseController.userID = session.current().getID();
         baseController.fullName = session.current().fullName();
+        baseController.type = session.current().type;
         GROUPS = new SESSION().current().onlygroups;
         SWEETALERT.loading({message: MESSAGE.ic('actions.Loading') + " " + MESSAGE.ic('actions.permissions')});
         var entitiesPermission = [];

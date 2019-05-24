@@ -171,5 +171,7 @@
   "version": "versión",
   "baseversion": "versión base",
   "generatemobile": "Generar Applicación Móvil",
-  "customfield": "Campos Personalizados"
+  "customfield": "Campos Personalizados",
+  "passwordrules": "Reglas para contraseñas, coloque 0 para deshabilitar cualquier regla.",
+  "whatisthis": "Que es esto?"
 }

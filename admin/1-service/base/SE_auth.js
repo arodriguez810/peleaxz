@@ -13,7 +13,6 @@ exports.api = {
     gets: {},
     posts: {
         login: async function (request) {
-
             var config = params.CONFIG.users;
             var key = `${config.engine}-${request.username}`;
             var attemps = await params.storage.getItem(key);

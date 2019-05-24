@@ -1,1 +1,20 @@
-{"Youmustselectatleast":"Debes seleccionar por lo menos","Werecommendthatyouselectatleast":"Te recomendamos que por lo menos selecciones","Youmustuploadbetween":"Debes subir entre","Youmustuploadatleast":"Debes subir por lo menos","Fieldisrequired":"Campo requerido","Numbermustbebetween":"El número debe ser entre","Valuemaynotbereal":"El valor puede que no sea real","Colorisnotallowed":"Color no permitido","Isnotavalidemail":"Correo inválido","fieldPassword":"${field} debe de ser igual que ${field2}"}
+{
+  "Youmustselectatleast": "Debes seleccionar por lo menos",
+  "Werecommendthatyouselectatleast": "Te recomendamos que por lo menos selecciones",
+  "Youmustuploadbetween": "Debes subir entre",
+  "Youmustuploadatleast": "Debes subir por lo menos",
+  "Fieldisrequired": "Campo requerido",
+  "Numbermustbebetween": "El número debe ser entre",
+  "Valuemaynotbereal": "El valor puede que no sea real",
+  "Colorisnotallowed": "Color no permitido",
+  "Isnotavalidemail": "Correo inválido",
+  "fieldPassword": "${field} debe de ser igual que ${field2}",
+  "config_users_rules_min": "La contraseña debe tener por lo menos ${CONFIG.users.rules.min} caracteres",
+  "config_users_rules_max": "La contraseña no debe tener ${CONFIG.users.rules.max} caracteres",
+  "config_users_rules_number": "La contraseña debe tener por lo menos ${CONFIG.users.rules.number} número(s)",
+  "config_users_rules_mayus": "La contraseña debe tener por lo menos ${CONFIG.users.rules.mayus} mayúscula(s)",
+  "config_users_rules_letter": "La contraseña debe tener por lo menos ${CONFIG.users.rules.letter} letra(s)",
+  "config_users_rules_specialchar": "La contraseña debe tener por lo menos ${CONFIG.users.rules.specialchar} caracteres especiales",
+  "config_users_rules_notusername": "El password no debe ser igual al nombre de usuario",
+  "config_users_rules_notlast": "La contraseña no debe ser igual o contener la contraseña vieja"
+}

@@ -1,10 +1,7 @@
 app.controller("auth", function ($scope, $http, $compile) {
     auth = this;
-
-
     RUNCONTROLLER("auth", auth, $scope, $http, $compile);
     RUN_B("auth", auth, $scope, $http, $compile);
-
     var http = new HTTP();
     auth.queries = http.hrefToObj();
     $scope.$watch('auth.username', function (value) {

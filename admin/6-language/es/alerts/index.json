@@ -37,5 +37,6 @@
   "saveConfig": "Al guardar la configuración de la aplcicación el servidor cambiará y tardará unos segundos, debe estar seguro de todos los parámentros cambiados ya que el mal manejo de alguno puede causar que el servidor no funcione bien, aun así estas seguro que deseas guardar estos cambios?",
   "saveConfigSuper": "Al guardar la configuración de la aplcicación el servidor se reiniciará y tardará unos segundos en iniciar, debe estar seguro de todos los parámentros cambiados ya que el mal manejo de alguno puede causar que el servidor no inicie, aun así estas seguro que deseas guardar estos cambios?",
   "emptyRelations": "Este formulario contiene las siguientes relaciones vacías ${relations} deseas guardar de todos modos?",
-  "saveConfigSuperLanguage": "Esta opción cambia los mensajes de la aplicación completa, esta seguro que desea guardar de todos modos?"
+  "saveConfigSuperLanguage": "Esta opción cambia los mensajes de la aplicación completa, esta seguro que desea guardar de todos modos?",
+  "tokenDescription": "Todos los requests de esta aplicación se transmiten usando un token de seguridad para la certificación de la misma que cambia en momentos aleatorios.</br> Los usuarios al logearse a la aplicación inician un especie de contrato donde le es generado varios token unicos para usarlo a lo largo de toda su interacción con la data, una vez este contrato vence ya el usuario no puede interactuar mas hasta que se autentique nuevamente.</br> El tiempo de ese contrato es configurado en (Tiempo de expiración para la sessión)"
 }

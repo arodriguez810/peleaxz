@@ -1,1 +1,20 @@
-{"Youmustselectatleast":"You must select at least","Werecommendthatyouselectatleast":"We recommend that you select at least","Youmustuploadbetween":"You must upload between","Youmustuploadatleast":"You must upload at least","Fieldisrequired":"Field is required","Numbermustbebetween":"Number must be between","Valuemaynotbereal":"Value may not be real","Colorisnotallowed":"Color is not allowed","Isnotavalidemail":"Is not a valid email","fieldPassword":"${field} must be equal to ${field2}"}
+{
+  "Youmustselectatleast": "You must select at least",
+  "Werecommendthatyouselectatleast": "We recommend that you select at least",
+  "Youmustuploadbetween": "You must upload between",
+  "Youmustuploadatleast": "You must upload at least",
+  "Fieldisrequired": "Field is required",
+  "Numbermustbebetween": "Number must be between",
+  "Valuemaynotbereal": "Value may not be real",
+  "Colorisnotallowed": "Color is not allowed",
+  "Isnotavalidemail": "Is not a valid email",
+  "fieldPassword": "${field} must be equal to ${field2}",
+  "config_users_rules_min": "The password must have at least ${CONFIG.users.rules.min} characters",
+  "config_users_rules_max": "The password must not have ${CONFIG.users.rules.max} characters",
+  "config_users_rules_number": "The password must not have at least ${CONFIG.users.rules.number} numbers",
+  "config_users_rules_mayus": "The password must not have at least ${CONFIG.users.rules.mayus} capital letters",
+  "config_users_rules_letter": "The password must not have at least ${CONFIG.users.rules.letter} letters",
+  "config_users_rules_specialchar": "The password must not have at least ${CONFIG.users.rules.specialchar} special characters",
+  "config_users_rules_notusername": "La contraseña no debe ser igual o contener el usuario",
+  "config_users_rules_notlast": "The password must not be the same or contain the old password"
+}

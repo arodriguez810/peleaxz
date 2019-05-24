@@ -50,7 +50,7 @@ var toclient = JSON.stringify(options);
 <div class="<%= options.icon.spyce %> form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-{{::<%= model %>.form.options.<%= name %>.icon.position}}"
      id="input<%= model %>_<%= nameclean %>">
     <label
-            class="control-label {{<%= model + "." + name %>?'is-visible animate':''}}">
+            class="control-label {{<%= model + "." + name %>?'is-visible animate':(<%= model + "." + name %>==0?'is-visible animate':'')}}">
         {{<%= model %>.form.options.<%= name %>.placeholder}}
     </label>
     <input

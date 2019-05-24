@@ -14,20 +14,24 @@
                     callformat: 'hh:mm a'
                 }) %>
             </div>
+            <script>
+                dates.current_DragonClean = moment(new Date()).format('YYYY-MM-DD');
+            </script>
             <div class="col-sm-4 col-md-4">
                 <%- FORM.datetime("date", scope, {
                     placeHolder: 'Date',
                     timepicker: false,
                     format: 'd/m/Y',
-                    callformat: 'DD/MM/YYYY'
+                    callformat: 'DD/MM/YYYY',
+                    minDate: 'current',
+                    dynamic: true
                 }) %>
             </div>
             <div class="col-sm-4 col-md-4">
                 <%- FORM.datetime("datetime", scope, {
                     placeHolder: 'Date Time',
                     minDate: 'date',
-                    minTime: 'time',
-                    dynamic: false
+                    dynamic: true
                 }) %>
             </div>
         </div>

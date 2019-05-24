@@ -131,7 +131,7 @@ FORM = {
                     sequece.push(ref);
                 }
 
-                eval(`$scope.form.options.${name} = ${properties.replaceAll("&#34;", '"').replaceAll("&#39", "'")}`);
+                eval(`$scope.form.options.${name} = ${properties.replaceAll("&#34;", '"').replaceAll("&#39;", "'")}`);
                 if ($scope.form.mode === FORM.modes.new) {
                     eval(`$scope.${name}=${alterval || 'null'};`);
                 } else {
@@ -1171,12 +1171,12 @@ FORM = {
                 }
                 if (mode === FORM.modes.edit) {
                     if ($scope.form.titles)
-                        finalTitle = eval($scope.form.titles.edit);
+                        finalTitle = $scope.form.titles.edit;
                     icon = "pencil7"
                 }
                 if (mode === FORM.modes.view) {
                     if ($scope.form.titles)
-                        finalTitle = eval($scope.form.titles.view);
+                        finalTitle = $scope.form.titles.view;
                     icon = "file-eye"
                 }
                 $scope.form.mode = mode;
@@ -1239,6 +1239,7 @@ FORM = {
             }
         };
         $scope.createForm = function (data, mode, defaultData) {
+
             if ($scope.form !== null) {
                 if (!$scope.form.onload)
                     $scope.form.onload = function (name) {
@@ -1274,8 +1275,10 @@ FORM = {
                 }
                 if (data !== null) {
                     $scope.open.query = data;
+                    $scope.open.query.orderby = data.where[0].field;
                     BASEAPI.first($scope.tableOrMethod, $scope.open.query, function (data) {
                         for (var i in data) {
+
                             var item = eval(` \`${eval(`data.${i}`)}\``);
                             eval(`$scope.open.default.${i} = \`${item}\`;`);
                             if (item !== 'null' && item !== undefined)

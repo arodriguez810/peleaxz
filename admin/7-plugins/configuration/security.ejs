@@ -12,8 +12,13 @@
                 <%- FORM.input("config.users.model", scope, {
                     maxlength: 50,
                     placeholder: "Users Table",
-                    icon: {class: "none"}
+                    icon: {class: "none"},
+                    popover: {
+                        title: "${MESSAGE.ic('mono.whatisthis')}",
+                        content: "${MESSAGE.ic('alerts.tokenDescription')}"
+                    }
                 }) %>
+
             </div>
             <div class="col-sm-2 col-md-2  " ng-show="configuration.mode!=='admin'">
                 <%-
@@ -44,11 +49,10 @@
                 }) %>
             </div>
 
-            <div class="col-sm-12 col-md-2 " ng-show="configuration.mode!=='admin'">
+            <div class="col-sm-12 col-md-2 ">
 
                 <%-
                 FORM.selectsimple("config.users.hash", scope, {
-                    label: "Hash",
                     value: "id",
                     data: [
                         {id: 'md5', name: 'MD5'}
@@ -92,6 +96,73 @@
 
 <div class="panel panel-white">
     <div class="panel-heading">
+        <h6 class="panel-title" dragonlanguage><i class="icon-keyboard position-left"></i>
+            <language>MESSAGE.ic('mono.passwordrules')</language>
+        </h6>
+    </div>
+
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-3 col-md-3">
+                <%- FORM.format("config.users.rules.min", scope, {
+                    isNumber: false,
+                    icon: {class: "subscript2"},
+                    format: {mask: "##", options: {reverse: true}}
+                }) %>
+            </div>
+            <div class="col-sm-3 col-md-3">
+                <%- FORM.format("config.users.rules.max", scope, {
+                    isNumber: false,
+                    icon: {class: "superscript2"},
+                    format: {mask: "##", options: {reverse: true}}
+                }) %>
+            </div>
+            <div class="col-sm-3 col-md-3">
+                <%- FORM.format("config.users.rules.mayus", scope, {
+                    isNumber: false,
+                    icon: {class: "font-size"},
+                    format: {mask: "##", options: {reverse: true}}
+                }) %>
+            </div>
+            <div class="col-sm-3 col-md-3">
+                <%- FORM.format("config.users.rules.letter", scope, {
+                    isNumber: false,
+                    icon: {class: "text-color"},
+                    format: {mask: "##", options: {reverse: true}}
+                }) %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 col-md-3">
+                <%- FORM.format("config.users.rules.number", scope, {
+                    isNumber: false,
+                    icon: {class: "markup"},
+                    format: {mask: "##", options: {reverse: true}}
+                }) %>
+            </div>
+            <div class="col-sm-3 col-md-3">
+                <%- FORM.format("config.users.rules.specialchar", scope, {
+                    isNumber: false,
+                    icon: {class: "regexp"},
+                    format: {mask: "##", options: {reverse: true}}
+                }) %>
+            </div>
+            <div class="col-sm-3 col-md-3">
+                <%- FORM.checkbox("config.users.rules.notusername", scope, {size: 'switchery-sm'}) %>
+            </div>
+            <div class="col-sm-3 col-md-3">
+                <%- FORM.format("config.users.rules.expire", scope, {
+                    isNumber: false,
+                    icon: {class: "calendar52"},
+                    format: {mask: "####", options: {reverse: true}},
+                }) %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-white">
+    <div class="panel-heading">
         <h6 class="panel-title" dragonlanguage><i class="icon-sphere position-left"></i>
             <language>MESSAGE.ic('mono.network')</language>
         </h6>
@@ -101,7 +172,7 @@
 
         <div class="row" ng-show="configuration.mode!=='admin'">
 
-            <div class="col-sm-4 col-md-4  " >
+            <div class="col-sm-4 col-md-4  ">
                 <%- FORM.input("config.domain", scope, {
                     maxlength: 50,
                     placeholder: "Domain",
