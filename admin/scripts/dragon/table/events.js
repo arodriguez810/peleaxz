@@ -366,6 +366,10 @@ TABLEEVENT = {
                         $scope.procesingRowFor = 0;
                         $scope.refresh();
                         SWEETALERT.stop();
+                    } else {
+                        if (multiple) {
+                            $scope.deleteRow();
+                        }
                     }
                     $scope.records.data = $scope.records.data.filter(function (item) {
                         var goOut = 0;
@@ -392,9 +396,7 @@ TABLEEVENT = {
                         ERROR.multiAlert($scope.procesingRowErrors, ERROR.category.database);
                     }
                 }
-                if (multiple) {
-                    $scope.deleteRow();
-                }
+
             });
         };
         $scope.deleteSelected = function () {
@@ -449,6 +451,10 @@ TABLEEVENT = {
                         $scope.procesingRowFor = 0;
                         $scope.refresh();
                         SWEETALERT.stop();
+                    } else {
+                        if (multiple) {
+                            $scope.activeRow(undefined, active);
+                        }
                     }
                     $scope.records.data = $scope.records.data.filter(function (item) {
                         var goOut = 0;
@@ -473,9 +479,7 @@ TABLEEVENT = {
                         ERROR.multiAlert($scope.procesingRowErrors, ERROR.category.database);
                     }
                 }
-                if (multiple) {
-                    $scope.activeRow(undefined, active);
-                }
+
             });
         };
         $scope.activeRows = function (active) {

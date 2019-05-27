@@ -19,7 +19,7 @@ CRUDDEFAULTS = {
         baseWidth: 1000,
         columnsalign: "center",
         limits: [10, 20, 50, 100],
-        activeColumn: "active",
+        //activeColumn: "active",
         key: 'id',
         deletekeys: ['id'],
         engine: 'ms',
@@ -238,7 +238,7 @@ CRUDDEFAULTS = {
                                         if (column.link !== undefined) {
                                             realValue = eval(`data.row.${key.split('_')[0]}_${key.split('_')[1]}_id;`);
                                         }
-                                        eval(`formatRow.${alter} = '${realValue}';`);
+                                        eval(`formatRow.${alter} = \`${realValue}\`;`);
                                     }
                                 }
                             }

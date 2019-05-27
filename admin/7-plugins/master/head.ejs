@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet"
           type="text/css">
     <link href="assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
+
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="assets/css/core.min.css" rel="stylesheet" type="text/css">
     <link href="assets/css/components.css" rel="stylesheet" type="text/css">
@@ -42,6 +43,8 @@
     <script type="text/javascript" src="assets/js/plugins/forms/inputs/maxlength.min.js"></script>
     <script type="text/javascript" src="assets/js/plugins/forms/inputs/formatter.min.js"></script>
     <script type="text/javascript" src="assets/js/plugins/ui/moment/moment.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/ui/moment/moment_locales.min.js"></script>
+
     <script type="text/javascript" src="assets/js/plugins/sweetalert/sweetalert2.all.js"></script>
     <script type="text/javascript" src="assets/js/plugins/numeral/numeral.min.js"></script>
     <script type="text/javascript" src="assets/js/core/libraries/angular.min.js"></script>
@@ -109,6 +112,7 @@
         $(".sidebar, .navbar, .navbar-brand, .navbar-text, .navbar-nav > li, .page-header, .page-title, .page-header .heading-elements, .breadcrumb, .breadcrumb-elements > li, .content > .panel, .content .row > [class*=col-], .footer")
             .css('opacity', 0);
         MESSAGE.run();
+        moment.locale(MESSAGE.current().code);
         PLAYERID = null;
     </script>
     <script>
@@ -138,6 +142,8 @@
     </script>
     <script type="text/javascript" src="assets/js/plugins/pickers/color/spectrum.js"></script>
     <script type="text/javascript" src="assets/js/plugins/date/jquery.datetimepicker.full.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/date/daterangepicker.min.js"></script>
+    <link href="assets/js/plugins/date/daterangepicker.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="assets/js/plugins/date/yearpicker.js"></script>
     <% crudjs.forEach(function(item){ %>
         <script src="<%= item %>"></script>

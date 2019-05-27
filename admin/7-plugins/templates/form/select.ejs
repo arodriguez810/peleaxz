@@ -66,7 +66,7 @@ options.permission = options.permission || "CRUD_" + options.table;
 var toclient = JSON.stringify(options);
 %>
 <script>
-
+    <%= model %>.selectMessage = MESSAGE.ic('mono.youselect');
     <%= model %>.triggers.table.before.control("<%= nameclean %>");
     if (DSON.oseaX(<%= model + "." + name %>))
             <%= model + "." + nameclean %> = "[NULL]";
@@ -84,12 +84,12 @@ var toclient = JSON.stringify(options);
     <% } %>
 
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>", "'[NULL]'");
-    <%= model %>.form.options.<%= name %>.default = `${MESSAGE.ic('mono.select')} <%= name %>`;
+    <%= model %>.form.options.<%= name %>.default = `${MESSAGE.ic('mono.youselect')}`;
     if (MESSAGE.exist('columns.<%= nameclean %>')) {
         <%= model %>.
         form.options.<%= name %>.label = MESSAGE.i('columns.<%= nameclean %>');
         <%= model %>.
-        form.options.<%= name %>.default = `${MESSAGE.ic('mono.select')} ` + MESSAGE.i('columns.<%= nameclean %>');
+        form.options.<%= name %>.default = `${MESSAGE.ic('mono.youselect')}`;
     }
 
 
@@ -192,7 +192,7 @@ var toclient = JSON.stringify(options);
                 <option></option>
             <% }else{ %>
                 <% if(!options.multiple){ %>
-                    <option value="[NULL]" data-icon="blocked">---</option>
+                    <option value="[NULL]" data-icon="blocked">{{<%= model %>.selectMessage}}</option>
                 <% } %>
             <% } %>
 
@@ -230,7 +230,7 @@ var toclient = JSON.stringify(options);
         {{<%= model %>.form.options.<%= name %>.helptext}}
     </span>
         <span ng-show="<%= model %>.validate['<%= name %>'].messages.length>0" class="help-block">
-        <p class="text-{{validation.type}}" ng-show="validation.visible!==false"
+        <p class="text-{{validation.type}}" ng-show="validation.visible!==false || <%= model %>.form.intent===true"
            ng-repeat="(key,validation) in <%= model %>.validate['<%= name %>'].messages track by key">
                <i class="{{validation.icon}}"></i> {{validation.message}}
         </p>

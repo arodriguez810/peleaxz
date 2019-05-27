@@ -16,6 +16,7 @@ FORM = {
         time: "time",
         date: "date",
         datetime: "datetime",
+        range: "range",
         decimal: "decimal",
         location: "location",
         password: "password",
@@ -30,6 +31,7 @@ FORM = {
             $scope.tableOrMethod = eval(`CRUD_${$scope.modelName}`).table.method || $scope.modelName;
         }
         $scope.form = {};
+        $scope.form.intent = false;
         $scope.selectQueries = [];
         $scope.form.target = FORM.targets.modal;
         $scope.form.hasChanged = false;
@@ -152,6 +154,7 @@ FORM = {
         $scope.form.runSelectRule = function (name, value, rule, properties) {
             if ($scope.form !== null) {
                 var nameclean = name.replace(/\./g, '_');
+
                 switch (rule) {
                     case FORM.schemasType.datetime: {
                         var newValue = value.replace('Z', '');
@@ -166,6 +169,15 @@ FORM = {
                             eval(`$scope.${name}_DragonClean = moment(date).format("YYYY-MM-DD HH:mm")`);
                         }
                         newValue = moment(date).format(properties.callformat);
+                        return newValue;
+                    }
+                    case FORM.schemasType.range: {
+                        var newValue = value.replace('Z', '');
+                        if (DSON.oseaX(newValue))
+                            return '';
+                        var date = new Date(newValue);
+                        eval(`$scope.${name} = moment(date).format("${properties.universal}")`);
+                        newValue = moment(date).format(properties.universal);
                         return newValue;
                     }
                     case FORM.schemasType.decimal: {
@@ -947,7 +959,7 @@ FORM = {
                 if (!options.simple) {
                     $('[name="' + $scope.modelName + "_" + nameclean + '"]').select2({
                         placeholder:
-                            capitalize(MESSAGE.i('mono.select') + ' ' + eval(`${options.table}.${!options.multiple ? 'singular' : 'plural'}`)),
+                            capitalize(MESSAGE.i('mono.youselect')),
                         templateSelection: DROPDOWN.iformat,
                         templateResult: DROPDOWN.iformat,
                         allowHtml: true
@@ -969,7 +981,7 @@ FORM = {
                 } else {
                     $('[name="' + $scope.modelName + "_" + nameclean + '"]').select2({
                         placeholder:
-                            capitalize(MESSAGE.i('mono.select') + ' ' + options.default),
+                            capitalize(MESSAGE.i('mono.youselect')),
                         templateSelection: DROPDOWN.iformat,
                         templateResult: DROPDOWN.iformat,
                         allowHtml: true
@@ -1067,6 +1079,7 @@ FORM = {
                                 }
                             });
                         } else {
+                            $scope.form.intent = true;
                             SWEETALERT.show({
                                 type: "error",
                                 message: MESSAGE.i('alerts.ContainsError'),
@@ -1119,6 +1132,33 @@ FORM = {
 
                 };
                 $scope.pages.form.close = function (pre, post, close) {
+
+                    var dataRelations = [];
+                    for (const field of $scope.form.fileds) {
+                        if (eval(`$scope.form.schemas.insert.${field}`) === FORM.schemasType.relation) {
+                            var table = eval(`$scope.form.options.${field}.table`);
+                            if (table !== undefined) {
+                                if (eval(`${table}.records.data.length`) > 0) {
+                                    dataRelations.push(eval(`${table}.plural`));
+                                }
+                            }
+                        }
+                    }
+                    if (dataRelations.length > 0) {
+                        SWEETALERT.confirm({
+                            message: MESSAGE.ieval('alerts.emptyRelations', {relations: DSON.ULALIA(emptyRelations)}),
+                            confirm: function () {
+                                if ($scope.form.target === FORM.targets.modal) {
+                                    if (close !== false)
+                                        MODAL.close($scope);
+                                }
+                                if ($scope.pages.form)
+                                    $scope.pages.form.onClose(close);
+                            }
+                        });
+                        return;
+                    }
+
                     if ($scope.form !== null)
                         if ($scope.form.hasChanged) {
                             if ($scope.refresh !== undefined)

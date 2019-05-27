@@ -24,11 +24,7 @@ DSON.keepmerge(CRUD_ms_other, {
                 shorttext: 20,
                 null: "<span class='text-grey'>[NULL]</span>"
             },
-            active: {
-                visible: true,
-                sorttype: "bool",
-                formattype: "bool"
-            },
+
             created: {
                 visible: false,
                 sorttype: "time",

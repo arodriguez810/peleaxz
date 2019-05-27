@@ -51,11 +51,7 @@ DSON.keepmerge(CRUD_ms_user, {
                 label: "Email",
                 shorttext: 20
             },
-            active: {
-                visible: true,
-                sorttype: "bool",
-                formattype: "bool"
-            },
+
             created: {
                 visible: false,
                 sorttype: "time",

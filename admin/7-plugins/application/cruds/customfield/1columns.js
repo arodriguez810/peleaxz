@@ -27,11 +27,6 @@ DSON.keepmerge(CRUD_customfield, {
                 shorttext: 60,
                 null: "<span class='text-grey'>[NULL]</span>"
             },
-            active: {
-                visible: true,
-                sorttype: "bool",
-                formattype: "bool"
-            },
             created: {
                 visible: false,
                 sorttype: "time",

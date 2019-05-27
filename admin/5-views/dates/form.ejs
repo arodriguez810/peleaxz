@@ -6,46 +6,11 @@
 
     <div class="tab-pane active" id="basic">
         <div class="row">
-            <div class="col-sm-4 col-md-4">
-                <%- FORM.datetime("time", scope, {
-                    timepicker: true,
-                    datepicker: false,
-                    format: 'h:i a',
-                    callformat: 'hh:mm a'
-                }) %>
-            </div>
-            <script>
-                dates.current_DragonClean = moment(new Date()).format('YYYY-MM-DD');
-            </script>
-            <div class="col-sm-4 col-md-4">
-                <%- FORM.datetime("date", scope, {
-                    placeHolder: 'Date',
-                    timepicker: false,
-                    format: 'd/m/Y',
-                    callformat: 'DD/MM/YYYY',
-                    minDate: 'current',
-                    dynamic: true
-                }) %>
-            </div>
-            <div class="col-sm-4 col-md-4">
-                <%- FORM.datetime("datetime", scope, {
-                    placeHolder: 'Date Time',
-                    minDate: 'date',
-                    dynamic: true
-                }) %>
-            </div>
+
         </div>
         <div class="row">
             <div class="col-sm-4 col-md-4">
-                <input type="text" ng-model="dates.year" class="yearpicker form-control"/>
-                <script>
-                    new Picker(document.querySelector('.yearpicker'), {
-                        format: 'YYYY',
-                        text: {
-                            title: 'Selecciona un año',
-                        },
-                    });
-                </script>
+                <%- FORM.range("range", scope, {}) %>
             </div>
         </div>
     </div>

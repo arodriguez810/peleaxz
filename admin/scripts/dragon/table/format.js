@@ -22,10 +22,7 @@ TABLEFORMAT = {
                     var shorttext = value;
                     if (shorttext !== undefined) {
                         if (shorttext.length > column.shorttext) {
-                            shorttext = String.format(
-                                "{0}",
-                                shorttext.substring(0, column.shorttext) + "..."
-                            );
+                            shorttext = String.format("{0}", shorttext.substring(0, column.shorttext) + "...");
                         }
                         return "<a class='dragonlink'>" + shorttext + "</a>";
                     } else {
@@ -136,22 +133,15 @@ TABLEFORMAT = {
             if (column.formattype !== undefined) {
                 if (column.formattype.indexOf("datetime") !== -1) {
                     if (DSON.oseaX(value)) return DSON.noset();
-                    var format = column.formattype.split(":");
-                    format = format.length > 1 ? format[1] : "";
-                    var date = new Date(value);
-                    var hours = date.getHours();
-                    var minutes = date.getMinutes();
-                    var ampm = "";
-                    var strTime = hours + ":" + minutes + " " + ampm;
-                    if (format === "12") {
-                        ampm = hours >= 12 ? "pm" : "am";
-                        hours = hours % 12;
-                        hours = hours ? hours : 12;
-                        minutes = minutes < 10 ? "0" + minutes : minutes;
-                        strTime = hours + ":" + minutes + " " + ampm;
-                    }
-                    return (date.getDate() + 1 + "/" + date.getMonth() + "/" + date.getFullYear() + " " + strTime);
-                } else if (column.formattype === "bool") {
+                    return moment(value).format("LL LT");
+                } else if (column.formattype.indexOf("date") !== -1) {
+                    if (DSON.oseaX(value)) return DSON.noset();
+                    return moment(value).format("LL");
+                } else if (column.formattype.indexOf("time") !== -1) {
+                    if (DSON.oseaX(value)) return DSON.noset();
+                    return moment(value).format("LT");
+                }
+                else if (column.formattype === "bool") {
                     if (DSON.oseaX(value)) return DSON.noset();
                     if (value) return MESSAGE.ic('mono.yes');
                     else return MESSAGE.ic('mono.no');
@@ -238,11 +228,13 @@ TABLEFORMAT = {
             if (column.formattype !== undefined) {
                 if (column.formattype.indexOf("datetime") !== -1) {
                     if (DSON.oseaX(value)) return DSON.noset();
-                    var format = column.formattype.split(">");
-                    format = format.length > 1 ? format[1] : "";
-                    value = value.replace('T', ' ').split('.')[0];
-                    return moment(value).format(format);
-
+                    return moment(value).format("LL LT");
+                } else if (column.formattype.indexOf("date") !== -1) {
+                    if (DSON.oseaX(value)) return DSON.noset();
+                    return moment(value).format("LL");
+                } else if (column.formattype.indexOf("time") !== -1) {
+                    if (DSON.oseaX(value)) return DSON.noset();
+                    return moment(value).format("LT");
                 } else if (column.formattype === "bool") {
                     if (DSON.oseaX(value)) return '<i class="icon-checkbox-unchecked"></i>';
                     if (value) return '<i class="icon-checkbox-checked"></i>';

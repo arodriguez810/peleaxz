@@ -1,6 +1,7 @@
 1-service
 6-language
 7-plugins
+assets
 modules
 recode
 scripts
@@ -12,3 +13,4 @@ package-lock.json
 server.js
 start.exe
 start.info
+start.bat

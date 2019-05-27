@@ -8,6 +8,16 @@ function has_scrollbar(name) {
 }
 
 DSON = {
+    DTF: function (format) {
+        var newformat = format;
+        newformat = newformat.replace("LTS", moment().localeData()._longDateFormat.LTS);
+        newformat = newformat.replace("LT", moment().localeData()._longDateFormat.LT);
+        newformat = newformat.replace("LLLL", moment().localeData()._longDateFormat.LLLL);
+        newformat = newformat.replace("LLL", moment().localeData()._longDateFormat.LLL);
+        newformat = newformat.replace("LL", moment().localeData()._longDateFormat.LL);
+        newformat = newformat.replace("L", moment().localeData()._longDateFormat.L);
+        return newformat;
+    },
     substringif: function (str, len) {
         return str.length >= len ? str.substring(0, len) : str;
     },

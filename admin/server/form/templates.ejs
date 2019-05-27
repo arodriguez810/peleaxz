@@ -42,8 +42,8 @@ FORM = {
     datetime: function (name, model, options) {
         return FORM.template('form/datetime', {name: name, model: model, opts: options});
     },
-    datetimerange: function (name, model, options) {
-        return FORM.template('form/datetimerange', {name: name, model: model, opts: options});
+    range: function (name, model, options) {
+        return FORM.template('form/range', {name: name, model: model, opts: options});
     },
     input: function (name, model, options) {
         return FORM.template('form/input', {name: name, model: model, opts: options});

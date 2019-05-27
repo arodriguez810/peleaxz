@@ -20,11 +20,6 @@ DSON.keepmerge(CRUD_mime, {
                 shorttext: 20,
                 null: "<span class='text-grey'>[NULL]</span>"
             },
-            active: {
-                visible: true,
-                sorttype: "bool",
-                formattype: "bool"
-            },
             created: {
                 visible: false,
                 sorttype: "time",

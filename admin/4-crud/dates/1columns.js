@@ -14,17 +14,29 @@ DSON.keepmerge(CRUD_dates,
                 },
                 date: {
                     sorttype: "time",
-                    formattype: "datetime>DD-MM-YYYY",
+                    formattype: "date",
                     exportExample: "\"\"[Date YYYY-MM-DD]\"\""
                 },
                 datetime: {
                     sorttype: "time",
-                    formattype: "datetime>DD-MM-YYYY hh:mm a",
+                    formattype: "datetime",
                     exportExample: "\"\"[Date YYYY-MM-DD hh:mm am/pm]\"\""
                 },
                 time: {
                     sorttype: "time",
                     exportExample: "\"\"[Time hh:mm am/pm]\"\""
+                },
+                range_from: {
+                    label: "From",
+                    sorttype: "time",
+                    formattype: "date",
+                    exportExample: "\"\"[Date YYYY-MM-DD]\"\""
+                },
+                range_to: {
+                    label: "To",
+                    sorttype: "time",
+                    formattype: "date",
+                    exportExample: "\"\"[Date YYYY-MM-DD]\"\""
                 },
                 year: {
                     label: "Year",

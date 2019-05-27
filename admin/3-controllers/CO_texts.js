@@ -41,6 +41,11 @@ app.controller("texts", function ($scope, $http, $compile) {
                 texts.readonly = value;
                 VALIDATION.validate(texts, "basic", rules);
             });
+            $scope.$watch('texts.format', function (value) {
+                var rules = [];
+                rules.push(VALIDATION.general.required(value));
+                VALIDATION.validate(texts, "format", rules);
+            });
         }
     };
 });

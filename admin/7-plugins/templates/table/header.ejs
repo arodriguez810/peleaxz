@@ -186,10 +186,12 @@
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">
-                    <li ng-show="<%= scope %>.allow('remove')"><a ng-click="<%= scope %>.deleteSelected()"><i
+                    <li ng-show="<%= scope %>.allow('remove')">
+                        <a ng-click="<%= scope %>.deleteSelected()"><i
                                     class="icon-trash"></i>
                             <language>MESSAGE.ic('mono.remove')</language>
-                        </a></li>
+                        </a>
+                    </li>
                     <li ng-show="<%= scope %>.activeColumn() && <%= scope %>.allow('active')">
                         <a ng-click="<%= scope %>.activeSelected(1)">
                             <i class="icon-checkmark-circle"></i>
