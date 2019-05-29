@@ -176,17 +176,17 @@
 <div class="modal-footer visible-xs">
     <div class="row">
         <div dragonlanguage="" class="col-lg-4 col-md-4 col-xs-4">
-            <button type="button" class="btn  bg-<%= TAG.table %>-600" ng-click="<%= scope %>.filters.apply()">
+            <button type="button" class="btn  bg-<%= COLOR.secundary %>-600" ng-click="<%= scope %>.filters.apply()">
                 <language>MESSAGE.ic('mono.apply')</language>
             </button>
         </div>
         <div dragonlanguage="" class="col-lg-4 col-md-4 col-xs-4">
-            <button type="button" class="btn  bg-<%= TAG.table %>-600" ng-click="<%= scope %>.filters.clear()">
+            <button type="button" class="btn  bg-<%= COLOR.secundary %>-600" ng-click="<%= scope %>.filters.clear()">
                 <language>MESSAGE.ic('mono.clear')</language>
             </button>
         </div>
         <div dragonlanguage class="col-lg-4 col-md-4 col-xs-4">
-            <button type="button" class="btn  bg-<%= TAG.table %>-600" ng-click="<%= scope %>.filters.close()">
+            <button type="button" class="btn  bg-<%= COLOR.secundary %>-600" ng-click="<%= scope %>.filters.close()">
                 <language>MESSAGE.ic('mono.close')</language>
             </button>
         </div>
@@ -194,15 +194,15 @@
 </div>
 <div class="modal-footer visible-lg visible-md">
 
-    <button dragonlanguage type="button" class="btn  bg-<%= TAG.table %>-600" ng-click="<%= scope %>.filters.apply()">
+    <button dragonlanguage type="button" class="btn  bg-<%= COLOR.secundary %>-600" ng-click="<%= scope %>.filters.apply()">
         <language>MESSAGE.ic('mono.apply')</language>
     </button>
 
-    <button dragonlanguage type="button" class="btn  bg-<%= TAG.table %>-600" ng-click="<%= scope %>.filters.clear()">
+    <button dragonlanguage type="button" class="btn  bg-<%= COLOR.secundary %>-600" ng-click="<%= scope %>.filters.clear()">
         <language>MESSAGE.ic('mono.clear')</language>
     </button>
 
-    <button dragonlanguage type="button" class="btn  bg-<%= TAG.table %>-600" ng-click="<%= scope %>.filters.close()">
+    <button dragonlanguage type="button" class="btn  bg-<%= COLOR.secundary %>-600" ng-click="<%= scope %>.filters.close()">
         <language>MESSAGE.ic('mono.close')</language>
     </button>
 
@@ -242,7 +242,7 @@
                 maxTags: 99999,
                 allowDuplicates: false,
                 tagClass: function (item) {
-                    return 'label bg-' + TAG.table;
+                    return 'label bg-' + COLOR.secundary;
                 }
             });
             $(this).focus();

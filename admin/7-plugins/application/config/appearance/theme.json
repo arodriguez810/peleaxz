@@ -1,0 +1,40 @@
+{
+  "hidemenus": [],
+  "ui": {
+    "animation": {
+      "outanimation": "",
+      "inanimation": ""
+    },
+    "console": {
+      "text": "yellow",
+      "bg": "bgRed"
+    },
+    "theme": {
+      "primary": "random",
+      "primaryShades": "1,2,3,4,5,6,7,8,9,10",
+      "secundary": "random",
+      "secundaryShades": "1,2,3,4,5,6,7,8,9,10",
+      "extra": "random",
+      "extraShades": "1,2,3,4,5,6,7,8,9,10",
+      "text1": "#000",
+      "text2": "#FFF"
+    },
+    "colors": {
+      "primary": "primary",
+      "secundary": "secundary",
+      "extra": "extra",
+      "logo": "logowhite",
+      "info": "info",
+      "danger": "danger",
+      "success": "success",
+      "warning": "warning",
+      "default": "default",
+      "tag": {
+        "table": "info",
+        "navbar": "primary",
+        "border": "info",
+        "dropdown": "primary"
+      }
+    }
+  }
+}

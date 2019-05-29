@@ -250,6 +250,22 @@ BASEAPI = {
             resolve(result);
         });
     }),
+    truncate: function (model, callback) {
+        $http = angular.injector(["ng"]).get("$http");
+        var http = new HTTP();
+        http.setToken($http);
+        var rootPath = '/api/' + model;
+        $http.post(rootPath + '/truncate').then(function (data) {
+            callback(data);
+        }, function (data) {
+            console.log('Error: ' + data);
+        });
+    },
+    truncatep: (model) => new Promise((resolve, reject) => {
+        BASEAPI.truncate(model, function (result) {
+            resolve(result);
+        });
+    }),
     mail: function (params, callback) {
         $http = angular.injector(["ng"]).get("$http");
         new HTTP().setToken($http);

@@ -211,7 +211,7 @@
 </script>
 <div dragonlanguage=""
         ng-show="<%= DATA.scope %>.galleryFiles.columns && <%= DATA.scope %>.galleryFiles.data.files.length<=0"
-        class="alert alpha-<%= TAG.table %> border-<%= TAG.table %> alert-styled-left">
+        class="alert alpha-<%= COLOR.secundary %> border-<%= COLOR.secundary %> alert-styled-left">
     <language>MESSAGE.i('mono.Thereisnofilestoshow')</language>
 </div>
 
@@ -220,21 +220,21 @@
     <div class="btn-group" ng-show="<%= DATA.scope %>.galleryFiles.reachMaxFiles()">
         <button title="Upload Files" ng-click="<%= DATA.scope %>.galleryFiles.uploadview()" type="button"
 
-                class="btn bg-<%= TAG.table %>-600 btn-icon">
+                class="btn bg-<%= COLOR.secundary %>-600 btn-icon">
             <span class="icon-upload"></span>  
         </button>
     </div>
 
     <div class="btn-group" ng-show="!<%= DATA.scope %>.galleryFiles.isSingle()">
         <button title="Download All" ng-click="<%= DATA.scope %>.galleryFiles.downloadAll()" type="button"
-                class="btn bg-<%= TAG.table %>-600 btn-icon">
+                class="btn bg-<%= COLOR.secundary %>-600 btn-icon">
             <span class="icon-download"></span> *
         </button>
     </div>
 
     <div class="btn-group" ng-show="!<%= DATA.scope %>.galleryFiles.isSingle()">
         <button title="Check\UnCheck All" ng-click="<%= DATA.scope %>.galleryFiles.checkAll()" type="button"
-                class="btn bg-<%= TAG.table %>-600 btn-icon">
+                class="btn bg-<%= COLOR.secundary %>-600 btn-icon">
             <span class="icon-{{<%= DATA.scope %>.galleryFiles.allCheckedIcon()}}"></span> *
         </button>
 
@@ -242,14 +242,14 @@
 
     <div class="btn-group" ng-show="!<%= DATA.scope %>.galleryFiles.isSingle()">
         <button title="Delete Selected" ng-click="<%= DATA.scope %>.galleryFiles.deleteSelected()" type="button"
-                class="btn bg-<%= TAG.table %>-600 btn-icon">
+                class="btn bg-<%= COLOR.secundary %>-600 btn-icon">
             <span class="icon-trash"></span> [*]
         </button>
     </div>
 
     <div class="btn-group">
         <button title="Refresh This Folder" ng-click="<%= DATA.scope %>.galleryFiles.refresh()" type="button"
-                class="btn bg-<%= TAG.table %>-600 btn-icon">
+                class="btn bg-<%= COLOR.secundary %>-600 btn-icon">
             <span class="icon-reload-alt"></span>  
         </button>
     </div>
@@ -277,7 +277,7 @@
     </button>
     <table style="margin-top: 15px" class=" table table-togglable table-framed table-bordered">
         <thead>
-        <tr class="bg-<%= TAG.table %>">
+        <tr class="bg-<%= COLOR.secundary %>">
             <th class="col-lg-9">
 
             </th>
@@ -326,7 +326,7 @@
         </tr>
         </tbody>
         <tfoot>
-        <tr class="bg-<%= TAG.table %>">
+        <tr class="bg-<%= COLOR.secundary %>">
             <th class="col-lg-9">File/Folder</th>
             <th dragonlanguage="" class="col-lg-3"><language>MESSAGE.ic('mono.options')</language></th>
         </tr>

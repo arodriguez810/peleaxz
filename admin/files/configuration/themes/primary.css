@@ -1,0 +1,308 @@
+.bg-primary {
+    background-color: #2957ef;
+    border-color: #2957ef;
+    color: #FFF !important;
+}
+.bg-primary-100 {
+    background-color: #e7ecfd;
+    border-color: #e7ecfd;
+    color: #000 !important;
+}
+.bg-primary-200 {
+    background-color: #b8c7fa;
+    border-color: #b8c7fa;
+    color: #000 !important;
+}
+.bg-primary-300 {
+    background-color: #88a2f6;
+    border-color: #88a2f6;
+    color: #000 !important;
+}
+.bg-primary-400 {
+    background-color: #597cf3;
+    border-color: #597cf3;
+    color: #FFF !important;
+}
+.bg-primary-500 {
+    background-color: #2957ef;
+    border-color: #2957ef;
+    color: #FFF !important;
+}
+.bg-primary-600 {
+    background-color: #103dd6;
+    border-color: #103dd6;
+    color: #FFF !important;
+}
+.bg-primary-700 {
+    background-color: #0c30a6;
+    border-color: #0c30a6;
+    color: #FFF !important;
+}
+.bg-primary-800 {
+    background-color: #092277;
+    border-color: #092277;
+    color: #FFF !important;
+}
+.bg-primary-900 {
+    background-color: #051447;
+    border-color: #051447;
+    color: #FFF !important;
+}
+.bg-primary-1000 {
+    background-color: #020718;
+    border-color: #020718;
+    color: #FFF !important;
+}
+.alpha-primary {
+    background-color: #e7ecfd;
+    border-color: #e7ecfd;
+}
+
+.border-primary {
+    border-color: #2957ef;
+}
+.border-primary-100 {
+    border-color: #e7ecfd;
+}
+.border-primary-200 {
+    border-color: #b8c7fa;
+}
+.border-primary-300 {
+    border-color: #88a2f6;
+}
+.border-primary-400 {
+    border-color: #597cf3;
+}
+.border-primary-500 {
+    border-color: #2957ef;
+}
+.border-primary-600 {
+    border-color: #103dd6;
+}
+.border-primary-700 {
+    border-color: #0c30a6;
+}
+.border-primary-800 {
+    border-color: #092277;
+}
+.border-primary-900 {
+    border-color: #051447;
+}
+.border-primary-1000 {
+    border-color: #020718;
+}
+
+.border-top-primary {
+    border-top-color: #2957ef;
+}
+.border-top-primary-100 {
+    border-top-color: #e7ecfd;
+}
+.border-top-primary-200 {
+    border-top-color: #b8c7fa;
+}
+.border-top-primary-300 {
+    border-top-color: #88a2f6;
+}
+.border-top-primary-400 {
+    border-top-color: #597cf3;
+}
+.border-top-primary-500 {
+    border-top-color: #2957ef;
+}
+.border-top-primary-600 {
+    border-top-color: #103dd6;
+}
+.border-top-primary-700 {
+    border-top-color: #0c30a6;
+}
+.border-top-primary-800 {
+    border-top-color: #092277;
+}
+.border-top-primary-900 {
+    border-top-color: #051447;
+}
+.border-top-primary-1000 {
+    border-top-color: #020718;
+}
+.border-bottom-primary {
+    border-bottom-color: #2957ef;
+}
+
+
+.border-bottom-primary-100 {
+    border-bottom-color: #e7ecfd;
+}
+.border-bottom-primary-200 {
+    border-bottom-color: #b8c7fa;
+}
+.border-bottom-primary-300 {
+    border-bottom-color: #88a2f6;
+}
+.border-bottom-primary-400 {
+    border-bottom-color: #597cf3;
+}
+.border-bottom-primary-500 {
+    border-bottom-color: #2957ef;
+}
+.border-bottom-primary-600 {
+    border-bottom-color: #103dd6;
+}
+.border-bottom-primary-700 {
+    border-bottom-color: #0c30a6;
+}
+.border-bottom-primary-800 {
+    border-bottom-color: #092277;
+}
+.border-bottom-primary-900 {
+    border-bottom-color: #051447;
+}
+.border-bottom-primary-1000 {
+    border-bottom-color: #020718;
+}
+
+
+.border-left-primary {
+    border-left-color: #2957ef;
+}
+.border-left-primary-100 {
+    border-left-color: #e7ecfd;
+}
+.border-left-primary-200 {
+    border-left-color: #b8c7fa;
+}
+.border-left-primary-300 {
+    border-left-color: #88a2f6;
+}
+.border-left-primary-400 {
+    border-left-color: #597cf3;
+}
+.border-left-primary-500 {
+    border-left-color: #2957ef;
+}
+.border-left-primary-600 {
+    border-left-color: #103dd6;
+}
+.border-left-primary-700 {
+    border-left-color: #0c30a6;
+}
+.border-left-primary-800 {
+    border-left-color: #092277;
+}
+.border-left-primary-900 {
+    border-left-color: #051447;
+}
+.border-left-primary-1000 {
+    border-left-color: #020718;
+}
+
+
+.border-right-primary {
+    border-right-color: #2957ef;
+}
+.border-right-primary-100 {
+    border-right-color: #e7ecfd;
+}
+.border-right-primary-200 {
+    border-right-color: #b8c7fa;
+}
+.border-right-primary-300 {
+    border-right-color: #88a2f6;
+}
+.border-right-primary-400 {
+    border-right-color: #597cf3;
+}
+.border-right-primary-500 {
+    border-right-color: #2957ef;
+}
+.border-right-primary-600 {
+    border-right-color: #103dd6;
+}
+.border-right-primary-700 {
+    border-right-color: #0c30a6;
+}
+.border-right-primary-800 {
+    border-right-color: #092277;
+}
+.border-right-primary-900 {
+    border-right-color: #051447;
+}
+.border-right-primary-1000 {
+    border-right-color: #020718;
+}
+
+
+.text-primary,
+.text-primary:hover,
+.text-primary:focus {
+    color: #2957ef !important;
+}
+.text-primary-100,
+.text-primary-100:hover,
+.text-primary-100:focus {
+    color: #e7ecfd !important;
+}
+.text-primary-200,
+.text-primary-200:hover,
+.text-primary-200:focus {
+    color: #b8c7fa !important;
+}
+.text-primary-300,
+.text-primary-300:hover,
+.text-primary-300:focus {
+    color: #88a2f6 !important;
+}
+.text-primary-400,
+.text-primary-400:hover,
+.text-primary-400:focus {
+    color: #597cf3 !important;
+}
+.text-primary-600,
+.text-primary-600:hover,
+.text-primary-600:focus {
+    color: #103dd6 !important;
+}
+.text-primary-700,
+.text-primary-700:hover,
+.text-primary-700:focus {
+    color: #0c30a6 !important;
+}
+.text-primary-800,
+.text-primary-800:hover,
+.text-primary-800:focus {
+    color: #092277 !important;
+}
+.text-primary-900,
+.text-primary-900:hover,
+.text-primary-900:focus {
+    color: #051447 !important;
+}
+.text-primary-1000,
+.text-primary-1000:hover,
+.text-primary-1000:focus {
+    color: #020718 !important;
+}
+
+.bg-primary-800.navbar-inverse a {
+    color: #FFF !important;
+}
+
+.bg-primary-800.navbar-inverse a:hover {
+    color: #FFF !important;
+}
+
+.bg-primary-800.navbar-inverse .navbar-text {
+    color: #FFF !important;
+}
+
+.nav-tabs.bg-primary-800 > .active > a, .nav-tabs.bg-primary-800 > .active > a:hover, .nav-tabs.bg-primary-800 > .active > a:focus {
+    color: #FFF !important;;
+}
+
+.nav-tabs.bg-primary-800 > li > a {
+    color: #FFF !important;
+}
+.nav-primary li.active {
+    border-bottom: #2957ef 1px solid;
+    border-block-width: 2px;
+}

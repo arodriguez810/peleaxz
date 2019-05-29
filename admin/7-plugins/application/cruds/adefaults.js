@@ -238,6 +238,12 @@ CRUDDEFAULTS = {
                                         if (column.link !== undefined) {
                                             realValue = eval(`data.row.${key.split('_')[0]}_${key.split('_')[1]}_id;`);
                                         }
+                                        if (column.formattype === "datetime") {
+                                            realValue = moment(realValue).format(DSON.UNIVERSALTIME);
+                                        }
+                                        if (column.formattype === "date") {
+                                            realValue = moment(realValue).format(DSON.UNIVERSAL);
+                                        }
                                         eval(`formatRow.${alter} = \`${realValue}\`;`);
                                     }
                                 }

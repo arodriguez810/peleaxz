@@ -11,13 +11,13 @@ var options = {
     icon: {
         class: "none",
         position: "left",
-        color: TAG.table+"-800"
+        color: COLOR.secundary+"-800"
     },
     type: "normal",
     posttype:"button"
 };
 options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g,'_');
-options.color = options.type === "form" ? "{{" + model + ".validation.stateDefault()}}" : TAG.table;
+options.color = options.type === "form" ? "{{" + model + ".validation.stateDefault()}}" : COLOR.secundary;
 var toclient = JSON.stringify(options);
 %>
 <script>
@@ -33,7 +33,7 @@ var toclient = JSON.stringify(options);
             class="btn bg-<%= options.color  %>-800 btn-block legitRipple">
         {{<%= model %>.form.options.<%= name %>.text}}
         <i ng-if="<%= model %>.form.options.<%= name %>.icon.class!=='none'"
-                class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} position-{{<%= model %>.form.options.<%= name %>.icon.position}}"></i>
+                class="icon-<%= options.icon.class %> position-<%= options.icon.position %>"></i>
     </button>
 </div>
 

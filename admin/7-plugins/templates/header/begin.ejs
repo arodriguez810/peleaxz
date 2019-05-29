@@ -1,4 +1,4 @@
-<div class="page-header-lg page-header-sm page-header page-header-default border-bottom-lg border-bottom-<%= TAG.border %>">
+<div class="page-header-lg page-header-sm page-header page-header-default border-bottom-lg border-bottom-<%= COLOR.secundary %>">
     <!--Breadcrumb and Table Options-->
     <div class="breadcrumb-line">
 
@@ -9,7 +9,7 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-left" ng-show="menu.childs.length>0">
                     <li ng-repeat="(subkey, submenu) in menu.childs track by subkey"
-                        class="{{<%= scope %>.sameHref(submenu,'bg-<%= COLOR.menu %>-300')||''}}">
+                        class="{{<%= scope %>.sameHref(submenu,'bg-<%= COLOR.extra %>-300')||''}}">
                         <a href="{{<%= scope %>.sameHref(submenu,'javascript:void(0)')||submenu.href}}"
                            class="">
                             <i class="{{submenu.icon}}"></i>{{submenu.text}}

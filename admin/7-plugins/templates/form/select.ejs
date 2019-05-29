@@ -12,7 +12,7 @@ var options = {
     icon: {
         class: "none",
         position: "left",
-        color: TAG.table + "-800"
+        color: COLOR.secundary + "-800"
     },
     self: true,
     allownull: true,
@@ -117,10 +117,15 @@ var toclient = JSON.stringify(options);
 <% if (model !== options.table){ %>
 <div id="<%= options.table %>" ng-controller="<%= options.table %> as <%= options.table %>">
     <% } %>
-    <div class="form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
+    <div class="form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-<%= options.icon.position %>"
          id="input<%= model %>_<%= nameclean %>">
-        <label class="control-label is-visible animate">
+        <label class="control-label is-visible animate" style="color:#000000 !important;">
             {{<%= model %>.form.options.<%= name %>.label}}
+            <% if(options.popover){ %>
+                <i
+                        id="popover<%= model %>_<%= nameclean %>" class="icon-help">
+                </i>
+            <% } %>
         </label>
 
         <% if(options.allownew || options.allowedit || options.allowview || options.allowlist || options.refresh){ %>
@@ -221,7 +226,7 @@ var toclient = JSON.stringify(options);
         <div class="form-control-feedback">
             <i
                     id="icon<%= name %>"
-                    class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} text-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}">
+                    class="icon-<%= options.icon.class %> text-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}">
 
             </i>
         </div>
@@ -250,6 +255,14 @@ var toclient = JSON.stringify(options);
     }
 
     $(document).ready(function () {
+        <% if(options.popover){ %>
+        $('#popover<%= model %>_<%= nameclean %>').popover({
+            container: 'body',
+            title: eval("`" +<%= model %>.form.options.<%= name %>.popover.title + "`"),
+            content:eval("`" +<%= model %>.form.options.<%= name %>.popover.content + "`"),
+        trigger: 'click'
+    });
+        <% } %>
         <%= model %>.
         form.beginFunctions.push(`reloadMe<%= model %>_<%= nameclean %>();`);
 

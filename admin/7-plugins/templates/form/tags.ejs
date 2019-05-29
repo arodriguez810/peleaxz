@@ -29,11 +29,16 @@ var toclient = JSON.stringify(options);
         form.options.<%= name %>.placeholder = MESSAGE.i('columns.<%= nameclean %>');
     }
 </script>
-<div class="form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
+<div class="form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}"
      id="input<%= model %>_<%= nameclean %>">
     <label
-            class="control-label is-visible animate">
-        {{<%= model %>.form.options.<%= name %>.placeholder}}
+            class="control-label is-visible animate" style="color:#000000 !important;">
+        {{::<%= model %>.form.options.<%= name %>.placeholder}}
+        <% if(options.popover){ %>
+            <i
+                    id="popover<%= model %>_<%= nameclean %>" class="icon-help">
+            </i>
+        <% } %>
     </label>
     <input
             ng-model="<%= model + "." + name %>"
@@ -42,7 +47,7 @@ var toclient = JSON.stringify(options);
 
             ng-disabled="<%= model %>.form.options.<%= name %>.disabled"
             placeholder="<%= options.placeholder %>"
-            class="form-control border-<%= TAG.table %>">
+            class="form-control border-<%= COLOR.secundary %>">
 
 
     <span ng-if="<%= model %>.form.options.<%= name %>.helptext!=''"
@@ -59,6 +64,14 @@ var toclient = JSON.stringify(options);
 </div>
 <script>
     $(document).ready(function () {
+        <% if(options.popover){ %>
+        $('#popover<%= model %>_<%= nameclean %>').popover({
+            container: 'body',
+            title: eval("`" +<%= model %>.form.options.<%= name %>.popover.title + "`"),
+            content:eval("`" +<%= model %>.form.options.<%= name %>.popover.content + "`"),
+        trigger: 'click'
+    });
+        <% } %>
         var engine = new Bloodhound({
                 local: <%= model %>.form.options.<%= name %>.autocomplete,
             datumTokenizer
@@ -100,7 +113,7 @@ var toclient = JSON.stringify(options);
     :
 
         function (item) {
-            return 'label bg-' + TAG.table;
+            return 'label bg-' + COLOR.secundary;
         }
 
     ,
@@ -124,6 +137,6 @@ var toclient = JSON.stringify(options);
             ;
 
         });
-        $(".bootstrap-tagsinput").addClass('alpha-' + TAG.table);
+        $(".bootstrap-tagsinput").addClass('alpha-' + COLOR.secundary);
     });
 </script>

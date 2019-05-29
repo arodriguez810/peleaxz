@@ -28,11 +28,25 @@ MESSAGE = {
                 MESSAGE.missingLanguage[lan + '-' + folder].messages.push(key);
         }
     },
+    characterize: function (str) {
+        var charac = [];
+        var newstr = str;
+        charac["@ENTER@"] = "<br>";
+        charac["@SPACE@"] = " ";
+        charac["@MINUS@"] = "<";
+        charac["@MAYOR@"] = ">";
+        charac["@QUOTE@"] = "'";
+        charac["@DOBLEQUOTE@"] = "\"";
+        for (var i in charac) {
+            newstr = newstr.replaceAll(i, charac[i]);
+        }
+        return newstr;
+    },
     i: function (key, defaulttext) {
         var lan = STORAGE.get('LANGUAGE') || CONFIG.language;
         var toreturn = key;
         if (MESSAGE.exist(key)) {
-            return eval(`LANGUAGE.${lan}.${key}`);
+            return MESSAGE.characterize(eval(`LANGUAGE.${lan}.${key}`));
         } else {
             for (var i in LANGUAGE) {
                 if (MESSAGE.existOther(key, i)) {
@@ -44,7 +58,7 @@ MESSAGE = {
                             SWEETALERT.show(`The langage key ${key} don't have folder, please change`);
                         }
                     }
-                    return eval(`LANGUAGE.${i}.${key}`);
+                    return MESSAGE.characterize(eval(`LANGUAGE.${i}.${key}`));
                 }
             }
             if (CONFIG.mode === "developer") {

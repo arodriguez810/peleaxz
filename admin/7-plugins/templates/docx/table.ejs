@@ -8,7 +8,7 @@
         <%- include('../../../styles/colors/'+COLOR.primary+'.css') %>
     </style>
     <style>
-        <%- include('../../../styles/colors/'+TAG.table+'.css') %>
+        <%- include('../../../styles/colors/'+COLOR.secundary+'.css') %>
     </style>
 </head>
 <body>
@@ -23,8 +23,8 @@
                 <%= DATA.docx.replace('a DOC.docx', '') %> - <%= CONFIG.appName %>
             </div>
             <table class="table table-bordered">
-                <thead class="bg-<%= TAG.table %>" style="visibility: hidden;">
-                <tr class="bg-<%= TAG.table %>">
+                <thead class="bg-<%= COLOR.secundary %>" style="visibility: hidden;">
+                <tr class="bg-<%= COLOR.secundary %>">
                     <% for(var i in DATA.columns) { %>
                         <th height="0"><%= DATA.columns[i] %></th>
                     <% } %>

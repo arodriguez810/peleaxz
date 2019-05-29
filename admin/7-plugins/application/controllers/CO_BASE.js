@@ -86,6 +86,7 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
             SWEETALERT.stop();
             var userPermission = null;
             var grouppermission = [];
+
             for (var permissionD of result.data) {
                 if (permissionD.id.indexOf(CONFIG.permissions.entities[0]) !== -1)
                     userPermission = permissionD;
@@ -94,71 +95,24 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
                 }
             }
 
-            if (result.data.length > 0) {
-                for (var CONTROLLER of CONTROLLERSNAMES) {
-                    if (eval(`typeof CRUD_${CONTROLLER} !== 'undefined'`)) {
-                        if (CONFIG.permissions.excludes.indexOf(CONTROLLER) === -1)
-                            eval(`DSON.allvalue(CRUD_${CONTROLLER}.table.allow,false)`);
-                    }
-                }
-                if (grouppermission) {
-                    for (var gper of grouppermission) {
-                        var objects = eval("(" + gper.object + ")");
-                        for (var obj in objects) {
-                            if (eval(`typeof CRUD_${objects[obj].name} !=='undefined'`)) {
-                                var native = eval("CRUD_" + objects[obj].name + ".table.allow");
-                                for (var i in native) {
-                                    if (!objects[obj].obj.table.allow.hasOwnProperty(i)) {
-                                        eval(`objects[obj].obj.table.allow.${i}=native[i]`);
-                                    }
-                                }
-                            }
-                        }
-                        var permissions = objects;
-                        for (var i in permissions) {
-                            if (eval(`typeof CRUD_${permissions[i].name} !=='undefined'`)) {
-                                if (CONFIG.permissions.excludes.indexOf(permissions[i].name) === -1)
-                                    eval(`DSON.mergeBool(permissions[i].obj.table.allow,CRUD_${permissions[i].name}.table.allow);`);
-                            }
-                        }
-                    }
-                }
-
-                if (userPermission) {
-                    var objects = eval("(" + userPermission.object + ")");
-                    for (var obj in objects) {
-                        var native = eval("CRUD_" + objects[obj].name + ".table.allow");
-                        for (var i in native) {
-                            if (!objects[obj].obj.table.allow.hasOwnProperty(i)) {
-                                eval(`objects[obj].obj.table.allow.${i}=native[i]`);
-                            }
-                        }
-                    }
-                    var permissions = objects;
-                    for (var i in permissions) {
-                        if (eval(`typeof CRUD_${permissions[i].name} !=='undefined'`))
-                            if (CONFIG.permissions.excludes.indexOf(permissions[i].name) === -1)
-                                eval(`DSON.mergeBool(permissions[i].obj.table.allow,CRUD_${permissions[i].name}.table.allow);`);
-                    }
-                }
+            for (var gp in grouppermission) {
+                var entities = eval("(" + grouppermission[gp].object + ")");
+                for (var i in  entities)
+                    if (PERMISSIONS.mypermission.hasOwnProperty(i))
+                        DSON.jalar(entities[i].allow, PERMISSIONS.mypermission[i].allow, false);
             }
-            CRUDNAMES = [];
-            for (var CONTROLLER of CONTROLLERSNAMES) {
-                if (eval(`typeof CRUD_${CONTROLLER} !== 'undefined'`)) {
-                    if (CONFIG.permissions.excludes.indexOf(CONTROLLER) === -1) {
-                        if (eval(`CRUD_${CONTROLLER}.table.allow.menu`) !== true) {
-                            MENU.hideMenus(CONTROLLER);
-                        }
 
-                        CRUDNAMES.push(
-                            {
-                                name: `${CONTROLLER}`,
-                                obj: (eval(`CRUD_${CONTROLLER}`))
-                            }
-                        )
-                    }
-                }
+            for (var gp in grouppermission) {
+                var entities = eval("(" + grouppermission[gp].object + ")");
+                for (var i in  entities)
+                    if (PERMISSIONS.mypermission.hasOwnProperty(i))
+                        DSON.jalar(entities[i].allow, PERMISSIONS.mypermission[i].allow, true);
             }
+
+            for (var i in PERMISSIONS.mypermission)
+                if (PERMISSIONS.mypermission[i].allow.menu !== true)
+                    MENU.hideMenus(i);
+
         });
     }
     baseController.menus = CONFIG.menus;
@@ -225,42 +179,17 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
                 ]
             }, function (result) {
                 SWEETALERT.stop();
-                eval(`${data.$scope.modelName}.permissions = {};`);
                 eval(`${data.$scope.modelName}.idPermission = '${data.$scope.permissionTable || data.$scope.modelName}-${data.row.id}';`);
-
-
-                DSON.merge(eval(`${data.$scope.modelName}.permissions`), CRUDNAMES, true);
-
+                var original = DSON.OSO(PERMISSIONS.entities);
                 if (result.data.length > 0) {
                     var objects = eval("(" + result.data[0].object + ")");
                     var exists = [];
                     var count = 0;
-                    for (var obj in objects) {
-                        if (CONFIG.permissions.excludes.indexOf(objects[obj].name) !== -1) {
-                            delete objects[obj];
-                        }
-                    }
-                    console.log(objects);
-                    for (var obj in objects) {
-                        count++;
-                        if (eval(`typeof CRUD_${objects[obj].name} !=='undefined'`)) {
-                            exists.push(objects[obj].name);
-                            var native = eval("CRUD_" + objects[obj].name + ".table.allow");
-                            for (var i in native) {
-                                if (!objects[obj].obj.table.allow.hasOwnProperty(i)) {
-                                    eval(`objects[obj].obj.table.allow.${i}=native[i]`);
-                                }
-                            }
-                        }
-                    }
-                    for (var w in CRUDNAMES) {
-                        if (exists.indexOf(CRUDNAMES[w].name) === -1) {
-                            objects[count] = CRUDNAMES[w];
-                            count++;
-                        }
-                    }
-                    eval(`${data.$scope.modelName}.permissions = objects`);
+                    for (var key in original)
+                        if (objects.hasOwnProperty(key))
+                            DSON.jalar(objects[key].allow, original[key].allow)
                 }
+                eval(`${data.$scope.modelName}.permissions = original`);
                 data.$scope.modal.modalView("templates/components/permissions", {
                     width: ENUM.modal.width.full,
                     header: {
@@ -276,7 +205,6 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
                     },
                 });
             });
-
             return false;
         }
     };

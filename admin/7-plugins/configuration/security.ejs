@@ -13,10 +13,7 @@
                     maxlength: 50,
                     placeholder: "Users Table",
                     icon: {class: "none"},
-                    popover: {
-                        title: "${MESSAGE.ic('mono.whatisthis')}",
-                        content: "${MESSAGE.ic('alerts.tokenDescription')}"
-                    }
+
                 }) %>
 
             </div>
@@ -57,7 +54,11 @@
                     data: [
                         {id: 'md5', name: 'MD5'}
                     ],
-                    icon: {class: "wrench3"}
+                    icon: {class: "wrench3"},
+                    popover: {
+                        title: "${MESSAGE.ic('mono.whatisthis')}",
+                        content: "${MESSAGE.i('alerts.tokenDescription')}"
+                    }
                 }) %>
             </div>
         </div>

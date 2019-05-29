@@ -1,20 +1,20 @@
 <%
-if(DATA.name!==undefined){
+if (DATA.name !== undefined) {
     var name, model, opts;
     name = DATA.name;
     model = DATA.model;
     opts = DATA.opts;
 }
-var name  = name || "";
+var name = name || "";
 var options = {
     text: name + "?",
     checked: false,
-    posttype:"checkbox",
+    posttype: "checkbox",
     disabled: false,
     size: 'switchery'
 };
-options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g,'_');
-var nameclean = name.replace(/\./g,'_');
+options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g, '_');
+var nameclean = name.replace(/\./g, '_');
 var toclient = JSON.stringify(options);
 %>
 <script>
@@ -22,16 +22,31 @@ var toclient = JSON.stringify(options);
     <%= model %>.form.schemas.insert["<%= name %>"] = FORM.schemasType.checkbox;
     <%= model %>.form.schemas.select["<%= name %>"] = FORM.schemasType.checkbox;
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
-    if(MESSAGE.exist('columns.<%= nameclean %>')){
-        <%= model %>.form.options.<%= name %>.text = MESSAGE.i('columns.<%= nameclean %>');
+    if (MESSAGE.exist('columns.<%= nameclean %>')) {
+        <%= model %>.
+        form.options.<%= name %>.text = MESSAGE.i('columns.<%= nameclean %>');
     }
+    var isReadProgram = <%= model %>.form.isReadOnly('<%= name %>');
+    if (isReadProgram !== false) {
+        <%= model %>.
+        form.options.<%= name %>.disabled = true;
+        if (isReadProgram !== undefined) {
+            <%= model %>.<%= name %> = isReadProgram;
+            checkbox<%= model %>_<%= nameclean %> = isReadProgram;
+        }
+    }
+
+    <%= model %>.<%= name %> = eval(<%= model %>.<%= name %>)
+    ;
+    <%= model %>.<%= name %> = <%= model %>.<%= name %>? true : false;
 </script>
 <div class="checkbox checkbox-switchery <%= options.size %>" ng-show="!<%= model %>.form.options.<%= name %>.disabled">
     <label>
-        <input ng-model="<%= options.model || model + "." + name %>"
-               type="checkbox"
-               name="<%= model %>_<%= nameclean %>"
-               class="switchery"
+        <input
+                type="checkbox"
+                name="<%= model %>_<%= nameclean %>"
+                id="<%= model %>_<%= nameclean %>"
+                class="switchery"
         />
         {{<%= model %>.form.options.<%= name %>.text}}
     </label>
@@ -39,7 +54,7 @@ var toclient = JSON.stringify(options);
 <div class="checkbox checkbox-switchery" ng-show="<%= model %>.form.options.<%= name %>.disabled">
     <label>
         {{<%= model %>.form.options.<%= name %>.text}}
-        <input ng-model="<%= options.model || model + "." + name %>"
+        <input ng-model="<%= model + "." + name %>"
                type="checkbox"
                class="switchery"
                readonly="readonly"
@@ -48,31 +63,21 @@ var toclient = JSON.stringify(options);
     </label>
 </div>
 <script>
-    <%= model %>.triggers.table.after.control("<%= nameclean %>");
-    var elems = Array.prototype.slice.call(document.getElementsByName("<%= model %>_<%= nameclean %>"));
-    var checkbox<%= model %>_<%= nameclean %> = false;
-    var isReadProgram = <%= model %>.form.isReadOnly('<%= name %>');
-    if(isReadProgram!==false){
-        <%= model %>.form.options.<%= name %>.disabled = true;
-        if(isReadProgram!==undefined){
-            <%= model %>.<%= name %> = isReadProgram;
-            checkbox<%= model %>_<%= nameclean %> = isReadProgram;
-        }
-    }
-    <%= model %>.<%= name %> = <%= model %>.<%= name %>===null?false:<%= model %>.<%= name %>;
-    <%= model %>.<%= name %> = eval(<%= model %>.<%= name %>);
-    elems.forEach(function (html) {
-        checkbox<%= model %>_<%= nameclean %> = new Switchery(html, {size: "small"});
+    var element = document.getElementById("<%= model %>_<%= nameclean %>");
+    var checkbox<%= model %>_<%= nameclean %> = new Switchery(element, {size: "small"});
+    if (<%= model %>.<%= name %>)
+    {
         checkbox<%= model %>_<%= nameclean %>.setPosition(<%= model + "." + name %>);
-    });
-
-    $('[name="<%= model %>_<%= nameclean %>"]').change(function () {
-
+    }
+    $("#<%= model %>_<%= nameclean %>").change(function (val) {
+        <%= model %>.<%= name %> = $(this).prop("checked");
         STEP.register({
             scope: "<%= model %>",
             action: "Change Checkbox",
             field: "<%= name %>",
             value: <%= model %>.<%= name %>
+        });
+        <%= model %>.refreshAngular();
     });
-    });
+    <%= model %>.triggers.table.after.control("<%= nameclean %>");
 </script>

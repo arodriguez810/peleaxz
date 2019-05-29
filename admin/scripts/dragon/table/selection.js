@@ -18,7 +18,7 @@ TABLESELECTION = {
         };
 
         $scope.drawHandler = function () {
-            return "<i class=\"text-" + COLOR.info + "-300 " + "icon-sort" + " \"></i>";
+            return "<i class=\"text-" + COLOR.secundary + "-300 " + "icon-sort" + " \"></i>";
         };
 
         $scope.columnToSelect = function () {
@@ -41,7 +41,7 @@ TABLESELECTION = {
             return (value === true ? "icon-checkmark4" : icon);
         };
         $scope.checkAll = function () {
-            $("tr").removeClass("alpha-" + COLOR.info);
+            $("tr").removeClass("alpha-" + COLOR.secundary);
             if ($scope.stopInteraction()) return false;
             $scope.checkall = !$scope.checkall;
             for (const row of $scope.records.data) {
@@ -49,13 +49,13 @@ TABLESELECTION = {
             }
         };
         $scope.unCheckAll = function () {
-            $("tr").removeClass("alpha-" + COLOR.info);
+            $("tr").removeClass("alpha-" + COLOR.secundary);
             for (const row of $scope.records.data) {
                 $scope.check(row, false);
             }
         };
         $scope.trCheck = function (row) {
-            return row.selected === true ? ("bg-" + COLOR.info + "-300 text-black") : '';
+            return row.selected === true ? ("bg-" + COLOR.secundary + "-300 text-black") : '';
         };
         $scope.check = function (row, realvalue) {
             if (row.selected === undefined)

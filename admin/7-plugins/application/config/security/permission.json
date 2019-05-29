@@ -11,6 +11,98 @@
     ],
     "excludes": [
       "st_user"
-    ]
+    ],
+    "types": {
+      "full": {
+        "menu": true,
+        "add": true,
+        "edit": true,
+        "view": true,
+        "remove": true,
+        "filter": true,
+        "import": true,
+        "copy": true,
+        "export": {
+          "Clipboard": true,
+          "PDF": true,
+          "CSV": true,
+          "XLS": true,
+          "DOC": true
+        },
+        "actions": true
+      },
+      "permission": {
+        "menu": true,
+        "permission": true,
+        "add": true,
+        "edit": true,
+        "view": true,
+        "remove": true,
+        "filter": true,
+        "import": true,
+        "copy": true,
+        "export": {
+          "Clipboard": true,
+          "PDF": true,
+          "CSV": true,
+          "XLS": true,
+          "DOC": true
+        },
+        "actions": true
+      },
+      "permissionnomenu": {
+        "permission": true,
+        "add": true,
+        "edit": true,
+        "view": true,
+        "remove": true,
+        "filter": true,
+        "import": true,
+        "copy": true,
+        "export": {
+          "Clipboard": true,
+          "PDF": true,
+          "CSV": true,
+          "XLS": true,
+          "DOC": true
+        },
+        "actions": true
+      },
+      "nomenu": {
+        "add": true,
+        "edit": true,
+        "view": true,
+        "remove": true,
+        "filter": true,
+        "import": true,
+        "copy": true,
+        "export": {
+          "Clipboard": true,
+          "PDF": true,
+          "CSV": true,
+          "XLS": true,
+          "DOC": true
+        },
+        "actions": true
+      },
+      "report": {
+        "view": true,
+        "filter": true,
+        "export": {
+          "Clipboard": true,
+          "PDF": true,
+          "CSV": true,
+          "XLS": true,
+          "DOC": true
+        },
+        "actions": true
+      }
+    },
+    "list": {
+      "group": {
+        "type": "full",
+        "allow": {}
+      }
+    }
   }
 }

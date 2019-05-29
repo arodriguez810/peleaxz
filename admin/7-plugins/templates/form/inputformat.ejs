@@ -1,24 +1,26 @@
 <%
-if(DATA.name!==undefined){
+if (DATA.name !== undefined) {
     var name, model, opts;
     name = DATA.name;
     model = DATA.model;
     opts = DATA.opts;
 }
-var name  = name || "";
+var name = name || "";
 var options = {
     placeholder: params.capitalize(name),
     type: "text",
     icon: {
         class: "none",
         position: "left",
-        color: TAG.table + "-800"
+        color: COLOR.secundary + "-800"
     },
     helptext: '',
     format: '',
     readonly: false,
     disabled: false,
     autocomplete: '',
+    sufix: '',
+    prefix: '',
     posttype: "text",
     isNumber: true
     //maxlength: 10,
@@ -39,6 +41,10 @@ var toclient = JSON.stringify(options);
     <%= model %>.form.schemas.select["<%= name %>"] = FORM.schemasType.decimal;
     <% } %>
 
+    <% if(options.isPercentage){ %>
+    <%= model %>.form.schemas.select["<%= name %>"] = FORM.schemasType.percentage;
+    <% } %>
+
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
     <%= model %>.form.registerField("<%= name %>_DragonClean", "<%= toclient %>");
 
@@ -51,8 +57,13 @@ var toclient = JSON.stringify(options);
 <div class="<%= options.icon.spyce %> form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-{{::<%= model %>.form.options.<%= name %>.icon.position}}"
      id="input<%= model %>_<%= nameclean %>">
     <label
-            class="control-label {{<%= model + "." + name %>?'is-visible animate':(<%= model + "." + name %>==0?'is-visible animate':'')}}">
-        {{<%= model %>.form.options.<%= name %>.placeholder}}
+            class="control-label is-visible animate" style="color:#000000 !important;">
+        {{::<%= model %>.form.options.<%= name %>.placeholder}}
+        <% if(options.popover){ %>
+            <i
+                    id="popover<%= model %>_<%= nameclean %>" class="icon-help">
+            </i>
+        <% } %>
     </label>
     <input
             ng-model="<%= model + "." + name %>" name="<%= model %>_<%= nameclean %>"
@@ -62,16 +73,16 @@ var toclient = JSON.stringify(options);
             type="text"
             ng-model-onblur
             class="form-control"
-            placeholder="{{<%= model %>.form.options.<%= name %>.placeholder}}">
+            placeholder="{{::<%= model %>.form.options.<%= name %>.inputPlaceholder}}">
 
     <div class="form-control-feedback" ng-if="<%= model %>.form.options.<%= name %>.icon.class!=='none'">
-        <i class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} text-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}">
+        <i class="icon-<%= options.icon.class %> text-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}">
 
         </i>
     </div>
     <span ng-if="<%= model %>.form.options.<%= name %>.helptext!=''"
           class="help-block text-muted">
-        {{::<%= model %>.form.options.<%= name %>.helptext}}
+        <%= options.helptext %>
     </span>
 
     <span ng-if="<%= model %>.validate['<%= name %>'].messages.length>0" class="help-block">
@@ -85,8 +96,20 @@ var toclient = JSON.stringify(options);
 
 <script>
     <%= model %>.triggers.table.after.control("<%= nameclean %>");
+    <% if(options.popover){ %>
+    $('#popover<%= model %>_<%= nameclean %>').popover({
+        container: 'body',
+        title: eval("`" +<%= model %>.form.options.<%= name %>.popover.title + "`"),
+        content
+    :
+    eval("`" +<%= model %>.form.options.<%= name %>.popover.content + "`"
+    ),
+    trigger: 'click'
+    })
+    ;
+    <% } %>
     var formaty =<%= model %>.form.options.<%= name %>.format;
-    $('[name="<%= model %>_<%= nameclean %>"]').mask(formaty.mask, formaty.options);
+    $('[name="<%= model %>_<%= nameclean %>"]').mask(eval(`\`${formaty.mask}\``), formaty.options);
     <% if(options.maxlength){ %>
     //$('[name="<%= model %>_<%= nameclean %>"]').maxlength();
     <% } %>
@@ -94,9 +117,8 @@ var toclient = JSON.stringify(options);
     $('[name="<%= model %>_<%= nameclean %>"]').blur(function () {
 
         $me = $(this).val();
-        $me = $me.replace(/\./g, 'POINT').replace(/\W/g, '').replace(/POINT/g, '.').replace(/[a-z]/gi, '');
-        <%= model %>.
-        <%= nameclean %>_DragonClean = $me;
+        $me = LAN.money($me).value;
+        <%= model %>.<%= nameclean %>_DragonClean = $me;
 
         STEP.register({
             scope: "<%= model %>",

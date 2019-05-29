@@ -2,18 +2,17 @@
   "languages": [
     {
       "code": "en",
+      "time": "en",
       "name": "English",
-      "flag": "us"
+      "flag": "us",
+      "money": "USD"
     },
     {
       "code": "es",
       "name": "Español",
-      "flag": "es"
-    },
-    {
-      "code": "fr",
-      "name": "Français",
-      "flag": "fr"
+      "flag": "es",
+      "time": "es-do",
+      "money": "DOP"
     }
   ]
 }

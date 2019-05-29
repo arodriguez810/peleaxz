@@ -12,7 +12,7 @@ var options = {
     icon: {
         class: "none",
         position: "left",
-        color: TAG.table + "-800"
+        color: COLOR.secundary + "-800"
     },
     helptext: '',
     format: '',
@@ -44,12 +44,13 @@ var toclient = JSON.stringify(options);
         <%= model %>.
         form.options.<%= name %>.placeholder = MESSAGE.i('columns.<%= nameclean %>');
     }
+
 </script>
 <div class="<%= options.icon.spyce %> form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-{{::<%= model %>.form.options.<%= name %>.icon.position}}"
      id="input<%= model %>_<%= nameclean %>">
     <label
-            class="control-label {{<%= model + "." + name %>?'is-visible animate':(<%= model + "." + name %>==0?'is-visible animate':'')}}">
-        {{<%= model %>.form.options.<%= name %>.placeholder}}
+            class="control-label is-visible animate" style="color:#000000 !important;">
+        {{::<%= model %>.form.options.<%= name %>.placeholder}}
         <% if(options.popover){ %>
             <i
                     id="popover<%= model %>_<%= nameclean %>" class="icon-help">
@@ -65,16 +66,16 @@ var toclient = JSON.stringify(options);
             type="text"
             ng-model-onblur
             class="form-control"
-            placeholder="{{<%= model %>.form.options.<%= name %>.placeholder}}">
+            placeholder="{{::<%= model %>.form.options.<%= name %>.inputPlaceholder}}">
 
     <div class="form-control-feedback" ng-if="<%= model %>.form.options.<%= name %>.icon.class!=='none'">
-        <i class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} text-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}">
+        <i class="icon-<%= options.icon.class %> text-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}">
 
         </i>
     </div>
     <span ng-if="<%= model %>.form.options.<%= name %>.helptext!=''"
           class="help-block text-muted">
-        {{::<%= model %>.form.options.<%= name %>.helptext}}
+        <%= options.helptext %>
     </span>
 
     <span ng-if="<%= model %>.validate['<%= name %>'].messages.length>0" class="help-block">
@@ -87,7 +88,10 @@ var toclient = JSON.stringify(options);
 </div>
 
 <script>
-
+    if(<%= model %>.UNIQUEFIELD){
+        if(UNIQUEFIELD!=="<%= name %>")
+            $("#input<%= model %>_<%= nameclean %>").parent().hide();
+    }
     <%= model %>.triggers.table.after.control("<%= nameclean %>");
     <% if(options.maxlength){ %>
     //$('[name="<%= model %>_<%= nameclean %>"]').maxlength();
@@ -103,15 +107,12 @@ var toclient = JSON.stringify(options);
         ;
     });
     <% if(options.popover){ %>
-    $('#popover<%= model %>_<%= nameclean %>').popover({
-        title: eval("`" +<%= model %>.form.options.<%= name %>.popover.title + "`"),
-        content
-    :
-    eval("`" +<%= model %>.form.options.<%= name %>.popover.content + "`"
-    ),
-    trigger: 'click'
-    })
-    ;
+        $('#popover<%= model %>_<%= nameclean %>').popover({
+            container: 'body',
+            title: eval("`" +<%= model %>.form.options.<%= name %>.popover.title + "`"),
+            content:eval("`" +<%= model %>.form.options.<%= name %>.popover.content + "`"),
+            trigger: 'click'
+        });
     <% } %>
     var isReadProgram = <%= model %>.
     form.isReadOnly('<%= name %>');

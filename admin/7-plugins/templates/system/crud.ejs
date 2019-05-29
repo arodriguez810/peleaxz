@@ -1,0 +1,95 @@
+CRUD_segment = {};
+DSON.keepmerge(CRUD_segment, CRUDDEFAULTS);
+DSON.keepmerge(CRUD_segment, {
+    table: {
+        engine: 'ms',
+        columns: {
+            id: {
+                label: "ID",
+                sorttype: "numeric",
+                class: "text-left",
+                exportExample: false
+            },
+            name: {
+                label: "name",
+                shorttext: 20
+            },
+            description: {
+                label: "description",
+                sortable: false,
+                shorttext: 20,
+                null: "<span class='text-grey'>[NULL]</span>"
+            },
+            created: {
+                visible: false,
+                sorttype: "time",
+                formattype: "datetime>DD-MM-YYYY hh:mm a"
+            },
+            updated: {
+                visible: false,
+                exportExample: false
+            },
+            deleted: {
+                visible: false,
+                visibleDetail: false,
+                exportExample: false
+            },
+            user_created: {
+                visible: false,
+                visibleDetail: false,
+                export: false,
+                exportExample: false
+            },
+            user_updated: {
+                visible: false,
+                visibleDetail: false,
+                export: false,
+                exportExample: false
+            },
+            user_deleted: {
+                visible: false,
+                visibleDetail: false,
+                export: false,
+                exportExample: false
+            }
+        }
+    }
+});
+CRUD_segment = DSON.merge(CRUD_segment,
+{
+    table: {
+        filters: {
+            columns: [
+                {
+                    key: 'id',
+                    label: 'ID',
+                    type: FILTER.types.integer,
+                    placeholder: 'ID'
+                },
+                {
+                    key: 'name',
+                    label: 'Name',
+                    type: FILTER.types.string,
+                    placeholder: 'Name',
+                    maxlength: 50
+                },
+                {
+                    key: 'description',
+                    label: 'Description',
+                    type: FILTER.types.string,
+                    maxlength: 200
+                },
+                {
+                    key: 'created',
+                    label: 'Created',
+                    type: FILTER.types.datetime,
+                },
+                {
+                    key: 'active',
+                    label: 'Active',
+                    type: FILTER.types.bool,
+                }
+            ]
+        }
+    }
+});

@@ -391,7 +391,7 @@ EXPORT = {
                     },
                     {
                         text: MESSAGE.ic('mono.cancel'),
-                        color: TAG.table,
+                        color: COLOR.secundary,
                         action: function () {
                             swal.close();
                             if (direct === true) {
@@ -455,7 +455,7 @@ EXPORT = {
                     oneRow += `<td>${exampleText}</td>`;
                 }
             }
-            preview += `<thead class="bg-${COLOR.info}"  ><tr>${previewColums}</tr></thead><tbody><tr>${oneRow}</tr></tbody>`;
+            preview += `<thead class="bg-${COLOR.secundary}"  ><tr>${previewColums}</tr></thead><tbody><tr>${oneRow}</tr></tbody>`;
             return preview;
         };
         $scope.export.jsonToTable = function (json, columns, first, width, classes) {
@@ -469,7 +469,7 @@ EXPORT = {
                         labels.push(HTML.strip($scope.columnLabel(eval(`CRUD_${$scope.modelName}`).table.columns[key], key)));
                         previewColums += `<th>${ARRAY.last(labels)}</th>`;
                     }
-                    preview += `<thead class="bg-${COLOR.info}"  ><tr>${previewColums}</tr></thead>`;
+                    preview += `<thead class="bg-${COLOR.secundary}"  ><tr>${previewColums}</tr></thead>`;
                 }
                 preview += `<tbody>`;
                 json.forEach(function (row) {
@@ -488,7 +488,7 @@ EXPORT = {
                 for (var i in columns) {
                     var key = columns[i];
                     labels.push(HTML.strip($scope.columnLabel(eval(`CRUD_${$scope.modelName}`).table.columns[key], key)));
-                    previewColums += `<tr><td class="bg-${COLOR.info}">${ARRAY.last(labels)}</td><td>${eval("json[0]." + key)}</td></tr>`;
+                    previewColums += `<tr><td class="bg-${COLOR.secundary}">${ARRAY.last(labels)}</td><td>${eval("json[0]." + key)}</td></tr>`;
                 }
                 preview += `<tbody>${previewColums}</tbody></table>`;
             }

@@ -18,6 +18,7 @@ FORM = {
         datetime: "datetime",
         range: "range",
         decimal: "decimal",
+        percentage: "percentage",
         location: "location",
         password: "password",
     },
@@ -39,7 +40,7 @@ FORM = {
         $scope.form.titles = undefined;
         $scope.form.modalIcon = undefined;
         $scope.open = {};
-        $scope.defaultColor = TAG.table + '-600';
+        $scope.defaultColor = COLOR.secundary + '-600';
         $scope.pages = {};
         $scope.open.default = {};
         $scope.form.readonly = {};
@@ -172,7 +173,7 @@ FORM = {
                         return newValue;
                     }
                     case FORM.schemasType.range: {
-                        var newValue = value.replace('Z', '');
+                        var newValue = value;//.replace('Z', '');
                         if (DSON.oseaX(newValue))
                             return '';
                         var date = new Date(newValue);
@@ -184,7 +185,14 @@ FORM = {
                         var newValue = value;
                         if (DSON.oseaX(newValue))
                             return newValue;
-                        newValue = numeral(newValue).format('0,0.00');
+                        var numeralValue = numeral(value)._value;
+                        return numeralValue ? LAN.money(numeralValue).format(true) : LAN.money("0.00").format(true);
+                    }
+                    case FORM.schemasType.percentage: {
+                        var newValue = value;
+                        if (DSON.oseaX(newValue))
+                            return newValue;
+                        newValue = newValue + "%";
                         return newValue;
                     }
                     case FORM.schemasType.checkbox: {
@@ -251,11 +259,13 @@ FORM = {
                         message:
                             MESSAGE.ieval('alerts.emptyRelations', {relations: DSON.ULALIA(emptyRelations)}),
                         confirm: function () {
+                            $scope.form.fillRelationvalidate = false;
                             $scope.form.saveSubAction(close);
                         }
                     });
                     return;
                 } else {
+                    $scope.form.fillRelationvalidate = false;
                     $scope.form.saveSubAction(close);
                 }
 
@@ -1129,34 +1139,38 @@ FORM = {
                                     $scope.refresh();
                             }
                     }
-
+                    for (var i in eval($scope.modelName))
+                        if (i.indexOf("_Dragon") !== -1)
+                            eval(`delete ${$scope.modelName}.${i}`);
                 };
                 $scope.pages.form.close = function (pre, post, close) {
 
-                    var dataRelations = [];
-                    for (const field of $scope.form.fileds) {
-                        if (eval(`$scope.form.schemas.insert.${field}`) === FORM.schemasType.relation) {
-                            var table = eval(`$scope.form.options.${field}.table`);
-                            if (table !== undefined) {
-                                if (eval(`${table}.records.data.length`) > 0) {
-                                    dataRelations.push(eval(`${table}.plural`));
+                    if ($scope.form.fillRelationvalidate !== false) {
+                        var dataRelations = [];
+                        for (const field of $scope.form.fileds) {
+                            if (eval(`$scope.form.schemas.insert.${field}`) === FORM.schemasType.relation) {
+                                var table = eval(`$scope.form.options.${field}.table`);
+                                if (table !== undefined) {
+                                    if (eval(`${table}.records.data.length`) > 0) {
+                                        dataRelations.push(eval(`${table}.plural`));
+                                    }
                                 }
                             }
                         }
-                    }
-                    if (dataRelations.length > 0) {
-                        SWEETALERT.confirm({
-                            message: MESSAGE.ieval('alerts.emptyRelations', {relations: DSON.ULALIA(emptyRelations)}),
-                            confirm: function () {
-                                if ($scope.form.target === FORM.targets.modal) {
-                                    if (close !== false)
-                                        MODAL.close($scope);
+                        if (dataRelations.length > 0) {
+                            SWEETALERT.confirm({
+                                message: MESSAGE.ieval('alerts.fullRelations', {relations: DSON.ULALIA(dataRelations)}),
+                                confirm: function () {
+                                    if ($scope.form.target === FORM.targets.modal) {
+                                        if (close !== false)
+                                            MODAL.close($scope);
+                                    }
+                                    if ($scope.pages.form)
+                                        $scope.pages.form.onClose(close);
                                 }
-                                if ($scope.pages.form)
-                                    $scope.pages.form.onClose(close);
-                            }
-                        });
-                        return;
+                            });
+                            return;
+                        }
                     }
 
                     if ($scope.form !== null)

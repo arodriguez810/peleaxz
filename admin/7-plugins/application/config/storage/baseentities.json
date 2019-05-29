@@ -4,6 +4,7 @@
     "group": {
       "key": "id",
       "type": "one",
+      "base": true,
       "fields": [
         "name",
         "description",
@@ -40,6 +41,7 @@
     "audit": {
       "key": "id",
       "type": "one",
+      "base": true,
       "fields": [
         "entity",
         "entityID",
@@ -78,6 +80,7 @@
     "segment": {
       "key": "id",
       "type": "one",
+      "base": true,
       "fields": [
         "name",
         "description",
@@ -92,6 +95,7 @@
     "interval": {
       "key": "id",
       "type": "one",
+      "base": true,
       "fields": [
         "name",
         "description",
@@ -161,6 +165,7 @@
     "fieldtype": {
       "key": "id",
       "type": "one",
+      "base": true,
       "fields": [
         "name",
         "key",
@@ -176,6 +181,7 @@
     "mime": {
       "key": "id",
       "type": "one",
+      "base": true,
       "fields": [
         "name",
         "key",

@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "list": {
+      "group": {
+        "type": "permission",
+        "allow": {}
+      },
+      "texts": {
+        "type": "full",
+        "allow": {}
+      },
+      "dates": {
+        "type": "full",
+        "allow": {}
+      },
+      "users": {
+        "type": "permission",
+        "allow": {}
+      }
+    }
+  }
+}

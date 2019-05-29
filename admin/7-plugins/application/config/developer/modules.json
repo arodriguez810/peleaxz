@@ -155,6 +155,10 @@
     {
       "var": "OneSignal",
       "module": "onesignal-node"
+    },
+    {
+      "var": "tinycolor",
+      "module": "tinycolor2"
     }
   ]
 }

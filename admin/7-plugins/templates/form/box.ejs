@@ -12,7 +12,7 @@ var options = {
     icon: {
         class: "none",
         position: "left",
-        color: TAG.table + "-800"
+        color: COLOR.secundary + "-800"
     },
     max: 99999999,
     height: false,
@@ -119,7 +119,7 @@ var toclient = JSON.stringify(options);
 <% if (model !== options.table){ %>
 <div id="<%= options.table %>" ng-controller="<%= options.table %> as <%= options.table %>">
     <% } %>
-    <div class="form-group-material form-group has-feedback  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
+    <div class="form-group-material form-group has-feedback  has-feedback-<%= options.icon.position %>"
          id="input<%= model %>_<%= nameclean %>">
         <div
                 <%= options.multiple ? "multiple='multiple'" : "" %>
@@ -129,7 +129,7 @@ var toclient = JSON.stringify(options);
                 class="panel "
                 style="<%= options.height !== false ? ('min-height: ' + options.height + 'px;') : '' %>">
 
-            <div class="panel-heading  bg-<%= COLOR.info %>  border-bottom-<%= COLOR.primary %> "
+            <div class="panel-heading  bg-<%= COLOR.secundary %>  border-bottom-<%= COLOR.primary %> "
                  style="padding-top: 3px;padding-bottom: 3px">
                 <h6 class="panel-title">
                     {{<%= model %>.form.options.<%= name %>.label}}
@@ -252,7 +252,7 @@ var toclient = JSON.stringify(options);
         <div class="form-control-feedback">
             <i
                     id="icon<%= name %>"
-                    class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} text-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}">
+                    class="icon-<%= options.icon.class %> text-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}">
 
             </i>
         </div>

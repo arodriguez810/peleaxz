@@ -5,6 +5,7 @@ DSON.keepmerge(CRUD_texts,
         table: {
             key: 'id',
             deletekeys: ['id'],
+            width: 'width:2000px;',
             columns: {
                 id: {
                     label: "ID",
@@ -17,17 +18,22 @@ DSON.keepmerge(CRUD_texts,
                     shorttext: 20,
                     //["click", "dblclick", "mousedown", "mouseenter", "mouseleave", "mousemove", "mouseover", "mouseup"]
                 },
-                mask: {
-                    label: "mask",
+                money: {
+                    label: "Money",
                     shorttext: 20,
+                    formattype: 'money'
                 },
-                format: {
-                    label: "format",
+                percentage: {
+                    label: "Percentage",
                     shorttext: 20,
+                    formattype: 'percentage'
                 },
                 readonly: {
                     label: "readonly",
                     shorttext: 20,
+                    format: function (row) {
+                        return row.basic + " from basic";
+                    }
                 },
                 normalpassword: {
                     label: "normal password",

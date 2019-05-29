@@ -10,7 +10,18 @@
         </div>
         <div class="row">
             <div class="col-sm-4 col-md-4">
-                <%- FORM.range("range", scope, {}) %>
+                <%- FORM.daterange("range", scope, {}) %>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.datetimerange("rangetime", scope, {}) %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.date("date", scope, {}) %>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.datetime("datetime", scope, {}) %>
             </div>
         </div>
     </div>

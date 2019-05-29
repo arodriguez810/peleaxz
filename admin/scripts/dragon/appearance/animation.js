@@ -25,8 +25,8 @@ ANIMATION = function () {
         if (customBlock === "#content") {
             message = `<div class="spinner222">
                             <div class="double-bounce1 bg-<%= COLOR.primary %>-600"></div>
-                            <div class="double-bounce2 bg-<%= TAG.table %>-600"></div>
-                            <div class="double-bounce3 bg-<%= COLOR.menu %>-600"></div>
+                            <div class="double-bounce2 bg-<%= COLOR.secundary %>-600"></div>
+                            <div class="double-bounce3 bg-<%= COLOR.extra %>-600"></div>
                         </div>`;
         }
         var block = $(customBlock);

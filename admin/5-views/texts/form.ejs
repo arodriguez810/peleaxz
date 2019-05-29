@@ -5,18 +5,10 @@
                 <%- FORM.input("basic", scope, {maxlength: 50}) %>
             </div>
             <div class="col-sm-4 col-md-4">
-                <%- FORM.format("format", scope, {
-                    isNumber: false,
-                    icon: {class: "percent", position: "right"},
-                    format: {mask: "###%", options: {reverse: true}}
-                }) %>
+                <%- FORM.percentage("percentage", scope, {}) %>
             </div>
             <div class="col-sm-4 col-md-4">
-                <%- FORM.format("mask", scope, {
-                    isNumber: true,
-                    icon: {class: "cash3"},
-                    format: {mask: "000,000,000,000,000.00", options: {reverse: true}}
-                }) %>
+                <%- FORM.money("money", scope, {}) %>
             </div>
         </div>
         <div class="row">

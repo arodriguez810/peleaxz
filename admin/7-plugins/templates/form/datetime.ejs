@@ -11,7 +11,7 @@ var options = {
     icon: {
         class: "calendar",
         position: "left",
-        color: TAG.table + "-800"
+        color: COLOR.secundary + "-800"
     },
     helptext: '',
     format: 'd/m/Y h:i a',
@@ -78,12 +78,17 @@ var toclient = JSON.stringify(options);
         }
     }
 </script>
-<div class="form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
+<div class="form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-<%= options.icon.position %>"
      id="input<%= model %>_<%= nameclean %>">
     <label
             id="label<%= model %>_<%= nameclean %>"
-            class="control-label {{<%= model + "." + name %>?'is-visible animate':(<%= model + "." + name %>==0?'is-visible animate':'')}}">
-        {{<%= model %>.form.options.<%= name %>.placeholder}}
+            class="control-label is-visible animate" style="color:#000000 !important;">
+        {{::<%= model %>.form.options.<%= name %>.placeholder}}
+        <% if(options.popover){ %>
+            <i
+                    id="popover<%= model %>_<%= nameclean %>" class="icon-help">
+            </i>
+        <% } %>
     </label>
     <input autocomplete="off"
            ng-model="<%= model + "." + name %>"
@@ -93,11 +98,11 @@ var toclient = JSON.stringify(options);
            ng-model-onblur
            class="form-control"
            ng-disabled="<%= model %>.form.options.<%= name %>.disabled"
-           placeholder="{{<%= model %>.form.options.<%= name %>.placeholder}}"
+           placeholder="{{::<%= model %>.form.options.<%= name %>.inputPlaceholder}}"
     >
 
     <div style="margin: 10px;" class="form-control-feedback">
-        <i class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} text-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}">
+        <i class="icon-<%= options.icon.class %> text-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}">
 
         </i>
     </div>
@@ -115,6 +120,16 @@ var toclient = JSON.stringify(options);
 </div>
 <script type="text/javascript">
     $(document).ready(function () {
+
+        <% if(options.popover){ %>
+        $('#popover<%= model %>_<%= nameclean %>').popover({
+            container: 'body',
+            title: eval("`" +<%= model %>.form.options.<%= name %>.popover.title + "`"),
+            content:eval("`" +<%= model %>.form.options.<%= name %>.popover.content + "`"),
+        trigger: 'click'
+    });
+        <% } %>
+
         var jsOptions = <%= model %>.
         form.options.<%= name %>;
 

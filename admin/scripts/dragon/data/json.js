@@ -8,6 +8,8 @@ function has_scrollbar(name) {
 }
 
 DSON = {
+    UNIVERSAL: "YYYY/MM/DD",
+    UNIVERSALTIME: "YYYY/MM/DD H:mm",
     DTF: function (format) {
         var newformat = format;
         newformat = newformat.replace("LTS", moment().localeData()._longDateFormat.LTS);
@@ -60,6 +62,22 @@ DSON = {
                     to[i] = from[i];
                 } else if (!to.hasOwnProperty(i)) {
                     to[i] = false;
+                }
+            }
+        }
+    },
+    jalar: function (from, to, only) {
+        for (var i in from) {
+            if (to.hasOwnProperty(i)) {
+                if (typeof to[i] === 'object') {
+                    DSON.jalar(from[i], to[i]);
+                } else {
+                    if (!only)
+                        to[i] = from[i];
+                    else {
+                        if (from[i] === only)
+                            to[i] = from[i];
+                    }
                 }
             }
         }

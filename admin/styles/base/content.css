@@ -20,3 +20,6 @@
 
 body { padding-right: 0 !important }
 
+.popover{
+    max-width: 50% !important; /* Max Width of the popover (depending on the container!) */
+}

@@ -15,7 +15,7 @@ var options = {
     icon: {
         class: "upload",
         position: "left",
-        color: TAG.table
+        color: COLOR.secundary
     },
     type: "normal",
     folder: `${model}/temp_files/${name}/` + new Date().getTime(),
@@ -58,7 +58,7 @@ var toclient = JSON.stringify(options);
     }
 
 </script>
-<div class="form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
+<div class="form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-<%= options.icon.position %>"
      id="input<%= model %>_<%= nameclean %>">
 
     <% if(options.show === 'image'){ %>
@@ -72,9 +72,13 @@ var toclient = JSON.stringify(options);
             class="btn bg-<%= options.color %>-600 btn-block legitRipple">
         <%= options.model ? "{{" + options.model + "}}" : "" %>
         {{<%= model %>.<%= name %>_DragonCountFile>0? (<%= model %>.filesMessages + " " + "(" + <%= model %>.<%= name %>_DragonCountFile+")") :""}}  {{<%= model %>.form.options.<%= name %>.text}}
-        <i class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} position-{{<%= model %>.form.options.<%= name %>.icon.position}}"></i>
+        <i class="icon-<%= options.icon.class %> position-<%= options.icon.position %>"></i>
     </button>
-
+        <% if(options.popover){ %>
+            <i
+                    id="popover<%= model %>_<%= nameclean %>" class="icon-help">
+            </i>
+        <% } %>
     <span ng-if="<%= model %>.form.options.<%= name %>.helptext!=''"
           class="help-block text-muted">
         {{<%= model %>.form.options.<%= name %>.helptext}}
@@ -92,7 +96,14 @@ var toclient = JSON.stringify(options);
 <script>
     <%= model %>.triggers.table.after.control("<%= nameclean %>");
     var amLoad<%= name %> = false;
-
+    <% if(options.popover){ %>
+    $('#popover<%= model %>_<%= nameclean %>').popover({
+        container: 'body',
+        title: eval("`" +<%= model %>.form.options.<%= name %>.popover.title + "`"),
+        content:eval("`" +<%= model %>.form.options.<%= name %>.popover.content + "`"),
+    trigger: 'click'
+    });
+    <% } %>
 
     function ShowCount<%= name %>(direct) {
         <% if(options.show === 'image'){ %>

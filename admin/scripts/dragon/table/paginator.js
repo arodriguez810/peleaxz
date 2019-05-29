@@ -26,7 +26,7 @@ PAGINATOR = {
             }
         };
         $scope.limitActive = function (limit) {
-            return $scope.table.currentLimit === limit ? String.format("bg-{0}-300", TAG.table) : '';
+            return $scope.table.currentLimit === limit ? String.format("bg-{0}-300", COLOR.secundary) : '';
         };
         $scope.pageChanged = function () {
             STORAGE.savePage($scope);
@@ -118,7 +118,7 @@ PAGINATOR = {
         for (var i = initPaginator; i <= lastPaginator; i++) {
             $scope.table.pages.push({
                 number: i,
-                current: $scope.table.currentPage === i ? ("active bg-" + TAG.table) : "",
+                current: $scope.table.currentPage === i ? ("active bg-" + COLOR.secundary) : "",
                 class: ""
             });
         }

@@ -12,7 +12,7 @@ var options = {
     icon: {
         class: "none",
         position: "left",
-        color: TAG.table + "-800"
+        color: COLOR.secundary + "-800"
     },
     helptext: '',
     format: '',
@@ -50,25 +50,30 @@ var toclient = JSON.stringify(options);
 <div class="<%= options.icon.spyce %> form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-{{::<%= model %>.form.options.<%= name %>.icon.position}}"
      id="input<%= model %>_<%= nameclean %>">
     <label
-            class="control-label {{<%= model + "." + name %>?'is-visible animate':(<%= model + "." + name %>==0?'is-visible animate':'')}}">
-        {{<%= model %>.form.options.<%= name %>.placeholder}}
+            class="control-label is-visible animate" style="color:#000000 !important;">
+        {{::<%= model %>.form.options.<%= name %>.placeholder}}
+        <% if(options.popover){ %>
+            <i
+                    id="popover<%= model %>_<%= nameclean %>" class="icon-help">
+            </i>
+        <% } %>
     </label>
     <input
             ng-model="<%= model + "." + name %>" name="<%= model %>_<%= nameclean %>"
             ng-readonly="<%= model %>.form.options.<%= name %>.readonly"
             ng-disabled="<%= model %>.form.options.<%= name %>.disabled"
-            maxlength="{{<%= model %>.form.options.<%= name %>.maxlength}}"
+            <%= options.maxlength ? `maxlength=${options.maxlength}` : "" %>
             type="text"
             class="form-control">
 
     <div class="form-control-feedback" ng-if="<%= model %>.form.options.<%= name %>.icon.class!=='none'">
-        <i class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} text-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}">
+        <i class="icon-<%= options.icon.class %> text-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}">
 
         </i>
     </div>
     <span ng-if="<%= model %>.form.options.<%= name %>.helptext!=''"
           class="help-block text-muted">
-        {{::<%= model %>.form.options.<%= name %>.helptext}}
+        <%= options.helptext %>
     </span>
 
     <span ng-if="<%= model %>.validate['<%= name %>'].messages.length>0" class="help-block">
@@ -82,11 +87,20 @@ var toclient = JSON.stringify(options);
 
 <script>
 
-    var formaty =<%= model %>.form.options.<%= name %>.mask;
-    $('[name="<%= model %>_<%= nameclean %>"]').inputmask(formaty);
+    var formaty =<%= model %>.form.options.<%= name %>.maskprop;
+    $('[name="<%= model %>_<%= nameclean %>"]').inputmask("<%= options.mask %>",formaty);
     <%= model %>.triggers.table.after.control("<%= nameclean %>");
     <% if(options.maxlength){ %>
     //$('[name="<%= model %>_<%= nameclean %>"]').maxlength();
+    <% } %>
+
+    <% if(options.popover){ %>
+    $('#popover<%= model %>_<%= nameclean %>').popover({
+        container: 'body',
+        title: eval("`" +<%= model %>.form.options.<%= name %>.popover.title + "`"),
+        content:eval("`" +<%= model %>.form.options.<%= name %>.popover.content + "`"),
+    trigger: 'click'
+    });
     <% } %>
 
     $('[name="<%= model %>_<%= nameclean %>"]').blur(function () {

@@ -294,22 +294,22 @@ TABLEEVENT = {
             var dataColumn = $(event.currentTarget).data('column');
             $("[data-column=" + dataColumn + "]:not(th)").each(function () {
                 var control = $(this);
-                if (control.hasClass("alpha-" + COLOR.info))
-                    control.removeClass("alpha-" + COLOR.info);
+                if (control.hasClass("alpha-" + COLOR.secundary))
+                    control.removeClass("alpha-" + COLOR.secundary);
                 else {
-                    control.addClass("alpha-" + COLOR.info);
+                    control.addClass("alpha-" + COLOR.secundary);
                 }
             });
 
         };
         $scope.cell.select = function (event, row) {
-            $("tr").removeClass("alpha-" + COLOR.info);
-            $("td").removeClass("alpha-" + COLOR.info);
-            var classElement = "bg-" + COLOR.info;
+            $("tr").removeClass("alpha-" + COLOR.secundary);
+            $("td").removeClass("alpha-" + COLOR.secundary);
+            var classElement = "bg-" + COLOR.secundary;
             if (!$(event.currentTarget).parent().hasClass(classElement))
                 if (row.selected !== true)
                     if ($scope.activeSET(row) !== false)
-                        $(event.currentTarget).parent().addClass("alpha-" + COLOR.info);
+                        $(event.currentTarget).parent().addClass("alpha-" + COLOR.secundary);
         };
         $scope.cell.dblselect = function (row) {
             if (!DSON.oseaX(row) && eval(`CRUD_${$scope.modelName}`).table.allow.view) {
@@ -428,8 +428,8 @@ TABLEEVENT = {
                 ARRAY.removeLast($scope.forDelte);
                 multiple = true;
             }
-            $("tr").removeClass("alpha-" + COLOR.info);
-            $("td").removeClass("alpha-" + COLOR.info);
+            $("tr").removeClass("alpha-" + COLOR.secundary);
+            $("td").removeClass("alpha-" + COLOR.secundary);
             var where = [];
             for (const deletekey of eval(`CRUD_${$scope.modelName}`).table.deletekeys)
                 where.push({field: deletekey, value: eval("row." + deletekey)});

@@ -47,6 +47,7 @@ MODAL = {
         if (MODAL.historyObject.length < 1) {
             REMOVEALLCHILDSCOPE();
             $scope.colertor();
+            UNIQUEFIELD = null;
         }
         $(last).remove();
         if (MODAL.history.length > 0) {
@@ -63,6 +64,7 @@ MODAL = {
                 ANGULARJS.get('baseController').base();
                 MENUMODAL = false;
             }
+            UNIQUEFIELD = null;
         }
     },
     run: function ($scope) {
@@ -117,13 +119,13 @@ MODAL = {
             var content = data.content.data.startsWith("->") ?
                 `<div class="spinner222Modal">
                     <div class="double-bounce1 bg-${COLOR.primary}-600"></div>
-                    <div class="double-bounce2 bg-${TAG.table}-600"></div>
-                    <div class="double-bounce3 bg-${COLOR.menu}-600"></div>
+                    <div class="double-bounce2 bg-${COLOR.secundary}-600"></div>
+                    <div class="double-bounce3 bg-${COLOR.extra}-600"></div>
                 </div>`
                 : data.content.data;
             var cancelText = backMode ? MESSAGE.ic('mono.back') : MESSAGE.ic('mono.close');
             var cancelButton = data.footer.cancelButton
-                ? '    <button type="button" class="btn btn-labeled bg-' + TAG.table + '" ' + closeModal + " > <b><i class=\"icon-cross2\"></i></b>" + cancelText + "</button>" : "";
+                ? '    <button type="button" class="btn btn-labeled bg-' + COLOR.secundary + '" ' + closeModal + " > <b><i class=\"icon-cross2\"></i></b>" + cancelText + "</button>" : "";
             var html = String.format('<div id="modal' + data.id + '" class="modal {0}"  data-backdrop="static" data-keyboard="false">', animation) +
                 ' <div class="modal-dialog ' + data.width + ' ">' +
                 '  <div class="modal-content">' +

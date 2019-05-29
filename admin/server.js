@@ -10,7 +10,7 @@ function repeatStringNumTimes(string, times) {
 var lines = process.stdout.getWindowSize()[1];
 for (var i = 0; i < lines; i++) console.log("\r\n");
 var folders = {
-    models: "2-models",
+    models: "2-procedures",
     service: "1-service",
     controllers: "3-controllers",
     controllersBase: "7-plugins/application/controllers",
@@ -28,7 +28,8 @@ var folders = {
     styles: "styles",
     server: "server",
     files: "files",
-    themes: "styles/colors",
+    themesTemplate: "7-plugins/templates/system/color.ejs",
+    themes: "files/configuration/themes",
 };
 var modules = {}, controls = [], localjs = [], localModules = [], localModulesVars = [], modulesList = [],
     developer = {}, themes = [];
@@ -80,6 +81,7 @@ configs.forEach(function (config) {
     mergeObject(file, CONFIG);
 });
 
+
 var LANGUAGE = {};
 languages = getFiles("./" + folders.language + "/");
 THEMES = getFiles("./" + folders.themes + "/");
@@ -112,6 +114,54 @@ for (var i in CONFIG.modules) {
     localModulesVars.push(module.var);
     eval("var " + module.var + " = require('" + module.module + "');");
 }
+
+
+if(CONFIG.mode==='developer') {
+    var ThemeTemplate = fs.readFileSync(folders.themesTemplate).toString();
+    shadesMonochrome = function (color, name, shadesBlocks) {
+        var colors = [];
+        var hsl = tinycolor(color).toHsl();
+        var index = 1;
+        for (var i = 9.5; i >= 0.5; i -= 1) {
+            hsl.l = 0.1 * i;
+            colors[index] = tinycolor(hsl).toHexString();
+            index++;
+        }
+        var shades = {};
+        shades.text1 = CONFIG.ui.theme.text1;
+        shades.text2 = CONFIG.ui.theme.text2;
+        shades.name = name;
+        var shadesArray = shadesBlocks.split(',');
+        for (var i in shadesArray) {
+            eval(`shades.color${parseInt(i) + 1} = colors[${shadesArray[i]}];`);
+        }
+        return shades;
+    };
+    var onerandom = tinycolor.random().toHexString();
+    var onerandom2 = tinycolor.random().toHexString();
+    if (CONFIG.ui.theme.primary === "random")
+        CONFIG.ui.theme.primary = onerandom;
+    if (CONFIG.ui.theme.secundary === "random")
+        CONFIG.ui.theme.secundary = onerandom;
+    if (CONFIG.ui.theme.extra === "random")
+        CONFIG.ui.theme.extra = onerandom;
+
+    if (CONFIG.ui.theme.primary === "random2")
+        CONFIG.ui.theme.primary = onerandom;
+    if (CONFIG.ui.theme.secundary === "random2")
+        CONFIG.ui.theme.secundary = onerandom;
+    if (CONFIG.ui.theme.extra === "random2")
+        CONFIG.ui.theme.extra = onerandom;
+
+    primary = ejs.compile(ThemeTemplate, {})({DATA: shadesMonochrome(CONFIG.ui.theme.primary, 'primary', CONFIG.ui.theme.primaryShades)});
+    secundary = ejs.compile(ThemeTemplate, {})({DATA: shadesMonochrome(CONFIG.ui.theme.secundary, 'secundary', CONFIG.ui.theme.secundaryShades)});
+    extra = ejs.compile(ThemeTemplate, {})({DATA: shadesMonochrome(CONFIG.ui.theme.extra, 'extra', CONFIG.ui.theme.extraShades)});
+
+    fs.writeFileSync(folders.themes + "/primary.css", primary);
+    fs.writeFileSync(folders.themes + "/secundary.css", secundary);
+    fs.writeFileSync(folders.themes + "/extra.css", extra);
+}
+
 if (CONFIG.domain === true) {
     var ifaces = os.networkInterfaces();
     Object.keys(ifaces).forEach(function (ifname) {
@@ -207,7 +257,7 @@ ThereConfig.then(function (thereConfig) {
     app.set("view engine", "ejs");
     app.set("layouts", "./" + folders.master);
     colors.setTheme({
-        pxz: ["white", "bgRed"],
+        pxz: [CONFIG.ui.console.text, CONFIG.ui.console.bg],
         error: ["red", "underline"],
         success: ["green", "bgWhite"],
         info: ["cyan", "bgBlue"],
@@ -353,144 +403,94 @@ ThereConfig.then(function (thereConfig) {
         });
     } else loadedMotors++;
     if (CONFIG.mssql !== undefined) {
-        var msfiles = fs.readdirSync("./" + folders.models + "/mssql");
-
-        for (var i in msfiles) {
-            var file = msfiles[i];
-            modelsql.push(S(file).replaceAll(".sql", "").replaceAll("MO_", "").s);
-        }
-
-        var queries = [];
-        for (var i in msfiles) {
-            var sentence = msfiles[i];
-            var query = fs.readFileSync(`./${folders.models}/mssql/${sentence}`);
-            queries.push(util.format("%s", query));
-        }
-        if (!CONFIG.features.migrations) {
-            queries = ['select 1;'];
-        }
-        modules.mssql.executeNonQueryArray(queries, PARAMS, false).then(x => {
+        modelsql = [];
+        modules.mssql.data(`select TABLE_NAME from INFORMATION_SCHEMA.TABLES`, PARAMS, false).then(x => {
             console.log('loaded mssql models');
-            fs.readdir("./" + folders.models + "/scripts/mssql", function (err, mssentences) {
+            for (var row of x.data) {
+                modelsql.push(row.TABLE_NAME);
+            }
+            var MSSQLDB = {};
+            for (var i in modelsql) {
+                var stringModel = S(allparams).replaceAll("@model@", modelsql[i]).s;
+                eval("MSSQLDB." + modelsql[i] + " = new modules.mssql.Model('" + modelsql[i] + "'," + allparams + ");");
+                modules.mssql.defaultRequests(
+                    eval(util.format("MSSQLDB.%s", modelsql[i])),
+                    eval("(" + stringModel + ")")
+                );
+            }
+            loadedMotors++
+            fs.readdir("./" + folders.models + "/mssql", function (err, sentences) {
                 var queries = [];
-                for (var i in mssentences) {
-                    var sentence = mssentences[i];
-                    var query = fs.readFileSync(`./${folders.models}/scripts/mssql/${sentence}`);
-
+                for (var i in sentences) {
+                    var sentence = sentences[i];
+                    var query = fs.readFileSync(`./${folders.models}/mssql/${sentence}`);
                     queries.push(util.format("%s", query));
                 }
                 modules.mssql.executeNonQueryArray(queries, PARAMS, false).then((data) => {
-                    console.log('loaded mssql queries');
-                    loadedMotors++;
+                    console.log('-mssql');
                 });
             });
         });
-
-        var MSSQLDB = {};
-        for (var i in modelsql) {
-
-            var stringModel = S(allparams).replaceAll("@model@", modelsql[i]).s;
-            eval("MSSQLDB." + modelsql[i] + " = new modules.mssql.Model('" + modelsql[i] + "'," + allparams + ");");
-            modules.mssql.defaultRequests(
-                eval(util.format("MSSQLDB.%s", modelsql[i])),
-                eval("(" + stringModel + ")")
-            );
-        }
     } else loadedMotors++;
     if (CONFIG.mysql !== undefined) {
-        var myfiles = fs.readdirSync("./" + folders.models + "/mysql");
-
-        for (var i in myfiles) {
-            var file = myfiles[i];
-            modelmysql.push(S(file).replaceAll(".sql", "").replaceAll("MO_", "").s);
-        }
-
-
-        var queries = [];
-        for (var i in myfiles) {
-            var sentence = myfiles[i];
-            var query = fs.readFileSync(`./${folders.models}/mysql/${sentence}`);
-            queries.push(util.format("%s", query));
-        }
-        if (!CONFIG.features.migrations) {
-            queries = ['select 1;'];
-        }
-
-        modules.mysql.executeNonQueryArray(queries, PARAMS, false).then(x => {
+        modelmysql = [];
+        modules.mysql.data(`select TABLE_NAME from information_schema.\`TABLES\` where TABLE_SCHEMA='${CONFIG.mysql.database}'`, PARAMS, false).then(x => {
             console.log('loaded mysql models');
-            fs.readdir("./" + folders.models + "/scripts/mysql", function (err, mysentences) {
+            for (var row of x.data) {
+                modelmysql.push(row.TABLE_NAME);
+            }
+            var MYQLDB = {};
+            for (var i in modelmysql) {
+                var stringModel = S(allparams).replaceAll("@model@", modelmysql[i]).s;
+                eval("MYQLDB." + modelmysql[i] + " = new modules.mysql.Model('" + modelmysql[i] + "'," + allparams + ");");
+                modules.mysql.defaultRequests(
+                    eval(util.format("MYQLDB.%s", modelmysql[i])),
+                    eval("(" + stringModel + ")")
+                );
+            }
+            loadedMotors++
+            fs.readdir("./" + folders.models + "/mysql", function (err, sentences) {
                 var queries = [];
-                for (var i in mysentences) {
-                    var sentence = mysentences[i];
-                    var query = fs.readFileSync(`./${folders.models}/scripts/mysql/${sentence}`);
-
+                for (var i in sentences) {
+                    var sentence = sentences[i];
+                    var query = fs.readFileSync(`./${folders.models}/mysql/${sentence}`);
                     queries.push(util.format("%s", query));
                 }
                 modules.mysql.executeNonQueryArray(queries, PARAMS, false).then((data) => {
-                    console.log('loaded mysql queries');
-                    loadedMotors++;
+                    console.log('-mysql');
                 });
             });
         });
-
-
-        var MYQLDB = {};
-        for (var i in modelmysql) {
-            var stringModel = S(allparams).replaceAll("@model@", modelmysql[i]).s;
-            eval("MYQLDB." + modelmysql[i] + " = new modules.mysql.Model('" + modelmysql[i] + "'," + allparams + ");");
-            modules.mysql.defaultRequests(
-                eval(util.format("MYQLDB.%s", modelmysql[i])),
-                eval("(" + stringModel + ")")
-            );
-        }
     } else loadedMotors++;
     if (CONFIG.oracle !== undefined) {
-
-        var orafiles = fs.readdirSync("./" + folders.models + "/oracle");
-
-
-        for (var i in orafiles) {
-            var file = orafiles[i];
-            modeloracle.push(S(file).replaceAll(".sql", "").replaceAll("MO_", "").s);
-        }
-
-        var queries = [];
-        for (var i in orafiles) {
-            var sentence = orafiles[i];
-            var query = fs.readFileSync(`./${folders.models}/oracle/${sentence}`);
-            queries.push(util.format("%s", query));
-        }
-        if (!CONFIG.features.migrations) {
-            queries = ['select 1 from dual'];
-        }
-        modules.oracle.executeNonQueryArray(queries, PARAMS, false).then(x => {
+        modeloracle = [];
+        modules.oracle.data(`select TABLE_NAME from INFORMATION_SCHEMA.TABLES`, PARAMS, false).then(x => {
             console.log('loaded oracle models');
-            fs.readdir("./" + folders.models + "/scripts/oracle", function (err, orasentences) {
+            for (var row of x.data) {
+                modeloracle.push(row.TABLE_NAME);
+            }
+            var ORACLEDB = {};
+            for (var i in modeloracle) {
+                var stringModel = S(allparams).replaceAll("@model@", modeloracle[i]).s;
+                eval("ORACLEDB." + modeloracle[i] + " = new modules.oracle.Model('" + modeloracle[i] + "'," + allparams + ");");
+                modules.oracle.defaultRequests(
+                    eval(util.format("ORACLEDB.%s", modeloracle[i])),
+                    eval("(" + stringModel + ")")
+                );
+            }
+            loadedMotors++
+            fs.readdir("./" + folders.models + "/oracle", function (err, sentences) {
                 var queries = [];
-                for (var i in orasentences) {
-                    var sentence = orasentences[i];
-                    var query = fs.readFileSync(`./${folders.models}/scripts/oracle/${sentence}`);
-
+                for (var i in sentences) {
+                    var sentence = sentences[i];
+                    var query = fs.readFileSync(`./${folders.models}/oracle/${sentence}`);
                     queries.push(util.format("%s", query));
                 }
                 modules.oracle.executeNonQueryArray(queries, PARAMS, false).then((data) => {
-                    console.log('loaded oracle queries');
-                    loadedMotors++;
+                    console.log('-oracle');
                 });
             });
         });
-
-
-        var ORACLEDB = {};
-        for (var i in modeloracle) {
-            var stringModel = S(allparams).replaceAll("@model@", modeloracle[i]).s;
-            eval("ORACLEDB." + modeloracle[i] + " = new modules.oracle.Model('" + modeloracle[i] + "'," + allparams + ");");
-            modules.oracle.defaultRequests(
-                eval(util.format("ORACLEDB.%s", modeloracle[i])),
-                eval("(" + stringModel + ")")
-            );
-        }
-
     } else loadedMotors++;
     if (true) {
 
@@ -537,7 +537,6 @@ ThereConfig.then(function (thereConfig) {
         eval("services = " + model + "Service.api");
         servicesFunctions[model] = services;
     });
-
     servicesFiles.forEach(function (item) {
         var model = item.replace(".js", "").replace("SE_", "");
         model = S(model).replaceAll('/', '_').s;
@@ -550,7 +549,6 @@ ThereConfig.then(function (thereConfig) {
             catalogs.push(item);
         });
     });
-
     modules.tools.init(eval("(" + allparams + ")"));
     modules.views.init(eval("(" + allparams + ")"));
     app.listen(CONFIG.port);

@@ -194,5 +194,10 @@
   "september": "Septiembre",
   "october": "Octubre",
   "november": "Noviembre",
-  "december": "Deciembre"
+  "december": "Deciembre",
+  "week": "semana",
+  "diskdata": "datos en disco",
+  "base": "Módulos Base",
+  "entity": "entidad",
+  "records": "registros"
 }

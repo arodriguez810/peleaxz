@@ -132,6 +132,17 @@ exports.delete = async function (table, params, where) {
         return {query: wherefinal, error: {message: e, metadata: entity, recordset: datas}};
     }
 };
+exports.truncate = async function (table, params) {
+    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;
+    if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
+    var entity = eval(`params.CONFIG.storageEntities.${table}`);
+    if (!entity)
+        entity = eval(`params.CONFIG.appEntities.${table}`);
+    var indexKey = table + "_index";
+    await params.storage.removeItem(indexKey);
+    await params.storage.removeItem(table);
+    return true;
+};
 exports.makeWhere = function (where, params) {
     var whereprepare = [];
     var connectors = [];
@@ -403,6 +414,16 @@ exports.defaultRequests = function (Model, params, folder) {
             });
         });
     });
+    params.app.post('/api/' + Model.tableName + '/truncate', function (req, res) {
+        params.secure.check(req, res, function () {
+            Model.truncate().then((data) => {
+                if (data.error !== false) res.send(data.error);
+                res.json(data);
+            }).catch(err => {
+                res.json(err);
+            });
+        });
+    });
 };
 exports.Model = function (tableName, params) {
 
@@ -416,6 +437,11 @@ exports.Model = function (tableName, params) {
     this.delete = async function (options) {
         var where = options.where || options;
         return await exports.delete(this.tableName, params, where).then(result => {
+            return result;
+        });
+    };
+    this.truncate = async function () {
+        return await exports.truncate(this.tableName, params).then(result => {
             return result;
         });
     };

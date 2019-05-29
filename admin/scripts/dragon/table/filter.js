@@ -231,7 +231,7 @@ FILTER = {
                     MODAL.close($scope);
             };
             $scope.filters.colored = function (block) {
-                var color = 'alpha-' + TAG.table;
+                var color = 'alpha-' + COLOR.secundary;
                 var backs = $scope.filters.blocks.filter(function (item) {
                     return item.id < block.id;
                 }).reverse();
@@ -261,7 +261,7 @@ FILTER = {
                 block.connector = FILTER.connectors[currentIndex];
             };
             $scope.filters.colorConnector = function (block) {
-                return block.connector === 'AND' ? `bg-${COLOR.primary}` : `bg-${TAG.table}`;
+                return block.connector === 'AND' ? `bg-${COLOR.primary}` : `bg-${COLOR.secundary}`;
             };
             $scope.filters.toggleGroup = function (block) {
                 block.group = !block.group;
@@ -416,13 +416,13 @@ FILTER = {
 
                                     var descriptions = [];
                                     for (const sel of selecteds) {
-                                        descriptions.push(`<span class="label bg-${TAG.table} label-rounded">${eval(`${item.column.text.replace('item', 'sel')}`)}</span>`);
+                                        descriptions.push(`<span class="label bg-${COLOR.secundary} label-rounded">${eval(`${item.column.text.replace('item', 'sel')}`)}</span>`);
                                     }
                                     showvalue = descriptions;
                                 }
                             }
                         }
-                        var whe = `<span class="${danger}">${item.operator.text}</span> <b class="${danger}">${showvalue}</b> <b class="text-${TAG.table}-800">${item.connector}</b>`;
+                        var whe = `<span class="${danger}">${item.operator.text}</span> <b class="${danger}">${showvalue}</b> <b class="text-${COLOR.secundary}-800">${item.connector}</b>`;
                         if (DSON.oseaX(where[item.column.key]))
                             where[item.column.key] = [];
                         where[item.column.key].push(whe);
@@ -435,7 +435,7 @@ FILTER = {
                     var realColumn = $scope.filters.fields.filter(function (item) {
                         return item.key === i;
                     })[0];
-                    description.push(`<b class="text-${TAG.table}-800">${$scope.filters.label(realColumn)}:</b> ` + (items.join(' ') + "*****").replace(`<b class="text-${TAG.table}-800">AND</b>*****`, '').replace(`<b class="text-${TAG.table}-800">OR</b>*****`, ''));
+                    description.push(`<b class="text-${COLOR.secundary}-800">${$scope.filters.label(realColumn)}:</b> ` + (items.join(' ') + "*****").replace(`<b class="text-${COLOR.secundary}-800">AND</b>*****`, '').replace(`<b class="text-${COLOR.secundary}-800">OR</b>*****`, ''));
                 }
                 return "<b>" + MESSAGE.ic('mono.filters') + ":</b> " + description.join('');
             };
@@ -458,13 +458,13 @@ FILTER = {
 
                                     var descriptions = [];
                                     for (const sel of selecteds) {
-                                        descriptions.push(`<span class="label bg-${TAG.table} label-rounded">${eval(`${item.column.text.replace('item', 'sel')}`)}</span>`);
+                                        descriptions.push(`<span class="label bg-${COLOR.secundary} label-rounded">${eval(`${item.column.text.replace('item', 'sel')}`)}</span>`);
                                     }
                                     showvalue = descriptions;
                                 }
                             }
                         }
-                        var whe = `<span class="${danger}">${item.operator.text}</span> <b class="${danger}">${showvalue}</b> <b class="text-${TAG.table}-800">${item.connector}</b>`;
+                        var whe = `<span class="${danger}">${item.operator.text}</span> <b class="${danger}">${showvalue}</b> <b class="text-${COLOR.secundary}-800">${item.connector}</b>`;
                         if (DSON.oseaX(where[item.column.key]))
                             where[item.column.key] = [];
                         where[item.column.key].push(whe);

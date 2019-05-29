@@ -1,4 +1,4 @@
-<div class="page-header-lg page-header-sm page-header page-header-default border-bottom-lg border-bottom-<%= TAG.border %>">
+<div class="page-header-lg page-header-sm page-header page-header-default border-bottom-lg border-bottom-<%= COLOR.secundary %>">
     <!--Breadcrumb and Table Options-->
     <div class="breadcrumb-line">
 
@@ -10,7 +10,7 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-left" ng-show="menu.childs.length>0">
                     <li ng-repeat="(subkey, submenu) in menu.childs track by subkey"
-                        class="{{<%= scope %>.sameHref(submenu,'bg-<%= COLOR.menu %>-300')||''}}">
+                        class="{{<%= scope %>.sameHref(submenu,'bg-<%= COLOR.extra %>-300')||''}}">
                         <a href="{{<%= scope %>.sameHref(submenu,'javascript:void(0)')||submenu.href}}"
                            class="">
                             <i class="{{submenu.icon}}"></i>{{submenu.text}}
@@ -46,7 +46,7 @@
                 <a href="#" class="dropdown-toggle legitRipple" data-toggle="dropdown"
                    aria-expanded="false">
                     <i dragonlanguage="" title="MESSAGE.i('navbar.HideColumns')" class=" icon-list3 "></i>
-                    <span class="label bg-<%= TAG.table %>-400">{{<%= scope %>.hideColumns().length}}</span>
+                    <span class="label bg-<%= COLOR.secundary %>-400">{{<%= scope %>.hideColumns().length}}</span>
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">
@@ -86,7 +86,7 @@
                    aria-expanded="false">
                     <i dragonlanguage="" title="MESSAGE.ic('mono.filters')" class=" icon-filter4 "></i>
                     <span ng-show="<%= scope %>.filters.blocks.length"
-                          class="label bg-<%= TAG.table %>-400">
+                          class="label bg-<%= COLOR.secundary %>-400">
                         {{<%= scope %>.filters.blocks.length}}
                     </span>
                      
@@ -99,7 +99,7 @@
                    aria-expanded="false">
                     <i dragonlanguage="" title="MESSAGE.ic('mono.filters')" class=" icon-filter4 "></i>
                     <span ng-show="<%= scope %>.filters.blocks.length"
-                          class="label bg-<%= TAG.table %>-400">
+                          class="label bg-<%= COLOR.secundary %>-400">
                         {{<%= scope %>.filters.blocks.length}}
                     </span>
                      
@@ -116,7 +116,7 @@
                         <a dragonlanguage="" class="legitRipple" ng-click="<%= scope %>.filters.removeApply(item);">
                             <b>{{<%= scope %>.filters.label(item.column)}}</b> {{item.operator.text}}
                             <b ng-if="!Array.isArray(item.showvalue)">{{item.showvalue}}</b>
-                            <span ng-if="Array.isArray(item.showvalue)" class="label bg-<%= TAG.table %> label-rounded"
+                            <span ng-if="Array.isArray(item.showvalue)" class="label bg-<%= COLOR.secundary %> label-rounded"
                                   ng-repeat="(id,sub) in item.showvalue track by id">
                                 {{sub}}
                             </span>

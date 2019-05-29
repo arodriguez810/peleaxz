@@ -3,16 +3,16 @@
     <%- include('../../../styles/colors/'+COLOR.primary+'.css') %>
 </style>
 <style>
-    <%- include('../../../styles/colors/'+TAG.table+'.css') %>
+    <%- include('../../../styles/colors/'+COLOR.secundary+'.css') %>
 </style>
 <div id="pageHeader">
     <div class="bg-<%= COLOR.primary %>">
         <%= DATA.pdf.replace('a PDF.pdf', '') %> - <%= CONFIG.appName %>
     </div>
     <table class="table table-bordered">
-        <thead class="bg-<%= TAG.table %>">
+        <thead class="bg-<%= COLOR.secundary %>">
 
-        <tr class="bg-<%= TAG.table %>">
+        <tr class="bg-<%= COLOR.secundary %>">
             <% for(var i in DATA.columns) { %>
                 <th><%= DATA.columns[i] %></th>
             <% } %>

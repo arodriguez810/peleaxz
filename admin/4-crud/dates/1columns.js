@@ -5,6 +5,7 @@ DSON.keepmerge(CRUD_dates,
         table: {
             key: 'id',
             deletekeys: ['id'],
+            width: 'width:1400px;',
             columns: {
                 id: {
                     label: "ID",
@@ -36,6 +37,18 @@ DSON.keepmerge(CRUD_dates,
                     label: "To",
                     sorttype: "time",
                     formattype: "date",
+                    exportExample: "\"\"[Date YYYY-MM-DD]\"\""
+                },
+                rangetime_from: {
+                    label: "Datetime From",
+                    sorttype: "time",
+                    formattype: "datetime",
+                    exportExample: "\"\"[Date YYYY-MM-DD]\"\""
+                },
+                rangetime_to: {
+                    label: "Datetime To",
+                    sorttype: "time",
+                    formattype: "datetime",
                     exportExample: "\"\"[Date YYYY-MM-DD]\"\""
                 },
                 year: {

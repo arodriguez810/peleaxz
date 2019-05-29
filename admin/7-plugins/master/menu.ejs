@@ -1,9 +1,9 @@
 <!-- Main sidebar -->
-<div id="dragonmenu" class="sidebar sidebar-main  sidebar-expand-md  bg-<%= COLOR.menu %>-600"
+<div id="dragonmenu" class="sidebar sidebar-main  sidebar-expand-md  bg-<%= COLOR.extra %>-700"
      ng-show="baseController.isLogged">
 
-    <div class="sidebar-mobile-toggler text-center visible-xs bg-<%= COLOR.menu %>-600">
-        <a class="navbar-brand-mobile bg-<%= COLOR.menu %>-800 sidebar-mobile-main-toggle">
+    <div class="sidebar-mobile-toggler text-center visible-xs bg-<%= COLOR.extra %>-700">
+        <a class="navbar-brand-mobile bg-<%= COLOR.extra %>-700 sidebar-mobile-main-toggle">
             <img style="float: left !important;" src="assets/images/<%= COLOR.logo %>.svg" alt="">
             <span class="navbar-brand-text" style="float: left;padding-left: 10px;"> <%= CONFIG.logo %></span>
         </a>
@@ -13,12 +13,12 @@
         <!-- Main navigation -->
         <div class="card card-sidebar-mobile">
             <div class="category-content no-padding">
-                <ul class="navigation navigation-main navigation-accordion dragon-menu bg-<%= COLOR.menu %>-800"
+                <ul class="navigation navigation-main navigation-accordion dragon-menu bg-<%= COLOR.extra %>-700"
                     dragonlanguage>
                     <% /*1*/ for(var menu of CONFIG.menus) { %>
                         <% if(!menu.class){ %>
                         <li>
-                            <a data-modal="<%=menu.modal%>" href="<%= menu.href %>" class="bg-<%= COLOR.menu %>-800 <%=menu.modal?"modalmenu":""%>">
+                            <a data-modal="<%=menu.modal%>" href="<%= menu.href %>" class="bg-<%= COLOR.extra %>-700 <%=menu.modal?"modalmenu":""%>">
                                 <i class="icon-<%= menu.icon %>"></i>
                                 <span>
                                         <language>MESSAGE.ispace('menu.<%= menu.text %>','<%= menu.text %>')</language>
@@ -29,7 +29,7 @@
                                     <% /*2*/ for(var menu2 of menu.menus) { %>
                                         <% if(!menu2.class){ %>
                                         <li>
-                                            <a data-modal="<%=menu2.modal%>" href="<%= menu2.href %>" class="bg-<%= COLOR.menu %>-800 <%=menu2.modal?"modalmenu":""%>">
+                                            <a data-modal="<%=menu2.modal%>" href="<%= menu2.href %>" class="bg-<%= COLOR.extra %>-700 <%=menu2.modal?"modalmenu":""%>">
                                                 <i class="icon-<%= menu2.icon %>"></i>
                                                 <span><language>MESSAGE.ispace('menu.<%= menu2.text %>','<%= menu2.text %>')</language></span>
                                             </a>
@@ -40,7 +40,7 @@
                                                         <li>
                                                             <a data-modal="<%=menu3.modal%>" data-function="menu"
                                                                href="<%= menu3.href %>"
-                                                               class="bg-<%= COLOR.menu %>-800 <%=menu3.modal?"modalmenu":""%>">
+                                                               class="bg-<%= COLOR.extra %>-700 <%=menu3.modal?"modalmenu":""%>">
                                                                 <i class="icon-<%= menu3.icon %>"></i>
                                                                 <span><language>MESSAGE.ispace('menu.<%= menu3.text %>','<%= menu3.text %>')</language></span>
                                                             </a>
@@ -52,7 +52,7 @@
                                                                         <li>
                                                                             <a data-modal="<%=menu4.modal%>" data-function="menu"
                                                                                href="<%= menu4.href %>"
-                                                                               class="bg-<%= COLOR.menu %>-800 <%=menu4.modal?"modalmenu":""%>">
+                                                                               class="bg-<%= COLOR.extra %>-700 <%=menu4.modal?"modalmenu":""%>">
                                                                                 <i class="icon-<%= menu4.icon %>"></i>
                                                                                 <span><language>MESSAGE.ispace('menu.<%= menu4.text %>','<%= menu4.text %>')</language></span>
                                                                             </a>
@@ -64,7 +64,7 @@
                                                                                         <li>
                                                                                             <a data-modal="<%=menu5.modal%>" data-function="menu"
                                                                                                href="<%= menu5.href %>"
-                                                                                               class="bg-<%= COLOR.menu %>-800 <%=menu5.modal?"modalmenu":""%>">
+                                                                                               class="bg-<%= COLOR.extra %>-700 <%=menu5.modal?"modalmenu":""%>">
                                                                                                 <i class="icon-<%= menu5.icon %>"></i>
                                                                                                 <span><language>MESSAGE.ispace('menu.<%= menu5.text %>','<%= menu5.text %>')</language></span>
                                                                                             </a>
@@ -76,7 +76,7 @@
                                                                                                         <li>
                                                                                                             <a data-modal="<%=menu6.modal%>" data-function="menu"
                                                                                                                href="<%= menu6.href %>"
-                                                                                                               class="bg-<%= COLOR.menu %>-800 <%=menu6.modal?"modalmenu":""%>">
+                                                                                                               class="bg-<%= COLOR.extra %>-700 <%=menu6.modal?"modalmenu":""%>">
                                                                                                                 <i class="icon-<%= menu6.icon %>"></i>
                                                                                                                 <span><language>MESSAGE.ispace('menu.<%= menu6.text %>','<%= menu6.text %>')</language></span>
                                                                                                             </a>
@@ -183,6 +183,11 @@
     $(document).ready(function () {
         $(document).on('click', '.dragon-menu a:not(.has-ul)', function () {
             $("body").removeClass("sidebar-mobile-main");
+        });
+        $(document).on('click', 'body', function (e) {
+            if ($(e.target).prop("tagName")!=="I") {
+                $('.popover').popover('hide');
+            }
         });
     });
 </script>

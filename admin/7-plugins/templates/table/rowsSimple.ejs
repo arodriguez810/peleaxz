@@ -2,7 +2,7 @@
 
 
 <tr ng-repeat="(keycolum, value) in <%= scope %>.columns() track by keycolum" ng-show="value.visibleDetail!=false">
-    <td class="text-white bg-<%= TAG.table %> text-bold">
+    <td class="text-white bg-<%= COLOR.secundary %> text-bold">
         <span ng-bind-html="<%= scope %>.columnLabel(value,keycolum)"></span>
     </td>
     <td>

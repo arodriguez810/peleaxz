@@ -24,6 +24,10 @@
         <link href="<%= FOLDERS.styles %>/<%= item %>" rel="stylesheet" type="text/css">
     <% }); %>
 
+    <link href="<%= FOLDERS.themes %>/extra.css" rel="stylesheet" type="text/css">
+    <link href="<%= FOLDERS.themes %>/secundary.css" rel="stylesheet" type="text/css">
+    <link href="<%= FOLDERS.themes %>/primary.css" rel="stylesheet" type="text/css">
+
     <script type="text/javascript" src="assets/js/plugins/loaders/pace.min.js"></script>
     <script type="text/javascript" src="assets/js/core/libraries/jquery.min.js"></script>
     <script type="text/javascript" src="assets/js/plugins/editors/autosize.min.js"></script>
@@ -44,9 +48,11 @@
     <script type="text/javascript" src="assets/js/plugins/forms/inputs/formatter.min.js"></script>
     <script type="text/javascript" src="assets/js/plugins/ui/moment/moment.min.js"></script>
     <script type="text/javascript" src="assets/js/plugins/ui/moment/moment_locales.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/tinycolor/min.js"></script>
 
     <script type="text/javascript" src="assets/js/plugins/sweetalert/sweetalert2.all.js"></script>
     <script type="text/javascript" src="assets/js/plugins/numeral/numeral.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/numeral/currency.min.js"></script>
     <script type="text/javascript" src="assets/js/core/libraries/angular.min.js"></script>
     <script type="text/javascript" src="assets/js/core/libraries/angular-sanitize.js"></script>
     <script type="text/javascript" src="assets/js/core/libraries/angular-resource.js"></script>
@@ -67,6 +73,11 @@
     <% }); %>
 
     <script>
+        const USD = value => currency(value, {symbol: '$', decimal: ',', separator: '.'});
+        const JPY = value => currency(value, {precision: 0, symbol: '¥'});
+        const EURO = value => currency(value, {symbol: '€', decimal: ',', separator: '.'});
+        const DOP = value => currency(value, {symbol: '$', decimal: '.', separator: ','});
+
         MENUMODAL = false;
         CHANGINGMENU = true;
         PRUDENTS = {};
@@ -112,7 +123,10 @@
         $(".sidebar, .navbar, .navbar-brand, .navbar-text, .navbar-nav > li, .page-header, .page-title, .page-header .heading-elements, .breadcrumb, .breadcrumb-elements > li, .content > .panel, .content .row > [class*=col-], .footer")
             .css('opacity', 0);
         MESSAGE.run();
-        moment.locale(MESSAGE.current().code);
+        PERMISSIONS.format();
+        LAN = MESSAGE.current();
+        LAN.money = eval(LAN.money);
+        moment.locale(LAN.time);
         PLAYERID = null;
     </script>
     <script>

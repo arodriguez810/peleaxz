@@ -1,10 +1,5 @@
-<div class="row">
-    <div class="col-sm-12 col-md-12">
-        <%- FORM.checkbox("config.mssqlactive", scope, {text: 'Microsoft SQL Server', size: 'switchery-sm'}) %>
-    </div>
-</div>
 
-<div class="row">
+<div class="row" ng-show="configuration.config.mssqlactive">
     <div class="col-sm-12 col-md-2  ">
         <%- FORM.input("config.mssql.user", scope, {placeholder: "User", maxlength: 50, icon: 'none'}) %>
     </div>
@@ -33,13 +28,8 @@
 </div>
 
 
-<div class="row">
-    <div class="col-sm-12 col-md-12">
-        <%- FORM.checkbox("config.mysqlactive", scope, {text: 'My SQL', size: 'switchery-sm'}) %>
-    </div>
-</div>
 
-<div class="row">
+<div class="row" ng-show="configuration.config.mysqlactive">
     <div class="col-sm-12 col-md-2  ">
         <%- FORM.input("config.mysql.user", scope, {placeholder: "User", maxlength: 50, icon: 'none'}) %>
     </div>
@@ -68,13 +58,7 @@
 </div>
 
 
-<div class="row">
-    <div class="col-sm-12 col-md-12">
-        <%- FORM.checkbox("config.oracleactive", scope, {text: 'Oracle', size: 'switchery-sm'}) %>
-    </div>
-</div>
-
-<div class="row">
+<div class="row" ng-show="configuration.config.oracleactive">
     <div class="col-sm-12 col-md-2  ">
         <%- FORM.input("config.oracle.user", scope, {placeholder: "User", maxlength: 50, icon: 'none'}) %>
     </div>

@@ -140,6 +140,14 @@ TABLEFORMAT = {
                 } else if (column.formattype.indexOf("time") !== -1) {
                     if (DSON.oseaX(value)) return DSON.noset();
                     return moment(value).format("LT");
+                } else if (column.formattype.indexOf("money") !== -1) {
+                    if (DSON.oseaX(value)) return DSON.noset();
+                    var numeralValue = numeral(value)._value;
+                    return numeralValue ? LAN.money(numeralValue).format(true) : LAN.money("0.00").format(true);
+                }
+                else if (column.formattype.indexOf("percentage") !== -1) {
+                    if (DSON.oseaX(value)) return DSON.noset();
+                    return value + "%";
                 }
                 else if (column.formattype === "bool") {
                     if (DSON.oseaX(value)) return DSON.noset();
@@ -207,10 +215,10 @@ TABLEFORMAT = {
             if (column.folder) {
                 switch (column.files) {
                     case "image": {
-                        return String.format("<a data-dragonfile='/" + (column.folder + `/${value}`) + "' class='btn gallerybtn bg-" + TAG.table + "'>{0}</a>", ICON.i('images3'));
+                        return String.format("<a data-dragonfile='/" + (column.folder + `/${value}`) + "' class='btn gallerybtn bg-" + COLOR.secundary + "'>{0}</a>", ICON.i('images3'));
                     }
                     case "all": {
-                        return String.format("<a data-dragonfile='/" + (column.folder + `/${value}`) + "' class='btn gallerybtn bg-" + TAG.table + "'>{0}</a>", ICON.i('images3'));
+                        return String.format("<a data-dragonfile='/" + (column.folder + `/${value}`) + "' class='btn gallerybtn bg-" + COLOR.secundary + "'>{0}</a>", ICON.i('images3'));
                     }
                     default: {
                         return String.format("<a class='dragonlink'>{0}</a>", ICON.i('files-empty'));
@@ -235,7 +243,16 @@ TABLEFORMAT = {
                 } else if (column.formattype.indexOf("time") !== -1) {
                     if (DSON.oseaX(value)) return DSON.noset();
                     return moment(value).format("LT");
-                } else if (column.formattype === "bool") {
+                } else if (column.formattype.indexOf("money") !== -1) {
+                    if (DSON.oseaX(value)) return DSON.noset();
+                    var numeralValue = numeral(value)._value;
+                    return numeralValue ? LAN.money(numeralValue).format(true) : LAN.money("0.00").format(true);
+                }
+                else if (column.formattype.indexOf("percentage") !== -1) {
+                    if (DSON.oseaX(value)) return DSON.noset();
+                    return value + "%";
+                }
+                else if (column.formattype === "bool") {
                     if (DSON.oseaX(value)) return '<i class="icon-checkbox-unchecked"></i>';
                     if (value) return '<i class="icon-checkbox-checked"></i>';
                     else return '<i class="icon-checkbox-unchecked"></i>';

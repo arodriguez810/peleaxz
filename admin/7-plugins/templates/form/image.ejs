@@ -22,10 +22,15 @@ var toclient = JSON.stringify(options);
 
 </script>
 
-<div class="form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-{{<%= model %>.form.options.<%= name %>.icon.position}}"
+<div class="form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-<%= options.icon.position %>"
      id="input<%= model %>_<%= nameclean %>">
-    <label class="control-label is-visible animate">
+    <label class="control-label is-visible animate" style="color:#000000 !important;">
         {{<%= model %>.form.options.<%= name %>.label}}
+        <% if(options.popover){ %>
+            <i
+                    id="popover<%= model %>_<%= nameclean %>" class="icon-help">
+            </i>
+        <% } %>
     </label>
 
 
@@ -37,7 +42,7 @@ var toclient = JSON.stringify(options);
     <div class="form-control-feedback">
         <i
                 id="icon<%= name %>"
-                class="icon-{{<%= model %>.form.options.<%= name %>.icon.class}} text-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}">
+                class="icon-<%= options.icon.class %> text-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}">
 
         </i>
     </div>
@@ -49,6 +54,14 @@ var toclient = JSON.stringify(options);
 
 <script>
     $(document).ready(function () {
+        <% if(options.popover){ %>
+        $('#popover<%= model %>_<%= nameclean %>').popover({
+            container: 'body',
+            title: eval("`" +<%= model %>.form.options.<%= name %>.popover.title + "`"),
+            content:eval("`" +<%= model %>.form.options.<%= name %>.popover.content + "`"),
+        trigger: 'click'
+    });
+        <% } %>
         <%= model %>.
         form.beginFunctions.push(`<%= model %>.form.loadDropDown("<%= name %>");`);
         <%= model %>.

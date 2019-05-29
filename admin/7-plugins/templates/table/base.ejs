@@ -7,7 +7,7 @@
 
     <div dragonlanguage=""
          ng-show="<%= scope %>.records.data.length<=0"
-         class="alert alpha-<%= TAG.table %> border-<%= TAG.table %> alert-styled-left">
+         class="alert alpha-<%= COLOR.secundary %> border-<%= COLOR.secundary %> alert-styled-left">
         <b>
             <language>MESSAGE.i('table.nodata')</language>
         </b>
@@ -16,7 +16,7 @@
     <div class="visible-md visible-lg" style="display: inline" ng-show="<%= scope %>.filters.lastFilter.length>0">
         <div
                 ng-bind-html="<%= scope %>.filters.description()"
-                class="alert alpha-<%= TAG.table %> border-<%= TAG.table %> alert-styled-left">
+                class="alert alpha-<%= COLOR.secundary %> border-<%= COLOR.secundary %> alert-styled-left">
         </div>
     </div>
 
@@ -28,9 +28,9 @@
            id="<%= scope %>Table"
            style="{{<%= scope %>.funcWidth}}margin-bottom: {{<%= scope %>.firstCountOption(false)*40}}px"
            data-scope="<%= scope %>">
-        <thead class="bg-<%= TAG.table %>" id="<%= scope %>head">
+        <thead class="bg-<%= COLOR.secundary %>" id="<%= scope %>head">
         <!--Columns-->
-        <tr class="bg-<%= TAG.table %> dragon-columns">
+        <tr class="bg-<%= COLOR.secundary %> dragon-columns">
             <th ng-repeat="(key, value) in <%= scope %>.columns() track by key"
                 ng-show="<%= scope %>.columnVisible(value)"
                 data-column="{{key}}"
