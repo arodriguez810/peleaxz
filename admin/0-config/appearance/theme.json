@@ -10,11 +10,11 @@
       "bg": "bgRed"
     },
     "theme": {
-      "primary": "random",
+      "primary": "#487ea6",
       "primaryShades": "1,2,3,4,5,6,7,8,9,10",
-      "secundary": "random",
+      "secundary": "#fa1e85",
       "secundaryShades": "1,2,3,4,5,6,7,8,9,10",
-      "extra": "random",
+      "extra": "#487ea6",
       "extraShades": "1,2,3,4,5,6,7,8,9,10",
       "text1": "#000",
       "text2": "#FFF"

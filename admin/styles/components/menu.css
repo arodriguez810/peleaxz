@@ -21,12 +21,21 @@
 .navbar-brand-mobile > img {
     display: inline;
 }
+
 .navbar-brand-mobile > img {
     margin: -5px 0px 0px 0px;
     height: 32px;
     float: left !important;
 }
 
-.sidebar-xs .developerby{
+.sidebar-xs .developerby {
     display: none;
+}
+
+.dropdown-menu > li > a {
+    padding: 8px 16px;
+    outline: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #000 !important;
 }

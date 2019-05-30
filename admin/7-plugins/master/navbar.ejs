@@ -126,7 +126,7 @@
                     </li>
                 </ul>
             </li>
-            <li ng-if="(baseController.isSuper || baseController.isAdmin)">
+            <li ng-if="(baseController.isSuper || baseController.isAdmin) && baseController.mode==='developer'">
                 <a class="sidebar-control"
                    onclick="MODAL.rawModal(MESSAGE.ic('mono.generatemobile'), 'information/mobile', 'mobile', 'modal-lg', 'information')"
                    data-popup="tooltip"
