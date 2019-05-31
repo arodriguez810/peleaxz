@@ -8,7 +8,6 @@ recode
 scripts
 server
 styles
-node_modules.zip
 package.json
 package-lock.json
 server.js

@@ -17,9 +17,36 @@ app.controller("configuration", function ($scope, $http, $compile) {
         VALIDATION.validate(configuration, "config.appName", rules);
     });
 
-    configuration.$scope.$watch('configuration.config.ui.colors.primary', function (value) {
-        configuration.config.ui.colors.menu = value;
+    configuration.$scope.$watch('configuration.config.ui.theme.primary', function (value) {
+        configuration.primary_example = CONTROL.shadesMonochrome(value, configuration.config.ui.theme.primaryShades);
+        configuration.primary_example = eval(`configuration.primary_example.color${configuration.config.ui.theme.primaryShades.split(",")[6]}`);
     });
+
+    configuration.$scope.$watch('configuration.config.ui.theme.secundary', function (value) {
+        configuration.secundary_example = CONTROL.shadesMonochrome(value, configuration.config.ui.theme.secundaryShades);
+        configuration.secundary_example = eval(`configuration.secundary_example.color${configuration.config.ui.theme.secundaryShades.split(",")[5]}`);
+    });
+
+    configuration.$scope.$watch('configuration.config.ui.theme.extra', function (value) {
+        configuration.extra_example = CONTROL.shadesMonochrome(value, configuration.config.ui.theme.extraShades);
+        configuration.extra_example = eval(`configuration.extra_example.color${configuration.config.ui.theme.extraShades.split(",")[6]}`);
+    });
+
+    configuration.$scope.$watch('configuration.config.ui.theme.primaryShades', function (value) {
+        configuration.primary_example = CONTROL.shadesMonochrome(configuration.config.ui.theme.primary, configuration.config.ui.theme.primaryShades);
+        configuration.primary_example = eval(`configuration.primary_example.color${configuration.config.ui.theme.primaryShades.split(",")[6]}`);
+    });
+
+    configuration.$scope.$watch('configuration.config.ui.theme.secundaryShades', function (value) {
+        configuration.secundary_example = CONTROL.shadesMonochrome(configuration.config.ui.theme.secundary, configuration.config.ui.theme.secundaryShades);
+        configuration.secundary_example = eval(`configuration.secundary_example.color${configuration.config.ui.theme.secundaryShades.split(",")[5]}`);
+    });
+
+    configuration.$scope.$watch('configuration.config.ui.theme.extraShades', function (value) {
+        configuration.extra_example = CONTROL.shadesMonochrome(configuration.config.ui.theme.extra, configuration.config.ui.theme.extraShades);
+        configuration.extra_example = eval(`configuration.extra_example.color${configuration.config.ui.theme.extraShades.split(",")[6]}`);
+    });
+
 
     configuration.saveConfiguration = function () {
         if (user.super)

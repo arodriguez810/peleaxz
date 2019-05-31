@@ -105,11 +105,11 @@
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/templates" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/templates/system" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/modules" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/.tmp" />
       <excludeFolder url="file://$MODULE_DIR$/admin/assets" />
       <excludeFolder url="file://$MODULE_DIR$/admin/defaults" />
       <excludeFolder url="file://$MODULE_DIR$/admin/files" />
-      <excludeFolder url="file://$MODULE_DIR$/admin/modules" />
       <excludeFolder url="file://$MODULE_DIR$/admin/node_modules" />
       <excludeFolder url="file://$MODULE_DIR$/db" />
       <excludeFolder url="file://$MODULE_DIR$/documentation" />

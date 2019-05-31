@@ -537,7 +537,6 @@ exports.init = function (params) {
         return filelist;
     };
     var autroute = getFiles(excludesDragon, params.folders.viewsDragon + "/");
-    console.log(autroute);
     autroute.forEach(element => {
         exports.loadEJSSimple(
             "./" + params.folders.viewsDragon + "/" + element.replace(".ejs", ""),

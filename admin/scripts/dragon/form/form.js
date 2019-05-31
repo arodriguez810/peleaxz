@@ -666,7 +666,7 @@ FORM = {
                 var options = eval(`$scope.form.options.${name}`);
                 animation.loading(`#input${$scope.modelName}_${name}`, "", `#icon${name}`, '30');
                 if (!options.simple) {
-                    eval(`var crud = CRUD_${options.table}`);
+                    eval(`var crud = CRUD_${options.controller}`);
                     if (crud.table.single)
                         options.query.join = crud.table.single;
                     var toquery = DSON.merge(options.query, {});
@@ -807,6 +807,13 @@ FORM = {
                 }
             }
         };
+        $scope.form.loadSelect = function (name, select2) {
+            var nameclean = name.replace(/\./g, '_');
+            if ($scope.form !== null) {
+                var options = eval(`$scope.form.options.${name}`);
+                $scope.form.callSelect2(name, options, select2);
+            }
+        };
         $scope.form.loadDropDown = function (name, select2) {
             var nameclean = name.replace(/\./g, '_');
             if ($scope.form !== null) {
@@ -815,7 +822,7 @@ FORM = {
                 animation.loading(`#input${$scope.modelName}_${name}`, "", `#icon${name}`, '30');
                 if (options) {
                     if (!options.simple) {
-                        eval(`var crud = CRUD_${options.table}`);
+                        eval(`var crud = CRUD_${options.controller}`);
                         if (crud.table.single)
                             options.query.join = crud.table.single;
                         var toquery = DSON.merge(options.query, {});

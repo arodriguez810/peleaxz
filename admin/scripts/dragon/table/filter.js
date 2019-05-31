@@ -21,6 +21,8 @@ FILTER = {
         bool: 'bool'
     },
     run: function ($scope) {
+        $scope.selectTextDropOperator = MESSAGE.ic('mono.youselect') + " " + MESSAGE.ic('mono.operator')
+        $scope.selectTextDropField = MESSAGE.ic('mono.youselect') + " " + MESSAGE.ic('mono.field');
         FILTER.operators = [
             {text: MESSAGE.i('mono.Contains'), operator: `LIKE`, value: '%{0}%', type: 'string'},
             {text: MESSAGE.i('mono.Notcontains'), operator: `NOT LIKE`, value: '%{0}%', type: 'string'},

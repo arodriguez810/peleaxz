@@ -7,30 +7,32 @@
     <div class="col-sm-1 col-md-1">
         <button type="button" role="button"
                 ng-click="<%= scope %>.filters.toggleGroup(block)"
-                class="btn {{<%= scope %>.filters.colored(block)}} text-bold  bg-<%= COLOR.primary %>-300 legitRipple text-right">
-            {{block.group?'(':' '}}
+                class="btn {{<%= scope %>.filters.colored(block)}} text-bold  {{block.group?'bg-<%= COLOR.primary %>-500':' '}}  legitRipple text-right">
+            (
         </button>
     </div>
     <div class="col-sm-4 col-md-2 ">
         <div class="form-group-material form-group has-feedback  has-feedback-left">
             <select
                     ng-change="<%= scope %>.filters.changeType(block)"
-                    style="display: inline;"
+                    style="display: inline;border-bottom: 1px solid #ccc;"
                     ng-model="block.column"
                     class="form-control bootstrap-select columnFilter"
                     ng-options="<%= scope %>.filters.label(column) for column in <%= scope %>.filters.fields track by column.key"
             >
+                <option value="" disabled selected>{{<%= scope %>.selectTextDropField}}</option>
             </select>
         </div>
     </div>
     <div class="col-sm-4 col-md-2">
         <div class="form-group-material form-group has-feedback  has-feedback-left">
             <select
-                    style="display: inline;"
+                    style="display: inline;border-bottom: 1px solid #ccc;"
                     ng-model="block.operator"
                     class="form-control bootstrap-select operatorFilter"
                     ng-options="operator.text for operator in <%= scope %>.filters.operatorByType(block.column) track by operator.text"
             >
+                <option value="" disabled selected>{{<%= scope %>.selectTextDropOperator}}</option>
             </select>
         </div>
     </div>
@@ -141,12 +143,13 @@
     <div class="col-sm-1 col-md-1">
         <button type="button" role="button"
                 ng-click="<%= scope %>.filters.toggleEndGroup(block)"
-                class="btn bg-<%= COLOR.primary %>-300 {{<%= scope %>.filters.colored(block)}} text-bold legitRipple text-left">
-            {{block.endgroup?')':' '}}
+                class="btn {{block.endgroup?'bg-<%= COLOR.primary %>-500':' '}} {{<%= scope %>.filters.colored(block)}} text-bold legitRipple text-left">
+            )
         </button>
     </div>
     <div class="col-sm-1 col-md-1">
         <button type="button" role="button" ng-if="<%= scope %>.filters.visibleConnector(block)"
+                style="width: 42px;margin-left: -42px;"
                 ng-click="<%= scope %>.filters.toggleConnector(block)"
                 class="btn {{<%= scope %>.filters.colorConnector(block)}} text-bold btn-block legitRipple text-left"
                 dragonlanguage="">
@@ -154,9 +157,15 @@
         </button>
     </div>
     <div class="col-sm-4 col-md-1">
-        <a title="Remove This Filter" ng-click="<%= scope %>.filters.remove(block)">
-            <i class=" icon-trash"></i>
-        </a>
+        <button
+                title="Remove This Filter"
+                type="button" role="button" ng-if="<%= scope %>.filters.visibleConnector(block)"
+                style="width: 42px;margin-left: -75px;height: 37px"
+                ng-click="<%= scope %>.filters.remove(block)"
+                class="btn btn-danger text-bold btn-block legitRipple"
+                dragonlanguage="">
+            <i class=" icon-trash" style="margin-left: -4px;"></i>
+        </button>
     </div>
 </div>
 <div class="row">
@@ -175,37 +184,35 @@
 </div>
 <div class="modal-footer visible-xs">
     <div class="row">
+
+
         <div dragonlanguage="" class="col-lg-4 col-md-4 col-xs-4">
-            <button type="button" class="btn  bg-<%= COLOR.secundary %>-600" ng-click="<%= scope %>.filters.apply()">
+            <button type="button" class="btn  bg-<%= COLOR.success %> btn-labeled btn-xs pull-right"
+                    ng-click="<%= scope %>.filters.apply()">
+                <b><i class="icon-cross2"></i></b>
                 <language>MESSAGE.ic('mono.apply')</language>
             </button>
         </div>
         <div dragonlanguage="" class="col-lg-4 col-md-4 col-xs-4">
-            <button type="button" class="btn  bg-<%= COLOR.secundary %>-600" ng-click="<%= scope %>.filters.clear()">
+            <button type="button" class="btn  bg-<%= COLOR.warning %> btn-labeled btn-xs pull-right"
+                    ng-click="<%= scope %>.filters.clear()">
+                <b><i class="icon-cross2"></i></b>
                 <language>MESSAGE.ic('mono.clear')</language>
-            </button>
-        </div>
-        <div dragonlanguage class="col-lg-4 col-md-4 col-xs-4">
-            <button type="button" class="btn  bg-<%= COLOR.secundary %>-600" ng-click="<%= scope %>.filters.close()">
-                <language>MESSAGE.ic('mono.close')</language>
             </button>
         </div>
     </div>
 </div>
 <div class="modal-footer visible-lg visible-md">
 
-    <button dragonlanguage type="button" class="btn  bg-<%= COLOR.secundary %>-600" ng-click="<%= scope %>.filters.apply()">
+    <button dragonlanguage type="button" class="btn  bg-<%= COLOR.secundary %>-600"
+            ng-click="<%= scope %>.filters.apply()">
         <language>MESSAGE.ic('mono.apply')</language>
     </button>
 
-    <button dragonlanguage type="button" class="btn  bg-<%= COLOR.secundary %>-600" ng-click="<%= scope %>.filters.clear()">
+    <button dragonlanguage type="button" class="btn  bg-<%= COLOR.secundary %>-600"
+            ng-click="<%= scope %>.filters.clear()">
         <language>MESSAGE.ic('mono.clear')</language>
     </button>
-
-    <button dragonlanguage type="button" class="btn  bg-<%= COLOR.secundary %>-600" ng-click="<%= scope %>.filters.close()">
-        <language>MESSAGE.ic('mono.close')</language>
-    </button>
-
 
 </div>
 

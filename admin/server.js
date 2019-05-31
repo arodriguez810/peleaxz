@@ -147,11 +147,11 @@ if(CONFIG.mode==='developer') {
         CONFIG.ui.theme.extra = onerandom;
 
     if (CONFIG.ui.theme.primary === "random2")
-        CONFIG.ui.theme.primary = onerandom;
+        CONFIG.ui.theme.primary = onerandom2;
     if (CONFIG.ui.theme.secundary === "random2")
-        CONFIG.ui.theme.secundary = onerandom;
+        CONFIG.ui.theme.secundary = onerandom2;
     if (CONFIG.ui.theme.extra === "random2")
-        CONFIG.ui.theme.extra = onerandom;
+        CONFIG.ui.theme.extra = onerandom2;
 
     primary = ejs.compile(ThemeTemplate, {})({DATA: shadesMonochrome(CONFIG.ui.theme.primary, 'primary', CONFIG.ui.theme.primaryShades)});
     secundary = ejs.compile(ThemeTemplate, {})({DATA: shadesMonochrome(CONFIG.ui.theme.secundary, 'secundary', CONFIG.ui.theme.secundaryShades)});

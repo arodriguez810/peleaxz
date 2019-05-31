@@ -86,6 +86,7 @@ var toclient = JSON.stringify(options);
         <% } %>
 
         $('[name="<%= model %>_<%= nameclean %>"]').spectrum({
+            color:<%= model + "." + name %>,
             showInitial: true,
             showInput: true,
             showAlpha: true,
@@ -106,9 +107,11 @@ var toclient = JSON.stringify(options);
         <%= model %>.
         triggers.table.after.control("<%= nameclean %>");
         if (isReadProgram !== false) {
-            if (isReadProgram !== undefined)
+            if (isReadProgram !== undefined) {
                 $('.sp-preview-inner').css('background-color', isReadProgram)
+            }
         }
+
 
         $('[name="<%= model %>_<%= nameclean %>"]').change(function () {
 

@@ -140,6 +140,8 @@
   "table": "tabla",
   "route": "ruta",
   "fields": "campos",
+  "field": "campo",
+  "operator": "operador",
   "audit": "auditoría",
   "insert": "insertar",
   "update": "actualizar",

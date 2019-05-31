@@ -187,37 +187,78 @@
     <div class="panel-body">
         <div class="row">
 
+            <div class="col-sm-12 col-md-3 pl-0">
+                <%- FORM.color("config.ui.theme.primary", scope, {icon: {class: "brush"}}) %>
+            </div>
+            <div class="col-sm-12 col-md-3 pl-0">
+                <%- FORM.color("config.ui.theme.secundary", scope, {icon: {class: "brush"}}) %>
+            </div>
+            <div class="col-sm-12 col-md-2 pl-0">
+                <%- FORM.color("config.ui.theme.extra", scope, {icon: {class: "brush"}}) %>
+            </div>
+
+            <div class="col-sm-12 col-md-2 pl-0">
+                <%- FORM.color("config.ui.theme.text1", scope, {icon: {class: "brush"}}) %>
+            </div>
+            <div class="col-sm-12 col-md-2 pl-0">
+                <%- FORM.color("config.ui.theme.text2", scope, {icon: {class: "brush"}}) %>
+            </div>
+        </div>
+        <div class="row">
+
             <div class="col-sm-12 col-md-4 pl-0">
                 <%-
-                FORM.selectsimple("config.ui.colors.primary", scope, {
-                    label: "Primary Color",
-                    value: "code",
-                    data: THEMES,
+                FORM.selectsimple("config.ui.theme.primaryShades", scope, {
+                    value: "id",
+                    data: [
+                        {id: '1,2,3,4,5,6,7,8,9,10', name: 'Balanceado'},
+                        {id: '6,6,7,7,7,8,8,8,9,10', name: 'Semi Oscuro'},
+                        {id: '7,7,7,8,8,8,9,9,9,10', name: 'Oscuro'},
+                        {id: '1,2,2,3,3,4,4,5,5,5', name: 'Semi Claro'},
+                        {id: '1,1,1,1,1,2,2,2,2,2', name: 'Claro'},
+                        {id: '1,1,1,1,1,1,1,1,1,1', name: 'Muy Claro'}
+                    ],
                     icon: {class: "brush"}
                 }) %>
+
             </div>
             <div class="col-sm-12 col-md-4 pl-0">
                 <%-
-                FORM.selectsimple("config.ui.colors.menu", scope, {
-                    label: "Menu Color",
-                    value: "code",
-                    data: THEMES,
+                FORM.selectsimple("config.ui.theme.secundaryShades", scope, {
+                    value: "id",
+                    data: [
+                        {id: '1,2,3,4,5,6,7,8,9,10', name: 'Balanceado'},
+                        {id: '6,6,7,7,7,8,8,8,9,10', name: 'Semi Oscuro'},
+                        {id: '7,7,7,8,8,8,9,9,9,10', name: 'Oscuro'},
+                        {id: '1,2,2,3,3,4,4,5,5,5', name: 'Semi Claro'},
+                        {id: '1,1,1,1,1,2,2,2,2,2', name: 'Claro'},
+                        {id: '1,1,1,1,1,1,1,1,1,1', name: 'Muy Claro'}
+                    ],
                     icon: {class: "brush"}
                 }) %>
+
             </div>
             <div class="col-sm-12 col-md-4 pl-0">
                 <%-
-                FORM.selectsimple("config.ui.colors.info", scope, {
-                    label: "Content Color",
-                    value: "code",
-                    data: THEMES,
+                FORM.selectsimple("config.ui.theme.extraShades", scope, {
+                    value: "id",
+                    data: [
+                        {id: '1,2,3,4,5,6,7,8,9,10', name: 'Balanceado'},
+                        {id: '6,6,7,7,7,8,8,8,9,10', name: 'Semi Oscuro'},
+                        {id: '7,7,7,8,8,8,9,9,9,10', name: 'Oscuro'},
+                        {id: '1,2,2,3,3,4,4,5,5,5', name: 'Semi Claro'},
+                        {id: '1,1,1,1,1,2,2,2,2,2', name: 'Claro'},
+                        {id: '1,1,1,1,1,1,1,1,1,1', name: 'Muy Claro'}
+                    ],
                     icon: {class: "brush"}
                 }) %>
+
             </div>
         </div>
         <div class="row">
             <div class="panel ">
-                <div class="panel-heading bg-{{configuration.config.ui.colors.primary}}-800">
+                <div class="panel-heading "
+                     style="background-color: {{configuration.primary_example}};color:{{configuration.config.ui.theme.text2}}">
                     <h6 class="panel-title"><i class="icon-cog3 position-left"></i>
                         {{configuration.config.appName}}
                     </h6>
@@ -229,37 +270,37 @@
                             <table class="table">
                                 <thead>
                                 <tr>
-                                    <th class="bg-{{configuration.config.ui.colors.menu}}-800">
+                                    <th style="background-color: {{configuration.extra_example}};color:{{configuration.config.ui.theme.text2}}">
                                         Menu 1
                                     </th>
                                 </tr>
                                 <tr>
-                                    <th class="bg-{{configuration.config.ui.colors.menu}}-800">
+                                    <th style="background-color: {{configuration.extra_example}};color:{{configuration.config.ui.theme.text2}}">
                                         Menu 2
                                     </th>
                                 </tr>
                                 <tr>
-                                    <th class="bg-{{configuration.config.ui.colors.menu}}-800">
+                                    <th style="background-color: {{configuration.extra_example}};color:{{configuration.config.ui.theme.text2}}">
                                         Menu 3
                                     </th>
                                 </tr>
                                 <tr>
-                                    <th class="bg-{{configuration.config.ui.colors.menu}}-800">
+                                    <th style="background-color: {{configuration.extra_example}};color:{{configuration.config.ui.theme.text2}}">
                                         Menu 4
                                     </th>
                                 </tr>
                                 <tr>
-                                    <th class="bg-{{configuration.config.ui.colors.menu}}-800">
+                                    <th style="background-color: {{configuration.extra_example}};color:{{configuration.config.ui.theme.text2}}">
                                         Menu 5
                                     </th>
                                 </tr>
                                 <tr>
-                                    <th class="bg-{{configuration.config.ui.colors.menu}}-800">
+                                    <th style="background-color: {{configuration.extra_example}};color:{{configuration.config.ui.theme.text2}}">
                                         Menu 6
                                     </th>
                                 </tr>
                                 <tr>
-                                    <th class="bg-{{configuration.config.ui.colors.menu}}-800">
+                                    <th style="background-color: {{configuration.extra_example}};color:{{configuration.config.ui.theme.text2}}">
                                         Menu 7
                                     </th>
                                 </tr>
@@ -270,42 +311,41 @@
                             <table class="table" style="margin-top: 20px;">
                                 <thead>
                                 <tr>
-                                    <th class="bg-{{configuration.config.ui.colors.info}}">
+                                    <th style="background-color: {{configuration.secundary_example}};color:{{configuration.config.ui.theme.text2}}">
                                         Name
                                     </th>
-                                    <th class="bg-{{configuration.config.ui.colors.info}}">
+                                    <th style="background-color: {{configuration.secundary_example}};color:{{configuration.config.ui.theme.text2}}">
                                         LastName
                                     </th>
-                                    <th class="bg-{{configuration.config.ui.colors.info}}">
+                                    <th style="background-color: {{configuration.secundary_example}};color:{{configuration.config.ui.theme.text2}}">
                                         Actions
                                     </th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>Angel</td>
-                                    <td>Rodriguez</td>
+                                    <td>Cell</td>
+                                    <td>Cell</td>
                                     <td>.</td>
                                 </tr>
                                 <tr>
-                                    <td>Pamela</td>
-
-                                    <td>Rodriguez</td>
+                                    <td>Cell</td>
+                                    <td>Cell</td>
                                     <td>.</td>
                                 </tr>
                                 <tr>
-                                    <td>Anyelisa</td>
-                                    <td>Rodriguez</td>
+                                    <td>Cell</td>
+                                    <td>Cell</td>
                                     <td>.</td>
                                 </tr>
                                 <tr>
-                                    <td>Patricia</td>
-                                    <td>Rodriguez</td>
+                                    <td>Cell</td>
+                                    <td>Cell</td>
                                     <td>.</td>
                                 </tr>
                                 <tr>
-                                    <td>Jorge</td>
-                                    <td>Rodriguez</td>
+                                    <td>Cell</td>
+                                    <td>Cell</td>
                                     <td>.</td>
                                 </tr>
                                 </tbody>

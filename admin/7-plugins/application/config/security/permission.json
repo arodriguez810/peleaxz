@@ -86,6 +86,7 @@
         "actions": true
       },
       "report": {
+        "menu": true,
         "view": true,
         "filter": true,
         "export": {

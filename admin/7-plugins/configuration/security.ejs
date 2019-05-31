@@ -8,6 +8,21 @@
     <div class="panel-body">
 
         <div class="row">
+            <div class="col-sm-12 col-md-2 ">
+
+                <%-
+                FORM.selectsimple("config.users.hash", scope, {
+                    value: "id",
+                    data: [
+                        {id: 'md5', name: 'MD5'}
+                    ],
+                    icon: {class: "wrench3"},
+                    popover: {
+                        title: "${MESSAGE.ic('mono.whatisthis')}",
+                        content: "${MESSAGE.i('alerts.tokenDescription')}"
+                    }
+                }) %>
+            </div>
             <div class="col-sm-2 col-md-2  " ng-show="configuration.mode!=='admin'">
                 <%- FORM.input("config.users.model", scope, {
                     maxlength: 50,
@@ -46,21 +61,7 @@
                 }) %>
             </div>
 
-            <div class="col-sm-12 col-md-2 ">
 
-                <%-
-                FORM.selectsimple("config.users.hash", scope, {
-                    value: "id",
-                    data: [
-                        {id: 'md5', name: 'MD5'}
-                    ],
-                    icon: {class: "wrench3"},
-                    popover: {
-                        title: "${MESSAGE.ic('mono.whatisthis')}",
-                        content: "${MESSAGE.i('alerts.tokenDescription')}"
-                    }
-                }) %>
-            </div>
         </div>
 
         <div class="row">

@@ -5,25 +5,27 @@ PERMISSIONS = {
     run: function ($scope) {
         $scope.allow = function (permisionName, or, isModal) {
             var finalCrud = eval(`PERMISSIONS.mypermission.${$scope.modelName}`);
-            if (isModal)
-                if (!DSON.oseaX(ARRAY.last(MODAL.historyObject)))
-                    finalCrud = eval(`PERMISSIONS.mypermission.${$scope.modelName}`);
-            if (finalCrud.allow !== undefined && permisionName !== "") {
-                or = DSON.ifundefined(or, true);
-                if (Array.isArray(permisionName)) {
-                    for (const permisionNameElement of permisionName) {
-                        if (or) {
-                            if (eval("finalCrud.allow." + permisionNameElement + " !== false;") === true)
-                                return true;
-                        } else {
-                            if (eval("finalCrud.allow." + permisionNameElement + " !== false;") === false)
-                                return false;
+            if (finalCrud !== undefined) {
+                if (isModal)
+                    if (!DSON.oseaX(ARRAY.last(MODAL.historyObject)))
+                        finalCrud = eval(`PERMISSIONS.mypermission.${$scope.modelName}`);
+                if (finalCrud.allow !== undefined && permisionName !== "") {
+                    or = DSON.ifundefined(or, true);
+                    if (Array.isArray(permisionName)) {
+                        for (const permisionNameElement of permisionName) {
+                            if (or) {
+                                if (eval("finalCrud.allow." + permisionNameElement + " === true;") === true)
+                                    return true;
+                            } else {
+                                if (eval("finalCrud.allow." + permisionNameElement + " === true;") === false)
+                                    return false;
+                            }
                         }
                     }
+                    else
+                        return eval("finalCrud.allow." + permisionName + " === true;");
+                    return !or;
                 }
-                else
-                    return eval("finalCrud.allow." + permisionName + " !== false;");
-                return !or;
             }
             return true;
         };

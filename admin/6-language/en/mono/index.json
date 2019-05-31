@@ -140,6 +140,8 @@
   "table": "table",
   "route": "route",
   "fields": "fields",
+  "field": "field",
+  "operator": "operator",
   "audit": "audit",
   "insert": "insert",
   "update": "update",
