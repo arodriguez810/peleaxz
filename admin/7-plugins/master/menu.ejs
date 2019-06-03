@@ -1,6 +1,6 @@
 <!-- Main sidebar -->
 <div id="dragonmenu" class="sidebar sidebar-main  sidebar-expand-md  bg-<%= COLOR.extra %>-700"
-     ng-show="baseController.isLogged">
+     ng-show="baseController.isLogged && !baseController.isClient">
 
     <div class="sidebar-mobile-toggler text-center visible-xs bg-<%= COLOR.extra %>-700">
         <a class="navbar-brand-mobile bg-<%= COLOR.extra %>-700 sidebar-mobile-main-toggle">
@@ -13,7 +13,12 @@
         <!-- Main navigation -->
         <div class="card card-sidebar-mobile">
             <div class="category-content no-padding">
-                <ul class="navigation navigation-main navigation-accordion dragon-menu bg-<%= COLOR.extra %>-700"
+                <style>
+                    .dragon-menu a {
+                        color: <%= CONFIG.ui.theme.text3 %> !important;
+                    }
+                </style>
+                <ul class="navigation navigation-main navigation-accordion dragon-menu bg-<%= COLOR.extra %>-700 "
                     dragonlanguage>
                     <% /*1*/ for(var menu of CONFIG.menus) { %>
                         <% if(!menu.class){ %>

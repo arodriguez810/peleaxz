@@ -5,20 +5,20 @@ TABLESELECTION = {
             if (row !== undefined) {
                 if (key === $scope.columnToSelect()) {
                     if ($scope.characterist('batch')) {
-                        return "<i class=\"text-" + COLOR.primary + " " + $scope.checkIcon(row.selected) + " \"></i>";
+                        return "<i  class=\"dragoncheck text-" + COLOR.primary + "-900 " + $scope.checkIcon(row.selected) + " \"></i>";
                     }
                 }
             } else {
                 if (key === $scope.columnToSelect())
                     if ($scope.characterist('batch')) {
-                        return "<i class=\"" + $scope.checkAllIcon($scope.checkall) + "\"></i>";
+                        return "<i   class=\"dragoncheck " + $scope.checkAllIcon($scope.checkall) + "\"></i>";
                     }
             }
             return "";
         };
 
         $scope.drawHandler = function () {
-            return "<i class=\"text-" + COLOR.secundary + "-300 " + "icon-sort" + " \"></i>";
+            return "<i class=\"draganddroghandler text-black-300 " + "icon-sort" + " \"></i>";
         };
 
         $scope.columnToSelect = function () {

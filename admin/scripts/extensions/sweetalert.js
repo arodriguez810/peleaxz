@@ -97,6 +97,29 @@ SWEETALERT = {
     }
 };
 
+NOTIFY = {
+    base: function (type, text, position) {
+        noty({
+            timeout: 2000,
+            text: text,
+            type: type || 'success',
+            layout: position || "bottomLeft"
+        });
+    },
+    success: function (text, position) {
+        NOTIFY.base('success', text, position);
+    },
+    warning: function (text, position) {
+        NOTIFY.base('warning', text, position);
+    },
+    error: function (text, position) {
+        NOTIFY.base('error', text, position);
+    },
+    info: function (text, position) {
+        NOTIFY.base('info', text, position);
+    }
+};
+
 $(document).ready(function () {
     myswal = swal.mixin({
         confirmButtonClass: "btn btn-" + COLOR.success,

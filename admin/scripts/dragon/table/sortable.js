@@ -23,7 +23,7 @@ SORTABLE = {
             types["amount"] = " icon-sort-amount-";
             types["time"] = "icon-sort-time-";
             if (column.sortable !== false) {
-                if (!column.sorted) icon = "icon-sort";
+                if (!column.sorted) icon = "icon-sortXXX";
                 else {
                     if (column.sorttype === undefined) {
                         icon = "icon-sort-alpha-";
@@ -40,6 +40,24 @@ SORTABLE = {
                 }
             }
             return icon;
+        };
+
+        $scope.sortTitle = function (column, key) {
+            var type = "alphanumeric";
+            if (column.sorttype !== undefined) {
+                type = column.sorttype;
+            }
+            var sorted = column.order === "asc" ? "desc" : "asc";
+            return `${MESSAGE.i('mono.clicktosort')} ${MESSAGE.i('mono.sort_' + type)} ${MESSAGE.i('mono.by')} ${$scope.columnLabel(column, key).toLowerCase()} ${MESSAGE.i('mono.' + sorted)}`;
+        };
+
+        $scope.sortTitleIcon = function (column, key) {
+            var type = "alphanumeric";
+            if (column.sorttype !== undefined) {
+                type = column.sorttype;
+            }
+            var sorted = column.order === "asc" ? "asc" : "desc";
+            return `${MESSAGE.i('mono.sorted')} ${MESSAGE.i('mono.sort_' + type)} ${MESSAGE.i('mono.' + sorted)} ${MESSAGE.i('mono.by')} ${$scope.columnLabel(column, key).toLowerCase()} `;
         };
         $scope.resetSort = function () {
             var firstColumn = $scope.dragrow ? $scope.dragrow : (eval(`CRUD_${$scope.modelName}`).table.key || "id");

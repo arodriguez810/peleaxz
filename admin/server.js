@@ -19,6 +19,7 @@ var folders = {
     views: "5-views",
     viewsDragon: "7-plugins",
     fields: "7-plugins/templates/form",
+    silents: "7-plugins/templates/system/view",
     master: "7-plugins/master",
     language: "6-language",
     scripts: "scripts",
@@ -116,7 +117,7 @@ for (var i in CONFIG.modules) {
 }
 
 
-if(CONFIG.mode==='developer') {
+if (CONFIG.mode === 'developer') {
     var ThemeTemplate = fs.readFileSync(folders.themesTemplate).toString();
     shadesMonochrome = function (color, name, shadesBlocks) {
         var colors = [];
@@ -130,6 +131,7 @@ if(CONFIG.mode==='developer') {
         var shades = {};
         shades.text1 = CONFIG.ui.theme.text1;
         shades.text2 = CONFIG.ui.theme.text2;
+        shades.text3 = CONFIG.ui.theme.text3;
         shades.name = name;
         var shadesArray = shadesBlocks.split(',');
         for (var i in shadesArray) {
@@ -274,22 +276,28 @@ ThereConfig.then(function (thereConfig) {
     }
 
     var secure = {};
-    secure.check = (req, res, next) => {
+    secure.check = (req, res) => new Promise((resolve, reject) => {
         if (!CONFIG.features.token) {
-            next();
-            return;
+            resolve({
+                apptoken: true,
+                message: 'valid',
+                code: "3"
+            });
         }
         var path = req.originalUrl;
         var realPath = path.split("?")[0];
         if (CONFIG.routes.notoken.indexOf(realPath) !== -1) {
-            next();
-            return;
+            resolve({
+                apptoken: true,
+                message: 'valid',
+                code: "3"
+            });
         }
         let token = req.headers['x-access-token'] || req.headers['authorization'] || "";
         if (token) {
             jwt.verify(token, CONFIG.appKey, (err, decoded) => {
                 if (err) {
-                    return res.json({
+                    resolve({
                         apptoken: false,
                         message: 'Token is not valid',
                         url: realPath,
@@ -297,18 +305,22 @@ ThereConfig.then(function (thereConfig) {
                     });
                 } else {
                     req.decoded = decoded;
-                    next();
+                    resolve({
+                        apptoken: true,
+                        message: 'valid',
+                        code: "3"
+                    });
                 }
             });
         } else {
-            return res.json({
+            resolve({
                 apptoken: false,
                 message: 'Auth token is not supplied',
                 url: realPath,
                 code: "1"
             });
         }
-    };
+    });
 
     for (var i in localModulesVars) {
         var name = localModulesVars[i];

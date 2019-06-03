@@ -1,10 +1,14 @@
 {
   "by": "by",
+  "clicktosort": "Click to sort",
   "welcome": "welcome",
   "to": "to",
   "from": "from",
   "please": "please",
   "save": "save",
+  "saved": "saved",
+  "deleted": "deleted",
+  "copied": "copied",
   "saveAndContinue": "and continue",
   "saving": "guardando",
   "close": "close",
@@ -136,6 +140,7 @@
   "unlocktime": "unlock time",
   "mode": "mode",
   "performance": "performance",
+  "for": "for",
   "modal": "windows",
   "table": "table",
   "route": "route",
@@ -201,5 +206,14 @@
   "diskdata": "data on disk",
   "basemodules": "base modules",
   "entity": "entity",
-  "records": "records"
+  "records": "records",
+  "group_selection": "Group selection",
+  "condition": "Condition",
+  "sort_numeric": "numerically",
+  "sort_alphanumeric": "alfanumerically",
+  "sort_bool": "(true/false)",
+  "sort_time": "chronologically",
+  "asc": "ascendant",
+  "desc": "descending",
+  "sorted": "sorted"
 }

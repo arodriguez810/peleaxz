@@ -6,10 +6,9 @@
     padding: 0 0 0 0;
 }
 
-
 .subcontent {
     padding: 0 20px 0 20px;
-    min-height: 480px;
+    min-height: 525px;
 }
 
 .disabled {
@@ -17,9 +16,11 @@
     pointer-events: none;
 }
 
+body {
+    padding-right: 0 !important
+}
 
-body { padding-right: 0 !important }
-
-.popover{
+.popover {
     max-width: 50% !important; /* Max Width of the popover (depending on the container!) */
 }
+

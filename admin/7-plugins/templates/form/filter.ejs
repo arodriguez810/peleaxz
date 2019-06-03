@@ -4,10 +4,10 @@
 <div class="row {{<%= scope %>.filters.colored(block)}}"
      ng-repeat="(key,block) in <%= scope %>.filters.blocks track by key"
      value="{{block}}">
-    <div class="col-sm-1 col-md-1">
+    <div class="col-sm-1 col-md-1 width-custom1">
         <button type="button" role="button"
                 ng-click="<%= scope %>.filters.toggleGroup(block)"
-                class="btn {{<%= scope %>.filters.colored(block)}} text-bold  {{block.group?'bg-<%= COLOR.primary %>-500':' '}}  legitRipple text-right">
+                class="btn {{<%= scope %>.filters.colored(block)}} text-bold  {{block.group?'bg-<%= COLOR.primary %>-500':' '}}  legitRipple text-right" dragonlanguage title="MESSAGE.ic('mono.group_selection')">
             (
         </button>
     </div>
@@ -36,7 +36,7 @@
             </select>
         </div>
     </div>
-    <div class="col-sm-8 col-md-4">
+    <div class="col-sm-8 col-md-6">
         <div class="form-group-material form-group has-feedback  has-feedback-left">
 
             <input ng-model="block.finalValue" class="real" type="hidden">
@@ -140,52 +140,40 @@
             </div>
         </div>
     </div>
-    <div class="col-sm-1 col-md-1">
+    <div class="col-sm-1 col-md-1 width-custom1">
         <button type="button" role="button"
                 ng-click="<%= scope %>.filters.toggleEndGroup(block)"
-                class="btn {{block.endgroup?'bg-<%= COLOR.primary %>-500':' '}} {{<%= scope %>.filters.colored(block)}} text-bold legitRipple text-left">
+                class="btn {{block.endgroup?'bg-<%= COLOR.primary %>-500':' '}} {{<%= scope %>.filters.colored(block)}} text-bold legitRipple text-left" dragonlanguage title="MESSAGE.ic('mono.group_selection')">
             )
         </button>
     </div>
-    <div class="col-sm-1 col-md-1">
+    <div class="col-sm-1 col-md-1 width-custom1">
         <button type="button" role="button" ng-if="<%= scope %>.filters.visibleConnector(block)"
-                style="width: 42px;margin-left: -42px;"
+                style="width: 42px;"
                 ng-click="<%= scope %>.filters.toggleConnector(block)"
                 class="btn {{<%= scope %>.filters.colorConnector(block)}} text-bold btn-block legitRipple text-left"
-                dragonlanguage="">
+                dragonlanguage  title="MESSAGE.ic('mono.condition')">
             {{<%= scope %>.filters.connectorsLabel[block.connector]}}
         </button>
     </div>
-    <div class="col-sm-4 col-md-1">
+    <div class="col-sm-4 col-md-1 width-custom1">
         <button
-                title="Remove This Filter"
+                title="Remover este filtro"
                 type="button" role="button" ng-if="<%= scope %>.filters.visibleConnector(block)"
-                style="width: 42px;margin-left: -75px;height: 37px"
+                style="width: 42px;height: 37px"
                 ng-click="<%= scope %>.filters.remove(block)"
-                class="btn btn-danger text-bold btn-block legitRipple"
+                class="style-none text-bold btn-block legitRipple"
                 dragonlanguage="">
             <i class=" icon-trash" style="margin-left: -4px;"></i>
         </button>
     </div>
 </div>
 <div class="row">
-    <div class="form-group">
-        <button dragonlanguage="" type="button" role="button"
-                ng-click="<%= scope %>.filters.add()"
-                class="btn bg-<%= COLOR.primary %>-600 btn-block legitRipple">
-            <language>MESSAGE.ic('mono.add')</language>
-            <i class="icon-plus-circle2 position-left"></i>
-        </button>
-    </div>
-</div>
-<div class="row">
-    <p ng-bind-html="<%= scope %>.filters.description()">
+    <p class="col-lg-12 col-md-12 col-xs-12" ng-bind-html="<%= scope %>.filters.description()">
     </p>
 </div>
 <div class="modal-footer visible-xs">
     <div class="row">
-
-
         <div dragonlanguage="" class="col-lg-4 col-md-4 col-xs-4">
             <button type="button" class="btn  bg-<%= COLOR.success %> btn-labeled btn-xs pull-right"
                     ng-click="<%= scope %>.filters.apply()">
@@ -202,15 +190,24 @@
         </div>
     </div>
 </div>
-<div class="modal-footer visible-lg visible-md">
+<div class="modal-footer visible-lg visible-md" style="padding-right: 16px;">
 
-    <button dragonlanguage type="button" class="btn  bg-<%= COLOR.secundary %>-600"
+    <button dragonlanguage="" type="button" role="button"
+            ng-click="<%= scope %>.filters.add()"
+            class="btn bg-<%= COLOR.secundary %>-600 btn-labeled btn-xs legitRipple">
+        <b><i class="icon-plus-circle2"></i></b>
+        <language>MESSAGE.ic('mono.add')</language>
+    </button>
+
+    <button dragonlanguage type="button" class="btn  bg-<%= COLOR.success %>-600 btn-labeled btn-xs"
             ng-click="<%= scope %>.filters.apply()">
+        <b><i class="icon-checkmark3"></i></b>
         <language>MESSAGE.ic('mono.apply')</language>
     </button>
 
-    <button dragonlanguage type="button" class="btn  bg-<%= COLOR.secundary %>-600"
-            ng-click="<%= scope %>.filters.clear()">
+    <button dragonlanguage type="button" class="btn  bg-<%= COLOR.warning %>-600 btn-labeled btn-xs"
+            ng-click="<%= scope %>.filters.clear()" style="margin-right: 0">
+        <b><i class="icon-eraser2"></i></b>
         <language>MESSAGE.ic('mono.clear')</language>
     </button>
 

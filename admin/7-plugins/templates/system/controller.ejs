@@ -1,15 +1,15 @@
-app.controller("segment", function ($scope, $http, $compile) {
-    segment = this;
-    RUNCONTROLLER("segment", segment, $scope, $http, $compile);
-    segment.formulary = function (data, mode, defaultData) {
-        if (segment !== undefined) {
-            RUN_B("segment", segment, $scope, $http, $compile);
-            segment.form.readonly = {};
-            segment.createForm(data, mode, defaultData);
-            segment.$scope.$watch('segment.name', function (value) {
+app.controller("<%= scope %>", function ($scope, $http, $compile) {
+    <%= scope %> = this;
+    RUNCONTROLLER("<%= scope %>", <%= scope %>, $scope, $http, $compile);
+    <%= scope %>.formulary = function (data, mode, defaultData) {
+        if (<%= scope %> !== undefined) {
+            RUN_B("<%= scope %>", <%= scope %>, $scope, $http, $compile);
+            <%= scope %>.form.readonly = {};
+            <%= scope %>.createForm(data, mode, defaultData);
+            <%= scope %>.$scope.$watch('<%= scope %>.name', function (value) {
                 var rules = [];
                 rules.push(VALIDATION.general.required(value));
-                VALIDATION.validate(segment, "name", rules);
+                VALIDATION.validate(<%= scope %>, "name", rules);
             });
         }
     };

@@ -61,7 +61,7 @@ var toclient = JSON.stringify(options);
     else
     <%= model + "." + name %>= "";
 </script>
-<div class="form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-<%= options.icon.position %>"
+<div class="remove-input-space form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-<%= options.icon.position %>"
      id="input<%= model %>_<%= nameclean %>">
     <label
             id="label<%= model %>_<%= nameclean %>"
@@ -75,7 +75,7 @@ var toclient = JSON.stringify(options);
     </label>
 
     <div id="<%= model %>_<%= nameclean %>div"
-         style="background: #fff; cursor: pointer; padding: 10px 10px; border-bottom: 1px solid #ccc; width: 100%">
+         class="form-control" style="padding-left: 0px;">
         <i class="icon-<%= options.icon.class %> text-<%= COLOR.secundary %>"></i>
         <span>{{<%= model + "." + name %>}}</span>
     </div>
@@ -119,6 +119,7 @@ var toclient = JSON.stringify(options);
         <% if(options.disabled !== true){ %>
         $('#<%= model %>_<%= nameclean %>div').daterangepicker({
             timePicker: <%= options.timepicker %>,
+            showDropdowns: true,
             startDate: moment(<%= model %>.<%= options.from %> || new Date()) ,
             endDate
     :

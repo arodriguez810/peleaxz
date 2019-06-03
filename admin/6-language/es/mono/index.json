@@ -1,10 +1,14 @@
 {
   "by": "por",
+  "clicktosort": "Clic para ordenar",
   "welcome": "bienvenido",
   "to": "a",
   "from": "desde",
   "please": "porfavor",
   "save": "guardar",
+  "saved": "guardado",
+  "deleted": "eliminado(s)",
+  "copied": "copiado(s)",
   "saveAndContinue": "y continuar",
   "saving": "guardando",
   "close": "cerrar",
@@ -201,5 +205,15 @@
   "diskdata": "datos en disco",
   "base": "Módulos Base",
   "entity": "entidad",
-  "records": "registros"
+  "records": "registros",
+  "group_selection": "Agrupar selección",
+  "condition": "Condición",
+  "for": "para",
+  "sort_numeric": "numéricamente",
+  "sort_alphanumeric": "alfanuméricamente",
+  "sort_bool": "(verdadero/falso)",
+  "sort_time": "cronológicamente",
+  "asc": "ascendente",
+  "desc": "descendente",
+  "sorted": "ordenado"
 }

@@ -312,7 +312,7 @@ FORM = {
                 BASEAPI.insertID($scope.tableOrMethod, $scope.form.inserting, $scope.form.fieldExGET, $scope.form.valueExGET, async function (result) {
                     if (result.data.error === false) {
 
-                        SWEETALERT.loading({message: MESSAGE.i('mono.Preparingfilesandrelations')});
+                        SWEETALERT.loading({message: MESSAGE.i('mono.saving')});
                         var savedRow = result.data.data[0];
                         $scope.form.after.insert({
                             inserted: savedRow,
@@ -348,6 +348,7 @@ FORM = {
                             if ($scope.pages.form.subRequestCompleteVar === 0) {
                                 $scope.pages.form.close(undefined, undefined, close);
                                 SWEETALERT.stop();
+                                NOTIFY.success(`${$scope.singular} ${MESSAGE.i('mono.saved')}`);
                             }
                         if ($scope.form !== null)
                             if ($scope.form.uploading !== undefined)
@@ -444,7 +445,7 @@ FORM = {
                                 relations: $scope.form.relations,
                             });
                         }
-                        SWEETALERT.loading({message: MESSAGE.i('mono.Preparingfilesandrelations')});
+                        SWEETALERT.loading({message: MESSAGE.i('mono.saving')});
                         var firstColumn = eval(`CRUD_${$scope.modelName}`).table.key || "id";
                         var DRAGONID = eval(`$scope.${firstColumn}`);
                         if ($scope.form !== null)
@@ -459,6 +460,7 @@ FORM = {
 
                             $scope.pages.form.close(undefined, undefined, close);
                             SWEETALERT.stop();
+                            NOTIFY.success(`${$scope.singular} ${MESSAGE.i('mono.saved')}`);
                         }
                         if ($scope.form !== null)
                             if ($scope.form.relations !== undefined) {
@@ -952,10 +954,10 @@ FORM = {
                             for (const i in info.data) {
                                 var item = info.data[i];
                                 var groupbyValue = eval(`item.${options.groupby}`);
-                                if (DSON.oseaX(eval(`newData.${groupbyValue}`))) {
-                                    eval(`newData.${groupbyValue} = [];`);
+                                if (DSON.oseaX(eval(`newData["${groupbyValue}"]`))) {
+                                    eval(`newData["${groupbyValue}"] = [];`);
                                 }
-                                eval(`newData.${groupbyValue}.push(item)`);
+                                eval(`newData["${groupbyValue}"].push(item)`);
                             }
                             eval(`$scope.form.options.${name}.groupbydata = newData`);
                         }
@@ -1124,6 +1126,7 @@ FORM = {
                     if ($scope.pages.form.subRequestCompleteProgress === $scope.pages.form.subRequestCompleteVar) {
                         $scope.pages.form.close(undefined, undefined, close);
                         SWEETALERT.stop();
+                        NOTIFY.success(`${$scope.singular} ${MESSAGE.i('mono.saved')}`);
                     } else {
 
                     }

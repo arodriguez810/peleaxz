@@ -12,13 +12,17 @@ DSON.keepmerge(CRUD_group, {
             },
             name: {
                 label: "name",
-                shorttext: 20
+                shorttext: 40
             },
             description: {
                 label: "description",
                 sortable: false,
                 shorttext: 20,
                 null: "<span class='text-grey'>[NULL]</span>"
+            },
+            homePage: {
+                label: "Home Page",
+                shorttext: 40
             },
             isAdmin: {
                 label: "Admin",

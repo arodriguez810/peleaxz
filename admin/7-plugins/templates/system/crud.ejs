@@ -1,6 +1,6 @@
-CRUD_segment = {};
-DSON.keepmerge(CRUD_segment, CRUDDEFAULTS);
-DSON.keepmerge(CRUD_segment, {
+CRUD_<%= scope %> = {};
+DSON.keepmerge(CRUD_<%= scope %>, CRUDDEFAULTS);
+DSON.keepmerge(CRUD_<%= scope %>, {
     table: {
         engine: 'ms',
         columns: {
@@ -12,26 +12,16 @@ DSON.keepmerge(CRUD_segment, {
             },
             name: {
                 label: "name",
-                shorttext: 20
+                shorttext: 50
             },
             description: {
                 label: "description",
                 sortable: false,
-                shorttext: 20,
+                shorttext: 50,
                 null: "<span class='text-grey'>[NULL]</span>"
-            },
-            created: {
-                visible: false,
-                sorttype: "time",
-                formattype: "datetime>DD-MM-YYYY hh:mm a"
             },
             updated: {
                 visible: false,
-                exportExample: false
-            },
-            deleted: {
-                visible: false,
-                visibleDetail: false,
                 exportExample: false
             },
             user_created: {
@@ -45,17 +35,11 @@ DSON.keepmerge(CRUD_segment, {
                 visibleDetail: false,
                 export: false,
                 exportExample: false
-            },
-            user_deleted: {
-                visible: false,
-                visibleDetail: false,
-                export: false,
-                exportExample: false
             }
         }
     }
 });
-CRUD_segment = DSON.merge(CRUD_segment,
+CRUD_<%= scope %> = DSON.merge(CRUD_<%= scope %>,
 {
     table: {
         filters: {
@@ -83,11 +67,6 @@ CRUD_segment = DSON.merge(CRUD_segment,
                     key: 'created',
                     label: 'Created',
                     type: FILTER.types.datetime,
-                },
-                {
-                    key: 'active',
-                    label: 'Active',
-                    type: FILTER.types.bool,
                 }
             ]
         }

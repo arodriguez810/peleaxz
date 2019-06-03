@@ -37,5 +37,14 @@
   "config_users_rules_notlast": "It should not be equal to the last password",
   "customfield": "Custom Field",
   "customfield_plural": "Custom Fields",
-  "config_users_rules_expire": "Days for the password to expire"
+  "config_users_rules_expire": "Days for the password to expire",
+  "config_ui_theme_primary": "Primary Color(Bars)",
+  "config_ui_theme_secundary": "Secundary Color(Content)",
+  "config_ui_theme_extra": "Extra Color (Menu)",
+  "config_ui_theme_text1": "Texto1 Recomended(Black)",
+  "config_ui_theme_text2": "Texto2 Recomended(White)",
+  "config_ui_theme_text3": "Texto3 Recomended(White)",
+  "config_ui_theme_primaryShades": "Shades for primary",
+  "config_ui_theme_secundaryShades": "Shades for secundary",
+  "config_ui_theme_extraShades": "Shades for extra"
 }

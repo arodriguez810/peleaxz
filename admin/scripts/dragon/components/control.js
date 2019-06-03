@@ -39,7 +39,17 @@ CONTROL = {
                 switch (field.type) {
                     case "1": {
                         $(content).append(`<div class="col-sm-${cols} col-md-${cols}" id="field${field.id}"></div>`);
-                        await $scope.control.input(`#field${field.id}`, field.variable, {placeHolder: field.name});
+                        if (field.mask) {
+                            await $scope.control.inputformat(`#field${field.id}`, field.variable, {
+                                placeHolder: field.name,
+                                format: {
+                                    mask: field.mask,
+                                    options: {reverse: true}
+                                }
+                            });
+                        } else {
+                            await $scope.control.input(`#field${field.id}`, field.variable, {placeHolder: field.name});
+                        }
                         pass = true;
                         break;
                     }

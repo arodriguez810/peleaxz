@@ -1,0 +1,30 @@
+<script>
+    alert("<%= DATA.entitiy %>");
+</script>
+<div id="information" ng-controller="information as information" style="text-align: center">
+    <div class="panel panel-<%= COLOR.secundary %>">
+        <div class="panel-heading">
+            <h6 class="panel-title" dragonlanguage><i class="icon-database position-left"></i>
+                Controller
+            </h6>
+        </div>
+
+        <div class="panel-body">
+
+        </div>
+    </div>
+    <div class="panel panel-<%= COLOR.secundary %>">
+        <div class="panel-heading">
+            <h6 class="panel-title" dragonlanguage><i class="icon-database position-left"></i>
+                CRUD
+            </h6>
+        </div>
+
+        <div class="panel-body">
+
+        </div>
+    </div>
+</div><!--end-->
+<script>
+    information.refreshAngular();
+</script>

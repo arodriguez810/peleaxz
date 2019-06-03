@@ -55,9 +55,9 @@ var toclient = JSON.stringify(options);
             type="text"
             class="form-control">
 
-    <div style="margin: 10px;" class="form-control-feedback"
+    <div style="margin: 10px;margin-top: -7px" class="form-control-feedback"
          ng-if="<%= model %>.form.options.<%= name %>.icon.class!=='none'">
-        <i class="icon-<%= options.icon.class %> text-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}">
+        <i class="icon-<%= options.icon.class %> text-secundary-700">
 
         </i>
     </div>

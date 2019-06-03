@@ -28,8 +28,11 @@
     <link href="<%= FOLDERS.themes %>/secundary.css" rel="stylesheet" type="text/css">
     <link href="<%= FOLDERS.themes %>/primary.css" rel="stylesheet" type="text/css">
 
+
     <script type="text/javascript" src="assets/js/plugins/loaders/pace.min.js"></script>
     <script type="text/javascript" src="assets/js/core/libraries/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/notifications/pnotify.min.js"></script>
+    <script type="text/javascript" src="assets/js/plugins/notifications/noty.min.js"></script>
     <script type="text/javascript" src="assets/js/plugins/editors/autosize.min.js"></script>
     <script type="text/javascript" src="assets/js/plugins/forms/inputs/jquery.mask.min.js"></script>
     <script type="text/javascript" src="assets/js/plugins/tables/datatables/datatables.min.js"></script>
@@ -72,6 +75,31 @@
         <script src="<%= FOLDERS.scripts %>/<%= item %>"></script>
     <% }); %>
 
+    <%
+    MENUONEROW = [];
+    addMenu = function (prefix, array) {
+        for (var menu of array) {
+            if (menu.href !== "#") {
+                MENUONEROW.push({
+                    id: menu.href,
+                    icon: menu.icon,
+                    category: prefix.join(", "),
+                    name: menu.text
+                });
+            } else {
+                if (menu.menus !== undefined) {
+                    var newprefix = [];
+                    for (var i in prefix)
+                        newprefix.push(prefix[i]);
+                    newprefix.push(menu.text);
+                    addMenu(newprefix, menu.menus);
+                }
+            }
+        }
+    }
+    addMenu([], CONFIG.menus);
+
+    %>
     <script>
         const USD = value => currency(value, {symbol: '$', decimal: ',', separator: '.'});
         const JPY = value => currency(value, {precision: 0, symbol: '¥'});
@@ -86,6 +114,8 @@
         Dropzone.autoDiscover = false;
         CONFIG = "<%= JSON.stringify(CONFIG) %>";
         CONFIG = eval("(" + CONFIG.replaceAll("&#34;", '"') + ")");
+        MENUONEROW = "<%= JSON.stringify(MENUONEROW) %>";
+        MENUONEROW = eval("(" + MENUONEROW.replaceAll("&#34;", '"') + ")");
         LANGUAGE = "<%= JSON.stringify(LANGUAGE) %>";
         LANGUAGE = eval("(" + LANGUAGE.replaceAll("&#34;", '"') + ")");
         CONTROLS = "<%= JSON.stringify(controls) %>";
@@ -162,11 +192,19 @@
     <% crudjs.forEach(function(item){ %>
         <script src="<%= item %>"></script>
     <% }); %>
-
+    <script>
+        <% silentsmodels.forEach(function(item){ %>
+        <%- include('../../7-plugins/templates/system/crud',{scope:item}); %>
+        <% }); %>
+    </script>
     <% controllersjs.forEach(function(item){ if(item != undefined){ %>
         <script src="<%= item %>"></script>
     <% }}); %>
-
+    <script>
+        <% silentsmodels.forEach(function(item){ %>
+        <%- include('../../7-plugins/templates/system/controller',{scope:item}); %>
+        <% }); %>
+    </script>
     <% localserver.forEach(function (item) {
         if (item != undefined) {
             include("../../server/" + item);
@@ -219,12 +257,15 @@
                 <div class="content" id="content" style="overflow: hidden">
                     <!-- Error title -->
                     <div class="text-center content-group"
-                         style="background-image: url('assets/images/<%= COLOR.logo %>.svg');background-repeat: no-repeat;background-position: center;">
-                        <h1 class="error-title dragon-welcome">
+                         style="background-color: #fff;min-height: 500px;margin-bottom: 0px !important;margin-top: -20px !important;">
+                        <h1 class="error-title dragon-welcome"
+                            style="color: <%= CONFIG.ui.theme.primary %>;text-shadow: 0 1px 0 <%= CONFIG.ui.theme.secundary %>,0 2px 0 <%= CONFIG.ui.theme.secundary %>,0 3px 0 <%= CONFIG.ui.theme.secundary %>,0 4px 0 <%= CONFIG.ui.theme.secundary %>,0 5px 0 #aaa,0 6px 1px rgba(0,0,0,.1),0 0 5px rgba(0,0,0,.1),0 1px 3px rgba(0,0,0,.3),0 3px 5px rgba(0,0,0,.2),0 5px 10px rgba(0,0,0,.25),0 10px 10px rgba(0,0,0,.2),0 20px 20px rgba(0,0,0,.15);">
                             <%= CONFIG.appName %>
                             <script>
-                                if (document.location.href.indexOf('#') === -1) {
-                                    new HTTP().redirecttag(CONFIG.home);
+                                if (document.location.href.indexOf('#') === -1 && new SESSION().current().homePage) {
+                                    new HTTP().redirecttag(new SESSION().current().homePage.replace('#', ''));
+                                } else if (document.location.href.indexOf('#') === -1) {
+                                    new HTTP().redirecttag(CONFIG.home.replace('#', ''));
                                 }
                             </script>
                         </h1>

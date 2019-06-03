@@ -1,1 +1,0 @@
-nodemon --watch 0-config --watch 7-plugins --watch 6-language --watch modules --watch server.js server.js

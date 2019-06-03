@@ -17,10 +17,7 @@
     min-width: 14px !important;
 }
 
-.select2-search__field {
-    border-bottom: 1px solid rgb(204, 204, 204) !important;;
-    margin-top: -6px !important;
-}
+
 
 .daterangepicker.dropdown-menu {
     max-width: none;
@@ -137,7 +134,7 @@
 }
 
 .daterangepicker .table-condensed tr > th, .daterangepicker .table-condensed tr > td {
-    padding: 10px;
+    padding: 0px;
     line-height: 1
 }
 
@@ -149,7 +146,7 @@
     font-size: 17px;
     line-height: 1;
     color: #333;
-    padding-top: 15px;
+    padding-top: 0px;
     padding-bottom: 15px;
     font-weight: 400
 }
@@ -260,4 +257,16 @@
     display: block;
     font-size: 12px;
     color: #999
+}
+
+.select2-selection__rendered{
+    border-bottom: 1px solid #ccc;
+}
+
+.select2-search__field {
+    margin-top: -6px !important;
+}
+
+.select2 {
+    margin-top: 3px;
 }

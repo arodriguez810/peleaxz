@@ -3,7 +3,11 @@ exports.defaultRequests = function (params, Model) {
         params.modules.views.LoadEJS(files, params);
     });
     params.app.get(params.util.format('/api/%s/list', params.modelName), function (req, res) {
-        params.secure.check(req, res, function () {
+        params.secure.check(req, res).then( function (token) {
+            if (!token.apptoken) {
+                res.json(token);
+                return;
+            }
             var index = {};
             if (req.query.limit === undefined)
                 index.limit = 10;
@@ -37,7 +41,11 @@ exports.defaultRequests = function (params, Model) {
         });
     });
     params.app.get(params.util.format('/api/%s/all', params.modelName), function (req, res) {
-        params.secure.check(req, res, function () {
+        params.secure.check(req, res).then( function (token) {
+            if (!token.apptoken) {
+                res.json(token);
+                return;
+            }
             var query = Model.find(req.query);
             query.exec(function (err, model) {
                 if (err) res.send(err);
@@ -50,7 +58,11 @@ exports.defaultRequests = function (params, Model) {
         });
     });
     params.app.get(params.util.format('/api/%s/get/:id', params.modelName), function (req, res) {
-        params.secure.check(req, res, function () {
+        params.secure.check(req, res).then( function (token) {
+            if (!token.apptoken) {
+                res.json(token);
+                return;
+            }
             Model.findOne({"_id": req.params.id}, function (err, model) {
                 if (err) res.send(err);
                 res.json({
@@ -60,7 +72,11 @@ exports.defaultRequests = function (params, Model) {
         });
     });
     params.app.post('/api/' + params.modelName + '/insert', function (req, res) {
-        params.secure.check(req, res, function () {
+        params.secure.check(req, res).then( function (token) {
+            if (!token.apptoken) {
+                res.json(token);
+                return;
+            }
             Model.create(req.body, function (err, model) {
                 if (err) res.send(err);
                 res.json({
@@ -70,7 +86,11 @@ exports.defaultRequests = function (params, Model) {
         });
     });
     params.app.put('/api/' + params.modelName + '/update/:id', function (req, res) {
-        params.secure.check(req, res, function () {
+        params.secure.check(req, res).then( function (token) {
+            if (!token.apptoken) {
+                res.json(token);
+                return;
+            }
             Model.findOneAndUpdate({"_id": req.params.id}, req.body, function (err, model) {
                 if (err) res.send(err);
                 res.json({
@@ -80,7 +100,11 @@ exports.defaultRequests = function (params, Model) {
         });
     });
     params.app.delete('/api/' + params.modelName + '/delete/:id', function (req, res) {
-        params.secure.check(req, res, function () {
+        params.secure.check(req, res).then( function (token) {
+            if (!token.apptoken) {
+                res.json(token);
+                return;
+            }
             Model.remove({
                 _id: req.params.id
             }, function (err, model) {

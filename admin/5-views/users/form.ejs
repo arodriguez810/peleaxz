@@ -10,9 +10,7 @@
             <div class="col-sm-4 col-md-4">
                 <%- FORM.file("profileimage", scope, {
                     show: 'image',
-                    title: 'Upload Profile Image',
-                    maxfiles: 2,
-                    columns: 2
+                    title: 'Upload Profile Image'
                 }) %>
             </div>
         </div>
@@ -23,14 +21,22 @@
             <div class="col-sm-4 col-md-4">
                 <%- FORM.input("email", scope, {maxlength: 50}) %>
             </div>
+        </div>
+        <div class="row">
             <div class="col-sm-4 col-md-4">
                 <%- FORM.select("group", scope, {
                     column: "name",
                     table: "group",
-                    label: 'Groups',
                     get: {table: 'user_group', fieldFrom: 'id', fieldTo: 'user', field: 'group'},
                     multiple: true,
                     icon: {class: "users4"}
+                }) %>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.select("profile", scope, {
+                    column: "name",
+                    table: "group",
+                    icon: {class: "vcard"}
                 }) %>
             </div>
         </div>

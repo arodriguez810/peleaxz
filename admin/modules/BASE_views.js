@@ -4,7 +4,11 @@ exports.LoadEJS = function (files, params, folder) {
         var viewName = params.S(file).contains("index.ejs") ? "" : file.replace(".ejs", "");
         params.app.get(params.util.format("/%s%s", params.modelName === "base" ? "" : params.modelName + "/", viewName),
             function (req, res) {
-                params.secure.check(req, res, async function () {
+                params.secure.check(req, res).then(async function (token) {
+                    if (!token.apptoken) {
+                        res.json(token);
+                        return;
+                    }
                     params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;
                     if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
                     var path = req.originalUrl;
@@ -35,11 +39,31 @@ exports.LoadEJS = function (files, params, folder) {
 
 
                     var CONTROLLERSNAMES = [];
+                    var CONTROLLERSNAMESILENT = [];
                     for (var CONTROLLER of params.controllersjs) {
                         var name = CONTROLLER.split('CO_')[1].split('.js')[0];
-                        if (["BASE"].indexOf(name) === -1)
+                        if (["BASE"].indexOf(name) === -1) {
                             CONTROLLERSNAMES.push({id: name, name: name});
+                            CONTROLLERSNAMESILENT.push(name);
+                        }
                     }
+
+
+                    STORAGENAMES = [];
+                    for (var sotargy in params.CONFIG.storageEntities) {
+                        STORAGENAMES.push(sotargy);
+                    }
+
+                    silentsmodels = [];
+                    models.forEach(function (item) {
+                        if (item != undefined) {
+                            if (CONTROLLERSNAMESILENT.indexOf(item) === -1) {
+                                if (STORAGENAMES.indexOf(item) === -1) {
+                                    silentsmodels.push(item);
+                                }
+                            }
+                        }
+                    });
 
                     var send = {
                         scope: params.modelName,
@@ -56,6 +80,7 @@ exports.LoadEJS = function (files, params, folder) {
                         COLOR: params.CONFIG.ui.colors,
                         TAG: newtags,
                         models: models,
+                        silentsmodels: silentsmodels,
                         FOLDERS: params.folders,
                         DATA: req.query,
                         SERVICES: params.catalogs,
@@ -64,6 +89,7 @@ exports.LoadEJS = function (files, params, folder) {
                         CONTROLLERSNAMES: CONTROLLERSNAMES
                     };
 
+                    console.log(folder);
                     res.render("../" + (folder || params.folders.views) + "/" + realPath, send);
                 });
             }
@@ -76,7 +102,11 @@ exports.LoadEJSDragon = function (files, params, folder) {
         var viewName = params.S(file).contains("index.ejs") ? "" : file.replace(".ejs", "");
         params.app.get(params.util.format("/%s%s", params.modelName === "base" ? "" : params.modelName + "/", viewName),
             function (req, res) {
-                params.secure.check(req, res, async function () {
+                params.secure.check(req, res).then(async function (token) {
+                    if (!token.apptoken) {
+                        res.json(token);
+                        return;
+                    }
                     params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;
                     if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
                     var path = req.originalUrl;
@@ -107,11 +137,30 @@ exports.LoadEJSDragon = function (files, params, folder) {
 
 
                     var CONTROLLERSNAMES = [];
+                    var CONTROLLERSNAMESILENT = [];
                     for (var CONTROLLER of params.controllersjs) {
                         var name = CONTROLLER.split('CO_')[1].split('.js')[0];
-                        if (["BASE"].indexOf(name) === -1)
+                        if (["BASE"].indexOf(name) === -1) {
                             CONTROLLERSNAMES.push({id: name, name: name});
+                            CONTROLLERSNAMESILENT.push(name);
+                        }
                     }
+
+                    STORAGENAMES = [];
+                    for (var sotargy in params.CONFIG.storageEntities) {
+                        STORAGENAMES.push(sotargy);
+                    }
+
+                    silentsmodels = [];
+                    models.forEach(function (item) {
+                        if (item != undefined) {
+                            if (CONTROLLERSNAMESILENT.indexOf(item) === -1) {
+                                if (STORAGENAMES.indexOf(item) === -1) {
+                                    silentsmodels.push(item);
+                                }
+                            }
+                        }
+                    });
 
                     var send = {
                         scope: params.modelName,
@@ -128,6 +177,7 @@ exports.LoadEJSDragon = function (files, params, folder) {
                         COLOR: params.CONFIG.ui.colors,
                         TAG: newtags,
                         models: models,
+                        silentsmodels: silentsmodels,
                         FOLDERS: params.folders,
                         DATA: req.query,
                         SERVICES: params.catalogs,
@@ -153,8 +203,11 @@ exports.runServices = function (services, prefix, params) {
             var functionR = config[1];
             eval(`var serviceFunction = params.servicesFunctions["${service}"].gets.${functionR}`);
             return await serviceFunction(req.query).then(result => {
-                params.secure.check(req, res, function () {
-                    res.json(result);
+                params.secure.check(req, res).then(function (token) {
+                    if (!token.apptoken) {
+                        res.json(token);
+                    } else
+                        res.json(result);
                 });
             }).catch(err => {
                 res.json(err);
@@ -170,7 +223,11 @@ exports.runServices = function (services, prefix, params) {
             var functionR = config[1];
             eval(`var serviceFunction = params.servicesFunctions["${service}"].posts.${functionR}`);
             return await serviceFunction(req.body).then(result => {
-                params.secure.check(req, res, function () {
+                params.secure.check(req, res).then(function (token) {
+                    if (!token.apptoken) {
+                        res.json(token);
+                        return;
+                    }
                     res.json(result);
                 });
             }).catch(err => {
@@ -187,7 +244,11 @@ exports.runServices = function (services, prefix, params) {
             var functionR = config[1];
             eval(`var serviceFunction = params.servicesFunctions["${service}"].puts.${functionR}`);
             return await serviceFunction(req.body).then(result => {
-                params.secure.check(req, res, function () {
+                params.secure.check(req, res).then(function (token) {
+                    if (!token.apptoken) {
+                        res.json(token);
+                        return;
+                    }
                     res.json(result);
                 });
             }).catch(err => {
@@ -204,7 +265,11 @@ exports.runServices = function (services, prefix, params) {
             var functionR = config[1];
             eval(`var serviceFunction = params.servicesFunctions["${service}"].deletes.${functionR}`);
             return await serviceFunction(req.body).then(result => {
-                params.secure.check(req, res, function () {
+                params.secure.check(req, res).then(function (token) {
+                    if (!token.apptoken) {
+                        res.json(token);
+                        return;
+                    }
                     res.json(result);
                 });
             }).catch(err => {
@@ -220,7 +285,11 @@ exports.loadEJSSimple = function (folder, prefix, params) {
             var file = files[i];
             var viewName = params.S(file).contains("index.ejs") ? "" : "/" + file.replace(".ejs", "");
             params.app.get(params.util.format("/%s%s", prefix, viewName), function (req, res) {
-                params.secure.check(req, res, async function () {
+                params.secure.check(req, res).then(async function (token) {
+                    if (!token.apptoken) {
+                        res.json(token);
+                        return;
+                    }
                     params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;
                     if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
                     var path = req.originalUrl;
@@ -246,11 +315,31 @@ exports.loadEJSSimple = function (folder, prefix, params) {
                     });
 
                     var CONTROLLERSNAMES = [];
+                    var CONTROLLERSNAMESILENT = [];
                     for (var CONTROLLER of params.controllersjs) {
                         var name = CONTROLLER.split('CO_')[1].split('.js')[0];
-                        if (["BASE"].indexOf(name) === -1)
+                        if (["BASE"].indexOf(name) === -1) {
                             CONTROLLERSNAMES.push({id: name, name: name});
+                            CONTROLLERSNAMESILENT.push(name);
+                        }
                     }
+
+                    STORAGENAMES = [];
+                    for (var sotargy in params.CONFIG.storageEntities) {
+                        STORAGENAMES.push(sotargy);
+                    }
+
+                    silentsmodels = [];
+                    models.forEach(function (item) {
+                        if (item != undefined) {
+                            if (CONTROLLERSNAMESILENT.indexOf(item) === -1) {
+                                if (STORAGENAMES.indexOf(item) === -1) {
+                                    silentsmodels.push(item);
+                                }
+                            }
+                        }
+                    });
+
                     var send = {
                         scope: req.query.scope,
                         THEMES: params.themes,
@@ -266,6 +355,7 @@ exports.loadEJSSimple = function (folder, prefix, params) {
                         COLOR: params.CONFIG.ui.colors,
                         TAG: newtags,
                         models: models,
+                        silentsmodels: silentsmodels,
                         FOLDERS: params.folders,
                         DATA: req.query,
                         SERVICES: params.catalogs,
@@ -276,6 +366,7 @@ exports.loadEJSSimple = function (folder, prefix, params) {
                     var viewfinal = viewN[viewN.length - 1];
                     if (modelName.length == 1)
                         viewfinal = "index";
+
                     res.render("." + folder + "/" + viewfinal, send);
                 });
             });
@@ -305,11 +396,31 @@ exports.loadEJSSimple = function (folder, prefix, params) {
                 });
 
                 var CONTROLLERSNAMES = [];
+                var CONTROLLERSNAMESILENT = [];
                 for (var CONTROLLER of params.controllersjs) {
                     var name = CONTROLLER.split('CO_')[1].split('.js')[0];
-                    if (["BASE"].indexOf(name) === -1)
+                    if (["BASE"].indexOf(name) === -1) {
                         CONTROLLERSNAMES.push({id: name, name: name});
+                        CONTROLLERSNAMESILENT.push(name);
+                    }
                 }
+
+                STORAGENAMES = [];
+                for (var sotargy in params.CONFIG.storageEntities) {
+                    STORAGENAMES.push(sotargy);
+                }
+
+                silentsmodels = [];
+                models.forEach(function (item) {
+                    if (item != undefined) {
+                        if (CONTROLLERSNAMESILENT.indexOf(item) === -1) {
+                            if (STORAGENAMES.indexOf(item) === -1) {
+                                silentsmodels.push(item);
+                            }
+                        }
+                    }
+                });
+
                 var send = {
                     scope: req.query.scope,
                     THEMES: params.themes,
@@ -325,6 +436,258 @@ exports.loadEJSSimple = function (folder, prefix, params) {
                     COLOR: params.CONFIG.ui.colors,
                     TAG: newtags,
                     models: models,
+                    silentsmodels: silentsmodels,
+                    FOLDERS: params.folders,
+                    DATA: req.body,
+                    SERVICES: params.catalogs,
+                    params: params,
+                    localserver: localserver,
+                    CONTROLLERSNAMES: CONTROLLERSNAMES
+                };
+
+                var viewfinal = viewN[viewN.length - 1];
+                if (modelName.length == 1)
+                    viewfinal = "index";
+                if (send.DATA.pdf) {
+                    params.app.render("." + folder + "/" + viewfinal, send, function (err, html) {
+                        if (err) {
+                            res.json(err);
+                            return;
+                        }
+
+                        params.app.render("." + folder + "/" + 'header', send, function (err, headHtml) {
+                            if (err) {
+                                res.json(err);
+                                return;
+                            }
+
+                            params.app.render("." + folder + "/" + 'footer', send, function (err, footerHtml) {
+                                if (err) {
+                                    res.json(err);
+                                    return;
+                                }
+                                var runnings = `module.exports = {
+                                    header: {
+                                        height: '3cm', 
+                                        contents: function (page) {
+                                            return '${headHtml.replace(/(\r\n|\n|\r)/gm, "")}';
+                                        }
+                                    },
+        
+                                    footer: {
+                                        height: '3cm', 
+                                        contents: function (page) {
+                                            return '${footerHtml.replace(/(\r\n|\n|\r)/gm, "")}';
+                                        }
+                                    },
+                                };`;
+                                var pdfOptions = {
+                                    html: html,
+                                    paperSize: {
+                                        format: 'A4',
+                                        orientation: 'landscape', // portrait
+                                        border: '1cm'
+                                    },
+                                    runnings: runnings
+                                };
+
+                                params.fs.writeFile("./preview.html", html, function (err) {
+                                    if (err) {
+                                        return console.log(err);
+                                    }
+                                });
+
+                                params.PDF.convert(pdfOptions, function (err, result) {
+                                    result.toFile("./preview.pdf", function () {
+                                        res.download("./preview.pdf", send.DATA.pdf);
+                                    });
+                                });
+                            });
+                        });
+                    });
+                } else if (send.DATA.docx) {
+                    params.app.render("." + folder + "/" + viewN[viewN.length - 1], send, function (err, html) {
+                        if (err) {
+                            res.json(err);
+                            return;
+                        }
+                        var docx = params.HtmlDocx.asBlob(html, {
+                            orientation: 'landscape',
+                            margins: {top: 200, right: 200, left: 200, header: 200, footer: 200, bottom: 200}
+                        });
+                        params.fs.writeFile("./preview.docx", docx, function (err) {
+                            if (err) {
+                                res.json(err);
+                                return;
+                            }
+
+                            res.download("./preview.docx", send.DATA.docx);
+                        });
+                    });
+                } else {
+                    res.render("." + folder + "/" + viewN[viewN.length - 1], send);
+                }
+            });
+        }
+    });
+};
+exports.loadEJSSimpleSilents = function (folder, prefix, params) {
+    params.fs.readdir(folder, function (err, files) {
+        for (var i in files) {
+            var file = files[i];
+            var viewName = params.S(file).contains("index.ejs") ? "" : "/" + file.replace(".ejs", "");
+            params.app.get(params.util.format("/%s%s", prefix, viewName), function (req, res) {
+                params.secure.check(req, res).then(async function (token) {
+                    if (!token.apptoken) {
+                        res.json(token);
+                        return;
+                    }
+                    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;
+                    if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
+                    var path = req.originalUrl;
+                    var realPath = path.split("?");
+                    var viewN = realPath[0].split("/");
+
+                    var models = params.models
+                        .concat(params.modelsql)
+                        .concat(params.modelmysql)
+                        .concat(params.modeloracle)
+                        .concat(params.modelstorage);
+                    var tags = params.CONFIG.ui.colors.tag;
+                    var newtags = {};
+                    for (var tag in tags) {
+                        var itag = tags[tag];
+                        var largeVar = "params.CONFIG.ui.colors." + tags[tag];
+                        eval(
+                            "newtags." + tag + " = " + largeVar + '===undefined ? "' + itag + '" : ' + largeVar + ";"
+                        );
+                    }
+                    var modelName = viewN.filter(function (item) {
+                        return item !== '';
+                    });
+
+                    var CONTROLLERSNAMES = [];
+                    var CONTROLLERSNAMESILENT = [];
+                    for (var CONTROLLER of params.controllersjs) {
+                        var name = CONTROLLER.split('CO_')[1].split('.js')[0];
+                        if (["BASE"].indexOf(name) === -1) {
+                            CONTROLLERSNAMES.push({id: name, name: name});
+                            CONTROLLERSNAMESILENT.push(name);
+                        }
+                    }
+
+                    STORAGENAMES = [];
+                    for (var sotargy in params.CONFIG.storageEntities) {
+                        STORAGENAMES.push(sotargy);
+                    }
+
+                    silentsmodels = [];
+                    models.forEach(function (item) {
+                        if (item != undefined) {
+                            if (CONTROLLERSNAMESILENT.indexOf(item) === -1) {
+                                if (STORAGENAMES.indexOf(item) === -1) {
+                                    silentsmodels.push(item);
+                                }
+                            }
+                        }
+                    });
+
+                    var send = {
+                        scope: req.query.scope,
+                        THEMES: params.themes,
+                        session: params.session,
+                        localjs: params.localjs,
+                        controls: params.controls,
+                        controllersjs: params.controllersjs,
+                        localStyles: params.localStyles,
+                        crudjs: params.crudjs,
+                        CONFIG: params.CONFIG,
+                        LANGUAGE: params.LANGUAGE,
+                        SHOWLANGS: params.SHOWLANGS,
+                        COLOR: params.CONFIG.ui.colors,
+                        TAG: newtags,
+                        models: models,
+                        silentsmodels: silentsmodels,
+                        FOLDERS: params.folders,
+                        DATA: req.query,
+                        SERVICES: params.catalogs,
+                        params: params,
+                        localserver: localserver,
+                        CONTROLLERSNAMES: CONTROLLERSNAMES
+                    };
+                    var viewfinal = viewN[viewN.length - 1];
+                    if (modelName.length == 1)
+                        viewfinal = "index";
+                    res.render("../" + params.folders.silents + "/" + viewfinal, send);
+                });
+            });
+            params.app.post(params.util.format("/post/%s%s", prefix, viewName), async function (req, res) {
+                params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;
+                if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
+                var path = req.originalUrl;
+                var realPath = path.split("?");
+                var viewN = realPath[0].split("/");
+
+                var models = params.models
+                    .concat(params.modelsql)
+                    .concat(params.modelmysql)
+                    .concat(params.modeloracle)
+                    .concat(params.modelstorage);
+                var tags = params.CONFIG.ui.colors.tag;
+                var newtags = {};
+                for (var tag in tags) {
+                    var itag = tags[tag];
+                    var largeVar = "params.CONFIG.ui.colors." + tags[tag];
+                    eval(
+                        "newtags." + tag + " = " + largeVar + '===undefined ? "' + itag + '" : ' + largeVar + ";"
+                    );
+                }
+                var modelName = viewN.filter(function (item) {
+                    return item !== '';
+                });
+
+                var CONTROLLERSNAMES = [];
+                var CONTROLLERSNAMESILENT = [];
+                for (var CONTROLLER of params.controllersjs) {
+                    var name = CONTROLLER.split('CO_')[1].split('.js')[0];
+                    if (["BASE"].indexOf(name) === -1) {
+                        CONTROLLERSNAMES.push({id: name, name: name});
+                        CONTROLLERSNAMESILENT.push(name);
+                    }
+                }
+
+                STORAGENAMES = [];
+                for (var sotargy in params.CONFIG.storageEntities) {
+                    STORAGENAMES.push(sotargy);
+                }
+
+                silentsmodels = [];
+                models.forEach(function (item) {
+                    if (item != undefined) {
+                        if (CONTROLLERSNAMESILENT.indexOf(item) === -1) {
+                            if (STORAGENAMES.indexOf(item) === -1) {
+                                silentsmodels.push(item);
+                            }
+                        }
+                    }
+                });
+
+                var send = {
+                    scope: req.query.scope,
+                    THEMES: params.themes,
+                    session: params.session,
+                    localjs: params.localjs,
+                    controls: params.controls,
+                    controllersjs: params.controllersjs,
+                    localStyles: params.localStyles,
+                    crudjs: params.crudjs,
+                    CONFIG: params.CONFIG,
+                    LANGUAGE: params.LANGUAGE,
+                    SHOWLANGS: params.SHOWLANGS,
+                    COLOR: params.CONFIG.ui.colors,
+                    TAG: newtags,
+                    models: models,
+                    silentsmodels: silentsmodels,
                     FOLDERS: params.folders,
                     DATA: req.body,
                     SERVICES: params.catalogs,
@@ -425,7 +788,11 @@ exports.loadEJSSimplePOST = function (folder, prefix, params) {
             var file = files[i];
             var viewName = params.S(file).contains("index.ejs") ? "" : "/" + file.replace(".ejs", "");
             params.app.post(params.util.format("/%s%s", prefix, viewName), function (req, res) {
-                params.secure.check(req, res, async function () {
+                params.secure.check(req, res).then(async function (token) {
+                    if (!token.apptoken) {
+                        res.json(token);
+                        return;
+                    }
                     params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;
                     if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
                     var path = req.originalUrl;
@@ -451,11 +818,31 @@ exports.loadEJSSimplePOST = function (folder, prefix, params) {
                     });
 
                     var CONTROLLERSNAMES = [];
+                    var CONTROLLERSNAMESILENT = [];
                     for (var CONTROLLER of params.controllersjs) {
                         var name = CONTROLLER.split('CO_')[1].split('.js')[0];
-                        if (["BASE"].indexOf(name) === -1)
+                        if (["BASE"].indexOf(name) === -1) {
                             CONTROLLERSNAMES.push({id: name, name: name});
+                            CONTROLLERSNAMESILENT.push(name);
+                        }
                     }
+
+                    STORAGENAMES = [];
+                    for (var sotargy in params.CONFIG.storageEntities) {
+                        STORAGENAMES.push(sotargy);
+                    }
+
+                    silentsmodels = [];
+                    models.forEach(function (item) {
+                        if (item != undefined) {
+                            if (CONTROLLERSNAMESILENT.indexOf(item) === -1) {
+                                if (STORAGENAMES.indexOf(item) === -1) {
+                                    silentsmodels.push(item);
+                                }
+                            }
+                        }
+                    });
+
                     var send = {
                         scope: req.query.scope,
                         THEMES: params.themes,
@@ -471,6 +858,7 @@ exports.loadEJSSimplePOST = function (folder, prefix, params) {
                         COLOR: params.CONFIG.ui.colors,
                         TAG: newtags,
                         models: models,
+                        silentsmodels: silentsmodels,
                         FOLDERS: params.folders,
                         DATA: req.body,
                         SERVICES: params.catalogs,
@@ -487,7 +875,6 @@ exports.loadEJSSimplePOST = function (folder, prefix, params) {
         }
     });
 };
-
 exports.init = function (params) {
     var excludes = [
         params.folders.viewsDragon + "//base",
@@ -552,6 +939,38 @@ exports.init = function (params) {
             element.replace(".ejs", ""), params
         );
     });
+
+    CONTROLLERSNAMES = [];
+    for (var CONTROLLER of params.controllersjs) {
+        var name = CONTROLLER.split('CO_')[1].split('.js')[0];
+        if (["BASE"].indexOf(name) === -1)
+            CONTROLLERSNAMES.push(name);
+    }
+
+    STORAGENAMES = [];
+    for (var sotargy in params.CONFIG.storageEntities) {
+        STORAGENAMES.push(sotargy);
+    }
+
+    silentsmodels = [];
+    models.forEach(function (item) {
+        if (item !== undefined) {
+            if (CONTROLLERSNAMES.indexOf(item) === -1) {
+                if (STORAGENAMES.indexOf(item) === -1) {
+                    silentsmodels.push(item);
+                }
+            }
+        }
+    });
+
+    console.log("Silend Models".pxz);
+    console.log(silentsmodels.join(","));
+    silentsmodels.forEach(element => {
+        exports.loadEJSSimpleSilents(
+            "./" + params.folders.silents, element.replace(".ejs", ""), params
+        );
+    });
+
     exports.loadEJSSimplePOST("./" + params.folders.fields, "dragoncontrol", params);
     deleteFolderRecursive = function (path) {
         var files = [];
@@ -569,12 +988,20 @@ exports.init = function (params) {
         }
     };
     params.app.get("/test/token/", function (req, res) {
-        params.secure.check(req, res, function () {
+        params.secure.check(req, res).then(function (token) {
+            if (!token.apptoken) {
+                res.json(token);
+                return;
+            }
             res.json({all: "Good"});
         });
     });
     params.app.get("/files/api/", function (req, res) {
-        params.secure.check(req, res, function () {
+        params.secure.check(req, res).then(function (token) {
+            if (!token.apptoken) {
+                res.json(token);
+                return;
+            }
             var fs = params.fs || require("fs");
             var folder = req.query.folder;
             var realPath = params.folders.files + "/" + folder;
@@ -596,7 +1023,11 @@ exports.init = function (params) {
         });
     });
     params.app.get("/generalfiles/api/", function (req, res) {
-        params.secure.check(req, res, function (test) {
+        params.secure.check(req, res).then(function (token) {
+            if (!token.apptoken) {
+                res.json(token);
+                return;
+            }
             var fs = params.fs || require("fs");
             var folder = req.query.folder;
             var realPath = params.folders.files + "/" + folder;
@@ -615,10 +1046,16 @@ exports.init = function (params) {
                 res.json({root: realPath, files: [], count: 0, error: {catch: err}});
             }
             res.json({root: realPath, files: [], count: 0});
+        }).catch(function () {
+
         });
     });
     params.app.post("/files/api/delete", async function (req, res) {
-        params.secure.check(req, res, async function () {
+        params.secure.check(req, res).then(async function (token) {
+            if (!token.apptoken) {
+                res.json(token);
+                return;
+            }
             var fs = params.fs || require("fs");
             var files = req.body.filename;
             var info = {deleted: [], error: []};
@@ -636,10 +1073,16 @@ exports.init = function (params) {
                 }
             }
             res.json(info);
+        }).catch(function () {
+
         });
     });
     params.app.get("/files/api/download", async function (req, res) {
-        params.secure.check(req, res, async function () {
+        params.secure.check(req, res).then(async function (token) {
+            if (!token.apptoken) {
+                res.json(token);
+                return;
+            }
             var fs = params.fs || require("fs");
             var folder = req.query.folder;
             var name = req.query.name;
@@ -658,7 +1101,11 @@ exports.init = function (params) {
         });
     });
     params.app.post("/files/api/import", async function (req, res) {
-        params.secure.check(req, res, function () {
+        params.secure.check(req, res).then(function (token) {
+            if (!token.apptoken) {
+                res.json(token);
+                return;
+            }
             var fs = params.fs || require("fs");
             var files = req.body.filename;
             var dirfile = __dirname + '/..' + params.S(files[0]).replaceAll('/', '\\');
@@ -671,7 +1118,11 @@ exports.init = function (params) {
         });
     });
     params.app.post("/files/api/moveone", async function (req, res) {
-        params.secure.check(req, res, function () {
+        params.secure.check(req, res).then(function (token) {
+            if (!token.apptoken) {
+                res.json(token);
+                return;
+            }
             var fs = params.fs || require("fs");
             var from = req.body.fromFolder;
             var to = req.body.toFolder;
@@ -680,7 +1131,11 @@ exports.init = function (params) {
         });
     });
     params.app.post("/files/api/exist", async function (req, res) {
-        params.secure.check(req, res, function () {
+        params.secure.check(req, res).then(function (token) {
+            if (!token.apptoken) {
+                res.json(token);
+                return;
+            }
             var fs = params.fs || require("fs");
             if (!fs.existsSync(req.body.path))
                 res.json({success: true});
@@ -688,7 +1143,11 @@ exports.init = function (params) {
         });
     });
     params.app.post("/files/api/move", async function (req, res) {
-        params.secure.check(req, res, function () {
+        params.secure.check(req, res).then(function (token) {
+            if (!token.apptoken) {
+                res.json(token);
+                return;
+            }
             var fs = params.fs || require("fs");
             var verarray = [];
             var errors = [];
@@ -721,7 +1180,11 @@ exports.init = function (params) {
         });
     });
     params.app.post("/files/api/upload", params.upload.array('toupload', 100), function (req, res, next) {
-        params.secure.check(req, res, function () {
+        params.secure.check(req, res).then(function (token) {
+            if (!token.apptoken) {
+                res.json(token);
+                return;
+            }
             var fs = params.fs || require("fs");
             var uploaded = [];
             for (var file of req.files) {
@@ -742,7 +1205,11 @@ exports.init = function (params) {
         });
     });
     params.app.post('/email/send', function (req, res) {
-        params.secure.check(req, res, async function () {
+        params.secure.check(req, res).then(async function (token) {
+            if (!token.apptoken) {
+                res.json(token);
+                return;
+            }
             params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;
             if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
             var transporter = params.mail.createTransport(params.CONFIG.smtp);
@@ -809,7 +1276,11 @@ exports.init = function (params) {
         });
     });
     params.app.post("/dragon/api/saveConfigSuper", async function (req, res) {
-        params.secure.check(req, res, async function () {
+        params.secure.check(req, res).then(async function (token) {
+            if (!token.apptoken) {
+                res.json(token);
+                return;
+            }
             await params.storage.setItem("configuration", req.body.json);
             var fs = params.fs || require("fs");
             var file = __dirname + '/../' + params.folders.config + '/' + 'z_saved.json';
@@ -822,13 +1293,21 @@ exports.init = function (params) {
         });
     });
     params.app.post("/dragon/api/saveConfig", function (req, res) {
-        params.secure.check(req, res, async function () {
+        params.secure.check(req, res).then(async function (token) {
+            if (!token.apptoken) {
+                res.json(token);
+                return;
+            }
             await params.storage.setItem("configuration", req.body.json);
             res.json({error: false, saved: true});
         });
     });
     params.app.post("/dragon/api/saveLanguages", function (req, res) {
-        params.secure.check(req, res, function () {
+        params.secure.check(req, res).then(function (token) {
+            if (!token.apptoken) {
+                res.json(token);
+                return;
+            }
             var fs = params.fs || require("fs");
 
             var languages = eval("(" + req.body.json + ")");
@@ -853,7 +1332,11 @@ exports.init = function (params) {
         });
     });
     params.app.post("/dragon/api/generateMobile", function (req, res) {
-        params.secure.check(req, res, function () {
+        params.secure.check(req, res).then(function (token) {
+            if (!token.apptoken) {
+                res.json(token);
+                return;
+            }
             var fs = params.fs || require("fs");
             var languages = eval("(" + req.body.json + ")");
             for (var lan in languages) {

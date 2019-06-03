@@ -49,7 +49,13 @@ var toclient = JSON.stringify(options);
                 class="switchery"
         />
         {{<%= model %>.form.options.<%= name %>.text}}
+
     </label>
+    <% if(options.popover){ %>
+        <i
+                id="popover<%= model %>_<%= nameclean %>" class="icon-help">
+        </i>
+    <% } %>
 </div>
 <div class="checkbox checkbox-switchery" ng-show="<%= model %>.form.options.<%= name %>.disabled">
     <label>
@@ -69,6 +75,14 @@ var toclient = JSON.stringify(options);
     {
         checkbox<%= model %>_<%= nameclean %>.setPosition(<%= model + "." + name %>);
     }
+    <% if(options.popover){ %>
+    $('#popover<%= model %>_<%= nameclean %>').popover({
+        container: 'body',
+        title: eval("`" +<%= model %>.form.options.<%= name %>.popover.title + "`"),
+        content:eval("`" +<%= model %>.form.options.<%= name %>.popover.content + "`"),
+    trigger: 'click'
+    });
+    <% } %>
     $("#<%= model %>_<%= nameclean %>").change(function (val) {
         <%= model %>.<%= name %> = $(this).prop("checked");
         STEP.register({

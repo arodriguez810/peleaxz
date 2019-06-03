@@ -34,6 +34,7 @@
   "config_ui_theme_extra": "Color Extra(Menu)",
   "config_ui_theme_text1": "Texto1 Recomendado(Negro)",
   "config_ui_theme_text2": "Texto2 Recomendado(Blanco)",
+  "config_ui_theme_text3": "Texto3 Recomendado(Blanco)",
   "config_ui_theme_primaryShades": "Sombras para el color principal",
   "config_ui_theme_secundaryShades": "Sombras para el color secundario",
   "config_ui_theme_extraShades": "Sombras para el color extra",
@@ -106,5 +107,6 @@
   "config_features_customfields": "Campos Personalizados",
   "customfield": "Campo Personalizado",
   "customfield_plural": "Campos Personalizados",
-  "config_users_rules_expire": "Dias para que expire la contraseña"
+  "config_users_rules_expire": "Dias para que expire la contraseña",
+  "texts": "Textos"
 }

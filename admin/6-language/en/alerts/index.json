@@ -39,5 +39,6 @@
   "emptyRelations": "This form contains the following empty relations ${relations} do you want to save anyway?",
   "fullRelations": "You have registered several elements in the entities: $ {relations} you want to close anyway?",
   "saveConfigSuperLanguage": "this options change the messaged used in application, you are sure you want to save these changes anyway?",
-  "tokenDescription": "All the requests of this application are transmitted using a security token for the certification of the same that changes at random times.  The users when logging into the application start a kind of contract where they are generated several unique token to use it as throughout its interaction with the data, once this contract expires and the user can not interact anymore until he authenticates again. The time of that contract is set in (Time of expiration for the session)"
+  "tokenDescription": "All the requests of this application are transmitted using a security token for the certification of the same that changes at random times.  The users when logging into the application start a kind of contract where they are generated several unique token to use it as throughout its interaction with the data, once this contract expires and the user can not interact anymore until he authenticates again. The time of that contract is set in (Time of expiration for the session)",
+  "maskDescription": "Config yout mask with (0: required number, 9: optional number, A: alphanumeric, S: letters, #: recursive numbers)"
 }

@@ -94,7 +94,7 @@ FILTER = {
                 $scope.modal.modalView($scope.modelName + '/filter', {
                     width: ENUM.modal.width.full,
                     header: {
-                        title: capitalize(`Filter ${$scope.singular}`),
+                        title: MESSAGE.ic('mono.filters') + " " + MESSAGE.i('mono.for') + capitalize(` ${$scope.singular}`),
                         icon: "filter4",
                         closeButton: true,
                         h: "h6"
@@ -147,11 +147,15 @@ FILTER = {
                                 } else {
                                     $scope.firstTime = false;
                                 }
+                                setTimeout(function () {
+                                    $(".relationFilter").select2();
+                                    $(".columnFilter").select2();
+                                    $(".operatorFilter").select2();
+                                }, 500);
                             }
                         },
                     }
                 });
-
 
             };
             $scope.filters.changeType = function (block) {
@@ -365,9 +369,15 @@ FILTER = {
                     $scope.filters.blocks.push(newbloack);
                 }
                 $(".relationFilter").select2();
+
                 $(".relationFilter").on('change', function (e) {
                     $scope.$scope.$digest();
                 });
+                setTimeout(() => {
+                    $(".columnFilter").select2();
+                    $(".operatorFilter").select2();
+                    MESSAGE.run();
+                }, 200);
 
             };
             $scope.filters.blocksDescription = function () {

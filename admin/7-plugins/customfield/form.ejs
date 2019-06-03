@@ -47,6 +47,15 @@
                     format: {mask: "####", options: {reverse: true}}
                 }) %>
             </div>
+            <div class="col-sm-4 col-md-4" ng-show="['textbox'].indexOf(customfield.type_object.key)!==-1">
+                <%- FORM.input("mask", scope, {
+                    maxlength: 100, icon: {class: 'hash'},
+                    popover: {
+                        title: "${MESSAGE.ic('mono.whatisthis')}",
+                        content: "${MESSAGE.i('alerts.maskDescription')}"
+                    }
+                }) %>
+            </div>
             <div ng-show="['int'].indexOf(customfield.type_object.key)!==-1">
                 <div class="col-sm-2 col-md-2">
                     <%- FORM.checkbox("isDecimal", scope) %>

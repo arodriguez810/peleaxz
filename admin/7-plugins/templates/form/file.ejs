@@ -10,7 +10,7 @@ var options = {
     text: params.capitalize(name),
     title: `${params.capitalize(name)}`,
     show: false,
-    image: 70,
+    image: 57,
     imagefloat: 'left',
     icon: {
         class: "upload",
@@ -68,10 +68,12 @@ var toclient = JSON.stringify(options);
     <% } %>
     <button name="<%= model %>_<%= nameclean %>"
             type="button"
+            title='{{<%= model %>.<%= name %>_DragonCountFile>0? (<%= model %>.filesMessages + " " + "(" + <%= model %>.<%= name %>_DragonCountFile+")") :""}}  {{<%= model %>.form.options.<%= name %>.text}}'
             role="button"
+            style="width: 50px;height: <%= options.image %>px;"
             class="btn bg-<%= options.color %>-600 btn-block legitRipple">
         <%= options.model ? "{{" + options.model + "}}" : "" %>
-        {{<%= model %>.<%= name %>_DragonCountFile>0? (<%= model %>.filesMessages + " " + "(" + <%= model %>.<%= name %>_DragonCountFile+")") :""}}  {{<%= model %>.form.options.<%= name %>.text}}
+
         <i class="icon-<%= options.icon.class %> position-<%= options.icon.position %>"></i>
     </button>
         <% if(options.popover){ %>

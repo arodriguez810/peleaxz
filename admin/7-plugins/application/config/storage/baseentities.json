@@ -9,6 +9,7 @@
         "name",
         "description",
         "isAdmin",
+        "homePage",
         "created",
         "updated",
         "deleted",
@@ -35,23 +36,11 @@
     "permission": {
       "type": "deep"
     },
-    "menu": {
+    "configuration": {
       "type": "deep"
     },
-    "audit": {
-      "key": "id",
-      "type": "one",
-      "base": true,
-      "fields": [
-        "entity",
-        "entityID",
-        "created",
-        "updated",
-        "deleted",
-        "user_created",
-        "user_updated",
-        "user_deleted"
-      ]
+    "menu": {
+      "type": "deep"
     },
     "notifications": {
       "key": "id",
@@ -149,6 +138,7 @@
         "length",
         "elements",
         "multiple",
+        "mask",
         "parent",
         "type",
         "isDecimal",

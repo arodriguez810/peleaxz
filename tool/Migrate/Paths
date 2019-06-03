@@ -13,4 +13,6 @@ package-lock.json
 server.js
 start.exe
 start.info
-start.bat
+windows.bat
+linux.sh
+mac.sh

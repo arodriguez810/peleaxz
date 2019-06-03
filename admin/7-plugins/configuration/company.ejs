@@ -25,7 +25,6 @@
                     icon: {class: "sphere3"}
                 }) %>
             </div>
-
         </div>
 
         <div class="row">
@@ -54,7 +53,8 @@
                 <%-
                 FORM.selectsimple("config.home", scope, {
                     label: "Home Page",
-                    data: CONTROLLERSNAMES,
+                    data: MENUONEROW,
+                    groupby: "category",
                     icon: {class: "home"}
                 }) %>
             </div>
@@ -128,6 +128,16 @@
 
     <div class="panel-body">
         <div class="row">
+            <div class="col-sm-2 col-md-3">
+                <%- FORM.checkbox("config.features.token", scope, {
+                    text: 'Token Security', size: 'switchery-sm',
+                    popover: {
+                        title: "${MESSAGE.ic('mono.whatisthis')}",
+                        content: "${MESSAGE.i('alerts.tokenDescription')}"
+                    }
+                }) %>
+            </div>
+
             <div class="col-sm-2 col-md-3 pl-0">
                 <%- FORM.checkbox("config.features.fileManager", scope, {
                     text: 'General File Manager',
@@ -142,9 +152,6 @@
                 }) %>
             </div>
 
-            <div class="col-sm-2 col-md-3">
-                <%- FORM.checkbox("config.features.token", scope, {text: 'Token Security', size: 'switchery-sm'}) %>
-            </div>
 
             <div class="col-sm-2 col-md-3">
                 <%- FORM.checkbox("config.features.multilanguage", scope, {
@@ -187,21 +194,14 @@
     <div class="panel-body">
         <div class="row">
 
-            <div class="col-sm-12 col-md-3 pl-0">
+            <div class="col-sm-12 col-md-4 pl-0">
                 <%- FORM.color("config.ui.theme.primary", scope, {icon: {class: "brush"}}) %>
             </div>
-            <div class="col-sm-12 col-md-3 pl-0">
+            <div class="col-sm-12 col-md-4 pl-0">
                 <%- FORM.color("config.ui.theme.secundary", scope, {icon: {class: "brush"}}) %>
             </div>
-            <div class="col-sm-12 col-md-2 pl-0">
+            <div class="col-sm-12 col-md-4 pl-0">
                 <%- FORM.color("config.ui.theme.extra", scope, {icon: {class: "brush"}}) %>
-            </div>
-
-            <div class="col-sm-12 col-md-2 pl-0">
-                <%- FORM.color("config.ui.theme.text1", scope, {icon: {class: "brush"}}) %>
-            </div>
-            <div class="col-sm-12 col-md-2 pl-0">
-                <%- FORM.color("config.ui.theme.text2", scope, {icon: {class: "brush"}}) %>
             </div>
         </div>
         <div class="row">
@@ -256,6 +256,18 @@
             </div>
         </div>
         <div class="row">
+            <div class="col-sm-12 col-md-4 pl-0">
+                <%- FORM.color("config.ui.theme.text1", scope, {icon: {class: "brush"}}) %>
+            </div>
+            <div class="col-sm-12 col-md-4 pl-0">
+                <%- FORM.color("config.ui.theme.text2", scope, {icon: {class: "brush"}}) %>
+            </div>
+            <div class="col-sm-12 col-md-4 pl-0">
+                <%- FORM.color("config.ui.theme.text3", scope, {icon: {class: "brush"}}) %>
+            </div>
+        </div>
+
+        <div class="row">
             <div class="panel ">
                 <div class="panel-heading "
                      style="background-color: {{configuration.primary_example}};color:{{configuration.config.ui.theme.text2}}">
@@ -270,37 +282,37 @@
                             <table class="table">
                                 <thead>
                                 <tr>
-                                    <th style="background-color: {{configuration.extra_example}};color:{{configuration.config.ui.theme.text2}}">
+                                    <th style="background-color: {{configuration.extra_example}};color:{{configuration.config.ui.theme.text3}}">
                                         Menu 1
                                     </th>
                                 </tr>
                                 <tr>
-                                    <th style="background-color: {{configuration.extra_example}};color:{{configuration.config.ui.theme.text2}}">
+                                    <th style="background-color: {{configuration.extra_example}};color:{{configuration.config.ui.theme.text3}}">
                                         Menu 2
                                     </th>
                                 </tr>
                                 <tr>
-                                    <th style="background-color: {{configuration.extra_example}};color:{{configuration.config.ui.theme.text2}}">
+                                    <th style="background-color: {{configuration.extra_example}};color:{{configuration.config.ui.theme.text3}}">
                                         Menu 3
                                     </th>
                                 </tr>
                                 <tr>
-                                    <th style="background-color: {{configuration.extra_example}};color:{{configuration.config.ui.theme.text2}}">
+                                    <th style="background-color: {{configuration.extra_example}};color:{{configuration.config.ui.theme.text3}}">
                                         Menu 4
                                     </th>
                                 </tr>
                                 <tr>
-                                    <th style="background-color: {{configuration.extra_example}};color:{{configuration.config.ui.theme.text2}}">
+                                    <th style="background-color: {{configuration.extra_example}};color:{{configuration.config.ui.theme.text3}}">
                                         Menu 5
                                     </th>
                                 </tr>
                                 <tr>
-                                    <th style="background-color: {{configuration.extra_example}};color:{{configuration.config.ui.theme.text2}}">
+                                    <th style="background-color: {{configuration.extra_example}};color:{{configuration.config.ui.theme.text3}}">
                                         Menu 6
                                     </th>
                                 </tr>
                                 <tr>
-                                    <th style="background-color: {{configuration.extra_example}};color:{{configuration.config.ui.theme.text2}}">
+                                    <th style="background-color: {{configuration.extra_example}};color:{{configuration.config.ui.theme.text3}}">
                                         Menu 7
                                     </th>
                                 </tr>

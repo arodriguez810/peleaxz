@@ -4,7 +4,7 @@
         class="text-center bg-<%= COLOR.primary %>">
         Actions
     </td>
-    <td class="text-center"
+    <td class="text-left"
         ng-show="(<%= scope %>.allow(['edit','remove','active']))">
         <ul class="icons-list" style="z-index: 99999">
             <li ng-repeat="(min, option) in <%= scope %>.getOptions(false) track by min"

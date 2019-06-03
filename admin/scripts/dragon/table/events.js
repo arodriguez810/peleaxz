@@ -34,8 +34,21 @@ TABLEEVENT = {
                     if (!DSON.oseaX(data.value)) {
                         var mylink = data.column.link;
                         var id = data.value;
+                        mylink.modal = {
+                            header: {
+                                title: "Link Detail",
+                                icon: "archive"
+                            },
+                            footer: {
+                                cancelButton: true
+                            },
+                            content: {
+                                loadingContentText: MESSAGE.i('actions.Loading')
+                            },
+                        };
                         SWEETALERT.loading({message: mylink.modal.content.loadingContentText});
                         var linkCrud = eval("CRUD_" + mylink.table);
+                        console.log(mylink.table);
                         BASEAPI.list(mylink.table,
                             {
                                 limit: 1,
@@ -64,7 +77,7 @@ TABLEEVENT = {
                                     onedata: info.data,
                                     crud: linkCrud
                                 };
-                                mylink.modal.content.sameController = true;
+                                mylink.modal.content.sameController = mylink.table;
                                 var oldTitle = mylink.modal.header.title;
                                 mylink.modal.header.title = `${MESSAGE.ic('mono.quickview')} ${$scope.columnLabel(data.column, data.field)}`;
                                 $scope.modal.modalView(String.format("{0}", mylink.table), mylink.modal);
@@ -140,6 +153,21 @@ TABLEEVENT = {
             if (data.column.multilink && data.column.reference !== false) {
                 var mylink = data.column.multilink;
                 var id = eval("data.row." + mylink.from);
+
+                mylink.modal = {
+                    header: {
+                        title: "Link Detail",
+                        icon: "archive"
+                    },
+                    footer: {
+                        cancelButton: true
+                    },
+                    content: {
+                        loadingContentText: MESSAGE.i('actions.Loading'),
+                        sameController: mylink.table
+                    },
+                };
+
                 SWEETALERT.loading({message: DSON.template(mylink.modal.content.loadingContentText, data.row)});
                 var linkCrud = eval("CRUD_" + mylink.table);
                 BASEAPI.list(mylink.table,
@@ -167,7 +195,7 @@ TABLEEVENT = {
 
                         RELATIONS.anonymous[mylink.list] =
                             {
-                                readonly: eval(`({${mylink.to}:'${id}'})`),
+                                readonly: eval(`({${mylink.to}:\`${id}\`})`),
                                 fieldKey: mylink.to,
                                 where: [
                                     {
@@ -186,8 +214,21 @@ TABLEEVENT = {
                 if (!DSON.oseaX(data.value)) {
                     var mylink = data.column.link;
                     var id = eval("data.row." + mylink.from);
+                    mylink.modal = {
+                        header: {
+                            title: "Link Detail",
+                            icon: "archive"
+                        },
+                        footer: {
+                            cancelButton: true
+                        },
+                        content: {
+                            loadingContentText: MESSAGE.i('actions.Loading')
+                        },
+                    };
                     SWEETALERT.loading({message: mylink.modal.content.loadingContentText});
                     var linkCrud = eval("CRUD_" + mylink.table);
+                    console.log(mylink.table);
                     BASEAPI.list(mylink.table,
                         {
                             limit: 1,
@@ -218,7 +259,7 @@ TABLEEVENT = {
                             };
 
 
-                            mylink.modal.content.sameController = true;
+                            mylink.modal.content.sameController = mylink.table;
                             mylink.modal.header.title = $scope.columnLabel(data.column, mylink.from);
                             $scope.modal.modalView(String.format("{0}", mylink.table), mylink.modal);
                             mylink.modal.header.title = oldTitle;
@@ -366,6 +407,8 @@ TABLEEVENT = {
                         $scope.procesingRowFor = 0;
                         $scope.refresh();
                         SWEETALERT.stop();
+                        NOTIFY.success(`${$scope.singular} ${MESSAGE.i('mono.deleted')}`);
+                        $scope.backPage();
                     } else {
                         if (multiple) {
                             $scope.deleteRow();
@@ -532,7 +575,7 @@ TABLEEVENT = {
                 for (var i in CONFIG.audit.insert) {
                     var audit = CONFIG.audit.insert[i];
                     if (eval(`CRUD_${$scope.modelName}`).table.columns[i] !== undefined)
-                        eval(`row.row.${i} = '${eval(audit)}';`);
+                        eval(`row.row.${i} = \`${eval(audit)}\`;`);
                 }
                 $scope.procesingRowErrors = [];
                 BASEAPI.insertID($scope.tableOrMethod, row.row, '', '', function (result) {
@@ -554,8 +597,8 @@ TABLEEVENT = {
                         for (const relation of row.relations) {
                             for (const value of relation.values) {
                                 var relaRow = {};
-                                eval(`relaRow.${relation.to} = '${savedRow.id}';`);
-                                eval(`relaRow.${relation.from} = '${value}';`);
+                                eval(`relaRow.${relation.to} = \`${savedRow.id}\`;`);
+                                eval(`relaRow.${relation.from} = \`${value}\`;`);
                                 BASEAPI.insert(relation.table, relaRow, function (relResult) {
 
                                 });
@@ -602,7 +645,7 @@ TABLEEVENT = {
                             if (column.link !== undefined) {
                                 realValue = eval(`data.${key.split('_')[0]}_${key.split('_')[1]}_id;`);
                             }
-                            eval(`formatRow.${alter} = '${realValue}';`);
+                            eval(`formatRow.${alter} = \`${realValue}\`;`);
                         }
                     }
                 }
@@ -628,7 +671,7 @@ TABLEEVENT = {
                                 if (c === key || key === columns[c].exportKey)
                                     column = columns[c];
                                 if (column === false) continue;
-                                eval(`row.${key} = '${value}';`);
+                                eval(`row.${key} = \`${value}\`;`);
                                 break;
                             }
                         }

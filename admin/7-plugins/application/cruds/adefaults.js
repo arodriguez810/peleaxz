@@ -267,7 +267,7 @@ CRUDDEFAULTS = {
                                                 if (c === key || key === columns[c].exportKey)
                                                     column = columns[c];
                                                 if (column === false) continue;
-                                                eval(`row.${key} = '${value}';`);
+                                                eval(`row.${key} = \`${value}\`;`);
                                                 break;
                                             }
                                         }

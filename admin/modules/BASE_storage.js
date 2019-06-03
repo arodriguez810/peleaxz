@@ -312,7 +312,11 @@ exports.defaultRequests = function (Model, params, folder) {
         params.modules.views.LoadEJSDragon(files, params, folder);
     });
     params.app.post('/api/st_list', function (req, res) {
-        params.secure.check(req, res, function () {
+        params.secure.check(req, res).then( function (token) {
+            if (!token.apptoken) {
+                res.json(token);
+                return;
+            }
             Model.all(req.query).then((data) => {
                 if (data.error !== false) res.send(data.error);
                 res.json(data);
@@ -322,7 +326,11 @@ exports.defaultRequests = function (Model, params, folder) {
         });
     });
     params.app.post(params.util.format('/api/%s/list', Model.tableName), function (req, res) {
-        params.secure.check(req, res, function () {
+        params.secure.check(req, res).then( function (token) {
+            if (!token.apptoken) {
+                res.json(token);
+                return;
+            }
 
             if (req.query.limit === undefined)
                 req.query.limit = 10;
@@ -340,8 +348,11 @@ exports.defaultRequests = function (Model, params, folder) {
         });
     });
     params.app.get(params.util.format('/api/%s/all', Model.tableName), function (req, res) {
-        params.secure.check(req, res, function () {
-
+        params.secure.check(req, res).then( function (token) {
+            if (!token.apptoken) {
+                res.json(token);
+                return;
+            }
             if (req.query.limit === undefined)
                 req.query.limit = 10;
             if (req.query.page === undefined)
@@ -358,7 +369,11 @@ exports.defaultRequests = function (Model, params, folder) {
         });
     });
     params.app.get(params.util.format('/api/%s/get/:id', Model.tableName), function (req, res) {
-        params.secure.check(req, res, function () {
+        params.secure.check(req, res).then( function (token) {
+            if (!token.apptoken) {
+                res.json(token);
+                return;
+            }
             Model.find(req.params.id).then((data) => {
                 if (data.error !== false) res.send(data.error);
                 res.json(data);
@@ -368,7 +383,11 @@ exports.defaultRequests = function (Model, params, folder) {
         });
     });
     params.app.post('/api/' + Model.tableName + '/insert', function (req, res) {
-        params.secure.check(req, res, function () {
+        params.secure.check(req, res).then( function (token) {
+            if (!token.apptoken) {
+                res.json(token);
+                return;
+            }
             Model.insert(req.body).then((data) => {
                 if (data.error !== false) res.send(data.error);
                 res.json(data);
@@ -378,7 +397,11 @@ exports.defaultRequests = function (Model, params, folder) {
         });
     });
     params.app.post('/api/' + Model.tableName + '/insertID', function (req, res) {
-        params.secure.check(req, res, function () {
+        params.secure.check(req, res).then( function (token) {
+            if (!token.apptoken) {
+                res.json(token);
+                return;
+            }
             if (req.body.limit === undefined)
                 req.body.limit = 99999999;
             if (req.body.page === undefined)
@@ -395,7 +418,11 @@ exports.defaultRequests = function (Model, params, folder) {
         });
     });
     params.app.post('/api/' + Model.tableName + '/update/', function (req, res) {
-        params.secure.check(req, res, function () {
+        params.secure.check(req, res).then( function (token) {
+            if (!token.apptoken) {
+                res.json(token);
+                return;
+            }
             Model.update(req.body).then((data) => {
                 if (data.error !== false) res.send(data.error);
                 res.json(data);
@@ -405,7 +432,11 @@ exports.defaultRequests = function (Model, params, folder) {
         });
     });
     params.app.post('/api/' + Model.tableName + '/delete', function (req, res) {
-        params.secure.check(req, res, function () {
+        params.secure.check(req, res).then( function (token) {
+            if (!token.apptoken) {
+                res.json(token);
+                return;
+            }
             Model.delete(req.body).then((data) => {
                 if (data.error !== false) res.send(data.error);
                 res.json(data);
@@ -415,7 +446,11 @@ exports.defaultRequests = function (Model, params, folder) {
         });
     });
     params.app.post('/api/' + Model.tableName + '/truncate', function (req, res) {
-        params.secure.check(req, res, function () {
+        params.secure.check(req, res).then( function (token) {
+            if (!token.apptoken) {
+                res.json(token);
+                return;
+            }
             Model.truncate().then((data) => {
                 if (data.error !== false) res.send(data.error);
                 res.json(data);

@@ -79,6 +79,7 @@ exports.api = {
 
                     data.data[0].groups = [];
                     data.data[0].onlygroups = [];
+                    data.data[0].homePage = undefined;
                     for (var term of params.CONFIG.permissions.terms) {
                         var groups = await params.storage.getItem(term.name) || [];
                         var user_groups = await params.storage.getItem(term.relation) || [];
@@ -94,6 +95,7 @@ exports.api = {
                                 ug.groupinfo = group[0];
                                 if (group[0].isAdmin == "1")
                                     data.data[0].groupadmin = true;
+                                data.data[0].homePage = group[0].homePage;
                             }
                         });
                         for (var x of user_groups)
@@ -105,8 +107,21 @@ exports.api = {
                         for (var w of groups)
                             data.data[0].onlygroups.push(w);
                     }
-                    console.log(data.data[0]);
-
+                    if (config.fields.profile !== undefined) {
+                        var groups = await params.storage.getItem(config.fields.profile.table) || [];
+                        if (!data.data[0].groupadmin)
+                            data.data[0].groupadmin = false;
+                        var group = groups.filter((g) => {
+                            return g.id == eval(`data.data[0].${config.fields.profile.key}`);
+                        });
+                        if (group.length > 0) {
+                            if (group[0].isAdmin == "1")
+                                data.data[0].groupadmin = true;
+                            data.data[0].homePage = group[0].homePage;
+                            data.data[0].groups.push(group[0]);
+                            data.data[0].onlygroups.push(`${config.fields.profile.table}-${group[0].id}`);
+                        }
+                    }
                     data.data[0].token = params.jwt.sign(
                         {
                             username: eval(`data.data[0].${config.fields.username}`),

@@ -1,6 +1,6 @@
 <!-- Main navbar -->
 <div class="navbar navbar-inverse  bg-<%= COLOR.primary %>-700" ng-show="baseController.isLogged">
-    <div class="navbar-header  bg-<%= COLOR.primary %>-700">
+    <div class="navbar-header  bg-<%= COLOR.primary %>-700" >
         <a class="visible-lg visible-md visible-sm navbar-brand bg-<%= COLOR.primary %>-700 sidebar-mobile-main-toggle">
             <img style="float: left !important;" src="files/configuration/logo/logo.png" alt="">
             <span class="navbar-brand-text" style="float: left;padding-left: 10px;"> <%= CONFIG.logo %></span>
@@ -16,8 +16,8 @@
             <li><a class="sidebar-mobile-main-toggle"><i class="icon-paragraph-justify3"></i></a></li>
         </ul>
     </div>
-    <div class="navbar-collapse collapse" id="navbar-mobile">
-        <ul class="nav navbar-nav">
+    <div class="navbar-collapse collapse" id="navbar-mobile" ng-show="!baseController.isClient">
+        <ul ng-show="!baseController.isClient" class="nav navbar-nav">
             <li>
                 <a class="sidebar-control sidebar-main-toggle hidden-xs" data-popup="tooltip"
                    data-placement="bottom" data-container="body" dragonlanguage title="MESSAGE.i('navbar.LiteMenu')">
@@ -92,10 +92,10 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav navbar-nav">
+        <ul  class="nav navbar-nav">
 
 
-            <li ng-if="baseController.mode==='developer'">
+            <li ng-show="!baseController.isClient" ng-if="baseController.mode==='developer'">
                 <a class="sidebar-control"
                    onclick="MODAL.rawModal(MESSAGE.ic('mono.messages'),'language','comment',undefined,'language');"
                    data-popup="tooltip"
@@ -106,7 +106,7 @@
             </li>
 
 
-            <li ng-if="baseController.features.multilanguage===true && baseController.mode==='developer'">
+            <li ng-show="!baseController.isClient" ng-if="baseController.features.multilanguage===true && baseController.mode==='developer'">
                 <a class="sidebar-control" onclick="MESSAGE.OPEN()" data-popup="tooltip"
                    data-placement="bottom" data-container="body" dragonlanguage
                    title="MESSAGE.i('navbar.MessageManager')">
@@ -121,12 +121,12 @@
                     <li
                             ng-repeat="(key,lan) in baseController.SHOWLANGS track by key"
                             class="{{baseController.currentLang.code===lan.code?'bg-<%= COLOR.primary %>':''}}">
-                        <a ng-click="baseController.changeLanguage(lan)">
+                        <a style="color: #000 !important;" ng-click="baseController.changeLanguage(lan)">
                             <img src="assets/images/flags/{{lan.flag}}.png" alt="">{{lan.name}}</a>
                     </li>
                 </ul>
             </li>
-            <li ng-if="(baseController.isSuper || baseController.isAdmin) && baseController.mode==='developer'">
+            <li ng-show="!baseController.isClient" ng-if="(baseController.isSuper || baseController.isAdmin) && baseController.mode==='developer'">
                 <a class="sidebar-control"
                    onclick="MODAL.rawModal(MESSAGE.ic('mono.generatemobile'), 'information/mobile', 'mobile', 'modal-lg', 'information')"
                    data-popup="tooltip"
@@ -140,7 +140,7 @@
 
             <ul class="nav navbar-nav">
 
-                <li class="dropdown dropdown-user">
+                <li class="dropdown dropdown-user" style="color:#000 !important;">
                     <a class="dropdown-toggle legitRipple" data-toggle="dropdown" aria-expanded="false">
 
                         <img id="profileImage"
@@ -152,13 +152,13 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li dragonlanguage="">
-                            <a onclick="MODAL.rawModal(MESSAGE.ic('mono.myprofile'), '<%= CONFIG.users.path %>/myprofile', 'user', 'modal-full', '<%= CONFIG.users.path %>')">
+                            <a style="color: #000 !important;" onclick="MODAL.rawModal(MESSAGE.ic('mono.myprofile'), '<%= CONFIG.users.path %>/myprofile', 'user', 'modal-full', '<%= CONFIG.users.path %>')">
                                 <i class="icon-user-plus"></i>
                                 <language>MESSAGE.ic('mono.myprofile')</language>
                             </a>
                         </li>
                         <li dragonlanguage="">
-                            <a onclick="MODAL.rawModal(MESSAGE.ic('mono.about'), 'information/about', 'info3', 'modal-full', 'information')">
+                            <a style="color: #000 !important;" onclick="MODAL.rawModal(MESSAGE.ic('mono.about'), 'information/about', 'info3', 'modal-full', 'information')">
                                 <i class="icon-info3"></i>
                                 <language>MESSAGE.ic('mono.about')</language>
                             </a>
@@ -167,7 +167,7 @@
                         <li class="divider"></li>
                         <!--<li><a href="#"><i class="icon-cog5"></i> Account settings </a></li>-->
                         <li>
-                            <a onclick="new SESSION().logoff()" dragonlanguage><i class="icon-switch2"></i>
+                            <a style="color: #000 !important;" onclick="new SESSION().logoff()" dragonlanguage><i class="icon-switch2"></i>
                                 <language>MESSAGE.i('navbar.Logout')</language>
                             </a>
                         </li>

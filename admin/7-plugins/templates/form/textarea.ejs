@@ -1,11 +1,11 @@
 <%
-if(DATA.name!==undefined){
+if (DATA.name !== undefined) {
     var name, model, opts;
     name = DATA.name;
     model = DATA.model;
     opts = DATA.opts;
 }
-var name =  name || "";
+var name = name || "";
 var options = {
     placeholder: params.capitalize(name),
     type: "text",
@@ -26,6 +26,7 @@ var options = {
 };
 options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g, '_');
 options.autocomplete = options.autocomplete ? "autocomplete='Off'" : '';
+options.icon.spyce = options.icon.class === "none" ? "remove-input-space" : "";
 options.format = options.format ? options.format : false;
 options.model = options.model ? options.model : false;
 var toclient = JSON.stringify(options);
@@ -38,7 +39,7 @@ var toclient = JSON.stringify(options);
         form.options.<%= name %>.placeholder = MESSAGE.i('columns.<%= nameclean %>');
     }
 </script>
-<div class="form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-<%= options.icon.position %>"
+<div class="<%= options.icon.spyce %> form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-<%= options.icon.position %>"
      id="input<%= model %>_<%= nameclean %>">
     <label
             id="label<%= model %>_<%= nameclean %>"
@@ -63,7 +64,7 @@ var toclient = JSON.stringify(options);
               placeholder="{{::<%= model %>.form.options.<%= name %>.inputPlaceholder}}"></textarea>
 
     <div class="form-control-feedback">
-        <i class="icon-<%= options.icon.class %> text-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}">
+        <i class="icon-<%= options.icon.class %> text-secundary-700">
 
         </i>
     </div>
@@ -85,9 +86,13 @@ var toclient = JSON.stringify(options);
         $('#popover<%= model %>_<%= nameclean %>').popover({
             container: 'body',
             title: eval("`" +<%= model %>.form.options.<%= name %>.popover.title + "`"),
-            content:eval("`" +<%= model %>.form.options.<%= name %>.popover.content + "`"),
+            content
+    :
+        eval("`" +<%= model %>.form.options.<%= name %>.popover.content + "`"
+    ),
         trigger: 'click'
-    });
+    })
+        ;
         <% } %>
         <%= model %>.
         form.options.<%= name %>.autosize = false;
@@ -113,8 +118,10 @@ var toclient = JSON.stringify(options);
                     autosize(document.querySelectorAll('textarea'));
                 }
             } else {
-                if ($('[name="<%= model %>_<%= nameclean %>"]').val().length><%= options.pin %>) {
-                    if (<%= model %>.form.options.<%= name %>.autosize === false)
+                if ($('[name="<%= model %>_<%= nameclean %>"]').val().length ><%= options.pin %>) {
+                    if (<%= model %>.
+                    form.options.<%= name %>.autosize === false
+                )
                     {
                         <%= model %>.
                         form.options.<%= name %>.autosize = true;

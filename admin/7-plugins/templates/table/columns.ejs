@@ -3,11 +3,17 @@
       ng-click="<%= scope %>.checkAll()">
 </span>
 
-<span ng-bind-html="<%= scope %>.columnLabel(value,key)"></span>
+<a ng-if="value.sortable!==false && <%= scope %>.characterist('sortable')" style="cursor: pointer;color: <%= CONFIG.ui.theme.text2 %> !important;text-decoration: underline" title="{{<%= scope %>.sortTitle(value,key)}}" ng-click="<%= scope %>.sort(value,key)" ng-bind-html="<%= scope %>.columnLabel(value,key)"></a>
 
-<i ng-show="<%= scope %>.characterist('sortable')" ng-click="<%= scope %>.sort(value,key)"
-   class="{{<%= scope %>.sortIcon(value)}} cursor-pointer">
-    
+<span ng-if="value.sortable===false || !<%= scope %>.characterist('sortable')"  ng-bind-html="<%= scope %>.columnLabel(value,key)"></span>
+
+
+<i ng-show="<%= scope %>.characterist('sortable')"
+   ng-if="value.sortable!==false"
+   class="{{<%= scope %>.sortIcon(value)}} cursor-pointer"
+   title="{{<%= scope %>.sortTitleIcon(value,key)}}"
+>
+
 </i>
 <i ng-show="<%= scope %>.characterist('persist')"
    ng-click="<%= scope %>.hideColumn(key)"

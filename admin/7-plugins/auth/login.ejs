@@ -4,13 +4,13 @@
 <div id="<%= scope %>" ng-controller="<%= scope %> as <%= scope %>">
     <div class="row" style="overflow: hidden">
         <div class="col-lg-9 hidden-xs hidden-sm">
-            <img style="width: 113%" src="files/configuration/splash/splash.png">
+            <img id="coverlogin" style="width: 113%" src="files/configuration/splash/splash.png">
         </div>
         <div class="col-lg-3 col-xs-12">
-            <div class="panel panel-body">
+            <div class="panel panel-body" id="logincontent">
                 <div class="form-group has-feedback has-feedback-left text-center">
-                    <div class="icon-object border-<%= COLOR.primary %>-800 text-slate-300"><i
-                                class="text-<%= COLOR.secundary %> icon-user-{{<%= scope %>.validation.state()==='success'?'check animation':'lock'}}"></i>
+                    <div class="icon-object border-<%= COLOR.primary %>-800 text-slate-300" style="padding: 10px">
+                        <img style="float: left !important;width: 100px;" src="files/configuration/logo/logo.png" alt="">
                     </div>
                     <h5 class="content-group" dragonlanguage>
                         <language>MESSAGE.i('login.Loginto')</language> <%= CONFIG.appName %>
@@ -55,3 +55,17 @@
         margin-bottom: 0px !important;
     }
 </style>
+<script>
+    loginresize();
+    window.onresize = function (event) {
+        loginresize();
+    };
+
+    function loginresize() {
+        var heightLogin = document.getElementById('coverlogin').clientHeight;
+        if (heightLogin != 0)
+            document.getElementById("logincontent").style.height = `${heightLogin}px`;
+        else
+            document.getElementById("logincontent").style.height = `auto`;
+    }
+</script>
