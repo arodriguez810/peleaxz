@@ -61,12 +61,15 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
         baseController.isLogged = true;
         baseController.isSuper = session.current().super;
         baseController.isAdmin = session.current().groupadmin;
-        baseController.isClient = new SESSION().current().isClient();
+        if (new SESSION().current().isClient)
+            baseController.isClient = new SESSION().current().isClient();
+        else
+            baseController.isClient = false;
         baseController.userID = session.current().getID();
         baseController.fullName = session.current().fullName();
         baseController.type = session.current().type;
         GROUPS = new SESSION().current().onlygroups;
-        SWEETALERT.loading({message: MESSAGE.ic('actions.Loading') + " " + MESSAGE.ic('actions.permissions')});
+        //SWEETALERT.loading({message: MESSAGE.ic('actions.Loading') + " " + MESSAGE.ic('actions.permissions')});
         var entitiesPermission = [];
         for (var pers of CONFIG.permissions.entities) {
             entitiesPermission.push(`${pers}-${baseController.userID}`)
@@ -278,11 +281,14 @@ RUN_A = function (conrollerName, inside, $scope, $http, $compile) {
     inside.MENU = MENU.current;
     inside.modelName = conrollerName;
     inside.singular = inside.modelName.split('_').length > 1 ? inside.modelName.split('_')[1] : inside.modelName.split('_')[0];
-    if (MESSAGE.exist(`columns.${inside.singular}`))
-        inside.singular = MESSAGE.ic(`columns.${inside.singular}`);
+
     inside.plural = pluralize(capitalize(inside.singular.replace(/_/g, " ")));
     if (MESSAGE.exist(`columns.${inside.singular}_plural`))
         inside.plural = MESSAGE.ic(`columns.${inside.singular}_plural`);
+
+    if (MESSAGE.exist(`columns.${inside.singular}`))
+        inside.singular = MESSAGE.ic(`columns.${inside.singular}`);
+
     inside.$scope = $scope;
     COMPILE.run(inside, $scope, $compile);
     STORAGE.run(inside);
@@ -354,11 +360,13 @@ RUNCONTROLLER = function (conrollerName, inside, $scope, $http, $compile) {
     };
     GARBAGECOLECTOR(inside.extraExclude || inside.modelName);
     inside.singular = inside.modelName;
-    if (MESSAGE.exist(`columns.${inside.singular}`))
-        inside.singular = MESSAGE.ic(`columns.${inside.singular}`);
     inside.plural = pluralize(capitalize(inside.singular.replace(/_/g, " ")));
     if (MESSAGE.exist(`columns.${inside.singular}_plural`))
         inside.plural = MESSAGE.ic(`columns.${inside.singular}_plural`);
+
+    if (MESSAGE.exist(`columns.${inside.singular}`))
+        inside.singular = MESSAGE.ic(`columns.${inside.singular}`);
+
     inside.$scope = $scope;
     COMPILE.run(inside, $scope, $compile);
     STORAGE.run(inside);

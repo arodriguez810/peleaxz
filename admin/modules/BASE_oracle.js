@@ -189,6 +189,8 @@ exports.defaultRequests = function (Model, params) {
             }).catch(err => {
                 res.json(err);
             });
+        }).catch(function () {
+
         });
     });
     params.app.post(params.util.format('/api/%s/list', Model.tableName), function (req, res) {
@@ -210,6 +212,8 @@ exports.defaultRequests = function (Model, params) {
             }).catch(err => {
                 res.json(err);
             });
+        }).catch(function () {
+
         });
     });
     params.app.get(params.util.format('/api/%s/all', Model.tableName), function (req, res) {
@@ -231,6 +235,8 @@ exports.defaultRequests = function (Model, params) {
             }).catch(err => {
                 res.json(err);
             });
+        }).catch(function () {
+
         });
     });
     params.app.get(params.util.format('/api/%s/get/:id', Model.tableName), function (req, res) {
@@ -243,6 +249,8 @@ exports.defaultRequests = function (Model, params) {
                 if (data.error !== false) res.send(data.error);
                 res.json(data);
             });
+        }).catch(function () {
+
         });
     });
     params.app.post('/api/' + Model.tableName + '/insert', function (req, res) {
@@ -257,6 +265,8 @@ exports.defaultRequests = function (Model, params) {
             }).catch(err => {
                 res.json(err);
             });
+        }).catch(function () {
+
         });
     });
     params.app.post('/api/' + Model.tableName + '/insertID', function (req, res) {
@@ -269,6 +279,8 @@ exports.defaultRequests = function (Model, params) {
                 if (data.error !== false) res.send(data.error);
                 res.json(data);
             });
+        }).catch(function () {
+
         });
     });
     params.app.post('/api/' + Model.tableName + '/update/', function (req, res) {
@@ -283,6 +295,8 @@ exports.defaultRequests = function (Model, params) {
             }).catch(err => {
                 res.json(err);
             });
+        }).catch(function () {
+
         });
     });
     params.app.post('/api/' + Model.tableName + '/delete', function (req, res) {
@@ -297,6 +311,8 @@ exports.defaultRequests = function (Model, params) {
             }).catch(err => {
                 res.json(err);
             });
+        }).catch(function () {
+
         });
     });
 };

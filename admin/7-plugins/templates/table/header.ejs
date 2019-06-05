@@ -203,7 +203,7 @@
                             <language>MESSAGE.ic('mono.disable')</language>
                         </a>
                     </li>
-                    <li ng-show="<%= scope %>.allow('copy')">
+                    <li ng-show="<%= scope %>.allow('copy') && !<%= scope %>.dragrow">
                         <a ng-click="<%= scope %>.copyMultiple()"><i class="icon-copy"></i>
                             <language>MESSAGE.i('mono.CopySelected')</language>
                         </a>

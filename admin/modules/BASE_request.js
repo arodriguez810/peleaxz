@@ -38,6 +38,8 @@ exports.defaultRequests = function (params, Model) {
                     });
                 });
             });
+        }).catch(function () {
+
         });
     });
     params.app.get(params.util.format('/api/%s/all', params.modelName), function (req, res) {
@@ -55,6 +57,8 @@ exports.defaultRequests = function (params, Model) {
                     data: model
                 });
             });
+        }).catch(function () {
+
         });
     });
     params.app.get(params.util.format('/api/%s/get/:id', params.modelName), function (req, res) {
@@ -69,6 +73,8 @@ exports.defaultRequests = function (params, Model) {
                     data: model
                 });
             });
+        }).catch(function () {
+
         });
     });
     params.app.post('/api/' + params.modelName + '/insert', function (req, res) {
@@ -83,6 +89,8 @@ exports.defaultRequests = function (params, Model) {
                     data: model
                 });
             });
+        }).catch(function () {
+
         });
     });
     params.app.put('/api/' + params.modelName + '/update/:id', function (req, res) {
@@ -97,6 +105,8 @@ exports.defaultRequests = function (params, Model) {
                     data: model
                 });
             });
+        }).catch(function () {
+
         });
     });
     params.app.delete('/api/' + params.modelName + '/delete/:id', function (req, res) {
@@ -113,6 +123,8 @@ exports.defaultRequests = function (params, Model) {
                     data: model
                 });
             });
+        }).catch(function () {
+
         });
     });
 };

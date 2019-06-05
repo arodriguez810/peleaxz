@@ -437,31 +437,25 @@
                             <%- CHART.columns("columns", scope, {}) %>
 
                             <script>
+                                var legendt = [];
+                                legendt.push('Estatus 1');
+                                legendt.push('Estatus 2');
+
+                                var dataRereport = [];
+                                dataRereport.push({
+                                    name: 'Estatus 1',
+                                    type: 'bar',
+                                    data: [120]
+                                });
+                                dataRereport.push({
+                                    name: 'Estatus 2',
+                                    type: 'bar',
+                                    data: [180]
+                                });
                                 logica.columns_data = {
-                                    legend: ['Internet Explorer', 'Opera', 'Safari', 'Firefox', 'Chrome'],
-                                    down: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-                                    data: [
-                                        {
-                                            name: 'Internet Explorer',
-                                            type: 'bar',
-                                            data: [120, 132, 101, 134, 490, 230, 210]
-                                        },
-                                        {
-                                            name: 'Safari',
-                                            type: 'bar',
-                                            data: [150, 1232, 901, 154, 190, 330, 810]
-                                        },
-                                        {
-                                            name: 'Firefox',
-                                            type: 'bar',
-                                            data: [320, 1332, 1801, 1334, 590, 830, 1220]
-                                        },
-                                        {
-                                            name: 'Chrome',
-                                            type: 'bar',
-                                            data: [820, 1632, 1901, 2234, 1290, 1330, 1320]
-                                        }
-                                    ]
+                                    legend: legendt,
+                                    down: ['--'],
+                                    data: dataRereport
                                 }
 
                                 logica.charts.columns.onLoad = function () {

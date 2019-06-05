@@ -215,5 +215,6 @@
   "sort_time": "chronologically",
   "asc": "ascendant",
   "desc": "descending",
-  "sorted": "sorted"
+  "sorted": "sorted",
+  "add_fiter": "Add Filter"
 }

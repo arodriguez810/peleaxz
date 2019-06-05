@@ -108,14 +108,14 @@
           <entry key="6c08eec875a457ad2b49c2c2899003e0" value="2" />
           <entry key="9c08d5294809f7e8b3139604e87d1a4b" value="2" />
           <entry key="ccd1066343c95877b75b79d47c36bebe" value="3" />
-          <entry key="css" value="477" />
+          <entry key="css" value="484" />
           <entry key="d2e16d3f793e62737a6cdf2d54b0d9c1" value="4" />
           <entry key="d7a1715b3eb4a0693d0877835f1b89d4" value="5" />
           <entry key="db0f6f37ebeb6ea09489124345af2a45" value="4" />
           <entry key="disabled" value="4" />
           <entry key="e037ae4d124808dc7fd05e6d632bacdf" value="4" />
           <entry key="eee3f350492445edf13d089212cd9853" value="1" />
-          <entry key="ejs" value="2555" />
+          <entry key="ejs" value="2587" />
           <entry key="empty" value="1" />
           <entry key="f29e98d580a0ff8db33ab6e6b743c11c" value="3" />
           <entry key="f37bd2f66651e7d46f6d38440f2bc5dd" value="3" />
@@ -125,17 +125,17 @@
           <entry key="fbc7d65158c23b606455cd6f542c22aa" value="3" />
           <entry key="fdd32b9061681edb52c554bd9bbf0712" value="4" />
           <entry key="groovy" value="1" />
-          <entry key="html" value="73" />
+          <entry key="html" value="74" />
           <entry key="info" value="10" />
-          <entry key="js" value="4307" />
-          <entry key="json" value="1376" />
+          <entry key="js" value="4353" />
+          <entry key="json" value="1382" />
           <entry key="md" value="1" />
           <entry key="mysql" value="1" />
           <entry key="php" value="1" />
           <entry key="properties" value="1" />
           <entry key="sh" value="13" />
           <entry key="sql" value="102" />
-          <entry key="ts" value="10" />
+          <entry key="ts" value="11" />
           <entry key="txt" value="18" />
           <entry key="vmoptions" value="1" />
         </counts>
@@ -143,27 +143,27 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Bash" value="10" />
-          <entry key="CSS" value="477" />
+          <entry key="CSS" value="484" />
           <entry key="DBN-SQL" value="33" />
-          <entry key="EJS" value="2555" />
-          <entry key="HTML" value="73" />
-          <entry key="JSON" value="1376" />
-          <entry key="JavaScript" value="4307" />
+          <entry key="EJS" value="2587" />
+          <entry key="HTML" value="74" />
+          <entry key="JSON" value="1382" />
+          <entry key="JavaScript" value="4353" />
           <entry key="PLAIN_TEXT" value="123" />
           <entry key="SQL" value="69" />
           <entry key="Scratch" value="1" />
-          <entry key="TypeScript" value="10" />
+          <entry key="TypeScript" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="css" value="1162" />
+          <entry key="css" value="1163" />
           <entry key="disabled" value="2" />
-          <entry key="ejs" value="56399" />
+          <entry key="ejs" value="56897" />
           <entry key="html" value="6286" />
           <entry key="info" value="2" />
-          <entry key="js" value="127306" />
-          <entry key="json" value="16823" />
+          <entry key="js" value="127472" />
+          <entry key="json" value="16863" />
           <entry key="mysql" value="13" />
           <entry key="sh" value="18" />
           <entry key="sql" value="213" />
@@ -174,12 +174,12 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Bash" value="10" />
-          <entry key="CSS" value="1163" />
+          <entry key="CSS" value="1164" />
           <entry key="DBN-SQL" value="19" />
-          <entry key="EJS" value="56399" />
+          <entry key="EJS" value="56897" />
           <entry key="HTML" value="6330" />
-          <entry key="JSON" value="16823" />
-          <entry key="JavaScript" value="127261" />
+          <entry key="JSON" value="16863" />
+          <entry key="JavaScript" value="127427" />
           <entry key="PLAIN_TEXT" value="62" />
           <entry key="SQL" value="194" />
         </counts>
@@ -195,12 +195,43 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/admin/7-plugins/templates/table/columns.ejs">
+        <entry file="file://$PROJECT_DIR$/admin/modules/BASE_views.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+            <state relative-caret-position="228">
+              <caret line="551" column="32" lean-forward="true" selection-start-line="551" selection-start-column="32" selection-end-line="551" selection-end-column="32" />
               <folding>
-                <element signature="n#style#0;n#a#0;n#!!top" expanded="true" />
+                <element signature="e#78#4520#0" />
+                <element signature="e#355#4503#0" />
+                <element signature="e#431#4447#0" />
+                <element signature="e#474#570#0" />
+                <element signature="e#960#1076#0" />
+                <element signature="e#1082#1404#0" />
+                <element signature="e#1196#1382#0" />
+                <element signature="e#1774#2043#0" />
+                <element signature="e#2210#2536#0" />
+                <element signature="e#2350#2514#0" />
+                <element signature="e#2649#2724#0" />
+                <element signature="e#2817#3192#0" />
+                <element signature="e#2866#3170#0" />
+                <element signature="e#2944#3144#0" />
+                <element signature="e#3017#3114#0" />
+                <element signature="e#3227#4289#0" />
+                <element signature="e#4467#4487#0" />
+                <element signature="e#4961#8941#0" />
+                <element signature="e#5004#5100#0" />
+                <element signature="e#5490#5606#0" />
+                <element signature="e#5612#5934#0" />
+                <element signature="e#5726#5912#0" />
+                <element signature="e#6304#6573#0" />
+                <element signature="e#6740#7066#0" />
+                <element signature="e#6880#7044#0" />
+                <element signature="e#7178#7253#0" />
+                <element signature="e#7346#7721#0" />
+                <element signature="e#7395#7699#0" />
+                <element signature="e#7473#7673#0" />
+                <element signature="e#7546#7643#0" />
+                <element signature="e#7756#8818#0" />
+                <element signature="e#8961#8981#0" />
               </folding>
             </state>
           </provider>
@@ -221,40 +252,38 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>CONFIG.storageEntities</find>
-      <find>LoadEJS</find>
-      <find>for (var CONTROLLER of controllersjs) {</find>
-      <find>controllersjs</find>
-      <find>CONTROLLERSNAMES.push</find>
-      <find>silentsmodels = [];</find>
-      <find>if (CONTROLLERSNAMES.indexOf(item) === -1) {</find>
+      <find>item.connector</find>
+      <find>*****</find>
+      <find>condition</find>
+      <find>icon-&lt;%= options.icon.class %&gt; text-secundary-700</find>
+      <find>icon-&lt;%= options.icon.class %&gt; text-secundary-500</find>
+      <find>text-&lt;%= COLOR.secundary %&gt;-500</find>
+      <find>yousele</find>
+      <find>&lt;%= model %&gt;.selectMessage</find>
+      <find>&lt;i</find>
+      <find>modal</find>
+      <find>text</find>
+      <find>&lt;%= scope %&gt;</find>
+      <find>SWEE</find>
+      <find>copy</find>
+      <find>emptyrelati</find>
+      <find>emptyRelations</find>
+      <find>replaceAll</find>
+      <find>dragoncontrol</find>
+      <find>minDate</find>
+      <find>&lt;%= model %&gt;_</find>
+      <find>loadEJSSimplePOST</find>
+      <find>await</find>
+      <find>bodypar</find>
+      <find>max</find>
+      <find>Basic column chart</find>
+      <find>basic_columns</find>
+      <find>columns</find>
+      <find>getFiles</find>
+      <find>viewfinal</find>
       <find>loadEJSSimpleSilents</find>
-      <find>views</find>
-      <find>ejs</find>
-      <find>params.folders.silents</find>
-      <find>pdf</find>
-      <find>sortIcon</find>
-      <find>sortTitle</find>
-      <find>sorted</find>
-      <find>feed</find>
-      <find>ms_all</find>
-      <find>storat</find>
-      <find>query</find>
-      <find>storage</find>
-      <find>segment</find>
-      <find>CRUD_dates</find>
-      <find>list</find>
-      <find>lists</find>
-      <find>.link</find>
-      <find>.modal</find>
-      <find>controller:</find>
-      <find>mylink.modal</find>
-      <find>sort</find>
-      <find>firstColumn</find>
     </findStrings>
     <replaceStrings>
-      <replace>&lt;%= text2 %&gt;</replace>
-      <replace>&lt;%= DATA.</replace>
       <replace>&lt;%= DATA.text2 %&gt;</replace>
       <replace>[2L]</replace>
       <replace>&lt;%= DATA.color10 %&gt;</replace>
@@ -270,7 +299,6 @@
       <replace>is-visible&quot;</replace>
       <replace />
       <replace>placeholder=&quot;{{::&lt;%= model %&gt;.form.options.&lt;%= name %&gt;.inputPlaceholder}}&quot;</replace>
-      <replace>COLOR.secundary</replace>
       <replace>LAN.money(0).</replace>
       <replace>warning</replace>
       <replace>key</replace>
@@ -283,6 +311,9 @@
       <replace>list</replace>
       <replace>CRUD_lists</replace>
       <replace>child</replace>
+      <replace>icon-&lt;%= options.icon.class %&gt; text-secundary-500</replace>
+      <replace>icon-&lt;%= options.icon.class %&gt; text-secundary</replace>
+      <replace>COLOR.secundary</replace>
     </replaceStrings>
     <dirStrings>
       <dir>C:\wamp\www\peleaxz\admin\scripts\dragon\data</dir>
@@ -295,6 +326,7 @@
       <dir>C:\wamp\www\peleaxz\admin\7-plugins\</dir>
       <dir>C:\wamp\www\peleaxz\admin\6-language\</dir>
       <dir>C:\wamp\www\peleaxz\admin</dir>
+      <dir>C:\wamp\www\peleaxz\admin\modules</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -303,45 +335,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/admin/7-plugins/templates/form/file.ejs" />
-        <option value="$PROJECT_DIR$/admin/styles/components/form.css" />
-        <option value="$PROJECT_DIR$/admin/6-language/en/alerts/index.json" />
-        <option value="$PROJECT_DIR$/admin/6-language/es/alerts/index.json" />
-        <option value="$PROJECT_DIR$/admin/7-plugins/customfield/form.ejs" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/components/control.js" />
-        <option value="$PROJECT_DIR$/admin/7-plugins/application/controllers/CO_BASE.js" />
-        <option value="$PROJECT_DIR$/admin/7-plugins/master/menu.ejs" />
-        <option value="$PROJECT_DIR$/admin/7-plugins/master/navbar.ejs" />
-        <option value="$PROJECT_DIR$/admin/7-plugins/application/config/security/auth.json" />
-        <option value="$PROJECT_DIR$/admin/5-views/users/form.ejs" />
-        <option value="$PROJECT_DIR$/admin/styles/components/selects.css" />
-        <option value="$PROJECT_DIR$/admin/7-plugins/templates/form/input.ejs" />
-        <option value="$PROJECT_DIR$/admin/0-config/app.json" />
-        <option value="$PROJECT_DIR$/admin/7-plugins/configuration/company.ejs" />
-        <option value="$PROJECT_DIR$/admin/7-plugins/templates/form/select.ejs" />
-        <option value="$PROJECT_DIR$/admin/7-plugins/templates/form/selectsimple.ejs" />
-        <option value="$PROJECT_DIR$/admin/7-plugins/application/cruds/group/1columns.js" />
-        <option value="$PROJECT_DIR$/admin/7-plugins/group/form.ejs" />
-        <option value="$PROJECT_DIR$/admin/1-service/base/SE_auth.js" />
-        <option value="$PROJECT_DIR$/admin/7-plugins/auth/login.ejs" />
-        <option value="$PROJECT_DIR$/helper/components_notifications_others.html" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/form/form.js" />
-        <option value="$PROJECT_DIR$/admin/scripts/extensions/sweetalert.js" />
-        <option value="$PROJECT_DIR$/admin/7-plugins/application/config/storage/baseentities.json" />
-        <option value="$PROJECT_DIR$/admin/7-plugins/templates/system/controller.ejs" />
-        <option value="$PROJECT_DIR$/admin/7-plugins/master/head.ejs" />
-        <option value="$PROJECT_DIR$/admin/0-config/appearance/theme.json" />
-        <option value="$PROJECT_DIR$/admin/server.js" />
-        <option value="$PROJECT_DIR$/admin/7-plugins/templates/system/view/index.ejs" />
-        <option value="$PROJECT_DIR$/admin/7-plugins/templates/system/view/view.ejs" />
         <option value="$PROJECT_DIR$/admin/7-plugins/templates/system/view/filter.ejs" />
         <option value="$PROJECT_DIR$/admin/7-plugins/templates/system/crud.ejs" />
         <option value="$PROJECT_DIR$/admin/7-plugins/application/config/developer/control.json" />
-        <option value="$PROJECT_DIR$/admin/modules/BASE_views.js" />
         <option value="$PROJECT_DIR$/admin/7-plugins/templates/pdf/table.ejs" />
         <option value="$PROJECT_DIR$/admin/7-plugins/templates/pdf/header.ejs" />
-        <option value="$PROJECT_DIR$/admin/6-language/en/mono/index.json" />
-        <option value="$PROJECT_DIR$/admin/6-language/es/mono/index.json" />
         <option value="$PROJECT_DIR$/admin/scripts/dragon/table/sortable.js" />
         <option value="$PROJECT_DIR$/admin/7-plugins/templates/form/color.ejs" />
         <option value="$PROJECT_DIR$/admin/7-plugins/information/generate.ejs" />
@@ -353,7 +351,41 @@
         <option value="$PROJECT_DIR$/admin/4-crud/CRUD_child.js" />
         <option value="$PROJECT_DIR$/admin/scripts/dragon/table/events.js" />
         <option value="$PROJECT_DIR$/admin/4-crud/CRUD_texts.js" />
+        <option value="$PROJECT_DIR$/admin/7-plugins/templates/system/color.ejs" />
         <option value="$PROJECT_DIR$/admin/7-plugins/templates/table/columns.ejs" />
+        <option value="$PROJECT_DIR$/admin/0-config/appearance/theme.json" />
+        <option value="$PROJECT_DIR$/admin/styles/base/custom.css" />
+        <option value="$PROJECT_DIR$/admin/7-plugins/information/mobile.ejs" />
+        <option value="$PROJECT_DIR$/admin/scripts/dragon/form/validations/abase.js" />
+        <option value="$PROJECT_DIR$/admin/scripts/dragon/system/language.js" />
+        <option value="$PROJECT_DIR$/admin/7-plugins/templates/form/footer.ejs" />
+        <option value="$PROJECT_DIR$/admin/assets/js/plugins/forms/selects/select2.min.js" />
+        <option value="$PROJECT_DIR$/admin/scripts/dragon/auth/SESSION.js" />
+        <option value="$PROJECT_DIR$/admin/scripts/dragon/appearance/fixelement.js" />
+        <option value="$PROJECT_DIR$/admin/scripts/dragon/form/form.js" />
+        <option value="$PROJECT_DIR$/admin/6-language/en/mono/index.json" />
+        <option value="$PROJECT_DIR$/admin/6-language/es/mono/index.json" />
+        <option value="$PROJECT_DIR$/admin/7-plugins/application/controllers/CO_BASE.js" />
+        <option value="$PROJECT_DIR$/admin/7-plugins/templates/form/box.ejs" />
+        <option value="$PROJECT_DIR$/admin/7-plugins/templates/form/button.ejs" />
+        <option value="$PROJECT_DIR$/admin/scripts/dragon/table/filter.js" />
+        <option value="$PROJECT_DIR$/admin/7-plugins/templates/form/filter.ejs" />
+        <option value="$PROJECT_DIR$/admin/styles/pages/zcustom.css" />
+        <option value="$PROJECT_DIR$/admin/7-plugins/templates/form/input.ejs" />
+        <option value="$PROJECT_DIR$/admin/scripts/dragon/components/modal.js" />
+        <option value="$PROJECT_DIR$/admin/7-plugins/templates/form/select.ejs" />
+        <option value="$PROJECT_DIR$/admin/7-plugins/templates/table/header.ejs" />
+        <option value="$PROJECT_DIR$/admin/scripts/extensions/sweetalert.js" />
+        <option value="$PROJECT_DIR$/admin/6-language/es/alerts/index.json" />
+        <option value="$PROJECT_DIR$/admin/scripts/dragon/data/json.js" />
+        <option value="$PROJECT_DIR$/admin/7-plugins/master/head.ejs" />
+        <option value="$PROJECT_DIR$/admin/5-views/dates/form.ejs" />
+        <option value="$PROJECT_DIR$/admin/7-plugins/templates/form/range.ejs" />
+        <option value="$PROJECT_DIR$/admin/server.js" />
+        <option value="$PROJECT_DIR$/admin/5-views/logica/report.ejs" />
+        <option value="$PROJECT_DIR$/admin/7-plugins/templates/charts/columns.ejs" />
+        <option value="$PROJECT_DIR$/admin/modules/BASE_views.js" />
+        <option value="$PROJECT_DIR$/admin/7-plugins/application/config/app.json" />
       </list>
     </option>
   </component>
@@ -435,12 +467,6 @@
               <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
               <item name="admin" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="peleaxz" type="b2602c69:ProjectViewProjectNode" />
-              <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="5-views" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -451,7 +477,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
-    <property name="SearchEverywhereHistoryKey" value="column&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/table/columns.ejs&#10;columns.e&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/charts/columns.ejs&#10;colum&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/4-crud/mssql/ms_all/1columns.js&#10;sortabl&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/sortable.js&#10;adefa&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/application/cruds/adefaults.js&#10;event&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/events.js&#10;CRUD_s&#9;null&#9;null&#10;users/&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/users&#10;CO_se&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/application/controllers/CO_segment.js&#10;base_vie&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/modules/BASE_views.js&#10;navbar&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/master/navbar.ejs&#10;color.&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/form/color.ejs&#10;mono/&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/6-language/es/mono&#10;columns&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/table/columns.ejs&#10;rows&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/table/rows.ejs&#10;base&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/modules/BASE_views.js&#10;CRUD_da&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/4-crud/CRUD_dates.js&#10;server&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/server.js&#10;ser&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/server.js&#10;base_v&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/modules/BASE_views.js&#10;head&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/master/head.ejs&#10;sort&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/sortable.js&#10;even&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/events.js&#10;swee&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/extensions/sweetalert.js&#10;form&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/form/form.js&#10;theme&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/0-config/appearance/theme.json&#10;navb&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/master/navbar.ejs&#10;login&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/auth/login.ejs&#10;se_au&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/1-service/base/SE_auth.js&#10;CO_Ba&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/application/controllers/CO_BASE.js&#10;com&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/configuration/company.ejs&#10;group&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/application/cruds/group&#10;select&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/form/select.ejs&#10;form.js&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/form/form.js&#10;selec&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/form/select.ejs&#10;company&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/configuration/company.ejs&#10;group/&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/group&#10;CO_gro&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/application/controllers/CO_group.js&#10;baseen&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/application/config/storage/baseentities.json&#10;CO_user&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/3-controllers/CO_users.js&#10;input&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/form/input.ejs&#10;select.cs&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/styles/components/selects.css&#10;users&#9;null&#9;null&#10;SE_au&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/1-service/base/SE_auth.js&#10;aut&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/application/config/security/auth.json&#10;nav&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/master/navbar.ejs&#10;menu.ej&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/master/menu.ejs&#10;CO_ba&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/application/controllers/CO_BASE.js&#10;trigger&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/base/trigger.js&#10;CO_bas&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/application/controllers/CO_BASE.js" />
+    <property name="SearchEverywhereHistoryKey" value="base&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/modules/BASE_views.js&#10;server&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/server.js&#10;report&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/logica/report.ejs&#10;box.ej&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/form/box.ejs&#10;he&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/master/head.ejs&#10;head&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/master/head.ejs&#10;sess&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/auth/SESSION.js&#10;dates/&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/dates&#10;range&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/form/range.ejs&#10;swee&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/extensions/sweetalert.js&#10;table.js&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/table.js&#10;header&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/table/header.ejs&#10;selec&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/form/select.ejs&#10;input&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/form/input.ejs&#10;zcus&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/styles/pages/zcustom.css&#10;filter.js&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/filter.js&#10;filter&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/form/filter.ejs&#10;custom&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/styles/pages/zcustom.css&#10;button&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/form/button.ejs&#10;login.e&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/auth/login.ejs&#10;CO_log&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/application/controllers/CO_login.js&#10;select.e&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/form/select.ejs&#10;box&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/form/box.ejs&#10;mono/&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/6-language/es/mono&#10;form/filte&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/form/filter.ejs&#10;configurati&#9;null&#9;null&#10;serv&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/server.js&#10;fix&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/appearance/fixelement.js&#10;abas&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/form/validations/abase.js&#10;button.e&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/form/button.ejs&#10;form.js&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/form/form.js&#10;custom.cs&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/styles/pages/zcustom.css&#10;CO_base&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/application/controllers/CO_BASE.js&#10;footer&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/form/footer.ejs&#10;languag&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/system/language.js&#10;abase&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/form/validations/abase.js&#10;generate&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/information/generate.ejs&#10;dson&#9;null&#9;null&#10;modal&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/components/modal.js&#10;column&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/table/columns.ejs&#10;base_vi&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/modules/BASE_views.js&#10;file.&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/form/file.ejs&#10;CO_bas&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/application/controllers/CO_BASE.js&#10;columns.e&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/charts/columns.ejs&#10;colum&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/4-crud/mssql/ms_all/1columns.js&#10;sortabl&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/sortable.js&#10;adefa&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/application/cruds/adefaults.js&#10;event&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/events.js&#10;CRUD_s&#9;null&#9;null&#10;users/&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/users" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="excluded.www.directory" value="true" />
     <property name="javascript.nodejs.core.library.configured.version" value="8.10.0" />
@@ -475,18 +501,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp\www\peleaxz\admin\modules" />
+      <recent name="C:\wamp\www\peleaxz\admin\styles\base" />
       <recent name="C:\wamp\www\peleaxz\admin\5-views" />
       <recent name="C:\wamp\www\peleaxz\admin\4-crud" />
       <recent name="C:\wamp\www\peleaxz\admin\3-controllers" />
-      <recent name="C:\wamp\www\peleaxz\admin\7-plugins\information" />
-      <recent name="C:\wamp\www\peleaxz\admin\3-controllers\storage" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\wamp\www\peleaxz\admin\styles\pages" />
       <recent name="C:\wamp\www\peleaxz\admin\3-controllers" />
       <recent name="C:\wamp\www\peleaxz\admin\7-plugins\templates\system\view" />
       <recent name="C:\wamp\www\peleaxz\admin\4-crud" />
       <recent name="C:\wamp\www\peleaxz\admin\2-models" />
-      <recent name="C:\wamp\www\peleaxz\admin\2-models\mysql" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -641,6 +667,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="32" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info id="Structure" order="1" weight="0.24962178" />
@@ -676,718 +703,221 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/admin/scripts/extensions/sweetalert.js">
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/templates/system/color.ejs">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/0-config/appearance/theme.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="105" column="43" selection-start-line="105" selection-start-column="43" selection-end-line="105" selection-end-column="43" />
+        <state relative-caret-position="323">
+          <caret line="19" column="20" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/styles/base/content.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/templates/table/columns.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="10" lean-forward="true" selection-start-line="24" selection-start-column="10" selection-end-line="24" selection-end-column="10" />
           <folding>
-            <element signature="n#style#0;n#button#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#1;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/form/form.js">
+    <entry file="file://$PROJECT_DIR$/admin/3-controllers/CO_logica.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="350" column="32" selection-start-line="350" selection-start-column="32" selection-end-line="350" selection-end-column="96" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/file/file.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="16" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/base/baseapi.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="55" column="32" selection-start-line="55" selection-start-column="32" selection-end-line="55" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/7-plugins/interval/index.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="12" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/7-plugins/master/head.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="100" selection-start-line="100" selection-end-line="100" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="258" column="31" selection-start-line="258" selection-start-column="28" selection-end-line="258" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/7-plugins/templates/system/view/index.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="37" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/7-plugins/templates/system/view/view.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="25" selection-start-column="25" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/7-plugins/templates/system/view/form.ejs">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/7-plugins/templates/system/view/filter.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="25" selection-start-column="25" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/0-config/appearance/theme.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="21" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
+        <state relative-caret-position="136">
+          <caret line="8" column="2" lean-forward="true" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="53" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/4-crud/CRUD_dates.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="22" column="43" lean-forward="true" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/7-plugins/application/config/developer/modules.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/7-plugins/application/config/developer/control.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/7-plugins/templates/pdf/footer.ejs">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/7-plugins/templates/pdf/header.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="21" lean-forward="true" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/7-plugins/templates/pdf/table.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="12" lean-forward="true" selection-start-line="6" selection-start-column="4" selection-end-line="14" selection-end-column="12" />
-          <folding>
-            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#thead#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/7-plugins/templates/table/rows.ejs">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/7-plugins/application/config/storage/baseentities.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="18" lean-forward="true" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/6-language/en/mono/index.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="217" column="2" selection-start-line="217" selection-start-column="2" selection-end-line="217" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/6-language/es/mono/index.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="217" column="21" selection-start-line="217" selection-start-column="21" selection-end-line="217" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/0-config/storage/entities.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/7-plugins/templates/form/color.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="94" column="48" lean-forward="true" selection-start-line="94" selection-start-column="48" selection-end-line="94" selection-end-column="48" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="187">
+          <caret line="32" column="21" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/7-plugins/information/generate.ejs">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="47" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/information/mobile.ejs">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
-          <caret line="9" column="14" lean-forward="true" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
+          <caret line="9" column="24" lean-forward="true" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
           <folding>
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/modules/BASE_views.js">
+    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/system/language.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
-          <caret line="612" column="26" lean-forward="true" selection-start-line="612" selection-start-column="26" selection-end-line="612" selection-end-column="26" />
-          <folding>
-            <element signature="e#51#4482#0" />
-            <element signature="e#78#4480#0" />
-            <element signature="e#355#4463#0" />
-            <element signature="e#431#4447#0" />
-            <element signature="e#474#570#0" />
-            <element signature="e#960#1076#0" />
-            <element signature="e#1082#1404#0" />
-            <element signature="e#1196#1382#0" />
-            <element signature="e#1774#2043#0" />
-            <element signature="e#2210#2536#0" />
-            <element signature="e#2350#2514#0" />
-            <element signature="e#2649#2724#0" />
-            <element signature="e#2817#3192#0" />
-            <element signature="e#2866#3170#0" />
-            <element signature="e#2944#3144#0" />
-            <element signature="e#3017#3114#0" />
-            <element signature="e#3227#4289#0" />
-            <element signature="e#4541#8936#0" />
-            <element signature="e#4568#8934#0" />
-            <element signature="e#4845#8917#0" />
-            <element signature="e#4921#8901#0" />
-            <element signature="e#4964#5060#0" />
-            <element signature="e#5450#5566#0" />
-            <element signature="e#5572#5894#0" />
-            <element signature="e#5686#5872#0" />
-            <element signature="e#6264#6533#0" />
-            <element signature="e#6700#7026#0" />
-            <element signature="e#6840#7004#0" />
-            <element signature="e#7138#7213#0" />
-            <element signature="e#7306#7681#0" />
-            <element signature="e#7355#7659#0" />
-            <element signature="e#7433#7633#0" />
-            <element signature="e#7506#7603#0" />
-            <element signature="e#7716#8778#0" />
-            <element signature="e#8996#12706#0" />
-            <element signature="e#9054#9925#0" />
-            <element signature="e#9249#9917#0" />
-            <element signature="e#9586#9844#0" />
-            <element signature="e#9656#9828#0" />
-            <element signature="e#9699#9763#0" />
-            <element signature="e#9859#9905#0" />
-            <element signature="e#9960#10843#0" />
-            <element signature="e#10158#10835#0" />
-            <element signature="e#10481#10762#0" />
-            <element signature="e#10551#10746#0" />
-            <element signature="e#10594#10690#0" />
-            <element signature="e#10777#10823#0" />
-            <element signature="e#10877#11757#0" />
-            <element signature="e#11073#11749#0" />
-            <element signature="e#11395#11676#0" />
-            <element signature="e#11465#11660#0" />
-            <element signature="e#11508#11604#0" />
-            <element signature="e#11691#11737#0" />
-            <element signature="e#11794#12683#0" />
-            <element signature="e#11996#12675#0" />
-            <element signature="e#12321#12602#0" />
-            <element signature="e#12391#12586#0" />
-            <element signature="e#12434#12530#0" />
-            <element signature="e#12617#12663#0" />
-            <element signature="e#13083#17017#0" />
-            <element signature="e#13159#17001#0" />
-            <element signature="e#13202#13298#0" />
-            <element signature="e#14057#14380#0" />
-            <element signature="e#14446#14513#0" />
-            <element signature="e#14681#15007#0" />
-            <element signature="e#14821#14985#0" />
-            <element signature="e#15119#15194#0" />
-            <element signature="e#15287#15662#0" />
-            <element signature="e#15336#15640#0" />
-            <element signature="e#15414#15614#0" />
-            <element signature="e#15487#15584#0" />
-            <element signature="e#15697#16758#0" />
-            <element signature="e#17834#18133#0" />
-            <element signature="e#18195#18254#0" />
-            <element signature="e#18410#18712#0" />
-            <element signature="e#18542#18694#0" />
-            <element signature="e#18816#18883#0" />
-            <element signature="e#18968#19311#0" />
-            <element signature="e#19013#19293#0" />
-            <element signature="e#19087#19271#0" />
-            <element signature="e#19156#19245#0" />
-            <element signature="e#19342#20314#0" />
-            <element signature="e#20493#23267#0" />
-            <element signature="e#20592#23247#0" />
-            <element signature="e#20627#20733#0" />
-            <element signature="e#20839#23223#0" />
-            <element signature="e#20878#20996#0" />
-            <element signature="e#21108#23195#0" />
-            <element signature="e#21151#21281#0" />
-            <element signature="e#22140#22552#0" />
-            <element signature="e#22237#22462#0" />
-            <element signature="e#22646#22831#0" />
-            <element signature="e#22693#22797#0" />
-            <element signature="e#22921#23163#0" />
-            <element signature="e#23002#23127#0" />
-            <element signature="e#23293#24193#0" />
-            <element signature="e#23406#24173#0" />
-            <element signature="e#23441#23547#0" />
-            <element signature="e#23612#23803#0" />
-            <element signature="e#23889#24149#0" />
-            <element signature="e#23928#24046#0" />
-            <element signature="e#24199#24302#0" />
-            <element signature="e#24841#24937#0" />
-            <element signature="e#25696#26019#0" />
-            <element signature="e#26085#26152#0" />
-            <element signature="e#26320#26646#0" />
-            <element signature="e#26460#26624#0" />
-            <element signature="e#26758#26833#0" />
-            <element signature="e#26926#27301#0" />
-            <element signature="e#26975#27279#0" />
-            <element signature="e#27053#27253#0" />
-            <element signature="e#27126#27223#0" />
-            <element signature="e#28782#35972#0" />
-            <element signature="e#29490#29789#0" />
-            <element signature="e#29851#29910#0" />
-            <element signature="e#30066#30368#0" />
-            <element signature="e#30198#30350#0" />
-            <element signature="e#30472#30539#0" />
-            <element signature="e#30624#30967#0" />
-            <element signature="e#30669#30949#0" />
-            <element signature="e#30743#30927#0" />
-            <element signature="e#30812#30901#0" />
-            <element signature="e#30998#31970#0" />
-            <element signature="e#32149#34923#0" />
-            <element signature="e#32248#34903#0" />
-            <element signature="e#32283#32389#0" />
-            <element signature="e#32495#34879#0" />
-            <element signature="e#32534#32652#0" />
-            <element signature="e#32764#34851#0" />
-            <element signature="e#32807#32937#0" />
-            <element signature="e#33796#34208#0" />
-            <element signature="e#33893#34118#0" />
-            <element signature="e#34302#34487#0" />
-            <element signature="e#34349#34453#0" />
-            <element signature="e#34577#34819#0" />
-            <element signature="e#34658#34783#0" />
-            <element signature="e#34949#35849#0" />
-            <element signature="e#35062#35829#0" />
-            <element signature="e#35097#35203#0" />
-            <element signature="e#35268#35459#0" />
-            <element signature="e#35545#35805#0" />
-            <element signature="e#35584#35702#0" />
-            <element signature="e#35855#35958#0" />
-            <element signature="e#36058#40330#0" />
-            <element signature="e#36112#40326#0" />
-            <element signature="e#36143#40320#0" />
-            <element signature="e#36376#40308#0" />
-            <element signature="e#36452#40292#0" />
-            <element signature="e#36495#36591#0" />
-            <element signature="e#37350#37673#0" />
-            <element signature="e#37739#37806#0" />
-            <element signature="e#37974#38300#0" />
-            <element signature="e#38114#38278#0" />
-            <element signature="e#38412#38487#0" />
-            <element signature="e#38580#38955#0" />
-            <element signature="e#38629#38933#0" />
-            <element signature="e#38707#38907#0" />
-            <element signature="e#38780#38877#0" />
-            <element signature="e#38990#40050#0" />
-            <element signature="e#40365#59682#0" />
-            <element signature="e#40386#40488#0" />
-            <element signature="e#40515#40617#0" />
-            <element signature="e#40822#40891#0" />
-            <element signature="e#40924#41005#0" />
-            <element signature="e#41173#41273#0" />
-            <element signature="e#41342#42025#0" />
-            <element signature="e#41534#41992#0" />
-            <element signature="e#41597#41961#0" />
-            <element signature="e#41661#41947#0" />
-            <element signature="e#41967#41982#0" />
-            <element signature="e#42138#42330#0" />
-            <element signature="e#42429#42603#0" />
-            <element signature="e#42683#42837#0" />
-            <element signature="e#42917#42960#0" />
-            <element signature="e#43021#43264#0" />
-            <element signature="e#43055#43258#0" />
-            <element signature="e#43112#43248#0" />
-            <element signature="e#43169#43234#0" />
-            <element signature="e#43385#43520#0" />
-            <element signature="e#43654#44144#0" />
-            <element signature="e#43713#44138#0" />
-            <element signature="e#43806#44094#0" />
-            <element signature="e#43914#43996#0" />
-            <element signature="e#44002#44080#0" />
-            <element signature="e#44201#44425#0" />
-            <element signature="e#44263#44417#0" />
-            <element signature="e#44298#44370#0" />
-            <element signature="e#44482#45589#0" />
-            <element signature="e#44544#45581#0" />
-            <element signature="e#44579#44651#0" />
-            <element signature="e#44824#45362#0" />
-            <element signature="e#44883#45227#0" />
-            <element signature="e#45000#45124#0" />
-            <element signature="e#45233#45348#0" />
-            <element signature="e#45375#45510#0" />
-            <element signature="e#45653#46761#0" />
-            <element signature="e#45715#46721#0" />
-            <element signature="e#45750#45822#0" />
-            <element signature="e#45995#46502#0" />
-            <element signature="e#46054#46367#0" />
-            <element signature="e#46171#46264#0" />
-            <element signature="e#46373#46488#0" />
-            <element signature="e#46515#46650#0" />
-            <element signature="e#46741#46753#0" />
-            <element signature="e#46831#47754#0" />
-            <element signature="e#46899#47714#0" />
-            <element signature="e#46934#47006#0" />
-            <element signature="e#47184#47676#0" />
-            <element signature="e#47206#47587#0" />
-            <element signature="e#47363#47440#0" />
-            <element signature="e#47446#47524#0" />
-            <element signature="e#47600#47662#0" />
-            <element signature="e#47734#47746#0" />
-            <element signature="e#47825#48584#0" />
-            <element signature="e#47893#48576#0" />
-            <element signature="e#47928#48000#0" />
-            <element signature="e#48221#48279#0" />
-            <element signature="e#48292#48308#0" />
-            <element signature="e#48417#48564#0" />
-            <element signature="e#48444#48508#0" />
-            <element signature="e#48654#49203#0" />
-            <element signature="e#48716#49195#0" />
-            <element signature="e#48751#48823#0" />
-            <element signature="e#49072#49122#0" />
-            <element signature="e#49137#49183#0" />
-            <element signature="e#49274#49659#0" />
-            <element signature="e#49336#49651#0" />
-            <element signature="e#49371#49443#0" />
-            <element signature="e#49728#50094#0" />
-            <element signature="e#49790#50086#0" />
-            <element signature="e#49825#49897#0" />
-            <element signature="e#50162#51637#0" />
-            <element signature="e#50224#51629#0" />
-            <element signature="e#50259#50331#0" />
-            <element signature="e#50487#51442#0" />
-            <element signature="e#50542#51428#0" />
-            <element signature="e#50610#51278#0" />
-            <element signature="e#50988#51186#0" />
-            <element signature="e#51284#51410#0" />
-            <element signature="e#51455#51580#0" />
-            <element signature="e#51745#52755#0" />
-            <element signature="e#51807#52747#0" />
-            <element signature="e#51842#51914#0" />
-            <element signature="e#52035#52693#0" />
-            <element signature="e#52410#52491#0" />
-            <element signature="e#52813#55849#0" />
-            <element signature="e#52881#55841#0" />
-            <element signature="e#52916#52988#0" />
-            <element signature="e#53799#53932#0" />
-            <element signature="e#53966#54288#0" />
-            <element signature="e#54085#54272#0" />
-            <element signature="e#54118#54207#0" />
-            <element signature="e#54320#54642#0" />
-            <element signature="e#54439#54626#0" />
-            <element signature="e#54472#54561#0" />
-            <element signature="e#54678#55831#0" />
-            <element signature="e#54806#55220#0" />
-            <element signature="e#55243#55781#0" />
-            <element signature="e#55278#55405#0" />
-            <element signature="e#55530#55757#0" />
-            <element signature="e#55571#55676#0" />
-            <element signature="e#55929#56560#0" />
-            <element signature="e#55997#56552#0" />
-            <element signature="e#56032#56104#0" />
-            <element signature="e#56385#56489#0" />
-            <element signature="e#56412#56475#0" />
-            <element signature="e#56629#56947#0" />
-            <element signature="e#56697#56939#0" />
-            <element signature="e#56732#56804#0" />
-            <element signature="e#57019#58264#0" />
-            <element signature="e#57081#58256#0" />
-            <element signature="e#57116#57188#0" />
-            <element signature="e#57339#58195#0" />
-            <element signature="e#57580#58181#0" />
-            <element signature="e#58025#58161#0" />
-            <element signature="e#58060#58139#0" />
-            <element signature="e#58337#59581#0" />
-            <element signature="e#58399#59573#0" />
-            <element signature="e#58434#58506#0" />
-            <element signature="e#58656#59512#0" />
-            <element signature="e#58897#59498#0" />
-            <element signature="e#59342#59478#0" />
-            <element signature="e#59377#59456#0" />
-          </folding>
+        <state relative-caret-position="528">
+          <caret line="147" lean-forward="true" selection-start-line="147" selection-end-line="147" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/7-plugins/master/navbar.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="40" column="11" lean-forward="true" selection-start-line="40" selection-start-column="11" selection-end-line="48" selection-end-column="17" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/7-plugins/application/controllers/CO_segment.js">
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/templates/form/footer.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret selection-end-line="15" selection-end-column="3" />
+          <caret column="48" lean-forward="true" selection-start-column="48" selection-end-column="48" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/3-controllers/CO_lists.js">
+    <entry file="file://$PROJECT_DIR$/admin/assets/js/plugins/forms/selects/select2.min.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="24" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
+        <state relative-caret-position="92">
+          <caret line="25" column="548" lean-forward="true" selection-start-line="25" selection-start-column="548" selection-end-line="25" selection-end-column="548" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/4-crud/CRUD_lists.js">
+    <entry file="file://$PROJECT_DIR$/admin/assets/js/plugins/forms/selects/selectboxit.min.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="21" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/lists/filter.ejs">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/lists/form.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="14" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
+        <state relative-caret-position="51">
+          <caret line="3" column="37" selection-start-line="3" selection-start-column="37" selection-end-line="3" selection-end-column="37" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/3-controllers/CO_dates.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/3-controllers/CO_logica.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/3-controllers/CO_texts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="36" column="11" lean-forward="true" selection-start-line="36" selection-start-column="11" selection-end-line="42" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/child/index.ejs">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/3-controllers/CO_child.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
-          <caret line="7" column="54" selection-start-line="7" selection-start-column="54" selection-end-line="7" selection-end-column="54" />
+          <caret line="7" column="23" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/child/form.ejs">
+    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/appearance/fixelement.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="16" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
+        <state relative-caret-position="119">
+          <caret line="7" column="26" lean-forward="true" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/7-plugins/application/cruds/segment/1columns.js">
+    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/form/validations/abase.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="21" column="14" lean-forward="true" selection-start-line="6" selection-start-column="12" selection-end-line="21" selection-end-column="14" />
+        <state relative-caret-position="194">
+          <caret line="107" column="32" lean-forward="true" selection-start-line="106" selection-start-column="8" selection-end-line="107" selection-end-column="32" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/7-plugins/templates/system/controller.ejs">
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/application/controllers/CO_configuration.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="15" selection-start-line="12" selection-start-column="15" selection-end-line="12" selection-end-column="15" />
+        <state relative-caret-position="109">
+          <caret line="58" column="43" lean-forward="true" selection-start-line="58" selection-start-column="43" selection-end-line="58" selection-end-column="69" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/4-crud/CRUD_child.js">
+    <entry file="file://$PROJECT_DIR$/admin/6-language/en/mono/index.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="30" column="30" lean-forward="true" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
+        <state relative-caret-position="460">
+          <caret line="218" column="26" selection-start-line="218" selection-start-column="26" selection-end-line="218" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/table/events.js">
+    <entry file="file://$PROJECT_DIR$/admin/6-language/es/mono/index.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="72" column="47" selection-start-line="72" selection-start-column="47" selection-end-line="72" selection-end-column="47" />
+        <state relative-caret-position="154">
+          <caret line="198" column="21" lean-forward="true" selection-start-line="198" selection-start-column="21" selection-end-line="198" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/application/controllers/CO_BASE.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="75" column="9" lean-forward="true" selection-start-line="75" selection-start-column="9" selection-end-line="75" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/application/controllers/CO_login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1010">
+          <caret line="73" column="61" selection-start-line="73" selection-start-column="55" selection-end-line="73" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/auth/login.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="30" column="47" lean-forward="true" selection-start-line="30" selection-start-column="47" selection-end-line="30" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/templates/form/button.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="33" column="35" selection-start-line="33" selection-start-column="35" selection-end-line="33" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mobile/node_modules/@angular/compiler/src/core.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="74" column="17" selection-start-line="74" selection-start-column="17" selection-end-line="74" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/templates/form/filter.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="309" column="28" lean-forward="true" selection-start-line="309" selection-start-column="28" selection-end-line="309" selection-end-column="28" />
           <folding>
-            <element signature="e#344#1367#0" />
-            <element signature="e#5824#6657#0" />
-            <element signature="e#5940#6267#0" />
-            <element signature="e#6732#8609#0" />
-            <element signature="e#7081#7534#0" />
-            <element signature="e#7333#7512#0" />
-            <element signature="e#7363#7486#0" />
-            <element signature="e#7717#7821#0" />
-            <element signature="e#8183#8417#0" />
-            <element signature="e#8221#8383#0" />
-            <element signature="e#9345#9553#0" />
-            <element signature="e#9379#9523#0" />
-            <element signature="e#9871#10099#0" />
-            <element signature="e#9909#10065#0" />
-            <element signature="e#10702#11113#0" />
-            <element signature="e#10858#11099#0" />
-            <element signature="e#10921#11075#0" />
-            <element signature="e#11119#14408#0" />
-            <element signature="e#11217#14394#0" />
-            <element signature="e#11290#11512#0" />
-            <element signature="e#11359#11488#0" />
-            <element signature="e#11570#11834#0" />
-            <element signature="e#11678#11810#0" />
-            <element signature="e#11895#12610#0" />
-            <element signature="e#11950#12588#0" />
-            <element signature="e#12071#12562#0" />
-            <element signature="e#12667#14376#0" />
-            <element signature="e#12951#14354#0" />
-            <element signature="e#12981#14328#0" />
-            <element signature="e#13031#13394#0" />
-            <element signature="e#13158#13315#0" />
-            <element signature="e#13427#14298#0" />
-            <element signature="e#13509#13596#0" />
-            <element signature="e#13663#13985#0" />
-            <element signature="e#13780#13945#0" />
-            <element signature="e#13991#14221#0" />
-            <element signature="e#14475#14929#0" />
-            <element signature="e#14620#14916#0" />
-            <element signature="e#14817#14902#0" />
-            <element signature="e#14982#15438#0" />
-            <element signature="e#15487#16187#0" />
-            <element signature="e#15576#16177#0" />
-            <element signature="e#15704#16161#0" />
-            <element signature="e#15734#15873#0" />
-            <element signature="e#15903#15969#0" />
-            <element signature="e#16000#16142#0" />
-            <element signature="e#16273#16318#0" />
-            <element signature="e#16402#16418#0" />
-            <element signature="e#16468#19500#0" />
-            <element signature="e#16539#16689#0" />
-            <element signature="e#16806#16945#0" />
-            <element signature="e#17117#19488#0" />
-            <element signature="e#17168#18907#0" />
-            <element signature="e#17355#17537#0" />
-            <element signature="e#17652#17995#0" />
-            <element signature="e#18001#18138#0" />
-            <element signature="e#18041#18116#0" />
-            <element signature="e#18224#18887#0" />
-            <element signature="e#18364#18611#0" />
-            <element signature="e#18417#18585#0" />
-            <element signature="e#18708#18828#0" />
-            <element signature="e#18913#19473#0" />
-            <element signature="e#19152#19455#0" />
-            <element signature="e#19546#20350#0" />
-            <element signature="e#19621#19683#0" />
-            <element signature="e#19732#19845#0" />
-            <element signature="e#19877#20338#0" />
-            <element signature="e#19979#20324#0" />
-            <element signature="e#20392#20444#0" />
-            <element signature="e#20502#23565#0" />
-            <element signature="e#20573#20723#0" />
-            <element signature="e#21380#23553#0" />
-            <element signature="e#21431#22972#0" />
-            <element signature="e#21573#21783#0" />
-            <element signature="e#21898#22107#0" />
-            <element signature="e#22113#22267#0" />
-            <element signature="e#22153#22245#0" />
-            <element signature="e#22353#22952#0" />
-            <element signature="e#22493#22649#0" />
-            <element signature="e#22746#22893#0" />
-            <element signature="e#22978#23538#0" />
-            <element signature="e#23217#23520#0" />
-            <element signature="e#23613#23673#0" />
-            <element signature="e#23725#25120#0" />
-            <element signature="e#23800#23862#0" />
-            <element signature="e#24055#24300#0" />
-            <element signature="e#24332#25108#0" />
-            <element signature="e#24477#25094#0" />
-            <element signature="e#24837#25028#0" />
-            <element signature="e#25165#25776#0" />
-            <element signature="e#25575#25732#0" />
-            <element signature="e#25817#28594#0" />
-            <element signature="e#25865#28584#0" />
-            <element signature="e#26029#26261#0" />
-            <element signature="e#26400#28568#0" />
-            <element signature="e#26455#27904#0" />
-            <element signature="e#26669#26906#0" />
-            <element signature="e#27025#27345#0" />
-            <element signature="e#27408#27882#0" />
-            <element signature="e#27475#27856#0" />
-            <element signature="e#27788#27824#0" />
-            <element signature="e#27910#28510#0" />
-            <element signature="e#28161#28488#0" />
-            <element signature="e#28644#31731#0" />
-            <element signature="e#28716#28778#0" />
-            <element signature="e#28819#28931#0" />
-            <element signature="e#29011#30147#0" />
-            <element signature="e#29127#30089#0" />
-            <element signature="e#29434#30071#0" />
-            <element signature="e#29751#30049#0" />
-            <element signature="e#30182#31693#0" />
-            <element signature="e#30327#31679#0" />
-            <element signature="e#30616#31399#0" />
-            <element signature="e#30751#31312#0" />
-            <element signature="e#30896#31286#0" />
-            <element signature="e#31434#31612#0" />
-            <element signature="e#31774#32579#0" />
-            <element signature="e#31875#32074#0" />
-            <element signature="e#32145#32567#0" />
-            <element signature="e#32208#32353#0" />
-            <element signature="e#32379#32437#0" />
-            <element signature="e#32464#32552#0" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#3;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/7-plugins/templates/system/crud.ejs">
+    <entry file="file://$PROJECT_DIR$/admin/styles/pages/zcustom.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-306">
-          <caret line="18" column="24" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="24" />
+        <state relative-caret-position="528">
+          <caret line="111" column="1" selection-start-line="111" selection-start-column="1" selection-end-line="111" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/4-crud/mssql/ms_all/relations.js">
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/templates/form/input.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" column="13" lean-forward="true" selection-start-line="3" selection-start-column="12" selection-end-line="29" selection-end-column="13" />
+        <state relative-caret-position="347">
+          <caret line="48" column="161" selection-start-line="48" selection-start-column="82" selection-end-line="48" selection-end-column="161" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/users/form.ejs">
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/templates/form/select.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="25" column="11" lean-forward="true" selection-start-line="25" selection-start-column="11" selection-end-line="33" selection-end-column="18" />
+        <state relative-caret-position="136">
+          <caret line="113" column="31" lean-forward="true" selection-start-line="113" selection-start-column="31" selection-end-line="113" selection-end-column="31" />
+          <folding>
+            <element signature="n#style#0;n#li#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/7-plugins/application/cruds/adefaults.js">
+    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/components/modal.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="12" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="12" />
+        <state relative-caret-position="160">
+          <caret line="256" column="44" selection-start-line="256" selection-start-column="44" selection-end-line="256" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/files/configuration/themes/extra.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="234" column="5" selection-start-line="234" selection-start-column="1" selection-end-line="234" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -1402,31 +932,198 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/4-crud/CRUD_texts.js">
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/templates/table/header.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
+        <state relative-caret-position="177">
+          <caret line="205" column="64" selection-start-line="205" selection-start-column="64" selection-end-line="205" selection-end-column="64" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/4-crud/mssql/ms_all/1columns.js">
+    <entry file="file://$PROJECT_DIR$/admin/scripts/extensions/sweetalert.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="108" column="40" lean-forward="true" selection-start-line="108" selection-start-column="40" selection-end-line="108" selection-end-column="40" />
+          <folding>
+            <element signature="n#style#0;n#button#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/6-language/es/alerts/index.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="38" column="17" selection-start-line="38" selection-start-column="3" selection-end-line="38" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/form/form.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="264" column="91" selection-start-line="264" selection-start-column="91" selection-end-line="264" selection-end-column="91" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/data/json.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="358">
+          <caret line="41" column="43" selection-start-line="41" selection-start-column="43" selection-end-line="41" selection-end-column="43" />
+          <folding>
+            <element signature="n#style#0;n#ul#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/table/table.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
-          <caret line="77" column="29" selection-start-line="77" selection-start-column="16" selection-end-line="77" selection-end-column="29" />
+          <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/auth/SESSION.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="13" lean-forward="true" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/table/filter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="500">
+          <caret line="570" column="63" lean-forward="true" selection-start-line="570" selection-start-column="63" selection-end-line="570" selection-end-column="63" />
+          <folding>
+            <element signature="e#75#469#0" />
+            <element signature="e#732#2523#0" />
+            <element signature="e#3097#4178#0" />
+            <element signature="e#3195#4164#0" />
+            <element signature="e#3328#3417#0" />
+            <element signature="e#3459#4056#0" />
+            <element signature="e#3730#3827#0" />
+            <element signature="e#4223#4483#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/data/string.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="35" column="33" lean-forward="true" selection-start-line="31" selection-start-column="4" selection-end-line="35" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/templates/form/range.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="183" column="44" lean-forward="true" selection-start-line="183" selection-start-column="44" selection-end-line="183" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/master/head.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="96" lean-forward="true" selection-start-line="88" selection-start-column="3" selection-end-line="96" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/5-views/dates/form.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="60" selection-start-line="15" selection-start-column="60" selection-end-line="15" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/helper/assets/js/plugins/visualization/echarts/echarts.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/helper/echarts_columns_waterfalls.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="28" column="83" selection-start-line="28" selection-start-column="65" selection-end-line="28" selection-end-column="83" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/helper/assets/js/charts/echarts/columns_waterfalls.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="85" column="35" selection-start-line="85" selection-start-column="27" selection-end-line="85" selection-end-column="35" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/7-plugins/templates/charts/columns.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-51" />
+        <state relative-caret-position="256">
+          <caret line="82" column="22" lean-forward="true" selection-start-line="82" selection-start-column="22" selection-end-line="82" selection-end-column="22" />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/7-plugins/templates/table/columns.ejs">
+    <entry file="file://$PROJECT_DIR$/admin/5-views/logica/report.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+        <state relative-caret-position="75">
+          <caret line="436" column="54" selection-start-line="436" selection-start-column="47" selection-end-line="436" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="21" column="4" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/templates/form/box.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="344">
+          <caret line="220" column="36" lean-forward="true" selection-start-line="217" selection-start-column="32" selection-end-line="220" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/application/config/app.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="18" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/modules/BASE_views.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="551" column="32" lean-forward="true" selection-start-line="551" selection-start-column="32" selection-end-line="551" selection-end-column="32" />
           <folding>
-            <element signature="n#style#0;n#a#0;n#!!top" expanded="true" />
+            <element signature="e#78#4520#0" />
+            <element signature="e#355#4503#0" />
+            <element signature="e#431#4447#0" />
+            <element signature="e#474#570#0" />
+            <element signature="e#960#1076#0" />
+            <element signature="e#1082#1404#0" />
+            <element signature="e#1196#1382#0" />
+            <element signature="e#1774#2043#0" />
+            <element signature="e#2210#2536#0" />
+            <element signature="e#2350#2514#0" />
+            <element signature="e#2649#2724#0" />
+            <element signature="e#2817#3192#0" />
+            <element signature="e#2866#3170#0" />
+            <element signature="e#2944#3144#0" />
+            <element signature="e#3017#3114#0" />
+            <element signature="e#3227#4289#0" />
+            <element signature="e#4467#4487#0" />
+            <element signature="e#4961#8941#0" />
+            <element signature="e#5004#5100#0" />
+            <element signature="e#5490#5606#0" />
+            <element signature="e#5612#5934#0" />
+            <element signature="e#5726#5912#0" />
+            <element signature="e#6304#6573#0" />
+            <element signature="e#6740#7066#0" />
+            <element signature="e#6880#7044#0" />
+            <element signature="e#7178#7253#0" />
+            <element signature="e#7346#7721#0" />
+            <element signature="e#7395#7699#0" />
+            <element signature="e#7473#7673#0" />
+            <element signature="e#7546#7643#0" />
+            <element signature="e#7756#8818#0" />
+            <element signature="e#8961#8981#0" />
           </folding>
         </state>
       </provider>

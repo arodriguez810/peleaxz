@@ -91,6 +91,8 @@ exports.LoadEJS = function (files, params, folder) {
 
                     console.log(folder);
                     res.render("../" + (folder || params.folders.views) + "/" + realPath, send);
+                }).catch(function () {
+
                 });
             }
         );
@@ -187,7 +189,10 @@ exports.LoadEJSDragon = function (files, params, folder) {
                     };
 
                     res.render("../" + (folder || params.folders.viewsDragon) + "/" + realPath, send);
+                }).catch(function () {
+
                 });
+                ;
             }
         );
     }
@@ -208,6 +213,8 @@ exports.runServices = function (services, prefix, params) {
                         res.json(token);
                     } else
                         res.json(result);
+                }).catch(function () {
+
                 });
             }).catch(err => {
                 res.json(err);
@@ -229,6 +236,8 @@ exports.runServices = function (services, prefix, params) {
                         return;
                     }
                     res.json(result);
+                }).catch(function () {
+
                 });
             }).catch(err => {
                 res.json(err);
@@ -250,6 +259,8 @@ exports.runServices = function (services, prefix, params) {
                         return;
                     }
                     res.json(result);
+                }).catch(function () {
+
                 });
             }).catch(err => {
                 res.json(err);
@@ -271,6 +282,8 @@ exports.runServices = function (services, prefix, params) {
                         return;
                     }
                     res.json(result);
+                }).catch(function () {
+
                 });
             }).catch(err => {
                 res.json(err);
@@ -368,6 +381,8 @@ exports.loadEJSSimple = function (folder, prefix, params) {
                         viewfinal = "index";
 
                     res.render("." + folder + "/" + viewfinal, send);
+                }).catch(function () {
+
                 });
             });
             params.app.post(params.util.format("/post/%s%s", prefix, viewName), async function (req, res) {
@@ -619,6 +634,8 @@ exports.loadEJSSimpleSilents = function (folder, prefix, params) {
                     if (modelName.length == 1)
                         viewfinal = "index";
                     res.render("../" + params.folders.silents + "/" + viewfinal, send);
+                }).catch(function () {
+
                 });
             });
             params.app.post(params.util.format("/post/%s%s", prefix, viewName), async function (req, res) {
@@ -870,6 +887,8 @@ exports.loadEJSSimplePOST = function (folder, prefix, params) {
                     if (modelName.length == 1)
                         viewfinal = "index";
                     res.render("." + folder + "/" + viewfinal, send);
+                }).catch(function () {
+
                 });
             });
         }
@@ -963,7 +982,7 @@ exports.init = function (params) {
         }
     });
 
-    console.log("Silend Models".pxz);
+    console.log("Silents Models".pxz);
     console.log(silentsmodels.join(","));
     silentsmodels.forEach(element => {
         exports.loadEJSSimpleSilents(
@@ -994,6 +1013,8 @@ exports.init = function (params) {
                 return;
             }
             res.json({all: "Good"});
+        }).catch(function () {
+
         });
     });
     params.app.get("/files/api/", function (req, res) {
@@ -1020,6 +1041,8 @@ exports.init = function (params) {
                 res.json({root: realPath, files: [], count: 0, error: {catch: err}});
             }
             res.json({root: realPath, files: [], count: 0});
+        }).catch(function () {
+
         });
     });
     params.app.get("/generalfiles/api/", function (req, res) {
@@ -1098,6 +1121,8 @@ exports.init = function (params) {
                 }
                 res.json({zipped: true});
             });
+        }).catch(function () {
+
         });
     });
     params.app.post("/files/api/import", async function (req, res) {
@@ -1115,6 +1140,8 @@ exports.init = function (params) {
             }).catch(err => {
                 res.json(err);
             });
+        }).catch(function () {
+
         });
     });
     params.app.post("/files/api/moveone", async function (req, res) {
@@ -1128,6 +1155,8 @@ exports.init = function (params) {
             var to = req.body.toFolder;
             fs.renameSync(from, to);
             res.json(info);
+        }).catch(function () {
+
         });
     });
     params.app.post("/files/api/exist", async function (req, res) {
@@ -1140,6 +1169,8 @@ exports.init = function (params) {
             if (!fs.existsSync(req.body.path))
                 res.json({success: true});
             res.json({success: false});
+        }).catch(function () {
+
         });
     });
     params.app.post("/files/api/move", async function (req, res) {
@@ -1177,6 +1208,8 @@ exports.init = function (params) {
                 res.json({success: false, errors: errors, fines: success});
             }
             res.json({success: true});
+        }).catch(function () {
+
         });
     });
     params.app.post("/files/api/upload", params.upload.array('toupload', 100), function (req, res, next) {
@@ -1202,6 +1235,8 @@ exports.init = function (params) {
                 fs.renameSync(file.path, filename);
             }
             res.json({uploaded: uploaded});
+        }).catch(function () {
+
         });
     });
     params.app.post('/email/send', function (req, res) {
@@ -1273,6 +1308,8 @@ exports.init = function (params) {
                 )
                 ;
             }
+        }).catch(function () {
+
         });
     });
     params.app.post("/dragon/api/saveConfigSuper", async function (req, res) {
@@ -1290,6 +1327,8 @@ exports.init = function (params) {
                 }
             });
             res.json({error: false, saved: true});
+        }).catch(function () {
+
         });
     });
     params.app.post("/dragon/api/saveConfig", function (req, res) {
@@ -1300,6 +1339,8 @@ exports.init = function (params) {
             }
             await params.storage.setItem("configuration", req.body.json);
             res.json({error: false, saved: true});
+        }).catch(function () {
+
         });
     });
     params.app.post("/dragon/api/saveLanguages", function (req, res) {
@@ -1329,6 +1370,8 @@ exports.init = function (params) {
                 }
             }
             res.json({error: false, saved: true});
+        }).catch(function () {
+
         });
     });
     params.app.post("/dragon/api/generateMobile", function (req, res) {
@@ -1357,6 +1400,8 @@ exports.init = function (params) {
                 }
             }
             res.json({error: false, saved: true});
+        }).catch(function () {
+
         });
     });
     exports.loadEJSSimple("./" + params.folders.viewsDragon + "/master/error", "error", params);

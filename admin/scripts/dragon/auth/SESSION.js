@@ -4,7 +4,7 @@ SESSION = function () {
         if (!DSON.oseaX(obj)) {
             for (var i in CONFIG.users.addFields) {
                 var calc = CONFIG.users.addFields[i];
-                eval(`obj.${i} = function () { return ${calc};}`);
+                eval(`obj.${i} = function () { return ${calc.replaceAll("&#34;", '"').replaceAll("&#39;", "'")};}`);
             }
         }
         return obj;
@@ -13,7 +13,7 @@ SESSION = function () {
         if (!DSON.oseaX(obj)) {
             for (var i in CONFIG.users.addFields) {
                 var calc = CONFIG.users.addFields[i];
-                eval(`obj.${i} = function () { return ${calc};}`);
+                eval(`obj.${i} = function () { return ${calc.replaceAll("&#34;", '"').replaceAll("&#39;", "'")};}`);
             }
         }
         return obj;

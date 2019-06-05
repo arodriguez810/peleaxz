@@ -21,7 +21,7 @@ DSON = {
         return newformat;
     },
     substringif: function (str, len) {
-        return str.length >= len ? str.substring(0, len) : str;
+        return str.length >= len ? str.substring(0, len) + "..." : str;
     },
     cleanSpace: function (str) {
         return str.split(' ').join('_');
@@ -39,7 +39,7 @@ DSON = {
         return eval("(" + string + ")");
     },
     ULALIA: function (arays) {
-        return `<ul><li>${arays.join("</li><li>")}</li></ul>`;
+        return `<ul style="list-style: none"><li>${arays.join("</li><li>")}</li></ul>`;
     },
     OMG: function (id, scope) {
         eval(`${scope}.loadImage${id} = function () {

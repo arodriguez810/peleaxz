@@ -110,7 +110,7 @@ MODAL = {
             );
             var animation = data.animation || "";
             var bgheader = data.header.bg || COLOR.primary;
-            var closeText = backMode ? "<i class='icon-arrow-left8'></i>" + ARRAY.last(MODAL.historyObject).header.title : "&times;";
+            var closeText = backMode ? "<i class='icon-arrow-left8'></i>" + DSON.substringif(ARRAY.last(MODAL.historyObject).header.title, 30) : "&times;";
             var headercloseButton = data.header.closeButton ?
                 '    <button type="button" id=\'closeModal\' class="bg-' + bgheader + ' close cancelmodal" ' + closeModal + ">" + closeText + "</button>" : "";
             var h = data.header.h || "h6";
@@ -254,7 +254,7 @@ MODAL = {
             var properties = {
                 id: id,
                 animation: "",
-                width: ENUM.modal.width.large,
+                width: ENUM.modal.width.full,
                 backMode: true,
                 header: {
                     title: "Test Modal",

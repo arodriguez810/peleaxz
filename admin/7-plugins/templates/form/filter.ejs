@@ -168,10 +168,7 @@
         </button>
     </div>
 </div>
-<div class="row">
-    <p class="col-lg-12 col-md-12 col-xs-12" ng-bind-html="<%= scope %>.filters.description()">
-    </p>
-</div>
+
 <div class="modal-footer visible-xs">
     <div class="row">
         <div dragonlanguage="" class="col-lg-4 col-md-4 col-xs-4">
@@ -190,14 +187,32 @@
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-xs-12" style="margin-bottom: 12px">
+        <button dragonlanguage="" type="button" role="button"
+                ng-click="<%= scope %>.filters.add()"
+                class="btn bg-<%= COLOR.secundary %>-600 btn-labeled btn-xs legitRipple" style="float: right;width: 238px;">
+            <b><i class="icon-plus-circle2"></i></b>
+            <language>MESSAGE.ic('mono.add_fiter')</language>
+        </button>
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="col-lg-12 col-md-12 col-xs-12">
+        <div class="dragon-panel">
+            <div class="alert alpha-secundary-2 border-<%= COLOR.secundary %> alert-styled-left" style="float: left;width: 99%;">
+                <p class="col-lg-12 col-md-12 col-xs-12" ng-bind-html="<%= scope %>.filters.description()">
+                </p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
 <div class="modal-footer visible-lg visible-md" style="padding-right: 16px;">
 
-    <button dragonlanguage="" type="button" role="button"
-            ng-click="<%= scope %>.filters.add()"
-            class="btn bg-<%= COLOR.secundary %>-600 btn-labeled btn-xs legitRipple">
-        <b><i class="icon-plus-circle2"></i></b>
-        <language>MESSAGE.ic('mono.add')</language>
-    </button>
 
     <button dragonlanguage type="button" class="btn  bg-<%= COLOR.success %>-600 btn-labeled btn-xs"
             ng-click="<%= scope %>.filters.apply()">

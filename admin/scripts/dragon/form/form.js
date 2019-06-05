@@ -242,33 +242,39 @@ FORM = {
         $scope.form.saveAction = async function (close) {
             if ($scope.form !== null) {
                 $scope.form.hasChanged = true;
-                var emptyRelations = [];
-                for (const field of $scope.form.fileds) {
-                    if (eval(`$scope.form.schemas.insert.${field}`) === FORM.schemasType.relation) {
-                        var table = eval(`$scope.form.options.${field}.table`);
-                        if (table !== undefined) {
-                            if (eval(`${table}.records.data.length`) === 0) {
-                                emptyRelations.push(eval(`${table}.plural`));
+                if ($scope.form.mode !== FORM.modes.edit) {
+                    var emptyRelations = [];
+                    for (const field of $scope.form.fileds) {
+                        if (eval(`$scope.form.schemas.insert.${field}`) === FORM.schemasType.relation) {
+                            var table = eval(`$scope.form.options.${field}.table`);
+                            if (table !== undefined) {
+                                if (eval(`${table}.records!==undefined`)) {
+                                    if (eval(`${table}.records.data!==undefined`)) {
+                                        if (eval(`${table}.records.data.length`) === 0) {
+                                            emptyRelations.push(eval(`${table}.plural`));
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
-                }
 
-                if (emptyRelations.length > 0) {
-                    SWEETALERT.confirm({
-                        message:
-                            MESSAGE.ieval('alerts.emptyRelations', {relations: DSON.ULALIA(emptyRelations)}),
-                        confirm: function () {
-                            $scope.form.fillRelationvalidate = false;
-                            $scope.form.saveSubAction(close);
-                        }
-                    });
-                    return;
-                } else {
-                    $scope.form.fillRelationvalidate = false;
+                    if (emptyRelations.length > 0) {
+                        SWEETALERT.confirm({
+                            message:
+                                MESSAGE.ieval('alerts.emptyRelations', {relations: DSON.ULALIA(emptyRelations)}),
+                            confirm: function () {
+                                $scope.form.fillRelationvalidate = false;
+                                $scope.form.saveSubAction(close);
+                            }
+                        });
+                        return;
+                    } else {
+                        $scope.form.fillRelationvalidate = false;
+                        $scope.form.saveSubAction(close);
+                    }
+                } else
                     $scope.form.saveSubAction(close);
-                }
-
             }
         };
         $scope.form.saveSubAction = async function (close) {
@@ -276,7 +282,7 @@ FORM = {
             SWEETALERT.loading({message: MESSAGE.ic('mono.saving')});
             if ($scope.form.mode === FORM.modes.new) {
                 for (var i in CONFIG.audit.insert) {
-                    var audit = CONFIG.audit.insert[i];
+                    var audit = CONFIG.audit.insert[i].replaceAll("&#34;", '"').replaceAll("&#39;", "'");
                     if (eval(`CRUD_${$scope.modelName}`).table.columns[i] !== undefined)
                         eval(`$scope.form.inserting.${i} = '${eval(audit)}';`);
                 }
@@ -409,7 +415,7 @@ FORM = {
                 var dataToUpdate = $scope.form.inserting;
                 dataToUpdate.where = dataToWhere;
                 for (var i in CONFIG.audit.update) {
-                    var audit = CONFIG.audit.update[i];
+                    var audit = CONFIG.audit.update[i].replaceAll("&#34;", '"').replaceAll("&#39;", "'");
                     if (eval(`CRUD_${$scope.modelName}`).table.columns[i] !== undefined)
                         eval(`$scope.form.inserting.${i} = '${eval(audit)}';`);
                 }
@@ -668,7 +674,7 @@ FORM = {
                 var options = eval(`$scope.form.options.${name}`);
                 animation.loading(`#input${$scope.modelName}_${name}`, "", `#icon${name}`, '30');
                 if (!options.simple) {
-                    eval(`var crud = CRUD_${options.controller}`);
+                    eval(`var crud = CRUD_${options.controller || options.table}`);
                     if (crud.table.single)
                         options.query.join = crud.table.single;
                     var toquery = DSON.merge(options.query, {});
@@ -824,7 +830,7 @@ FORM = {
                 animation.loading(`#input${$scope.modelName}_${name}`, "", `#icon${name}`, '30');
                 if (options) {
                     if (!options.simple) {
-                        eval(`var crud = CRUD_${options.controller}`);
+                        eval(`var crud = CRUD_${options.controller || options.table}`);
                         if (crud.table.single)
                             options.query.join = crud.table.single;
                         var toquery = DSON.merge(options.query, {});
@@ -1112,7 +1118,7 @@ FORM = {
                 };
                 $scope.pages.form.focusFirstValidation = function () {
                     setTimeout(function () {
-                        var firstFieldWithError = $(".help-block:has('p'):eq(0)").closest('.form-group-material');
+                        var firstFieldWithError = $(".help-block:visible:has('p'):eq(0)").closest('.form-group-material');
                         firstFieldWithError.find('.form-control').focus();
                         var tab = firstFieldWithError.closest('.tab-pane');
                         $(`[href='#${tab.attr('id')}']`).trigger('click');
@@ -1154,32 +1160,37 @@ FORM = {
                             eval(`delete ${$scope.modelName}.${i}`);
                 };
                 $scope.pages.form.close = function (pre, post, close) {
-
-                    if ($scope.form.fillRelationvalidate !== false) {
-                        var dataRelations = [];
-                        for (const field of $scope.form.fileds) {
-                            if (eval(`$scope.form.schemas.insert.${field}`) === FORM.schemasType.relation) {
-                                var table = eval(`$scope.form.options.${field}.table`);
-                                if (table !== undefined) {
-                                    if (eval(`${table}.records.data.length`) > 0) {
-                                        dataRelations.push(eval(`${table}.plural`));
+                    if ($scope.form.mode !== FORM.modes.edit) {
+                        if ($scope.form.fillRelationvalidate !== false) {
+                            var dataRelations = [];
+                            for (const field of $scope.form.fileds) {
+                                if (eval(`$scope.form.schemas.insert.${field}`) === FORM.schemasType.relation) {
+                                    var table = eval(`$scope.form.options.${field}.table`);
+                                    if (table !== undefined) {
+                                        if (eval(`${table}.records!==undefined`)) {
+                                            if (eval(`${table}.records.data!==undefined`)) {
+                                                if (eval(`${table}.records.data.length`) > 0) {
+                                                    dataRelations.push(eval(`${table}.plural`));
+                                                }
+                                            }
+                                        }
                                     }
                                 }
                             }
-                        }
-                        if (dataRelations.length > 0) {
-                            SWEETALERT.confirm({
-                                message: MESSAGE.ieval('alerts.fullRelations', {relations: DSON.ULALIA(dataRelations)}),
-                                confirm: function () {
-                                    if ($scope.form.target === FORM.targets.modal) {
-                                        if (close !== false)
-                                            MODAL.close($scope);
+                            if (dataRelations.length > 0) {
+                                SWEETALERT.confirm({
+                                    message: MESSAGE.ieval('alerts.fullRelations', {relations: DSON.ULALIA(dataRelations)}),
+                                    confirm: function () {
+                                        if ($scope.form.target === FORM.targets.modal) {
+                                            if (close !== false)
+                                                MODAL.close($scope);
+                                        }
+                                        if ($scope.pages.form)
+                                            $scope.pages.form.onClose(close);
                                     }
-                                    if ($scope.pages.form)
-                                        $scope.pages.form.onClose(close);
-                                }
-                            });
-                            return;
+                                });
+                                return;
+                            }
                         }
                     }
 
@@ -1303,7 +1314,8 @@ FORM = {
             }
         };
         $scope.createForm = function (data, mode, defaultData) {
-
+            if ($scope.validate === undefined)
+                $scope.validate = [];
             if ($scope.form !== null) {
                 if (!$scope.form.onload)
                     $scope.form.onload = function (name) {

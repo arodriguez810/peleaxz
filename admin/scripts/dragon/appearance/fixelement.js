@@ -4,6 +4,12 @@ FIXELEMENT = {
         var elemTop = elem.offset().top;
         return ((elemTop >= docViewTop));
     },
+    isScrolledIntoViewBottom: function (elem) {
+        if (elem.offset())
+            return elem.offset().top > $(window).height();
+        else
+            return false;
+    },
     run: function () {
         var tables = $('.dragon-table');
         tables.each(function () {

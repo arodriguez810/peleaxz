@@ -75,8 +75,8 @@ var toclient = JSON.stringify(options);
     </label>
 
     <div id="<%= model %>_<%= nameclean %>div"
-         class="form-control" style="padding-left: 0px;">
-        <i class="icon-<%= options.icon.class %> text-<%= COLOR.secundary %>"></i>
+         class="form-control form-control-custom" style="padding-left: 0px;">
+    <i class="icon-<%= options.icon.class %> text-<%= COLOR.secundary %>"></i>
         <span>{{<%= model + "." + name %>}}</span>
     </div>
     <input type="hidden" ng-model="<%= model + "." + name %>">
@@ -120,11 +120,8 @@ var toclient = JSON.stringify(options);
         $('#<%= model %>_<%= nameclean %>div').daterangepicker({
             timePicker: <%= options.timepicker %>,
             showDropdowns: true,
-            startDate: moment(<%= model %>.<%= options.from %> || new Date()) ,
-            endDate
-    :
-        moment(<%= model %>.<%= options.to %> || new Date()
-    ) ,
+            startDate: moment(<%= model %>.<%= options.from %> || undefined) ,
+            endDate:moment(<%= model %>.<%= options.to %> || undefined) ,
         "locale"
     :
         {
@@ -154,8 +151,8 @@ var toclient = JSON.stringify(options);
             1
         }
     ,
-        <%= options.minDate === "" ? "" : ("minDate:'" + options.minDate + "',") %>
-        <%= options.maxDate === "" ? "" : ("maxDate:'" + options.maxDate + "',") %>
+        <%= options.minDate === "" ? "" : ("minDate:moment(" + options.minDate + "),") %>
+        <%= options.maxDate === "" ? "" : ("maxDate:moment(" + options.maxDate + "),") %>
         <%= options.singleDatePicker === false ? "" : ("singleDatePicker:true,") %>
     },
 
@@ -180,5 +177,20 @@ var toclient = JSON.stringify(options);
         <% } %>
         <%= model %>.
         triggers.table.after.control("<%= nameclean %>");
+        <%= model %>.<%= name %>_start = function(value){
+            $('#<%= model %>_<%= name %>div').data('daterangepicker').setStartDate(moment(value));
+        }
+        <%= model %>.<%= name %>_end = function(value){
+            $('#<%= model %>_<%= name %>div').data('daterangepicker').setEndDate(moment(value));
+        }
+
+        <%= model %>.<%= name %>_min = function(value){
+            $('#<%= model %>_<%= name %>div').data('daterangepicker').minDate = (moment(value));
+        }
+
+        <%= model %>.<%= name %>_max = function(value){
+            $('#<%= model %>_<%= name %>div').data('daterangepicker').maxDate = (moment(value));
+        }
+
     });
 </script>

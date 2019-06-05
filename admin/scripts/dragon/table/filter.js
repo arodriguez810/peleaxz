@@ -434,7 +434,7 @@ FILTER = {
                                 }
                             }
                         }
-                        var whe = `<span class="${danger}">${item.operator.text}</span> <b class="${danger}">${showvalue}</b> <b class="text-${COLOR.secundary}-800">${item.connector}</b>`;
+                        var whe = `<span class="${danger}">${item.operator.text}</span> <b class="${danger}">${showvalue}</b> <b class="text-${COLOR.secundary}-800">${$scope.filters.connectorsLabel[item.connector]}</b>`;
                         if (DSON.oseaX(where[item.column.key]))
                             where[item.column.key] = [];
                         where[item.column.key].push(whe);
@@ -447,7 +447,7 @@ FILTER = {
                     var realColumn = $scope.filters.fields.filter(function (item) {
                         return item.key === i;
                     })[0];
-                    description.push(`<b class="text-${COLOR.secundary}-800">${$scope.filters.label(realColumn)}:</b> ` + (items.join(' ') + "*****").replace(`<b class="text-${COLOR.secundary}-800">AND</b>*****`, '').replace(`<b class="text-${COLOR.secundary}-800">OR</b>*****`, ''));
+                    description.push(`<b class="text-${COLOR.secundary}-800">${$scope.filters.label(realColumn)}:</b> ` + (items.join(' ') + "*****").replace(`<b class="text-${COLOR.secundary}-800">${$scope.filters.connectorsLabel.AND}</b>*****`, '').replace(`<b class="text-${COLOR.secundary}-800">${$scope.filters.connectorsLabel.OR}</b>*****`, ''));
                 }
                 return "<b>" + MESSAGE.ic('mono.filters') + ":</b> " + description.join('');
             };
@@ -476,7 +476,7 @@ FILTER = {
                                 }
                             }
                         }
-                        var whe = `<span class="${danger}">${item.operator.text}</span> <b class="${danger}">${showvalue}</b> <b class="text-${COLOR.secundary}-800">${item.connector}</b>`;
+                        var whe = `<span class="${danger}">${item.operator.text}</span> <b class="${danger}">${showvalue}</b> <b class="text-${COLOR.secundary}-800">${$scope.filters.connectorsLabel[item.connector]}</b>`;
                         if (DSON.oseaX(where[item.column.key]))
                             where[item.column.key] = [];
                         where[item.column.key].push(whe);
@@ -501,7 +501,7 @@ FILTER = {
                         !DSON.oseaX(item.operator) &&
                         !DSON.oseaX(item.connector)) {
                         var danger = `${!item.applied ? 'text-danger' : ''}`;
-                        var whe = `${item.operator.text} ${item.value} ${item.connector}`;
+                        var whe = `${item.operator.text} ${item.value} ${$scope.filters.connectorsLabel[item.connector]}`;
                         if (DSON.oseaX(where[item.column.key]))
                             where[item.column.key] = [];
                         where[item.column.key].push(whe);
@@ -514,7 +514,7 @@ FILTER = {
                     var realColumn = $scope.filters.fields.filter(function (item) {
                         return item.key === i;
                     })[0];
-                    description.push(`${$scope.filters.label(realColumn)}: ` + (items.join(' ') + "*****").replace(`AND*****`, '').replace(`OR*****`, ''));
+                    description.push(`${$scope.filters.label(realColumn)}: ` + (items.join(' ') + "*****").replace(`${$scope.filters.connectorsLabel.AND}*****`, '').replace(`${$scope.filters.connectorsLabel.OR}*****`, ''));
                 }
                 return "Filters:\n" + description.join('\n');
             };

@@ -100,7 +100,7 @@ SWEETALERT = {
 NOTIFY = {
     base: function (type, text, position) {
         noty({
-            timeout: 2000,
+            timeout: 6000,
             text: text,
             type: type || 'success',
             layout: position || "bottomLeft"

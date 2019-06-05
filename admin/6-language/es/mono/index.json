@@ -27,7 +27,7 @@
   "NoColorSelected": "Color no seleccionado",
   "GoToUp": "Ir arriba",
   "Contains": "Contiene",
-  "Notcontains": "Not Contiene",
+  "Notcontains": "No Contiene",
   "Equalto": "Igual a",
   "Differentto": "Diferente a",
   "Startswith": "Inicia con",
@@ -215,5 +215,7 @@
   "sort_time": "cronológicamente",
   "asc": "ascendente",
   "desc": "descendente",
-  "sorted": "ordenado"
+  "sorted": "ordenado",
+  "basemodules": "Modulos Base",
+  "add_fiter": "Añadir Filtro"
 }

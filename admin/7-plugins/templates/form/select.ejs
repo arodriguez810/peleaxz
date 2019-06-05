@@ -132,11 +132,11 @@ var toclient = JSON.stringify(options);
 
         <% if(options.allownew || options.allowedit || options.allowview || options.allowlist || options.refresh){ %>
             <li class="dropdown" style="float: right;list-style: none">
-                <i dragonlanguage="" title="MESSAGE.i('mono.options')"
-                   class="text-<%= COLOR.primary %>-800 icon-list-unordered"></i>
+
                 <a href="#" class="dropdown-toggle legitRipple " data-toggle="dropdown"
                    aria-expanded="false">
-
+                    <i dragonlanguage="" title="MESSAGE.i('mono.options')"
+                       class="text-<%= COLOR.secundary %> icon-list-unordered"></i>
                     <span class="caret"></span>
                 </a>
 
@@ -199,7 +199,7 @@ var toclient = JSON.stringify(options);
                 <option></option>
             <% }else{ %>
                 <% if(!options.multiple){ %>
-                    <option value="[NULL]" data-icon="blocked">{{<%= model %>.selectMessage}}</option>
+                    <option value="[NULL]">{{<%= model %>.selectMessage}}</option>
                 <% } %>
             <% } %>
 
@@ -228,7 +228,7 @@ var toclient = JSON.stringify(options);
         <div class="form-control-feedback">
             <i
                     id="icon<%= name %>"
-                    class="icon-<%= options.icon.class %> text-secundary-700">
+                    class="icon-<%= options.icon.class %> text-secundary">
 
             </i>
         </div>

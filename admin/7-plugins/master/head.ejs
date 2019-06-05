@@ -27,6 +27,15 @@
     <link href="<%= FOLDERS.themes %>/extra.css" rel="stylesheet" type="text/css">
     <link href="<%= FOLDERS.themes %>/secundary.css" rel="stylesheet" type="text/css">
     <link href="<%= FOLDERS.themes %>/primary.css" rel="stylesheet" type="text/css">
+    <style>
+        .select2-results__option--highlighted, .cancelmodal, .modal-title {
+            color: <%= CONFIG.ui.theme.text2 %> !important;
+        }
+
+        .select2-results__option--highlighted {
+            background-color: <%= CONFIG.ui.theme.secundary %> !important;
+        }
+    </style>
 
 
     <script type="text/javascript" src="assets/js/plugins/loaders/pace.min.js"></script>
@@ -76,6 +85,16 @@
     <% }); %>
 
     <%
+
+    $type = String;
+    $type.__typeName = 'String';
+    $type.__class = true;
+    $prototype = $type.prototype;
+    $prototype.replaceAll = function(search, replacement) {
+        var target = this;
+        return target.replace(new RegExp(search, 'g'), replacement);
+    };
+
     MENUONEROW = [];
     addMenu = function (prefix, array) {
         for (var menu of array) {
@@ -98,7 +117,6 @@
         }
     }
     addMenu([], CONFIG.menus);
-
     %>
     <script>
         const USD = value => currency(value, {symbol: '$', decimal: ',', separator: '.'});
@@ -150,6 +168,7 @@
         RELATIONS = {};
         RELATIONS.anonymous = [];
         var space = " ";
+        var quote = "'";
         $(".sidebar, .navbar, .navbar-brand, .navbar-text, .navbar-nav > li, .page-header, .page-title, .page-header .heading-elements, .breadcrumb, .breadcrumb-elements > li, .content > .panel, .content .row > [class*=col-], .footer")
             .css('opacity', 0);
         MESSAGE.run();

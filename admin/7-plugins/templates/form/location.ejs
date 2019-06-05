@@ -68,7 +68,7 @@ var toclient = JSON.stringify(options);
             role="button"
             class="btn bg-<%= options.color %>-600 btn-block legitRipple">
         {{<%= model %>.<%= name %>_DragonLat!==null ? <%= model %>.locationselectedText :""}}
-        <i class="icon-<%= options.icon.class %> text-secundary-700"></i>
+        <i class="icon-<%= options.icon.class %> text-secundary"></i>
         <div ng-show="<%= model %>.<%= name %>_DragonLat===null" dragonlanguage="">
             <language>MESSAGE.i('mono.selectLocation')</language>
         </div>

@@ -63,6 +63,7 @@ var options = {
 options = OBJECT.merge(options, opts);
 var nameclean = name.replace(/\./g, '_');
 options.model = options.model ? options.model : false;
+options.controller = options.controller||options.table;
 options.permission = options.permission || "CRUD_" + options.table;
 var toclient = JSON.stringify(options);
 %>
@@ -116,8 +117,8 @@ var toclient = JSON.stringify(options);
             <%= model %>.
     form.options.<%= name %>.allownew = false;
 </script>
-<% if (model !== options.table){ %>
-<div id="<%= options.table %>" ng-controller="<%= options.table %> as <%= options.table %>">
+<% if (model !== options.controller){ %>
+<div id="<%= options.controller %>" ng-controller="<%= options.controller %> as <%= options.controller %>">
     <% } %>
     <div class="form-group-material form-group has-feedback  has-feedback-<%= options.icon.position %>"
          id="input<%= model %>_<%= nameclean %>">
@@ -252,7 +253,7 @@ var toclient = JSON.stringify(options);
         <div class="form-control-feedback">
             <i
                     id="icon<%= name %>"
-                    class="icon-<%= options.icon.class %> text-secundary-700">
+                    class="icon-<%= options.icon.class %> text-secundary">
 
             </i>
         </div>
@@ -261,7 +262,7 @@ var toclient = JSON.stringify(options);
         {{<%= model %>.form.options.<%= name %>.helptext}}
     </span>
     </div>
-    <% if (model !== options.table){ %>
+    <% if (model !== options.controller){ %>
 </div>
 <% } %>
 <script>
@@ -301,7 +302,7 @@ var toclient = JSON.stringify(options);
             return false;
         });
         $('#new<%= model %>_<%= nameclean %>').click(function () {
-            <%= options.table %>.
+            <%= options.controller %>.
             formulary(null, 'new');
             return false;
         });
@@ -313,7 +314,7 @@ var toclient = JSON.stringify(options);
             baseController.viewData = {};
             var modal = {
                 header: {
-                    title: MESSAGE.i('mono.Listof') + " " + (<%= options.table %>.headertitle || <%= options.table %>.plural),
+                    title: MESSAGE.i('mono.Listof') + " " + (<%= options.controller %>.headertitle || <%= options.controller %>.plural),
             icon: "list"
         },
             width: ENUM.modal.width.full,
@@ -324,16 +325,16 @@ var toclient = JSON.stringify(options);
                 loadingContentText: MESSAGE.i('actions.Loading'),
             }
         }
-            <%= options.table %>.
-            modal.modalView(String.format("{0}", "<%= options.table %>"), modal);
+            <%= options.controller %>.
+            modal.modalView(String.format("{0}", "<%= options.controller %>"), modal);
             return false;
         });
 
         $('#edit<%= model %>_<%= nameclean %>').click(function () {
-            <%= options.table %>.
+            <%= options.controller %>.
             formulary({
                 where: [{
-                    field: <%= 'CRUD_' + options.table %>.table.key,
+                    field: <%= 'CRUD_' + options.controller %>.table.key,
                     value
         : <%= model %>.<%= name %>}]
         },
@@ -346,7 +347,7 @@ var toclient = JSON.stringify(options);
             <%= model %>.
 
             cell.openLink({
-                table: "<%= options.table %>",
+                table: "<%= options.controller %>",
                 column: "<%= options.column %>",
                 value: <%= model %>.<%= name %>, field
         :

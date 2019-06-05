@@ -3,9 +3,14 @@
       ng-click="<%= scope %>.checkAll()">
 </span>
 
-<a ng-if="value.sortable!==false && <%= scope %>.characterist('sortable')" style="cursor: pointer;color: <%= CONFIG.ui.theme.text2 %> !important;text-decoration: underline" title="{{<%= scope %>.sortTitle(value,key)}}" ng-click="<%= scope %>.sort(value,key)" ng-bind-html="<%= scope %>.columnLabel(value,key)"></a>
+<a ng-if="value.sortable!==false && <%= scope %>.characterist('sortable')"
+   style="cursor: pointer;color: <%= CONFIG.ui.theme.text1 %> !important;text-decoration: underline"
+   title="{{<%= scope %>.sortTitle(value,key)}}" ng-click="<%= scope %>.sort(value,key)"
+   ng-bind-html="<%= scope %>.columnLabel(value,key)"></a>
 
-<span ng-if="value.sortable===false || !<%= scope %>.characterist('sortable')"  ng-bind-html="<%= scope %>.columnLabel(value,key)"></span>
+<span ng-if="value.sortable===false || !<%= scope %>.characterist('sortable')"
+      style="cursor: pointer;color: <%= CONFIG.ui.theme.text1 %> !important;"
+      ng-bind-html="<%= scope %>.columnLabel(value,key)"></span>
 
 
 <i ng-show="<%= scope %>.characterist('sortable')"

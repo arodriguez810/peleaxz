@@ -1,39 +1,40 @@
 <%
-if(DATA.name!==undefined){
+if (DATA.name !== undefined) {
     var name, model, opts;
     name = DATA.name;
     model = DATA.model;
     opts = DATA.opts;
 }
-var name  = name || "";
+var name = name || "";
 var options = {
     text: params.capitalize(name),
     icon: {
         class: "none",
         position: "left",
-        color: COLOR.secundary+"-800"
+        color: COLOR.secundary + "-800"
     },
     type: "normal",
-    posttype:"button"
+    posttype: "button"
 };
-options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g,'_');
+options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g, '_');
 options.color = options.type === "form" ? "{{" + model + ".validation.stateDefault()}}" : COLOR.secundary;
 var toclient = JSON.stringify(options);
 %>
 <script>
     <%= model %>.triggers.table.before.control("<%= nameclean %>");
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
-    if(MESSAGE.exist('columns.<%= nameclean %>')){
-        <%= model %>.form.options.<%= name %>.text = MESSAGE.i('columns.<%= nameclean %>');
+    if (MESSAGE.exist('columns.<%= nameclean %>')) {
+        <%= model %>.
+        form.options.<%= name %>.text = MESSAGE.i('columns.<%= nameclean %>');
     }
 </script>
 <div class="form-group">
     <button type="button" role="button"
             ng-click="STEP.register({scope: '<%= model %>', action: 'Click <%= name %>'});<%= model %>.<%= name %>_click()"
-            class="btn bg-<%= options.color  %>-800 btn-block legitRipple">
+            class="btn bg-secundary btn-block legitRipple">
         {{<%= model %>.form.options.<%= name %>.text}}
         <i ng-if="<%= model %>.form.options.<%= name %>.icon.class!=='none'"
-                class="icon-<%= options.icon.class %> position-<%= options.icon.position %>"></i>
+           class="icon-<%= options.icon.class %> position-<%= options.icon.position %>"></i>
     </button>
 </div>
 

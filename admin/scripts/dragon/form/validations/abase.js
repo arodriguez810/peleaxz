@@ -145,7 +145,7 @@ VALIDATION = {
                     message: MESSAGE.i('alerts.ContainsError'),
                     confirm: function () {
                         setTimeout(function () {
-                            var firstFieldWithError = $(".help-block:has('p'):eq(0)").closest('.form-group-material');
+                            var firstFieldWithError = $(".help-block:visible:has('p'):eq(0)").closest('.form-group-material');
                             firstFieldWithError.find('.form-control').focus();
                             var tab = firstFieldWithError.closest('.tab-pane');
                             $(`[href='#${tab.attr('id')}']`).trigger('click');

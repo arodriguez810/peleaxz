@@ -90,7 +90,7 @@ MESSAGE = {
             return false;
         var exist = eval(`LANGUAGE.${lan}.${key.split('.')[0]}.hasOwnProperty('${key.split('.')[1]}')`);
         if (!exist) {
-
+            MESSAGE.register(lan, key.split('.')[0], key.split('.')[1]);
         }
         return exist;
     },
