@@ -4,6 +4,7 @@ DSON.keepmerge(CRUD_texts,
     {
         table: {
             key: 'id',
+            sort: 'num',
             deletekeys: ['id'],
             dragrow: 'num',
             sortable: false,

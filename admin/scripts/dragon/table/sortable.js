@@ -1,6 +1,8 @@
 SORTABLE = {
     run: function ($scope) {
         var firstColumn = $scope.dragrow ? $scope.dragrow : (eval(`CRUD_${$scope.modelName}`).table.key || "id");
+        if (eval(`CRUD_${$scope.modelName}`).table.sort)
+            firstColumn = eval(`CRUD_${$scope.modelName}`).table.sort;
 
         for (var i in eval(`CRUD_${$scope.modelName}`).table.columns) {
             eval(`CRUD_${$scope.modelName}`).table.columns[i].sorted = false;
@@ -41,7 +43,6 @@ SORTABLE = {
             }
             return icon;
         };
-
         $scope.sortTitle = function (column, key) {
             var type = "alphanumeric";
             if (column.sorttype !== undefined) {
@@ -50,7 +51,6 @@ SORTABLE = {
             var sorted = column.order === "asc" ? "desc" : "asc";
             return `${MESSAGE.i('mono.clicktosort')} ${MESSAGE.i('mono.sort_' + type)} ${MESSAGE.i('mono.by')} ${$scope.columnLabel(column, key).toLowerCase()} ${MESSAGE.i('mono.' + sorted)}`;
         };
-
         $scope.sortTitleIcon = function (column, key) {
             var type = "alphanumeric";
             if (column.sorttype !== undefined) {
@@ -61,6 +61,8 @@ SORTABLE = {
         };
         $scope.resetSort = function () {
             var firstColumn = $scope.dragrow ? $scope.dragrow : (eval(`CRUD_${$scope.modelName}`).table.key || "id");
+            if (eval(`CRUD_${$scope.modelName}`).table.sort)
+                firstColumn = eval(`CRUD_${$scope.modelName}`).table.sort;
             for (var i in eval(`CRUD_${$scope.modelName}`).table.columns) {
                 eval(`CRUD_${$scope.modelName}`).table.columns[i].sorted = false;
                 eval(`CRUD_${$scope.modelName}`).table.columns[i].order = "asc";

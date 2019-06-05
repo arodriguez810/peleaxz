@@ -3,6 +3,7 @@ DSON.keepmerge(CRUD_users, CRUDDEFAULTS);
 DSON.keepmerge(CRUD_users, {
     table: {
         engine: 'my',
+        sort: 'username',
         columns: {
             id: {
                 label: "ID",
