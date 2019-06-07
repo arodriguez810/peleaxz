@@ -62,6 +62,7 @@ var toclient = JSON.stringify(options);
             ng-model="<%= model + "." + name %>" name="<%= model %>_<%= nameclean %>"
             ng-readonly="<%= model %>.form.options.<%= name %>.readonly"
             ng-disabled="<%= model %>.form.options.<%= name %>.disabled"
+            autocomplete="off"
             <%= options.maxlength ? `maxlength=${options.maxlength}` : "" %>
             type="text"
             class="form-control">

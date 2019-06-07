@@ -116,8 +116,19 @@ var toclient = JSON.stringify(options);
             e.preventDefault();
             return false;
         });
+
+        var range = '';
+        <% if(options.singleDatePicker === false){ %>
+        range = moment(<%= model %>.<%= options.from %> || undefined).format("<%= options.format %>") + " - " + moment(<%= model %>.<%= options.to %> || undefined).format("<%= options.format %>");
+        <% }else{ %>
+        range = moment(<%= model %>.<%= options.from %> || undefined).format("<%= options.format %>");
+        <% } %>
+        <%= model %>.<%= name %> = range;
+
         <% if(options.disabled !== true){ %>
         $('#<%= model %>_<%= nameclean %>div').daterangepicker({
+            "autoApply": true,
+            "autoUpdateInput": false,
             timePicker: <%= options.timepicker %>,
             showDropdowns: true,
             startDate: moment(<%= model %>.<%= options.from %> || undefined) ,
@@ -164,8 +175,7 @@ var toclient = JSON.stringify(options);
             range = moment(start).format("<%= options.format %>");
             <% } %>
             <%= model %>.<%= name %> = range;
-            <%= model %>.
-            refreshAngular();
+            <%= model %>.refreshAngular();
             <%= model %>.<%= options.from %> = moment(start).format("<%= options.universal %>");
             <% if(options.singleDatePicker === false){ %>
             <%= model %>.<%= options.to %> = moment(end).format("<%= options.universal %>");

@@ -1148,11 +1148,10 @@ FORM = {
                         if ($scope.form.hasChanged)
                             if ($scope.refresh !== undefined) {
                                 if (close === false) {
-
-
-                                    return;
-                                } else
                                     $scope.refresh();
+                                    $scope.modalAction($scope.modelName, 'Parent', 'user', 'new', {});
+                                }
+                                $scope.refresh();
                             }
                     }
                     for (var i in eval($scope.modelName))
@@ -1182,10 +1181,15 @@ FORM = {
                                     message: MESSAGE.ieval('alerts.fullRelations', {relations: DSON.ULALIA(dataRelations)}),
                                     confirm: function () {
                                         if ($scope.form.target === FORM.targets.modal) {
-                                            if (close !== false)
-                                                MODAL.close($scope);
+                                            MODAL.close($scope);
+                                            console.log('nata1');
+                                            if (close === false) {
+                                                $scope.refresh();
+                                                $scope.modalAction($scope.modelName, 'Parent', 'user', 'new', {});
+                                                return;
+                                            }
                                         }
-                                        if ($scope.pages.form)
+                                        if ($scope.pages.form.onClose)
                                             $scope.pages.form.onClose(close);
                                     }
                                 });
@@ -1207,8 +1211,12 @@ FORM = {
                                     message: MESSAGE.i('alerts.CloseToComplete'),
                                     confirm: function () {
                                         if ($scope.form.target === FORM.targets.modal) {
-                                            if (close !== false)
-                                                MODAL.close($scope);
+                                            MODAL.close($scope);
+                                            if (close === false) {
+                                                $scope.refresh();
+                                                $scope.modalAction($scope.modelName, 'Parent', 'user', 'new', {});
+                                                return;
+                                            }
                                         }
                                         if ($scope.pages.form)
                                             $scope.pages.form.onClose(close);
@@ -1217,8 +1225,12 @@ FORM = {
                             else {
                                 if ($scope.form !== null)
                                     if ($scope.form.target === FORM.targets.modal) {
-                                        if (close !== false)
-                                            MODAL.close($scope);
+                                        MODAL.close($scope);
+                                        if (close === false) {
+                                            $scope.refresh();
+                                            $scope.modalAction($scope.modelName, 'Parent', 'user', 'new', {});
+                                            return;
+                                        }
                                     }
                                 if ($scope.pages !== null)
                                     if ($scope.pages.form)
@@ -1226,12 +1238,17 @@ FORM = {
                             }
                         } else {
                             if ($scope.form.target === FORM.targets.modal) {
-                                if (close !== false)
-                                    MODAL.close($scope);
+                                MODAL.close($scope);
+                                if (close === false) {
+                                    $scope.refresh();
+                                    $scope.modalAction($scope.modelName, 'Parent', 'user', 'new', {});
+                                    return;
+                                }
                             }
                             if ($scope.pages !== null)
                                 if ($scope.pages.form)
-                                    $scope.pages.form.onClose(close);
+                                    if ($scope.pages.form.onClose)
+                                        $scope.pages.form.onClose(close);
                         }
                     if (typeof post === "function") post();
 
@@ -1280,6 +1297,15 @@ FORM = {
                                 },
                                 end: function (datam) {
                                     $scope.triggers.table.after.open($scope.form);
+                                    setTimeout(() => {
+                                        let btnformfooter = $('#btnformfooter');
+                                        let elment = FIXELEMENT.isScrolledIntoViewBottom(btnformfooter);
+                                        console.log(elment);
+                                        if (elment === true) {
+                                            console.log(elment);
+                                            $('.modal-body').prepend($scope.returnBuild(btnformfooter.clone()));
+                                        }
+                                    }, 1000);
                                 }
                             },
                             hide: {

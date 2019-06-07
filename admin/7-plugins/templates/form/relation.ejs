@@ -1,11 +1,11 @@
 <%
-if(DATA.name!==undefined){
+if (DATA.name !== undefined) {
     var name, model, opts;
     name = DATA.name;
     model = DATA.model;
     opts = DATA.opts;
 }
-var name  = name || "";
+var name = name || "";
 var options = {
     text: params.capitalize(name),
     icon: {
@@ -48,17 +48,21 @@ if (options.master === null) {
     var thisID = eval(`<%= model %>.${keyColumn}`);
 
 </script>
-<div id="<%= model %>_<%= nameclean %>_content">
+<div id="<%= model %>_<%= nameclean %>_content" style="height: 500px">
 
 </div>
 <script>
     $(document).ready(function () {
-        <%= model %>.triggers.table.after.control("<%= nameclean %>");
+        <%= model %>.
+        triggers.table.after.control("<%= nameclean %>");
         var <%= model %>_<%= nameclean %>Load = (function () {
 
             var id<%= name %> = '<%= model %><%= options.tempId %>';
             var field<%= name %> = "<%= options.field %>";
-            if (!DSON.oseaX(thisID) && <%= model %>.form.mode===FORM.modes.edit) {
+            if (!DSON.oseaX(thisID) && <%= model %>.
+            form.mode === FORM.modes.edit
+        )
+            {
                 id<%= name %> = thisID;
                 var field<%= name %> = '<%= options.originalField %>';
             }
@@ -99,6 +103,7 @@ if (options.master === null) {
                     MESSAGE.i('actions.Loading'),
                     function () {
                         MESSAGE.run();
+                        $("#<%= model %>_<%= nameclean %>_content").css('height', 'auto');
                     }, undefined, undefined,<%= model %>
                 );
             }

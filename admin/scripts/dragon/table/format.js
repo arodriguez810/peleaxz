@@ -133,13 +133,13 @@ TABLEFORMAT = {
             if (column.formattype !== undefined) {
                 if (column.formattype.indexOf("datetime") !== -1) {
                     if (DSON.oseaX(value)) return DSON.noset();
-                    return moment(value).format("LL LT");
+                    return LAN.datetime(value);
                 } else if (column.formattype.indexOf("date") !== -1) {
                     if (DSON.oseaX(value)) return DSON.noset();
-                    return moment(value).format("LL");
+                    return LAN.date(value);
                 } else if (column.formattype.indexOf("time") !== -1) {
                     if (DSON.oseaX(value)) return DSON.noset();
-                    return moment(value).format("LT");
+                    return LAN.time(value);
                 } else if (column.formattype.indexOf("money") !== -1) {
                     if (DSON.oseaX(value)) return DSON.noset();
                     var numeralValue = numeral(value)._value;
@@ -236,13 +236,13 @@ TABLEFORMAT = {
             if (column.formattype !== undefined) {
                 if (column.formattype.indexOf("datetime") !== -1) {
                     if (DSON.oseaX(value)) return DSON.noset();
-                    return moment(value).format("LL LT");
+                    return LAN.datetime(value);
                 } else if (column.formattype.indexOf("date") !== -1) {
                     if (DSON.oseaX(value)) return DSON.noset();
-                    return moment(value).format("LL");
+                    return LAN.date(value);
                 } else if (column.formattype.indexOf("time") !== -1) {
                     if (DSON.oseaX(value)) return DSON.noset();
-                    return moment(value).format("LT");
+                    return LAN.time(value);
                 } else if (column.formattype.indexOf("money") !== -1) {
                     if (DSON.oseaX(value)) return DSON.noset();
                     var numeralValue = numeral(value)._value;

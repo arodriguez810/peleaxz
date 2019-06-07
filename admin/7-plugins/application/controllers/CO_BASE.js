@@ -248,8 +248,10 @@ GARBAGECOLECTOR = function (exclude, ignoreChangeMenu) {
                     if((typeof ${item})!=='undefined'){
                         if(${item}!==null){
                           if(${item}.$scope!==undefined){ 
+                            if(${item}.destroyForm!==false){
                               ${item}.$scope.$destroy();
                               ${item} = null;
+                            }
                           }
                         }
                     }`);

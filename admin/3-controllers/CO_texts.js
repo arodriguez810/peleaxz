@@ -7,6 +7,7 @@ app.controller("texts", function ($scope, $http, $compile) {
             value: 0
         }
     ];
+    texts.headertitle = "Custom";
     RUNCONTROLLER("texts", texts, $scope, $http, $compile);
     //asignar text singular pero se recomienda por language
     //texts.singular = "Singular";

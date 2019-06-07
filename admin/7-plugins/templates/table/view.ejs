@@ -33,7 +33,6 @@
     </td>
 
 
-
     <tr ng-repeat="(keycolum, value) in <%= scope %>.columns() track by keycolum" ng-show="value.visibleDetail!=false">
         <td class="text-white bg-<%= COLOR.secundary %>">
             <span ng-bind-html="<%= scope %>.columnLabel(value,keycolum)"></span>

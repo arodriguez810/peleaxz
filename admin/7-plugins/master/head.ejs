@@ -85,12 +85,11 @@
     <% }); %>
 
     <%
-
     $type = String;
     $type.__typeName = 'String';
     $type.__class = true;
     $prototype = $type.prototype;
-    $prototype.replaceAll = function(search, replacement) {
+    $prototype.replaceAll = function (search, replacement) {
         var target = this;
         return target.replace(new RegExp(search, 'g'), replacement);
     };
@@ -176,6 +175,10 @@
         LAN = MESSAGE.current();
         LAN.money = eval(LAN.money);
         moment.locale(LAN.time);
+        LAN.datetime = value => moment(value || new Date()).format("LL LT");
+        LAN.date = value => moment(value || new Date()).format("LL");
+        LAN.time = value => moment(value || new Date()).format("LT");
+
         PLAYERID = null;
     </script>
     <script>

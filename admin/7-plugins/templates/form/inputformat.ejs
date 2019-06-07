@@ -71,6 +71,7 @@ var toclient = JSON.stringify(options);
             ng-disabled="<%= model %>.form.options.<%= name %>.disabled"
             maxlength="{{<%= model %>.form.options.<%= name %>.maxlength}}"
             type="text"
+            autocomplete="off"
             ng-model-onblur
             class="form-control"
             placeholder="{{::<%= model %>.form.options.<%= name %>.inputPlaceholder}}">

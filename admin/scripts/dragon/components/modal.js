@@ -2,6 +2,7 @@ MODAL = {
     historyObject: [],
     history: [],
     viewData: [],
+
     rawModal: function (title, link, icon, width, controller) {
         MENUMODAL = true;
         baseController.currentModel.modal.modalView(link, {
@@ -68,6 +69,23 @@ MODAL = {
         }
     },
     run: function ($scope) {
+        $scope.modalAction = function (controller, title, icon, action, id) {
+            DRAGONACTION = action;
+            DRAGONID = id;
+            $scope.modal.modalView("information/scope", {
+                header: {
+                    title: title,
+                    icon: icon
+                },
+                footer: {
+                    cancelButton: true
+                },
+                content: {
+                    loadingContentText: MESSAGE.i('actions.Loading'),
+                    sameController: controller
+                },
+            });
+        };
         $scope.viewmore = function (text, length) {
             if (text.length > length) {
                 $scope.modal.simpleModal(text, {
@@ -176,6 +194,12 @@ MODAL = {
             $("#modal" + data.id).on("shown.bs.modal", function () {
                 if (typeof data.event.show.end === "function")
                     data.event.show.end($scope);
+                setTimeout(() => {
+                    let btnformfooter = $('#btnformfooter');
+                    let elment = FIXELEMENT.isScrolledIntoViewBottom(btnformfooter);
+                    if (elment === true)
+                        btnformfooter.clone().prependTo('.modal-body');
+                }, 3000);
             });
             data.viewData = baseController.viewData;
             MODAL.historyObject.push(data);
