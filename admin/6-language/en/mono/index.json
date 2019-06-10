@@ -216,5 +216,6 @@
   "asc": "ascendant",
   "desc": "descending",
   "sorted": "sorted",
-  "add_fiter": "Add Filter"
+  "add_fiter": "Add Filter",
+  "ordered": "ordered"
 }

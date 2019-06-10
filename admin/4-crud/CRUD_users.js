@@ -6,9 +6,9 @@ DSON.keepmerge(CRUD_users, {
         sort: 'username',
         columns: {
             id: {
-                label: "ID",
-                sorttype: "numeric",
-                class: "text-left",
+                visible: false,
+                visibleDetail: false,
+                export: false,
                 exportExample: false
             },
             username: {
@@ -52,11 +52,6 @@ DSON.keepmerge(CRUD_users, {
                 label: "Email",
                 shorttext: 20
             },
-            active: {
-                visible: true,
-                sorttype: "bool",
-                formattype: "bool"
-            },
             created: {
                 visible: false,
                 sorttype: "time",
@@ -64,12 +59,6 @@ DSON.keepmerge(CRUD_users, {
                 exportExample: false
             },
             updated: {
-                visible: false,
-                visibleDetail: false,
-                export: false,
-                exportExample: false
-            },
-            deleted: {
                 visible: false,
                 visibleDetail: false,
                 export: false,
@@ -86,22 +75,10 @@ DSON.keepmerge(CRUD_users, {
                 visibleDetail: false,
                 export: false,
                 exportExample: false
-            },
-            user_deleted: {
-                visible: false,
-                visibleDetail: false,
-                export: false,
-                exportExample: false
             }
         },
         filters: {
             columns: [
-                {
-                    key: 'id',
-                    label: 'ID',
-                    type: FILTER.types.integer,
-                    placeholder: 'ID'
-                },
                 {
                     key: 'username',
                     label: 'Username',

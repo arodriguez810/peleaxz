@@ -3,12 +3,7 @@ CRUD_interval = DSON.merge(CRUD_interval,
         table: {
             filters: {
                 columns: [
-                    {
-                        key: 'id',
-                        label: 'ID',
-                        type: FILTER.types.integer,
-                        placeholder: 'ID'
-                    },
+
                     {
                         key: 'name',
                         label: 'Name',

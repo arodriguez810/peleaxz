@@ -18,33 +18,33 @@ app.controller("configuration", function ($scope, $http, $compile) {
     });
 
     configuration.$scope.$watch('configuration.config.ui.theme.primary', function (value) {
-        configuration.primary_example = CONTROL.shadesMonochrome(value, configuration.config.ui.theme.primaryShades);
-        configuration.primary_example = eval(`configuration.primary_example.color${configuration.config.ui.theme.primaryShades.split(",")[6]}`);
+        configuration.primary_example = CONTROL.shadesMonochrome(value, CONFIG.ui.shadows[configuration.config.ui.theme.primaryShades]);
+        configuration.primary_example = eval(`configuration.primary_example.color${CONFIG.ui.shadows[configuration.config.ui.theme.primaryShades].split(",")[6]}`);
     });
 
     configuration.$scope.$watch('configuration.config.ui.theme.secundary', function (value) {
-        configuration.secundary_example = CONTROL.shadesMonochrome(value, configuration.config.ui.theme.secundaryShades);
-        configuration.secundary_example = eval(`configuration.secundary_example.color${configuration.config.ui.theme.secundaryShades.split(",")[5]}`);
+        configuration.secundary_example = CONTROL.shadesMonochrome(value, CONFIG.ui.shadows[configuration.config.ui.theme.secundaryShades]);
+        configuration.secundary_example = eval(`configuration.secundary_example.color${CONFIG.ui.shadows[configuration.config.ui.theme.secundaryShades].split(",")[5]}`);
     });
 
     configuration.$scope.$watch('configuration.config.ui.theme.extra', function (value) {
-        configuration.extra_example = CONTROL.shadesMonochrome(value, configuration.config.ui.theme.extraShades);
-        configuration.extra_example = eval(`configuration.extra_example.color${configuration.config.ui.theme.extraShades.split(",")[6]}`);
+        configuration.extra_example = CONTROL.shadesMonochrome(value, CONFIG.ui.shadows[configuration.config.ui.theme.extraShades]);
+        configuration.extra_example = eval(`configuration.extra_example.color${CONFIG.ui.shadows[configuration.config.ui.theme.extraShades].split(",")[6]}`);
     });
 
     configuration.$scope.$watch('configuration.config.ui.theme.primaryShades', function (value) {
-        configuration.primary_example = CONTROL.shadesMonochrome(configuration.config.ui.theme.primary, configuration.config.ui.theme.primaryShades);
-        configuration.primary_example = eval(`configuration.primary_example.color${configuration.config.ui.theme.primaryShades.split(",")[6]}`);
+        configuration.primary_example = CONTROL.shadesMonochrome(configuration.config.ui.theme.primary, CONFIG.ui.shadows[configuration.config.ui.theme.primaryShades]);
+        configuration.primary_example = eval(`configuration.primary_example.color${CONFIG.ui.shadows[configuration.config.ui.theme.primaryShades].split(",")[6]}`);
     });
 
     configuration.$scope.$watch('configuration.config.ui.theme.secundaryShades', function (value) {
-        configuration.secundary_example = CONTROL.shadesMonochrome(configuration.config.ui.theme.secundary, configuration.config.ui.theme.secundaryShades);
-        configuration.secundary_example = eval(`configuration.secundary_example.color${configuration.config.ui.theme.secundaryShades.split(",")[5]}`);
+        configuration.secundary_example = CONTROL.shadesMonochrome(configuration.config.ui.theme.secundary, CONFIG.ui.shadows[configuration.config.ui.theme.secundaryShades]);
+        configuration.secundary_example = eval(`configuration.secundary_example.color${CONFIG.ui.shadows[configuration.config.ui.theme.secundaryShades].split(",")[5]}`);
     });
 
     configuration.$scope.$watch('configuration.config.ui.theme.extraShades', function (value) {
-        configuration.extra_example = CONTROL.shadesMonochrome(configuration.config.ui.theme.extra, configuration.config.ui.theme.extraShades);
-        configuration.extra_example = eval(`configuration.extra_example.color${configuration.config.ui.theme.extraShades.split(",")[6]}`);
+        configuration.extra_example = CONTROL.shadesMonochrome(configuration.config.ui.theme.extra, CONFIG.ui.shadows[configuration.config.ui.theme.extraShades]);
+        configuration.extra_example = eval(`configuration.extra_example.color${CONFIG.ui.shadows[configuration.config.ui.theme.extraShades].split(",")[6]}`);
     });
 
 

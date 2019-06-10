@@ -3,12 +3,7 @@ CRUD_ms_vwuser = DSON.merge(CRUD_ms_vwuser,
         table: {
             filters: {
                 columns: [
-                    {
-                        key: 'id',
-                        label: 'ID',
-                        type: FILTER.types.integer,
-                        placeholder: 'ID'
-                    },
+
                     {
                         key: 'fullName',
                         label: 'Full Name',

@@ -8,10 +8,10 @@ DSON.keepmerge(CRUD_lists,
             width: 'width:1400px;',
             columns: {
                 id: {
-                    label: "ID",
-                    sorttype: "numeric",//numeric,amount,time
-                    class: "text-left",
-                    exportExample: false,
+                    visible: false,
+                    visibleDetail: false,
+                    export: false,
+                    exportExample: false
                 }
             },
             filters: {

@@ -4,12 +4,7 @@ DSON.keepmerge(CRUD_interval, {
     table: {
         engine: 'ms',
         columns: {
-            id: {
-                label: "ID",
-                sorttype: "numeric",
-                class: "text-left",
-                exportExample: false
-            },
+            id: {                 visible: false,                 visibleDetail: false,                 export: false,                 exportExample: false             },
             name: {
                 label: "name",
                 shorttext: 20
@@ -33,11 +28,6 @@ DSON.keepmerge(CRUD_interval, {
                 visible: false,
                 exportExample: false
             },
-            deleted: {
-                visible: false,
-                visibleDetail: false,
-                exportExample: false
-            },
             user_created: {
                 visible: false,
                 visibleDetail: false,
@@ -45,12 +35,6 @@ DSON.keepmerge(CRUD_interval, {
                 exportExample: false
             },
             user_updated: {
-                visible: false,
-                visibleDetail: false,
-                export: false,
-                exportExample: false
-            },
-            user_deleted: {
                 visible: false,
                 visibleDetail: false,
                 export: false,

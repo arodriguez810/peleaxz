@@ -127,6 +127,8 @@ var toclient = JSON.stringify(options);
 
         <% if(options.disabled !== true){ %>
         $('#<%= model %>_<%= nameclean %>div').daterangepicker({
+            "applyButtonClasses":"bg-primary",
+            "cancelButtonClasses":"bg-secundary",
             "autoApply": true,
             "autoUpdateInput": false,
             timePicker: <%= options.timepicker %>,

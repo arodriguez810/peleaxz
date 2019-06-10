@@ -24,12 +24,7 @@ DSON.keepmerge(CRUD_ms_vwuser, {
             actions: true,
         },
         columns: {
-            id: {
-                label: "ID",
-                sorttype: "numeric",
-                class: "text-left",
-                exportExample: false
-            },
+            id: {                 visible: false,                 visibleDetail: false,                 export: false,                 exportExample: false             },
             fullName: {
                 label: "Full Name",
                 shorttext: 30

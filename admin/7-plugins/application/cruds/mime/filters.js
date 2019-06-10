@@ -3,12 +3,7 @@ CRUD_mime = DSON.merge(CRUD_mime,
         table: {
             filters: {
                 columns: [
-                    {
-                        key: 'id',
-                        label: 'ID',
-                        type: FILTER.types.integer,
-                        placeholder: 'ID'
-                    },
+
                     {
                         key: 'name',
                         label: 'Name',

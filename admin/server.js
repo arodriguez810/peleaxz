@@ -134,8 +134,13 @@ if (CONFIG.mode === 'developer') {
         shades.text3 = CONFIG.ui.theme.text3;
         shades.name = name;
         var shadesArray = shadesBlocks.split(',');
+        eval(`shades.color0 = '${color}';`);
         for (var i in shadesArray) {
-            eval(`shades.color${parseInt(i) + 1} = colors[${shadesArray[i]}];`);
+            if (shadesArray[i] == 0) {
+                eval(`shades.color${parseInt(i) + 1} = '${color}';`);
+            } else {
+                eval(`shades.color${parseInt(i) + 1} = colors[${shadesArray[i]}];`);
+            }
         }
         return shades;
     };
@@ -155,9 +160,10 @@ if (CONFIG.mode === 'developer') {
     if (CONFIG.ui.theme.extra === "random2")
         CONFIG.ui.theme.extra = onerandom2;
 
-    primary = ejs.compile(ThemeTemplate, {})({DATA: shadesMonochrome(CONFIG.ui.theme.primary, 'primary', CONFIG.ui.theme.primaryShades)});
-    secundary = ejs.compile(ThemeTemplate, {})({DATA: shadesMonochrome(CONFIG.ui.theme.secundary, 'secundary', CONFIG.ui.theme.secundaryShades)});
-    extra = ejs.compile(ThemeTemplate, {})({DATA: shadesMonochrome(CONFIG.ui.theme.extra, 'extra', CONFIG.ui.theme.extraShades)});
+
+    primary = ejs.compile(ThemeTemplate, {})({DATA: shadesMonochrome(CONFIG.ui.theme.primary, 'primary', CONFIG.ui.shadows[CONFIG.ui.theme.primaryShades])});
+    secundary = ejs.compile(ThemeTemplate, {})({DATA: shadesMonochrome(CONFIG.ui.theme.secundary, 'secundary', CONFIG.ui.shadows[CONFIG.ui.theme.secundaryShades])});
+    extra = ejs.compile(ThemeTemplate, {})({DATA: shadesMonochrome(CONFIG.ui.theme.extra, 'extra', CONFIG.ui.shadows[CONFIG.ui.theme.extraShades])});
 
     fs.writeFileSync(folders.themes + "/primary.css", primary);
     fs.writeFileSync(folders.themes + "/secundary.css", secundary);
@@ -258,8 +264,14 @@ ThereConfig.then(function (thereConfig) {
     app.use(methodOverride());
     app.set("view engine", "ejs");
     app.set("layouts", "./" + folders.master);
+    var textbg = CONFIG.ui.console.bg.replace("bg", "").toLowerCase();
     colors.setTheme({
         pxz: [CONFIG.ui.console.text, CONFIG.ui.console.bg],
+        pxz2: ["white", CONFIG.ui.console.bg],
+        pxz3: [CONFIG.ui.console.text, "bgWhite"],
+        normal1: ["white", "bgBlack"],
+        normal2: [CONFIG.ui.console.text, "bgBlack"],
+        vacio: [textbg, CONFIG.ui.console.bg],
         error: ["red", "underline"],
         success: ["green", "bgWhite"],
         info: ["cyan", "bgBlue"],
@@ -439,9 +451,11 @@ ThereConfig.then(function (thereConfig) {
                     queries.push(util.format("%s", query));
                 }
                 modules.mssql.executeNonQueryArray(queries, PARAMS, false).then((data) => {
-                    console.log('-mssql');
+                    //console.log('-mssql');
                 });
             });
+        }).catch((err) => {
+            console.log("mysql database error");
         });
     } else loadedMotors++;
     if (CONFIG.mysql !== undefined) {
@@ -469,9 +483,11 @@ ThereConfig.then(function (thereConfig) {
                     queries.push(util.format("%s", query));
                 }
                 modules.mysql.executeNonQueryArray(queries, PARAMS, false).then((data) => {
-                    console.log('-mysql');
+                    //console.log('-mysql');
                 });
             });
+        }).catch((err) => {
+            console.log("mysql database error");
         });
     } else loadedMotors++;
     if (CONFIG.oracle !== undefined) {
@@ -499,9 +515,11 @@ ThereConfig.then(function (thereConfig) {
                     queries.push(util.format("%s", query));
                 }
                 modules.oracle.executeNonQueryArray(queries, PARAMS, false).then((data) => {
-                    console.log('-oracle');
+                    //console.log('-oracle');
                 });
             });
+        }).catch((err) => {
+            console.log("oracle database error");
         });
     } else loadedMotors++;
     if (true) {
@@ -564,6 +582,7 @@ ThereConfig.then(function (thereConfig) {
     modules.tools.init(eval("(" + allparams + ")"));
     modules.views.init(eval("(" + allparams + ")"));
     app.listen(CONFIG.port);
+    console.clear();
     console.log("");
     console.log(CONFIG.appName.pxz + " Server Models:".pxz);
     console.log(modelsql + "," + modelmysql + "," + modeloracle);
@@ -572,10 +591,90 @@ ThereConfig.then(function (thereConfig) {
     console.log(localModules + "," + modulesList);
     console.log("");
     console.log("");
-    console.log("*************".pxz + CONFIG.appName.pxz + "**************".pxz);
+    console.clear();
+    var width = process.stdout.columns;
+    var drow = 0;
+    var rows = process.stdout.rows;
+    var print = function (quit, align, str, prt, rpt, color, begin, end, c1, c2) {
+
+        quit = quit || 0;
+        color = color || "pxz";
+        c1 = c1 || "pxz";
+        c2 = c2 || "pxz";
+        begin = begin || "";
+        end = end || "";
+        str = str || "";
+        align = align || "center";
+        prt = prt || "*";
+        rpt = rpt || 1;
+        var left = 0;
+        var right = 0;
+        var result = "";
+        var half = Math.floor((width - str.length) / 2);
+        switch (align) {
+            case "center" : {
+                right = half - quit;
+                left = half - quit;
+                break;
+            }
+            case "left" : {
+                right = (width - str.length) - quit;
+                break;
+            }
+            case "right" : {
+                left = (width - str.length) - quit;
+                break;
+            }
+        }
+
+        if (begin !== "") {
+            if (left !== 0) left -= begin.length;
+            if (right !== 0) right -= begin.length;
+        }
+        if (end !== "") {
+            if (left !== 0) left -= begin.length;
+            if (right !== 0) right -= begin.length;
+        }
+
+        result = `${prt.repeat(left)}${" ".repeat(quit)}${str}${" ".repeat(quit)}${prt.repeat(right)}`;
+        var widttorest = width;
+        var r1 = result.length;
+        if (result.length < widttorest)
+            result += prt.repeat(widttorest - result.length - (end !== "" ? (end.length * 2) : 0));
+        if (result.length > widttorest)
+            result = result.substring(widttorest, result.length - widttorest);
+        for (i = 0; i < rpt; i++) {
+            drow++;
+            console.log(eval(`(begin.${c1}+result+end.${c2}).${color}`));
+        }
+        //console.log(`width:${width}, left:${left}, right:${right}, str:${str.length}, r1:${r1}, result:${result.length},`);
+    };
+    var sp = function (str, length) {
+        length = length || 15;
+        return `${str}${" ".repeat(length - str.length)}`;
+    };
     var urlsha = `${CONFIG.ssl === true ? 'https://' : 'http://'}${CONFIG.subdomain !== '' ? CONFIG.subdomain + '.' : ''}${CONFIG.domain}:${CONFIG.port === 80 ? '' : CONFIG.port}`;
-    console.log("Server : ".pxz + urlsha + repeatStringNumTimes(" ", 25 - urlsha.length) + "         ".pxz);
-    console.log("CONFIG : ".pxz + (thereConfig !== undefined ? 'saved' : 'base') + repeatStringNumTimes(" ", 25 - (thereConfig !== undefined ? 'saved' : 'base').length) + "         ".pxz);
-    console.log("Version: ".pxz + CONFIG.version.base + repeatStringNumTimes(" ", 25 - 3) + "         ".pxz);
-    console.log("*******************************************".pxz);
+
+
+    print(0, "center", "", "█", 1, "pxz", "█", "█");
+    print(0, "center", "", "═", 1, "pxz", "█╔", "╗█");
+    print(0, "center", "Dragon Framework " + CONFIG.version.base, " ", 1, "pxz2", "█║", "║█");
+    print(0, "center", "", "█", 2, "vacio", "█║", "║█");
+    print(0, "center", `${sp("APPLICATION")}: ${sp(CONFIG.appName + " " + CONFIG.version.app, 40)}`, " ", 1, "pxz2", "█║", "║█");
+    print(0, "center", `${sp("URL")}: ${sp(urlsha, 40)}`, " ", 1, "pxz2", "█║", "║█");
+    print(0, "center", `${sp("MODE")}: ${sp(CONFIG.mode, 40)}`, " ", 1, "pxz2", "█║", "║█");
+    print(0, "center", `${sp("CONFIGURATION")}: ${sp((thereConfig !== undefined ? 'saved' : 'base'), 40)}`, " ", 1, "pxz2", "█║", "║█");
+    print(0, "center", `${sp("LANGUAGE")}: ${sp(CONFIG.language, 40)}`, " ", 1, "pxz2", "█║", "║█");
+    if (CONFIG.mssql)
+        print(0, "center", `${sp("MSSQL")}: ${sp(CONFIG.mssql.server, 40)}`, " ", 1, "pxz2", "█║", "║█");
+    if (CONFIG.mysql)
+        print(0, "center", `${sp("MYSQL")}: ${sp(CONFIG.mysql.host, 40)}`, " ", 1, "pxz2", "█║", "║█");
+    if (CONFIG.oracle)
+        print(0, "center", `${sp("ORACLE")}: ${sp(CONFIG.oracle.connectString, 40)}`, " ", 1, "pxz2", "█║", "║█");
+    print(0, "center", "", "█", (rows - drow) - 8, "vacio", "█║", "║█");
+    print(0, "center", `${new Date().toString()}`, " ", 1, "pxz2", "█║", "║█");
+    print(0, "center", "", "█", 3, "vacio", "█║", "║█");
+    print(0, "right", `DEVELOPER BY: ${CONFIG.developerBy.name}`, " ", 1, "pxz2", "█║", "║█");
+    print(0, "center", "", "═", 1, "pxz", "█╚", "╝█");
+    print(0, "center", "", "█", 1, "pxz", "█", "█");
 });

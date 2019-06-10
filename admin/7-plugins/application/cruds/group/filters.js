@@ -4,12 +4,6 @@ CRUD_group = DSON.merge(CRUD_group,
             filters: {
                 columns: [
                     {
-                        key: 'id',
-                        label: 'ID',
-                        type: FILTER.types.integer,
-                        placeholder: 'ID'
-                    },
-                    {
                         key: 'name',
                         label: 'Name',
                         type: FILTER.types.string,

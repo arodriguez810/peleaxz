@@ -6,12 +6,7 @@ DSON.keepmerge(CRUD_otronombre, {
         view: 'ms_product',
         method: 'ms_product',
         columns: {
-            id: {
-                label: "ID",
-                sorttype: "numeric",
-                class: "text-left",
-                exportExample: false
-            },
+            id: {                 visible: false,                 visibleDetail: false,                 export: false,                 exportExample: false             },
             name: {
                 label: "Nombraso",
                 shorttext: 20

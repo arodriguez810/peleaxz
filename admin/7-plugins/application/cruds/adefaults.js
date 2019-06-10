@@ -8,9 +8,9 @@ CRUDDEFAULTS = {
             return $scope.activeSET(row) === false ? "bg-" + COLOR.danger + "-300" : "";
         },
         responsive: {
-            "_7": "hidden",
-            "_5": "visible-md visible-lg",
-            "_3": "visible-sm visible-md visible-lg",
+            "_7": "visible-xs visible-sm visible-md visible-lg",
+            "_5": "visible-xs visible-sm visible-md visible-lg",
+            "_3": "visible-xs visible-sm visible-md visible-lg",
             "_1": "visible-xs visible-sm visible-md visible-lg"
         },
         report: false,
@@ -141,7 +141,7 @@ CRUDDEFAULTS = {
                         click: function (data) {
                             SWEETALERT.confirm({
                                 message: MESSAGE.i('alerts.AYSDelete'),
-                                confirm: function () {
+                                confirm: async function () {
                                     SWEETALERT.loading({message: MESSAGE.ic('mono.deleting') + "..."});
                                     data.$scope.deleteRow(data.row).then(function () {
                                         SWEETALERT.stop();

@@ -217,5 +217,6 @@
   "desc": "descendente",
   "sorted": "ordenado",
   "basemodules": "Modulos Base",
-  "add_fiter": "Añadir Filtro"
+  "add_fiter": "Añadir Filtro",
+  "ordered": "ordenados"
 }

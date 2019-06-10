@@ -23,12 +23,7 @@ DSON.keepmerge(CRUD_notifications, {
             actions: true,
         },
         columns: {
-            id: {
-                label: "ID",
-                sorttype: "numeric",
-                class: "text-left",
-                exportExample: false
-            },
+            id: {                 visible: false,                 visibleDetail: false,                 export: false,                 exportExample: false             },
             subject: {
                 label: "subject",
                 shorttext: 20
@@ -48,11 +43,6 @@ DSON.keepmerge(CRUD_notifications, {
                 visible: false,
                 exportExample: false
             },
-            deleted: {
-                visible: false,
-                visibleDetail: false,
-                exportExample: false
-            },
             user_created: {
                 visible: false,
                 visibleDetail: false,
@@ -60,12 +50,6 @@ DSON.keepmerge(CRUD_notifications, {
                 exportExample: false
             },
             user_updated: {
-                visible: false,
-                visibleDetail: false,
-                export: false,
-                exportExample: false
-            },
-            user_deleted: {
                 visible: false,
                 visibleDetail: false,
                 export: false,

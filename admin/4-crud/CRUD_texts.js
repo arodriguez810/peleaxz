@@ -8,15 +8,18 @@ DSON.keepmerge(CRUD_texts,
             deletekeys: ['id'],
             dragrow: 'num',
             sortable: false,
-            width: 'width:2000px;',
             columns: {
                 id: {
-                    label: "ID",
-                    sorttype: "numeric",//numeric,amount,time
-                    class: "text-left",
-                    exportExample: false,
                     visible: false,
                     visibleDetail: false,
+                    export: false,
+                    exportExample: false
+                },
+                num: {
+                    visible: false,
+                    visibleDetail: false,
+                    export: false,
+                    exportExample: false
                 },
                 basic: {
                     drag: true,
@@ -53,21 +56,10 @@ DSON.keepmerge(CRUD_texts,
                     label: "textarea",
                     shorttext: 60,
                 },
-                num: {
-                    visible: false,
-                    visibleDetail: false,
-                    export: false,
-                    exportExample: false
-                }
+
             },
             filters: {
                 columns: [
-                    {
-                        key: 'id',
-                        label: 'ID',
-                        type: FILTER.types.integer,
-                        placeholder: 'ID'
-                    },
                     {
                         key: 'basic',
                         label: 'Basic',

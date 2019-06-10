@@ -157,8 +157,13 @@ CONTROL = {
         }
         var shades = {};
         var shadesArray = shadesBlocks.split(',');
+        eval(`shades.color0 = '${color}';`);
         for (var i in shadesArray) {
-            eval(`shades.color${parseInt(i) + 1} = colors[${shadesArray[i]}];`);
+            if (shadesArray[i] == 0) {
+                eval(`shades.color${parseInt(i) + 1} = '${color}';`);
+            } else {
+                eval(`shades.color${parseInt(i) + 1} = colors[${shadesArray[i]}];`);
+            }
         }
         return shades;
     }

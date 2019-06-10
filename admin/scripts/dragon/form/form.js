@@ -307,7 +307,8 @@ FORM = {
                 if (crud.table.dragrow !== false) {
                     var last = await BASEAPI.firstp($scope.tableOrMethod, {
                         order: 'desc',
-                        orderby: crud.table.dragrow
+                        orderby: crud.table.dragrow,
+                        where: $scope.fixFilters,
                     });
                     if (last === undefined)
                         $scope.form.inserting[crud.table.dragrow] = "1";

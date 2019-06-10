@@ -1,0 +1,46 @@
+
+<script type="text/javascript" src="assets/js/plugins/loaders/pace.min.js"></script>
+<script type="text/javascript" src="assets/js/core/libraries/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/plugins/notifications/pnotify.min.js"></script>
+<script type="text/javascript" src="assets/js/plugins/notifications/noty.min.js"></script>
+<script type="text/javascript" src="assets/js/plugins/editors/autosize.min.js"></script>
+<script type="text/javascript" src="assets/js/plugins/forms/inputs/jquery.mask.min.js"></script>
+<script type="text/javascript" src="assets/js/plugins/tables/datatables/datatables.min.js"></script>
+<script type="text/javascript" src="assets/js/plugins/tables/datatables/extensions/responsive.min.js"></script>
+<script type="text/javascript" src="assets/js/core/libraries/bootstrap.min.js"></script>
+<script type="text/javascript" src="assets/js/plugins/loaders/blockui.min.js"></script>
+<script type="text/javascript" src="assets/js/plugins/tables/footable/footable.min.js"></script>
+<script type="text/javascript" src="assets/js/plugins/uploaders/dropzone.min.js"></script>
+<script type="text/javascript" src="assets/js/plugins/forms/styling/uniform.min.js"></script>
+<script type="text/javascript" src="assets/js/plugins/forms/styling/switchery.min.js"></script>
+<script type="text/javascript" src="assets/js/plugins/forms/styling/switch.min.js"></script>
+<script type="text/javascript" src="assets/js/plugins/forms/selects/select2.min.js"></script>
+<script type="text/javascript" src="assets/js/plugins/forms/inputs/typeahead/typeahead.bundle.min.js"></script>
+<script type="text/javascript" src="assets/js/plugins/forms/tags/tagsinput.min.js"></script>
+<script type="text/javascript" src="assets/js/plugins/forms/inputs/maxlength.min.js"></script>
+<script type="text/javascript" src="assets/js/plugins/forms/inputs/formatter.min.js"></script>
+<script type="text/javascript" src="assets/js/plugins/ui/moment/moment.min.js"></script>
+<script type="text/javascript" src="assets/js/plugins/ui/moment/moment_locales.min.js"></script>
+<script type="text/javascript" src="assets/js/plugins/tinycolor/min.js"></script>
+
+<script type="text/javascript" src="assets/js/plugins/sweetalert/sweetalert2.all.js"></script>
+<script type="text/javascript" src="assets/js/plugins/numeral/numeral.min.js"></script>
+<script type="text/javascript" src="assets/js/plugins/numeral/currency.min.js"></script>
+<script type="text/javascript" src="assets/js/core/libraries/angular.min.js"></script>
+<script type="text/javascript" src="assets/js/core/libraries/angular-sanitize.js"></script>
+<script type="text/javascript" src="assets/js/core/libraries/angular-resource.js"></script>
+<script type="text/javascript" src="assets/js/core/libraries/ui-bootstrap-tpls.js"></script>
+<script type="text/javascript" src="node_modules/table-dragger/dist/table-dragger.min.js"></script>
+<script type="text/javascript" src="assets/js/plugins/excel/excelexportjs.js"></script>
+<script type="text/javascript" src="assets/js/plugins/docx/html-docx.js"></script>
+<script type="text/javascript" src="assets/js/plugins/editors/codemirror/codemirror.js"></script>
+<script type="text/javascript" src="assets/js/plugins/editors/codemirror/mode/sql/sql.js"></script>
+<script type="text/javascript" src="assets/js/plugins/editors/codemirror/mode/javascript/javascript.js"></script>
+<script type="text/javascript" src="assets/js/core/app.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= CONFIG.googlemap %>&amp;sensor=false&amp;libraries=places"></script>
+<script type="text/javascript" src="assets/js/plugins/editors/summernote/summernote.min.js"></script>
+<script type="text/javascript" src="assets/js/plugins/onesignal/index.js"></script>
+
+<% localjs.forEach(function(item){ %>
+    <script src="<%= FOLDERS.scripts %>/<%= item %>"></script>
+<% }); %>

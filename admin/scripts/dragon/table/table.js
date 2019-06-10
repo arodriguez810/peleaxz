@@ -23,7 +23,6 @@ TABLE = {
                         ordered.push(parseInt(ARRAY.last(currents)[$scope.dragrow]));
                     }
                     ordered.sort((a, b) => a - b);
-
                     for (var i = 0; i < currents.length; i++) {
                         var first = currents[i];
                         var dataTOUpdate = {where: [{value: first.id}]};

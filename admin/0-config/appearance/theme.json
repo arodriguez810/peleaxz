@@ -11,11 +11,11 @@
     },
     "theme": {
       "primary": "#ed2c30",
-      "primaryShades": "1,2,3,4,5,6,7,8,9,10",
+      "primaryShades": "Balanced",
       "secundary": "#DAA520",
-      "secundaryShades": "1,2,3,4,5,6,7,8,9,10",
+      "secundaryShades": "Lineal_fixed",
       "extra": "#ed2c30",
-      "extraShades": "1,2,3,4,5,6,7,8,9,10",
+      "extraShades": "Balanced",
       "text1": "#FFF",
       "text2": "#FFF",
       "text3": "#FFF"

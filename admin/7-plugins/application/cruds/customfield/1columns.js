@@ -4,9 +4,9 @@ DSON.keepmerge(CRUD_customfield, {
     table: {
         columns: {
             id: {
-                label: "ID",
-                sorttype: "numeric",
-                class: "text-left",
+                visible: false,
+                visibleDetail: false,
+                export: false,
                 exportExample: false
             },
             name: {

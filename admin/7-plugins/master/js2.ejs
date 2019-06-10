@@ -1,0 +1,47 @@
+<script type="text/javascript" src="assets/js/plugins/pickers/color/spectrum.js"></script>
+<script type="text/javascript" src="assets/js/plugins/date/jquery.datetimepicker.full.min.js"></script>
+<script type="text/javascript" src="assets/js/plugins/date/daterangepicker.min.js"></script>
+<link href="assets/js/plugins/date/daterangepicker.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="assets/js/plugins/date/yearpicker.js"></script>
+<% crudjs.forEach(function(item){ %>
+    <script src="<%= item %>"></script>
+<% }); %>
+<script>
+    <% silentsmodels.forEach(function(item){ %>
+    <%- include('../../7-plugins/templates/system/crud',{scope:item}); %>
+    <% }); %>
+</script>
+<% controllersjs.forEach(function(item){ if(item != undefined){ %>
+    <script src="<%= item %>"></script>
+<% }}); %>
+<script>
+    <% silentsmodels.forEach(function(item){ %>
+    <%- include('../../7-plugins/templates/system/controller',{scope:item}); %>
+    <% }); %>
+</script>
+<% localserver.forEach(function (item) {
+    if (item != undefined) {
+        include("../../server/" + item);
+    }
+}); %>
+
+<script type="text/javascript" src="assets/js/plugins/mask/jquery.inputmask.bundle.js"></script>
+<script type="text/javascript" src="assets/js/plugins/visualization/echarts/echarts.js"></script>
+<script type="text/javascript" src="assets/js/plugins/visualization/echarts/theme/limitless.js"></script>
+<script type="text/javascript" src="assets/js/plugins/visualization/echarts/chart/pie.js"></script>
+<script type="text/javascript" src="assets/js/plugins/visualization/echarts/chart/funnel.js"></script>
+<script type="text/javascript" src="assets/js/plugins/visualization/echarts/chart/bar.js"></script>
+<script type="text/javascript" src="assets/js/plugins/visualization/echarts/chart/chord.js"></script>
+<script type="text/javascript" src="assets/js/plugins/visualization/echarts/chart/eventRiver.js"></script>
+<script type="text/javascript" src="assets/js/plugins/visualization/echarts/chart/force.js"></script>
+<script type="text/javascript" src="assets/js/plugins/visualization/echarts/chart/gauge.js"></script>
+<script type="text/javascript" src="assets/js/plugins/visualization/echarts/chart/heatmap.js"></script>
+<script type="text/javascript" src="assets/js/plugins/visualization/echarts/chart/k.js"></script>
+<script type="text/javascript" src="assets/js/plugins/visualization/echarts/chart/line.js"></script>
+<script type="text/javascript" src="assets/js/plugins/visualization/echarts/chart/map.js"></script>
+<script type="text/javascript" src="assets/js/plugins/visualization/echarts/chart/radar.js"></script>
+<script type="text/javascript" src="assets/js/plugins/visualization/echarts/chart/scatter.js"></script>
+<script type="text/javascript" src="assets/js/plugins/visualization/echarts/chart/tree.js"></script>
+<script type="text/javascript" src="assets/js/plugins/visualization/echarts/chart/treemap.js"></script>
+<script type="text/javascript" src="assets/js/plugins/visualization/echarts/chart/venn.js"></script>
+<script type="text/javascript" src="assets/js/plugins/visualization/echarts/chart/wordCloud.js"></script>

@@ -1,0 +1,126 @@
+<%
+$type = String;
+$type.__typeName = 'String';
+$type.__class = true;
+$prototype = $type.prototype;
+$prototype.replaceAll = function (search, replacement) {
+    var target = this;
+    return target.replace(new RegExp(search, 'g'), replacement);
+};
+
+MENUONEROW = [];
+TONES = [];
+for (var i in CONFIG.ui.shadows) {
+    TONES.push({id: i, name: i.replace("_", " ")});
+}
+addMenu = function (prefix, array) {
+    for (var menu of array) {
+        if (menu.href !== "#") {
+            MENUONEROW.push({
+                id: menu.href,
+                icon: menu.icon,
+                category: prefix.join(", "),
+                name: menu.text
+            });
+        } else {
+            if (menu.menus !== undefined) {
+                var newprefix = [];
+                for (var i in prefix)
+                    newprefix.push(prefix[i]);
+                newprefix.push(menu.text);
+                addMenu(newprefix, menu.menus);
+            }
+        }
+    }
+}
+addMenu([], CONFIG.menus);
+%>
+<script>
+    const USD = value => currency(value, {symbol: '$', decimal: ',', separator: '.'});
+    const JPY = value => currency(value, {precision: 0, symbol: '¥'});
+    const EURO = value => currency(value, {symbol: '€', decimal: ',', separator: '.'});
+    const DOP = value => currency(value, {symbol: '$', decimal: '.', separator: ','});
+
+    MENUMODAL = false;
+    CHANGINGMENU = true;
+    PRUDENTS = {};
+    CURRENTPRUDENTS = "";
+    WARNINGREQUESTS = [];
+    Dropzone.autoDiscover = false;
+    CONFIG = "<%= JSON.stringify(CONFIG) %>";
+    CONFIG = eval("(" + CONFIG.replaceAll("&#34;", '"') + ")");
+    MENUONEROW = "<%= JSON.stringify(MENUONEROW) %>";
+    MENUONEROW = eval("(" + MENUONEROW.replaceAll("&#34;", '"') + ")");
+    LANGUAGE = "<%= JSON.stringify(LANGUAGE) %>";
+    LANGUAGE = eval("(" + LANGUAGE.replaceAll("&#34;", '"') + ")");
+    CONTROLS = "<%= JSON.stringify(controls) %>";
+    CONTROLS = eval("(" + CONTROLS.replaceAll("&#34;", '"') + ")");
+    SHOWLANGS = "<%= JSON.stringify(SHOWLANGS) %>";
+    SHOWLANGS = eval("(" + SHOWLANGS.replaceAll("&#34;", '"') + ")");
+    COLOR = "<%= JSON.stringify(COLOR) %>";
+    COLOR = eval("(" + COLOR.replaceAll("&#34;", '"') + ")");
+    TAG = "<%= JSON.stringify(TAG) %>";
+    TAG = eval("(" + TAG.replaceAll("&#34;", '"') + ")");
+    FOLDERS = "<%= JSON.stringify(FOLDERS) %>";
+    FOLDERS = eval("(" + FOLDERS.replaceAll("&#34;", '"') + ")");
+    THEMES = "<%= JSON.stringify(THEMES) %>";
+    THEMES = eval("(" + THEMES.replaceAll("&#34;", '"') + ")");
+    DATA = "<%= JSON.stringify(DATA) %>";
+    DATA = "<%= JSON.stringify(DATA) %>";
+    DATA = eval("(" + DATA.replaceAll("&#34;", '"') + ")");
+    SERVICES = "<%= JSON.stringify(SERVICES) %>";
+    SERVICES = eval("(" + SERVICES.replaceAll("&#34;", '"') + ")");
+    SERVICE.run(SERVICES);
+    MODEL = {};
+    MODELLIST = "<%= JSON.stringify(models) %>";
+    MODELLIST = eval("(" + MODELLIST.replaceAll("&#34;", '"') + ")");
+    CONTROLLERS = "<%= JSON.stringify(controllersjs) %>";
+    CONTROLLERS = eval("(" + CONTROLLERS.replaceAll("&#34;", '"') + ")");
+    CONTROLLERSNAMES = [];
+    for (var CONTROLLER of CONTROLLERS) {
+        var name = CONTROLLER.split('CO_')[1].split('.js')[0];
+        if (["BASE"].indexOf(name) === -1)
+            CONTROLLERSNAMES.push(name);
+    }
+    RELATIONS = {};
+    RELATIONS.anonymous = [];
+    var space = " ";
+    var quote = "'";
+    $(".sidebar, .navbar, .navbar-brand, .navbar-text, .navbar-nav > li, .page-header, .page-title, .page-header .heading-elements, .breadcrumb, .breadcrumb-elements > li, .content > .panel, .content .row > [class*=col-], .footer")
+        .css('opacity', 0);
+    MESSAGE.run();
+    PERMISSIONS.format();
+    LAN = MESSAGE.current();
+    LAN.money = eval(LAN.money);
+    moment.locale(LAN.time);
+    LAN.datetime = value => moment(value || new Date()).format("LL LT");
+    LAN.date = value => moment(value || new Date()).format("LL");
+    LAN.time = value => moment(value || new Date()).format("LT");
+
+    PLAYERID = null;
+</script>
+<script>
+    if (CONFIG.features.onesignal) {
+        var OneSignal = window.OneSignal || [];
+        OneSignal.push(function () {
+            OneSignal.init({
+                appId: CONFIG.onesignal.app.appId,
+                autoResubscribe: true,
+                autoRegister: true,
+                welcomeNotification: {
+                    disable: true
+                }
+            });
+
+            OneSignal.on('subscriptionChange', function (isSubscribed) {
+                OneSignal.getUserId().then(function (userId) {
+                    PLAYERID = userId;
+                });
+            });
+            OneSignal.getUserId().then(function (userId) {
+                PLAYERID = userId;
+            });
+        });
+
+    }
+</script>

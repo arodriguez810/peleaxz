@@ -3,12 +3,7 @@ CRUD_notifications = DSON.merge(CRUD_notifications,
         table: {
             filters: {
                 columns: [
-                    {
-                        key: 'id',
-                        label: 'ID',
-                        type: FILTER.types.integer,
-                        placeholder: 'ID'
-                    },
+
                     {
                         key: 'subject',
                         label: 'Subject',

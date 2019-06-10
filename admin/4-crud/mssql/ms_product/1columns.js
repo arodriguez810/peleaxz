@@ -4,12 +4,7 @@ DSON.keepmerge(CRUD_ms_product, {
     table: {
         engine: 'ms',
         columns: {
-            id: {
-                label: "ID",
-                sorttype: "numeric",
-                class: "text-left",
-                exportExample: false
-            },
+            id: {                 visible: false,                 visibleDetail: false,                 export: false,                 exportExample: false             },
             name: {
                 label: "Nombraso",
                 shorttext: 20

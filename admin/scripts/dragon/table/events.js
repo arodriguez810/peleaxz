@@ -245,8 +245,9 @@ TABLEEVENT = {
             }
             if ($scope.beforeDelete(row)) return;
             $scope.procesingRowErrors = [];
-            BASEAPI.deleteall($scope.tableOrMethod, where, function (result) {
+            BASEAPI.deleteall($scope.tableOrMethod, where, async function (result) {
                 if (result.data.error === false) {
+
                     $scope.afterDelete(row);
                     $scope.procesingRow++;
                     if ($scope.procesingRowFor !== 0)
@@ -259,6 +260,7 @@ TABLEEVENT = {
                         $scope.procesingRowFor = 0;
                         $scope.refresh();
                         SWEETALERT.stop();
+                        $scope.reorderItems();
                         NOTIFY.success(`${$scope.singular} ${MESSAGE.i('mono.deleted')}`);
                         $scope.backPage();
                     } else {
@@ -288,11 +290,48 @@ TABLEEVENT = {
                         $scope.procesingRowFor = 0;
                         $scope.refresh();
                         SWEETALERT.stop();
+                        $scope.reorderItems();
                         ERROR.multiAlert($scope.procesingRowErrors, ERROR.category.database);
                     }
                 }
 
             });
+
+
+        };
+        $scope.reorderItems = async function () {
+            //drag
+            if ($scope.dragrow !== false) {
+                var nextrecords = await BASEAPI.listp($scope.tableOrView, {
+                    limit: 0,
+                    orderby: $scope.dragrow,
+                    order: "asc",
+                    where: $scope.fixFilters
+                });
+                if (nextrecords.data) {
+                    if (nextrecords.data.length > 0) {
+                        var order = 1;
+                        for (var item of nextrecords.data) {
+                            var numCurrent = eval(`item.${$scope.dragrow}`);
+                            var dataTOUpdate = {
+                                where: [
+                                    {
+                                        field: $scope.dragrow,
+                                        value: numCurrent
+                                    }
+                                ]
+                            };
+                            dataTOUpdate[$scope.dragrow] = order;
+                            await BASEAPI.updateallp($scope.modelName, dataTOUpdate);
+                            order++;
+                        }
+                        NOTIFY.success(`${$scope.plural} ${MESSAGE.i('mono.ordered')}`);
+                        $scope.refresh();
+                    }
+                }
+
+            }
+            //drag
         };
         $scope.deleteSelected = function () {
             $scope.forDelte = $scope.records.data.filter(function (item) {

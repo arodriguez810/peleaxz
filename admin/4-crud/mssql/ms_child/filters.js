@@ -3,12 +3,7 @@ CRUD_ms_child = DSON.merge(CRUD_ms_child,
         table: {
             filters: {
                 columns: [
-                    {
-                        key: 'id',
-                        label: 'ID',
-                        type: FILTER.types.integer,
-                        placeholder: 'ID'
-                    },
+
                     {
                         key: 'name',
                         label: 'Name',

@@ -1,0 +1,31 @@
+<!-- Global stylesheets -->
+<link rel="shortcut icon" type="image/svg" href="/assets/images/<%= COLOR.logo %>.svg"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet"
+      type="text/css">
+<link href="assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
+
+<link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="assets/css/core.min.css" rel="stylesheet" type="text/css">
+<link href="assets/css/components.css" rel="stylesheet" type="text/css">
+<link href="assets/css/extras/animate.min.css" rel="stylesheet" type="text/css">
+<link href="assets/css/sweetalert2.min.css" rel="stylesheet" type="text/css">
+<link href="assets/js/plugins/date/jquery.datetimepicker.min.css" rel="stylesheet" type="text/css">
+<link href="assets/css/colors.css" rel="stylesheet" type="text/css">
+<link href="assets/js/plugins/date/yearpicker.css" rel="stylesheet" type="text/css">
+
+<% localStyles.forEach(function(item){ %>
+    <link href="<%= FOLDERS.styles %>/<%= item %>" rel="stylesheet" type="text/css">
+<% }); %>
+
+<link href="<%= FOLDERS.themes %>/extra.css" rel="stylesheet" type="text/css">
+<link href="<%= FOLDERS.themes %>/secundary.css" rel="stylesheet" type="text/css">
+<link href="<%= FOLDERS.themes %>/primary.css" rel="stylesheet" type="text/css">
+<style>
+    .select2-results__option--highlighted, .cancelmodal, .modal-title {
+        color: <%= CONFIG.ui.theme.text2 %> !important;
+    }
+
+    .select2-results__option--highlighted {
+        background-color: <%= CONFIG.ui.theme.secundary %> !important;
+    }
+</style>

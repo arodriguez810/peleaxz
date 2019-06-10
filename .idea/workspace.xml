@@ -88,8 +88,8 @@
           <entry key="project.open.time.6" value="3" />
           <entry key="project.open.time.66" value="1" />
           <entry key="project.open.time.7" value="2" />
-          <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="63" />
+          <entry key="project.open.time.8" value="2" />
+          <entry key="project.opened" value="64" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -108,14 +108,14 @@
           <entry key="6c08eec875a457ad2b49c2c2899003e0" value="2" />
           <entry key="9c08d5294809f7e8b3139604e87d1a4b" value="2" />
           <entry key="ccd1066343c95877b75b79d47c36bebe" value="3" />
-          <entry key="css" value="484" />
+          <entry key="css" value="485" />
           <entry key="d2e16d3f793e62737a6cdf2d54b0d9c1" value="4" />
           <entry key="d7a1715b3eb4a0693d0877835f1b89d4" value="5" />
           <entry key="db0f6f37ebeb6ea09489124345af2a45" value="4" />
-          <entry key="disabled" value="4" />
+          <entry key="disabled" value="7" />
           <entry key="e037ae4d124808dc7fd05e6d632bacdf" value="4" />
           <entry key="eee3f350492445edf13d089212cd9853" value="1" />
-          <entry key="ejs" value="2605" />
+          <entry key="ejs" value="2623" />
           <entry key="empty" value="1" />
           <entry key="f29e98d580a0ff8db33ab6e6b743c11c" value="3" />
           <entry key="f37bd2f66651e7d46f6d38440f2bc5dd" value="3" />
@@ -127,8 +127,8 @@
           <entry key="groovy" value="1" />
           <entry key="html" value="74" />
           <entry key="info" value="10" />
-          <entry key="js" value="4376" />
-          <entry key="json" value="1383" />
+          <entry key="js" value="4431" />
+          <entry key="json" value="1423" />
           <entry key="md" value="1" />
           <entry key="mysql" value="1" />
           <entry key="php" value="1" />
@@ -143,13 +143,13 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Bash" value="10" />
-          <entry key="CSS" value="484" />
+          <entry key="CSS" value="485" />
           <entry key="DBN-SQL" value="33" />
-          <entry key="EJS" value="2605" />
+          <entry key="EJS" value="2623" />
           <entry key="HTML" value="74" />
-          <entry key="JSON" value="1383" />
-          <entry key="JavaScript" value="4376" />
-          <entry key="PLAIN_TEXT" value="123" />
+          <entry key="JSON" value="1423" />
+          <entry key="JavaScript" value="4431" />
+          <entry key="PLAIN_TEXT" value="126" />
           <entry key="SQL" value="69" />
           <entry key="Scratch" value="1" />
           <entry key="TypeScript" value="11" />
@@ -157,13 +157,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="css" value="1163" />
+          <entry key="css" value="1192" />
           <entry key="disabled" value="2" />
-          <entry key="ejs" value="57127" />
+          <entry key="ejs" value="57309" />
           <entry key="html" value="6286" />
           <entry key="info" value="2" />
-          <entry key="js" value="127716" />
-          <entry key="json" value="16863" />
+          <entry key="js" value="130238" />
+          <entry key="json" value="17864" />
           <entry key="mysql" value="13" />
           <entry key="sh" value="18" />
           <entry key="sql" value="213" />
@@ -174,12 +174,12 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Bash" value="10" />
-          <entry key="CSS" value="1164" />
+          <entry key="CSS" value="1193" />
           <entry key="DBN-SQL" value="19" />
-          <entry key="EJS" value="57127" />
+          <entry key="EJS" value="57309" />
           <entry key="HTML" value="6330" />
-          <entry key="JSON" value="16863" />
-          <entry key="JavaScript" value="127671" />
+          <entry key="JSON" value="17864" />
+          <entry key="JavaScript" value="130193" />
           <entry key="PLAIN_TEXT" value="62" />
           <entry key="SQL" value="194" />
         </counts>
@@ -195,10 +195,14 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/admin/7-plugins/application/controllers/CO_BASE.js">
+        <entry file="file://$PROJECT_DIR$/admin/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="253" column="29" selection-start-line="253" selection-start-column="29" selection-end-line="253" selection-end-column="29" />
+            <state relative-caret-position="140">
+              <caret line="662" column="29" selection-start-line="662" selection-start-column="29" selection-end-line="662" selection-end-column="29" />
+              <folding>
+                <element signature="e#301#1001#0" />
+                <element signature="e#1675#1960#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -218,41 +222,38 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>sort</find>
-      <find>orderby</find>
-      <find>$scope.table.orderby</find>
-      <find>if (eval(`CRUD_${$scope.modelName}`).sort)</find>
-      <find>firstColumn = eval(`CRUD_${$scope.modelName}`).sort;</find>
-      <find>loadEJSSimpleSilents</find>
-      <find>LAN.mon</find>
-      <find>&quot;LL</find>
-      <find>modalView</find>
-      <find>mylink.modal</find>
-      <find>multilink</find>
-      <find>Editar</find>
-      <find>editar</find>
-      <find>DRAGONACTION</find>
       <find>data.$scope</find>
-      <find>headerti</find>
-      <find>formulary</find>
-      <find>formu</find>
-      <find>modal</find>
-      <find>edit</find>
-      <find>column.link</find>
-      <find>openLink</find>
-      <find>modalAction</find>
-      <find>.sho</find>
-      <find>singular</find>
-      <find>autocomplete</find>
-      <find>new</find>
-      <find>MODAL.close</find>
-      <find>destroyform</find>
+      <find>BASEAPI.listp(</find>
+      <find>where</find>
       <find>garbage</find>
+      <find>stop</find>
+      <find>fixf</find>
+      <find>fixfilter</find>
+      <find>current_order</find>
+      <find>dragr</find>
+      <find>loaded my</find>
+      <find>modules.oracle.data</find>
+      <find>database error</find>
+      <find>console.log</find>
+      <find>vacio</find>
+      <find>CONFIG.mysql</find>
+      <find>&quot;║&quot;, &quot;║&quot;</find>
+      <find>color</find>
+      <find>colors</find>
+      <find>eval(`shades.color${parseInt(i) + 1} = colors[${shadesArray[i]}];`)</find>
+      <find>Manejador de mns</find>
+      <find>texts</find>
+      <find>selected</find>
+      <find>selec</find>
+      <find>deleted:</find>
+      <find>trCheck</find>
+      <find>textoss</find>
+      <find>id\: \{\n                label\: \&quot;ID\&quot;\,\n                sorttype\: \&quot;numeric\&quot;\,\n                class\: \&quot;text\-left\&quot;\,\n                exportExample\: false\n            \}\,</find>
+      <find>id\: \{\n                label\: \&quot;ID\&quot;\,\n                sorttype\: \&quot;numeric\&quot;\,\n                class\: \&quot;text\-left\&quot;\,\n                exportExample\: false\n            \}\,</find>
+      <find>\{\n                        key\: \'id\'\,\n                        label\: \'ID\'\,\n                        type\: FILTER\.types\.integer\,\n                        placeholder\: \'ID\'\n                    \}\,</find>
+      <find>version</find>
     </findStrings>
     <replaceStrings>
-      <replace>&lt;%= DATA.color10 %&gt;</replace>
-      <replace>-&lt;%= DATA.name %&gt;</replace>
-      <replace>&lt;%= COLOR.secundary %&gt;</replace>
       <replace>-700</replace>
       <replace>&lt;%= options.icon.position =&gt;</replace>
       <replace>&lt;%= options.icon.position %&gt;</replace>
@@ -261,7 +262,6 @@
       <replace>&lt;%= options.helptext %&gt;</replace>
       <replace>is-visible animate</replace>
       <replace>is-visible&quot;</replace>
-      <replace />
       <replace>placeholder=&quot;{{::&lt;%= model %&gt;.form.options.&lt;%= name %&gt;.inputPlaceholder}}&quot;</replace>
       <replace>LAN.money(0).</replace>
       <replace>warning</replace>
@@ -280,6 +280,10 @@
       <replace>if (eval(`CRUD_${$scope.modelName}`).table.sort)</replace>
       <replace>firstColumn = eval(`CRUD_${$scope.modelName}`).table.sort;</replace>
       <replace>&lt;%= scope %&gt;</replace>
+      <replace>$scope</replace>
+      <replace>id: {                 visible: false,                 visibleDetail: false,                 export: false,                 exportExample: false             },</replace>
+      <replace />
+      <replace>&quot;█║&quot;, &quot;║█&quot;</replace>
     </replaceStrings>
     <dirStrings>
       <dir>C:\wamp\www\peleaxz\admin\scripts\dragon\data</dir>
@@ -301,57 +305,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/admin/3-controllers/CO_lists.js" />
-        <option value="$PROJECT_DIR$/admin/4-crud/CRUD_lists.js" />
-        <option value="$PROJECT_DIR$/admin/5-views/lists/form.ejs" />
-        <option value="$PROJECT_DIR$/admin/3-controllers/CO_child.js" />
-        <option value="$PROJECT_DIR$/admin/5-views/child/form.ejs" />
-        <option value="$PROJECT_DIR$/admin/4-crud/CRUD_child.js" />
-        <option value="$PROJECT_DIR$/admin/7-plugins/templates/system/color.ejs" />
-        <option value="$PROJECT_DIR$/admin/7-plugins/templates/table/columns.ejs" />
-        <option value="$PROJECT_DIR$/admin/0-config/appearance/theme.json" />
-        <option value="$PROJECT_DIR$/admin/styles/base/custom.css" />
-        <option value="$PROJECT_DIR$/admin/7-plugins/information/mobile.ejs" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/form/validations/abase.js" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/system/language.js" />
-        <option value="$PROJECT_DIR$/admin/7-plugins/templates/form/footer.ejs" />
-        <option value="$PROJECT_DIR$/admin/assets/js/plugins/forms/selects/select2.min.js" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/auth/SESSION.js" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/appearance/fixelement.js" />
-        <option value="$PROJECT_DIR$/admin/6-language/en/mono/index.json" />
-        <option value="$PROJECT_DIR$/admin/6-language/es/mono/index.json" />
-        <option value="$PROJECT_DIR$/admin/7-plugins/templates/form/box.ejs" />
-        <option value="$PROJECT_DIR$/admin/7-plugins/templates/form/button.ejs" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/table/filter.js" />
-        <option value="$PROJECT_DIR$/admin/7-plugins/templates/form/filter.ejs" />
-        <option value="$PROJECT_DIR$/admin/styles/pages/zcustom.css" />
-        <option value="$PROJECT_DIR$/admin/7-plugins/templates/form/select.ejs" />
-        <option value="$PROJECT_DIR$/admin/scripts/extensions/sweetalert.js" />
-        <option value="$PROJECT_DIR$/admin/6-language/es/alerts/index.json" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/data/json.js" />
-        <option value="$PROJECT_DIR$/admin/5-views/dates/form.ejs" />
-        <option value="$PROJECT_DIR$/admin/server.js" />
-        <option value="$PROJECT_DIR$/admin/5-views/logica/report.ejs" />
-        <option value="$PROJECT_DIR$/admin/7-plugins/templates/charts/columns.ejs" />
-        <option value="$PROJECT_DIR$/admin/modules/BASE_views.js" />
-        <option value="$PROJECT_DIR$/admin/7-plugins/application/config/app.json" />
-        <option value="$PROJECT_DIR$/admin/4-crud/CRUD_texts.js" />
-        <option value="$PROJECT_DIR$/admin/4-crud/CRUD_users.js" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/table/sortable.js" />
-        <option value="$PROJECT_DIR$/admin/7-plugins/master/head.ejs" />
-        <option value="$PROJECT_DIR$/admin/7-plugins/templates/form/range.ejs" />
         <option value="$PROJECT_DIR$/admin/7-plugins/templates/table/header.ejs" />
         <option value="$PROJECT_DIR$/admin/3-controllers/CO_texts.js" />
         <option value="$PROJECT_DIR$/admin/7-plugins/templates/table/view.ejs" />
         <option value="$PROJECT_DIR$/admin/7-plugins/information/scope.ejs" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/table/events.js" />
         <option value="$PROJECT_DIR$/admin/scripts/dragon/components/modal.js" />
         <option value="$PROJECT_DIR$/admin/7-plugins/templates/form/relation.ejs" />
         <option value="$PROJECT_DIR$/admin/7-plugins/templates/form/inputmask.ejs" />
         <option value="$PROJECT_DIR$/admin/7-plugins/templates/form/input.ejs" />
         <option value="$PROJECT_DIR$/admin/7-plugins/templates/form/inputformat.ejs" />
-        <option value="$PROJECT_DIR$/admin/scripts/dragon/form/form.js" />
         <option value="$PROJECT_DIR$/admin/7-plugins/application/controllers/CO_BASE.js" />
+        <option value="$PROJECT_DIR$/admin/scripts/dragon/form/form.js" />
+        <option value="$PROJECT_DIR$/admin/scripts/dragon/table/table.js" />
+        <option value="$PROJECT_DIR$/admin/6-language/en/mono/index.json" />
+        <option value="$PROJECT_DIR$/admin/6-language/es/mono/index.json" />
+        <option value="$PROJECT_DIR$/admin/scripts/dragon/table/events.js" />
+        <option value="$PROJECT_DIR$/admin/7-plugins/application/cruds/adefaults.js" />
+        <option value="$PROJECT_DIR$/admin/7-plugins/templates/header/begin.ejs" />
+        <option value="$PROJECT_DIR$/admin/7-plugins/application/config/appearance/language.json" />
+        <option value="$PROJECT_DIR$/admin/7-plugins/master/css.ejs" />
+        <option value="$PROJECT_DIR$/admin/7-plugins/master/js.ejs" />
+        <option value="$PROJECT_DIR$/admin/7-plugins/master/js2.ejs" />
+        <option value="$PROJECT_DIR$/admin/7-plugins/master/head.ejs" />
+        <option value="$PROJECT_DIR$/admin/7-plugins/configuration/company.ejs" />
+        <option value="$PROJECT_DIR$/admin/scripts/dragon/components/control.js" />
+        <option value="$PROJECT_DIR$/admin/0-config/appearance/theme.json" />
+        <option value="$PROJECT_DIR$/admin/7-plugins/master/functions.ejs" />
+        <option value="$PROJECT_DIR$/admin/7-plugins/application/controllers/CO_configuration.js" />
+        <option value="$PROJECT_DIR$/admin/6-language/es/menu/index.json" />
+        <option value="$PROJECT_DIR$/admin/7-plugins/application/cruds/interval/1columns.js" />
+        <option value="$PROJECT_DIR$/admin/7-plugins/application/cruds/mime/1columns.js" />
+        <option value="$PROJECT_DIR$/admin/7-plugins/application/cruds/notifications/1columns.js" />
+        <option value="$PROJECT_DIR$/admin/7-plugins/application/cruds/segment/1columns.js" />
+        <option value="$PROJECT_DIR$/admin/scripts/dragon/table/selection.js" />
+        <option value="$PROJECT_DIR$/admin/7-plugins/application/config/appearance/theme.json" />
+        <option value="$PROJECT_DIR$/admin/styles/base/content.css" />
+        <option value="$PROJECT_DIR$/admin/7-plugins/templates/form/range.ejs" />
+        <option value="$PROJECT_DIR$/admin/4-crud/CRUD_child.js" />
+        <option value="$PROJECT_DIR$/admin/4-crud/CRUD_lists.js" />
+        <option value="$PROJECT_DIR$/admin/7-plugins/templates/system/crud.ejs" />
+        <option value="$PROJECT_DIR$/admin/4-crud/CRUD_dates.js" />
+        <option value="$PROJECT_DIR$/admin/4-crud/CRUD_texts.js" />
+        <option value="$PROJECT_DIR$/admin/4-crud/CRUD_users.js" />
+        <option value="$PROJECT_DIR$/admin/7-plugins/application/cruds/customfield/1columns.js" />
+        <option value="$PROJECT_DIR$/admin/7-plugins/application/cruds/customfield/filters.js" />
+        <option value="$PROJECT_DIR$/admin/7-plugins/application/cruds/fieldtype/1columns.js" />
+        <option value="$PROJECT_DIR$/admin/7-plugins/application/cruds/fieldtype/filters.js" />
+        <option value="$PROJECT_DIR$/admin/7-plugins/application/cruds/group/1columns.js" />
+        <option value="$PROJECT_DIR$/admin/7-plugins/application/cruds/group/filters.js" />
+        <option value="$PROJECT_DIR$/admin/6-language/es/columns/index.json" />
+        <option value="$PROJECT_DIR$/admin/server.js" />
+        <option value="$PROJECT_DIR$/admin/7-plugins/application/config/developer/control.json" />
       </list>
     </option>
   </component>
@@ -392,7 +396,7 @@
     <dismissed value="$PROJECT_DIR$/admin/assets/js/plugins/iziToast/iziToast-master/package.json" />
     <dismissed value="$PROJECT_DIR$/helper/package.json" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="8" />
     <option name="y" value="152" />
     <option name="width" value="1364" />
@@ -437,25 +441,6 @@
               <item name="peleaxz" type="b2602c69:ProjectViewProjectNode" />
               <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
               <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="4-crud" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="peleaxz" type="b2602c69:ProjectViewProjectNode" />
-              <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="5-views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="peleaxz" type="b2602c69:ProjectViewProjectNode" />
-              <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="5-views" type="462c0819:PsiDirectoryNode" />
-              <item name="users" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="peleaxz" type="b2602c69:ProjectViewProjectNode" />
-              <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
               <item name="7-plugins" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -463,21 +448,7 @@
               <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
               <item name="admin" type="462c0819:PsiDirectoryNode" />
               <item name="7-plugins" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="peleaxz" type="b2602c69:ProjectViewProjectNode" />
-              <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="7-plugins" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="table" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="peleaxz" type="b2602c69:ProjectViewProjectNode" />
-              <item name="peleaxz" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="styles" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -489,7 +460,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
-    <property name="SearchEverywhereHistoryKey" value="CO_base&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/application/controllers/CO_BASE.js&#10;header&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/table/header.ejs&#10;adefa&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/application/cruds/adefaults.js&#10;form&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/form/form.js&#10;inputfo&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/form/inputformat.ejs&#10;input&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/form/input.ejs&#10;inputmas&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/form/inputmask.ejs&#10;relation&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/form/relation.ejs&#10;form.js&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/form/form.js&#10;moda&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/components/modal.js&#10;CRUD_c&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/4-crud/CRUD_child.js&#10;CO_ba&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/application/controllers/CO_BASE.js&#10;CO_text&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/3-controllers/CO_texts.js&#10;text&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/4-crud/CRUD_texts.js&#10;modal&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/components/modal.js&#10;adef&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/application/cruds/adefaults.js&#10;even&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/events.js&#10;range&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/form/range.ejs&#10;hea&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/master/head.ejs&#10;base&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/modules/BASE_views.js&#10;table.&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/table.js&#10;sortab&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/sortable.js&#10;CRUD_te&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/4-crud/CRUD_texts.js&#10;sortable&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/sortable.js&#10;server&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/server.js&#10;report&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/logica/report.ejs&#10;box.ej&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/form/box.ejs&#10;he&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/master/head.ejs&#10;head&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/master/head.ejs&#10;sess&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/auth/SESSION.js&#10;dates/&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/dates&#10;swee&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/extensions/sweetalert.js&#10;table.js&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/table.js&#10;selec&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/form/select.ejs&#10;zcus&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/styles/pages/zcustom.css&#10;filter.js&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/filter.js&#10;filter&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/form/filter.ejs&#10;custom&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/styles/pages/zcustom.css&#10;button&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/form/button.ejs&#10;login.e&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/auth/login.ejs&#10;CO_log&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/application/controllers/CO_login.js&#10;select.e&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/form/select.ejs&#10;box&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/form/box.ejs&#10;mono/&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/6-language/es/mono&#10;form/filte&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/form/filter.ejs&#10;configurati&#9;null&#9;null&#10;serv&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/server.js&#10;fix&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/appearance/fixelement.js&#10;abas&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/form/validations/abase.js&#10;button.e&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/form/button.ejs" />
+    <property name="SearchEverywhereHistoryKey" value="server&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/server.js&#10;columns/&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/6-language/es/columns&#10;range&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/form/range.ejs&#10;theme&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/application/config/appearance/theme.json&#10;base.e&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/table/base.ejs&#10;rows.&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/table/rows.ejs&#10;format.&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/format.js&#10;fun&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/master/functions.ejs&#10;head&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/master/head.ejs&#10;CO_con&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/application/controllers/CO_configuration.js&#10;compan&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/configuration/company.ejs&#10;BASE_,y&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/modules/BASE_mysql.js&#10;ser&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/server.js&#10;header&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/table/header.ejs&#10;header/be&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/header/begin.ejs&#10;users&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/4-crud/CRUD_users.js&#10;CRUD_dat&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/4-crud/CRUD_dates.js&#10;CRUD_te&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/4-crud/CRUD_texts.js&#10;ad&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/application/cruds/adefaults.js&#10;table&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/table.js&#10;even&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/events.js&#10;mono&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/6-language/es/mono&#10;mono/&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/6-language/en/mono&#10;ade&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/application/cruds/adefaults.js&#10;form&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/form/form.js&#10;CO_tex&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/3-controllers/CO_texts.js&#10;CO_base&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/application/controllers/CO_BASE.js&#10;adefa&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/application/cruds/adefaults.js&#10;inputfo&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/form/inputformat.ejs&#10;input&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/form/input.ejs&#10;inputmas&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/form/inputmask.ejs&#10;relation&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/form/relation.ejs&#10;form.js&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/form/form.js&#10;moda&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/components/modal.js&#10;CRUD_c&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/4-crud/CRUD_child.js&#10;CO_ba&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/application/controllers/CO_BASE.js&#10;CO_text&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/3-controllers/CO_texts.js&#10;text&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/4-crud/CRUD_texts.js&#10;modal&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/components/modal.js&#10;adef&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/application/cruds/adefaults.js&#10;hea&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/master/head.ejs&#10;base&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/modules/BASE_views.js&#10;table.&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/table.js&#10;sortab&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/sortable.js&#10;sortable&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/table/sortable.js&#10;report&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/logica/report.ejs&#10;box.ej&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/templates/form/box.ejs&#10;he&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/7-plugins/master/head.ejs&#10;sess&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/scripts/dragon/auth/SESSION.js&#10;dates/&#9;FILE&#9;file://C:/wamp/www/peleaxz/admin/5-views/dates" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="excluded.www.directory" value="true" />
     <property name="javascript.nodejs.core.library.configured.version" value="8.10.0" />
@@ -512,19 +483,19 @@
     <property name="ts.external.directory.path" value="C:\wamp\www\peleaxz\mobile\node_modules\typescript\lib" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\wamp\www\peleaxz\admin\7-plugins\information" />
-      <recent name="C:\wamp\www\peleaxz\admin\modules" />
-      <recent name="C:\wamp\www\peleaxz\admin\styles\base" />
-      <recent name="C:\wamp\www\peleaxz\admin\5-views" />
-      <recent name="C:\wamp\www\peleaxz\admin\4-crud" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\wamp\www\peleaxz\admin\styles\pages" />
       <recent name="C:\wamp\www\peleaxz\admin\3-controllers" />
       <recent name="C:\wamp\www\peleaxz\admin\7-plugins\templates\system\view" />
       <recent name="C:\wamp\www\peleaxz\admin\4-crud" />
       <recent name="C:\wamp\www\peleaxz\admin\2-models" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp\www\peleaxz\admin\7-plugins\master" />
+      <recent name="C:\wamp\www\peleaxz\admin\7-plugins\information" />
+      <recent name="C:\wamp\www\peleaxz\admin\modules" />
+      <recent name="C:\wamp\www\peleaxz\admin\styles\base" />
+      <recent name="C:\wamp\www\peleaxz\admin\5-views" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -704,7 +675,7 @@
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info active="true" anchor="right" content_ui="combo" id="Project" order="3" visible="true" weight="0.31316188" />
+      <window_info active="true" anchor="right" content_ui="combo" id="Project" order="3" visible="true" weight="0.31770045" />
       <window_info anchor="right" id="Database" order="4" />
     </layout>
   </component>
@@ -715,370 +686,323 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/admin/6-language/es/mono/index.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="198" column="21" lean-forward="true" selection-start-line="198" selection-start-column="21" selection-end-line="198" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/7-plugins/application/controllers/CO_login.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1010">
-          <caret line="73" column="61" selection-start-line="73" selection-start-column="55" selection-end-line="73" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/7-plugins/auth/login.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="30" column="47" lean-forward="true" selection-start-line="30" selection-start-column="47" selection-end-line="30" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/7-plugins/templates/form/button.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="33" column="35" selection-start-line="33" selection-start-column="35" selection-end-line="33" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mobile/node_modules/@angular/compiler/src/core.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="74" column="17" selection-start-line="74" selection-start-column="17" selection-end-line="74" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/7-plugins/templates/form/filter.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="309" column="28" lean-forward="true" selection-start-line="309" selection-start-column="28" selection-end-line="309" selection-end-column="28" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#2;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#0;n#div#2;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#3;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/styles/pages/zcustom.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="111" column="1" selection-start-line="111" selection-start-column="1" selection-end-line="111" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/7-plugins/templates/form/select.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="113" column="31" lean-forward="true" selection-start-line="113" selection-start-column="31" selection-end-line="113" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/files/configuration/themes/extra.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="234" column="5" selection-start-line="234" selection-start-column="1" selection-end-line="234" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/extensions/sweetalert.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="108" column="40" lean-forward="true" selection-start-line="108" selection-start-column="40" selection-end-line="108" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/6-language/es/alerts/index.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="38" column="17" selection-start-line="38" selection-start-column="3" selection-end-line="38" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/data/json.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="41" column="43" selection-start-line="41" selection-start-column="43" selection-end-line="41" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/auth/SESSION.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="13" lean-forward="true" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/table/filter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="570" column="63" lean-forward="true" selection-start-line="570" selection-start-column="63" selection-end-line="570" selection-end-column="63" />
-          <folding>
-            <element signature="e#75#469#0" />
-            <element signature="e#732#2523#0" />
-            <element signature="e#3097#4178#0" />
-            <element signature="e#3195#4164#0" />
-            <element signature="e#3328#3417#0" />
-            <element signature="e#3459#4056#0" />
-            <element signature="e#3730#3827#0" />
-            <element signature="e#4223#4483#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/data/string.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="35" column="33" lean-forward="true" selection-start-line="31" selection-start-column="4" selection-end-line="35" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/dates/form.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="60" selection-start-line="15" selection-start-column="60" selection-end-line="15" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/helper/assets/js/plugins/visualization/echarts/echarts.js">
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/application/config/security/onesignal.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/helper/echarts_columns_waterfalls.html">
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/application/config/security/performance.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/application/config/security/permission.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="28" column="83" selection-start-line="28" selection-start-column="65" selection-end-line="28" selection-end-column="83" />
+        <state relative-caret-position="324">
+          <caret line="100" column="5" selection-start-line="100" selection-start-column="5" selection-end-line="100" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/helper/assets/js/charts/echarts/columns_waterfalls.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="85" column="35" selection-start-line="85" selection-start-column="27" selection-end-line="85" selection-end-column="35" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/application/config/security/routes.json">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/7-plugins/templates/charts/columns.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="82" column="22" lean-forward="true" selection-start-line="82" selection-start-column="22" selection-end-line="82" selection-end-column="22" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/application/config/security/smtp.json">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/logica/report.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="436" column="54" selection-start-line="436" selection-start-column="47" selection-end-line="436" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="21" column="4" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/7-plugins/templates/form/box.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="220" column="36" lean-forward="true" selection-start-line="217" selection-start-column="32" selection-end-line="220" selection-end-column="36" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/application/config/storage/baseentities.json">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/7-plugins/application/config/app.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/master/css.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="18" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+        <state relative-caret-position="510">
+          <caret line="30" column="8" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/node_modules/express/lib/router/index.js">
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/master/js.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="215" column="21" selection-start-line="215" selection-start-column="10" selection-end-line="215" selection-end-column="21" />
+        <state relative-caret-position="528">
+          <caret line="45" column="9" selection-start-line="45" selection-start-column="9" selection-end-line="45" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/4-crud/CRUD_users.js">
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/master/js2.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="23" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/table/table.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="259" column="16" lean-forward="true" selection-start-line="259" selection-start-column="16" selection-end-line="259" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/table/sortable.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="37" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/modules/BASE_views.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="993" column="39" selection-start-line="993" selection-start-column="39" selection-end-line="993" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/7-plugins/application/config/appearance/language.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="20" lean-forward="true" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/texts/form.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="40" lean-forward="true" selection-start-line="10" selection-start-column="40" selection-end-line="10" selection-end-column="40" />
+        <state relative-caret-position="528">
+          <caret line="46" column="105" selection-start-line="46" selection-start-column="105" selection-end-line="46" selection-end-column="105" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/7-plugins/master/head.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-707">
-          <caret line="123" column="17" selection-start-line="123" selection-start-column="14" selection-end-line="123" selection-end-column="17" />
+        <state relative-caret-position="170">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/7-plugins/templates/form/range.ejs">
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/configuration/company.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="125" column="26" lean-forward="true" selection-start-line="125" selection-start-column="26" selection-end-line="125" selection-end-column="26" />
+        <state relative-caret-position="-384">
+          <caret line="212" column="31" selection-start-line="212" selection-start-column="31" selection-end-line="212" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/users/index.ejs">
+    <entry file="file://$PROJECT_DIR$/admin/0-config/appearance/theme.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="16" lean-forward="true" selection-end-line="7" selection-end-column="16" />
+        <state relative-caret-position="255">
+          <caret line="15" column="38" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/users/myprofile.ejs">
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/master/functions.ejs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="8" lean-forward="true" selection-start-line="2" selection-start-column="8" selection-end-line="3" selection-end-column="25" />
+        <state relative-caret-position="170">
+          <caret line="13" column="46" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="46" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/5-views/users/view.ejs">
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/application/controllers/CO_configuration.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="47" column="7" lean-forward="true" selection-start-line="47" selection-start-column="7" selection-end-line="47" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/components/control.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="159" column="8" selection-start-line="159" selection-start-column="8" selection-end-line="159" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/application/cruds/configuration/permissions.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/7-plugins/templates/table/view.ejs">
+    <entry file="file://$PROJECT_DIR$/admin/6-language/es/menu/index.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="50" column="9" lean-forward="true" selection-start-line="50" selection-start-column="9" selection-end-line="50" selection-end-column="9" />
+        <state relative-caret-position="442">
+          <caret line="26" column="18" selection-start-line="26" selection-start-column="18" selection-end-line="26" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/3-controllers/CO_texts.js">
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/application/cruds/interval/1columns.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
+        <state relative-caret-position="409">
+          <caret line="46" column="13" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/7-plugins/information/scope.ejs">
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/application/cruds/language/permissions.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/application/cruds/mime/1columns.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="35" column="28" selection-start-line="35" selection-start-column="26" selection-end-line="35" selection-end-column="28" />
+        <state relative-caret-position="205">
+          <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/table/events.js">
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/application/cruds/segment/1columns.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="31" column="46" selection-start-line="31" selection-start-column="46" selection-end-line="31" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/components/modal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="201" column="25" lean-forward="true" selection-start-line="201" selection-start-column="25" selection-end-line="201" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/7-plugins/templates/form/relation.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="116" lean-forward="true" selection-start-line="116" selection-end-line="116" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/7-plugins/templates/form/inputmask.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="64" column="12" selection-start-line="64" selection-start-column="12" selection-end-line="64" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/7-plugins/templates/form/input.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="65" column="24" selection-start-line="65" selection-start-column="12" selection-end-line="65" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/7-plugins/templates/form/inputformat.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1207">
-          <caret line="71" column="35" selection-start-line="71" selection-start-column="35" selection-end-line="71" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/form/form.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="1378" column="45" lean-forward="true" selection-start-line="1378" selection-start-column="45" selection-end-line="1378" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/4-crud/CRUD_texts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="34" column="44" selection-start-line="34" selection-start-column="44" selection-end-line="34" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/4-crud/CRUD_child.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="32" column="22" selection-start-line="29" selection-start-column="19" selection-end-line="32" selection-end-column="22" />
+        <state relative-caret-position="205">
+          <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/7-plugins/application/cruds/adefaults.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="231" column="73" selection-start-line="231" selection-start-column="73" selection-end-line="231" selection-end-column="73" />
+        <state relative-caret-position="-612">
+          <caret line="12" column="62" selection-start-line="12" selection-start-column="62" selection-end-line="12" selection-end-column="62" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/7-plugins/templates/table/header.ejs">
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/application/cruds/notifications/1columns.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="232" column="29" selection-start-line="232" selection-start-column="29" selection-end-line="232" selection-end-column="63" />
+        <state relative-caret-position="273">
+          <caret line="53" column="30" selection-start-line="53" selection-start-column="30" selection-end-line="53" selection-end-column="30" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/7-plugins/application/controllers/CO_BASE.js">
+    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/table/format.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="253" column="29" selection-start-line="253" selection-start-column="29" selection-end-line="253" selection-end-column="29" />
+        <state relative-caret-position="177">
+          <caret line="80" column="39" selection-start-line="80" selection-start-column="31" selection-end-line="80" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/styles/base/content.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="1" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/application/config/appearance/theme.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="24" column="28" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/scripts/dragon/table/selection.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="57" column="75" selection-start-line="57" selection-start-column="75" selection-end-line="57" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/templates/table/base.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="48" column="118" selection-start-line="48" selection-start-column="111" selection-end-line="48" selection-end-column="118" />
+          <folding>
+            <element signature="n#style#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/templates/table/rows.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="37" selection-start-line="5" selection-start-column="32" selection-end-line="5" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/templates/form/range.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="130" column="44" lean-forward="true" selection-start-line="130" selection-start-column="44" selection-end-line="130" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/3-controllers/CO_child.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/4-crud/mssql/ms_all/1columns.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="346" column="40" lean-forward="true" selection-start-line="343" selection-start-column="19" selection-end-line="346" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/templates/system/controller.ejs">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/templates/system/view/filter.ejs">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/templates/system/crud.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="45" column="22" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/4-crud/CRUD_child.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="38" column="20" selection-start-line="38" selection-start-column="20" selection-end-line="38" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/4-crud/CRUD_dates.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="59" column="26" selection-start-line="59" selection-start-column="26" selection-end-line="59" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/4-crud/CRUD_lists.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="40" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/4-crud/CRUD_texts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="123">
+          <caret line="61" column="26" selection-start-line="61" selection-start-column="26" selection-end-line="61" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/4-crud/CRUD_users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="80" column="22" selection-start-line="80" selection-start-column="22" selection-end-line="80" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/application/cruds/customfield/1columns.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="35">
+          <caret line="9" column="36" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/application/cruds/customfield/filters.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/application/cruds/fieldtype/1columns.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/application/cruds/fieldtype/filters.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="26" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/application/cruds/group/1columns.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/application/cruds/group/filters.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="26" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/6-language/es/columns/index.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="157" column="17" selection-start-line="157" selection-start-column="17" selection-end-line="157" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/0-config/developer/control.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="8" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/7-plugins/application/config/developer/control.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="662" column="29" selection-start-line="662" selection-start-column="29" selection-end-line="662" selection-end-column="29" />
+          <folding>
+            <element signature="e#301#1001#0" />
+            <element signature="e#1675#1960#0" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -2,9 +2,9 @@
   "languages": [
     {
       "code": "en",
-      "time": "en",
       "name": "English",
       "flag": "us",
+      "time": "en",
       "money": "USD"
     },
     {

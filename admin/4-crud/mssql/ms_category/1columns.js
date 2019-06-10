@@ -5,12 +5,7 @@ DSON.keepmerge(CRUD_ms_category, {
         engine: 'ms',
         view: 'vw_ms_category',
         columns: {
-            id: {
-                label: "ID",
-                sorttype: "numeric",
-                class: "text-left",
-                exportExample: false
-            },
+            id: {                 visible: false,                 visibleDetail: false,                 export: false,                 exportExample: false             },
             name: {
                 label: "name",
                 shorttext: 20

@@ -5,9 +5,9 @@ DSON.keepmerge(CRUD_<%= scope %>, {
         engine: 'ms',
         columns: {
             id: {
-                label: "ID",
-                sorttype: "numeric",
-                class: "text-left",
+                visible: false,
+                visibleDetail: false,
+                export: false,
                 exportExample: false
             },
             name: {
@@ -44,12 +44,6 @@ CRUD_<%= scope %> = DSON.merge(CRUD_<%= scope %>,
     table: {
         filters: {
             columns: [
-                {
-                    key: 'id',
-                    label: 'ID',
-                    type: FILTER.types.integer,
-                    placeholder: 'ID'
-                },
                 {
                     key: 'name',
                     label: 'Name',
