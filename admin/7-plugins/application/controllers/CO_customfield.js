@@ -2,6 +2,7 @@ app.controller("customfield", function ($scope, $http, $compile) {
         customfield = this;
         RUNCONTROLLER("customfield", customfield, $scope, $http, $compile);
         RUN_B("customfield", customfield, $scope, $http, $compile);
+
         customfield.triggers.table.after.load = async function (records) {
             customfield.runMagicColum('type', 'fieldtype');
         };
@@ -48,8 +49,10 @@ app.controller("customfield", function ($scope, $http, $compile) {
                 });
                 customfield.$scope.$watch('customfield.parent', function (value) {
                     if (customfield.form) {
-                        var selected = customfield.form.selected('parent');
-                        customfield.buildsSubElements(selected);
+                        if (customfield.form.selected) {
+                            var selected = customfield.form.selected('parent');
+                            customfield.buildsSubElements(selected);
+                        }
                     }
                 });
             }

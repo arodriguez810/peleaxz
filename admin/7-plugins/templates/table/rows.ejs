@@ -1,3 +1,11 @@
+<td ng-if="<%= scope %>.characterist('batch')">
+     <span style="margin-top: 1px;"
+
+             ng-bind-html="<%= scope %>.drawCheck(key,row)"
+             ng-click="<%= scope %>.check(row)"
+     >
+     </span>
+</td>
 <td ng-repeat="(key, value) in <%= scope %>.columns() track by key"
     ng-show="value.visible!=false"
     class="{{::value.class || ''}} context-control {{value.responsive}}"
@@ -8,12 +16,7 @@
     oncontextmenu="return false;"
 >
 
-    <span
-            ng-show="<%= scope %>.rowDeleted(row)===''"
-            ng-bind-html="<%= scope %>.drawCheck(key,row)"
-            ng-click="<%= scope %>.check(row)"
-    >
-    </span>
+
     <span ng-bind-html="<%= scope %>.cellValue(key,value,row)"
           ng-click="<%= scope %>.cell.click(key,value,row)"
           ng-dblclick="<%= scope %>.cell.dblclick(key,value,row)"

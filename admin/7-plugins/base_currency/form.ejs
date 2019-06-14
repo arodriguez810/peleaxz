@@ -1,0 +1,35 @@
+<div class="tab-content">
+    <div class="tab-pane active" id="basic">
+        <div class="row">
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.input("name", scope, {maxlength: 50}) %>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.input("symbol", scope, {maxlength: 5}) %>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.input("decimal", scope, {maxlength: 1}) %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.input("separator", scope, {maxlength: 1}) %>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.integer("precision", scope, {}) %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <%- FORM.textarea("description", scope, {maxlength: 200}) %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- FORM.footer(scope) %>
+
+
+
+
+

@@ -90,9 +90,9 @@ var toclient = JSON.stringify(options);
     <%= model %>.form.options.<%= name %>.default = `${MESSAGE.ic('mono.select')} <%= name %>`;
     if (MESSAGE.exist('columns.<%= nameclean %>')) {
         <%= model %>.
-        form.options.<%= name %>.label = MESSAGE.i('columns.<%= nameclean %>');
+        form.options.<%= name %>.label = MESSAGE.ic('columns.<%= nameclean %>');
         <%= model %>.
-        form.options.<%= name %>.default = `${MESSAGE.ic('mono.select')} ` + MESSAGE.i('columns.<%= nameclean %>');
+        form.options.<%= name %>.default = `${MESSAGE.ic('mono.select')} ` + MESSAGE.ic('columns.<%= nameclean %>');
     }
 
 

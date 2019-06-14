@@ -1,1 +1,16 @@
-{"LiteMenu":"Lite Menu","HideMenu":"Hide Menu","RestoreallConfiguration":"Restore all Configuration","RequestManager":"Request Manager","FileManager":"File Manager","StepManager":"Step Manager","Favorites":"Favorites","Logout":"End Session","AddToFavorite":"Add To Favorite","MessageManager":"Message Manager","RecordsPerPage":"Records Per Page","DonwloadExample":"Donwload Example","HideColumns":"Hide Columns","ShowColumns":"Show Columns"}
+{
+  "LiteMenu": "Lite Menu",
+  "HideMenu": "Hide Menu",
+  "RestoreallConfiguration": "Restore all Configuration",
+  "RequestManager": "Request",
+  "FileManager": "File",
+  "StepManager": "Step",
+  "Favorites": "Favorites",
+  "Logout": "End Session",
+  "AddToFavorite": "Add To Favorite",
+  "MessageManager": "Message",
+  "RecordsPerPage": "Records Per Page",
+  "DonwloadExample": "Donwload Example",
+  "HideColumns": "Hide Columns",
+  "ShowColumns": "Show Columns"
+}

@@ -12,7 +12,7 @@ DSON.keepmerge(CRUD_group, {
             description: {
                 label: "description",
                 sortable: false,
-                shorttext: 20,
+                shorttext: 80,
                 null: "<span class='text-grey'>[NULL]</span>"
             },
             homePage: {

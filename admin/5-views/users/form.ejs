@@ -48,9 +48,6 @@
             <div class="col-sm-4 col-md-4">
                 <%- FORM.password("confirmpassword", scope, {maxlength: (CONFIG.users.rules.max !== 0 ? CONFIG.users.rules.max : 9999)}) %>
             </div>
-            <div class="col-sm-3 col-md-3">
-                <%- FORM.checkbox("active", scope, {text: 'Active?'}) %>
-            </div>
         </div>
         <div class="row">
 

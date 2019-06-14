@@ -16,7 +16,7 @@ DSON.keepmerge(CRUD_ms_all,
                 },
                 name: {
                     label: "name",
-                    shorttext: 20,
+                    shorttext: 80,
                     //["click", "dblclick", "mousedown", "mouseenter", "mouseleave", "mousemove", "mouseover", "mouseup"]
                     click: function (data) {
                         alert(data.row.name);
@@ -24,7 +24,7 @@ DSON.keepmerge(CRUD_ms_all,
                 },
                 lastName: {
                     label: "lastName",
-                    shorttext: 20,
+                    shorttext: 80,
                 },
                 products: {
                     exportKey: '$$products',
@@ -78,7 +78,7 @@ DSON.keepmerge(CRUD_ms_all,
                 ms_child_name: {
                     exportKey: 'child',
                     label: "child",
-                    shorttext: 20,
+                    shorttext: 80,
                     link: {
                         table: "ms_child",
                         from: "child",
@@ -100,7 +100,7 @@ DSON.keepmerge(CRUD_ms_all,
                 ms_category_name: {
                     exportKey: 'category',
                     label: "category",
-                    shorttext: 20,
+                    shorttext: 80,
                     format: function (row) {
                         if (!DSON.oseaX(row)) {
                             return row.ms_category_id + '-' + row.ms_category_name;
@@ -129,7 +129,7 @@ DSON.keepmerge(CRUD_ms_all,
                 ms_product_name: {
                     exportKey: 'product',
                     label: "product",
-                    shorttext: 20,
+                    shorttext: 80,
                     link: {
                         table: "ms_product",
                         from: "product",
@@ -151,7 +151,7 @@ DSON.keepmerge(CRUD_ms_all,
                 ms_other_description: {
                     exportKey: 'other',
                     label: "other",
-                    shorttext: 20,
+                    shorttext: 80,
                     link: {
                         table: "ms_other",
                         from: "other",
@@ -172,7 +172,7 @@ DSON.keepmerge(CRUD_ms_all,
                 description: {
                     label: "description",
                     sortable: false,
-                    shorttext: 20,
+                    shorttext: 80,
                     null: "<span class='text-grey'>[NULL]</span>"
                 },
                 biography: {

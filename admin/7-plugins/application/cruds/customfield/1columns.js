@@ -11,15 +11,15 @@ DSON.keepmerge(CRUD_customfield, {
             },
             name: {
                 label: "name",
-                shorttext: 20
+                shorttext: 80
             },
             variable: {
                 label: "Variable",
-                shorttext: 20
+                shorttext: 80
             },
             type: {
                 label: "Type",
-                shorttext: 20
+                shorttext: 80
             },
             description: {
                 label: "description",

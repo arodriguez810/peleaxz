@@ -11,10 +11,16 @@ var options = {
     checked: false,
     posttype: "checkbox",
     disabled: false,
-    size: 'switchery'
+    size: 'switchery',
+    icon: {
+        class: "none",
+        position: "left",
+        color: COLOR.secundary + "-800"
+    },
 };
 options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g, '_');
-var nameclean = name.replace(/\./g, '_');
+options.icon.spyce = options.icon.class === "none" ? "remove-input-space" : "";
+options.model = options.model ? options.model : false;
 var toclient = JSON.stringify(options);
 %>
 <script>
@@ -24,7 +30,7 @@ var toclient = JSON.stringify(options);
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
     if (MESSAGE.exist('columns.<%= nameclean %>')) {
         <%= model %>.
-        form.options.<%= name %>.text = MESSAGE.i('columns.<%= nameclean %>');
+        form.options.<%= name %>.text = MESSAGE.ic('columns.<%= nameclean %>');
     }
     var isReadProgram = <%= model %>.form.isReadOnly('<%= name %>');
     if (isReadProgram !== false) {
@@ -40,17 +46,16 @@ var toclient = JSON.stringify(options);
     ;
     <%= model %>.<%= name %> = <%= model %>.<%= name %>? true : false;
 </script>
-<div class="checkbox checkbox-switchery <%= options.size %>" ng-show="!<%= model %>.form.options.<%= name %>.disabled">
-    <label>
-        <input
-                type="checkbox"
-                name="<%= model %>_<%= nameclean %>"
-                id="<%= model %>_<%= nameclean %>"
-                class="switchery"
-        />
-        {{<%= model %>.form.options.<%= name %>.text}}
 
-    </label>
+
+<div class="checkbox checkbox-switchery <%= options.size %>"
+     ng-show="!<%= model %>.form.options.<%= name %>.disabled">
+    <input
+            type="checkbox"
+            name="<%= model %>_<%= nameclean %>"
+            id="<%= model %>_<%= nameclean %>"
+            class="switchery"
+    />
     <% if(options.popover){ %>
         <i
                 id="popover<%= model %>_<%= nameclean %>" class="icon-help">
@@ -68,6 +73,11 @@ var toclient = JSON.stringify(options);
         />
     </label>
 </div>
+<label>
+
+    {{<%= model %>.form.options.<%= name %>.text}}
+
+</label>
 <script>
     var element = document.getElementById("<%= model %>_<%= nameclean %>");
     var checkbox<%= model %>_<%= nameclean %> = new Switchery(element, {size: "small"});
@@ -79,9 +89,13 @@ var toclient = JSON.stringify(options);
     $('#popover<%= model %>_<%= nameclean %>').popover({
         container: 'body',
         title: eval("`" +<%= model %>.form.options.<%= name %>.popover.title + "`"),
-        content:eval("`" +<%= model %>.form.options.<%= name %>.popover.content + "`"),
+        content
+    :
+    eval("`" +<%= model %>.form.options.<%= name %>.popover.content + "`"
+    ),
     trigger: 'click'
-    });
+    })
+    ;
     <% } %>
     $("#<%= model %>_<%= nameclean %>").change(function (val) {
         <%= model %>.<%= name %> = $(this).prop("checked");
@@ -90,8 +104,10 @@ var toclient = JSON.stringify(options);
             action: "Change Checkbox",
             field: "<%= name %>",
             value: <%= model %>.<%= name %>
-        });
-        <%= model %>.refreshAngular();
+    })
+        ;
+        <%= model %>.
+        refreshAngular();
     });
     <%= model %>.triggers.table.after.control("<%= nameclean %>");
 </script>

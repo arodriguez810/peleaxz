@@ -51,14 +51,16 @@ var toclient = JSON.stringify(options);
     <% } %>
     if (MESSAGE.exist('columns.<%= nameclean %>')) {
         <%= model %>.
-        form.options.<%= options.from %>.placeholder = MESSAGE.i('columns.<%= nameclean %>');
+        form.options.<%= options.from %>.placeholder = MESSAGE.ic('columns.<%= nameclean %>');
     }
     if (<%= model %>.<%= options.from %> && <%= model %>.<%= options.to %>)
-    <%= model + "." + name %> = `${moment(<%= model %>.<%= options.from %>).format("<%= options.format %>")} - ${moment(<%= model %>.<%= options.to %>).format("<%= options.format %>")}`;
-    else
+    {
+        <%= model + "." + name %> = `${moment(<%= model %>.<%= options.from %>).format("<%= options.format %>")} - ${moment(<%= model %>.<%= options.to %>).format("<%= options.format %>")}`;
+    }else
     if (<%= model %>.<%= options.from %>)
-    <%= model + "." + name %> = `${moment(<%= model %>.<%= options.from %>).format("<%= options.format %>")}`;
-    else
+    {
+        <%= model + "." + name %> = `${moment(<%= model %>.<%= options.from %>).format("<%= options.format %>")}`;
+    }else
     <%= model + "." + name %>= "";
 </script>
 <div class="remove-input-space form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-<%= options.icon.position %>"
@@ -123,7 +125,7 @@ var toclient = JSON.stringify(options);
         <% }else{ %>
         range = moment(<%= model %>.<%= options.from %> || undefined).format("<%= options.format %>");
         <% } %>
-        <%= model %>.<%= name %> = range;
+        //<%= model %>.<%= name %> = range;
 
         <% if(options.disabled !== true){ %>
         $('#<%= model %>_<%= nameclean %>div').daterangepicker({

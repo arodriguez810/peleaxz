@@ -24,33 +24,33 @@ DSON.keepmerge(CRUD_texts,
                 basic: {
                     drag: true,
                     label: "basic",
-                    shorttext: 20,
+                    shorttext: 80,
                     //["click", "dblclick", "mousedown", "mouseenter", "mouseleave", "mousemove", "mouseover", "mouseup"]
                 },
                 money: {
                     label: "Money",
-                    shorttext: 20,
+                    shorttext: 80,
                     formattype: 'money'
                 },
                 percentage: {
                     label: "Percentage",
-                    shorttext: 20,
+                    shorttext: 80,
                     formattype: 'percentage'
                 },
                 readonly: {
                     label: "readonly",
-                    shorttext: 20,
+                    shorttext: 80,
                     format: function (row) {
                         return row.basic + " from basic";
                     }
                 },
                 normalpassword: {
                     label: "normal password",
-                    shorttext: 20,
+                    shorttext: 80,
                 },
                 passwordplus: {
                     label: "password plus",
-                    shorttext: 20,
+                    shorttext: 80,
                 },
                 textarea: {
                     label: "textarea",

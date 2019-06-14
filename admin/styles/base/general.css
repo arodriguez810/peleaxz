@@ -1,0 +1,116 @@
+table tr th i {
+    font-size: 12px!important;
+}
+
+table tr th i.icon-checkbox-unchecked{
+    font-size: 11px!important;
+}
+
+table tr th i.icon-eye-blocked{
+    font-size: 16px!important;
+    margin-top: 2px;
+}
+
+table .icon-file-download2,
+table .icon-cog2{
+    /*color: #333333c7;*/
+    opacity: 0.7;
+}
+
+table .icons-list>li>a:hover,
+table .icon-cog2:hover,
+table .icon-file-download2:hover{
+    opacity: 1!important;
+}
+
+.page-header-default{
+    margin-bottom: 15px;
+}
+
+.style-none {
+    background: none;
+    border: none;
+}
+
+.style-none i{
+    font-size: 22px;
+    margin-bottom: -18px;
+    opacity: 0.7;
+}
+
+.style-none:hover i{
+    opacity: 1!important;
+}
+
+.width-custom1{
+    width: 4%;
+}
+
+.form-control-custom,
+    /*.select2-selection,*/
+select,
+textarea,
+input{
+    padding-bottom: 0!important;
+    padding-top: 16px!important;
+    /*padding-top: 3px!important;*/
+    color: #888888!important;
+}
+
+.select2-selection{
+    color: #888888!important;
+}
+
+.has-feedback label~.form-control-feedback{
+    top: 39px;
+    /*top: 27px;*/
+}
+
+.nav-primary.nav-tabs{
+    margin-bottom: 20px;
+}
+
+.page-container{
+    height: 100%;
+}
+
+body{
+    background: #ffffff;
+}
+
+#btnformfooter{
+    padding-right: 0;
+    float: left;
+    width: 100%;
+}
+
+.modal-body > .modal-footer:first-of-type{
+
+}
+
+.alpha-secundary-2{
+    background-color: #f2f2f2;
+    border-color: #f2f2f2;
+}
+
+.draganddroghandler{
+    font-size: 12px;
+}
+
+/*.select2-selection,*/
+/*.form-control{*/
+/*height: 28px!important;*/
+/*}*/
+
+/*.select2-selection{*/
+/*margin-top: 0!important;*/
+/*}*/
+
+.panel-dashboard {
+    padding-top: 10px!important;
+    padding-bottom: 10px!important;
+}
+
+.modal-title{
+    font-size: 18px;
+}

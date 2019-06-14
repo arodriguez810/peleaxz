@@ -7,15 +7,15 @@ DSON.keepmerge(CRUD_ms_user, {
             id: {                 visible: false,                 visibleDetail: false,                 export: false,                 exportExample: false             },
             username: {
                 label: "Username",
-                shorttext: 20
+                shorttext: 80
             },
             name: {
                 label: "Name",
-                shorttext: 20
+                shorttext: 80
             },
             lastname: {
                 label: "Lastname",
-                shorttext: 20
+                shorttext: 80
             },
             image: {
                 label: "Profile Image",
@@ -44,7 +44,7 @@ DSON.keepmerge(CRUD_ms_user, {
             },
             email: {
                 label: "Email",
-                shorttext: 20
+                shorttext: 80
             },
 
             created: {

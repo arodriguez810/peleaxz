@@ -7,7 +7,7 @@ DSON.keepmerge(CRUD_ms_product, {
             id: {                 visible: false,                 visibleDetail: false,                 export: false,                 exportExample: false             },
             name: {
                 label: "Nombraso",
-                shorttext: 20
+                shorttext: 80
             },
             price: {
                 label: "price",
@@ -17,7 +17,7 @@ DSON.keepmerge(CRUD_ms_product, {
             },
             ms_category_name: {
                 label: "Category",
-                shorttext: 20,
+                shorttext: 80,
                 link: {
                     table: "ms_category",
                     from: "category",
@@ -38,7 +38,7 @@ DSON.keepmerge(CRUD_ms_product, {
             description: {
                 label: "description",
                 sortable: false,
-                shorttext: 20,
+                shorttext: 80,
                 null: "<span class='text-grey'>[NULL]</span>"
             },
 

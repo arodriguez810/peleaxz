@@ -44,7 +44,7 @@ var toclient = JSON.stringify(options);
 
     if (MESSAGE.exist('columns.<%= nameclean %>')) {
         <%= model %>.
-        form.options.<%= name %>.placeholder = MESSAGE.i('columns.<%= nameclean %>');
+        form.options.<%= name %>.placeholder = MESSAGE.ic('columns.<%= nameclean %>');
     }
 </script>
 <div class="<%= options.icon.spyce %> form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-{{::<%= model %>.form.options.<%= name %>.icon.position}}"

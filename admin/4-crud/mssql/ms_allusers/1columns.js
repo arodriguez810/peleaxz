@@ -58,7 +58,7 @@ DSON.keepmerge(CRUD_ms_allusers, {
             description: {
                 label: "description",
                 sortable: false,
-                shorttext: 20
+                shorttext: 80
             }
         }
     }

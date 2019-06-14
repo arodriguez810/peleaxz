@@ -3,5 +3,11 @@
   "domain": "localhost",
   "subdomain": "",
   "ssl": false,
-  "port": "8090"
+  "port": 8090,
+  "proxy": {
+    "domain": "localhost",
+    "subdomain": "",
+    "ssl": false,
+    "port": 8090
+  }
 }

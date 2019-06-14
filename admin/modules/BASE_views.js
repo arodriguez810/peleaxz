@@ -65,7 +65,9 @@ exports.LoadEJS = function (files, params, folder) {
                         }
                     });
 
+                    var currencies = await params.storage.getItem("base_currency") || [];
                     var send = {
+                        CURRENCIES: currencies,
                         scope: params.modelName,
                         THEMES: params.themes,
                         session: params.session,
@@ -164,7 +166,9 @@ exports.LoadEJSDragon = function (files, params, folder) {
                         }
                     });
 
+                    var currencies = await params.storage.getItem("base_currency") || [];
                     var send = {
+                        CURRENCIES: currencies,
                         scope: params.modelName,
                         THEMES: params.themes,
                         session: params.session,
@@ -353,7 +357,9 @@ exports.loadEJSSimple = function (folder, prefix, params) {
                         }
                     });
 
+                    var currencies = await params.storage.getItem("base_currency") || [];
                     var send = {
+                        CURRENCIES: currencies,
                         scope: req.query.scope,
                         THEMES: params.themes,
                         session: params.session,
@@ -436,7 +442,9 @@ exports.loadEJSSimple = function (folder, prefix, params) {
                     }
                 });
 
+                var currencies = await params.storage.getItem("base_currency") || [];
                 var send = {
+                    CURRENCIES: currencies,
                     scope: req.query.scope,
                     THEMES: params.themes,
                     session: params.session,
@@ -607,7 +615,9 @@ exports.loadEJSSimpleSilents = function (folder, prefix, params) {
                         }
                     });
 
+                    var currencies = await params.storage.getItem("base_currency") || [];
                     var send = {
+                        CURRENCIES: currencies,
                         scope: req.query.scope,
                         THEMES: params.themes,
                         session: params.session,
@@ -689,7 +699,9 @@ exports.loadEJSSimpleSilents = function (folder, prefix, params) {
                     }
                 });
 
+                var currencies = await params.storage.getItem("base_currency") || [];
                 var send = {
+                    CURRENCIES: currencies,
                     scope: req.query.scope,
                     THEMES: params.themes,
                     session: params.session,
@@ -860,7 +872,9 @@ exports.loadEJSSimplePOST = function (folder, prefix, params) {
                         }
                     });
 
+                    var currencies = await params.storage.getItem("base_currency") || [];
                     var send = {
+                        CURRENCIES: currencies,
                         scope: req.query.scope,
                         THEMES: params.themes,
                         session: params.session,

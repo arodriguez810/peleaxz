@@ -435,7 +435,7 @@ FORM = {
                 }) === false)
                     return;
 
-                BASEAPI.updateall($scope.tableOrMethod, dataToUpdate, function (result) {
+                BASEAPI.updateall($scope.tableOrMethod, dataToUpdate, async function (result) {
                     if (result.data.error === false) {
                         if ($scope.form !== null) {
                             $scope.form.after.update({
@@ -487,11 +487,10 @@ FORM = {
                                         whereDelete.push(relation.config.fieldsUpdate)
 
 
-                                        BASEAPI.deleteall(relation.config.toTable, whereDelete, function (ddata) {
-                                            BASEAPI.insert(relation.config.toTable, relation.data, function (data) {
-                                                $scope.pages.form.subRequestComplete(close);
-                                            });
-                                        });
+                                        var ddata = await BASEAPI.deleteallp(relation.config.toTable, whereDelete);
+                                        await BASEAPI.insertp(relation.config.toTable, relation.data);
+                                        $scope.pages.form.subRequestComplete(close);
+
                                     }
                                 }
                             }
@@ -1183,7 +1182,6 @@ FORM = {
                                     confirm: function () {
                                         if ($scope.form.target === FORM.targets.modal) {
                                             MODAL.close($scope);
-                                            console.log('nata1');
                                             if (close === false) {
                                                 $scope.refresh();
                                                 $scope.modalAction($scope.modelName, 'Parent', 'user', 'new', {});
@@ -1301,9 +1299,7 @@ FORM = {
                                     setTimeout(() => {
                                         let btnformfooter = $('#btnformfooter');
                                         let elment = FIXELEMENT.isScrolledIntoViewBottom(btnformfooter);
-                                        console.log(elment);
                                         if (elment === true) {
-                                            console.log(elment);
                                             $('.modal-body').prepend($scope.returnBuild(btnformfooter.clone()));
                                         }
                                     }, 1000);

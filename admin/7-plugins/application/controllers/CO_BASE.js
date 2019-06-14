@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngSanitize']);
+var app = angular.module('app', ['ngSanitize', 'ngMask']);
 app.directive("repeatEnd", function () {
     return {
         restrict: "A",
@@ -61,11 +61,16 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
         baseController.isLogged = true;
         baseController.isSuper = session.current().super;
         baseController.isAdmin = session.current().groupadmin;
-        if (new SESSION().current().isClient)
+        if (session.current().isClient)
             baseController.isClient = new SESSION().current().isClient();
         else
             baseController.isClient = false;
+
         baseController.userID = session.current().getID();
+        if (session.current().path)
+            baseController.path = session.current().path();
+        else
+            baseController.path = CONFIG.users.path;
         baseController.fullName = session.current().fullName();
         baseController.type = session.current().type;
         GROUPS = new SESSION().current().onlygroups;

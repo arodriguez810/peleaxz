@@ -169,7 +169,7 @@ FILTER = {
             };
             $scope.filters.label = function (column) {
                 if (MESSAGE.exist('columns.' + column.key)) {
-                    return MESSAGE.i('columns.' + column.key);
+                    return MESSAGE.ic('columns.' + column.key);
                 } else {
                     return column.label;
                 }

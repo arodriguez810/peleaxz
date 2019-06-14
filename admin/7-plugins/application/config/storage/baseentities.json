@@ -12,10 +12,8 @@
         "homePage",
         "created",
         "updated",
-        "deleted",
         "user_created",
-        "user_updated",
-        "user_deleted"
+        "user_updated"
       ]
     },
     "user_group": {
@@ -26,11 +24,9 @@
         "group",
         "created",
         "updated",
-        "deleted",
         "tempid",
         "user_created",
-        "user_updated",
-        "user_deleted"
+        "user_updated"
       ]
     },
     "permission": {
@@ -60,10 +56,8 @@
         "content",
         "created",
         "updated",
-        "deleted",
         "user_created",
-        "user_updated",
-        "user_deleted"
+        "user_updated"
       ]
     },
     "segment": {
@@ -75,10 +69,8 @@
         "description",
         "created",
         "updated",
-        "deleted",
         "user_created",
-        "user_updated",
-        "user_deleted"
+        "user_updated"
       ]
     },
     "interval": {
@@ -91,10 +83,8 @@
         "code",
         "created",
         "updated",
-        "deleted",
         "user_created",
-        "user_updated",
-        "user_deleted"
+        "user_updated"
       ]
     },
     "notifications_segment": {
@@ -105,11 +95,9 @@
         "segment",
         "created",
         "updated",
-        "deleted",
         "tempid",
         "user_created",
-        "user_updated",
-        "user_deleted"
+        "user_updated"
       ]
     },
     "user_notifications": {
@@ -120,11 +108,9 @@
         "notifications",
         "created",
         "updated",
-        "deleted",
         "tempid",
         "user_created",
-        "user_updated",
-        "user_deleted"
+        "user_updated"
       ]
     },
     "customfield": {
@@ -162,10 +148,8 @@
         "description",
         "created",
         "updated",
-        "deleted",
         "user_created",
-        "user_updated",
-        "user_deleted"
+        "user_updated"
       ]
     },
     "mime": {
@@ -178,10 +162,25 @@
         "description",
         "created",
         "updated",
-        "deleted",
         "user_created",
-        "user_updated",
-        "user_deleted"
+        "user_updated"
+      ]
+    },
+    "base_currency": {
+      "key": "id",
+      "type": "one",
+      "base": true,
+      "fields": [
+        "name",
+        "description",
+        "symbol",
+        "decimal",
+        "separator",
+        "precision",
+        "created",
+        "updated",
+        "user_created",
+        "user_updated"
       ]
     }
   }

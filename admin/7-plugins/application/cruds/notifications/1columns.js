@@ -26,12 +26,12 @@ DSON.keepmerge(CRUD_notifications, {
             id: {                 visible: false,                 visibleDetail: false,                 export: false,                 exportExample: false             },
             subject: {
                 label: "subject",
-                shorttext: 20
+                shorttext: 80
             },
             content: {
                 label: "content",
                 sortable: false,
-                shorttext: 20,
+                shorttext: 80,
                 null: "<span class='text-grey'>[NULL]</span>"
             },
             created: {

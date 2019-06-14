@@ -2,3 +2,4 @@ db/journal/WiredTigerLog.0000000008
 db/journal/WiredTigerLog.0000000014
 db/
 admin/node_modules.zip
+admin/node_modules/

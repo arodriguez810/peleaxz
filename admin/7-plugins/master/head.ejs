@@ -42,10 +42,14 @@
                             style="color: <%= CONFIG.ui.theme.primary %>;text-shadow: 0 1px 0 <%= CONFIG.ui.theme.secundary %>,0 2px 0 <%= CONFIG.ui.theme.secundary %>,0 3px 0 <%= CONFIG.ui.theme.secundary %>,0 4px 0 <%= CONFIG.ui.theme.secundary %>,0 5px 0 #aaa,0 6px 1px rgba(0,0,0,.1),0 0 5px rgba(0,0,0,.1),0 1px 3px rgba(0,0,0,.3),0 3px 5px rgba(0,0,0,.2),0 5px 10px rgba(0,0,0,.25),0 10px 10px rgba(0,0,0,.2),0 20px 20px rgba(0,0,0,.15);">
                             <%= CONFIG.appName %>
                             <script>
-                                if (document.location.href.indexOf('#') === -1 && new SESSION().current().homePage) {
-                                    new HTTP().redirecttag(new SESSION().current().homePage.replace('#', ''));
-                                } else if (document.location.href.indexOf('#') === -1) {
-                                    new HTTP().redirecttag(CONFIG.home.replace('#', ''));
+                                if (new SESSION().current()) {
+                                    if (document.location.href.indexOf('#') === -1 && new SESSION().current().homePage) {
+                                        new HTTP().redirecttag(new SESSION().current().homePage.replace('#', ''));
+                                    } else if (document.location.href.indexOf('#') === -1) {
+                                        new HTTP().redirecttag(CONFIG.home.replace('#', ''));
+                                    }
+                                } else {
+                                    new SESSION().ifLogoffRedirec();
                                 }
                             </script>
                         </h1>

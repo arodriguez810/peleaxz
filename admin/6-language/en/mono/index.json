@@ -217,5 +217,7 @@
   "desc": "descending",
   "sorted": "sorted",
   "add_fiter": "Add Filter",
-  "ordered": "ordered"
+  "ordered": "ordered",
+  "managers": "managers",
+  "datacenter": "data center"
 }

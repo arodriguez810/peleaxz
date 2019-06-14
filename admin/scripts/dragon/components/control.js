@@ -1,6 +1,7 @@
 CONTROL = {
     run: function ($scope, $compile) {
         $scope.control = {};
+        $scope.control.dropdown = [];
         $scope.control.draw = (content, url, name, opts) => new Promise((resolve, reject) => {
             new LOAD().templatePost(`dragoncontrol/${url}`, {
                 name: name,
@@ -25,7 +26,6 @@ CONTROL = {
         }
         $scope.control.customfield = (content, fields, cols, destroy, readonly) => new Promise(async (resolve, reject) => {
             $(content).html("");
-            console.log(fields);
             for (var field of fields) {
                 if (destroy) {
                     eval(`delete $scope.${field.variable};`);
@@ -125,12 +125,47 @@ CONTROL = {
                         break;
                     }
                     case "3": {
-                        //$(content).append(`<div class="col-sm-${cols} col-md-${cols}" id="field${field.id}">${field.name}: En desarrollo</div>`);
-                        // await $scope.control.select(`#field${field.id}`, field.variable,
-                        //     {
-                        //         placeHolder: field.name
-                        //     }
-                        // );
+                        $(content).append(`<div class="col-sm-${cols} col-md-${cols}" id="field${field.id}"></div>`);
+                        if (!field.parent) {
+                            var dataDropdown = [];
+                            var elements = field.elements.split(",");
+                            for (var element in elements) {
+                                dataDropdown.push({id: elements[element], name: elements[element]});
+                            }
+                            $scope.control.dropdown[field.variable] = {data: dataDropdown, field: field};
+                            await $scope.control.selectsimple(`#field${field.id}`, field.variable,
+                                {
+                                    label: field.name,
+                                    data: $scope.control.dropdown[field.variable].data
+                                });
+                        } else {
+                            var myparent = $scope.control.dropdown[field.parent];
+
+                            if (myparent) {
+                                var dataDropdown = [];
+                                console.log(myparent);
+                                for (var parent of myparent.data) {
+                                    if (eval(`field.${parent.id}`)) {
+                                        var elements = eval(`field.${parent.id}`).split(",");
+                                        for (var element in elements) {
+                                            dataDropdown.push({
+                                                id: elements[element],
+                                                name: elements[element],
+                                                parent: parent.id
+                                            });
+                                        }
+                                    }
+                                }
+                                $scope.control.dropdown[field.variable] = {data: dataDropdown, field: field};
+                                await $scope.control.selectsimple(`#field${field.id}`, field.variable,
+                                    {
+                                        label: field.name,
+                                        data: $scope.control.dropdown[field.variable].data,
+                                        condition: `item.parent==${$scope.modelName}.${myparent.field.variable}`
+                                    });
+                                $scope.form.loadSelect(field.variable);
+                            }
+                        }
                         break;
                     }
                 }
@@ -144,6 +179,7 @@ CONTROL = {
                     }
 
             }
+            resolve(true);
         });
     },
     shadesMonochrome: function (color, shadesBlocks) {

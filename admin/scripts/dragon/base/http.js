@@ -25,7 +25,7 @@ HTTP = function () {
     };
     this.path = function (pathsarray) {
         var formurl = [];
-        formurl.push(`http${CONFIG.ssl ? "s" : ""}://${CONFIG.subdomain !== "" ? (CONFIG.subdomain + ".") : ""}${CONFIG.domain}:${CONFIG.port === 80 ? "" : CONFIG.port}`);
+        formurl.push(`http${CONFIG.proxy.ssl ? "s" : ""}://${CONFIG.proxy.subdomain !== "" ? (CONFIG.proxy.subdomain + ".") : ""}${CONFIG.proxy.domain}${CONFIG.proxy.port === 80 || CONFIG.proxy.port === 443 ? "" : ":" + CONFIG.proxy.port}`);
         return formurl.concat(pathsarray).join("/");
     };
     this.cleanRoot = function (path) {
@@ -34,7 +34,7 @@ HTTP = function () {
     this.tagpath = function (pathsarray) {
         var formurl = [];
         pathsarray[0] = "#" + pathsarray[0];
-        formurl.push(`http${CONFIG.ssl ? "s" : ""}://${CONFIG.subdomain !== "" ? (CONFIG.subdomain + ".") : ""}${CONFIG.domain}:${CONFIG.port === 80 ? "" : CONFIG.port}`);
+        formurl.push(`http${CONFIG.proxy.ssl ? "s" : ""}://${CONFIG.proxy.subdomain !== "" ? (CONFIG.proxy.subdomain + ".") : ""}${CONFIG.proxy.domain}${CONFIG.proxy.port === 80 || CONFIG.proxy.port === 443 ? "" : ":" + CONFIG.proxy.port}`);
         return formurl.concat(pathsarray).join("/");
     };
     this.redirect = function (path) {

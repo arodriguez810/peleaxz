@@ -270,3 +270,12 @@
 .select2 {
     margin-top: 3px;
 }
+
+.switchery{
+    vertical-align: auto !important;
+}
+
+.radio, .checkbox {
+    margin-top: 29px;
+    margin-bottom: 9px;
+}

@@ -9,7 +9,7 @@
          ng-show="<%= scope %>.records.data.length<=0"
          class="alert alpha-<%= COLOR.secundary %> border-<%= COLOR.secundary %> alert-styled-left">
         <b>
-            <language>MESSAGE.i('table.nodata')</language>
+            <language>MESSAGE.ic('table.nodata')</language>
         </b>
     </div>
 
@@ -31,6 +31,12 @@
         <thead class="bg-<%= COLOR.secundary %>" id="<%= scope %>head">
         <!--Columns-->
         <tr class="bg-<%= COLOR.secundary %> dragon-columns">
+            <th ng-if="<%= scope %>.characterist('batch')">
+                <span style="margin-top: 1px;" title="Check All" class="cursor-pointer "
+                      ng-bind-html="<%= scope %>.drawCheck(key)"
+                      ng-click="<%= scope %>.checkAll()">
+                </span>
+            </th>
             <th ng-repeat="(key, value) in <%= scope %>.columns() track by key"
                 ng-show="<%= scope %>.columnVisible(value)"
                 data-column="{{key}}"
@@ -44,6 +50,7 @@
         </thead>
         <tbody id="<%= scope %>TableBody">
         <!--Rows-->
+
         <tr ng-repeat="(key, row) in <%= scope %>.records.data track by key" data-object="{{row}}"
             style="{{<%= scope %>.rowStyle(row)}}"
             class="dragon-rows {{<%= scope %>.rowClass(row)}}  {{<%= scope %>.rowDeleted(row)}} {{<%= scope %>.trCheck(row)}}">

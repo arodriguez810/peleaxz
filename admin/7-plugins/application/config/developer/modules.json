@@ -109,6 +109,14 @@
       "module": "md5"
     },
     {
+      "var": "http",
+      "module": "http"
+    },
+    {
+      "var": "fetch ",
+      "module": "node-fetch"
+    },
+    {
       "var": "deepmerge",
       "module": "deepmerge"
     },

@@ -7,16 +7,16 @@ DSON.keepmerge(CRUD_interval, {
             id: {                 visible: false,                 visibleDetail: false,                 export: false,                 exportExample: false             },
             name: {
                 label: "name",
-                shorttext: 20
+                shorttext: 80
             },
             code: {
                 label: "code",
-                shorttext: 20
+                shorttext: 80
             },
             description: {
                 label: "description",
                 sortable: false,
-                shorttext: 20,
+                shorttext: 80,
                 null: "<span class='text-grey'>[NULL]</span>"
             },
             created: {

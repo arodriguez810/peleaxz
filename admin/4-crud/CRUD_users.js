@@ -13,15 +13,15 @@ DSON.keepmerge(CRUD_users, {
             },
             username: {
                 label: "Username",
-                shorttext: 20
+                shorttext: 80
             },
             name: {
                 label: "Name",
-                shorttext: 20
+                shorttext: 80
             },
             lastname: {
                 label: "Lastname",
-                shorttext: 20
+                shorttext: 80
             },
             image: {
                 label: "Profile Image",
@@ -50,7 +50,7 @@ DSON.keepmerge(CRUD_users, {
             },
             email: {
                 label: "Email",
-                shorttext: 20
+                shorttext: 80
             },
             created: {
                 visible: false,

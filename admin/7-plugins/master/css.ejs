@@ -13,13 +13,15 @@
 <link href="assets/css/colors.css" rel="stylesheet" type="text/css">
 <link href="assets/js/plugins/date/yearpicker.css" rel="stylesheet" type="text/css">
 
-<% localStyles.forEach(function(item){ %>
-    <link href="<%= FOLDERS.styles %>/<%= item %>" rel="stylesheet" type="text/css">
-<% }); %>
+
 
 <link href="<%= FOLDERS.themes %>/extra.css" rel="stylesheet" type="text/css">
 <link href="<%= FOLDERS.themes %>/secundary.css" rel="stylesheet" type="text/css">
 <link href="<%= FOLDERS.themes %>/primary.css" rel="stylesheet" type="text/css">
+
+<% localStyles.forEach(function(item){ %>
+    <link href="<%= FOLDERS.styles %>/<%= item %>" rel="stylesheet" type="text/css">
+<% }); %>
 <style>
     .select2-results__option--highlighted, .cancelmodal, .modal-title {
         color: <%= CONFIG.ui.theme.text2 %> !important;

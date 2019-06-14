@@ -3,16 +3,16 @@ TABLESELECTION = {
         $scope.checkall = false;
         $scope.drawCheck = function (key, row) {
             if (row !== undefined) {
-                if (key === $scope.columnToSelect()) {
-                    if ($scope.characterist('batch')) {
-                        return "<i  class=\"dragoncheck text-" + COLOR.primary + "-900 " + $scope.checkIcon(row.selected) + " \"></i>";
-                    }
+
+                if ($scope.characterist('batch')) {
+                    return "<i  class=\"dragoncheck text-" + COLOR.primary + "-900 " + $scope.checkIcon(row.selected) + " \"></i>";
                 }
+
             } else {
-                if (key === $scope.columnToSelect())
-                    if ($scope.characterist('batch')) {
-                        return "<i   class=\"dragoncheck " + $scope.checkAllIcon($scope.checkall) + "\"></i>";
-                    }
+
+                if ($scope.characterist('batch')) {
+                    return "<i   class=\"dragoncheck " + $scope.checkAllIcon($scope.checkall) + "\"></i>";
+                }
             }
             return "";
         };

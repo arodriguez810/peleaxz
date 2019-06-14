@@ -106,10 +106,18 @@ PERMISSIONS = {
     },
     format: function () {
         for (var i in CONFIG.permissions.list) {
-            DSON.merge(
-                CONFIG.permissions.list[i].allow,
-                eval(`CONFIG.permissions.types.${CONFIG.permissions.list[i].type}`),
-                true);
+            if (CONFIG.permissions.list[i].fix) {
+                DSON.merge(
+                    CONFIG.permissions.list[i].allow,
+                    CONFIG.permissions.list[i].fix,
+                    true);
+            } else {
+                DSON.merge(
+                    CONFIG.permissions.list[i].allow,
+                    eval(`CONFIG.permissions.types.${CONFIG.permissions.list[i].type}`),
+                    true);
+            }
+
             PERMISSIONS.entitiesCount++;
         }
         PERMISSIONS.entities = DSON.OSO(CONFIG.permissions.list);

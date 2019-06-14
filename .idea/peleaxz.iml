@@ -97,16 +97,18 @@
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/cruds/fieldtype" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/fieldtype" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/cruds/customfield" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/cruds" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/cruds/mime" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/customfield" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/mime" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/modules" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/templates/system" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/templates" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/templates/system/view" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/base_currency" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/cruds" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/cruds/base_currency" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/.tmp" />
       <excludeFolder url="file://$MODULE_DIR$/admin/assets" />
       <excludeFolder url="file://$MODULE_DIR$/admin/defaults" />

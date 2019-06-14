@@ -173,7 +173,8 @@
 
         <div class="row" ng-show="configuration.mode!=='admin'">
 
-            <div class="col-sm-4 col-md-4  ">
+
+            <div class="col-sm-4 col-md-3  ">
                 <%- FORM.input("config.domain", scope, {
                     maxlength: 50,
                     placeholder: "Domain",
@@ -181,7 +182,7 @@
                 }) %>
             </div>
 
-            <div class="col-sm-4 col-md-4  ">
+            <div class="col-sm-4 col-md-3  ">
                 <%- FORM.input("config.subdomain", scope, {
                     maxlength: 20,
                     placeholder: "Subdomain",
@@ -189,13 +190,46 @@
                 }) %>
             </div>
 
-            <div class="col-sm-12 col-md-2  ">
+            <div class="col-sm-12 col-md-1  ">
                 <%- FORM.input("config.port", scope, {placeholder: "Port", maxlength: 4, isNumber: true}) %>
             </div>
 
             <div class="col-sm-1 col-md-2">
                 <br>
                 <%- FORM.checkbox("config.ssl", scope, {text: 'SSL/HTTPS', size: 'switchery-sm'}) %>
+            </div>
+
+        </div>
+
+        <h6 class="panel-title" dragonlanguage><i class="icon-sphere position-left"></i>
+            <language>MESSAGE.ic('mono.proxy')</language>
+        </h6>
+
+        <div class="row" ng-show="configuration.mode!=='admin'">
+
+            <div class="col-sm-4 col-md-3  ">
+                <%- FORM.input("config.proxy.domain", scope, {
+                    maxlength: 50,
+                    placeholder: "Domain",
+                    icon: {class: "browser"}
+                }) %>
+            </div>
+
+            <div class="col-sm-4 col-md-3  ">
+                <%- FORM.input("config.proxy.subdomain", scope, {
+                    maxlength: 20,
+                    placeholder: "Subdomain",
+                    icon: {class: "browser"}
+                }) %>
+            </div>
+
+            <div class="col-sm-12 col-md-1  ">
+                <%- FORM.input("config.proxy.port", scope, {placeholder: "Port", maxlength: 4, isNumber: true}) %>
+            </div>
+
+            <div class="col-sm-1 col-md-2">
+                <br>
+                <%- FORM.checkbox("config.proxy.ssl", scope, {text: 'SSL/HTTPS', size: 'switchery-sm'}) %>
             </div>
 
         </div>

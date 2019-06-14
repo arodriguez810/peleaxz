@@ -2,7 +2,6 @@ MODAL = {
     historyObject: [],
     history: [],
     viewData: [],
-
     rawModal: function (title, link, icon, width, controller) {
         MENUMODAL = true;
         baseController.currentModel.modal.modalView(link, {
@@ -194,12 +193,6 @@ MODAL = {
             $("#modal" + data.id).on("shown.bs.modal", function () {
                 if (typeof data.event.show.end === "function")
                     data.event.show.end($scope);
-                setTimeout(() => {
-                    let btnformfooter = $('#btnformfooter');
-                    let elment = FIXELEMENT.isScrolledIntoViewBottom(btnformfooter);
-                    if (elment === true)
-                        btnformfooter.clone().prependTo('.modal-body');
-                }, 3000);
             });
             data.viewData = baseController.viewData;
             MODAL.historyObject.push(data);

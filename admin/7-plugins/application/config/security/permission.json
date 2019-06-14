@@ -97,6 +97,15 @@
           "DOC": true
         },
         "actions": true
+      },
+      "empty": {
+        "export": {
+        }
+      },
+      "emptymenu": {
+        "menu": true,
+        "export": {
+        }
       }
     },
     "list": {

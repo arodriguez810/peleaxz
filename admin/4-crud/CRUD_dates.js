@@ -15,7 +15,7 @@ DSON.keepmerge(CRUD_dates,
                 date: {
                     sorttype: "time",
                     formattype: "date",
-                    exportExample: "\"\"[Date YYYY-MM-DD]\"\""
+                    exportExample: "\"\"[Date YYYY-MM-DD]\"\"",
                 },
                 datetime: {
                     sorttype: "time",

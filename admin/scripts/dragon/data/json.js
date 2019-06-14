@@ -39,7 +39,7 @@ DSON = {
         return eval("(" + string + ")");
     },
     ULALIA: function (arays) {
-        return `<ul style="list-style: none"><li>${arays.join("</li><li>")}</li></ul>`;
+        return `<ul style=""><li>${arays.join("</li><li>")}</li></ul>`;
     },
     OMG: function (id, scope) {
         eval(`${scope}.loadImage${id} = function () {

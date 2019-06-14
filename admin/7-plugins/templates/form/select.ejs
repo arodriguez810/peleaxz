@@ -21,6 +21,7 @@ var options = {
     allowview: true,
     allowlist: true,
     refresh: true,
+    condition: "true",
     multiple: false,
     disabled: false,
     helptext: '',
@@ -62,10 +63,9 @@ var options = {
 options = OBJECT.merge(options, opts);
 var nameclean = name.replace(/\./g, '_');
 options.model = options.model ? options.model : false;
-options.controller = options.controller||options.table;
+options.controller = options.controller || options.table;
 options.permission = options.permission || "CRUD_" + options.controller;
 var toclient = JSON.stringify(options);
-
 %>
 <script>
     <%= model %>.selectMessage = MESSAGE.ic('mono.youselect');
@@ -89,7 +89,7 @@ var toclient = JSON.stringify(options);
     <%= model %>.form.options.<%= name %>.default = `${MESSAGE.ic('mono.youselect')}`;
     if (MESSAGE.exist('columns.<%= nameclean %>')) {
         <%= model %>.
-        form.options.<%= name %>.label = MESSAGE.i('columns.<%= nameclean %>');
+        form.options.<%= name %>.label = MESSAGE.ic('columns.<%= nameclean %>');
         <%= model %>.
         form.options.<%= name %>.default = `${MESSAGE.ic('mono.youselect')}`;
     }
@@ -117,7 +117,7 @@ var toclient = JSON.stringify(options);
     form.options.<%= name %>.allownew = false;
 </script>
 <% if (model !== options.controller){ %>
-<div id="<%= options.controller %>" ng-controller="<%= options.controller %> as <%= options.controller%>">
+<div id="<%= options.controller %>" ng-controller="<%= options.controller %> as <%= options.controller %>">
     <% } %>
     <div class="form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-<%= options.icon.position %>"
          id="input<%= model %>_<%= nameclean %>">
@@ -208,7 +208,7 @@ var toclient = JSON.stringify(options);
                           label="{{key}}">
                     <option
 
-                            ng-if="<%= (options.self === true ? 'true' : ('item.' + options.value + '!=' + model + '.' + options.value)) %>"
+                            ng-if="<%= options.condition %>"
                             data-object="{{item}}" ng-repeat="(sub,item) in categories track by sub"
                             value="{{item.<%= options.value %>}}">
                         {{<%= options.text %>}}
@@ -216,7 +216,7 @@ var toclient = JSON.stringify(options);
                 </optgroup>
             <% } else{ %>
                 <option data-object="{{item}}"
-                        ng-if="<%= (options.self === true ? 'true' : ('item.' + options.value + '!=' + model + '.' + options.value)) %>"
+                        ng-if="<%= options.condition %>"
                         ng-repeat="(key,item) in <%= model %>.form.options.<%= name %>.data track by key"
                         value="{{item.<%= options.value %>}}">
                     {{<%= options.text %>}}
@@ -250,11 +250,16 @@ var toclient = JSON.stringify(options);
     function reloadMe<%= model %>_<%= nameclean %>() {
         if (PRUDENTS["<%= options.controller %>"] !== undefined) {
             <% if(options.multiple){ %>
-                <%= model %>.<%= nameclean %>.push(PRUDENTS["<%= options.controller %>"].toString());
-                delete PRUDENTS["<%= options.controller %>"];
-            <% }else {%>
-                <%= model %>.<%= nameclean %> = PRUDENTS["<%= options.controller %>"].toString();
-                delete PRUDENTS["<%= options.controller %>"];
+            if (<%= model %>.<%= nameclean %>===
+            "[NULL]"
+        )
+            <%= model %>.<%= nameclean %> = [];
+            <%= model %>.<%= nameclean %>.
+            push(PRUDENTS["<%= options.controller %>"].toString());
+            delete PRUDENTS["<%= options.controller %>"];
+            <% }else { %>
+            <%= model %>.<%= nameclean %> = PRUDENTS["<%= options.controller %>"].toString();
+            delete PRUDENTS["<%= options.controller %>"];
             <% } %>
         }
         <%= model %>.
@@ -266,9 +271,13 @@ var toclient = JSON.stringify(options);
         $('#popover<%= model %>_<%= nameclean %>').popover({
             container: 'body',
             title: eval("`" +<%= model %>.form.options.<%= name %>.popover.title + "`"),
-            content:eval("`" +<%= model %>.form.options.<%= name %>.popover.content + "`"),
+            content
+    :
+        eval("`" +<%= model %>.form.options.<%= name %>.popover.content + "`"
+    ),
         trigger: 'click'
-    });
+    })
+        ;
         <% } %>
         <%= model %>.
         form.beginFunctions.push(`reloadMe<%= model %>_<%= nameclean %>();`);

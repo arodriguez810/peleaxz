@@ -13,10 +13,8 @@
         "active",
         "created",
         "updated",
-        "deleted",
         "user_created",
-        "user_updated",
-        "user_deleted"
+        "user_updated"
       ]
     }
   }

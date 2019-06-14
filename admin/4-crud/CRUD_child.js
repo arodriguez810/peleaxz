@@ -15,12 +15,12 @@ DSON.keepmerge(CRUD_child,
                 },
                 name: {
                     label: "name",
-                    shorttext: 20
+                    shorttext: 80
                 },
                 description: {
                     label: "description",
                     sortable: false,
-                    shorttext: 20,
+                    shorttext: 80,
                     null: "<span class='text-grey'>[NULL]</span>"
                 },
                 parent_name: {

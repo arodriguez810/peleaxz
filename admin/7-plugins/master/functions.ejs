@@ -36,10 +36,7 @@ addMenu = function (prefix, array) {
 addMenu([], CONFIG.menus);
 %>
 <script>
-    const USD = value => currency(value, {symbol: '$', decimal: ',', separator: '.'});
-    const JPY = value => currency(value, {precision: 0, symbol: '¥'});
-    const EURO = value => currency(value, {symbol: '€', decimal: ',', separator: '.'});
-    const DOP = value => currency(value, {symbol: '$', decimal: '.', separator: ','});
+
 
     MENUMODAL = false;
     CHANGINGMENU = true;
@@ -51,6 +48,10 @@ addMenu([], CONFIG.menus);
     CONFIG = eval("(" + CONFIG.replaceAll("&#34;", '"') + ")");
     MENUONEROW = "<%= JSON.stringify(MENUONEROW) %>";
     MENUONEROW = eval("(" + MENUONEROW.replaceAll("&#34;", '"') + ")");
+
+    CURRENCIES = "<%= JSON.stringify(CURRENCIES) %>";
+    CURRENCIES = eval("(" + CURRENCIES.replaceAll("&#34;", '"') + ")");
+
     LANGUAGE = "<%= JSON.stringify(LANGUAGE) %>";
     LANGUAGE = eval("(" + LANGUAGE.replaceAll("&#34;", '"') + ")");
     CONTROLS = "<%= JSON.stringify(controls) %>";
@@ -76,6 +77,11 @@ addMenu([], CONFIG.menus);
     MODELLIST = eval("(" + MODELLIST.replaceAll("&#34;", '"') + ")");
     CONTROLLERS = "<%= JSON.stringify(controllersjs) %>";
     CONTROLLERS = eval("(" + CONTROLLERS.replaceAll("&#34;", '"') + ")");
+
+    for (var cur of CURRENCIES) {
+        eval(`var ${cur.name} = value => currency(value, {symbol: '${cur.symbol}', decimal: '${cur.decimal}', separator: '${cur.separator}'});`)
+    }
+
     CONTROLLERSNAMES = [];
     for (var CONTROLLER of CONTROLLERS) {
         var name = CONTROLLER.split('CO_')[1].split('.js')[0];

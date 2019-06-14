@@ -1,0 +1,143 @@
+<%
+if (DATA.name !== undefined) {
+    var name, model, opts;
+    name = DATA.name;
+    model = DATA.model;
+    opts = DATA.opts;
+}
+var name = name || "";
+var options = {
+    placeholder: params.capitalize(name),
+    type: "text",
+    icon: {
+        class: "none",
+        position: "left",
+        color: COLOR.secundary + "-800"
+    },
+    helptext: '',
+    format: '',
+    readonly: false,
+    disabled: false,
+    autocomplete: '',
+    sufix: '',
+    prefix: '',
+    posttype: "text",
+    isNumber: true,
+    mask: null,
+    restrict: null,
+    repeat: null,
+    clean: null,
+    validate: null,
+    limit: null,
+    //maxlength: 10,
+
+};
+
+
+options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g, '_');
+options.icon.spyce = options.icon.class === "none" ? "remove-input-space" : "";
+options.autocomplete = options.autocomplete ? "autocomplete='Off'" : '';
+options.format = options.format ? options.format : false;
+options.model = options.model ? options.model : false;
+var toclient = JSON.stringify(options);
+%>
+<script>
+    <%= model %>.triggers.table.before.control("<%= nameclean %>");
+    <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
+    if (MESSAGE.exist('columns.<%= nameclean %>')) {
+        <%= model %>.
+        form.options.<%= name %>.placeholder = MESSAGE.ic('columns.<%= nameclean %>');
+    }
+</script>
+<div class="<%= options.icon.spyce %> form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-{{::<%= model %>.form.options.<%= name %>.icon.position}}"
+     id="input<%= model %>_<%= nameclean %>">
+    <label
+            class="control-label is-visible animate" style="color:#000000 !important;">
+        {{::<%= model %>.form.options.<%= name %>.placeholder}}
+        <% if(options.popover){ %>
+            <i
+                    id="popover<%= model %>_<%= nameclean %>" class="icon-help">
+            </i>
+        <% } %>
+    </label>
+    <input
+            ng-model="<%= model + "." + name %>" name="<%= model %>_<%= nameclean %>"
+            ng-readonly="<%= model %>.form.options.<%= name %>.readonly"
+            ng-disabled="<%= model %>.form.options.<%= name %>.disabled"
+            maxlength="{{<%= model %>.form.options.<%= name %>.maxlength}}"
+            type="text"
+            autocomplete="off"
+            ng-model-onblur
+            mask="<%= options.mask %>"
+            restrict="<%= options.restrict %>"
+            repeat="<%= options.repeat %>"
+            clean="<%= options.clean %>"
+            validate="<%= options.validate %>"
+            limit="<%= options.limit %>"
+
+            class=" form-control"
+    placeholder="{{::<%= model %>.form.options.<%= name %>.inputPlaceholder}}">
+
+    <div class="form-control-feedback" ng-if="<%= model %>.form.options.<%= name %>.icon.class!=='none'">
+        <i class="icon-<%= options.icon.class %> text-secundary">
+
+        </i>
+    </div>
+    <span ng-if="<%= model %>.form.options.<%= name %>.helptext!=''"
+          class="help-block text-muted">
+        <%= options.helptext %>
+    </span>
+
+    <span ng-if="<%= model %>.validate['<%= name %>'].messages.length>0" class="help-block">
+
+        <p class="text-{{validation.type}}" ng-show="validation.visible!==false || <%= model %>.form.intent===true"
+           ng-repeat="(key,validation) in <%= model %>.validate['<%= name %>'].messages track by key">
+               <i class="{{validation.icon}}"></i> {{validation.message}}
+        </p>
+    </span>
+</div>
+
+<script>
+    <%= model %>.triggers.table.after.control("<%= nameclean %>");
+    <% if(options.popover){ %>
+    $('#popover<%= model %>_<%= nameclean %>').popover({
+        container: 'body',
+        title: eval("`" +<%= model %>.form.options.<%= name %>.popover.title + "`"),
+        content
+    :
+    eval("`" +<%= model %>.form.options.<%= name %>.popover.content + "`"
+    ),
+    trigger: 'click'
+    })
+    ;
+    <% } %>
+
+
+    $('[name="<%= model %>_<%= nameclean %>"]').blur(function () {
+
+        STEP.register({
+            scope: "<%= model %>",
+            action: "Change Format Text",
+            field: "<%= name %>",
+            value: <%= model %>.<%= name %>
+    })
+        ;
+    });
+
+    $('[name="<%= model %>_<%= nameclean %>"]').trigger('click');
+    <%= model %>.refreshAngular();
+
+    var isReadProgram = <%= model %>.form.isReadOnly('<%= name %>');
+    if (isReadProgram !== false) {
+        <%= model %>.
+        form.options.<%= name %>.disabled = true;
+        if (isReadProgram !== undefined) {
+            <%= model %>.<%= name %> = isReadProgram;
+            $me = isReadProgram;
+            $me = $me.replace(/\./g, 'POINT').replace(/\W/g, '').replace(/POINT/g, '.').replace(/[a-z]/gi, '');
+            <%= model %>.
+            <%= name %>_DragonClean = $me;
+            $('[name="<%= model %>_<%= nameclean %>"]').val(isReadProgram);
+        }
+    }
+</script>

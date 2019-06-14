@@ -218,5 +218,8 @@
   "sorted": "ordenado",
   "basemodules": "Modulos Base",
   "add_fiter": "Añadir Filtro",
-  "ordered": "ordenados"
+  "ordered": "ordenados",
+  "managers": "Manejadores",
+  "datacenter": "Central Datos",
+  "proxy": "proxy"
 }

@@ -83,6 +83,9 @@ CRUDDEFAULTS = {
                         characterist: (data) => {
                             return "";
                         },
+                        show: function (data) {
+                            return true;
+                        },
                         click: function (data) {
                             data.$scope.formulary({
                                 where: [{

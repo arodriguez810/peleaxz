@@ -342,6 +342,8 @@ ThereConfig.then(function (thereConfig) {
     allparams += "      scope: '@model@',";
     allparams += "      modules:modules,";
     allparams += "      storage:storage,";
+    allparams += "      http:http,";
+    allparams += "      fetch :fetch,";
     allparams += "      secure:secure,";
     allparams += "      themes:themes,";
     allparams += "      fs:fs,";
@@ -653,7 +655,8 @@ ThereConfig.then(function (thereConfig) {
         length = length || 15;
         return `${str}${" ".repeat(length - str.length)}`;
     };
-    var urlsha = `${CONFIG.ssl === true ? 'https://' : 'http://'}${CONFIG.subdomain !== '' ? CONFIG.subdomain + '.' : ''}${CONFIG.domain}:${CONFIG.port === 80 ? '' : CONFIG.port}`;
+    var urlsha = `${CONFIG.proxy.ssl === true ? 'https://' : 'http://'}${CONFIG.proxy.subdomain !== '' ? CONFIG.proxy.subdomain + '.' : ''}${CONFIG.proxy.domain}${(CONFIG.proxy.port === 80 || CONFIG.proxy.port === 443 || CONFIG.proxy.port === 443) ? '' : (":" + CONFIG.proxy.port) }`;
+    var urlshahome = `${CONFIG.ssl === true ? 'https://' : 'http://'}${CONFIG.subdomain !== '' ? CONFIG.subdomain + '.' : ''}${CONFIG.domain}${(CONFIG.port === 80 || CONFIG.port === 443 || CONFIG.port === 443) ? '' : (":" + CONFIG.port) }`;
 
 
     print(0, "center", "", "█", 1, "pxz", "█", "█");
@@ -661,7 +664,8 @@ ThereConfig.then(function (thereConfig) {
     print(0, "center", "Dragon Framework " + CONFIG.version.base, " ", 1, "pxz2", "█║", "║█");
     print(0, "center", "", "█", 2, "vacio", "█║", "║█");
     print(0, "center", `${sp("APPLICATION")}: ${sp(CONFIG.appName + " " + CONFIG.version.app, 40)}`, " ", 1, "pxz2", "█║", "║█");
-    print(0, "center", `${sp("URL")}: ${sp(urlsha, 40)}`, " ", 1, "pxz2", "█║", "║█");
+    print(0, "center", `${sp("HOME")}: ${sp(urlshahome, 40)}`, " ", 1, "pxz2", "█║", "║█");
+    print(0, "center", `${sp("PROXY")}: ${sp(urlsha, 40)}`, " ", 1, "pxz2", "█║", "║█");
     print(0, "center", `${sp("MODE")}: ${sp(CONFIG.mode, 40)}`, " ", 1, "pxz2", "█║", "║█");
     print(0, "center", `${sp("CONFIGURATION")}: ${sp((thereConfig !== undefined ? 'saved' : 'base'), 40)}`, " ", 1, "pxz2", "█║", "║█");
     print(0, "center", `${sp("LANGUAGE")}: ${sp(CONFIG.language, 40)}`, " ", 1, "pxz2", "█║", "║█");
@@ -674,7 +678,7 @@ ThereConfig.then(function (thereConfig) {
     print(0, "center", "", "█", (rows - drow) - 8, "vacio", "█║", "║█");
     print(0, "center", `${new Date().toString()}`, " ", 1, "pxz2", "█║", "║█");
     print(0, "center", "", "█", 3, "vacio", "█║", "║█");
-    print(0, "right", `DEVELOPER BY: ${CONFIG.developerBy.name}`, " ", 1, "pxz2", "█║", "║█");
+    print(0, "right", `DEVELOPED BY: ${CONFIG.developerBy.name}`, " ", 1, "pxz2", "█║", "║█");
     print(0, "center", "", "═", 1, "pxz", "█╚", "╝█");
     print(0, "center", "", "█", 1, "pxz", "█", "█");
 });
