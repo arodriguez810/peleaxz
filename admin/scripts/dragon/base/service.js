@@ -22,6 +22,7 @@ SERVICE = {
                         "                            console.log('error',data);\n" +
                         "                        });\n" +
                         "                    };";
+
                     eval(String.format("SERVICE.{0}.{1} = {2}", parent, functionName, functioner));
                     break;
                 }

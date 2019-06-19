@@ -21,8 +21,13 @@
   "Logica": "Logica",
   "MultiDB": "Multiple DB",
   "Groups": "Grupos",
-  "DragonMenu": "DragonMenu",
+  "DragonMenu": "Dragon Menu",
   "Examples": "Ejemplos",
   "Texts": "Textos",
-  "Dates": "Fechas"
+  "Dates": "Fechas",
+  "list": "Lista de Menús",
+  "MainMenu": "Menu Principal",
+  "SecundaryMenu": "Menu Secundario",
+  "Blogs": "Blogs",
+  "DropDowns": "Listas"
 }

@@ -1,3 +1,14 @@
+exports.getdata = (config, request,params) => new Promise(async (resolve, reject) => {
+    var component = {};
+    component.method = config.method || "GET";
+    if (config.body)
+        component.body = JSON.stringify(eval(`\`${config.body}\``));
+    if (config.headers)
+        component.headers = eval(`\`${config.headers}\``);
+    var response = await params.fetch(eval(`\`${config.url}\``), component);
+    var json = await response.json();
+    resolve(json);
+});
 exports.last = function (arr) {
     return arr[arr.length - 1];
 };
@@ -248,6 +259,7 @@ exports.sortByKey = function (array, key, order) {
     });
 };
 exports.data = async function (table, params, where, index) {
+
     params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;
     if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
     var wherefinal = where;
@@ -265,45 +277,91 @@ exports.data = async function (table, params, where, index) {
     var entity = eval(`params.CONFIG.storageEntities.${table}`);
     if (!entity)
         entity = eval(`params.CONFIG.appEntities.${table}`);
-    var indexKey = table + "_index";
-    var lastID = await params.storage.getItem(indexKey) || 1;
-    lastID = lastID - 1;
-    var records = await params.storage.getItem(table) || [];
-    try {
 
-        if (wherefinal !== '' && wherefinal !== undefined) {
-            records = records.filter(function (row) {
-                return eval(wherefinal);
-            });
+
+    if (entity.type === "endpoint") {
+        var records = await params.storage.getItem(table) || [];
+
+        if (records.length === 0) {
+            var response = await exports.getdata(eval(`params.ENDPOINTS.${entity.methods.list}`), index,params);
+            await params.storage.setItem(table, eval(`${entity.object}`), {ttl: entity.expire * 60000});
+            records = eval(`${entity.object}`);
         }
-
-        if (index.order !== undefined) {
-            if (index.orderby !== undefined) {
-                records = exports.sortByKey(records, index.orderby, index.order);
+        try {
+            if (wherefinal !== '' && wherefinal !== undefined) {
+                records = records.filter(function (row) {
+                    return eval(wherefinal);
+                });
             }
-        }
-
-        var count = records.length;
-        if (index.limit !== undefined) {
-            if (index.page !== undefined) {
-                records = records.slice((index.page - 1) * (index.limit), index.limit * index.page);
+            if (index.order !== undefined) {
+                if (index.orderby !== undefined) {
+                    records = exports.sortByKey(records, index.orderby, index.order);
+                }
             }
+            var count = records.length;
+            if (index.limit !== undefined) {
+                if (index.page !== undefined) {
+                    records = records.slice((index.page - 1) * (index.limit), index.limit * index.page);
+                }
+            }
+
+
+            return {
+                query: wherefinal,
+                error: false,
+                data: records,
+                count: count,
+                index: {limitvalue: index.limit, pagec: index.page, limit: index.limit},
+                totalPage: Math.ceil(count / index.limit),
+                totalCount: count,
+                currentPage: index.page,
+                metadata: entity
+            };
+        } catch (e) {
+            return {query: wherefinal, error: e, recordset: [], metadata: entity};
         }
 
+    } else {
+        var indexKey = table + "_index";
+        var lastID = await params.storage.getItem(indexKey) || 1;
+        lastID = lastID - 1;
+        var records = await params.storage.getItem(table) || [];
+        try {
 
-        return {
-            query: wherefinal,
-            error: false,
-            data: records,
-            count: count,
-            index: {limitvalue: index.limit, pagec: index.page, limit: index.limit},
-            totalPage: Math.ceil(count / index.limit),
-            totalCount: count,
-            currentPage: index.page,
-            metadata: entity
-        };
-    } catch (e) {
-        return {query: wherefinal, error: e, recordset: [], metadata: entity};
+            if (wherefinal !== '' && wherefinal !== undefined) {
+                records = records.filter(function (row) {
+                    return eval(wherefinal);
+                });
+            }
+
+            if (index.order !== undefined) {
+                if (index.orderby !== undefined) {
+                    records = exports.sortByKey(records, index.orderby, index.order);
+                }
+            }
+
+            var count = records.length;
+            if (index.limit !== undefined) {
+                if (index.page !== undefined) {
+                    records = records.slice((index.page - 1) * (index.limit), index.limit * index.page);
+                }
+            }
+
+
+            return {
+                query: wherefinal,
+                error: false,
+                data: records,
+                count: count,
+                index: {limitvalue: index.limit, pagec: index.page, limit: index.limit},
+                totalPage: Math.ceil(count / index.limit),
+                totalCount: count,
+                currentPage: index.page,
+                metadata: entity
+            };
+        } catch (e) {
+            return {query: wherefinal, error: e, recordset: [], metadata: entity};
+        }
     }
 };
 exports.defaultRequests = function (Model, params, folder) {
@@ -312,7 +370,7 @@ exports.defaultRequests = function (Model, params, folder) {
         params.modules.views.LoadEJSDragon(files, params, folder);
     });
     params.app.post('/api/st_list', function (req, res) {
-        params.secure.check(req, res).then( function (token) {
+        params.secure.check(req, res).then(function (token) {
             if (!token.apptoken) {
                 res.json(token);
                 return;
@@ -328,7 +386,7 @@ exports.defaultRequests = function (Model, params, folder) {
         });
     });
     params.app.post(params.util.format('/api/%s/list', Model.tableName), function (req, res) {
-        params.secure.check(req, res).then( function (token) {
+        params.secure.check(req, res).then(function (token) {
             if (!token.apptoken) {
                 res.json(token);
                 return;
@@ -352,7 +410,7 @@ exports.defaultRequests = function (Model, params, folder) {
         });
     });
     params.app.get(params.util.format('/api/%s/all', Model.tableName), function (req, res) {
-        params.secure.check(req, res).then( function (token) {
+        params.secure.check(req, res).then(function (token) {
             if (!token.apptoken) {
                 res.json(token);
                 return;
@@ -375,7 +433,7 @@ exports.defaultRequests = function (Model, params, folder) {
         });
     });
     params.app.get(params.util.format('/api/%s/get/:id', Model.tableName), function (req, res) {
-        params.secure.check(req, res).then( function (token) {
+        params.secure.check(req, res).then(function (token) {
             if (!token.apptoken) {
                 res.json(token);
                 return;
@@ -391,7 +449,7 @@ exports.defaultRequests = function (Model, params, folder) {
         });
     });
     params.app.post('/api/' + Model.tableName + '/insert', function (req, res) {
-        params.secure.check(req, res).then( function (token) {
+        params.secure.check(req, res).then(function (token) {
             if (!token.apptoken) {
                 res.json(token);
                 return;
@@ -407,7 +465,7 @@ exports.defaultRequests = function (Model, params, folder) {
         });
     });
     params.app.post('/api/' + Model.tableName + '/insertID', function (req, res) {
-        params.secure.check(req, res).then( function (token) {
+        params.secure.check(req, res).then(function (token) {
             if (!token.apptoken) {
                 res.json(token);
                 return;
@@ -430,7 +488,7 @@ exports.defaultRequests = function (Model, params, folder) {
         });
     });
     params.app.post('/api/' + Model.tableName + '/update/', function (req, res) {
-        params.secure.check(req, res).then( function (token) {
+        params.secure.check(req, res).then(function (token) {
             if (!token.apptoken) {
                 res.json(token);
                 return;
@@ -446,7 +504,7 @@ exports.defaultRequests = function (Model, params, folder) {
         });
     });
     params.app.post('/api/' + Model.tableName + '/delete', function (req, res) {
-        params.secure.check(req, res).then( function (token) {
+        params.secure.check(req, res).then(function (token) {
             if (!token.apptoken) {
                 res.json(token);
                 return;
@@ -462,7 +520,7 @@ exports.defaultRequests = function (Model, params, folder) {
         });
     });
     params.app.post('/api/' + Model.tableName + '/truncate', function (req, res) {
-        params.secure.check(req, res).then( function (token) {
+        params.secure.check(req, res).then(function (token) {
             if (!token.apptoken) {
                 res.json(token);
                 return;

@@ -1,20 +1,24 @@
 {
   "appEntities": {
-    "st_user": {
-      "key": "id",
-      "type": "one",
+    "blog": {
+      "key": "_id",
+      "type": "endpoint",
+      "expire": "60",
+      //minutes
+      "object": "response.blogs",
+      "methods": {
+        "list": "heroku.blogs",
+        "insert": "",
+        "update": "",
+        "remove": ""
+      },
       "fields": [
-        "username",
-        "name",
-        "lastname",
-        "password",
-        "email",
-        "tipo",
-        "active",
-        "created",
-        "updated",
-        "user_created",
-        "user_updated"
+        "article",
+        "date",
+        "likes",
+        "title",
+        "topic",
+        "createdAt"
       ]
     }
   }

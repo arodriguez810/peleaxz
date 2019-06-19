@@ -1,0 +1,19 @@
+{
+  "appName": "Dragon Framework",
+  "logo": "Dragon Framework",
+  "filePath": "files",
+  "storage": "files/storageProd",
+  "appKey": "d94g0nf94m3w09k",
+  "mode": "production",
+  "language": "en",
+  "home": "#texts",
+  "support": {
+    "email": "angel.rodriguez810@gmail.com",
+    "phone": "809-316-1989"
+  },
+  "developerBy": {
+    "name": "Angel Rodríguez",
+    "profile": "https://google.com",
+    "site": "https://google.com"
+  }
+}

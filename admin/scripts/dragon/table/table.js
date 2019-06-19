@@ -7,9 +7,14 @@ TABLE = {
         $scope.table.is.loading = true;
         $scope.funcWidth = eval(`CRUD_${$scope.modelName}`).table.width;
         $scope.report = eval(`CRUD_${$scope.modelName}`).table.report;
+        $scope.tableParams = eval(`CRUD_${$scope.modelName}`).table.params || false;
         $scope.tableOrView = eval(`CRUD_${$scope.modelName}`).table.view || $scope.modelName;
         $scope.tableOrMethod = eval(`CRUD_${$scope.modelName}`).table.method || $scope.modelName;
         $scope.dragrow = eval(`CRUD_${$scope.modelName}`).table.dragrow;
+        if ($scope.dragrow !== false) {
+            eval(`CRUD_${$scope.modelName}`).table.sort = $scope.dragrow;
+            eval(`CRUD_${$scope.modelName}`).table.sortable = false;
+        }
         $scope.changeOrder = async function (from, to, el) {
             if (from !== to) {
                 setTimeout(async () => {
@@ -287,16 +292,17 @@ TABLE = {
                     }
                 }
 
+                if ($scope.tableParams)
+                    dataToList.params = $scope.tableParams;
+
                 $scope.refreshAngular();
                 BASEAPI.list(
                     $scope.tableOrView,
                     dataToList,
                     function (data) {
-
                         $scope.afterData(data);
                         $scope.table.loaded = true;
                         $scope.refreshAngular();
-
                         DRAG.run($scope);
                     }
                 );
@@ -318,6 +324,9 @@ TABLE = {
                         }
                     }
                 }
+
+                if ($scope.tableParams)
+                    dataToList.params = $scope.tableParams;
 
                 BASEAPI.list(
                     $scope.tableOrView,

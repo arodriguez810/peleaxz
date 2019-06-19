@@ -1,0 +1,16 @@
+{
+  "heroku": {
+    "blogs": {
+      "url": "https://fast-wildwood-40490.herokuapp.com/api/blogs?${params.appName}",
+      "method": "GET"
+    },
+    "comments": {
+      "url": "https://fast-wildwood-40490.herokuapp.com/api/comments",
+      "method": "GET"
+    },
+    "generic": {
+      "url": "https://fast-wildwood-40490.herokuapp.com/api/${request.method}",
+      "method": "GET"
+    }
+  }
+}

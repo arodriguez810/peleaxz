@@ -16,6 +16,10 @@ exports.api = {
             var functionID = request.id;
             return "gaby";
         },
+        generate: async function (request) {
+            
+            return {generated: true};
+        },
     },
     puts: {},
     deletes: {},

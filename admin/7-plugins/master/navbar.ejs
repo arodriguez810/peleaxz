@@ -102,6 +102,7 @@
                 </ul>
             </li>
 
+
             <li class="dropdown dropdownwithoptions" dragonlanguage="">
                 <a class="dropdown-toggle legitRipple" data-toggle="dropdown" aria-expanded="false">
                     <i class="icon-equalizer"></i>
@@ -209,6 +210,27 @@
                    title="MESSAGE.ic('mono.generatemobile')">
                     <i class="icon-mobile"></i>
                 </a>
+            </li>
+            <li class="dropdown dropdownwithoptions"
+                ng-show="baseController.isSuper && baseController.menusList.length>1"
+                dragonlanguage="">
+                <a class="dropdown-toggle legitRipple" data-toggle="dropdown" aria-expanded="false">
+                    <i class="icon-menu9"></i>
+                    <span>
+                                <language>MESSAGE.i('menu.list')</language>
+                            </span>
+                </a>
+                <ul class="dropdown-menu ">
+                    <li ng-repeat="(key, menu) in baseController.menusList track by key">
+                        <a data-modal="{{menu.modal}}" ng-click="baseController.changeMenu(menu)"
+                           style="color: black !important;">
+                            <i class="icon-{{menu.icon}}"></i>
+                            <span>
+                                        {{baseController.menuLabel(menu)}}
+                                     </span>
+                        </a>
+                    </li>
+                </ul>
             </li>
         </ul>
         <div class="navbar-right" ng-show="baseController.isLogged">

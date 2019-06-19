@@ -1,11 +1,27 @@
 TABLEFORMAT = {
     run: function ($scope) {
         $scope.cellValue = function (key, column, row) {
+            if (column.formattype !== undefined) {
+                if ([
+                    ENUM.FORMAT.money,
+                    ENUM.FORMAT.percentage,
+                    ENUM.FORMAT.numeric,
+                ]) {
+                    column.sorttype = ENUM.FORMAT.numeric;
+                    column.class = "text-left";
+                }
+
+                if ([
+                    ENUM.FORMAT.date,
+                    ENUM.FORMAT.time,
+                    ENUM.FORMAT.datetime,
+                ]) {
+                    column.sorttype = ENUM.FORMAT.time;
+                }
+            }
             if (DSON.oseaX(row))
                 return "";
             var value = eval("row." + key);
-
-
             if (column.multilink !== undefined) {
                 var titleLink = "";
                 if (typeof column.format === "function")
@@ -83,24 +99,27 @@ TABLEFORMAT = {
             }) : data;
 
             var originalColumns = [];
-            for (var i in eval(`CRUD_${$scope.modelName}`).table.columns) {
+            for (var i in $scope.columns()) {
                 if (extra.columsAllow.indexOf(i) !== -1)
                     originalColumns.push(i);
             }
 
-            var storage_columns = STORAGE.getColumns($scope) === null ? originalColumns : STORAGE.getColumns($scope).filter(function (item) {
-                return extra.columsAllow.indexOf(item) !== -1;
-            });
-            var goColums = extra.orderColumn ? storage_columns : originalColumns;
+            // var storage_columns = STORAGE.getColumns($scope) === null ? originalColumns : STORAGE.getColumns($scope).filter(function (item) {
+            //     return extra.columsAllow.indexOf(item) !== -1;
+            // });
+            var goColums = originalColumns;
             goData.forEach(function (row) {
                 var newRow = {};
                 goColums.forEach(function (column) {
-                    if (extra.orginalformat)
+                    var columnObj = $scope.columns()[column];
+                    if (typeof columnObj.format === "function")
+                        eval(`newRow.${column} = columnObj.format(row);`);
+                    else if (extra.orginalformat)
                         eval(`newRow.${column} = HTML.strip(row.${column});`);
                     else {
                         var goValue = "";
                         eval(`goValue = row.${column};`);
-                        goValue = $scope.formatByTypeClean(eval(`CRUD_${$scope.modelName}`).table.columns[column], row, column, extra);
+                        goValue = $scope.formatByTypeClean($scope.columns()[column], row, column, extra);
                         if (extra.onerow)
                             if ([ENUM.file.formats.CSV].indexOf(extra.type) !== -1)
                                 goValue = `"${goValue}"`;
@@ -134,13 +153,16 @@ TABLEFORMAT = {
                 if (column.formattype.indexOf("datetime") !== -1) {
                     if (DSON.oseaX(value)) return DSON.noset();
                     return LAN.datetime(value);
-                } else if (column.formattype.indexOf("date") !== -1) {
+                }
+                else if (column.formattype.indexOf("date") !== -1) {
                     if (DSON.oseaX(value)) return DSON.noset();
                     return LAN.date(value);
-                } else if (column.formattype.indexOf("time") !== -1) {
+                }
+                else if (column.formattype.indexOf("time") !== -1) {
                     if (DSON.oseaX(value)) return DSON.noset();
                     return LAN.time(value);
-                } else if (column.formattype.indexOf("money") !== -1) {
+                }
+                else if (column.formattype.indexOf("money") !== -1) {
                     if (DSON.oseaX(value)) return DSON.noset();
                     var numeralValue = numeral(value)._value;
                     return numeralValue ? LAN.money(numeralValue).format(true) : LAN.money("0.00").format(true);
@@ -149,18 +171,31 @@ TABLEFORMAT = {
                     if (DSON.oseaX(value)) return DSON.noset();
                     return value + "%";
                 }
+                else if (column.formattype.indexOf("password") !== -1) {
+                    if (DSON.oseaX(value)) return DSON.noset();
+                    return "*******";
+                }
+                else if (column.formattype.indexOf("creditcard") !== -1) {
+                    if (DSON.oseaX(value)) return DSON.noset();
+                    if (value.length > 4)
+                        return "****-" + value.substr(value.length - 4, 4);
+                    else
+                        return "";
+                }
                 else if (column.formattype === "bool") {
                     if (DSON.oseaX(value)) return DSON.noset();
                     if (value) return MESSAGE.ic('mono.yes');
                     else return MESSAGE.ic('mono.no');
-                } else if (column.formattype.indexOf("numeric") !== -1) {
+                }
+                else if (column.formattype.indexOf("numeric") !== -1) {
                     if (DSON.oseaX(value)) return "";
                     if ([ENUM.file.formats.XLS, ENUM.file.formats.CSV, ENUM.file.formats.Clipboard].indexOf(extra.type) !== -1)
                         return value;
                     var format = column.formattype.split(":");
                     format = format.length > 1 ? format[1] : "";
                     return numeral(value).format(format);
-                } else if (column.formattype.indexOf("location") !== -1) {
+                }
+                else if (column.formattype.indexOf("location") !== -1) {
                     if (DSON.oseaX(value))
                         return DSON.noset();
                     if ([ENUM.file.formats.XLS, ENUM.file.formats.CSV, ENUM.file.formats.Clipboard].indexOf(extra.type) !== -1)
@@ -169,7 +204,8 @@ TABLEFORMAT = {
                         return `<img src="https://maps.googleapis.com/maps/api/staticmap?center=${value}&zoom=16&size=600x300&maptype=roadmap&markers=color:red|label:C|${value}&key=AIzaSyB-T9ki1Z2Sw--ri0IB1solkM1cF_RENWE"/>`;
                     }
                     return `${value}`;
-                } else if (column.formattype.indexOf("file") !== -1) {
+                }
+                else if (column.formattype.indexOf("file") !== -1) {
                     if (extra.onerow) {
                         var format = column.formattype.split(":");
                         format = format.length > 1 ? format[1] : "";
@@ -202,6 +238,9 @@ TABLEFORMAT = {
                         return value;
                     }
                     return http.path([CONFIG.filePath, value]);
+                }
+                else if (column.formattype === "color") {
+                    return value;
                 }
             }
 
@@ -237,13 +276,16 @@ TABLEFORMAT = {
                 if (column.formattype.indexOf("datetime") !== -1) {
                     if (DSON.oseaX(value)) return DSON.noset();
                     return LAN.datetime(value);
-                } else if (column.formattype.indexOf("date") !== -1) {
+                }
+                else if (column.formattype.indexOf("date") !== -1) {
                     if (DSON.oseaX(value)) return DSON.noset();
                     return LAN.date(value);
-                } else if (column.formattype.indexOf("time") !== -1) {
+                }
+                else if (column.formattype.indexOf("time") !== -1) {
                     if (DSON.oseaX(value)) return DSON.noset();
                     return LAN.time(value);
-                } else if (column.formattype.indexOf("money") !== -1) {
+                }
+                else if (column.formattype.indexOf("money") !== -1) {
                     if (DSON.oseaX(value)) return DSON.noset();
                     var numeralValue = numeral(value)._value;
                     return numeralValue ? LAN.money(numeralValue).format(true) : LAN.money("0.00").format(true);
@@ -252,16 +294,33 @@ TABLEFORMAT = {
                     if (DSON.oseaX(value)) return DSON.noset();
                     return value + "%";
                 }
+                else if (column.formattype.indexOf("password") !== -1) {
+                    if (DSON.oseaX(value)) return DSON.noset();
+                    return "*******";
+                }
+                else if (column.formattype.indexOf("creditcard") !== -1) {
+                    if (DSON.oseaX(value)) return DSON.noset();
+                    if (value.length > 4)
+                        return "****-" + value.substr(value.length - 4, 4);
+                    else
+                        return "";
+                }
                 else if (column.formattype === "bool") {
                     if (DSON.oseaX(value)) return '<i class="icon-checkbox-unchecked"></i>';
                     if (value) return '<i class="icon-checkbox-checked"></i>';
                     else return '<i class="icon-checkbox-unchecked"></i>';
-                } else if (column.formattype.indexOf("numeric") !== -1) {
+                }
+                else if (column.formattype.indexOf("numeric") !== -1) {
                     if (DSON.oseaX(value)) return "";
-                    var format = column.formattype.split(":");
-                    format = format.length > 1 ? format[1] : "";
-                    return numeral(value).format(format);
-                } else if (column.formattype.indexOf("location") !== -1) {
+                    var numeralValue = numeral(value)._value;
+                    return numeralValue ? LAN.money(numeralValue).format(false).split(".")[0] : "0";
+                }
+                else if (column.formattype.indexOf("decimal") !== -1) {
+                    if (DSON.oseaX(value)) return "";
+                    var numeralValue = numeral(value)._value;
+                    return numeralValue ? LAN.money(numeralValue).format(false) : LAN.money("0.00").format(false);
+                }
+                else if (column.formattype.indexOf("location") !== -1) {
                     if (DSON.oseaX(value))
                         return DSON.noset();
                     var location = value.split(';');

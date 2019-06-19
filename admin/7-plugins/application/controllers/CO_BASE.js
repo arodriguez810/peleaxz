@@ -58,6 +58,29 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
     var session = new SESSION();
     session.ifLogoffRedirec();
     if (session.current()) {
+        if (session.current().menus)
+            baseController.currentMenu = session.current().menus();
+        else
+            baseController.currentMenu = "menus";
+        baseController.menus = CONFIG.menus;
+        baseController.menusList = CONFIG.ui.menusList;
+        baseController.myMenu = function () {
+            return eval(`CONFIG.${baseController.currentMenu}`);
+        };
+        baseController.menuLabel = function (menu) {
+            return MESSAGE.ispace('menu.' + menu.text.replaceAll(' ', ''), menu.text);
+        };
+
+        baseController.changeMenu = function (menu) {
+            var animation = new ANIMATION();
+            animation.loading(`#dragonmenu`, "", ``, '30');
+            setTimeout(() => {
+                baseController.currentMenu = menu.href;
+                baseController.refreshAngular();
+                animation.stoploading(`#dragonmenu`);
+                MENU.setActive();
+            }, 500);
+        };
         baseController.isLogged = true;
         baseController.isSuper = session.current().super;
         baseController.isAdmin = session.current().groupadmin;
@@ -124,7 +147,7 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
 
         });
     }
-    baseController.menus = CONFIG.menus;
+
     baseController.favorites = [];
     baseController.mode = CONFIG.mode;
     baseController.features = CONFIG.features;
@@ -149,6 +172,10 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
             STORAGE.add('favorites', newarray);
             baseController.favorites = newarray;
         }
+    };
+    baseController.refreshAngular = function () {
+        if (!$scope.$$phase)
+            $scope.$digest();
     };
     baseController.favorite = function (href) {
         if (STORAGE.exist('favorites')) {
@@ -304,7 +331,8 @@ RUN_A = function (conrollerName, inside, $scope, $http, $compile) {
     VALIDATION.run(inside);
     MODAL.run(inside, $compile);
     inside.refreshAngular = function () {
-        inside.$scope.$digest();
+        if (!inside.$scope.$$phase)
+            inside.$scope.$digest();
     };
     $scope.$on('$destroy', function () {
     });
@@ -381,7 +409,8 @@ RUNCONTROLLER = function (conrollerName, inside, $scope, $http, $compile) {
     PERMISSIONS.run(inside);
     inside.pages = {};
     inside.refreshAngular = function () {
-        inside.$scope.$digest();
+        if (!inside.$scope.$$phase)
+            inside.$scope.$digest();
     };
     $scope.$on('$destroy', function () {
 

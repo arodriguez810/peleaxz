@@ -18,157 +18,66 @@
                         color: <%= CONFIG.ui.theme.text3 %> !important;
                     }
                 </style>
-                <ul class="navigation navigation-main navigation-accordion dragon-menu bg-<%= COLOR.extra %>-700 "
-                    dragonlanguage>
-                    <% /*1*/ for(var menu of CONFIG.menus) { %>
-                        <% if(!menu.class){ %>
-                        <li>
-                            <a data-modal="<%=menu.modal%>" href="<%= menu.href %>" class="bg-<%= COLOR.extra %>-700 <%=menu.modal?"modalmenu":""%>">
-                                <i class="icon-<%= menu.icon %>"></i>
-                                <span>
-                                        <language>MESSAGE.ispace('menu.<%= menu.text %>','<%= menu.text %>')</language>
-                                    </span>
-                            </a>
-                            <% if(menu.menus){ %>
-                                <ul>
-                                    <% /*2*/ for(var menu2 of menu.menus) { %>
-                                        <% if(!menu2.class){ %>
-                                        <li>
-                                            <a data-modal="<%=menu2.modal%>" href="<%= menu2.href %>" class="bg-<%= COLOR.extra %>-700 <%=menu2.modal?"modalmenu":""%>">
-                                                <i class="icon-<%= menu2.icon %>"></i>
-                                                <span><language>MESSAGE.ispace('menu.<%= menu2.text %>','<%= menu2.text %>')</language></span>
-                                            </a>
-                                            <% if(menu2.menus){ %>
-                                                <ul>
-                                                    <% /*3*/ for(var menu3 of menu2.menus) { %>
-                                                        <% if(!menu3.class){ %>
-                                                        <li>
-                                                            <a data-modal="<%=menu3.modal%>" data-function="menu"
-                                                               href="<%= menu3.href %>"
-                                                               class="bg-<%= COLOR.extra %>-700 <%=menu3.modal?"modalmenu":""%>">
-                                                                <i class="icon-<%= menu3.icon %>"></i>
-                                                                <span><language>MESSAGE.ispace('menu.<%= menu3.text %>','<%= menu3.text %>')</language></span>
-                                                            </a>
-                                                            <% if(menu3.menus){ %>
-                                                                <ul>
 
-                                                                    <% /*4*/ for(var menu4 of menu3.menus) { %>
-                                                                        <% if(!menu4.class){ %>
-                                                                        <li>
-                                                                            <a data-modal="<%=menu4.modal%>" data-function="menu"
-                                                                               href="<%= menu4.href %>"
-                                                                               class="bg-<%= COLOR.extra %>-700 <%=menu4.modal?"modalmenu":""%>">
-                                                                                <i class="icon-<%= menu4.icon %>"></i>
-                                                                                <span><language>MESSAGE.ispace('menu.<%= menu4.text %>','<%= menu4.text %>')</language></span>
-                                                                            </a>
-                                                                            <% if(menu4.menus){ %>
-                                                                                <ul>
+                <ul id="dragonmenu" class="navigation navigation-main navigation-accordion dragon-menu bg-<%= COLOR.extra %>-700 ">
+                    
+                    <li ng-repeat="(key, menu) in baseController.myMenu() track by key" class="{{menu.class}}">
+                        <a data-modal="{{menu.modal}}" href="{{menu.href}}"
+                           class="bg-extra-700 {{menu.modal?'modalmenu':''}}">
+                            <i class="icon-{{menu.icon}}"></i>
+                            <span>
+                                {{baseController.menuLabel(menu)}}
+                            </span>
+                        </a>
+                        <ul ng-if="menu.menus">
+                            <li ng-repeat="(key, segundo) in menu.menus track by key" class="{{segundo.class}}">
+                                <a data-modal="{{segundo.modal}}" href="{{segundo.href}}"
+                                   class="bg-extra-700 {{segundo.modal?'modalmenu':''}}">
+                                    <i class="icon-{{segundo.icon}}"></i>
+                                    <span>
+                                        {{baseController.menuLabel(segundo)}}
+                                     </span>
+                                </a>
+                                <ul ng-if="segundo.menus">
+                                    <li ng-repeat="(key, tercero) in segundo.menus track by key"
+                                        class="{{tercero.class}}">
+                                        <a data-modal="{{tercero.modal}}" href="{{tercero.href}}"
+                                           class="bg-extra-700 {{tercero.modal?'modalmenu':''}}">
+                                            <i class="icon-{{tercero.icon}}"></i>
+                                            <span>
+                                        {{baseController.menuLabel(tercero)}}
+                                     </span>
+                                        </a>
+                                        <ul ng-if="tercero.menus">
+                                            <li ng-repeat="(key, cuarto) in tercero.menus track by key"
+                                                class="{{cuarto.class}}">
+                                                <a data-modal="{{cuarto.modal}}" href="{{cuarto.href}}"
+                                                   class="bg-extra-700 {{cuarto.modal?'modalmenu':''}}">
+                                                    <i class="icon-{{cuarto.icon}}"></i>
+                                                    <span>
+                                        {{baseController.menuLabel(cuarto)}}
+                                     </span>
+                                                </a>
+                                                <ul ng-if="cuarto.menus">
+                                                    <li ng-repeat="(key, quinto) in cuarto.menus track by key"
+                                                        class="{{quinto.class}}">
+                                                        <a data-modal="{{quinto.modal}}" href="{{quinto.href}}"
+                                                           class="bg-extra-700 {{quinto.modal?'modalmenu':''}}">
+                                                            <i class="icon-{{quinto.icon}}"></i>
+                                                            <span>
+                                        {{baseController.menuLabel(quinto)}}
+                                     </span>
+                                                        </a>
 
-                                                                                    <% /*5*/ for(var menu5 of menu4.menus) { %>
-                                                                                        <% if(!menu5.class){ %>
-                                                                                        <li>
-                                                                                            <a data-modal="<%=menu5.modal%>" data-function="menu"
-                                                                                               href="<%= menu5.href %>"
-                                                                                               class="bg-<%= COLOR.extra %>-700 <%=menu5.modal?"modalmenu":""%>">
-                                                                                                <i class="icon-<%= menu5.icon %>"></i>
-                                                                                                <span><language>MESSAGE.ispace('menu.<%= menu5.text %>','<%= menu5.text %>')</language></span>
-                                                                                            </a>
-                                                                                            <% if(menu5.menus){ %>
-                                                                                                <ul>
-
-                                                                                                    <% /*6*/ for(var menu6 of menu5.menus) { %>
-                                                                                                        <% if(!menu6.class){ %>
-                                                                                                        <li>
-                                                                                                            <a data-modal="<%=menu6.modal%>" data-function="menu"
-                                                                                                               href="<%= menu6.href %>"
-                                                                                                               class="bg-<%= COLOR.extra %>-700 <%=menu6.modal?"modalmenu":""%>">
-                                                                                                                <i class="icon-<%= menu6.icon %>"></i>
-                                                                                                                <span><language>MESSAGE.ispace('menu.<%= menu6.text %>','<%= menu6.text %>')</language></span>
-                                                                                                            </a>
-                                                                                                            <% if(menu6.menus){ %>
-                                                                                                                <ul>
-
-
-                                                                                                                </ul>
-                                                                                                            <% } %>
-                                                                                                        </li>
-                                                                                                        <% } else { %>
-                                                                                                            <li class="navigation-header">
-                                                                                                                <span><language>MESSAGE.ispace('menu.<%= menu6.text %>','<%= menu6.text %>')</language></span>
-                                                                                                                <i
-                                                                                                                        class="icon-<%= menu6.icon %>"
-                                                                                                                        title=""
-                                                                                                                        data-original-title="CRUD's"></i>
-                                                                                                            </li>
-                                                                                                        <% } %>
-                                                                                                    <% } %>
-
-                                                                                                </ul>
-                                                                                            <% } %>
-                                                                                        </li>
-                                                                                        <% } else { %>
-                                                                                            <li class="navigation-header">
-                                                                                                <span><language>MESSAGE.ispace('menu.<%= menu5.text %>','<%= menu5.text %>')</language></span>
-                                                                                                <i
-                                                                                                        class="icon-<%= menu5.icon %>"
-                                                                                                        title=""
-                                                                                                        data-original-title="CRUD's"></i>
-                                                                                            </li>
-                                                                                        <% } %>
-                                                                                    <% } %>
-
-                                                                                </ul>
-                                                                            <% } %>
-                                                                        </li>
-                                                                        <% } else { %>
-                                                                            <li class="navigation-header">
-                                                                                <span><language>MESSAGE.ispace('menu.<%= menu4.text %>','<%= menu4.text %>')</language></span>
-                                                                                <i
-                                                                                        class="icon-<%= menu4.icon %>"
-                                                                                        title=""
-                                                                                        data-original-title="CRUD's"></i>
-                                                                            </li>
-                                                                        <% } %>
-                                                                    <% } %>
-
-                                                                </ul>
-                                                            <% } %>
-                                                        </li>
-                                                        <% } else { %>
-                                                            <li class="navigation-header">
-                                                                <span><language>MESSAGE.ispace('menu.<%= menu3.text %>','<%= menu3.text %>')</language></span>
-                                                                <i
-                                                                        class="icon-<%= menu3.icon %>"
-                                                                        title=""
-                                                                        data-original-title="CRUD's"></i>
-                                                            </li>
-                                                        <% } %>
-                                                    <% } %>
-
+                                                    </li>
                                                 </ul>
-                                            <% } %>
-                                        </li>
-                                        <% } else { %>
-                                            <li class="navigation-header">
-                                                <span><language>MESSAGE.ispace('menu.<%= menu2.text %>','<%= menu2.text %>')</language></span>
-                                                <i class="icon-<%= menu2.icon %>"
-                                                   title=""
-                                                   data-original-title="CRUD's"></i>
                                             </li>
-                                        <% } %>
-                                    <% } %>
-
+                                        </ul>
+                                    </li>
                                 </ul>
-                            <% } %>
-                        </li>
-                        <% } else { %>
-                            <li class="navigation-header">
-                                <span><language>MESSAGE.ispace('menu.<%= menu.text %>','<%= menu.text %>')</language></span>
-                                <i class="icon-<%= menu.icon %>" title=""
-                                   data-original-title="<%= menu.text %>"></i>
                             </li>
-                        <% } %>
-                    <% } %>
+                        </ul>
+                    </li>
                 </ul>
 
             </div>
@@ -184,16 +93,17 @@
     </div>
 </div>
 <script>
-    MESSAGE.run();
     $(document).ready(function () {
         $(document).on('click', '.dragon-menu a:not(.has-ul)', function () {
             $("body").removeClass("sidebar-mobile-main");
         });
         $(document).on('click', 'body', function (e) {
-            if ($(e.target).prop("tagName")!=="I") {
+            if ($(e.target).prop("tagName") !== "I") {
                 $('.popover').popover('hide');
             }
         });
+        MESSAGE.run();
+        MENU.setActive();
     });
 </script>
 <!-- /main sidebar -->

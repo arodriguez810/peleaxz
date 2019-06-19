@@ -132,8 +132,8 @@ EXPORT = {
                     `
             });
             var columnsHtml = "";
-            for (const i in eval(`CRUD_${$scope.modelName}`).table.columns) {
-                var column = eval(`CRUD_${$scope.modelName}`).table.columns[i];
+            for (const i in $scope.columns()) {
+                var column = $scope.columns()[i];
                 var checked = column.visible !== false ? 'checked="checked"' : "";
                 if (column.export !== false)
                     columnsHtml +=
@@ -406,27 +406,26 @@ EXPORT = {
             CHECKBOX.run_switchery();
         };
         $scope.export.json = function (parameters, type, callback) {
+
+            delete parameters.where;
+            parameters.join = eval(`CRUD_${$scope.modelName}`).table.single;
+            parameters.where = $scope.fixFiltersApply();
+            $scope.filtersApply(parameters);
             if (RELATIONS.anonymous[$scope.modelName] !== undefined) {
                 parameters.where = RELATIONS.anonymous[$scope.modelName].where;
             }
-
-
-
             if (!DSON.oseaX(ARRAY.last(MODAL.historyObject))) {
-                if (!DSON.oseaX(ARRAY.last(MODAL.historyObject).viewData))
-                    parameters.where = ARRAY.last(MODAL.historyObject).viewData.data;
-            }
-
-            $scope.fixFiltersApply(parameters);
-            if (!DSON.oseaX($scope.filters))
-                if (!DSON.oseaX($scope.filters.lastFilter))
-                    if ($scope.filters.lastFilter.length > 0) {
+                if (!DSON.oseaX(ARRAY.last(MODAL.historyObject).viewData)) {
+                    if (!DSON.oseaX(ARRAY.last(MODAL.historyObject).viewData.data)) {
                         if (DSON.oseaX(parameters.where))
                             parameters.where = [];
-                        for (const item of $scope.filters.lastFilter) {
+                        for (const item of ARRAY.last(MODAL.historyObject).viewData.data) {
                             parameters.where.push(item);
                         }
                     }
+                }
+            }
+
 
             BASEAPI.list($scope.tableOrView, parameters, function (data) {
                 callback(data);

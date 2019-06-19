@@ -210,8 +210,8 @@
     };
 </script>
 <div dragonlanguage=""
-        ng-show="<%= DATA.scope %>.galleryFiles.columns && <%= DATA.scope %>.galleryFiles.data.files.length<=0"
-        class="alert alpha-<%= COLOR.secundary %> border-<%= COLOR.secundary %> alert-styled-left">
+     ng-show="<%= DATA.scope %>.galleryFiles.columns && <%= DATA.scope %>.galleryFiles.data.files.length<=0"
+     class="alert alpha-<%= COLOR.secundary %> border-<%= COLOR.secundary %> alert-styled-left">
     <language>MESSAGE.i('mono.Thereisnofilestoshow')</language>
 </div>
 
@@ -259,7 +259,9 @@
 <div class="panel panel-flat"
      ng-show="(<%= DATA.scope %>.galleryFiles.upload && <%= DATA.scope %>.galleryFiles.columns) && <%= DATA.scope %>.galleryFiles.reachMaxFiles()">
     <div class="panel-heading">
-        <h5 dragonlanguage class="panel-title"><language>MESSAGE.i('alerts.SelectorDropFiles')</language></h5>
+        <h5 dragonlanguage class="panel-title">
+            <language>MESSAGE.i('alerts.SelectorDropFiles')</language>
+        </h5>
     </div>
     <div class="panel-body">
         <form class="dropzone" id="filesForm" method="post" enctype="multipart/form-data">
@@ -281,7 +283,9 @@
             <th class="col-lg-9">
 
             </th>
-            <th dragonlanguage="" class="col-lg-3"><language>MESSAGE.ic('mono.options')</language></th>
+            <th dragonlanguage="" class="col-lg-3">
+                <language>MESSAGE.ic('mono.options')</language>
+            </th>
         </tr>
         </thead>
         <tbody>
@@ -326,9 +330,11 @@
         </tr>
         </tbody>
         <tfoot>
-        <tr class="bg-<%= COLOR.secundary %>">
-            <th class="col-lg-9">File/Folder</th>
-            <th dragonlanguage="" class="col-lg-3"><language>MESSAGE.ic('mono.options')</language></th>
+        <tr class="bg-<%= COLOR.secundary %>" dragonlanguage="">
+            <th class="col-lg-9">MESSAGE.ic("File_Folder")</th>
+            <th class="col-lg-3">
+                <language>MESSAGE.ic('mono.options')</language>
+            </th>
         </tr>
         </tfoot>
     </table>

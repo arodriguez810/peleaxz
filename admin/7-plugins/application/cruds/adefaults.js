@@ -35,7 +35,7 @@ CRUDDEFAULTS = {
             remove: true,
             active: true,
             filter: true,
-            import: true,
+            import: false,
             copy: true,
             export: {
                 Clipboard: true,

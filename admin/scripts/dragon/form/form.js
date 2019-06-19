@@ -305,7 +305,7 @@ FORM = {
 
                 var crud = eval(`CRUD_${$scope.modelName}`);
                 if (crud.table.dragrow !== false) {
-                    var last = await BASEAPI.firstp($scope.tableOrMethod, {
+                    var last = await BASEAPI.firstp($scope.tableOrView, {
                         order: 'desc',
                         orderby: crud.table.dragrow,
                         where: $scope.fixFilters,
@@ -1098,7 +1098,7 @@ FORM = {
                         if (state === VALIDATION.types.warning) {
                             SWEETALERT.confirm({
                                 message:
-                                    MESSAGE.i('alerts.preventClose'),
+                                    MESSAGE.i('alerts.ContainsWarning'),
                                 confirm: function () {
                                     $scope.form.saveAction(close);
                                 }

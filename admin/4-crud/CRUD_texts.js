@@ -3,11 +3,7 @@ DSON.keepmerge(CRUD_texts, CRUDDEFAULTS);
 DSON.keepmerge(CRUD_texts,
     {
         table: {
-            key: 'id',
-            sort: 'num',
-            deletekeys: ['id'],
             dragrow: 'num',
-            sortable: false,
             columns: {
                 id: {
                     visible: false,
@@ -23,86 +19,54 @@ DSON.keepmerge(CRUD_texts,
                 },
                 basic: {
                     drag: true,
-                    label: "basic",
                     shorttext: 80,
                     //["click", "dblclick", "mousedown", "mouseenter", "mouseleave", "mousemove", "mouseover", "mouseup"]
                 },
-                money: {
-                    label: "Money",
-                    shorttext: 80,
-                    formattype: 'money'
-                },
                 percentage: {
-                    label: "Percentage",
-                    shorttext: 80,
-                    formattype: 'percentage'
+                    formattype: ENUM.FORMAT.percentage
+                },
+                money: {
+                    formattype: ENUM.FORMAT.money
+                },
+                phone: {},
+                cellphone: {},
+                hour: {},
+                integer: {
+                    formattype: ENUM.FORMAT.numeric
+                },
+                decimal: {
+                    formattype: ENUM.FORMAT.decimal
+                },
+                year: {
+                    formattype: ENUM.FORMAT.numeric
+                },
+                indentification: {},
+                creditcard: {
+                    formattype: ENUM.FORMAT.creditcard
                 },
                 readonly: {
-                    label: "readonly",
                     shorttext: 80,
+                    reference: "basic",
                     format: function (row) {
-                        return row.basic + " from basic";
+                        return row.basic + "*";
+                    },
+                    click: function (data) {
+                        data.$scope.setPermission('add',false);
+                        alert(`Information from basic:${data.row.basic}`);
                     }
                 },
                 normalpassword: {
-                    label: "normal password",
-                    shorttext: 80,
+                    formattype: ENUM.FORMAT.password
                 },
                 passwordplus: {
-                    label: "password plus",
-                    shorttext: 80,
+                    formattype: ENUM.FORMAT.password
                 },
                 textarea: {
-                    label: "textarea",
                     shorttext: 60,
                 },
-
             },
             filters: {
-                columns: [
-                    {
-                        key: 'basic',
-                        label: 'Basic',
-                        type: FILTER.types.string,
-                        placeholder: 'Basic',
-                        maxlength: 20
-                    },
-                    {
-                        key: 'mask',
-                        label: 'Mask',
-                        type: FILTER.types.string,
-                        placeholder: 'mask',
-                        maxlength: 20
-                    },
-                    {
-                        key: 'format',
-                        label: 'format',
-                        type: FILTER.types.string,
-                        placeholder: 'format',
-                        maxlength: 20
-                    },
-                    {
-                        key: 'readonly',
-                        label: 'readonly',
-                        type: FILTER.types.string,
-                        placeholder: 'readonly',
-                        maxlength: 20
-                    },
-                    {
-                        key: 'normalpassword',
-                        label: 'normal password',
-                        type: FILTER.types.string,
-                        placeholder: 'normalpassword',
-                        maxlength: 20
-                    },
-                    {
-                        key: 'passwordplus',
-                        label: 'password plus',
-                        type: FILTER.types.string,
-                        placeholder: 'passwordplus',
-                        maxlength: 20
-                    }
-                ]
+                columns: true
             }
         }
     });

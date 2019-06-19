@@ -225,6 +225,7 @@ exports.runServices = function (services, prefix, params) {
             });
         });
     }
+    console.log(services.posts);
     for (var i in services.posts) {
         var func = services.posts[i];
         catalogs.push("post*" + prefix + "." + func.name);

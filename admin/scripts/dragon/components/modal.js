@@ -34,6 +34,13 @@ MODAL = {
         MODAL.history = [];
         if (typeof  baseController !== "undefined")
             baseController.viewData = undefined;
+        if (MODAL.historyObject.length < 1) {
+            if (MENUMODAL) {
+                ANGULARJS.get('baseController').base();
+                MENUMODAL = false;
+            }
+            UNIQUEFIELD = null;
+        }
     },
     close: function ($scope, callback) {
         var last = ARRAY.last(MODAL.history);
@@ -48,27 +55,32 @@ MODAL = {
             REMOVEALLCHILDSCOPE();
             $scope.colertor();
             UNIQUEFIELD = null;
+            if (MENUMODAL) {
+                ANGULARJS.get('baseController').base();
+                MENUMODAL = false;
+            }
         }
         $(last).remove();
         if (MODAL.history.length > 0) {
             last = ARRAY.last(MODAL.history);
             baseController.viewData = ARRAY.last(MODAL.historyObject).viewData;
             $(last).modal("show");
+            if (ARRAY.last(MODAL.historyObject).content.data) {
+                if (ARRAY.last(MODAL.historyObject).content.data === "->information/scope") {
+                    MODAL.close($scope);
+                }
+            }
         } else {
             baseController.viewData = undefined;
         }
         if (typeof callback === "function")
             callback();
-        if (MODAL.historyObject.length < 1) {
-            if (MENUMODAL) {
-                ANGULARJS.get('baseController').base();
-                MENUMODAL = false;
-            }
-            UNIQUEFIELD = null;
-        }
+
     },
     run: function ($scope) {
+
         $scope.modalAction = function (controller, title, icon, action, id) {
+
             DRAGONACTION = action;
             DRAGONID = id;
             $scope.modal.modalView("information/scope", {
@@ -125,9 +137,11 @@ MODAL = {
             var closeModal = String.format(
                 'onclick="MODAL.close({0})"', $scope.modelName
             );
+
             var animation = data.animation || "";
             var bgheader = data.header.bg || COLOR.primary;
             var closeText = backMode ? "<i class='icon-arrow-left8'></i>" + DSON.substringif(ARRAY.last(MODAL.historyObject).header.title, 30) : "&times;";
+
             var headercloseButton = data.header.closeButton ?
                 '    <button type="button" id=\'closeModal\' class="bg-' + bgheader + ' close cancelmodal" ' + closeModal + ">" + closeText + "</button>" : "";
             var h = data.header.h || "h6";
@@ -248,8 +262,22 @@ MODAL = {
                 last = ARRAY.last(MODAL.history);
                 baseController.viewData = ARRAY.last(MODAL.historyObject).viewData;
                 $(last).modal("show");
+                if (ARRAY.last(MODAL.historyObject).content.data) {
+                    if (ARRAY.last(MODAL.historyObject).content.data === "->information/scope") {
+                        MODAL.close($scope);
+                    }
+                }
             } else {
                 baseController.viewData = undefined;
+            }
+
+
+            if (MODAL.historyObject.length < 1) {
+                if (MENUMODAL) {
+                    ANGULARJS.get('baseController').base();
+                    MENUMODAL = false;
+                }
+                UNIQUEFIELD = null;
             }
         };
         $scope.modal.closeAll = function () {
@@ -263,7 +291,15 @@ MODAL = {
                 $(item).remove();
             }
             MODAL.history = [];
+
             baseController.viewData = undefined;
+            if (MODAL.historyObject.length < 1) {
+                if (MENUMODAL) {
+                    ANGULARJS.get('baseController').base();
+                    MENUMODAL = false;
+                }
+                UNIQUEFIELD = null;
+            }
         };
         $scope.modal.modalView = function (view, options) {
 

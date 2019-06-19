@@ -1,6 +1,10 @@
 <!-- Error title -->
 <script>
     <%= scope %>.httpError.hideError = true;
+    <%= scope %>.isServer = function () {
+        return  <%= scope %>.
+        httpError.data.indexOf("FORM is not defined") !== 1;
+    };
 </script>
 <div class="row" ng-show="!<%= scope %>.httpError.hideError">
     <div class="col-lg-4 col-lg-offset-4 col-sm-6 col-sm-offset-3">
@@ -17,9 +21,13 @@
 <!-- /error wrapper -->
 
 
-<div class="text-center content-group" ng-show="<%= scope %>.httpError.hideError">
-    <h1 class="error-title">{{<%= scope %>.httpError.status}}</h1>
-    <h5 ng-dblclick="<%= scope %>.httpError.hideError=false;">
+<div class="text-center content-group" ng-show="<%= scope %>.httpError.hideError" dragonlanguage="">
+
+    <h1 ng-show="!<%= scope %>.isServer()" class="error-title">{{<%= scope %>.httpError.status}}</h1>
+    <h1 ng-show="<%= scope %>.isServer()" class="">
+        <language>MESSAGE.ic("error.isserver")</language>
+    </h1>
+    <h5 ng-show="!<%= scope %>.isServer()" ng-dblclick="<%= scope %>.httpError.hideError=false;">
         Oops, an error has occurred. {{<%= scope %>.httpError.statusText}}!</h5>
 </div>
 <div ng-show="!<%= scope %>.httpError.hideError" ng-bind-html="<%= scope %>.httpError.data">
@@ -33,9 +41,15 @@
     <div class="col-lg-4 col-lg-offset-4 col-sm-6 col-sm-offset-3">
         <form action="#" class="main-search panel panel-body">
             <div class="text-center">
-                <a ng-click="<%= scope %>.modal.close();" class="btn bg-<%= COLOR.primary %>-400" dragonlanguage="">
+                <a ng-show="!<%= scope %>.isServer()" ng-click="<%= scope %>.modal.close();"
+                   class="btn bg-<%= COLOR.primary %>-400" dragonlanguage="">
                     <i class="icon-circle-left2 position-left"></i>
                     <language>MESSAGE.i('actions.Back')</language>
+                </a>
+                <a ng-show="<%= scope %>.isServer()" onclick="location.reload()"
+                   class="btn bg-<%= COLOR.primary %>-400" dragonlanguage="">
+                    <i class="icon-circle-left2 position-left"></i>
+                    <language>MESSAGE.i('mono.reload')</language>
                 </a>
             </div>
         </form>

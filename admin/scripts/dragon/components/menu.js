@@ -35,6 +35,9 @@ MENU = {
         }
     },
     setActive: function (link) {
+        var rurl = location.href.split('#');
+        rurl = rurl.length > 1 ? rurl[1] : "";
+        link = link || rurl;
         $(".dragon-menu li").removeClass('active');
         var a = $('.dragon-menu a[href="#' + link + '"]:eq(0)');
         document.title = `${CONFIG.appName} - ${MENU.language(a.find('span:eq(0)').html()) || capitalize(link)}`;

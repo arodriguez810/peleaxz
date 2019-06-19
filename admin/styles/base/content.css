@@ -32,3 +32,8 @@ body {
 .dropdownwithoptions {
     margin-top: -3px;
 }
+
+.checkbox.checkbox-switchery {
+    margin: 0 !important;
+    padding-left: 0;
+}

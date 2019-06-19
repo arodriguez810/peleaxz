@@ -1,0 +1,41 @@
+{
+  "menus2": [
+    {
+      "text": "Secundary Menu",
+      "href": "#",
+      "icon": "ampersand",
+      "menus": [
+        {
+          "text": "Examples",
+          "href": "#",
+          "icon": "stackoverflow",
+          "menus": [
+            {
+              "text": "Administration",
+              "href": "#",
+              "icon": "equalizer3",
+              "menus": [
+                {
+                  "text": "Users",
+                  "href": "#users",
+                  "icon": "user"
+                },
+                {
+                  "text": "Groups",
+                  "href": "#group",
+                  "icon": "users4"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Extra",
+      "href": "#",
+      "class": "navigation-header",
+      "icon": "menu"
+    }
+  ]
+}

@@ -82,7 +82,7 @@ MESSAGE = {
         return capitalize(MESSAGE.i(key, defaulttext));
     },
     ispace: function (key, defaulttext) {
-        return capitalize(MESSAGE.i(key.replaceAll(' ', ''), defaulttext));
+        return MESSAGE.ic(key.replaceAll(' ', ''), defaulttext);
     },
     exist: function (key) {
         var lan = STORAGE.get('LANGUAGE') || CONFIG.language;

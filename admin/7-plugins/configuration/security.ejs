@@ -174,7 +174,7 @@
         <div class="row" ng-show="configuration.mode!=='admin'">
 
 
-            <div class="col-sm-4 col-md-3  ">
+            <div class="col-sm-3 col-md-3  ">
                 <%- FORM.input("config.domain", scope, {
                     maxlength: 50,
                     placeholder: "Domain",
@@ -182,7 +182,7 @@
                 }) %>
             </div>
 
-            <div class="col-sm-4 col-md-3  ">
+            <div class="col-sm-3 col-md-3  ">
                 <%- FORM.input("config.subdomain", scope, {
                     maxlength: 20,
                     placeholder: "Subdomain",
@@ -190,24 +190,38 @@
                 }) %>
             </div>
 
-            <div class="col-sm-12 col-md-1  ">
+            <div class="col-sm-3 col-md-3  ">
                 <%- FORM.input("config.port", scope, {placeholder: "Port", maxlength: 4, isNumber: true}) %>
             </div>
 
-            <div class="col-sm-1 col-md-2">
-                <br>
+            <div class="col-sm-3 col-md-3">
                 <%- FORM.checkbox("config.ssl", scope, {text: 'SSL/HTTPS', size: 'switchery-sm'}) %>
             </div>
 
         </div>
 
+        <div class="row">
+            <%- FORM.password("config.googlemap", scope, {
+                normal: true,
+                maxlength: 50,
+                placeholder: "Google Map API Key"
+            }) %>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-white">
+    <div class="panel-heading">
         <h6 class="panel-title" dragonlanguage><i class="icon-sphere position-left"></i>
             <language>MESSAGE.ic('mono.proxy')</language>
         </h6>
+    </div>
+
+    <div class="panel-body">
 
         <div class="row" ng-show="configuration.mode!=='admin'">
 
-            <div class="col-sm-4 col-md-3  ">
+            <div class="col-sm-3 col-md-3  ">
                 <%- FORM.input("config.proxy.domain", scope, {
                     maxlength: 50,
                     placeholder: "Domain",
@@ -215,7 +229,7 @@
                 }) %>
             </div>
 
-            <div class="col-sm-4 col-md-3  ">
+            <div class="col-sm-3 col-md-3  ">
                 <%- FORM.input("config.proxy.subdomain", scope, {
                     maxlength: 20,
                     placeholder: "Subdomain",
@@ -223,22 +237,14 @@
                 }) %>
             </div>
 
-            <div class="col-sm-12 col-md-1  ">
+            <div class="col-sm-3 col-md-3  ">
                 <%- FORM.input("config.proxy.port", scope, {placeholder: "Port", maxlength: 4, isNumber: true}) %>
             </div>
 
-            <div class="col-sm-1 col-md-2">
-                <br>
+            <div class="col-sm-3 col-md-3">
                 <%- FORM.checkbox("config.proxy.ssl", scope, {text: 'SSL/HTTPS', size: 'switchery-sm'}) %>
             </div>
 
-        </div>
-        <div class="row">
-            <%- FORM.password("config.googlemap", scope, {
-                normal: true,
-                maxlength: 50,
-                placeholder: "Google Map API Key"
-            }) %>
         </div>
     </div>
 </div>

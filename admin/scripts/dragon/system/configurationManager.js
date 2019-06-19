@@ -4,7 +4,7 @@ CONFIGURATION = {
         var modal = {
             width: 'modal-full',
             header: {
-                title: MESSAGE.ic('mono.configuration') + (user.super ? ' Super Admin' : ' Admin'),
+                title: MESSAGE.ic('mono.configuration'),
                 icon: "cog2"
             },
             footer: {

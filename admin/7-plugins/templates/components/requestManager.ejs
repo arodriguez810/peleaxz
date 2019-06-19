@@ -1,10 +1,13 @@
-<button onclick="DSON.jsonToCSV(WARNINGREQUESTS, true, `${CONFIG.appName} Requests`);" type="button" class="btn bg-<%= COLOR.secundary %>-600 btn-icon"
-        style="margin-bottom: 15px">
-    <span class="icon-reset"></span> Download Requests
+<button onclick="DSON.jsonToCSV(WARNINGREQUESTS, true, `${CONFIG.appName} Requests`);" type="button"
+        class="btn bg-<%= COLOR.secundary %>-600 btn-icon"
+        style="margin-bottom: 15px" dragonlanguage="">
+    <span class="icon-reset"></span>
+    <language>MESSAGE.ic("mono.downloadrequests")</language>
 </button>
 
 <button onclick="new HTTP().resetManager();" type="button" class="btn bg-<%= COLOR.secundary %>-600 btn-icon"
-        style="margin-bottom: 15px">
-    <span class="icon-reset"></span> Reset
+        style="margin-bottom: 15px" dragonlanguage="">
+    <span class="icon-reset"></span>
+    <language>MESSAGE.ic("mono.reset")</language>
 </button>
 <%- include('statictable',{scope:scope}); %>

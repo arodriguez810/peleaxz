@@ -1,5 +1,4 @@
 {
-  "storage": "files/storage",
   "storageEntities": {
     "group": {
       "key": "id",

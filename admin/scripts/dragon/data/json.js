@@ -106,7 +106,7 @@ DSON = {
             return obj.length === 0;
         }
         return (
-            obj === undefined || obj === null || obj === "" || obj <= 0 || obj === "0"
+            obj === '[NULL]' || obj === undefined || obj === null || obj === "" || obj <= 0 || obj === "0"
         );
     },
     ifundefined: function (variable, result) {

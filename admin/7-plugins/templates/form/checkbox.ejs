@@ -46,24 +46,28 @@ var toclient = JSON.stringify(options);
     ;
     <%= model %>.<%= name %> = <%= model %>.<%= name %>? true : false;
 </script>
+<label>
 
+    {{<%= model %>.form.options.<%= name %>.text}}
 
-<div class="checkbox checkbox-switchery <%= options.size %>"
-     ng-show="!<%= model %>.form.options.<%= name %>.disabled">
-    <input
-            type="checkbox"
-            name="<%= model %>_<%= nameclean %>"
-            id="<%= model %>_<%= nameclean %>"
-            class="switchery"
-    />
-    <% if(options.popover){ %>
-        <i
-                id="popover<%= model %>_<%= nameclean %>" class="icon-help">
-        </i>
-    <% } %>
-</div>
-<div class="checkbox checkbox-switchery" ng-show="<%= model %>.form.options.<%= name %>.disabled">
-    <label>
+</label>
+<div>
+    <div class="checkbox checkbox-switchery <%= options.size %>"
+         ng-show="!<%= model %>.form.options.<%= name %>.disabled">
+        <input
+                type="checkbox"
+                name="<%= model %>_<%= nameclean %>"
+                id="<%= model %>_<%= nameclean %>"
+                class="switchery"
+        />
+        <% if(options.popover){ %>
+            <i
+                    id="popover<%= model %>_<%= nameclean %>" class="icon-help">
+            </i>
+        <% } %>
+    </div>
+    <div class="checkbox checkbox-switchery" ng-show="<%= model %>.form.options.<%= name %>.disabled">
+
         {{<%= model %>.form.options.<%= name %>.text}}
         <input ng-model="<%= model + "." + name %>"
                type="checkbox"
@@ -71,13 +75,10 @@ var toclient = JSON.stringify(options);
                readonly="readonly"
                disabled="disabled"
         />
-    </label>
+
+    </div>
 </div>
-<label>
 
-    {{<%= model %>.form.options.<%= name %>.text}}
-
-</label>
 <script>
     var element = document.getElementById("<%= model %>_<%= nameclean %>");
     var checkbox<%= model %>_<%= nameclean %> = new Switchery(element, {size: "small"});

@@ -72,7 +72,7 @@ app.controller("configuration", function ($scope, $http, $compile) {
                         MESSAGE.i('alerts.saveConfig'),
                     confirm: function () {
                         SWEETALERT.loading({message: MESSAGE.ic('mono.procesing')});
-                        BASEAPI.ajax.post('dragon/api/saveConfig', {json: JSON.stringify(configuration.config)}, function () {
+                        BASEAPI.ajax.post('dragon/api/saveConfigSuper', {json: JSON.stringify(configuration.config)}, function () {
                             SWEETALERT.loading({message: MESSAGE.ic('mono.saving')});
                             setTimeout(() => {
                                 location.reload();

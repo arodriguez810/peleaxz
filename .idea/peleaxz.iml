@@ -15,7 +15,6 @@
       <sourceFolder url="file://$MODULE_DIR$/admin/2-models/scripts/mssql" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/2-models/scripts/mysql" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/2-procedures" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/1-service" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/1-service/base" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/3-controllers/abase" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/3-controllers/auth" isTestSource="true" />
@@ -109,6 +108,11 @@
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/cruds/base_currency" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/8-enviroments" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/9-endpoints" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/1-service" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/1-service/database" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/1-service/external" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/.tmp" />
       <excludeFolder url="file://$MODULE_DIR$/admin/assets" />
       <excludeFolder url="file://$MODULE_DIR$/admin/defaults" />

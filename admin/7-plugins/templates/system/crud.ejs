@@ -2,7 +2,6 @@ CRUD_<%= scope %> = {};
 DSON.keepmerge(CRUD_<%= scope %>, CRUDDEFAULTS);
 DSON.keepmerge(CRUD_<%= scope %>, {
     table: {
-        engine: 'ms',
         columns: {
             id: {
                 visible: false,
@@ -11,58 +10,15 @@ DSON.keepmerge(CRUD_<%= scope %>, {
                 exportExample: false
             },
             name: {
-                label: "name",
-                shorttext: 50
+                shorttext: 80
             },
             description: {
-                label: "description",
-                sortable: false,
-                shorttext: 50,
+                shorttext: 80,
                 null: "<span class='text-grey'>[NULL]</span>"
-            },
-            updated: {
-                visible: false,
-                exportExample: false
-            },
-            user_created: {
-                visible: false,
-                visibleDetail: false,
-                export: false,
-                exportExample: false
-            },
-            user_updated: {
-                visible: false,
-                visibleDetail: false,
-                export: false,
-                exportExample: false
             }
-        }
-    }
-});
-CRUD_<%= scope %> = DSON.merge(CRUD_<%= scope %>,
-{
-    table: {
+        },
         filters: {
-            columns: [
-                {
-                    key: 'name',
-                    label: 'Name',
-                    type: FILTER.types.string,
-                    placeholder: 'Name',
-                    maxlength: 50
-                },
-                {
-                    key: 'description',
-                    label: 'Description',
-                    type: FILTER.types.string,
-                    maxlength: 200
-                },
-                {
-                    key: 'created',
-                    label: 'Created',
-                    type: FILTER.types.datetime,
-                }
-            ]
+            columns: true
         }
     }
 });

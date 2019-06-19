@@ -1,11 +1,11 @@
 <%
-if(DATA.name!==undefined){
+if (DATA.name !== undefined) {
     var name, model, opts;
     name = DATA.name;
     model = DATA.model;
     opts = DATA.opts;
 }
-var name  = name || "";
+var name = name || "";
 var options = {
     text: params.capitalize(name),
     title: `${params.capitalize(name)}`,
@@ -27,7 +27,10 @@ var options = {
     acceptedFiles: null,
     width: "modal-full",
     columns: 1,
-    posttype: "file"
+    posttype: "file",
+    download: true,
+    remove: true,
+    upload: true
 };
 options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g, '_');
 options.color = options.type === "form" ? "{{" + model + ".validation.stateDefault()}}" : options.icon.color;
@@ -43,7 +46,7 @@ var toclient = JSON.stringify(options);
     if (MESSAGE.exist('columns.<%= nameclean %>')) {
         <%= model %>.
         form.options.<%= name %>.text = MESSAGE.ic('columns.<%= nameclean %>');
-    }else{
+    } else {
 
     }
     <%= model %>.<%= name %>_DragonCountFile = 0;
@@ -70,17 +73,20 @@ var toclient = JSON.stringify(options);
             type="button"
             title='{{<%= model %>.<%= name %>_DragonCountFile>0? (<%= model %>.filesMessages + " " + "(" + <%= model %>.<%= name %>_DragonCountFile+")") :""}}  {{<%= model %>.form.options.<%= name %>.text}}'
             role="button"
-            style="width: 50px;height: <%= options.image %>px;"
+            style=" <%= options.maxfiles>1?"":"width:50px;" %>height: <%= options.image %>px;"
             class="btn bg-<%= options.color %>-600 btn-block legitRipple">
         <%= options.model ? "{{" + options.model + "}}" : "" %>
 
         <i class="icon-<%= options.icon.class %> position-<%= options.icon.position %>"></i>
+        <span ng-show="<%= model %>.form.options.<%= name %>.maxfiles>1">
+            {{<%= model %>.<%= name %>_DragonCountFile>0? (<%= model %>.filesMessages + " " + "(" + <%= model %>.<%= name %>_DragonCountFile+")") :""}}  {{<%= model %>.form.options.<%= name %>.text}}
+        </span>
     </button>
-        <% if(options.popover){ %>
-            <i
-                    id="popover<%= model %>_<%= nameclean %>" class="icon-help">
-            </i>
-        <% } %>
+    <% if(options.popover){ %>
+        <i
+                id="popover<%= model %>_<%= nameclean %>" class="icon-help">
+        </i>
+    <% } %>
     <span ng-if="<%= model %>.form.options.<%= name %>.helptext!=''"
           class="help-block text-muted">
         {{<%= model %>.form.options.<%= name %>.helptext}}
@@ -102,9 +108,13 @@ var toclient = JSON.stringify(options);
     $('#popover<%= model %>_<%= nameclean %>').popover({
         container: 'body',
         title: eval("`" +<%= model %>.form.options.<%= name %>.popover.title + "`"),
-        content:eval("`" +<%= model %>.form.options.<%= name %>.popover.content + "`"),
+        content
+    :
+    eval("`" +<%= model %>.form.options.<%= name %>.popover.content + "`"
+    ),
     trigger: 'click'
-    });
+    })
+    ;
     <% } %>
 
     function ShowCount<%= name %>(direct) {
@@ -176,21 +186,13 @@ var toclient = JSON.stringify(options);
             baseController.viewData = {
                 root: root,
                 file:<%= model %>.form.options.<%= name %>.file,
-                scope
-        : <%= model %>,
-            maxsize: <%= model %>.
-            form.options.<%= name %>.maxsize_mb,
-                maxfiles
-        : <%= model %>.
-            form.options.<%= name %>.maxfiles,
-                acceptedFiles
-        : <%= model %>.
-            form.options.<%= name %>.acceptedFiles,
-                columns
-        : <%= model %>.
-            form.options.<%= name %>.columns
-        }
-            ;
+                scope: <%= model %>,
+            maxsize: <%= model %>.form.options.<%= name %>.maxsize_mb,
+                maxsize: <%= model %>.form.options.<%= name %>.maxsize_mb,
+                maxfiles: <%= model %>.form.options.<%= name %>.maxfiles,
+                acceptedFiles: <%= model %>.form.options.<%= name %>.acceptedFiles,
+                columns: <%= model %>.form.options.<%= name %>.columns
+        };
             var modal = {
                     width: <%= model %>.form.options.<%= name %>.width,
                 header: {
@@ -204,8 +206,7 @@ var toclient = JSON.stringify(options);
                     loadingContentText: MESSAGE.i('actions.Loading')
                 },
                 };
-            <%= model %>.
-            modal.modalView("../templates/components/gallery", modal);
+            <%= model %>.modal.modalView("../templates/components/gallery", modal);
         });
     });
 </script>

@@ -51,7 +51,7 @@ STEP = {
         };
         var modal = {
             header: {
-                title: "Steps Manager",
+                title: MESSAGE.ic("mono.StepsManager") ,
                 icon: "stack-text"
             },
             footer: {

@@ -57,6 +57,18 @@ FORM = {
         options.timepicker = true;
         return FORM.template('form/range', {name: name, model: model, opts: options});
     },
+    timerange: function (name, model, options) {
+        options.timepicker = true;
+        options.isTime = true;
+        return FORM.template('form/range', {name: name, model: model, opts: options});
+    },
+    time: function (name, model, options) {
+        options.singleDatePicker = true;
+        options.timepicker = true;
+        options.isTime = true;
+        options.from = name;
+        return FORM.template('form/range', {name: name + "_label", model: model, opts: options});
+    },
     input: function (name, model, options) {
         return FORM.template('form/input', {name: name, model: model, opts: options});
     },
@@ -65,9 +77,32 @@ FORM = {
     },
     integer: function (name, model, options) {
         options.isNumber = false;
-        options.icon = {class: "markup", position: "left"};
-        options.format = {mask: "#", options: {reverse: true}};
-        return FORM.template('form/inputformat', {name: name, model: model, opts: options});
+        options.icon = {class: "calculator4", position: "left"};
+        options.mask = "9";
+        options.restrict = "reject";
+        options.repeat = options.length || 15;
+        return FORM.template('form/ngmask', {name: name, model: model, opts: options});
+    },
+    decimal: function (name, model, options) {
+        options.isNumber = false;
+        options.icon = {class: "calculator2", position: "left"};
+        options.mask = `${"?9".repeat(options.length || 18)}.${"?9".repeat(options.decimal || 2)}`;
+        options.restrict = "reject";
+        return FORM.template('form/ngmask', {name: name, model: model, opts: options});
+    },
+    hour: function (name, model, options) {
+        options.isNumber = false;
+        options.icon = {class: "alarm", position: "left"};
+        options.mask = "99:59";
+        options.restrict = "reject";
+        return FORM.template('form/ngmask', {name: name, model: model, opts: options});
+    },
+    year: function (name, model, options) {
+        options.isNumber = false;
+        options.icon = {class: "calendar3", position: "left"};
+        options.mask = "9999";
+        options.restrict = "reject";
+        return FORM.template('form/ngmask', {name: name, model: model, opts: options});
     },
     percentage: function (name, model, options) {
         options.isNumber = false;
@@ -81,6 +116,27 @@ FORM = {
     phone: function (name, model, options) {
         options.isNumber = false;
         options.icon = {class: "phone", position: "left"};
+        options.mask = "(999) 999-9999";
+        options.restrict = "reject";
+        return FORM.template('form/ngmask', {name: name, model: model, opts: options});
+    },
+    creditcard: function (name, model, options) {
+        options.isNumber = false;
+        options.icon = {class: "credit-card2", position: "left"};
+        options.mask = "9999-9999-9999-9999";
+        options.restrict = "reject";
+        return FORM.template('form/ngmask', {name: name, model: model, opts: options});
+    },
+    identification: function (name, model, options) {
+        options.isNumber = false;
+        options.icon = {class: "vcard", position: "left"};
+        options.mask = "999-9999999-9";
+        options.restrict = "reject";
+        return FORM.template('form/ngmask', {name: name, model: model, opts: options});
+    },
+    cellphone: function (name, model, options) {
+        options.isNumber = false;
+        options.icon = {class: "iphone", position: "left"};
         options.mask = "(999) 999-9999";
         options.restrict = "reject";
         return FORM.template('form/ngmask', {name: name, model: model, opts: options});

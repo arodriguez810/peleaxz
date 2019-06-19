@@ -1,6 +1,13 @@
 {
   "hidemenus": [],
   "ui": {
+    "menusList": [
+      {
+        "text": "Main Menu",
+        "href": "menus",
+        "icon": "home"
+      }
+    ],
     "animation": {
       "outanimation": "",
       "inanimation": ""

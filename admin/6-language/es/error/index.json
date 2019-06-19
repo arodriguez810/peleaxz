@@ -1,1 +1,8 @@
-{"Oopsanerrorhasoccurred":"Oops, ha ocurrido un error","e404":"No se encontró","dbreference":"Este registro no puede ser eliminado porque contiene relaciones"}
+{
+  "Oopsanerrorhasoccurred": "Oops, ha ocurrido un error",
+  "e404": "No se encontró",
+  "dbreference": "Este registro no puede ser eliminado porque contiene relaciones",
+  "dbexist1": "Ya existe un registro con el valor ",
+  "dbexist2": " para el campo",
+  "isserver": "El servidor ha iniciado otra versión de la aplicación favor recargue la pagina(F5) para poder acceder"
+}

@@ -1,6 +1,5 @@
 <div id="<%= scope %>" ng-controller="<%= scope %> as <%= scope %>">
     <script>
-        MODAL.closeAll();
         MENUMODAL = true;
         if(DRAGONACTION==='new'){
             <%= scope %>.formulary(null,'new');
@@ -27,6 +26,16 @@
                         loadingContentText: `${MESSAGE.i('actions.Loading')}...`,
                         sameController: true
                     },
+                    event: {
+                        show: {
+                            begin: function (data) {
+                                MENUMODAL = true;
+                            },
+                            end: function (data) {
+                                MENUMODAL = true;
+                            }
+                        }
+                    }
                 });
             }
         }else{
@@ -42,6 +51,16 @@
                     loadingContentText: `${MESSAGE.i('actions.Loading')}...`,
                     sameController: true
                 },
+                event: {
+                    show: {
+                        begin: function (data) {
+                            MENUMODAL = true;
+                        },
+                        end: function (data) {
+                            MENUMODAL = true;
+                        }
+                    }
+                }
             });
         }
     </script>

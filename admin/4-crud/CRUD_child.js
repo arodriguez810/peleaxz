@@ -14,35 +14,20 @@ DSON.keepmerge(CRUD_child,
                     exportExample: false
                 },
                 name: {
-                    label: "name",
                     shorttext: 80
                 },
                 description: {
-                    label: "description",
-                    sortable: false,
                     shorttext: 80,
-                    null: "<span class='text-grey'>[NULL]</span>"
                 },
                 parent_name: {
-                    exportKey: 'parent',
-                    label: "parent",
-                    shorttext: 50,
                     link: {
                         table: "parent",
                         from: "parent"
                     },
-                    exportExample: "id from master table",
                 },
             },
             filters: {
-                columns: [
-                    {
-                        key: 'id',
-                        label: 'ID',
-                        type: FILTER.types.integer,
-                        placeholder: 'ID'
-                    }
-                ]
+                columns: true
             },
             single: [
                 {

@@ -13,6 +13,7 @@
   "saving": "guardando",
   "close": "close",
   "wait": "wait",
+  "reload": "reload",
   "Preparingfilesandrelations": "Preparing files and relations...",
   "Preparingdownloadforfiles": "Preparing download for files",
   "go": "go",
@@ -219,5 +220,7 @@
   "add_fiter": "Add Filter",
   "ordered": "ordered",
   "managers": "managers",
-  "datacenter": "data center"
+  "datacenter": "data center",
+  "sort_datetime": "chronologically",
+  "sort_date": "chronologically"
 }

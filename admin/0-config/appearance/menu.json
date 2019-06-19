@@ -21,6 +21,28 @@
               "icon": "calendar"
             },
             {
+              "text": "Blogs",
+              "href": "#blog",
+              "icon": "blogger2"
+            },
+            {
+              "text": "DropDowns",
+              "href": "#",
+              "icon": "menu2",
+              "menus": [
+                {
+                  "text": "Parent",
+                  "href": "#parent",
+                  "icon": "menu62"
+                },
+                {
+                  "text": "Child",
+                  "href": "#child",
+                  "icon": "menu9"
+                }
+              ]
+            },
+            {
               "text": "Administration",
               "href": "#",
               "icon": "equalizer3",

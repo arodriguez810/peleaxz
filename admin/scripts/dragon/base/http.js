@@ -91,7 +91,7 @@ HTTP = function () {
         };
         var modal = {
             header: {
-                title: "Request Manager",
+                title: MESSAGE.ic('navbar.RequestManager'),
                 icon: "stack-text"
             },
             footer: {

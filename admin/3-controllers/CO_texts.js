@@ -1,14 +1,15 @@
 app.controller("texts", function ($scope, $http, $compile) {
     texts = this;
+
+    texts.headertitle = "Custom";
+    RUNCONTROLLER("texts", texts, $scope, $http, $compile);
     texts.fixFilters = [
         {
             field: 'id',
             operator: ">",
-            value: 0
+            value: 16
         }
     ];
-    texts.headertitle = "Custom";
-    RUNCONTROLLER("texts", texts, $scope, $http, $compile);
     //asignar text singular pero se recomienda por language
     //texts.singular = "Singular";
 
@@ -20,13 +21,6 @@ app.controller("texts", function ($scope, $http, $compile) {
 
             //tamaño del modal
             //texts.form.modalWidth = ENUM.modal.width.full;
-
-            //Titulos personalizados para el form
-            // texts.form.titles = {
-            //     new: "Nuevos Texts",
-            //     edit: "`Editar ALL - ${$scope.name}`",
-            //     view: "`Ver ALL - ${$scope.name}`"
-            // };
 
             //valores que no estan en el formulario para enviar a guardar
             texts.form.readonly = {};
@@ -42,11 +36,7 @@ app.controller("texts", function ($scope, $http, $compile) {
                 texts.readonly = value;
                 VALIDATION.validate(texts, "basic", rules);
             });
-            $scope.$watch('texts.format', function (value) {
-                var rules = [];
-                rules.push(VALIDATION.general.required(value));
-                VALIDATION.validate(texts, "format", rules);
-            });
+
         }
     };
 });

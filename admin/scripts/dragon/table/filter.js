@@ -43,13 +43,51 @@ FILTER = {
             {text: MESSAGE.i('mono.IsTrue'), operator: `= '1'`, value: '$', type: 'bool'},
             {text: MESSAGE.i('mono.IsFalse'), operator: `= '0'`, value: '$', type: 'bool'},
         ];
-        if (eval(`CRUD_${$scope.modelName}`).table.filters !== undefined) {
+        var myCrud = eval(`CRUD_${$scope.modelName}`);
+        if (myCrud.table.filters !== undefined) {
+            if (myCrud.table.filters.columns === true) {
+                myCrud.table.filters.columns = [];
+                for (var i in myCrud.table.columns) {
+                    var column = myCrud.table.columns[i];
+                    if (column.formattype)
+                        if ([
+                            ENUM.FORMAT.password,
+                            ENUM.FORMAT.file,
+                            ENUM.FORMAT.location,
+                            ENUM.FORMAT.image,
+                            ENUM.FORMAT.externalimage,
+                            ENUM.FORMAT.html,
+                        ].indexOf(column.formattype) !== -1)
+                            continue;
+                    if (column.link) {
+                        myCrud.table.filters.columns.push({
+                            key: i,
+                            type: FILTER.types.relation,
+                            table: column.link.from,
+                            value: column.link.value || "id",
+                            text: column.link.text || "item.name",
+                            query: {
+                                limit: 0,
+                                page: 1,
+                                where: [],
+                                orderby: column.link.value || "id",
+                                order: "asc",
+                                distinct: false
+                            },
+                        });
+                    } else
+                        myCrud.table.filters.columns.push({
+                            key: column.reference || i,
+                            type: column.formattype ? ENUM.FORMATFILTER[column.formattype] : ENUM.FORMATFILTER.string,
+                        });
+                }
+            }
             $scope.filters = {};
             $scope.filters.connectorsLabel = {
                 AND: MESSAGE.ic('mono.and'),
                 OR: MESSAGE.ic('mono.or')
             };
-            $scope.filters.fields = eval(`CRUD_${$scope.modelName}`).table.filters.columns;
+            $scope.filters.fields = myCrud.table.filters.columns;
             $scope.filters.blocks = [];
             $scope.filters.lastFilter = [];
             $scope.filters.options = {};

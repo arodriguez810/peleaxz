@@ -29,6 +29,21 @@ PERMISSIONS = {
             }
             return true;
         };
+        $scope.setPermission = function (permisionName, value) {
+            var finalCrud = eval(`PERMISSIONS.mypermission.${$scope.modelName}`);
+            if (finalCrud !== undefined) {
+                if (finalCrud.allow !== undefined && permisionName !== "") {
+                    if (Array.isArray(permisionName)) {
+                        for (const permisionNameElement of permisionName) {
+                            eval(`PERMISSIONS.mypermission.${$scope.modelName}.allow.` + permisionNameElement + " = value;");
+                        }
+                    }
+                    else
+                        eval(`PERMISSIONS.mypermission.${$scope.modelName}.allow.` + permisionName + " = value;");
+                }
+                $scope.refreshAngular();
+            }
+        };
         $scope.characterist = function (characterist, or, isModal) {
             var finalCrud = eval(`CRUD_${$scope.modelName}`);
             if (isModal)
