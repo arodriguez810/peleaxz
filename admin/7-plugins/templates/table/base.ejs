@@ -8,9 +8,7 @@
     <div dragonlanguage=""
          ng-show="<%= scope %>.records.data.length<=0"
          class="alert alpha-<%= COLOR.secundary %> border-<%= COLOR.secundary %> alert-styled-left">
-        <b>
-            <language>MESSAGE.ic('table.nodata')</language>
-        </b>
+        <language>MESSAGE.ic('table.nodata')</language>
     </div>
 
     <div class="visible-md visible-lg" style="display: inline" ng-show="<%= scope %>.filters.lastFilter.length>0">

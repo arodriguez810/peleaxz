@@ -1,0 +1,7 @@
+            $scope.$watch('<%= scope %>.<%= field %>', function (value) {
+                var rules = [];
+                //rules here
+                rules.push(VALIDATION.general.required(value));
+                rules.push(VALIDATION.text.email(value));
+                VALIDATION.validate(<%= scope %>, "<%= field %>", rules);
+            });

@@ -1,11 +1,11 @@
 <%
-if(DATA.name!==undefined){
+if (DATA.name !== undefined) {
     var name, model, opts;
     name = DATA.name;
     model = DATA.model;
     opts = DATA.opts;
 }
-var name  = name || "";
+var name = name || "";
 var options = {
     title: params.capitalize(name),
     type: "text",
@@ -30,69 +30,47 @@ var toclient = JSON.stringify(options);
 </script>
 
 <script>
+    <%= model + "." %>charts<%= "." + name %>_chart = echarts.init(document.getElementById('<%= name %>'), LIMITLESS);
+    <%= model + "." %>charts<%= "." + name %>_chart.on('rendered', function () {
 
-    $(function () {
-
-        // Set paths
-        // ------------------------------
-
-        if(<%= model %>.charts.<%= name %>.onLoad===undefined)
-        <%= model %>.charts.<%= name %>.onLoad = function(){
-
-        }
-
-        require.config({
-            paths: {
-                echarts: 'assets/js/plugins/visualization/echarts'
-            }
-        });
-        require(
-            [
-                'echarts',
-                'echarts/theme/limitless',
-                'echarts/chart/pie',
-                'echarts/chart/funnel'
-            ],
-            function (ec, limitless) {
-
-                <%= model %>.
-                charts.<%= name %>_chart = ec.init(document.getElementById('<%= name %>'), limitless);
-
-                <%= model %>.charts.<%= name %>.refresh  = function () {
-                <%= model %>.charts.<%= name %>_chart_options = {
-                    tooltip: {
-                        trigger: 'item',
-                        formatter: "{b}:<br/> {c} ({d}%)"
-                    },
-                    toolbox: {
-                        show: true,
-                        orient: 'horizontal',
-                        x: 'left',
-                        feature: {
-                            restore: {
-                                show: true,
-                                title: MESSAGE.ic('mono.restore')
-                            },
-                            saveAsImage: {
-                                show: true,
-                                title: MESSAGE.ic('mono.Sameasimage'),
-                                lang: ['Save']
-                            }
-                        }
-                    },
-                    calculable: true,
-                    series: [{
-                        type: 'pie',
-                        radius: '60%',
-                        center: ['40%', '55.5%'],
-                        data: <%= model %>.<%= name %>_data
-                    }]
-                };
-                                     <%= model %>.charts.<%= name %>_chart.setOption(<%= model %>.charts.<%= name %>_chart_options);                     setTimeout(function () {                         <%= model %>.                         charts.<%= name %>_chart.resize();                     }, 3000);
-                }
-                <%= model %>.charts.<%= name %>.onLoad();
-            }
-        );
     });
+    <%= model + "." %>charts<%= "." + name %>_chart.on('finished', function () {
+        if (<%= model + "." %>charts<%= "." + name %>_chart)
+        <%= model + "." %>charts<%= "." + name %>_chart.resize();
+    });
+    <%= model + "." %>charts<%= "." + name %>.refresh = function () {
+                    <%= model %>.
+                    charts.<%= name %>_chart_options = {
+                        tooltip: {
+                            trigger: 'item',
+                            formatter: "{b}:<br/> {c} ({d}%)"
+                        },
+                        toolbox: {
+                            show: true,
+                            orient: 'horizontal',
+                            x: 'left',
+                            feature: {
+                                restore: {
+                                    show: true,
+                                    title: MESSAGE.ic('mono.restore')
+                                },
+                                saveAsImage: {
+                                    show: true,
+                                    title: MESSAGE.ic('mono.Sameasimage'),
+                                    lang: ['Save']
+                                }
+                            }
+                        },
+                        calculable: true,
+                        series: [{
+                            type: 'pie',
+                            radius: '60%',
+                            center: ['40%', '55.5%'],
+                            data: <%= model %>.<%= name %>_data
+                        }]};
+        <%= model + "." %>charts<%= "." + name %>_chart.setOption(<%= model + "." %>charts<%= "." + name %>_chart_options);
+        <%= model + "." %>charts<%= "." + name %>_chart.resize();
 
+    }
+    <%= model + "." %>charts<%= "." + name %>.refresh();
 </script>

@@ -1,5 +1,5 @@
 {
-  "Child": "Child Page",
+  "Child": "Child",
   "GrantParent": "GrantParent",
   "Parent": "Parent",
   "Tutorial": "Tutorial",
@@ -23,5 +23,19 @@
   "Groups": "Groups",
   "list": "Menu list",
   "MainMenu": "Main Menu",
-  "SecundaryMenu": "Secundary Menu"
+  "SecundaryMenu": "Secundary Menu",
+  "Examples": "Examples",
+  "Config": "Config",
+  "DragonMenu": "Dragon Menu",
+  "Texts": "Texts",
+  "Dates": "Dates",
+  "Blogs": "Blogs",
+  "DropDowns": "DropDowns",
+  "Lists": "Lists",
+  "Specials": "Specials",
+  "Charts": "Charts",
+  "View": "View",
+  "Bars": "Bars",
+  "Pies": "Pies",
+  "Lines": "Lines"
 }

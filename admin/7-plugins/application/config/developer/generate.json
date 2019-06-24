@@ -1,0 +1,50 @@
+{
+  "generate": {
+    "typeByContains": {
+      "_to*": "x",
+      "_confirm": "x",
+      "created": "invisible",
+      "updated": "invisible",
+      "deleted": "invisible",
+      "num": "invisible",
+      "*time*": "time",
+      "color": "color",
+      "location": "location",
+      "tags": "tags",
+      "html": "html",
+      "*daterange": "daterange",
+      "*datetimerange": "datetimerange",
+      "*timerange": "timerange",
+      "hour": "hour",
+      "money": "money",
+      "salary": "money",
+      "amount": "money",
+      "percentage": "percentage",
+      "password": "password",
+      "phone": "phone",
+      "email": "email",
+      "year": "year",
+      "identification": "identification",
+      "card": "card",
+      "__": "relation",
+      "_file": "file",
+      "_files": "files",
+      "_image": "image",
+      "_images": "images"
+    },
+    "controllerFields": [
+      "id",
+      "_id",
+      "created",
+      "created_date",
+      "updated",
+      "updated_date",
+      "user_created",
+      "user_updated"
+    ],
+    "crudFields": [
+      "id",
+      "_id"
+    ]
+  }
+}

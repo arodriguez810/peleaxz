@@ -97,6 +97,17 @@ configs.forEach(function (config) {
 
 //CONFIG BY MODE
 var configMode = CONFIG.mode === "developer" ? folders.config : `${folders.eviroments}/${CONFIG.mode}`;
+
+var CONFIG = {};
+configs = getFiles("./" + folders.configBase + "/");
+configs = configs.filter(function (file) {
+    return file.indexOf('.disabled') === -1;
+});
+configs.forEach(function (config) {
+    var file = eval("(" + fs.readFileSync(folders.configBase + "/" + config) + ")");
+    mergeObject(file, CONFIG);
+});
+
 configs = getFiles("./" + configMode + "/");
 configs = configs.filter(function (file) {
     return file.indexOf('.disabled') === -1;
@@ -299,52 +310,6 @@ for (var i in modulesList) {
     var name = modulesList[i];
     allparams += "      " + name + ":modules." + name + ",";
 }
-var secure = {};
-secure.check = (req, res) => new Promise((resolve, reject) => {
-    if (!CONFIG.features.token) {
-        resolve({
-            apptoken: true,
-            message: 'valid',
-            code: "3"
-        });
-    }
-    var path = req.originalUrl;
-    var realPath = path.split("?")[0];
-    if (CONFIG.routes.notoken.indexOf(realPath) !== -1) {
-        resolve({
-            apptoken: true,
-            message: 'valid',
-            code: "3"
-        });
-    }
-    let token = req.headers['x-access-token'] || req.headers['authorization'] || "";
-    if (token) {
-        jwt.verify(token, CONFIG.appKey, (err, decoded) => {
-            if (err) {
-                resolve({
-                    apptoken: false,
-                    message: 'Token is not valid',
-                    url: realPath,
-                    code: "2"
-                });
-            } else {
-                req.decoded = decoded;
-                resolve({
-                    apptoken: true,
-                    message: 'valid',
-                    code: "3"
-                });
-            }
-        });
-    } else {
-        resolve({
-            apptoken: false,
-            message: 'Auth token is not supplied',
-            url: realPath,
-            code: "1"
-        });
-    }
-});
 for (var i in localModulesVars) {
     var name = localModulesVars[i];
     allparams += "      " + name + ":" + name + ",";
@@ -391,6 +356,53 @@ for (var i in localModulesVars) {
 
     allparams += "}";
 }
+
+var secure = {};
+secure.check = (req, res) => new Promise((resolve, reject) => {
+    if (!CONFIG.features.token) {
+        resolve({
+            apptoken: true,
+            message: 'valid',
+            code: "3"
+        });
+    }
+    var path = req.originalUrl;
+    var realPath = path.split("?")[0];
+    if (CONFIG.routes.notoken.indexOf(realPath) !== -1) {
+        resolve({
+            apptoken: true,
+            message: 'valid',
+            code: "3"
+        });
+    }
+    let token = req.headers['x-access-token'] || req.headers['authorization'] || "";
+    if (token) {
+        jwt.verify(token, CONFIG.appKey, (err, decoded) => {
+            if (err) {
+                resolve({
+                    apptoken: false,
+                    message: 'Token is not valid',
+                    url: realPath,
+                    code: "2"
+                });
+            } else {
+                req.decoded = decoded;
+                resolve({
+                    apptoken: true,
+                    message: 'valid',
+                    code: "3"
+                });
+            }
+        });
+    } else {
+        resolve({
+            apptoken: false,
+            message: 'Auth token is not supplied',
+            url: realPath,
+            code: "1"
+        });
+    }
+});
 //******* Params To Services********//
 
 //******* Load Models********//
@@ -469,7 +481,7 @@ if (CONFIG.mssql !== undefined) {
             });
         });
     }).catch((err) => {
-        console.log("mysql database error");
+        console.log("mssql database error");
     });
 } else loadedMotors++;
 if (CONFIG.mysql !== undefined) {

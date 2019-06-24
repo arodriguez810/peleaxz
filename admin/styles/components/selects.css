@@ -3,7 +3,11 @@
 }
 
 .select2 {
-    margin-top: 3px;
+    margin-top: -3px;
+}
+
+.select2-selection--multiple {
+    margin-top: 2px !important;
 }
 
 textarea {

@@ -163,6 +163,7 @@ FORM = {
         return FORM.template('form/password', {name: name, model: model, opts: options});
     },
     color: function (name, model, options) {
+        options.icon = {class: "brush"};
         return FORM.template('form/color', {name: name, model: model, opts: options});
     },
     textarea: function (name, model, options) {

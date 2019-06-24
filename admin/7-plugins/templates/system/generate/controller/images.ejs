@@ -1,0 +1,6 @@
+            $scope.$watch('<%= scope %>.<%= field %>_DragonCountFile', function (value) {
+                var rules = [];
+                //rules here
+                //rules.push(VALIDATION.file.count(value));
+                VALIDATION.validate(<%= scope %>, "<%= field %>_DragonCountFile", rules);
+            });

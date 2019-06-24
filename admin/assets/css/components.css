@@ -2821,9 +2821,7 @@ label.switchery-xs {
 }
 
 .select2-container--focus .select2-selection--single:not([class*=bg-]):not([class*=border-]), .select2-container--open .select2-selection--single:not([class*=bg-]):not([class*=border-]) {
-    border-bottom-color: #009688;
-    -webkit-box-shadow: 0 1px 0 #009688;
-    box-shadow: 0 1px 0 #009688
+
 }
 
 .select2-container--disabled .select2-selection--single:not([class*=bg-]) {

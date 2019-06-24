@@ -38,7 +38,36 @@
                     }
                 });
             }
-        }else{
+        }
+        else if(DRAGONACTION==='list'){
+            if (!DSON.oseaX(DRAGONID)) {
+                <%= scope %>.dataForView = DRAGONID;
+                <%= scope %>.modal.modalView(String.format("{0}", <%= scope %>.modelName), {
+                    header: {
+                        title: MESSAGE.i('mono.Listof') + " " + <%= scope %>.plural,
+                    icon: "user"
+                },
+                    footer: {
+                    cancelButton: true
+                },
+                content: {
+                    loadingContentText: `${MESSAGE.i('actions.Loading')}...`,
+                        sameController: true
+                },
+                event: {
+                    show: {
+                        begin: function (data) {
+                            MENUMODAL = true;
+                        },
+                        end: function (data) {
+                            MENUMODAL = true;
+                        }
+                    }
+                }
+            });
+            }
+        }
+        else{
             <%= scope %>.modal.modalView(String.format("{0}/"+DRAGONACTION, <%= scope %>.modelName), {
                 header: {
                     title: DRAGONID,

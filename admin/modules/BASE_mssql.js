@@ -1,6 +1,5 @@
 exports.executeNonQuery = async function (query, params, show) {
-    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;
-    if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
+
     if (show === undefined)
         console.log(query.pxz);
     return await new params.mssql.ConnectionPool(params.CONFIG.mssql).connect().then(
@@ -20,8 +19,7 @@ exports.executeNonQueryArray = async function (queries, params, show) {
     return queries;
 };
 exports.insertQuery = async function (table, data, params, get, getvalue) {
-    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;
-    if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
+
     var datas = (Array.isArray(data)) ? data : [data];
     var queries = "";
     for (var m in datas) {
@@ -51,8 +49,7 @@ exports.insertQuery = async function (table, data, params, get, getvalue) {
     return queries;
 };
 exports.update = async function (table, data, params) {
-    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;
-    if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
+
     var datas = (Array.isArray(data)) ? data : [data];
     var queries = "";
     for (var m in datas) {
@@ -134,8 +131,7 @@ exports.delete = function (table, data, params) {
     return queries;
 };
 exports.data = async function (query, params, index) {
-    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;
-    if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
+
     console.log(query.pxz);
     return await new params.mssql.ConnectionPool(params.CONFIG.mssql).connect().then(
         pool => {

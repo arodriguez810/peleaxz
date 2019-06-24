@@ -5,13 +5,13 @@
 9-endpoints
 assets
 modules
-recode
 scripts
 server
 styles
 package.json
 package-lock.json
 server.js
+generate.js
 start.exe
 start.info
 windows.bat

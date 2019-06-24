@@ -37,3 +37,7 @@ body {
     margin: 0 !important;
     padding-left: 0;
 }
+
+.tumbimage {
+    max-width: 40px;
+}

@@ -62,6 +62,9 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
             baseController.currentMenu = session.current().menus();
         else
             baseController.currentMenu = "menus";
+        if (STORAGE.exist('currentMenu')) {
+            baseController.currentMenu = STORAGE.get("currentMenu");
+        }
         baseController.menus = CONFIG.menus;
         baseController.menusList = CONFIG.ui.menusList;
         baseController.myMenu = function () {
@@ -76,14 +79,24 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
             animation.loading(`#dragonmenu`, "", ``, '30');
             setTimeout(() => {
                 baseController.currentMenu = menu.href;
+                STORAGE.add("currentMenu", baseController.currentMenu);
                 baseController.refreshAngular();
                 animation.stoploading(`#dragonmenu`);
                 MENU.setActive();
+                location.reload();
             }, 500);
         };
         baseController.isLogged = true;
         baseController.isSuper = session.current().super;
         baseController.isAdmin = session.current().groupadmin;
+
+        if (!baseController.isSuper) {
+            if (session.current().menus)
+                baseController.currentMenu = session.current().menus();
+            else
+                baseController.currentMenu = "menus";
+        }
+
         if (session.current().isClient)
             baseController.isClient = new SESSION().current().isClient();
         else

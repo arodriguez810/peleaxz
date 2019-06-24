@@ -1,0 +1,41 @@
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.select("<%= field %>", scope, {
+                    column: "name",
+                    table: "<%= field %>",
+                    //self: true,
+                    //allownull: true,
+                    //allownew: true,
+                    //allowedit: true,
+                    //allowview: true,
+                    //allowlist: true,
+                    //refresh: true,
+                    //condition: "true",
+                    //multiple: false,get: {table: '<%= field %>_linked', fieldFrom: 'id', fieldTo: 'myid(<%= field %>)', field: 'theirid'},
+                    //disabled: false,
+                    //helptext: '',
+                    //value: "id",
+                    //text: "item.name",
+                    //query: {
+                        //limit: 0,
+                        //page: 1,
+                        //where: [],
+                        //orderby: "id",
+                        //order: "asc",
+                        //distinct: false
+                        // join: [
+                        //     {
+                        //         table: "ms_category",
+                        //         base: "category",
+                        //         field: "id",
+                        //         columns: ["id", "name"]
+                        //     },
+                        //     {
+                        //         table: "otratable",
+                        //         base: "ms_category_id",
+                        //         field: "id",
+                        //         columns: ["id", "name"]
+                        //     }
+                        // ]
+                    //},
+                }) %>
+            </div>

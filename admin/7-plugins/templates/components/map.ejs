@@ -63,6 +63,7 @@
         eval(`<%= DATA.scope %>.${viewModel.name}_DragonLat = currentLocation.lat()`);
         eval(`<%= DATA.scope %>.${viewModel.name}_DragonLon = currentLocation.lng()`);
         eval(`<%= DATA.scope %>.${viewModel.name} = currentLocation.lat()+";"+currentLocation.lng()`);
+        eval(`<%= DATA.scope %>.refreshAngular();`);
     }
 
     initMap();

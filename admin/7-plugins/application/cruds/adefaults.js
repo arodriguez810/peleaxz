@@ -17,7 +17,6 @@ CRUDDEFAULTS = {
         width: "",
         offWidth: 5,
         baseWidth: 1000,
-        columnsalign: "center",
         limits: [10, 20, 50, 100],
         //activeColumn: "active",
         key: 'id',
@@ -47,7 +46,6 @@ CRUDDEFAULTS = {
             actions: true,
         },
         options: [
-
             {
                 text: (data) => {
                     return "";
@@ -402,8 +400,7 @@ CRUDDEFAULTS = {
                         }
                     }
                 ]
-            },
-
+            }
         ]
     }
 };

@@ -106,7 +106,7 @@
   "session": "session",
   "Thereisnofilestoshow": "There is no files to show.",
   "deleting": "deleting",
-  "filesof": "filesof",
+  "filesof": "files of",
   "DeletingMultipleRows": "Deleting Multiple Rows",
   "quick": "quick",
   "quickview": "quick view",
@@ -222,5 +222,11 @@
   "managers": "managers",
   "datacenter": "data center",
   "sort_datetime": "chronologically",
-  "sort_date": "chronologically"
+  "sort_date": "chronologically",
+  "proxy": "proxy",
+  "downloadrequests": "download requests",
+  "reset": "reset",
+  "StepsManager": "Steps Manager",
+  "DownloadSteps": "Download Steps",
+  "MapView": "Map View"
 }

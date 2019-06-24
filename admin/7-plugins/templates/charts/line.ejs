@@ -30,32 +30,15 @@ var toclient = JSON.stringify(options);
 </script>
 
 <script>
+    <%= model + "." %>charts<%= "." + name %>_chart = echarts.init(document.getElementById('<%= name %>'), LIMITLESS);
+    <%= model + "." %>charts<%= "." + name %>_chart.on('rendered', function () {
 
-    $(function () {
-
-        // Set paths
-        // ------------------------------
-        if(<%= model %>.charts.<%= name %>.onLoad===undefined)
-        <%= model %>.charts.<%= name %>.onLoad = function(){
-
-        }
-
-        require.config({
-            paths: {
-                echarts: 'assets/js/plugins/visualization/echarts'
-            }
-        });
-        require(
-            [
-                'echarts',
-                'echarts/theme/limitless',
-                'echarts/chart/bar',
-                'echarts/chart/line'
-            ],
-            function (ec, limitless) {
-                <%= model %>.
-                charts.<%= name %>_chart = ec.init(document.getElementById('<%= name %>'), limitless);
-                <%= model %>.charts.<%= name %>.refresh  = function () {
+    });
+    <%= model + "." %>charts<%= "." + name %>_chart.on('finished', function () {
+        if (<%= model + "." %>charts<%= "." + name %>_chart)
+        <%= model + "." %>charts<%= "." + name %>_chart.resize();
+    });
+    <%= model + "." %>charts<%= "." + name %>.refresh = function () {
                 <%= model %>.
                 charts.<%= name %>_chart_options = {
                     grid: {
@@ -97,11 +80,10 @@ var toclient = JSON.stringify(options);
                     calculable: true,
                     series: <%= model %>.<%= name %>_data.data
                 };
-                                     <%= model %>.charts.<%= name %>_chart.setOption(<%= model %>.charts.<%= name %>_chart_options);                     setTimeout(function () {                         <%= model %>.                         charts.<%= name %>_chart.resize();                     }, 3000);                 }
-                <%= model %>.charts.<%= name %>.onLoad();
 
-            }
-        );
-    });
+        <%= model + "." %>charts<%= "." + name %>_chart.setOption(<%= model + "." %>charts<%= "." + name %>_chart_options);
+        <%= model + "." %>charts<%= "." + name %>_chart.resize();
 
+    }
+    <%= model + "." %>charts<%= "." + name %>.refresh();
 </script>

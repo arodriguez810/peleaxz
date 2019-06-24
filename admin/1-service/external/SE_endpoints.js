@@ -15,8 +15,7 @@ exports.api = {
 
 exports.run = async function (_params) {
     params = _params;
-    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;
-    if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
+
 };
 
 exports.extra = function () {

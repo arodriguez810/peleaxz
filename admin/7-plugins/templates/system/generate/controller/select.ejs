@@ -1,0 +1,13 @@
+            //ms_product.selectQueries["<%= field %>"] = [
+            //    {
+                //    field: "id",
+                //    operator: "!=",
+                //    value: -1
+            //    }
+            //];
+            $scope.$watch('<%= scope %>.<%= field %>', function (value) {
+                var rules = [];
+                //rules here
+                //rules.push(VALIDATION.general.required(value));
+                VALIDATION.validate(<%= scope %>, "<%= field %>", rules);
+            });

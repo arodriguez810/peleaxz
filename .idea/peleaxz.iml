@@ -74,7 +74,7 @@
       <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/permissions" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/configuration" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/templates/header" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/templates/charts" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/templates/charts23" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/recode" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/language" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/cruds/language" isTestSource="true" />
@@ -100,19 +100,20 @@
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/customfield" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/mime" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/modules" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/templates/system" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/templates" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/templates/system/view" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/base_currency" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/cruds" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/cruds/base_currency" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/8-enviroments" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/9-endpoints" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/1-service" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/1-service/database" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/1-service/external" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/templates" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/templates/system" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/templates/system/generate" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/.tmp" />
       <excludeFolder url="file://$MODULE_DIR$/admin/assets" />
       <excludeFolder url="file://$MODULE_DIR$/admin/defaults" />

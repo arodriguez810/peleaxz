@@ -13,8 +13,7 @@ exports.last = function (arr) {
     return arr[arr.length - 1];
 };
 exports.insertQuery = async function (table, data, params, where, index) {
-    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;
-    if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
+
     var records = await params.storage.getItem(table) || [];
     var backup = await params.storage.getItem(table) || [];
     var indexKey = table + "_index";
@@ -66,8 +65,7 @@ exports.insertQuery = async function (table, data, params, where, index) {
 
 };
 exports.update = async function (table, data, where, params) {
-    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;
-    if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
+
     var wherefinal = where;
     if (Array.isArray(where)) {
         wherefinal = exports.makeWhere(where, params);
@@ -117,8 +115,7 @@ exports.update = async function (table, data, where, params) {
     }
 };
 exports.delete = async function (table, params, where) {
-    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;
-    if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
+
     var wherefinal = where;
     if (Array.isArray(where)) {
         wherefinal = exports.makeWhere(where, params);
@@ -144,8 +141,7 @@ exports.delete = async function (table, params, where) {
     }
 };
 exports.truncate = async function (table, params) {
-    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;
-    if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
+
     var entity = eval(`params.CONFIG.storageEntities.${table}`);
     if (!entity)
         entity = eval(`params.CONFIG.appEntities.${table}`);
@@ -260,8 +256,7 @@ exports.sortByKey = function (array, key, order) {
 };
 exports.data = async function (table, params, where, index) {
 
-    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;
-    if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
+
     var wherefinal = where;
 
     if (Array.isArray(where)) {

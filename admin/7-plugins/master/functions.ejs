@@ -85,8 +85,12 @@ addMenu([], CONFIG.menus);
     CONTROLLERSNAMES = [];
     for (var CONTROLLER of CONTROLLERS) {
         var name = CONTROLLER.split('CO_')[1].split('.js')[0];
-        if (["BASE"].indexOf(name) === -1)
+        if (["BASE"].indexOf(name) === -1) {
             CONTROLLERSNAMES.push(name);
+            if (MODELLIST.indexOf(name) === -1) {
+                MODELLIST.push(name);
+            }
+        }
     }
     RELATIONS = {};
     RELATIONS.anonymous = [];

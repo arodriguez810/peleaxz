@@ -6,7 +6,7 @@
             <span class="navbar-brand-text" style="float: left;padding-left: 10px;"> <%= CONFIG.logo %></span>
         </a>
         <a class="visible-xs navbar-brand bg-<%= COLOR.primary %>-700 sidebar-mobile-main-toggle">
-            <img style="float: left !important;" src="assets/images/<%= COLOR.logo %>.svg" alt="">
+            <img style="float: left !important;" src="files/configuration/logo/logo.png" alt="">
             <span id="apptitle" class="navbar-brand-text" style="float: left;padding-left: 10px;">
 
             </span>
@@ -91,7 +91,7 @@
                         </a>
                     </li>
                     <li ng-show="!baseController.isClient"
-                        ng-if="baseController.features.multilanguage===true && baseController.mode==='developer'">
+                        ng-if="baseController.mode==='developer'">
                         <a class="sidebar-control" onclick="MESSAGE.OPEN()" data-popup="tooltip"
                            data-placement="bottom" data-container="body" dragonlanguage
                            title="MESSAGE.i('navbar.MessageManager')">
@@ -221,7 +221,7 @@
                             </span>
                 </a>
                 <ul class="dropdown-menu ">
-                    <li ng-repeat="(key, menu) in baseController.menusList track by key">
+                    <li ng-repeat="(key, menu) in baseController.menusList track by key" class="{{baseController.currentMenu===menu.href?'bg-primary':''}}">
                         <a data-modal="{{menu.modal}}" ng-click="baseController.changeMenu(menu)"
                            style="color: black !important;">
                             <i class="icon-{{menu.icon}}"></i>

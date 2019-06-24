@@ -5,9 +5,15 @@
         "type": "permission",
         "allow": {}
       },
+      "blog": {
+        "type": "report",
+        "allow": {}
+      },
       "texts": {
         "type": "full",
-        "allow": {}
+        "allow": {
+          "extra": true
+        }
       },
       "dates": {
         "type": "full",
@@ -15,6 +21,10 @@
       },
       "users": {
         "type": "permission",
+        "allow": {}
+      },
+      "view_report": {
+        "type": "report",
         "allow": {}
       }
     }

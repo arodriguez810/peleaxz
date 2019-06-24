@@ -82,6 +82,9 @@ MESSAGE = {
         return capitalize(MESSAGE.i(key, defaulttext));
     },
     ispace: function (key, defaulttext) {
+        return MESSAGE.i(key.replaceAll(' ', ''), defaulttext);
+    },
+    icspace: function (key, defaulttext) {
         return MESSAGE.ic(key.replaceAll(' ', ''), defaulttext);
     },
     exist: function (key) {

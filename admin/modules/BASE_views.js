@@ -9,8 +9,8 @@ exports.LoadEJS = function (files, params, folder) {
                         res.json(token);
                         return;
                     }
-                    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;
-                    if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
+
+
                     var path = req.originalUrl;
                     var realPath = path.split("?");
                     var query = "";
@@ -111,8 +111,8 @@ exports.LoadEJSDragon = function (files, params, folder) {
                         res.json(token);
                         return;
                     }
-                    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;
-                    if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
+
+
                     var path = req.originalUrl;
                     var realPath = path.split("?");
                     var query = "";
@@ -308,8 +308,8 @@ exports.loadEJSSimple = function (folder, prefix, params) {
                         res.json(token);
                         return;
                     }
-                    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;
-                    if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
+
+
                     var path = req.originalUrl;
                     var realPath = path.split("?");
                     var viewN = realPath[0].split("/");
@@ -393,8 +393,8 @@ exports.loadEJSSimple = function (folder, prefix, params) {
                 });
             });
             params.app.post(params.util.format("/post/%s%s", prefix, viewName), async function (req, res) {
-                params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;
-                if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
+
+
                 var path = req.originalUrl;
                 var realPath = path.split("?");
                 var viewN = realPath[0].split("/");
@@ -566,8 +566,8 @@ exports.loadEJSSimpleSilents = function (folder, prefix, params) {
                         res.json(token);
                         return;
                     }
-                    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;
-                    if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
+
+
                     var path = req.originalUrl;
                     var realPath = path.split("?");
                     var viewN = realPath[0].split("/");
@@ -650,8 +650,8 @@ exports.loadEJSSimpleSilents = function (folder, prefix, params) {
                 });
             });
             params.app.post(params.util.format("/post/%s%s", prefix, viewName), async function (req, res) {
-                params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;
-                if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
+
+
                 var path = req.originalUrl;
                 var realPath = path.split("?");
                 var viewN = realPath[0].split("/");
@@ -823,8 +823,8 @@ exports.loadEJSSimplePOST = function (folder, prefix, params) {
                         res.json(token);
                         return;
                     }
-                    params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;
-                    if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
+
+
                     var path = req.originalUrl;
                     var realPath = path.split("?");
                     var viewN = realPath[0].split("/");
@@ -911,18 +911,28 @@ exports.loadEJSSimplePOST = function (folder, prefix, params) {
 };
 exports.init = function (params) {
     var excludes = [
-        params.folders.viewsDragon + "//base",
-        params.folders.viewsDragon + "//master"
+        params.folders.views + "//base",
+        params.folders.views + "//master",
     ];
     var excludesDragon = [
         params.folders.viewsDragon + "//base",
-        params.folders.viewsDragon + "//master"
+        params.folders.viewsDragon + "//master",
+        params.folders.viewsDragon + "//templates/charts",
+        params.folders.viewsDragon + "//templates/docx",
+        params.folders.viewsDragon + "//templates/email",
+        params.folders.viewsDragon + "//templates/form",
+        params.folders.viewsDragon + "//templates/header",
+        params.folders.viewsDragon + "//templates/pdf",
+        params.folders.viewsDragon + "//templates/system",
+        params.folders.viewsDragon + "//templates/table",
+        params.folders.viewsDragon + "//aplication"
     ];
     var models = params.models
         .concat(params.modelsql)
         .concat(params.modelmysql)
         .concat(params.modeloracle)
         .concat(params.modelstorage);
+
     models.forEach(element => {
         excludes.push(params.folders.views + "//" + element);
     });
@@ -1000,9 +1010,11 @@ exports.init = function (params) {
     console.log("Silents Models".pxz);
     console.log(silentsmodels.join(","));
     silentsmodels.forEach(element => {
-        exports.loadEJSSimpleSilents(
-            "./" + params.folders.silents, element.replace(".ejs", ""), params
-        );
+        if (params.CONFIG.silents.visible.indexOf(element) !== -1) {
+            exports.loadEJSSimpleSilents(
+                "./" + params.folders.silents, element.replace(".ejs", ""), params
+            );
+        }
     });
 
     exports.loadEJSSimplePOST("./" + params.folders.fields, "dragoncontrol", params);
@@ -1260,8 +1272,8 @@ exports.init = function (params) {
                 res.json(token);
                 return;
             }
-            params.CONFIG = await params.storage.getItem("configuration") || params.CONFIG;
-            if (typeof params.CONFIG === 'string') params.CONFIG = eval("(" + params.CONFIG + ")");
+
+
             var transporter = params.mail.createTransport(params.CONFIG.smtp);
             var options = params.CONFIG.smptOptions;
             var from = req.body.from || options.sender;

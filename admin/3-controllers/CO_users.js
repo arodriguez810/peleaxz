@@ -65,6 +65,7 @@ app.controller("users", function ($scope, $http, $compile) {
             users.$scope.$watch('users.email', function (value) {
                 var rules = [];
                 rules.push(VALIDATION.general.required(value));
+                rules.push(VALIDATION.text.email(value));
                 VALIDATION.validate(users, "email", rules);
             });
 

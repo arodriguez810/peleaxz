@@ -189,11 +189,8 @@ TABLEFORMAT = {
                 }
                 else if (column.formattype.indexOf("numeric") !== -1) {
                     if (DSON.oseaX(value)) return "";
-                    if ([ENUM.file.formats.XLS, ENUM.file.formats.CSV, ENUM.file.formats.Clipboard].indexOf(extra.type) !== -1)
-                        return value;
-                    var format = column.formattype.split(":");
-                    format = format.length > 1 ? format[1] : "";
-                    return numeral(value).format(format);
+                    var numeralValue = numeral(value)._value;
+                    return numeralValue ? LAN.money(numeralValue).format(false).split(LAN.money().s.decimal)[0] : "0";
                 }
                 else if (column.formattype.indexOf("location") !== -1) {
                     if (DSON.oseaX(value))
@@ -305,15 +302,19 @@ TABLEFORMAT = {
                     else
                         return "";
                 }
+                else if (column.formattype.indexOf("externalimage") !== -1) {
+                    if (DSON.oseaX(value)) return DSON.noset();
+                    return "<img src='" + (value) + "' class='tumbimage'>";
+                }
                 else if (column.formattype === "bool") {
-                    if (DSON.oseaX(value)) return '<i class="icon-checkbox-unchecked"></i>';
-                    if (value) return '<i class="icon-checkbox-checked"></i>';
-                    else return '<i class="icon-checkbox-unchecked"></i>';
+                    if (DSON.oseaX(value)) return DSON.noset();
+                    if (value) return MESSAGE.ic('mono.yes');
+                    else return MESSAGE.ic('mono.no');
                 }
                 else if (column.formattype.indexOf("numeric") !== -1) {
                     if (DSON.oseaX(value)) return "";
                     var numeralValue = numeral(value)._value;
-                    return numeralValue ? LAN.money(numeralValue).format(false).split(".")[0] : "0";
+                    return numeralValue ? LAN.money(numeralValue).format(false).split(LAN.money().s.decimal)[0] : "0";
                 }
                 else if (column.formattype.indexOf("decimal") !== -1) {
                     if (DSON.oseaX(value)) return "";
@@ -377,7 +378,6 @@ TABLEFORMAT = {
                 return eval(`CRUD_${$scope.modelName}`).table.rowStyle(row, $scope);
             return "";
         };
-
         $scope.rowDeleted = function (row) {
             if (row.rowdeleted === true)
                 return "dragon-row-deleted";

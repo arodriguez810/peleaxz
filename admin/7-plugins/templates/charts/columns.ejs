@@ -1,11 +1,11 @@
 <%
-if(DATA.name!==undefined){
+if (DATA.name !== undefined) {
     var name, model, opts;
     name = DATA.name;
     model = DATA.model;
     opts = DATA.opts;
 }
-var name  = name || "";
+var name = name || "";
 var options = {
     title: params.capitalize(name),
     type: "text",
@@ -30,77 +30,64 @@ var toclient = JSON.stringify(options);
 </script>
 
 <script>
+    <%= model + "." %>charts<%= "." + name %>_chart = echarts.init(document.getElementById('<%= name %>'), LIMITLESS);
 
-    $(function () {
-
-        // Set paths
-        // ------------------------------
-
-        if(<%= model %>.charts.<%= name %>.onLoad===undefined)
-        <%= model %>.charts.<%= name %>.onLoad = function(){
-
-        }
-
-        require.config({
-            paths: {
-                echarts: 'assets/js/plugins/visualization/echarts'
-            }
-        });
-        require(
-            [
-                'echarts',
-                'echarts/theme/limitless',
-                'echarts/chart/bar',
-                'echarts/chart/line'
-            ],
-            function (ec, limitless) {
-                <%= model %>.
-                charts.<%= name %>_chart = ec.init(document.getElementById('<%= name %>'), limitless);
-                <%= model %>.charts.<%= name %>.refresh  = function () {
-                <%= model %>.
-                charts.<%= name %>_chart_options = {
-                    grid: {
-                        x: 80,
-                        x2: 80,
-                        y: 35,
-                        y2: 25
-                    },
-                    toolbox: {
+    <%= model + "." %>charts<%= "." + name %>_chart.onLoaded = function () {
+        console.log("<%= model + "." %>charts<%= "." + name %>_chart");
+    };
+    <%= model + "." %>charts<%= "." + name %>.refresh = function () {
+        <%= model %>.
+        charts.<%= name %>_chart_options = {
+            grid: {
+                x: 80,
+                x2: 80,
+                y: 35,
+                y2: 25
+            },
+            toolbox: {
+                show: true,
+                orient: 'horizontal',
+                x: 'left',
+                feature: {
+                    restore: {
                         show: true,
-                        orient: 'horizontal',
-                        x: 'left',
-                        feature: {
-                            restore: {
-                                show: true,
-                                title: MESSAGE.ic('mono.restore')
-                            },
-                            saveAsImage: {
-                                show: true,
-                                title: MESSAGE.ic('mono.Sameasimage'),
-                                lang: ['Save']
-                            }
-                        }
+                        title: MESSAGE.ic('mono.restore')
                     },
-                    tooltip: {
-                        trigger: 'axis'
-                    },
-                    legend: {
-                        data: <%= model %>.<%= name %>_data.legend
-                    },
-                    xAxis: [{
-                        type: 'category',
-                        data:<%= model %>.<%= name %>_data.down
-                    }],
-                    yAxis: [{
-                        type: 'value'
-                    }],
-                    calculable: true,
-                    series: <%= model %>.<%= name %>_data.data
-                };
-                                     <%= model %>.charts.<%= name %>_chart.setOption(<%= model %>.charts.<%= name %>_chart_options);                     setTimeout(function () {                         <%= model %>.                         charts.<%= name %>_chart.resize();                     }, 3000);                 }
-                <%= model %>.charts.<%= name %>.onLoad();
-            }
-        );
-    });
+                    saveAsImage: {
+                        show: true,
+                        title: MESSAGE.ic('mono.Sameasimage'),
+                        lang: ['Save']
+                    }
+                }
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: <%= model %>.<%= name %>_data.legend
+        },
+            xAxis
+    :
+        [{
+            type: 'category',
+            data:<%= model %>.<%= name %>_data.down
+    }],
+        yAxis: [{
+            type: 'value'
+        }],
+            calculable
+    :
+        true,
+            series
+    : <%= model %>.
+        <%= name %>_data.data
+    }
+        ;
+
+        <%= model + "." %>charts<%= "." + name %>_chart.setOption(<%= model + "." %>charts<%= "." + name %>_chart_options);
+
+
+    }
+    <%= model + "." %>charts<%= "." + name %>.refresh();
 
 </script>

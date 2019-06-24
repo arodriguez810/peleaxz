@@ -259,8 +259,16 @@
     color: #999
 }
 
-.select2-selection__rendered{
-    border-bottom: 1px solid #ccc;
+
+
+.has-success .select2 {
+
+    border-color: transparent transparent #ccc;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-block-style: solid;
+    border-block-width: 1px;
+
 }
 
 .select2-search__field {

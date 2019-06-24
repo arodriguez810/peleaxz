@@ -22,9 +22,7 @@ DSON.keepmerge(CRUD_texts,
                     shorttext: 80,
                     //["click", "dblclick", "mousedown", "mouseenter", "mouseleave", "mousemove", "mouseover", "mouseup"]
                 },
-                percentage: {
-                    formattype: ENUM.FORMAT.percentage
-                },
+                percentage: {formattype: ENUM.FORMAT.percentage},
                 money: {
                     formattype: ENUM.FORMAT.money
                 },
@@ -34,9 +32,7 @@ DSON.keepmerge(CRUD_texts,
                 integer: {
                     formattype: ENUM.FORMAT.numeric
                 },
-                decimal: {
-                    formattype: ENUM.FORMAT.decimal
-                },
+                decimal: {formattype: ENUM.FORMAT.decimal},
                 year: {
                     formattype: ENUM.FORMAT.numeric
                 },
@@ -51,7 +47,7 @@ DSON.keepmerge(CRUD_texts,
                         return row.basic + "*";
                     },
                     click: function (data) {
-                        data.$scope.setPermission('add',false);
+                        data.$scope.setPermission('add', false);
                         alert(`Information from basic:${data.row.basic}`);
                     }
                 },
@@ -70,3 +66,25 @@ DSON.keepmerge(CRUD_texts,
             }
         }
     });
+//add options example, remember add new item in allow object at admin/0-config/security/permission.json
+// CRUD_texts.table.options[0].menus.push({
+//     text: (data) => {
+//         return MESSAGE.i('actions.Extra');
+//     },
+//     icon: (data) => {
+//         return "list";
+//     },
+//     permission: (data) => {
+//         return 'extra';
+//     },
+//     characterist: (data) => {
+//         return "";
+//     },
+//     show: function (data) {
+//         return true;
+//     },
+//     click: function (data) {
+//         //extra function
+//         return false;
+//     }
+// });

@@ -228,5 +228,6 @@
   "StepsManager": "Manejador de pasos",
   "DownloadSteps": "Descargar pasos",
   "sort_datetime": "cronológicamente",
-  "sort_date": "cronológicamente"
+  "sort_date": "cronológicamente",
+  "MapView": "Mapa"
 }

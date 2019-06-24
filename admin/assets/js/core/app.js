@@ -216,9 +216,21 @@ $(function () {
         e.preventDefault();
         $('body').toggleClass('sidebar-mobile-detached').removeClass('sidebar-mobile-main sidebar-mobile-secondary sidebar-mobile-opposite')
     });
+
+    resizeCharts = function () {
+        var allCharts = $('.chart');
+        for (var i = 0; i < allCharts.length; i++) {
+            var $item = $(allCharts[i]);
+            echarts.getInstanceById($item.attr('_echarts_instance_')).resize();
+        }
+    }
+
+
+
     $(window).on('resize', function () {
         setTimeout(function () {
             containerHeight();
+            resizeCharts();
             if ($(window).width() <= 768) {
                 $('body').addClass('sidebar-xs-indicator');
                 $('.sidebar-opposite').insertBefore('.content-wrapper');

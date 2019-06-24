@@ -1,5 +1,5 @@
 {
-  "Child": "Child Page",
+  "Child": "Hijos",
   "GrantParent": "Abuelo",
   "Parent": "Padre",
   "Tutorial": "Tutorial",
@@ -29,5 +29,13 @@
   "MainMenu": "Menu Principal",
   "SecundaryMenu": "Menu Secundario",
   "Blogs": "Blogs",
-  "DropDowns": "Listas"
+  "DropDowns": "Listas",
+  "Documentation-Config": "Documentación - Config",
+  "Lists": "Listas",
+  "Specials": "Especiales",
+  "Charts": "Gráficos",
+  "View": "Vista",
+  "Bars": "Barras",
+  "Pies": "Pasteles",
+  "Lines": "Lineas"
 }

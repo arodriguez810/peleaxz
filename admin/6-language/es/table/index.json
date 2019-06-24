@@ -1,1 +1,19 @@
-{"tableStatus":"{0} ordenada por {1} {2}, mostrando {3} a {4} de {5} registros","emptyTable":"No hay registros en la tabla","info":"Mostrando _START_ a _END_ de _TOTAL_ registros","infoEmpty":"Mostrando 0 a 0 de 0 entries","infoFiltered":"(filtrado desde _MAX_ total registros)","infoPostFix":"","thousands":",","lengthMenu":"Mostrar _MENU_ registros","loadingRecords":"Cargando...","processing":"Procesando...","search":"Buscar:","zeroRecords":"Esta búsqueda no coincide con ningun registro","paginatefirst":"Primera","paginatelast":"Última","paginatenext":"Siguiente","paginateprevious":"Anterior","nodata":"No hay datos para mostrar en esta tabla."}
+{
+  "tableStatus": "{0} ordenada por {1} {2}, mostrando {3} a {4} de {5} registros",
+  "emptyTable": "No hay información para mostrar",
+  "info": "Mostrando _START_ a _END_ de _TOTAL_ registros",
+  "infoEmpty": "Mostrando 0 a 0 de 0 entries",
+  "infoFiltered": "(filtrado desde _MAX_ total registros)",
+  "infoPostFix": "",
+  "thousands": ",",
+  "lengthMenu": "Mostrar _MENU_ registros",
+  "loadingRecords": "Cargando...",
+  "processing": "Procesando...",
+  "search": "Buscar:",
+  "zeroRecords": "Esta búsqueda no coincide con ningun registro",
+  "paginatefirst": "Primera",
+  "paginatelast": "Última",
+  "paginatenext": "Siguiente",
+  "paginateprevious": "Anterior",
+  "nodata": "No hay datos para mostrar."
+}

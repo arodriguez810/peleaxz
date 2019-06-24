@@ -3,14 +3,14 @@
   "ui": {
     "menusList": [
       {
-        "text": "Main Menu",
+        "text": "Examples",
         "href": "menus",
-        "icon": "home"
+        "icon": "file-text2"
       },
       {
-        "text": "Secundary Menu",
-        "href": "menus2",
-        "icon": "home8"
+        "text": "Config",
+        "href": "config_menu",
+        "icon": "equalizer2"
       }
     ],
     "animation": {

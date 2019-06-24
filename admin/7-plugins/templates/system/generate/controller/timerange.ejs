@@ -1,0 +1,15 @@
+            $scope.$watch('<%= scope %>.<%= field %>', function (value) {
+                var rules = [];
+                ///rules.push(VALIDATION.general.required(value));
+                VALIDATION.validate(<%= scope %>, "<%= field %>", rules);
+            });
+            $scope.$watch('<%= scope %>.<%= field.replace('from','to') %>', function (value) {
+                var rules = [];
+                //rules.push(VALIDATION.general.required(value));
+                VALIDATION.validate(<%= scope %>, "<%= field.replace('from','to') %>", rules);
+            });
+            $scope.$watch('<%= scope %>.<%= field.replace('from','') %>', function (value) {
+                var rules = [];
+                //rules.push(VALIDATION.general.required(value));
+                VALIDATION.validate(<%= scope %>, "<%= field.replace('from','') %>", rules);
+            });

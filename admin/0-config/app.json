@@ -11,6 +11,17 @@
     "email": "angel.rodriguez810@gmail.com",
     "phone": "809-316-1989"
   },
+  "features": {
+    "fileManager": true,
+    "stepManager": true,
+    "token": true,
+    "multilanguage": true,
+    "configuration": true,
+    "onesignal": false,
+    "migrations": false,
+    "customfields": true,
+    "silent": true
+  },
   "developerBy": {
     "name": "Angel Rodríguez",
     "profile": "https://google.com",

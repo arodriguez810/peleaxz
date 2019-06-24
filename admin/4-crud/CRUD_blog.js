@@ -5,29 +5,31 @@ DSON.keepmerge(CRUD_blog,
 
         table: {
             key: '_id',
+            report: true,
             deletekeys: ['_id'],
             params: {
                 appName: CONFIG.appName
             },
             columns: {
+
                 _id: {
                     visible: false,
                     visibleDetail: false,
                     export: false,
                     exportExample: false
                 },
-                article: {},
+                article: {shorttext: 360},
                 date: {},
                 image: {
                     formattype: ENUM.FORMAT.externalimage,
                 },
                 likes: {
-                    formattype: "numeric",
+                    formattype: ENUM.FORMAT.numeric,
                 },
                 title: {},
                 topic: {},
                 createdAt: {
-                    formattype: "datetime",
+                    formattype: ENUM.FORMAT.datetime,
                 },
             },
             filters: {

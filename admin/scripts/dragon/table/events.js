@@ -44,14 +44,26 @@ TABLEEVENT = {
                     acceptedFiles: data.column.files.acceptedFiles,
                     columns: data.column.files.columns,
                 };
-                var oldTitle = data.column.files.modal.header.title;
-                data.column.files.modal.header.title = DSON.template(data.column.files.modal.header.title, data.row)
+
+                data.column.files.modal = {
+                    width: 'modal-full',
+                        header: {
+                        title: MESSAGE.ic("mono.files"),
+                            icon: "file-eye"
+                    },
+                    footer: {
+                        cancelButton: true
+                    },
+                    content: {
+                        loadingContentText: MESSAGE.i('actions.Loading')
+                    },
+                };
                 $scope.modal.modalView("../templates/components/gallery", data.column.files.modal);
-                data.column.files.modal.header.title = oldTitle;
                 return;
             }
             if (data.column.multilink && data.column.reference !== false) {
                 var mylink = data.column.multilink;
+                mylink.from = eval(`CRUD_${$scope.modelName}`).table.key;
                 var id = eval("data.row." + mylink.from);
 
                 mylink.modal = {
@@ -68,46 +80,20 @@ TABLEEVENT = {
                     },
                 };
 
-                SWEETALERT.loading({message: DSON.template(mylink.modal.content.loadingContentText, data.row)});
                 var linkCrud = eval("CRUD_" + mylink.table);
-                BASEAPI.list(mylink.table,
+                mylink.modal.header.title = MESSAGE.ic(`columns.${mylink.table}`);
+                RELATIONS.anonymous[mylink.table] =
                     {
-                        limit: 0,
-                        page: 1,
-                        orderby: linkCrud.table.key || "id",
-                        order: "asc",
-                        join: linkCrud.table.single,
+                        readonly: eval(`({${mylink.to}:\`${id}\`})`),
+                        fieldKey: mylink.to,
                         where: [
                             {
                                 field: mylink.to,
                                 value: id
                             }
                         ]
-                    }
-                    , function (info) {
-                        SWEETALERT.stop();
-                        multiarray = [];
-                        info.data.forEach(function (item) {
-                            multiarray.push(eval("item." + mylink.getList));
-                        });
-                        mylink.modal.header.title = $scope.columnLabel(data.column, mylink.from);
-
-
-                        RELATIONS.anonymous[mylink.list] =
-                            {
-                                readonly: eval(`({${mylink.to}:\`${id}\`})`),
-                                fieldKey: mylink.to,
-                                where: [
-                                    {
-                                        field: mylink.wherelist,
-                                        value: multiarray
-                                    }
-                                ]
-                            };
-
-
-                        $scope.modal.modalView(String.format("{0}", mylink.list), mylink.modal);
-                    });
+                    };
+                $scope.modal.modalView(String.format("{0}", mylink.table), mylink.modal);
                 return;
             }
             if (data.column.link && data.column.reference !== false) {
@@ -134,12 +120,14 @@ TABLEEVENT = {
                         $scope.modal.simpleModal(data.value || "", {
                             header: {title: "HTML " + MESSAGE.i('mono.of') + " " + data.column.label}
                         });
-                    } else if (data.column.formattype.indexOf("color") !== -1) {
+                    }
+                    else if (data.column.formattype.indexOf("color") !== -1) {
 
                         load.template('templates/components/color', {color: data.value}, function (html) {
                             $scope.modal.simpleModal(html, {header: {title: MESSAGE.ic('mono.color')}});
                         });
-                    } else if (data.column.formattype.indexOf("location") !== -1) {
+                    }
+                    else if (data.column.formattype.indexOf("location") !== -1) {
                         if (!DSON.oseaX(data.value)) {
                             var location = data.value.split(';');
                             if (location.length > 1) {
@@ -150,12 +138,11 @@ TABLEEVENT = {
                                 $scope.modal.map({lat: lat, lng: lng}, name, {header: {title: name}});
                             }
                         }
-                    } else if (data.column.formattype.indexOf("file") !== -1) {
+                    }
+                    else if (data.column.formattype.indexOf("file") !== -1) {
                         var format = data.column.formattype.split(":");
                         format = format.length > 1 ? format[1] : "";
                         var fileUrl = new HTTP().path([CONFIG.filePath, data.value]);
-
-
                         if (!DSON.oseaX(data.value)) {
                             switch (format) {
                                 case "image": {
@@ -178,6 +165,14 @@ TABLEEVENT = {
                                     break;
                                 }
                             }
+                        }
+                    }
+                    else if (data.column.formattype.indexOf(ENUM.FORMAT.externalimage) !== -1) {
+                        var fileUrl = data.value;
+                        if (!DSON.oseaX(data.value)) {
+                            load.template('templates/components/crop', {src: fileUrl}, function (html) {
+                                $scope.modal.simpleModal(html, {header: {title: MESSAGE.i('mono.preview')}});
+                            });
                         }
                     }
                 }

@@ -1,0 +1,8 @@
+            <div class="col-sm-12 col-md-12">
+                <%- FORM.relation("<%= field.split('__')[0] %>", scope, {
+                    table: "<%= field.split('__')[0] %>",
+                    field: "<%= field.split('__')[1] %>",
+                    //master: "tempid",
+                    icon: {class: "archive"}
+                }) %>
+            </div>

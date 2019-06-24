@@ -1297,10 +1297,12 @@ FORM = {
                                 end: function (datam) {
                                     $scope.triggers.table.after.open($scope.form);
                                     setTimeout(() => {
-                                        let btnformfooter = $('#btnformfooter');
-                                        let elment = FIXELEMENT.isScrolledIntoViewBottom(btnformfooter);
-                                        if (elment === true) {
-                                            $('.modal-body').prepend($scope.returnBuild(btnformfooter.clone()));
+                                        if ($(".dragonformfooter").length < 2) {
+                                            let btnformfooter = $('#btnformfooter');
+                                            let elment = FIXELEMENT.isScrolledIntoViewBottom(btnformfooter);
+                                            if (elment === true) {
+                                                $('.modal-body').prepend($scope.returnBuild(btnformfooter.clone()));
+                                            }
                                         }
                                     }, 1000);
                                 }

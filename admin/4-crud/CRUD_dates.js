@@ -13,9 +13,7 @@ DSON.keepmerge(CRUD_dates,
                 time: {
                     formattype: "time",
                 },
-                date: {
-                    formattype: "date",
-                },
+                date: {formattype: "date",},
                 datetime: {
                     formattype: "datetime",
                 },
