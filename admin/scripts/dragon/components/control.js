@@ -30,86 +30,110 @@ CONTROL = {
                 if (destroy) {
                     eval(`delete $scope.${field.variable};`);
                 }
-                if (readonly) {
-                    $(content).append(`<div class="col-sm-${cols} col-md-${cols}" id="field${field.id}"></div>`);
-                    await $scope.control.inputview(`#field${field.id}`, field.variable, {placeHolder: field.name});
-                    continue;
-                }
+
                 var pass = false;
                 switch (field.type) {
                     case "1": {
                         $(content).append(`<div class="col-sm-${cols} col-md-${cols}" id="field${field.id}"></div>`);
-                        if (field.mask) {
-                            await $scope.control.inputformat(`#field${field.id}`, field.variable, {
-                                placeHolder: field.name,
-                                format: {
-                                    mask: field.mask,
-                                    options: {reverse: true}
-                                }
-                            });
+                        if (readonly) {
+                            await $scope.control.inputview(`#field${field.id}`, field.variable, {placeHolder: field.name});
                         } else {
-                            await $scope.control.input(`#field${field.id}`, field.variable, {placeHolder: field.name});
+                            if (field.mask) {
+                                await $scope.control.inputformat(`#field${field.id}`, field.variable, {
+                                    placeHolder: field.name,
+                                    format: {
+                                        mask: field.mask,
+                                        options: {reverse: true}
+                                    }
+                                });
+                            } else {
+                                await $scope.control.input(`#field${field.id}`, field.variable, {placeHolder: field.name});
+                            }
+                            pass = true;
                         }
-                        pass = true;
                         break;
                     }
                     case "2": {
-                        $(content).append(`<div class="col-sm-${cols} col-md-${cols}" id="field${field.id}"></div>`);
-                        await $scope.control.textarea(`#field${field.id}`, field.variable, {
+                        $(content).append(`<div class="col-sm-12 col-md-12" id="field${field.id}"></div>`);
+                        var properties = {
                             placeHolder: field.name,
                             maxlength: field.length
-                        });
-                        pass = true;
+                        };
+                        if (readonly)
+                            properties.disabled = true;
+                        await $scope.control.textarea(`#field${field.id}`, field.variable, properties);
+                        if (!readonly)
+                            pass = true;
                         break;
                     }
                     case "4": {
                         $(content).append(`<div class="col-sm-${cols} col-md-${cols}" id="field${field.id}"></div>`);
-                        if (field.isDecimal) {
-                            await $scope.control.inputformat(`#field${field.id}`, field.variable, {
-                                placeHolder: field.name,
-                                format: {
-                                    mask: "0".repeat(field.length || 0) + "." + "0".repeat(field.positions || 0),
-                                    options: {reverse: true}
-                                }
-                            });
+                        if (readonly) {
+                            await $scope.control.inputview(`#field${field.id}`, field.variable, {placeHolder: field.name});
                         } else {
-                            await $scope.control.inputformat(`#field${field.id}`, field.variable, {
-                                placeHolder: field.name,
-                                format: {mask: "0".repeat(field.length || 0), options: {reverse: true}}
-                            });
+                            if (field.isDecimal) {
+                                await $scope.control.inputformat(`#field${field.id}`, field.variable, {
+                                    placeHolder: field.name,
+                                    format: {
+                                        mask: "0".repeat(field.length || 0) + "." + "0".repeat(field.positions || 0),
+                                        options: {reverse: true}
+                                    }
+                                });
+                            } else {
+                                await $scope.control.inputformat(`#field${field.id}`, field.variable, {
+                                    placeHolder: field.name,
+                                    format: {mask: "0".repeat(field.length || 0), options: {reverse: true}}
+                                });
+                            }
+                            pass = true;
                         }
-                        pass = true;
                         break;
                     }
                     case "5": {
                         $(content).append(`<div class="col-sm-${cols} col-md-${cols}" id="field${field.id}"></div>`);
-                        await $scope.control.inputformat(`#field${field.id}`, field.variable, {
-                            placeHolder: field.name,
-                            isNumber: true,
-                            icon: {class: "cash3"},
-                            format: {
-                                mask: "${LAN.money(0).s.symbol}000${LAN.money(0).s.separator}000${LAN.money(0).s.separator}000${LAN.money(0).s.separator}000${LAN.money(0).s.separator}000${LAN.money(0).s.decimal}00",
-                                options: {reverse: true}
-                            }
-                        });
-                        pass = true;
+                        if (readonly) {
+                            await $scope.control.inputview(`#field${field.id}`, field.variable, {placeHolder: field.name});
+                        } else {
+                            await $scope.control.inputformat(`#field${field.id}`, field.variable, {
+                                placeHolder: field.name,
+                                isNumber: true,
+                                icon: {class: "cash3"},
+                                format: {
+                                    mask: "${LAN.money(0).s.symbol}000${LAN.money(0).s.separator}000${LAN.money(0).s.separator}000${LAN.money(0).s.separator}000${LAN.money(0).s.separator}000${LAN.money(0).s.decimal}00",
+                                    options: {reverse: true}
+                                }
+                            });
+                            pass = true;
+                        }
                         break;
                     }
                     case "7": {
                         $(content).append(`<div class="col-sm-${cols} col-md-${cols}" id="field${field.id}"></div>`);
-                        await $scope.control.checkbox(`#field${field.id}`, field.variable, {placeHolder: field.name});
-                        pass = true;
+                        var properties = {placeHolder: field.name};
+                        if (readonly) {
+                            // properties.disabled = true;
+                        }
+                        await $scope.control.checkbox(`#field${field.id}`, field.variable, properties);
+                        if (!readonly) {
+                            pass = true;
+                        }
                         break;
                     }
                     case "8": {
 
                         $(content).append(`<div class="col-sm-${cols} col-md-${cols}" id="field${field.id}"></div>`);
-                        await $scope.control.range(`#field${field.id}`, field.variable + "_label", {
+                        var properties = {
                             placeHolder: field.name,
                             singleDatePicker: true,
                             from: field.variable
-                        });
-                        pass = true;
+                        };
+                        if (readonly) {
+                            properties.disabled = true;
+                        }
+                        await $scope.control.range(`#field${field.id}`, field.variable + "_label", properties);
+                        if (!readonly) {
+                            pass = true;
+                        }
                         break;
                     }
                     case "6": {
@@ -126,44 +150,48 @@ CONTROL = {
                     }
                     case "3": {
                         $(content).append(`<div class="col-sm-${cols} col-md-${cols}" id="field${field.id}"></div>`);
-                        if (!field.parent) {
-                            var dataDropdown = [];
-                            var elements = field.elements.split(",");
-                            for (var element in elements) {
-                                dataDropdown.push({id: elements[element], name: elements[element]});
-                            }
-                            $scope.control.dropdown[field.variable] = {data: dataDropdown, field: field};
-                            await $scope.control.selectsimple(`#field${field.id}`, field.variable,
-                                {
-                                    label: field.name,
-                                    data: $scope.control.dropdown[field.variable].data
-                                });
+                        if (readonly) {
+                            await $scope.control.inputview(`#field${field.id}`, field.variable, {placeHolder: field.name});
                         } else {
-                            var myparent = $scope.control.dropdown[field.parent];
-
-                            if (myparent) {
+                            if (!field.parent) {
                                 var dataDropdown = [];
-                                console.log(myparent);
-                                for (var parent of myparent.data) {
-                                    if (eval(`field.${parent.id}`)) {
-                                        var elements = eval(`field.${parent.id}`).split(",");
-                                        for (var element in elements) {
-                                            dataDropdown.push({
-                                                id: elements[element],
-                                                name: elements[element],
-                                                parent: parent.id
-                                            });
-                                        }
-                                    }
+                                var elements = field.elements.split(",");
+                                for (var element in elements) {
+                                    dataDropdown.push({id: elements[element], name: elements[element]});
                                 }
                                 $scope.control.dropdown[field.variable] = {data: dataDropdown, field: field};
                                 await $scope.control.selectsimple(`#field${field.id}`, field.variable,
                                     {
                                         label: field.name,
-                                        data: $scope.control.dropdown[field.variable].data,
-                                        condition: `item.parent==${$scope.modelName}.${myparent.field.variable}`
+                                        data: $scope.control.dropdown[field.variable].data
                                     });
-                                $scope.form.loadSelect(field.variable);
+                            } else {
+                                var myparent = $scope.control.dropdown[field.parent];
+
+                                if (myparent) {
+                                    var dataDropdown = [];
+                                    console.log(myparent);
+                                    for (var parent of myparent.data) {
+                                        if (eval(`field.${parent.id}`)) {
+                                            var elements = eval(`field.${parent.id}`).split(",");
+                                            for (var element in elements) {
+                                                dataDropdown.push({
+                                                    id: elements[element],
+                                                    name: elements[element],
+                                                    parent: parent.id
+                                                });
+                                            }
+                                        }
+                                    }
+                                    $scope.control.dropdown[field.variable] = {data: dataDropdown, field: field};
+                                    await $scope.control.selectsimple(`#field${field.id}`, field.variable,
+                                        {
+                                            label: field.name,
+                                            data: $scope.control.dropdown[field.variable].data,
+                                            condition: `item.parent==${$scope.modelName}.${myparent.field.variable}`
+                                        });
+                                    $scope.form.loadSelect(field.variable);
+                                }
                             }
                         }
                         break;

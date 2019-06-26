@@ -1,0 +1,31 @@
+{
+  "hidemenus": [],
+  "ui": {
+    "menusList": [
+      {
+        "text": "Main Menu",
+        "href": "menus",
+        "icon": "file-text2"
+      }
+    ],
+    "animation": {
+      "outanimation": "",
+      "inanimation": ""
+    },
+    "console": {
+      "text": "yellow",
+      "bg": "bgRed"
+    },
+    "theme": {
+      "primary": "#ed2c30",
+      "primaryShades": "Balanced",
+      "secundary": "#DAA520",
+      "secundaryShades": "Lineal_fixed",
+      "extra": "#ed2c30",
+      "extraShades": "Balanced",
+      "text1": "#FFF",
+      "text2": "#FFF",
+      "text3": "#FFF"
+    }
+  }
+}

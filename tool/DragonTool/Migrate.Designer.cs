@@ -41,82 +41,85 @@
             // 
             // txtPaths
             // 
-            this.txtPaths.Location = new System.Drawing.Point(14, 34);
-            this.txtPaths.Margin = new System.Windows.Forms.Padding(5);
+            this.txtPaths.Location = new System.Drawing.Point(-32768, 34);
+            this.txtPaths.Margin = new System.Windows.Forms.Padding(0, 5, 0, 5);
             this.txtPaths.Multiline = true;
             this.txtPaths.Name = "txtPaths";
-            this.txtPaths.Size = new System.Drawing.Size(154, 405);
+            this.txtPaths.Size = new System.Drawing.Size(0, 405);
             this.txtPaths.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 9);
-            this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label1.Location = new System.Drawing.Point(-32768, 9);
+            this.label1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 20);
+            this.label1.Size = new System.Drawing.Size(9, 16);
             this.label1.TabIndex = 1;
             this.label1.Text = "Paths";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(770, 9);
-            this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label2.Location = new System.Drawing.Point(-32768, 9);
+            this.label2.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 20);
+            this.label2.Size = new System.Drawing.Size(9, 16);
             this.label2.TabIndex = 3;
             this.label2.Text = "Ignores";
             // 
             // txtIgnores
             // 
-            this.txtIgnores.Location = new System.Drawing.Point(686, 34);
-            this.txtIgnores.Margin = new System.Windows.Forms.Padding(5);
+            this.txtIgnores.Location = new System.Drawing.Point(-32768, 34);
+            this.txtIgnores.Margin = new System.Windows.Forms.Padding(0, 5, 0, 5);
             this.txtIgnores.Multiline = true;
             this.txtIgnores.Name = "txtIgnores";
-            this.txtIgnores.Size = new System.Drawing.Size(154, 405);
+            this.txtIgnores.Size = new System.Drawing.Size(0, 405);
             this.txtIgnores.TabIndex = 2;
             // 
             // txtAlfa
             // 
-            this.txtAlfa.Location = new System.Drawing.Point(176, 34);
+            this.txtAlfa.Location = new System.Drawing.Point(-32768, 34);
+            this.txtAlfa.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.txtAlfa.Name = "txtAlfa";
-            this.txtAlfa.Size = new System.Drawing.Size(502, 26);
+            this.txtAlfa.Size = new System.Drawing.Size(0, 26);
             this.txtAlfa.TabIndex = 4;
             // 
             // txtBetas
             // 
-            this.txtBetas.Location = new System.Drawing.Point(176, 98);
+            this.txtBetas.Location = new System.Drawing.Point(-32768, 98);
+            this.txtBetas.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.txtBetas.Multiline = true;
             this.txtBetas.Name = "txtBetas";
-            this.txtBetas.Size = new System.Drawing.Size(502, 341);
+            this.txtBetas.Size = new System.Drawing.Size(0, 341);
             this.txtBetas.TabIndex = 5;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(405, 11);
-            this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label3.Location = new System.Drawing.Point(-32768, 11);
+            this.label3.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(41, 20);
+            this.label3.Size = new System.Drawing.Size(9, 16);
             this.label3.TabIndex = 6;
             this.label3.Text = "Alfa";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(405, 72);
-            this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label4.Location = new System.Drawing.Point(-32768, 72);
+            this.label4.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(56, 20);
+            this.label4.Size = new System.Drawing.Size(9, 16);
             this.label4.TabIndex = 7;
             this.label4.Text = "Betas";
             // 
             // btnMigrar
             // 
-            this.btnMigrar.Location = new System.Drawing.Point(14, 450);
+            this.btnMigrar.Location = new System.Drawing.Point(-32768, 450);
+            this.btnMigrar.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.btnMigrar.Name = "btnMigrar";
-            this.btnMigrar.Size = new System.Drawing.Size(826, 43);
+            this.btnMigrar.Size = new System.Drawing.Size(0, 43);
             this.btnMigrar.TabIndex = 8;
             this.btnMigrar.Text = "Migrar";
             this.btnMigrar.UseVisualStyleBackColor = true;
@@ -124,9 +127,9 @@
             // 
             // Migrate
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(0F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(854, 505);
+            this.ClientSize = new System.Drawing.Size(687, 505);
             this.Controls.Add(this.btnMigrar);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -137,7 +140,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtPaths);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(5);
+            this.Margin = new System.Windows.Forms.Padding(0, 5, 0, 5);
             this.Name = "Migrate";
             this.Text = "Migrate";
             this.Load += new System.EventHandler(this.Migrate_Load);

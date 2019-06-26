@@ -9,13 +9,15 @@ DSON.keepmerge(CRUD_texts,
                     visible: false,
                     visibleDetail: false,
                     export: false,
-                    exportExample: false
+                    exportExample: false,
+
                 },
                 num: {
                     visible: false,
                     visibleDetail: false,
                     export: false,
-                    exportExample: false
+                    exportExample: false,
+                    dead: true,
                 },
                 basic: {
                     drag: true,

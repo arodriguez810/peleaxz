@@ -1,0 +1,21 @@
+{
+  "menus": [
+    {
+      "text": "Administration",
+      "href": "#",
+      "icon": "equalizer3",
+      "menus": [
+        {
+          "text": "Users",
+          "href": "#users",
+          "icon": "user"
+        },
+        {
+          "text": "Groups",
+          "href": "#group",
+          "icon": "users4"
+        }
+      ]
+    }
+  ]
+}

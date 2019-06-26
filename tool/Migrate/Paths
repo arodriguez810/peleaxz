@@ -2,14 +2,12 @@
 2-procedures
 6-language
 7-plugins
-9-endpoints
 assets
 modules
 scripts
 server
 styles
 package.json
-package-lock.json
 server.js
 generate.js
 start.exe

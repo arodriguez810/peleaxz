@@ -30,14 +30,8 @@ var toclient = JSON.stringify(options);
 </script>
 
 <script>
-    <%= model + "." %>charts<%= "." + name %>_chart = echarts.init(document.getElementById('<%= name %>'), LIMITLESS);
-    <%= model + "." %>charts<%= "." + name %>_chart.on('rendered', function () {
+    <%= model + "." %>charts<%= "." + name %>_chart = echarts.init(document.getElementById('<%= name %>'));
 
-    });
-    <%= model + "." %>charts<%= "." + name %>_chart.on('finished', function () {
-        if (<%= model + "." %>charts<%= "." + name %>_chart)
-        <%= model + "." %>charts<%= "." + name %>_chart.resize();
-    });
     <%= model + "." %>charts<%= "." + name %>.refresh = function () {
                     <%= model %>.
                 charts.<%= name %>_chart_options = {
@@ -47,11 +41,11 @@ var toclient = JSON.stringify(options);
                     legend: {
                         orient: 'vertical',
                         x: 'left',
-                        data: <%= model %>.<%= name %>_data.legend
+                        data: <%= model + "." %><%= name %>_data?<%= model %>.<%= name %>_data.legend:[]
                     },
                     polar: [{
                         radius: '80%',
-                        indicator: <%= model %>.<%= name %>_data.polar
+                        indicator:<%= model + "." %><%= name %>_data? <%= model %>.<%= name %>_data.polar:[]
                     }],
                     toolbox: {
                         show: true,
@@ -80,13 +74,14 @@ var toclient = JSON.stringify(options);
                             }
                         }
                     },
-                    data: <%= model %>.<%= name %>_data.data
+                    data: <%= model + "." %><%= name %>_data?<%= model %>.<%= name %>_data.data:[]
                 }]
                 };
 
-        <%= model + "." %>charts<%= "." + name %>_chart.setOption(<%= model + "." %>charts<%= "." + name %>_chart_options);
-        <%= model + "." %>charts<%= "." + name %>_chart.resize();
-
+        if (<%= model + "." %>charts<%= "." + name %>_chart) {
+            <%= model + "." %>charts<%= "." + name %>_chart.setOption(<%= model + "." %>charts<%= "." + name %>_chart_options, true, true);
+        }
     }
-    <%= model + "." %>charts<%= "." + name %>.refresh();
+    if (<%= model + "." %>charts<%= "." + name %>)
+        <%= model + "." %>charts<%= "." + name %>.refresh();
 </script>

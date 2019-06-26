@@ -65,7 +65,7 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right">
                     <li ng-repeat="(keyblock,item) in <%= scope %>.columns() track by keyblock"
-                        ng-show="item.visible===false">
+                        ng-show="item.visible===false&&item.dead!==true">
                         <a class="legitRipple" title="Column" ng-click="<%= scope %>.showColumn(keyblock);">
                             {{<%= scope %>.columnLabel(item,keyblock,false)}}
                             <i dragonlanguage="" title="MESSAGE.i('navbar.ShowColumns')" class="icon-eye-plus"></i>
@@ -130,7 +130,8 @@
                         <a dragonlanguage="" class="legitRipple" ng-click="<%= scope %>.filters.removeApply(item);">
                             <b>{{<%= scope %>.filters.label(item.column)}}</b> {{item.operator.text}}
                             <b ng-if="!Array.isArray(item.showvalue)">{{item.showvalue}}</b>
-                            <span ng-if="Array.isArray(item.showvalue)" class="label bg-<%= COLOR.secundary %> label-rounded"
+                            <span ng-if="Array.isArray(item.showvalue)"
+                                  class="label bg-<%= COLOR.secundary %> label-rounded"
                                   ng-repeat="(id,sub) in item.showvalue track by id">
                                 {{sub}}
                             </span>

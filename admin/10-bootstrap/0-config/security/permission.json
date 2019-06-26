@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "list": {
+      "group": {
+        "type": "permission",
+        "allow": {}
+      }
+    }
+  }
+}

@@ -27,6 +27,14 @@ VALIDATION = DSON.merge(VALIDATION, {
                 type: VALIDATION.types.error
             };
         },
+        exist: function (value, values, message) {
+
+            return {
+                valid: values.indexOf(value) === -1,
+                message: message,
+                type: VALIDATION.types.error
+            };
+        },
         password_min: function (value) {
             value = value || "";
             if (CONFIG.users.rules.min === 0) {

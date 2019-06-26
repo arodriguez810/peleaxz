@@ -3,13 +3,13 @@ app.controller("texts", function ($scope, $http, $compile) {
 
     texts.headertitle = "Custom";
     RUNCONTROLLER("texts", texts, $scope, $http, $compile);
-    texts.fixFilters = [
-        {
-            field: 'id',
-            operator: ">",
-            value: 16
-        }
-    ];
+    // texts.fixFilters = [
+    //     {
+    //         field: 'id',
+    //         operator: ">",
+    //         value: 16
+    //     }
+    // ];
     //asignar text singular pero se recomienda por language
     //texts.singular = "Singular";
 

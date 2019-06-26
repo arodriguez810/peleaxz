@@ -28,6 +28,7 @@ DSON.keepmerge(CRUD_<%= scope %>, {
             //     exportExample: false,
             //     sortable: false,
             //     shorttext: 360,
+            //     dead:true,
             //     formattype: ENUM.FORMAT.numeric,
             //     sorttype: ENUM.FORMATFILTER.numeric,
             //     drag: true,
@@ -53,8 +54,12 @@ DSON.keepmerge(CRUD_<%= scope %>, {
         }<%= relations %>
     }
 });
+//modify methods that existing option
+//CRUD_<%= scope %>.table.options[0].menus[0].show = function (data) {
+//  return data.row.id > 5;
+//};
 //add options example, remember add new item in allow object at admin/0-config/security/permission.json
-// CRUD_texts.table.options[0].menus.push({
+// CRUD_<%= scope %>.table.options[0].menus.push({
 //     text: (data) => {
 //         return MESSAGE.i('actions.Extra');
 //     },

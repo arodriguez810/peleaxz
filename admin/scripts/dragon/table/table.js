@@ -32,7 +32,7 @@ TABLE = {
                         var first = currents[i];
                         var dataTOUpdate = {where: [{value: first.id}]};
                         dataTOUpdate[$scope.dragrow] = ordered[i];
-                        await BASEAPI.updateallp($scope.modelName, dataTOUpdate);
+                        await BASEAPI.updateallp($scope.tableOrMethod, dataTOUpdate);
                     }
                     $scope.refresh();
                 }, 500);

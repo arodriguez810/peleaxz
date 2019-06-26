@@ -33,10 +33,10 @@
             // 
             // btnRunServer
             // 
-            this.btnRunServer.Location = new System.Drawing.Point(15, 15);
-            this.btnRunServer.Margin = new System.Windows.Forms.Padding(6);
+            this.btnRunServer.Location = new System.Drawing.Point(-32768, 15);
+            this.btnRunServer.Margin = new System.Windows.Forms.Padding(0, 6, 0, 6);
             this.btnRunServer.Name = "btnRunServer";
-            this.btnRunServer.Size = new System.Drawing.Size(488, 113);
+            this.btnRunServer.Size = new System.Drawing.Size(0, 113);
             this.btnRunServer.TabIndex = 0;
             this.btnRunServer.Text = "Run Server";
             this.btnRunServer.UseVisualStyleBackColor = true;
@@ -44,13 +44,13 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(0F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(518, 154);
+            this.ClientSize = new System.Drawing.Size(452, 158);
             this.Controls.Add(this.btnRunServer);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(6);
+            this.Margin = new System.Windows.Forms.Padding(0, 6, 0, 6);
             this.MinimizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

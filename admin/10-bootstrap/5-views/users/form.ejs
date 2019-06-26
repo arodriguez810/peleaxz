@@ -1,0 +1,47 @@
+<div class="tab-content">
+    <div class="tab-pane active" id="basic">
+        <div class="row">
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.input("name", scope, {maxlength: 50}) %>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.input("lastname", scope, {maxlength: 50}) %>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.file("profileimage", scope, {
+                    show: 'image',
+                }) %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.input("username", scope, {maxlength: 15}) %>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.input("email", scope, {maxlength: 50}) %>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.password("password", scope, {maxlength: (CONFIG.users.rules.max !== 0 ? CONFIG.users.rules.max : 9999)}) %>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.password("confirmpassword", scope, {maxlength: (CONFIG.users.rules.max !== 0 ? CONFIG.users.rules.max : 9999)}) %>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.select("profile", scope, {
+                    column: "name",
+                    table: "group",
+                    icon: {class: "vcard"}
+                }) %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- FORM.footer(scope) %>
+
+
+

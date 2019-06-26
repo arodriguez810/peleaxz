@@ -31,14 +31,8 @@ var toclient = JSON.stringify(options);
 
 <script>
 
-    <%= model + "." %>charts<%= "." + name %>_chart = echarts.init(document.getElementById('<%= name %>'), LIMITLESS);
-    <%= model + "." %>charts<%= "." + name %>_chart.on('rendered', function () {
+    <%= model + "." %>charts<%= "." + name %>_chart = echarts.init(document.getElementById('<%= name %>'));
 
-    });
-    <%= model + "." %>charts<%= "." + name %>_chart.on('finished', function () {
-        if (<%= model + "." %>charts<%= "." + name %>_chart)
-        <%= model + "." %>charts<%= "." + name %>_chart.resize();
-    });
     <%= model + "." %>charts<%= "." + name %>.refresh = function () {
                     <%= model %>.
                     charts.<%= name %>_chart_options = {
@@ -67,16 +61,16 @@ var toclient = JSON.stringify(options);
                             type: 'pie',
                             radius: ['40%', '60%'],
                             center: ['40%', '55.5%'],
-                            data: <%= model %>.<%= name %>_data
+                            data: <%= model %>.<%= name %>_data||[]
                     }
                 ]
                 }
 
-        <%= model + "." %>charts<%= "." + name %>_chart.setOption(<%= model + "." %>charts<%= "." + name %>_chart_options);
-        <%= model + "." %>charts<%= "." + name %>_chart.resize();
-
+        if (<%= model + "." %>charts<%= "." + name %>_chart) {
+            <%= model + "." %>charts<%= "." + name %>_chart.setOption(<%= model + "." %>charts<%= "." + name %>_chart_options, true, true);
+        }
     }
-
-    <%= model + "." %>charts<%= "." + name %>.refresh();
+    if (<%= model + "." %>charts<%= "." + name %>)
+        <%= model + "." %>charts<%= "." + name %>.refresh();
 
 </script>

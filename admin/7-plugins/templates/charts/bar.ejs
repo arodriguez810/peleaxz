@@ -62,7 +62,7 @@ var toclient = JSON.stringify(options);
                 }
             },
             legend: {
-                data: <%= model + "." %><%= name %>_data.legend
+                data: <%= model + "." %><%= name %>_data?<%= model + "." %><%= name %>_data.legend:[]
             },
             xAxis: [{
                 type: 'value',
@@ -70,10 +70,10 @@ var toclient = JSON.stringify(options);
             }],
             yAxis: [{
                 type: 'category',
-                data: <%= model + "." %><%= name %>_data.left
+                data: <%= model + "." %><%= name %>_data?<%= model + "." %><%= name %>_data.left:[]
             }],
             calculable: true,
-            series: <%= model + "." %><%= name %>_data.data
+            series: <%= model + "." %><%= name %>_data?<%= model + "." %><%= name %>_data.data:[{}]
         };
 
         if (<%= model + "." %>charts<%= "." + name %>_chart) {

@@ -30,11 +30,8 @@ var toclient = JSON.stringify(options);
 </script>
 
 <script>
-    <%= model + "." %>charts<%= "." + name %>_chart = echarts.init(document.getElementById('<%= name %>'), LIMITLESS);
+    <%= model + "." %>charts<%= "." + name %>_chart = echarts.init(document.getElementById('<%= name %>'));
 
-    <%= model + "." %>charts<%= "." + name %>_chart.onLoaded = function () {
-        console.log("<%= model + "." %>charts<%= "." + name %>_chart");
-    };
     <%= model + "." %>charts<%= "." + name %>.refresh = function () {
         <%= model %>.
         charts.<%= name %>_chart_options = {
@@ -64,13 +61,13 @@ var toclient = JSON.stringify(options);
                 trigger: 'axis'
             },
             legend: {
-                data: <%= model %>.<%= name %>_data.legend
+                data: <%= model + "." %><%= name %>_data?<%= model %>.<%= name %>_data.legend:[]
         },
             xAxis
     :
         [{
             type: 'category',
-            data:<%= model %>.<%= name %>_data.down
+            data:<%= model + "." %><%= name %>_data?<%= model %>.<%= name %>_data.down:[]
     }],
         yAxis: [{
             type: 'value'
@@ -79,15 +76,14 @@ var toclient = JSON.stringify(options);
     :
         true,
             series
-    : <%= model %>.
-        <%= name %>_data.data
+    : <%= model + "." %><%= name %>_data?<%= model %>.<%= name %>_data.data:[{}]
     }
         ;
-
-        <%= model + "." %>charts<%= "." + name %>_chart.setOption(<%= model + "." %>charts<%= "." + name %>_chart_options);
-
-
+        if (<%= model + "." %>charts<%= "." + name %>_chart) {
+            <%= model + "." %>charts<%= "." + name %>_chart.setOption(<%= model + "." %>charts<%= "." + name %>_chart_options, true, true);
+        }
     }
-    <%= model + "." %>charts<%= "." + name %>.refresh();
+    if (<%= model + "." %>charts<%= "." + name %>)
+        <%= model + "." %>charts<%= "." + name %>.refresh();
 
 </script>

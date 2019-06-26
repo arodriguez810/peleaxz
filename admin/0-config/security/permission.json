@@ -26,6 +26,15 @@
       "view_report": {
         "type": "report",
         "allow": {}
+      },
+      "charts": {
+        "type": "empty",
+        "allow": {
+          "bar": true,
+          "Stacked": true,
+          "Columns": true,
+          "ColumnsStack": true
+        }
       }
     }
   }

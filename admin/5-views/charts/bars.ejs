@@ -11,7 +11,7 @@
         <%- include('../../7-plugins/templates/header/end',{scope:scope}); %>
         <div class="subcontent">
             <div class="row">
-                <div class="col-sm-12 col-md-12">
+                <div class="col-sm-12 col-md-12" ng-show="charts.allow(['bar'])">
                     <div class="panel panel-flat">
                         <div class="panel-heading">
                             <h5 class="panel-title">Bar</h5>
@@ -60,7 +60,7 @@
                     </div>
 
                 </div>
-                <div class="col-sm-12 col-md-12">
+                <div class="col-sm-12 col-md-12" ng-show="charts.allow(['Stacked'])">
                     <div class="panel panel-flat">
                         <div class="panel-heading">
                             <h5 class="panel-title">Stacked Bar</h5>
@@ -192,7 +192,7 @@
                     </div>
 
                 </div>
-                <div class="col-sm-12 col-md-12">
+                <div class="col-sm-12 col-md-12" ng-show="charts.allow(['Columns'])">
                     <div class="panel panel-flat">
                         <div class="panel-heading">
                             <h5 class="panel-title">Columns</h5>
@@ -235,7 +235,7 @@
                     </div>
 
                 </div>
-                <div class="col-sm-12 col-md-12">
+                <div class="col-sm-12 col-md-12" ng-show="charts.allow(['ColumnsStack'])">
                     <div class="panel panel-flat">
                         <div class="panel-heading">
                             <h5 class="panel-title">Columns Stack</h5>

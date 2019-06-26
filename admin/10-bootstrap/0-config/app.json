@@ -1,0 +1,30 @@
+{
+  "appName": "APP NAME",
+  "logo": "APP NAME",
+  "filePath": "files",
+  "storage": "files/storage",
+  "appKey": "appKey",
+  "mode": "developer",
+  "language": "en",
+  "home": "#group",
+  "support": {
+    "email": "support@dragon.com",
+    "phone": "809-316-1989"
+  },
+  "features": {
+    "fileManager": true,
+    "stepManager": true,
+    "token": true,
+    "multilanguage": true,
+    "configuration": true,
+    "onesignal": true,
+    "migrations": false,
+    "customfields": true,
+    "silent": true
+  },
+  "developerBy": {
+    "name": "Company",
+    "profile": "https://google.com",
+    "site": "https://google.com"
+  }
+}
