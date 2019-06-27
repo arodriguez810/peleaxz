@@ -1,0 +1,16 @@
+{
+  "starter": [
+    {
+      "text": "Get Started",
+      "href": "#",
+      "icon": "ampersand",
+      "menus": [
+        {
+          "text": "Download And Installs",
+          "href": "#documentation/downloadandinstall",
+          "icon": "file-download2"
+        }
+      ]
+    }
+  ]
+}

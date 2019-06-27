@@ -123,7 +123,7 @@ $(document).ready(function () {
         var $me = $(this);
         var width = $me.data('modal');
         var icon = $me.find('i:eq(0)').attr('class');
-        var title = $me.find('language:eq(0)').html();
+        var title = $me.find('span:eq(0)').html();
         var link = $me.attr('href').replace('#', '');
         var paths = link.split('/');
         if (paths.length > 0) {

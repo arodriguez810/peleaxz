@@ -23,7 +23,8 @@
             {
               "text": "Blogs",
               "href": "#blog",
-              "icon": "blogger2"
+              "icon": "blogger2",
+              "modal": "modal-full"
             },
             {
               "text": "DropDowns",

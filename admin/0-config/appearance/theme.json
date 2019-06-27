@@ -8,6 +8,11 @@
         "icon": "file-text2"
       },
       {
+        "text": "Get Started",
+        "href": "starter",
+        "icon": "file-download2"
+      },
+      {
         "text": "Config",
         "href": "config_menu",
         "icon": "equalizer2"
