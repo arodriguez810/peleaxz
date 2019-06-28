@@ -518,10 +518,11 @@ if (CONFIG.mysql !== undefined) {
 } else loadedMotors++;
 if (CONFIG.oracle !== undefined) {
     modeloracle = [];
-    modules.oracle.data(`select TABLE_NAME from INFORMATION_SCHEMA.TABLES`, PARAMS, false).then(x => {
+    modules.oracle.data(`SELECT TABLE_NAME FROM all_tables where owner='${CONFIG.oracle.user}'`, PARAMS, false).then(x => {
         console.log('loaded oracle models');
         for (var row of x.data) {
-            modeloracle.push(row.TABLE_NAME);
+            if (row.TABLE_NAME)
+                modeloracle.push(row.TABLE_NAME.toLowerCase());
         }
         var ORACLEDB = {};
         for (var i in modeloracle) {
@@ -545,7 +546,8 @@ if (CONFIG.oracle !== undefined) {
             });
         });
     }).catch((err) => {
-        console.log("oracle database error");
+        console.log("oracle database error ");
+        console.log(err);
     });
 } else loadedMotors++;
 if (true) {

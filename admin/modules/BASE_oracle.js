@@ -1,5 +1,6 @@
+exports.open = "";
+exports.close = "";
 exports.executeNonQuery = async function (query, params, show) {
-
     if (show === undefined)
         console.log(query.pxz);
     var connection = await params.oracle.getConnection(params.CONFIG.oracle);
@@ -33,7 +34,7 @@ exports.insertQuery = async function (table, data, params, get, getvalue) {
             if (property[0] === "$")
                 columns.push(property.replace('$', ''));
             else
-                columns.push("\"" + property + "\"");
+                columns.push(exports.open + property + exports.close);
 
             if (value[0] === "$")
                 values.push(value.replace('$', ''));
@@ -43,11 +44,11 @@ exports.insertQuery = async function (table, data, params, get, getvalue) {
                 values.push((value === "true" ? "1" : value === "false" ? "0" : ("'" + value.replace("'", "''") + "'")));
         }
         if (get !== undefined) {
-            queries.push(params.format("INSERT INTO \"{0}\"({1}) VALUES({2}); SELECT * FROM \"{0}\" where \"" + get + "\"=" + getvalue, table, columns.join(", "), values.join(", ")));
+            queries.push(params.format(`INSERT INTO ${exports.open}{0}${exports.close}({1}) VALUES({2}); SELECT * FROM ${exports.open}{0}${exports.close} where ${exports.open}` + get + `${exports.close}=` + getvalue, table, columns.join(", "), values.join(", ")));
             break;
         }
         else
-            queries.push(params.format("INSERT INTO \"{0}\"({1}) VALUES({2})", table, columns.join(", "), values.join(", ")));
+            queries.push(params.format(`INSERT INTO ${exports.open}{0}${exports.close}({1}) VALUES({2})`, table, columns.join(", "), values.join(", ")));
     }
     return queries;
 };
@@ -67,7 +68,7 @@ exports.update = async function (table, data, params) {
                 if (property[0] === "$")
                     columns = (property.replace('$', ''));
                 else
-                    columns = ("\"" + property + "\"");
+                    columns = (exports.open + property + exports.open);
                 if (value[0] === "$")
                     values = (value.replace('$', ''));
                 else if (value[0] === "#")
@@ -86,7 +87,7 @@ exports.update = async function (table, data, params) {
                         for (var i in options.where) {
                             var obj = options.where[i];
                             var field = obj.field !== undefined ? obj.field : "id";
-                            field = field[0] === '$' ? field.replace('$', '') : "\"" + field + "\"";
+                            field = field[0] === '$' ? field.replace('$', '') : exports.open + field + exports.close;
                             var operator = obj.operator !== undefined ? obj.operator : "=";
                             var connector = obj.connector !== undefined ? obj.connector : "AND";
                             if (Array.isArray(obj.value)) {
@@ -107,7 +108,7 @@ exports.update = async function (table, data, params) {
                 }
             }
         }
-        queries.push(params.format("UPDATE \"{0}\" SET {1} {2}", table, sets.join(", "), where));
+        queries.push(params.format(`UPDATE ${exports.open}{0}${exports.close} SET {1} {2}`, table, sets.join(", "), where));
     }
     return queries;
 };
@@ -123,13 +124,13 @@ exports.delete = function (table, data, params) {
             if (property[0] === "$")
                 columns.push(property.replace('$', ''));
             else
-                columns.push("\"" + property + "\"");
+                columns.push(exports.open + property + exports.close);
             if (value[0] === "$")
                 values.push(value.replace('$', ''));
             else
                 values.push("'" + value + "'");
         }
-        queries.push(params.format("DELETE FROM \"{0}\" WHERE", table, columns.join(", "), values.join(", ")));
+        queries.push(params.format(`DELETE FROM ${exports.open}{0}${exports.close} WHERE`, table, columns.join(", "), values.join(", ")));
     }
     return queries;
 };
@@ -144,7 +145,7 @@ exports.data = async function (query, params, index) {
         for (var row of result.rows) {
             var object = {};
             for (var cell in row) {
-                eval(`object.${result.metaData[cell].name} = row[cell];`);
+                eval(`object.${result.metaData[cell].name.toLowerCase()} = row[cell];`);
             }
             createjson.push(object);
         }
@@ -167,7 +168,7 @@ exports.defaultRequests = function (Model, params) {
         params.modules.views.LoadEJS(files, params);
     });
     params.app.post('/api/oc_list', function (req, res) {
-        params.secure.check(req, res).then( function (token) {
+        params.secure.check(req, res).then(function (token) {
             if (!token.apptoken) {
                 res.json(token);
                 return;
@@ -190,7 +191,7 @@ exports.defaultRequests = function (Model, params) {
         });
     });
     params.app.post(params.util.format('/api/%s/list', Model.tableName), function (req, res) {
-        params.secure.check(req, res).then( function (token) {
+        params.secure.check(req, res).then(function (token) {
             if (!token.apptoken) {
                 res.json(token);
                 return;
@@ -213,7 +214,7 @@ exports.defaultRequests = function (Model, params) {
         });
     });
     params.app.get(params.util.format('/api/%s/all', Model.tableName), function (req, res) {
-        params.secure.check(req, res).then( function (token) {
+        params.secure.check(req, res).then(function (token) {
             if (!token.apptoken) {
                 res.json(token);
                 return;
@@ -236,7 +237,7 @@ exports.defaultRequests = function (Model, params) {
         });
     });
     params.app.get(params.util.format('/api/%s/get/:id', Model.tableName), function (req, res) {
-        params.secure.check(req, res).then( function (token) {
+        params.secure.check(req, res).then(function (token) {
             if (!token.apptoken) {
                 res.json(token);
                 return;
@@ -250,7 +251,7 @@ exports.defaultRequests = function (Model, params) {
         });
     });
     params.app.post('/api/' + Model.tableName + '/insert', function (req, res) {
-        params.secure.check(req, res).then( function (token) {
+        params.secure.check(req, res).then(function (token) {
             if (!token.apptoken) {
                 res.json(token);
                 return;
@@ -266,7 +267,7 @@ exports.defaultRequests = function (Model, params) {
         });
     });
     params.app.post('/api/' + Model.tableName + '/insertID', function (req, res) {
-        params.secure.check(req, res).then( function (token) {
+        params.secure.check(req, res).then(function (token) {
             if (!token.apptoken) {
                 res.json(token);
                 return;
@@ -280,7 +281,7 @@ exports.defaultRequests = function (Model, params) {
         });
     });
     params.app.post('/api/' + Model.tableName + '/update/', function (req, res) {
-        params.secure.check(req, res).then( function (token) {
+        params.secure.check(req, res).then(function (token) {
             if (!token.apptoken) {
                 res.json(token);
                 return;
@@ -296,7 +297,7 @@ exports.defaultRequests = function (Model, params) {
         });
     });
     params.app.post('/api/' + Model.tableName + '/delete', function (req, res) {
-        params.secure.check(req, res).then( function (token) {
+        params.secure.check(req, res).then(function (token) {
             if (!token.apptoken) {
                 res.json(token);
                 return;
@@ -357,7 +358,7 @@ exports.Model = function (tableName, params) {
         return await exports.executeNonQueryArray(await exports.insertQuery(tableName, data, params), params)
             .then(async (insert) => {
                 var retroID = field || "id";
-                var retroValue = value !== '' ? ("'" + value + "'") : ("(select MAX(\"" + (field || "id") + "\") from \"" + tableName + "\")");
+                var retroValue = value !== '' ? ("'" + value + "'") : (`(select MAX(${exports.open}` + (field || "id") + `${exports.close}) from ${exports.open}` + tableName + `${exports.close})`);
                 var retroQuery = `SELECT * FROM "${tableName}" where "${retroID}"= ${retroValue}`;
                 return await exports.data(retroQuery, params).then((result) => {
                     return result;
@@ -383,8 +384,8 @@ exports.Model = function (tableName, params) {
     };
     //functions
     this.clearQuotes = function (data) {
-        var newstr = params.S(data).replaceAll("\"", "").s;
-        newstr = params.S(newstr).replaceAll("\"", "").s;
+        var newstr = params.S(data).replaceAll(exports.open, "").s;
+        newstr = params.S(newstr).replaceAll(exports.close, "").s;
         return newstr;
     };
     this.colPointer = function (column, base) {
@@ -394,29 +395,29 @@ exports.Model = function (tableName, params) {
             var pointer = spliter[0];
             column = spliter[1];
             if (!base) {
-                if (column[0] === "\"")
+                if (column[0] === exports.open)
                     return params.format("{0}.{1}", pointer, column);
                 else
-                    return params.format("{0}.\"{1}\"", pointer, column);
+                    return params.format(`{0}.${exports.open}{1}${exports.close}`, pointer, column);
             } else {
-                if (column[0] === "\"")
+                if (column[0] === exports.open)
                     return params.format("{0}.{1} as {2}_{3}", pointer, column, this.clearQuotes(pointer), this.clearQuotes(column));
                 else
-                    return params.format("{0}.\"{1}\" as {2}_{3}", pointer, column, this.clearQuotes(pointer), this.clearQuotes(column));
+                    return params.format(`{0}.${exports.open}{1}${exports.close} as {2}_{3}`, pointer, column, this.clearQuotes(pointer), this.clearQuotes(column));
             }
 
         } else {
             var pointer = "BASE";
             if (!base) {
-                if (column[0] === "\"")
+                if (column[0] === exports.open)
                     return params.format("{0}.{1}", pointer, column);
                 else
-                    return params.format("{0}.\"{1}\"", pointer, column);
+                    return params.format(`{0}.${exports.open}{1}${exports.close}`, pointer, column);
             } else {
-                if (column[0] === "\"")
+                if (column[0] === exports.open)
                     return params.format("{0}.{1} as {2}_{3}", pointer, column, this.clearQuotes(pointer), this.clearQuotes(column));
                 else
-                    return params.format("{0}.\"{1}\" as {2}_{3}", pointer, column, this.clearQuotes(pointer), this.clearQuotes(column));
+                    return params.format(`{0}.${exports.open}{1}${exports.open} as {2}_{3}`, pointer, column, this.clearQuotes(pointer), this.clearQuotes(column));
             }
         }
     };
@@ -474,14 +475,14 @@ exports.Model = function (tableName, params) {
                     for (var i in options.join) {
                         var obj = options.join[i];
                         if (obj.table !== undefined) {
-                            var field = obj.field !== undefined ? obj.field : "\"id\"";
+                            var field = obj.field !== undefined ? obj.field : `${exports.open}id${exports.close}`;
                             field = this.colPointer(obj.table + "." + field);
-                            var baseField = obj.base !== undefined ? obj.base : "\"id\"";
+                            var baseField = obj.base !== undefined ? obj.base : `${exports.open}id${exports.close}`;
                             baseField = this.colPointer(baseField);
                             var type = obj.type !== undefined ? obj.type : "LEFT";
                             var operator = obj.operator !== undefined ? obj.operator : "=";
                             var connector = obj.connector !== undefined ? obj.connector : "AND";
-                            var Jcolumns = obj.columns !== undefined ? obj.columns : this.colPointer("\"" + obj.table + "\".\"name\"", true);
+                            var Jcolumns = obj.columns !== undefined ? obj.columns : this.colPointer(exports.open + obj.table + `${exports.close}.${exports.open}name${exports.close}`, true);
                             var subwhere = this.makeWhere(options.join.where, false);
                             if (Array.isArray(Jcolumns))
                                 for (const jco of Jcolumns)
@@ -498,7 +499,7 @@ exports.Model = function (tableName, params) {
                             var type = spliter[0];
                             var inner = spliter[1];
                             var baseField = spliter[2];
-                            var Jcolumns = this.colPointer("\"" + inner + "\".\"name\"", true);
+                            var Jcolumns = this.colPointer(exports.close + inner + `${exports.close}.${exports.open}name${exports.close}`, true);
                             if (spliter.length > 3) {
                                 Jcolumns = spliter[3].split(',');
                                 for (const jco of Jcolumns)
@@ -506,7 +507,7 @@ exports.Model = function (tableName, params) {
                             } else {
                                 joinColumns.push(Jcolumns);
                             }
-                            join.push(params.format(" {0} JOIN {1} ON {2} {3} \"{1}\".\"{4}\"", type, inner, this.colPointer(baseField), "=", "id"));
+                            join.push(params.format(` {0} JOIN {1} ON {2} {3} ${exports.open}{1}${exports.close}.${exports.open}{4}${exports.close}`, type, inner, this.colPointer(baseField), "=", "id"));
                         }
                     }
                     join = join.join(" ");
@@ -515,7 +516,7 @@ exports.Model = function (tableName, params) {
                     var type = spliter[0];
                     var inner = spliter[1];
                     var baseField = spliter[2];
-                    var Jcolumns = this.colPointer("\"" + inner + "\".\"name\"", true);
+                    var Jcolumns = this.colPointer(exports.open + inner + `${exports.close}.${exports.open}name${exports.close}`, true);
                     if (spliter.length > 3) {
                         Jcolumns = spliter[3].split(',');
                         for (const jco of Jcolumns)
@@ -523,7 +524,7 @@ exports.Model = function (tableName, params) {
                     } else {
                         joinColumns.push(Jcolumns);
                     }
-                    join = (params.format(" {0} JOIN {1} ON {2} {3} \"{1}\".\"{4}\"", type, inner, this.colPointer(baseField), "=", "id"));
+                    join = (params.format(` {0} JOIN {1} ON {2} {3} ${exports.open}{1}${exports.close}.${exports.open}{4}${exports.close}`, type, inner, this.colPointer(baseField), "=", "id"));
                 }
             }
         }
@@ -565,7 +566,7 @@ exports.Model = function (tableName, params) {
                     if (column[0] === "$")
                         orderbyarray.push(column.replace('$', ''));
                     else
-                        orderbyarray.push(params.format("\"{0}\"", column));
+                        orderbyarray.push(params.format(`${exports.open}{0}${exports.close}`, column));
                 }
                 orderby = " ORDER BY " + orderbyarray.join(",");
             }
@@ -573,7 +574,7 @@ exports.Model = function (tableName, params) {
                 if (options.orderby[0] === "$")
                     orderby = " ORDER BY " + options.orderby.replace('$', '');
                 else
-                    orderby = " ORDER BY " + params.format("\"{0}\"", options.orderby);
+                    orderby = " ORDER BY " + params.format(`${exports.open}{0}${exports.close}`, options.orderby);
             }
             if (options.order) {
                 order = options.order;
@@ -605,7 +606,7 @@ exports.Model = function (tableName, params) {
             }
         }
         if (sentence === "SELECT")
-            var query = params.format("select * from ({sentence} {distinct} {selectfinal},rownum as rnum FROM \"{table}\" " + nickName + " {join} {where} {limit} {groupby} {orderby} {order}) {page}",
+            var query = params.format(`select * from ({sentence} {distinct} {selectfinal},rownum as rnum FROM ${exports.open}{table}${exports.close} ` + nickName + " {join} {where} {limit} {groupby} {orderby} {order}) {page}",
                 {
                     sentence: sentence,
                     distinct: distinct,
@@ -622,7 +623,7 @@ exports.Model = function (tableName, params) {
                 }
             );
         else
-            var query = params.format("{sentence} {distinct} {selectfinal} FROM \"{table}\" " + nickName + " {join} {where} {page} {limit} {groupby} {orderby} {order}  ",
+            var query = params.format(`{sentence} {distinct} {selectfinal} FROM ${exports.open}{table}${exports.close} ` + nickName + " {join} {where} {page} {limit} {groupby} {orderby} {order}  ",
                 {
                     sentence: sentence,
                     distinct: distinct,
@@ -639,7 +640,7 @@ exports.Model = function (tableName, params) {
                 }
             );
 
-        var queryCount = params.format("SELECT count(*) \"count\" FROM \"{table}\" " + nickName + " {join} {where} {groupby}",
+        var queryCount = params.format(`SELECT count(*) ${exports.open}count${exports.close} FROM ${exports.open}{table}${exports.close} ` + nickName + " {join} {where} {groupby}",
             {
                 table: offTableName,
                 join: join,

@@ -22,6 +22,9 @@ DSON.keepmerge(CRUD_texts,
                 basic: {
                     drag: true,
                     shorttext: 80,
+                    label: function () {
+                        return "BASIC";
+                    }
                     //["click", "dblclick", "mousedown", "mouseenter", "mouseleave", "mousemove", "mouseover", "mouseup"]
                 },
                 percentage: {formattype: ENUM.FORMAT.percentage},

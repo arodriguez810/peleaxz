@@ -118,7 +118,7 @@ async function execute() {
         }
         var dbtablesArray = [];
         dbtables.data.forEach((table) => {
-            dbtablesArray.push(table.table)
+            dbtablesArray.push(table.table.toLowerCase())
         });
         if (dbtablesArray.indexOf(controllerName) === -1) {
             console.log(`Table ${controllerName} not exist`.error);

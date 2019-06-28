@@ -1,5 +1,6 @@
 {
   "version": {
-    "base": "2.8"
+    "base": "2.8",
+    "documentation": "1.0"
   }
 }

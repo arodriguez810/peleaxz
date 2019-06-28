@@ -1,4 +1,11 @@
 ENUM = {
+    case: {
+        MAYUS: 1,
+        MINUS: 2,
+        CAPITAL: 3,
+        INTERSECT: 4,
+        SEMICAPITAL: 5
+    },
     modal: {
         width: {
             full: "modal-full",

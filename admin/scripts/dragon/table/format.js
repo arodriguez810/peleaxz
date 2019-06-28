@@ -84,7 +84,7 @@ TABLEFORMAT = {
             if (func === undefined)
                 if (typeof value.label === "function") return value.label();
             if (MESSAGE.exist(`columns.${key}`))
-                return capitalizeOneSpace(MESSAGE.i(`columns.${key}`));
+                label = capitalizeOneSpace(MESSAGE.i(`columns.${key}`));
             return capitalizeOneSpace(label);
         };
         $scope.columnLabelStrip = function (value, key) {

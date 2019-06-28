@@ -306,14 +306,23 @@ GARBAGECOLECTOR = function (exclude, ignoreChangeMenu) {
                         if(${item}!==null){
                           if(${item}.destroyForm!==false)
                           if(${item}.form!==null) 
-                          if(${item}.form!==undefined){ 
-                              eval('delete ${item}.'+CRUD_${item}.table.key);
-                              for(var field of ${item}.form.fileds){
-                                 eval('delete ${item}.'+field);
+                          if(${item}.form!==undefined){
+                              if(CRUD_${item}!==undefined){ 
+                                  eval('delete ${item}.'+CRUD_${item}.table.key);
+                                  for(var field of ${item}.form.fileds){
+                                     eval('delete ${item}.'+field);
+                                  }
+                                  ${item}.form = null;
+                                  ${item}.open = null;
+                                  ${item}.pages = null;
+                              }else{
+                                  for(var field of ${item}.form.fileds){
+                                     eval('delete ${item}.'+field);
+                                  }
+                                  ${item}.form = null;
+                                  ${item}.open = null;
+                                  ${item}.pages = null;
                               }
-                              ${item}.form = null;
-                              ${item}.open = null;
-                              ${item}.pages = null;
                           }
                         }
                     }`);
