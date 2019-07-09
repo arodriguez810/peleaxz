@@ -155,7 +155,7 @@
   "owner": "owner",
   "network": "network",
   "authentication": "authentication",
-  "restarting": "Restarting Server",
+  "restarting": "Save Configuration",
   "selectLocation": "Select Location",
   "selectedLocation": "Location Selected",
   "uncheckall": "Uncheck All",

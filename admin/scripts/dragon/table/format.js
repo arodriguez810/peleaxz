@@ -383,5 +383,6 @@ TABLEFORMAT = {
                 return "dragon-row-deleted";
             return "";
         };
+        $scope.LAN = LAN;
     }
 };

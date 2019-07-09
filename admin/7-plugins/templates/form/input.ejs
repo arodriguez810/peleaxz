@@ -18,10 +18,10 @@ var options = {
     format: '',
     readonly: false,
     disabled: false,
-    autocomplete: '',
+    autocomplete: false,
     posttype: "text",
     isNumber: false,
-    hint: null
+    hint: null,
     //maxlength: 10,
 
 };
@@ -29,7 +29,6 @@ var options = {
 
 options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g, '_');
 options.icon.spyce = options.icon.class === "none" ? "remove-input-space" : "";
-options.autocomplete = options.autocomplete ? "autocomplete='Off'" : '';
 options.format = options.format ? options.format : false;
 options.model = options.model ? options.model : false;
 var toclient = JSON.stringify(options);
@@ -42,7 +41,7 @@ var toclient = JSON.stringify(options);
     <% } %>
     if (MESSAGE.exist('columns.<%= nameclean %>')) {
         <%= model %>.
-        form.options.<%= name %>.placeholder =  MESSAGE.ic('columns.<%= nameclean %>');
+        form.options.<%= name %>.placeholder = MESSAGE.ic('columns.<%= nameclean %>');
     }
 
 </script>
@@ -63,7 +62,7 @@ var toclient = JSON.stringify(options);
             ng-readonly="<%= model %>.form.options.<%= name %>.readonly"
             ng-disabled="<%= model %>.form.options.<%= name %>.disabled"
             maxlength="{{<%= model %>.form.options.<%= name %>.maxlength}}"
-            autocomplete="off"
+            <%= !options.autocomplete ? "autocomplete=off" : "" %>
             type="text"
             ng-model-onblur
             class="form-control"
@@ -89,8 +88,11 @@ var toclient = JSON.stringify(options);
 </div>
 
 <script>
-    if(<%= model %>.UNIQUEFIELD){
-        if(UNIQUEFIELD!=="<%= name %>")
+    if (<%= model %>.
+    UNIQUEFIELD
+    )
+    {
+        if (UNIQUEFIELD !== "<%= name %>")
             $("#input<%= model %>_<%= nameclean %>").parent().hide();
     }
     <%= model %>.triggers.table.after.control("<%= nameclean %>");
@@ -108,12 +110,16 @@ var toclient = JSON.stringify(options);
         ;
     });
     <% if(options.popover){ %>
-        $('#popover<%= model %>_<%= nameclean %>').popover({
-            container: 'body',
-            title: eval("`" +<%= model %>.form.options.<%= name %>.popover.title + "`"),
-            content:eval("`" +<%= model %>.form.options.<%= name %>.popover.content + "`"),
-            trigger: 'click'
-        });
+    $('#popover<%= model %>_<%= nameclean %>').popover({
+        container: 'body',
+        title: eval("`" +<%= model %>.form.options.<%= name %>.popover.title + "`"),
+        content
+    :
+    eval("`" +<%= model %>.form.options.<%= name %>.popover.content + "`"
+    ),
+    trigger: 'click'
+    })
+    ;
     <% } %>
     var isReadProgram = <%= model %>.
     form.isReadOnly('<%= name %>');

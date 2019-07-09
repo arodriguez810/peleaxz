@@ -918,11 +918,11 @@ exports.init = function (params) {
         params.folders.viewsDragon + "//base",
         params.folders.viewsDragon + "//master",
         params.folders.viewsDragon + "//templates/charts",
-        params.folders.viewsDragon + "//templates/docx",
+        // params.folders.viewsDragon + "//templates/docx",
         params.folders.viewsDragon + "//templates/email",
         params.folders.viewsDragon + "//templates/form",
         params.folders.viewsDragon + "//templates/header",
-        params.folders.viewsDragon + "//templates/pdf",
+        // params.folders.viewsDragon + "//templates/pdf",
         params.folders.viewsDragon + "//templates/system",
         params.folders.viewsDragon + "//templates/table",
         params.folders.viewsDragon + "//aplication"
@@ -1345,9 +1345,12 @@ exports.init = function (params) {
                 res.json(token);
                 return;
             }
-            await params.storage.setItem("configuration", req.body.json);
             var fs = params.fs || require("fs");
             var file = __dirname + '/../' + params.folders.config + '/' + 'z_saved.json';
+            req.body.json = params.S(req.body.json).replaceAll("&#39;", "'").s;
+            req.body.json = params.S(req.body.json).replaceAll("&#34;", "\"").s;
+            req.body.json = params.S(req.body.json).replaceAll("&lt;", "<").s;
+            req.body.json = params.S(req.body.json).replaceAll("&gt;", ">").s;
             fs.writeFile(file, req.body.json, function (err, data) {
                 if (err) {
                     res.json({error: err});
@@ -1364,7 +1367,19 @@ exports.init = function (params) {
                 res.json(token);
                 return;
             }
-            await params.storage.setItem("configuration", req.body.json);
+            var fs = params.fs || require("fs");
+            var file = __dirname + '/../' + params.folders.config + '/' + 'z_saved.json';
+
+            req.body.json = params.S(req.body.json).replaceAll("&#39;", "'").s;
+            req.body.json = params.S(req.body.json).replaceAll("&#34;", "\"").s;
+            req.body.json = params.S(req.body.json).replaceAll("&lt;", "<").s;
+            req.body.json = params.S(req.body.json).replaceAll("&gt;", ">").s;
+
+            fs.writeFile(file, req.body.json, function (err, data) {
+                if (err) {
+                    res.json({error: err});
+                }
+            });
             res.json({error: false, saved: true});
         }).catch(function () {
 

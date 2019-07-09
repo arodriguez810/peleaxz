@@ -545,7 +545,12 @@ exports.Model = function (tableName, params) {
                     if (column[0] === "$")
                         orderbyarray.push(column.replace('$', ''));
                     else
-                        orderbyarray.push(params.format("[{0}]", column));
+                    {
+                        if (options.orderby.indexOf('_') !== -1)
+                            orderbyarray.push(params.format(`{0}`, options.orderby));
+                        else
+                            orderbyarray.push(params.format(`{0}`, this.colPointer(options.orderby)));
+                    }
                 }
                 orderby = " ORDER BY " + orderbyarray.join(",");
             }
@@ -553,7 +558,13 @@ exports.Model = function (tableName, params) {
                 if (options.orderby[0] === "$")
                     orderby = " ORDER BY " + options.orderby.replace('$', '');
                 else
-                    orderby = " ORDER BY " + params.format("[{0}]", options.orderby);
+                {
+                    if (options.orderby.indexOf('_') !== -1)
+                        orderby = " ORDER BY " + params.format(`{0}`, options.orderby);
+                    else
+                        orderby = " ORDER BY " + params.format(`{0}`, this.colPointer(options.orderby));
+
+                }
             }
             if (options.order) {
                 order = options.order;

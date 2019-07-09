@@ -24,7 +24,7 @@ CONTROL = {
                 resolve(true);
             })`);
         }
-        $scope.control.customfield = (content, fields, cols, destroy, readonly) => new Promise(async (resolve, reject) => {
+        $scope.control.customfield = (content, fields, cols, destroy, readonly, folder) => new Promise(async (resolve, reject) => {
             $(content).html("");
             for (var field of fields) {
                 if (destroy) {
@@ -137,14 +137,22 @@ CONTROL = {
                         break;
                     }
                     case "6": {
-                        console.log(field);
+
+
                         $(content).append(`<div class="col-sm-${cols} col-md-${cols}" id="field${field.id}"></div>`);
-                        await $scope.control.file(`#field${field.id}`, field.variable, {
+
+                        var options = {
                             placeHolder: field.name,
-                            acceptedFiles: `${field.documentType}/*`,
                             maxfiles: field.multiplefile ? 50 : 1,
-                            columns: field.multiplefile ? 4 : 1
-                        });
+                            columns: field.multiplefile ? 4 : 1,
+
+                        };
+                        if (folder) {
+                            options.modelfolder = folder;
+                            console.log(options.modelfolder);
+                        }
+                        await $scope.control.file(`#field${field.id}`, field.variable, options);
+                        $scope.refreshAngular();
                         pass = true;
                         break;
                     }

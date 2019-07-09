@@ -10,6 +10,7 @@ class Database {
             }
         });
     }
+
     query(sql, args) {
         return new Promise((resolve, reject) => {
             this.connection.query(sql, args, (err, rows) => {
@@ -23,6 +24,7 @@ class Database {
             });
         });
     }
+
     close() {
         return new Promise((resolve, reject) => {
             this.connection.end(err => {
@@ -198,7 +200,7 @@ exports.defaultRequests = function (Model, params) {
         params.modules.views.LoadEJS(files, params);
     });
     params.app.post('/api/ms_list', function (req, res) {
-        params.secure.check(req, res).then( function (token) {
+        params.secure.check(req, res).then(function (token) {
             if (!token.apptoken) {
                 res.json(token);
                 return;
@@ -221,7 +223,7 @@ exports.defaultRequests = function (Model, params) {
         });
     });
     params.app.post(params.util.format('/api/%s/list', Model.tableName), function (req, res) {
-        params.secure.check(req, res).then( function (token) {
+        params.secure.check(req, res).then(function (token) {
             if (!token.apptoken) {
                 res.json(token);
                 return;
@@ -244,7 +246,7 @@ exports.defaultRequests = function (Model, params) {
         });
     });
     params.app.get(params.util.format('/api/%s/all', Model.tableName), function (req, res) {
-        params.secure.check(req, res).then( function (token) {
+        params.secure.check(req, res).then(function (token) {
             if (!token.apptoken) {
                 res.json(token);
                 return;
@@ -260,7 +262,7 @@ exports.defaultRequests = function (Model, params) {
         });
     });
     params.app.get(params.util.format('/api/%s/get/:id', Model.tableName), function (req, res) {
-        params.secure.check(req, res).then( function (token) {
+        params.secure.check(req, res).then(function (token) {
             if (!token.apptoken) {
                 res.json(token);
                 return;
@@ -276,7 +278,7 @@ exports.defaultRequests = function (Model, params) {
         });
     });
     params.app.post('/api/' + Model.tableName + '/insert', function (req, res) {
-        params.secure.check(req, res).then( function (token) {
+        params.secure.check(req, res).then(function (token) {
             if (!token.apptoken) {
                 res.json(token);
                 return;
@@ -292,7 +294,7 @@ exports.defaultRequests = function (Model, params) {
         });
     });
     params.app.post('/api/' + Model.tableName + '/insertID', function (req, res) {
-        params.secure.check(req, res).then( function (token) {
+        params.secure.check(req, res).then(function (token) {
             if (!token.apptoken) {
                 res.json(token);
                 return;
@@ -308,7 +310,7 @@ exports.defaultRequests = function (Model, params) {
         });
     });
     params.app.post('/api/' + Model.tableName + '/update/', function (req, res) {
-        params.secure.check(req, res).then( function (token) {
+        params.secure.check(req, res).then(function (token) {
             if (!token.apptoken) {
                 res.json(token);
                 return;
@@ -324,7 +326,7 @@ exports.defaultRequests = function (Model, params) {
         });
     });
     params.app.post('/api/' + Model.tableName + '/delete', function (req, res) {
-        params.secure.check(req, res).then( function (token) {
+        params.secure.check(req, res).then(function (token) {
             if (!token.apptoken) {
                 res.json(token);
                 return;
@@ -587,16 +589,25 @@ exports.Model = function (tableName, params) {
                     var column = options.orderby[i];
                     if (column[0] === "$")
                         orderbyarray.push(column.replace('$', ''));
-                    else
-                        orderbyarray.push(params.format("`{0}`", column));
+                    else {
+                        if (options.orderby.indexOf('_') !== -1)
+                            orderbyarray.push(params.format(`{0}`, options.orderby));
+                        else
+                            orderbyarray.push(params.format(`{0}`, this.colPointer(options.orderby)));
+                    }
                 }
                 orderby = " ORDER BY " + orderbyarray.join(",");
             }
             else {
                 if (options.orderby[0] === "$")
                     orderby = " ORDER BY " + options.orderby.replace('$', '');
-                else
-                    orderby = " ORDER BY " + params.format("`{0}`", options.orderby);
+                else {
+                    if (options.orderby.indexOf('_') !== -1)
+                        orderby = " ORDER BY " + params.format(`{0}`, options.orderby);
+                    else
+                        orderby = " ORDER BY " + params.format(`{0}`, this.colPointer(options.orderby));
+
+                }
             }
             if (options.order) {
                 order = options.order;

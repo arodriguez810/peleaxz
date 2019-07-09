@@ -47,7 +47,8 @@
                 </a>
             </li>
 
-            <li class="dropdown dropdownwithoptions" dragonlanguage="">
+            <li ng-if="baseController.mode==='developer'"
+                class="dropdown dropdownwithoptions" dragonlanguage="">
                 <a class="dropdown-toggle legitRipple" data-toggle="dropdown" aria-expanded="false">
                     <i class="icon-equalizer"></i>
                     <language>MESSAGE.ic('mono.managers')</language>
@@ -103,7 +104,8 @@
             </li>
 
 
-            <li class="dropdown dropdownwithoptions" dragonlanguage="">
+            <li ng-if="((baseController.isSuper) || (baseController.features.onesignal===true || baseController.features.customfields===true))||baseController.mode==='developer'"
+                class="dropdown dropdownwithoptions" dragonlanguage="">
                 <a class="dropdown-toggle legitRipple" data-toggle="dropdown" aria-expanded="false">
                     <i class="icon-equalizer"></i>
                     <language>MESSAGE.ic('mono.datacenter')</language>
@@ -117,7 +119,7 @@
                             <i class="icon-cabinet"></i>
                         </a>
                     </li>
-                    <li ng-if="baseController.features.onesignal===true && (baseController.isSuper || baseController.isAdmin)">
+                    <li ng-if="baseController.features.onesignal===true && (baseController.isSuper)">
                         <a class="sidebar-control"
                            onclick="MODAL.rawModal(MESSAGE.ic('mono.notifications'),'notifications','bubble-notification',undefined,'notifications');"
                            data-popup="tooltip"
@@ -137,7 +139,7 @@
                             <language>MESSAGE.ic('mono.customfield')</language>
                         </a>
                     </li>
-                    <li ng-if="(baseController.isSuper || baseController.isAdmin)">
+                    <li ng-if="(baseController.isSuper || baseController.isAdmin) && baseController.mode==='developer'">
                         <a class="sidebar-control"
                            onclick="MODAL.rawModal(MESSAGE.ic('columns.curreny_plural'),'base_currency','coin-dollar',undefined,'base_currency');"
                            data-popup="tooltip"
@@ -147,8 +149,9 @@
                             <language>MESSAGE.ic('columns.curreny_plural')</language>
                         </a>
                     </li>
-                    <li class="divider"></li>
-                    <li ng-if="(baseController.isSuper || baseController.isAdmin)">
+                    <li ng-if="(baseController.isSuper || baseController.isAdmin) && baseController.mode==='developer'"
+                        class="divider"></li>
+                    <li ng-if="(baseController.isSuper || baseController.isAdmin) && baseController.mode==='developer'">
                         <a class="sidebar-control"
                            onclick="MODAL.rawModal(MESSAGE.ic('columns.mime_plural'),'mime','book',undefined,'mime');"
                            data-popup="tooltip"
@@ -159,7 +162,7 @@
                         </a>
                     </li>
 
-                    <li ng-if="(baseController.isSuper || baseController.isAdmin)">
+                    <li ng-if="(baseController.isSuper || baseController.isAdmin) && baseController.mode==='developer'">
                         <a class="sidebar-control"
                            onclick="MODAL.rawModal(MESSAGE.ic('columns.fieldtype_plural'),'fieldtype','terminal',undefined,'fieldtype');"
                            data-popup="tooltip"
@@ -170,7 +173,7 @@
                         </a>
                     </li>
 
-                    <li ng-if="(baseController.isSuper || baseController.isAdmin)">
+                    <li ng-if="(baseController.isSuper || baseController.isAdmin) && baseController.mode==='developer'">
                         <a class="sidebar-control"
                            onclick="MODAL.rawModal(MESSAGE.ic('columns.interval_plural'),'interval','alarm',undefined,'interval');"
                            data-popup="tooltip"
@@ -201,8 +204,7 @@
                     </li>
                 </ul>
             </li>
-            <li ng-show="!baseController.isClient"
-                ng-if="(baseController.isSuper || baseController.isAdmin) && baseController.mode==='developer'">
+            <li ng-show="!baseController.isClient" ng-if="baseController.mode==='developer'">
                 <a class="sidebar-control"
                    onclick="MODAL.rawModal(MESSAGE.ic('mono.generatemobile'), 'information/mobile', 'mobile', 'modal-lg', 'information')"
                    data-popup="tooltip"
@@ -221,7 +223,8 @@
                             </span>
                 </a>
                 <ul class="dropdown-menu ">
-                    <li ng-repeat="(key, menu) in baseController.menusList track by key" class="{{baseController.currentMenu===menu.href?'bg-primary':''}}">
+                    <li ng-repeat="(key, menu) in baseController.menusList track by key"
+                        class="{{baseController.currentMenu===menu.href?'bg-primary':''}}">
                         <a data-modal="{{menu.modal}}" ng-click="baseController.changeMenu(menu)"
                            style="color: black !important;">
                             <i class="icon-{{menu.icon}}"></i>

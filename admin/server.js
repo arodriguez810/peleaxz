@@ -518,32 +518,56 @@ if (CONFIG.mysql !== undefined) {
 } else loadedMotors++;
 if (CONFIG.oracle !== undefined) {
     modeloracle = [];
-    modules.oracle.data(`SELECT TABLE_NAME FROM all_tables where owner='${CONFIG.oracle.user}'`, PARAMS, false).then(x => {
-        console.log('loaded oracle models');
-        for (var row of x.data) {
-            if (row.TABLE_NAME)
-                modeloracle.push(row.TABLE_NAME.toLowerCase());
-        }
-        var ORACLEDB = {};
-        for (var i in modeloracle) {
-            var stringModel = S(allparams).replaceAll("@model@", modeloracle[i]).s;
-            eval("ORACLEDB." + modeloracle[i] + " = new modules.oracle.Model('" + modeloracle[i] + "'," + allparams + ");");
-            modules.oracle.defaultRequests(
-                eval(util.format("ORACLEDB.%s", modeloracle[i])),
-                eval("(" + stringModel + ")")
-            );
-        }
-        loadedMotors++
-        fs.readdir("./" + folders.models + "/oracle", function (err, sentences) {
-            var queries = [];
-            for (var i in sentences) {
-                var sentence = sentences[i];
-                var query = fs.readFileSync(`./${folders.models}/oracle/${sentence}`);
-                queries.push(util.format("%s", query));
+    modeloracleReal = [];
+    modules.oracle.data(`SELECT TABLE_NAME FROM all_tables where owner='${CONFIG.oracle.user}'`, PARAMS, false).then(async x => {
+        modules.oracle.data(`SELECT VIEW_NAME as TABLE_NAME FROM all_views where owner='${CONFIG.oracle.user}'`, PARAMS, false).then(async y => {
+            console.log('loaded oracle models');
+            var myfields = [];
+            for (var row of x.data) {
+                modeloracle.push(row.table_name.toLowerCase());
+                modeloracleReal.push(row.table_name);
+                dbfields = await modules.oracle.dataNoShow(`select COLUMN_NAME as "column",DATA_TYPE as "type" from all_tab_columns where TABLE_NAME='${row.table_name}'`, PARAMS, false);
+                dbfields.data.forEach((field) => {
+                    if (myfields.indexOf(field.column) === -1)
+                        myfields.push(field.column);
+                });
             }
-            modules.oracle.executeNonQueryArray(queries, PARAMS, false).then((data) => {
-                //console.log('-oracle');
+            for (var row of y.data) {
+                modeloracle.push(row.table_name.toLowerCase());
+                modeloracleReal.push(row.table_name);
+                dbfields = await modules.oracle.dataNoShow(`select COLUMN_NAME as "column",DATA_TYPE as "type" from all_tab_columns where TABLE_NAME='${row.table_name}'`, PARAMS, false);
+                dbfields.data.forEach((field) => {
+                    if (myfields.indexOf(field.column) === -1)
+                        myfields.push(field.column);
+                });
+            }
+
+            console.log(modeloracleReal);
+
+            var ORACLEDB = {};
+            for (var i in modeloracleReal) {
+                var stringModel = S(allparams).replaceAll("@model@", modeloracleReal[i]).s;
+                eval("ORACLEDB." + modeloracleReal[i] + " = new modules.oracle.Model('" + modeloracleReal[i] + "'," + allparams + ",myfields,modeloracleReal);");
+                modules.oracle.defaultRequests(
+                    eval(util.format("ORACLEDB.%s", modeloracleReal[i])),
+                    eval("(" + stringModel + ")")
+                );
+            }
+            loadedMotors++
+            fs.readdir("./" + folders.models + "/oracle", function (err, sentences) {
+                var queries = [];
+                for (var i in sentences) {
+                    var sentence = sentences[i];
+                    var query = fs.readFileSync(`./${folders.models}/oracle/${sentence}`);
+                    queries.push(util.format("%s", query));
+                }
+                modules.oracle.executeNonQueryArray(queries, PARAMS, false).then((data) => {
+                    //console.log('-oracle');
+                });
             });
+        }).catch((err) => {
+            console.log("oracle database error ");
+            console.log(err);
         });
     }).catch((err) => {
         console.log("oracle database error ");
@@ -584,7 +608,7 @@ if (true) {
 } else loadedMotors++;
 while (loadedMotors < 6) sleep(1);
 //******* Load Models********//
-
+//return;
 //******* Load Services********//
 servicesFiles = getFiles("./" + folders.service + "/");
 var catalogs = [];

@@ -2,8 +2,7 @@
 <script>
     <%= scope %>.httpError.hideError = true;
     <%= scope %>.isServer = function () {
-        return  <%= scope %>.
-        httpError.data.indexOf("FORM is not defined") !== 1;
+        return  <%= scope %>.httpError.data.indexOf("FORM is not defined") !== -1;
     };
 </script>
 <div class="row" ng-show="!<%= scope %>.httpError.hideError">

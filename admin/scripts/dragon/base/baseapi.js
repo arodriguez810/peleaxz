@@ -45,6 +45,11 @@ BASEAPI = {
                 console.log(data);
             });
         },
+        postp: (method, parameters, element) => new Promise((resolve, reject) => {
+            BASEAPI.ajax.post(method, parameters, function (result) {
+                resolve(result);
+            }, element);
+        }),
         get: function (method, parameters, callBack, element) {
             BASEAPI.ajax.loading(element);
             $http = angular.injector(["ng"]).get("$http");

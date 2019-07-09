@@ -8,6 +8,13 @@ function has_scrollbar(name) {
 }
 
 DSON = {
+    CHTML: function (str) {
+        str = (str).replaceAll("&#39;", '"');
+        str = (str).replaceAll("&#34;", "'");
+        str = (str).replaceAll("&lt;", "<");
+        str = (str).replaceAll("&gt;", ">");
+        return str;
+    },
     UNIVERSAL: "YYYY/MM/DD",
     UNIVERSALTIME: "YYYY/MM/DD H:mm",
     DTF: function (format) {

@@ -10,7 +10,8 @@
             <div class="panel panel-body" id="logincontent">
                 <div class="form-group has-feedback has-feedback-left text-center">
                     <div class="icon-object border-<%= COLOR.primary %>-800 text-slate-300" style="padding: 10px">
-                        <img style="float: left !important;width: 100px;" src="files/configuration/logo/logo.png" alt="">
+                        <img style="float: left !important;width: 100px;" src="files/configuration/logo/logo.png"
+                             alt="">
                     </div>
                     <h5 class="content-group" dragonlanguage>
                         <language>MESSAGE.i('login.Loginto')</language> <%= CONFIG.appName %>
@@ -20,7 +21,7 @@
                     </h5>
                 </div>
 
-                <%- FORM.input("username", scope, {text: "Remember", icon: {class: "user"}}) %>
+                <%- FORM.input("username", scope, {text: "Remember", icon: {class: "user"}, autocomplete: true}) %>
                 <%- FORM.normalpassword("password", scope, {
                     text: "Remember",
                     type: "password",

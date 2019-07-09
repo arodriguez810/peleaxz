@@ -21,7 +21,18 @@ exports.api = {
             eval(`module = params.modules.${config.engine};`);
             var sendPassword = request.password;
             sendPassword = params.md5(params.CONFIG.appKey + sendPassword);
-            var users = new module.Model(config.model, params);
+            var users = null;
+            if (config.engine === "oracle") {
+                myfields = [];
+                dbfields = await module.dataNoShow(`select COLUMN_NAME as "column",DATA_TYPE as "type" from all_tab_columns where TABLE_NAME='${config.model}'`, params, false);
+                dbfields.data.forEach((field) => {
+                    myfields.push(field.column);
+                });
+                users = new module.Model(config.model, params, myfields);
+            } else {
+                users = new module.Model(config.model, params);
+            }
+
             return await users.where([
                 {
                     field: config.fields.username,

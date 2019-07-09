@@ -362,8 +362,10 @@ FORM = {
                                 if ($scope.form.uploading.length > 0) {
                                     for (var file of $scope.form.uploading)
                                         file.to = file.to.replace('$id', DRAGONID);
+
                                     BASEAPI.ajax.post(new HTTP().path(["files", "api", "move"]), {moves: $scope.form.uploading}, function (data) {
                                         $scope.pages.form.subRequestComplete(close);
+                                        $scope.filesToMove = [];
                                     });
                                 }
                         if ($scope.form !== null)
@@ -649,6 +651,7 @@ FORM = {
             if (eval(`$scope.form.options.${name}.data`) !== undefined) {
                 var objectSelected = eval(`$scope.form.options.${name}.data`).filter(function (row) {
                     var idtun = eval(`$scope.form.options.${name}.value`);
+                    idtun = idtun.replaceAll("item.", "row.");
                     return eval(`row.${idtun}`) == eval(`$scope.${name}`);
                 });
                 return objectSelected.length > 0 ? objectSelected[0] : null;
@@ -660,6 +663,7 @@ FORM = {
             if (eval(`$scope.form.options.${name}.data`) !== undefined) {
                 var objectSelected = eval(`$scope.form.options.${name}.data`).filter(function (row) {
                     var idtun = eval(`$scope.form.options.${name}.value`);
+                    idtun = idtun.replaceAll("item.", "row.");
                     return eval(`row.${idtun}`) == eval(`$scope.${name}`);
                 });
                 return objectSelected.length > 0 ? objectSelected[0] : null;
@@ -735,6 +739,7 @@ FORM = {
                                 if (eval(`$scope.${name}`) !== "[NULL]") {
                                     var objectSelected = eval(`$scope.form.options.${name}.data`).filter(function (row) {
                                         var idtun = eval(`$scope.form.options.${name}.value`);
+                                        idtun = idtun.replaceAll("item.", "row.");
                                         return eval(`row.${idtun}`) == eval(`$scope.${name}`);
                                     });
                                     if (objectSelected.length > 0) {
@@ -891,6 +896,7 @@ FORM = {
                                     if (eval(`$scope.${name}`) !== "[NULL]") {
                                         var objectSelected = eval(`$scope.form.options.${name}.data`).filter(function (row) {
                                             var idtun = eval(`$scope.form.options.${name}.value`);
+                                            idtun = idtun.replaceAll("item.", "row.");
                                             return eval(`row.${idtun}`) == eval(`$scope.${name}`);
                                         });
                                         if (objectSelected.length > 0) {

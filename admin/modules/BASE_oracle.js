@@ -1,6 +1,10 @@
-exports.open = "";
-exports.close = "";
-exports.executeNonQuery = async function (query, params, show) {
+exports.open = "\"";
+exports.close = "\"";
+exports.executeNonQuery = async function (query, params, show, c, fields, tablename) {
+    if (c) {
+        console.log(query.success);
+        query = c(query, fields, tablename);
+    }
     if (show === undefined)
         console.log(query.pxz);
     var connection = await params.oracle.getConnection(params.CONFIG.oracle);
@@ -15,10 +19,10 @@ exports.executeNonQuery = async function (query, params, show) {
         return {query: query, error: err};
     }
 };
-exports.executeNonQueryArray = async function (queries, params, show) {
+exports.executeNonQueryArray = async function (queries, params, show, c, fields, tablename) {
     var result;
     for (var query of queries)
-        result = await exports.executeNonQuery(query, params, show);
+        result = await exports.executeNonQuery(query, params, show, c, fields, tablename);
     return result;
 };
 exports.insertQuery = async function (table, data, params, get, getvalue) {
@@ -134,10 +138,14 @@ exports.delete = function (table, data, params) {
     }
     return queries;
 };
-exports.data = async function (query, params, index) {
-
+exports.data = async function (query, params, index, c, fields, tablename) {
     var connection = await params.oracle.getConnection(params.CONFIG.oracle);
+    if (c) {
+        console.log(query.success);
+        query = c(query, fields, tablename);
+    }
     console.log(query.pxz);
+
     try {
         var result = await connection.execute(query);
         await connection.release();
@@ -154,7 +162,37 @@ exports.data = async function (query, params, index) {
             query: query,
             error: false,
             data: createjson,
-            count: result.rows.length,
+            count: [result.rows.length],
+            index: index
+        };
+    } catch (err) {
+        await connection.release();
+        return {query: query, error: err};
+    }
+};
+exports.dataNoShow = async function (query, params, index, c, fields, tablename) {
+
+    var connection = await params.oracle.getConnection(params.CONFIG.oracle);
+    if (c)
+        query = c(query, fields, tablename);
+
+    try {
+        var result = await connection.execute(query);
+        await connection.release();
+        var createjson = [];
+        for (var row of result.rows) {
+            var object = {};
+            for (var cell in row) {
+                eval(`object.${result.metaData[cell].name.toLowerCase()} = row[cell];`);
+            }
+            createjson.push(object);
+        }
+
+        return {
+            query: query,
+            error: false,
+            data: createjson,
+            count: [result.rows.length],
             index: index
         };
     } catch (err) {
@@ -163,7 +201,8 @@ exports.data = async function (query, params, index) {
     }
 };
 exports.defaultRequests = function (Model, params) {
-    params.modelName = Model.tableName;
+    params.modelName = Model.tableName.toLowerCase();
+
     params.fs.readdir(params.util.format('./' + params.folders.views + '/%s', params.modelName), function (err, files) {
         params.modules.views.LoadEJS(files, params);
     });
@@ -313,10 +352,29 @@ exports.defaultRequests = function (Model, params) {
         });
     });
 };
-exports.Model = function (tableName, params) {
+exports.Model = function (tableName, params, fields, tables) {
     this.tableName = tableName;
     this.mssql = params.mssql;
     this.config = params.config;
+    this.fields = fields;
+    this.tables = tables;
+    this.c = function (query, fs, tbs) {
+        var newQuery = query;
+        for (var i in fs) {
+            var field = fs[i];
+            newQuery = params.S(newQuery).replaceAll(`"${field.toLowerCase()}"`, `"${field}"`).s;
+            newQuery = params.S(newQuery).replaceAll(`"${field.toUpperCase()}"`, `"${field}"`).s;
+        }
+        for (var i in tbs) {
+            var table = tbs[i];
+            newQuery = params.S(newQuery).replaceAll(`"${table.toUpperCase()}"`, `"${table}"`).s;
+            newQuery = params.S(newQuery).replaceAll(`"${table.toLowerCase()}"`, `"${table}"`).s;
+
+            newQuery = params.S(newQuery).replaceAll(`${table.toUpperCase()}.`, `"${table}".`).s;
+            newQuery = params.S(newQuery).replaceAll(`${table.toLowerCase()}.`, `"${table}".`).s;
+        }
+        return newQuery;
+    };
     //search
     this.all = async function (options) {
         return await this.search(options);
@@ -329,12 +387,12 @@ exports.Model = function (tableName, params) {
     };
     //update
     this.update = async function (data) {
-        return await exports.executeNonQueryArray(await exports.update(tableName, data, params), params).then(result => {
+        return await exports.executeNonQueryArray(await exports.update(tableName, data, params), params, undefined, this.c, this.fields, this.tables).then(result => {
             return result;
         });
     };
     this.updateAll = async function (data) {
-        return await exports.executeNonQueryArray(await exports.update(tableName, data, params), params).then(result => {
+        return await exports.executeNonQueryArray(await exports.update(tableName, data, params), params, undefined, this.c, this.fields, this.tables).then(result => {
             return result;
         });
     };
@@ -344,23 +402,23 @@ exports.Model = function (tableName, params) {
             finalwhere.push({value: eval("where." + property), field: property});
         }
         data.where = finalwhere;
-        return await exports.executeNonQueryArray(await exports.update(tableName, data, params), params).then((result) => {
+        return await exports.executeNonQueryArray(await exports.update(tableName, data, params), params, undefined, this.c, this.fields, this.tables).then((result) => {
             return result;
         });
     };
     //insert
     this.insert = async function (data) {
-        return await exports.executeNonQueryArray(await exports.insertQuery(tableName, data, params), params).then((result) => {
+        return await exports.executeNonQueryArray(await exports.insertQuery(tableName, data, params), params, undefined, this.c, this.fields, this.tables).then((result) => {
             return result;
         });
     };
     this.insertID = async function (data, field, value) {
-        return await exports.executeNonQueryArray(await exports.insertQuery(tableName, data, params), params)
+        return await exports.executeNonQueryArray(await exports.insertQuery(tableName, data, params), params, undefined, this.c, this.fields, this.tables)
             .then(async (insert) => {
                 var retroID = field || "id";
                 var retroValue = value !== '' ? ("'" + value + "'") : (`(select MAX(${exports.open}` + (field || "id") + `${exports.close}) from ${exports.open}` + tableName + `${exports.close})`);
                 var retroQuery = `SELECT * FROM "${tableName}" where "${retroID}"= ${retroValue}`;
-                return await exports.data(retroQuery, params).then((result) => {
+                return await exports.data(retroQuery, params, undefined, this.c, this.fields, this.tables).then((result) => {
                     return result;
                 });
             });
@@ -405,7 +463,6 @@ exports.Model = function (tableName, params) {
                 else
                     return params.format(`{0}.${exports.open}{1}${exports.close} as {2}_{3}`, pointer, column, this.clearQuotes(pointer), this.clearQuotes(column));
             }
-
         } else {
             var pointer = "BASE";
             if (!base) {
@@ -491,9 +548,9 @@ exports.Model = function (tableName, params) {
                                 joinColumns.push(Jcolumns);
 
                             if (subwhere === "")
-                                join.push(params.format(" {0} JOIN {1} ON {2} {3} {4}", type, obj.table, this.colPointer(baseField), operator, field));
+                                join.push(params.format(` {0} JOIN ${exports.open}{1}${exports.close} ON {2} {3} {4}`, type, obj.table, this.colPointer(baseField), operator, field));
                             else
-                                join.push(params.format(" {0} JOIN {1} ON {2} {3} {4} {5} ({6})", type, obj.table, this.colPointer(baseField), operator, field, connector, subwhere));
+                                join.push(params.format(` {0} JOIN ${exports.open}{1}${exports.close} ON {2} {3} {4} {5} ({6})`, type, obj.table, this.colPointer(baseField), operator, field, connector, subwhere));
                         } else {
                             var spliter = obj.split(':');
                             var type = spliter[0];
@@ -507,7 +564,7 @@ exports.Model = function (tableName, params) {
                             } else {
                                 joinColumns.push(Jcolumns);
                             }
-                            join.push(params.format(` {0} JOIN {1} ON {2} {3} ${exports.open}{1}${exports.close}.${exports.open}{4}${exports.close}`, type, inner, this.colPointer(baseField), "=", "id"));
+                            join.push(params.format(` {0} JOIN ${exports.open}{1}${exports.close} ON {2} {3} ${exports.open}{1}${exports.close}.${exports.open}{4}${exports.close}`, type, inner, this.colPointer(baseField), "=", "id"));
                         }
                     }
                     join = join.join(" ");
@@ -524,7 +581,7 @@ exports.Model = function (tableName, params) {
                     } else {
                         joinColumns.push(Jcolumns);
                     }
-                    join = (params.format(` {0} JOIN {1} ON {2} {3} ${exports.open}{1}${exports.close}.${exports.open}{4}${exports.close}`, type, inner, this.colPointer(baseField), "=", "id"));
+                    join = (params.format(` {0} JOIN ${exports.open}{1}${exports.close} ON {2} {3} ${exports.open}{1}${exports.close}.${exports.open}{4}${exports.close}`, type, inner, this.colPointer(baseField), "=", "id"));
                 }
             }
         }
@@ -565,16 +622,26 @@ exports.Model = function (tableName, params) {
                     var column = options.orderby[i];
                     if (column[0] === "$")
                         orderbyarray.push(column.replace('$', ''));
-                    else
-                        orderbyarray.push(params.format(`${exports.open}{0}${exports.close}`, column));
+                    else {
+                        if (options.orderby.indexOf('_') !== -1)
+                            orderbyarray.push(params.format(`{0}`, options.orderby));
+                        else
+                            orderbyarray.push(params.format(`{0}`, this.colPointer(options.orderby)));
+                    }
+
                 }
                 orderby = " ORDER BY " + orderbyarray.join(",");
             }
             else {
                 if (options.orderby[0] === "$")
                     orderby = " ORDER BY " + options.orderby.replace('$', '');
-                else
-                    orderby = " ORDER BY " + params.format(`${exports.open}{0}${exports.close}`, options.orderby);
+                else {
+                    if (options.orderby.indexOf('_') !== -1)
+                        orderby = " ORDER BY " + params.format(`{0}`, options.orderby);
+                    else
+                        orderby = " ORDER BY " + params.format(`{0}`, this.colPointer(options.orderby));
+
+                }
             }
             if (options.order) {
                 order = options.order;
@@ -605,6 +672,7 @@ exports.Model = function (tableName, params) {
                 }
             }
         }
+
         if (sentence === "SELECT")
             var query = params.format(`select * from ({sentence} {distinct} {selectfinal},rownum as rnum FROM ${exports.open}{table}${exports.close} ` + nickName + " {join} {where} {limit} {groupby} {orderby} {order}) {page}",
                 {
@@ -649,12 +717,12 @@ exports.Model = function (tableName, params) {
             }
         );
         if (sentence !== "DELETE")
-            return await exports.data(queryCount, params).then(async countData => {
+            return await exports.data(queryCount, params, undefined, this.c, this.fields, this.tables).then(async countData => {
                 return await exports.data(query, params, {
                     limitvalue: $limitvalue,
                     pagec: $pagec,
                     limit: options.limit
-                }).then((data) => {
+                }, this.c, this.fields, this.tables).then((data) => {
                     if (options.limit !== undefined)
                         if (data.index !== undefined) {
                             data.totalPage = Math.ceil(countData.data[0].count / data.index.limitvalue);
@@ -669,9 +737,8 @@ exports.Model = function (tableName, params) {
                 });
             });
         else
-            return await exports.executeNonQuery(query, params).then((data) => {
+            return await exports.executeNonQuery(query, params, undefined, this.c, this.fields, this.tables).then((data) => {
                 return data;
             });
     };
 };
-

@@ -19,6 +19,7 @@ var options = {
     format: 'LL',
     universal: 'YYYY/MM/DD',
     minDate: '',
+    prop: '',
     maxDate: '',
     from: '',
     to: '',
@@ -189,6 +190,7 @@ var toclient = JSON.stringify(options);
         <%= options.minDate === "" ? "" : ("minDate:moment(" + options.minDate + "),") %>
         <%= options.maxDate === "" ? "" : ("maxDate:moment(" + options.maxDate + "),") %>
         <%= options.singleDatePicker === false ? "" : ("singleDatePicker:true,") %>
+        <%- options.prop === "" ? "" : options.prop %>
     },
 
         function (start, end, label) {

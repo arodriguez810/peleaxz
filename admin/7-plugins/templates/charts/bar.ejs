@@ -73,7 +73,7 @@ var toclient = JSON.stringify(options);
                 data: <%= model + "." %><%= name %>_data?<%= model + "." %><%= name %>_data.left:[]
             }],
             calculable: true,
-            series: <%= model + "." %><%= name %>_data?<%= model + "." %><%= name %>_data.data:[{}]
+            series: <%= model + "." %><%= name %>_data?<%= model + "." %><%= name %>_data.data:[]
         };
 
         if (<%= model + "." %>charts<%= "." + name %>_chart) {

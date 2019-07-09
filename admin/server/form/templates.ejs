@@ -1,4 +1,19 @@
 <%
+$type = String;
+$type.__typeName = 'String';
+$type.__class = true;
+$prototype = $type.prototype;
+$prototype.replaceAll = function (search, replacement) {
+    var target = this;
+    return target.replace(new RegExp(search, 'g'), replacement);
+};
+CHTML = function (str) {
+    str = (str).replaceAll("&#39;", '"');
+    str = (str).replaceAll("&#34;", "'");
+    str = (str).replaceAll("&lt;", "<");
+    str = (str).replaceAll("&gt;", ">");
+    return str;
+};
 CHART = {
     template: function (view, data) {
         return include('../../7-plugins/templates/' + view, data);
@@ -86,7 +101,7 @@ FORM = {
     decimal: function (name, model, options) {
         options.isNumber = false;
         options.icon = {class: "calculator2", position: "left"};
-        options.mask = `${"?9".repeat(options.length || 18)}.${"?9".repeat(options.decimal || 2)}`;
+        options.mask = `${"9?".repeat(options.length || 18)}.${"9?".repeat(options.decimal || 2)}`;
         options.restrict = "reject";
         return FORM.template('form/ngmask', {name: name, model: model, opts: options});
     },
