@@ -1,0 +1,249 @@
+<%
+if (DATA.name !== undefined) {
+    var name, model, opts, modelfolder;
+    name = DATA.name;
+    model = DATA.model;
+    opts = DATA.opts;
+    modelfolder = DATA.opts.modelfolder;
+
+}
+var name = name || "";
+
+console.log(modelfolder+":mandado es");
+if (!modelfolder) {
+    modelfolder = model;
+    console.log(modelfolder+":este es");
+}
+
+var options = {
+    text: params.capitalize(name),
+    title: `${params.capitalize(name)}`,
+    show: false,
+    image: 57,
+    imagefloat: 'left',
+    icon: {
+        class: "upload",
+        position: "left",
+        color: COLOR.secundary
+    },
+    type: "normal",
+    folder: `${modelfolder}/temp_files/${name}/` + new Date().getTime(),
+    read: '',
+    maxsize_mb: 10,
+    maxfiles: 1,
+    file: '',
+    trigger: false,
+    acceptedFiles: null,
+    width: "modal-full",
+    columns: 1,
+    posttype: "file",
+    download: true,
+    remove: true,
+    upload: true,
+    divname: ""
+};
+options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g, '_');
+options.color = options.type === "form" ? "{{" + model + ".validation.stateDefault()}}" : options.icon.color;
+var toclient = JSON.stringify(options);
+%>
+<script>
+    <%= model %>.filesMessages = MESSAGE.ic("mono.files");
+    <%= model %>.triggers.table.before.control("<%= nameclean %>");
+    var keyColumn = eval(`CRUD_<%= model %>`).table.key;
+    <%= model %>.form.schemas.insert["<%= name %>"] = FORM.schemasType.upload;
+    <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
+    <%= model %>.form.registerField("<%= name %>_DragonCountFile", "<%= toclient %>");
+    if (MESSAGE.exist('columns.<%= nameclean %>')) {
+        <%= model %>.
+        form.options.<%= name %>.text = MESSAGE.ic('columns.<%= nameclean %>');
+    } else {
+
+    }
+    <%= model %>.<%= name %>_DragonCountFile = 0;
+    var thisID = eval(`<%= model %>.${keyColumn}`);
+
+    if (<%= model %>.
+    form.options.<%= name %>.file !== ''
+    )
+    {
+        thisID = <%= model %>.
+        form.options.<%= name %>.file;
+    }
+
+</script>
+<div class="form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-<%= options.icon.position %>"
+     id="input<%= model %>_<%= nameclean %>">
+
+
+    <% if(options.show === 'image'){ %>
+        <img id="showImage<%= model %>_<%= nameclean %>"
+             style="max-height: <%= options.image %>px;float: <%= options.imagefloat %>"
+             src="assets/images/placeholder.jpg" alt="">
+    <% } %>
+
+    <div id="<%= model %>_<%= nameclean %>" class="x-force task">
+    </div>
+
+
+
+    <% if(options.popover){ %>
+        <i
+                id="popover<%= model %>_<%= nameclean %>" class="icon-help">
+        </i>
+    <% } %>
+    <span ng-if="<%= model %>.form.options.<%= name %>.helptext!=''"
+          class="help-block text-muted">
+        {{<%= model %>.form.options.<%= name %>.helptext}}
+    </span>
+
+    <span ng-show="<%= model %>.validate['<%= name %>'].messages.length>0" class="help-block">
+
+        <p class="text-{{validation.type}}" ng-show="validation.visible!==false || <%= model %>.form.intent===true"
+           ng-repeat="(key,validation) in <%= model %>.validate['<%= name %>'].messages track by key">
+               <i class="{{validation.icon}}"></i> {{validation.message}}
+        </p>
+    </span>
+
+</div>
+<script>
+    if (!<%= model %>.
+    filesToMove
+    )
+    <%= model %>.filesToMove = [];
+    <%= model %>.filesToMove.push("<%= nameclean %>");
+    <%= model %>.saveAllFiles = (id) => new Promise(async (resolve, reject) => {
+        for (var save of <%= model %>.
+        filesToMove
+    )
+        {
+            var fromClean = eval(`<%= model %>.${save}.replace('upload:', '')`);
+            var from = `${FOLDERS.files}/${fromClean}`;
+            var toClean = eval(`"<%= modelfolder %>/${save}/${id}"`);
+            var to = `${FOLDERS.files}/${toClean}`;
+
+            await BASEAPI.ajax.postp(new HTTP().path(["files", "api", "move"]), {moves: [{from: from, to: to}]});
+        }
+        resolve(true);
+    });
+
+    <%= model %>.triggers.table.after.control("<%= nameclean %>");
+    var amLoad<%= name %> = false;
+    <% if(options.popover){ %>
+    $('#popover<%= model %>_<%= nameclean %>').popover({
+        container: 'body',
+        title: eval("`" +<%= model %>.form.options.<%= name %>.popover.title + "`"),
+        content
+    :
+    eval("`" +<%= model %>.form.options.<%= name %>.popover.content + "`"
+    ),
+    trigger: 'click'
+    })
+    ;
+    <% } %>
+
+    function ShowCount<%= name %>(direct) {
+        <% if(options.show === 'image'){ %>
+
+        $("[amclone='true']").remove();
+        FILE.server(<%= model %>.form.options.<%= name %>.folder, function (files) {
+            if (files.length > 0) {
+                files.forEach((file) => {
+                    var theClone = $("#showImage<%= model %>_<%= nameclean %>").clone();
+                    theClone.attr('amclone', true);
+                    FILE.addSourceToElement(theClone, file.url);
+                    theClone.show();
+                    $("#showImage<%= model %>_<%= nameclean %>").after(theClone);
+                });
+            } else {
+                var theClone = $("#showImage<%= model %>_<%= nameclean %>").clone();
+                theClone.attr('amclone', true);
+                FILE.addSourceToElement(theClone, "assets/images/placeholder.jpg");
+                theClone.show();
+                $("#showImage<%= model %>_<%= nameclean %>").after(theClone);
+            }
+            $("#showImage<%= model %>_<%= nameclean %>").hide();
+        }
+    )
+        ;
+        <% } %>
+        if (amLoad<%= name %> || direct === true) {
+            BASEAPI.ajax.get(new HTTP().path(["files", "api"]), {folder: <%= model %>.form.options.<%= name %>.folder
+        },
+
+            function (data) {
+                <%= model %>.
+                <%= name %>_DragonCountFile = data.data.files.length;
+                <%= model %>.
+                $scope.$digest();
+            }
+
+        )
+            ;
+            amLoad<%= name %> = false;
+        }
+    }
+
+    if (!DSON.oseaX(thisID)) {
+        if (<%= model %>.
+        form.options.<%= name %>.file === ''
+    )
+        {
+            <%= model %>.
+            form.options.<%= name %>.folder = `<%= modelfolder %>/<%= name %>/${thisID}`;
+        }
+        ShowCount<%= name %>(true);
+    }
+
+    <%= model %>.form.beginFunctions.push("ShowCount<%= name %>()");
+
+    $(document).ready(function () {
+
+        <%= model %>.<%= name %> = "upload:" + <%= model %>.
+        form.options.<%= name %>.folder;
+
+
+
+
+            amLoad<%= name %> = true;
+            var root = <%= model %>.
+            form.options.<%= name %>.folder;
+            baseController.viewData = {
+                root: root,
+                file:<%= model %>.form.options.<%= name %>.file,
+                scope
+        : <%= model %>,
+            maxsize: <%= model %>.
+            form.options.<%= name %>.maxsize_mb,
+                maxsize
+        : <%= model %>.
+            form.options.<%= name %>.maxsize_mb,
+                maxfiles
+        : <%= model %>.
+            form.options.<%= name %>.maxfiles,
+                acceptedFiles
+        : <%= model %>.
+            form.options.<%= name %>.acceptedFiles,
+                columns
+        : <%= model %>.
+            form.options.<%= name %>.columns
+        }
+            ;
+            var modal = {
+                    width: <%= model %>.form.options.<%= name %>.width,
+                header: {
+                    title: <%= model %>.form.options.<%= name %>.title,
+                    icon: <%= model %>.form.options.<%= name %>.icon.class
+                },
+                footer: {
+                    cancelButton: true
+                },
+                content: {
+                    loadingContentText: MESSAGE.i('actions.Loading')
+                },
+                };
+            <%= model %>.
+            modal.modalViewInline("../templates/components/gallery", modal, "<%= model %>_<%= nameclean %>");
+
+    });
+</script>
+

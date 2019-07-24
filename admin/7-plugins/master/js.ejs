@@ -39,7 +39,12 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= CONFIG.googlemap %>&amp;sensor=false&amp;libraries=places"></script>
 <script type="text/javascript" src="assets/js/plugins/editors/summernote/summernote.min.js"></script>
 <script type="text/javascript" src="assets/js/plugins/onesignal/index.js"></script>
+<script type="text/javascript" src="assets/js/plugins/domtoimage/base.js"></script>
+
+<script type="text/javascript" src="assets/js/core/socket.io.js"></script>
 
 <% localjs.forEach(function(item){ %>
     <script src="<%= FOLDERS.scripts %>/<%= item %>"></script>
 <% }); %>
+
+

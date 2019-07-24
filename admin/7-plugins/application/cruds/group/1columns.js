@@ -1,6 +1,6 @@
-CRUD_group = {};
-DSON.keepmerge(CRUD_group, CRUDDEFAULTS);
-DSON.keepmerge(CRUD_group, {
+CRUD_dragon_group = {};
+DSON.keepmerge(CRUD_dragon_group, CRUDDEFAULTS);
+DSON.keepmerge(CRUD_dragon_group, {
     table: {
         engine: 'ms',
         columns: {

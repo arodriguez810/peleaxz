@@ -1,0 +1,76 @@
+
+<div class="row" ng-show="dragon_configuration.config.mssqlactive">
+    <div class="col-sm-12 col-md-2  ">
+        <%- FORM.input("config.mssql.user", scope, {placeholder: "User", maxlength: 50, icon: 'none'}) %>
+    </div>
+    <div class="col-sm-12 col-md-3  center-icon">
+        <%- FORM.password("config.mssql.password", scope, {
+            normal: true,
+            placeholder: "Password",
+            maxlength: 50,
+            icon: 'none'
+        }) %>
+    </div>
+    <div class="col-sm-12 col-md-3  ">
+        <%- FORM.input("config.mssql.server", scope, {placeholder: "Server", maxlength: 50, icon: 'none'}) %>
+    </div>
+    <div class="col-sm-12 col-md-3  ">
+        <%- FORM.input("config.mssql.database", scope, {placeholder: "Database Name", maxlength: 50, icon: 'none'}) %>
+    </div>
+    <div class="col-sm-12 col-md-1  ">
+        <%- FORM.input("config.mssql.port", scope, {
+            isNumber: true,
+            placeholder: "Port",
+            maxlength: 6,
+            icon: 'none'
+        }) %>
+    </div>
+</div>
+
+
+
+<div class="row" ng-show="dragon_configuration.config.mysqlactive">
+    <div class="col-sm-12 col-md-2  ">
+        <%- FORM.input("config.mysql.user", scope, {placeholder: "User", maxlength: 50, icon: 'none'}) %>
+    </div>
+    <div class="col-sm-12 col-md-3  center-icon">
+        <%- FORM.password("config.mysql.password", scope, {
+            normal: true,
+            placeholder: "Password",
+            maxlength: 50,
+            icon: 'none'
+        }) %>
+    </div>
+    <div class="col-sm-12 col-md-3  ">
+        <%- FORM.input("config.mysql.host", scope, {placeholder: "Server", maxlength: 50, icon: 'none'}) %>
+    </div>
+    <div class="col-sm-12 col-md-3  ">
+        <%- FORM.input("config.mysql.database", scope, {placeholder: "Database Name", maxlength: 50, icon: 'none'}) %>
+    </div>
+    <div class="col-sm-12 col-md-1  ">
+        <%- FORM.input("config.mysql.port", scope, {
+            isNumber: true,
+            placeholder: "Port",
+            maxlength: 6,
+            icon: 'none'
+        }) %>
+    </div>
+</div>
+
+
+<div class="row" ng-show="dragon_configuration.config.oracleactive">
+    <div class="col-sm-12 col-md-2  ">
+        <%- FORM.input("config.oracle.user", scope, {placeholder: "User", maxlength: 50, icon: 'none'}) %>
+    </div>
+    <div class="col-sm-12 col-md-3  center-icon">
+        <%- FORM.password("config.oracle.password", scope, {
+            normal: true,
+            placeholder: "Password",
+            maxlength: 50,
+            icon: 'none'
+        }) %>
+    </div>
+    <div class="col-sm-12 col-md-3  ">
+        <%- FORM.input("config.oracle.connectString", scope, {placeholder: "Server", maxlength: 50, icon: 'none'}) %>
+    </div>
+</div>

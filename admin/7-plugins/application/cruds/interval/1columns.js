@@ -1,6 +1,6 @@
-CRUD_interval = {};
-DSON.keepmerge(CRUD_interval, CRUDDEFAULTS);
-DSON.keepmerge(CRUD_interval, {
+CRUD_dragon_interval = {};
+DSON.keepmerge(CRUD_dragon_interval, CRUDDEFAULTS);
+DSON.keepmerge(CRUD_dragon_interval, {
     table: {
         engine: 'ms',
         columns: {

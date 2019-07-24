@@ -66,7 +66,7 @@ MODAL = {
             baseController.viewData = ARRAY.last(MODAL.historyObject).viewData;
             $(last).modal("show");
             if (ARRAY.last(MODAL.historyObject).content.data) {
-                if (ARRAY.last(MODAL.historyObject).content.data === "->information/scope") {
+                if (ARRAY.last(MODAL.historyObject).content.data === "->dragon_information/scope") {
                     MODAL.close($scope);
                 }
             }
@@ -78,12 +78,10 @@ MODAL = {
 
     },
     run: function ($scope) {
-
         $scope.modalAction = function (controller, title, icon, action, id) {
-
             DRAGONACTION = action;
             DRAGONID = id;
-            $scope.modal.modalView("information/scope", {
+            $scope.modal.modalView("dragon_information/scope", {
                 header: {
                     title: title,
                     icon: icon
@@ -141,6 +139,9 @@ MODAL = {
             var animation = data.animation || "";
             var bgheader = data.header.bg || COLOR.primary;
             var closeText = backMode ? "<i class='icon-arrow-left8'></i>" + DSON.substringif(ARRAY.last(MODAL.historyObject).header.title, 30) : "&times;";
+
+            if (MENUMODAL)
+                closeText = "<i class='icon-arrow-left8'></i>";
 
             var headercloseButton = data.header.closeButton ?
                 '    <button type="button" id=\'closeModal\' class="bg-' + bgheader + ' close cancelmodal" ' + closeModal + ">" + closeText + "</button>" : "";
@@ -212,6 +213,33 @@ MODAL = {
             MODAL.historyObject.push(data);
             return data.id;
         };
+        $scope.modal.addInline = function (data, div) {
+
+
+            if (data.content.data.startsWith("->")) {
+                if (data.content.sameController === true) {
+                    new LOAD().loadContentScope(
+                        data.content.data.replaceAll("->", ""),
+                        div,
+                        data.content.loadingContentText || MESSAGE.i('actions.Loading'),
+                        function (success) {
+                            MESSAGE.run();
+                        }, undefined, undefined, $scope);
+                }
+                else {
+
+                    new LOAD().loadContentClean(
+                        data.content.data.replaceAll("->", ""),
+                        div,
+                        data.content.loadingContentText || MESSAGE.i('actions.Loading'),
+                        function (success) {
+                            MESSAGE.run();
+                        },
+                        data.content.sameController, $scope
+                    );
+                }
+            }
+        };
         $scope.modal.refreshViewData = function () {
         };
         $scope.modal.open = function (id) {
@@ -240,6 +268,34 @@ MODAL = {
             });
             MODAL.history.push("#modal" + id);
         };
+        $scope.modal.openinline = function (id) {
+            // if (MODAL.history.length > 0) {
+            //     var last = ARRAY.last(MODAL.history);
+            //     $(last).modal("hide");
+            // }
+            // var data = ARRAY.last(MODAL.historyObject);
+            // baseController.viewData = data.viewData;
+            // $("#modal" + id).modal("show");
+            // var indexb = 0;
+            // for (var i in data.footer.buttons) {
+            //     var item = data.footer.buttons[i];
+            //     $(`#modalButton${indexb}${data.id}`).click(function () {
+            //         if (typeof item.action === "function") {
+            //             item.action();
+            //         } else {
+            //             alert('This modal customButton don\'t have an action!');
+            //         }
+            //     });
+            //     indexb++;
+            // }
+            // STEP.register({
+            //     scope: $scope.modelName,
+            //     windows: `${data.header.title} Modal`, action: "Open Modal"
+            // });
+            // MODAL.history.push("#modal" + id);
+
+            console.log("Modal imagenes");
+        };
         $scope.modal.reopen = function (id) {
             $scope.modal.closeAll();
             $scope.modal.open(id);
@@ -263,7 +319,7 @@ MODAL = {
                 baseController.viewData = ARRAY.last(MODAL.historyObject).viewData;
                 $(last).modal("show");
                 if (ARRAY.last(MODAL.historyObject).content.data) {
-                    if (ARRAY.last(MODAL.historyObject).content.data === "->information/scope") {
+                    if (ARRAY.last(MODAL.historyObject).content.data === "->dragon_information/scope") {
                         MODAL.close($scope);
                     }
                 }
@@ -352,6 +408,58 @@ MODAL = {
             var merge = DSON.merge(properties, options);
             id = $scope.modal.add(merge);
             $scope.modal.open(id);
+        };
+        $scope.modal.modalViewInline = function (view, options, div) {
+
+            var id = view.replaceAll("/", "_").replaceAll("#", "_").replaceAll(".", "_");
+            var properties = {
+                id: id,
+                animation: "",
+                width: ENUM.modal.width.full,
+                backMode: true,
+                header: {
+                    title: "Test Modal",
+                    icon: "law",
+                    bg: COLOR.primary + "-600",
+                    closeButton: true,
+                    h: "h6"
+                },
+                footer: {
+                    cancelButton: true,
+                    // buttons: [
+                    //     {
+                    //         color: "success",
+                    //         title: "Save",
+                    //         action: function(){}
+                    //     }
+                    // ]
+                },
+                content: {
+                    data: "->" + view,
+                    loadingContentText: MESSAGE.i('actions.Loading')
+                },
+                event: {
+                    show: {
+                        begin: function (data) {
+
+                        },
+                        end: function (data) {
+
+                        }
+                    },
+                    hide: {
+                        begin: function (data) {
+
+                        },
+                        end: function (data) {
+
+                        }
+                    }
+                }
+            };
+            var merge = DSON.merge(properties, options);
+            id = $scope.modal.addInline(merge, div);
+            //$scope.modal.openinline(id);
         };
         $scope.modal.simpleModal = function (html, options) {
             var id = "simple";

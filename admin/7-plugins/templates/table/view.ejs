@@ -38,7 +38,7 @@
             <span ng-bind-html="<%= scope %>.columnLabel(value,keycolum)"></span>
         </td>
         <td style="width: 70%">
-        <span
+        <span  class="break"
                 ng-bind-html="<%= scope %>.cellValue(keycolum,value,<%= scope %>.dataForView)"
                 ng-click="<%= scope %>.cell.click(keycolum,value,<%= scope %>.dataForView)"
                 ng-dblclick="<%= scope %>.cell.dblclick(keycolum,value,<%= scope %>.dataForView)"

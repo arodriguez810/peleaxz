@@ -23,13 +23,14 @@ var options = {
     maxDate: '',
     from: '',
     to: '',
+    translate: true,
     disabled: false,
     singleDatePicker: false,
     datepicker: true
 };
 
 options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g, '_');
-options.placeholder = params.capitalize(options.from !== '' ? options.from : name);
+options.placeholder = options.placeholder || params.capitalize(options.from !== '' ? options.from : name);
 options.from = options.from === '' ? nameclean + "_from" : options.from;
 options.to = options.to === '' ? nameclean + "_to" : options.to;
 if (options.timepicker == false) {
@@ -55,7 +56,7 @@ var toclient = JSON.stringify(options);
     <% if(options.singleDatePicker === false){ %>
     <%= model %>.form.registerField("<%= options.to %>", "<%= toclient %>");
     <% } %>
-    if (MESSAGE.exist('columns.<%= nameclean %>')) {
+    if (MESSAGE.exist('columns.<%= nameclean %>') && <%= options.translate %>=== true) {
         <%= model %>.
         form.options.<%= options.from %>.placeholder = MESSAGE.ic('columns.<%= nameclean %>');
     }
@@ -71,7 +72,7 @@ var toclient = JSON.stringify(options);
     else
     <%= model + "." + name %>= "";
 </script>
-<div class="remove-input-space form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-<%= options.icon.position %>"
+<div class="remove-input-space form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= options.from %>'].type || <%= model %>.defaultColor }}  has-feedback-<%= options.icon.position %>"
      id="input<%= model %>_<%= nameclean %>">
     <label
             id="label<%= model %>_<%= nameclean %>"
@@ -100,9 +101,10 @@ var toclient = JSON.stringify(options);
         {{<%= model %>.form.options.<%= name %>.helptext}}
     </span>
 
-    <span ng-show="<%= model %>.validate['<%= name %>'].messages.length>0" class="help-block">
+    <span ng-if="<%= model %>.validate['<%= options.from %>'].messages.length>0" class="help-block">
+
         <p class="text-{{validation.type}}" ng-show="validation.visible!==false || <%= model %>.form.intent===true"
-           ng-repeat="(key,validation) in <%= model %>.validate['<%= name %>'].messages track by key">
+           ng-repeat="(key,validation) in <%= model %>.validate['<%= options.from %>'].messages track by key">
                <i class="{{validation.icon}}"></i> {{validation.message}}
         </p>
     </span>

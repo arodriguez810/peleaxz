@@ -1,4 +1,4 @@
-CRUD_customfield = DSON.merge(CRUD_customfield,
+CRUD_dragon_customfield = DSON.merge(CRUD_dragon_customfield,
     {
         table: {
             filters: {

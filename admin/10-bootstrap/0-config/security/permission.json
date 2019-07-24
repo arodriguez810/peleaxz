@@ -1,7 +1,7 @@
 {
   "permissions": {
     "list": {
-      "group": {
+      "dragon_group": {
         "type": "permission",
         "allow": {}
       }

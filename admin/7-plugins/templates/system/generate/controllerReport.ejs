@@ -1,0 +1,21 @@
+app.controller("<%= scope %>", function ($scope, $http, $compile) {
+    <%= scope %> = this;
+    //<%= scope %>.fixFilters = [];
+    //<%= scope %>.singular = "singular";
+    //<%= scope %>.plural = "plural";
+    //<%= scope %>.headertitle = "Hola Title";
+    RUNCONTROLLER("<%= scope %>", <%= scope %>, $scope, $http, $compile);
+    RUN_B("<%= scope %>", <%= scope %>, $scope, $http, $compile);
+    // $scope.triggers.table.after.load = function (records) {
+    //     //console.log(`$scope.triggers.table.after.load ${$scope.modelName}`);
+    // };
+    // $scope.triggers.table.before.load = () => new Promise((resolve, reject) => {
+    //     //console.log(`$scope.triggers.table.before.load ${$scope.modelName}`);
+    //     resolve(true);
+    // });
+    //Put This in 0-config/security/permission.json
+    //"blog": {
+        //"type": "report",
+        //"allow": {}
+    //},
+});

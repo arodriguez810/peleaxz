@@ -1,4 +1,4 @@
-CRUD_base_currency = DSON.merge(CRUD_base_currency,
+CRUD_dragon_currency = DSON.merge(CRUD_dragon_currency,
     {
         table: {
             filters: {

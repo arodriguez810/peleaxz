@@ -46,6 +46,7 @@ TABLE = {
             eval(`${column}List = ${column}List.data;`);
 
             eval(`${$scope.modelName}.records.data.forEach(row => {
+                row.${column} = row.${column} || undefined;
                 var thistype = ${column}List.filter(d => {
                     if (row.${column} !== undefined)
                         return d.${key}.toString() === row.${column}.toString();

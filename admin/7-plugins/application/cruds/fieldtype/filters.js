@@ -1,4 +1,4 @@
-CRUD_fieldtype = DSON.merge(CRUD_fieldtype,
+CRUD_dragon_fieldtype = DSON.merge(CRUD_dragon_fieldtype,
     {
         table: {
             filters: {

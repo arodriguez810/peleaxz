@@ -8,6 +8,41 @@ function has_scrollbar(name) {
 }
 
 DSON = {
+    QUERO: function () {
+        var obj = {};
+        var query = location.href;
+        if (query !== undefined) {
+            query = query.split("?");
+            if (query.length > 0) {
+                query = query[1];
+                if (query !== undefined) {
+                    query = query.split('&');
+                    if (query.length > 0) {
+                        query.forEach(d => {
+                            var segments = d.split("=");
+                            if (segments.length > 1) {
+                                var key = segments[0];
+                                var value = segments[1];
+                                if (obj.hasOwnProperty(key)) {
+                                    if (!Array.isArray(obj)) {
+                                        var starconly = eval(`obj.${key}`);
+                                        eval(`obj.${key} = [];`);
+                                        eval(`obj.${key}.push(starconly)`);
+                                        eval(`obj.${key}.push(value)`);
+                                    } else {
+                                        eval(`obj.${key}.push(value)`);
+                                    }
+                                } else {
+                                    eval(`obj.${key} = value;`);
+                                }
+                            }
+                        });
+                    }
+                }
+            }
+            return obj;
+        }
+    },
     CHTML: function (str) {
         str = (str).replaceAll("&#39;", '"');
         str = (str).replaceAll("&#34;", "'");

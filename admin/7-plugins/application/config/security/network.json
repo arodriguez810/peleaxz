@@ -4,10 +4,12 @@
   "subdomain": "",
   "ssl": false,
   "port": 8090,
+  "io": 8190,
   "proxy": {
     "domain": "localhost",
     "subdomain": "",
     "ssl": false,
-    "port": 8090
+    "port": 8090,
+    "io": 8190
   }
 }

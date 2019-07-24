@@ -1,0 +1,399 @@
+<div class="panel panel-<%= COLOR.secundary %>">
+    <div class="panel-heading">
+        <h6 class="panel-title" dragonlanguage><i class="icon-cog3 position-left"></i>
+            <language>MESSAGE.ic('mono.application')</language>
+        </h6>
+    </div>
+
+    <div class="panel-body">
+        <div class="row">
+
+            <div class="col-sm-4 col-md-4  ">
+                <%- FORM.input("config.appName", scope, {maxlength: 50, placeholder: "Name"}) %>
+            </div>
+
+            <div class="col-sm-4 col-md-4  ">
+                <%- FORM.input("config.logo", scope, {maxlength: 50, placeholder: "Logo Text"}) %>
+            </div>
+
+            <div class="col-sm-4 col-md-4 ">
+                <%-
+                FORM.selectsimple("config.language", scope, {
+                    label: "Default Language",
+                    value: "code",
+                    data: CONFIG.languages,
+                    icon: {class: "sphere3"}
+                }) %>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4 col-md-4  " ng-show="dragon_configuration.mode!=='admin'">
+                <%- FORM.password("config.appKey", scope,
+                        {
+                            maxlength: 50,
+                            normal: true, placeholder: "App KEY", icon: {class: "key"}
+                        }) %>
+            </div>
+
+            <div class="col-sm-4 col-md-4" ng-show="dragon_configuration.mode!=='admin'">
+                <%-
+                FORM.selectsimple("config.mode", scope, {
+                    label: "App Mode",
+                    value: "id",
+                    data: [
+                        {id: 'developer', name: 'developer'},
+                        {id: 'production', name: 'production'}
+                    ],
+                    icon: {class: "wrench3"}
+                }) %>
+            </div>
+
+            <div class="col-sm-4 col-md-4 ">
+                <%-
+                FORM.selectsimple("config.home", scope, {
+                    label: "Home Page",
+                    data: MENUONEROW,
+                    groupby: "category",
+                    icon: {class: "home"}
+                }) %>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-sm-4 col-md-4  " ng-show="dragon_configuration.mode!=='admin'">
+                <%- FORM.inputview("config.filePath", scope, {
+                    maxlength: 50,
+                    placeholder: "File Folder",
+                    icon: {class: "folder"}
+                }) %>
+            </div>
+            <div class="col-sm-4 col-md-4  ">
+                <%- FORM.file("loginSplash", scope, {
+                    folder: 'dragon_configuration/splash/',
+                    file: 'splash.png',
+                    show: 'image',
+                    text: 'Splash Image'
+                }) %>
+            </div>
+            <div class="col-sm-4 col-md-4  ">
+                <%- FORM.file("logo", scope, {
+                    folder: 'dragon_configuration/logo/',
+                    file: 'logo.png',
+                    show: 'image',
+                    text: 'Logo'
+                }) %>
+            </div>
+
+            <div class="col-sm-4 col-md-4  ">
+                <%- FORM.file("login", scope, {
+                    folder: 'dragon_configuration/login/',
+                    file: 'logo.png',
+                    show: 'image',
+                    text: 'Logo'
+                }) %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-<%= COLOR.secundary %>" ng-show="dragon_configuration.mode!=='admin'">
+    <div class="panel-heading">
+        <h6 class="panel-title" dragonlanguage><i class="icon-wrench3 position-left"></i>
+            <language>MESSAGE.ic('mono.support')</language>
+        </h6>
+    </div>
+
+    <div class="panel-body">
+
+        <div class="row">
+
+            <div class="col-sm-4 col-md-4  ">
+                <%- FORM.input("config.support.email", scope, {
+                    maxlength: 50,
+                    placeholder: "Email",
+                    icon: {class: "mail5"}
+                }) %>
+            </div>
+
+            <div class="col-sm-4 col-md-4  ">
+                <%- FORM.input("config.support.phone", scope, {
+                    maxlength: 20,
+                    placeholder: "Phone",
+                    icon: {class: "phone2"}
+                }) %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-<%= COLOR.secundary %>" ng-show="dragon_configuration.mode!=='admin'">
+    <div class="panel-heading">
+        <h6 class="panel-title" dragonlanguage><i class="icon-equalizer position-left"></i>
+            <language>MESSAGE.ic('mono.features')</language>
+        </h6>
+    </div>
+
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-2 col-md-3">
+                <%- FORM.checkbox("config.features.token", scope, {
+                    text: 'Token Security', size: 'switchery-sm',
+                    popover: {
+                        title: "${MESSAGE.ic('mono.whatisthis')}",
+                        content: "${MESSAGE.i('alerts.tokenDescription')}"
+                    }
+                }) %>
+            </div>
+
+            <div class="col-sm-2 col-md-3">
+                <%- FORM.checkbox("config.features.fileManager", scope, {
+                    text: 'General File Manager',
+                    size: 'switchery-sm'
+                }) %>
+            </div>
+
+            <div class="col-sm-2 col-md-3">
+                <%- FORM.checkbox("config.features.stepManager", scope, {
+                    text: 'Step Manager QA/LOG',
+                    size: 'switchery-sm'
+                }) %>
+            </div>
+
+
+            <div class="col-sm-2 col-md-3">
+                <%- FORM.checkbox("config.features.multilanguage", scope, {
+                    text: 'Multi Languages',
+                    size: 'switchery-sm'
+                }) %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2 col-md-3">
+                <%- FORM.checkbox("config.features.onesignal", scope, {
+                    text: 'OneSignal',
+                    size: 'switchery-sm'
+                }) %>
+            </div>
+            <div class="col-sm-2 col-md-3">
+                <%- FORM.checkbox("config.features.configuration", scope, {
+                    text: 'Config',
+                    size: 'switchery-sm'
+                }) %>
+            </div>
+            <div class="col-sm-2 col-md-3">
+                <%- FORM.checkbox("config.features.customfields", scope, {
+                    text: 'Custom Fields',
+                    size: 'switchery-sm'
+                }) %>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="panel panel-<%= COLOR.secundary %>">
+    <div class="panel-heading">
+        <h6 class="panel-title" dragonlanguage><i class="icon-color-sampler position-left"></i>
+            <language>MESSAGE.ic('mono.apparence')</language>
+        </h6>
+    </div>
+
+    <div class="panel-body">
+        <div class="row">
+
+            <div class="col-sm-12 col-md-4 pl-0">
+                <%- FORM.color("config.ui.theme.primary", scope, {icon: {class: "brush"}}) %>
+            </div>
+            <div class="col-sm-12 col-md-4 pl-0">
+                <%- FORM.color("config.ui.theme.secundary", scope, {icon: {class: "brush"}}) %>
+            </div>
+            <div class="col-sm-12 col-md-4 pl-0">
+                <%- FORM.color("config.ui.theme.extra", scope, {icon: {class: "brush"}}) %>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-sm-12 col-md-4 pl-0">
+                <%-
+                FORM.selectsimple("config.ui.theme.primaryShades", scope, {
+                    value: "id",
+                    data: TONES,
+                    icon: {class: "brush"}
+                }) %>
+
+            </div>
+            <div class="col-sm-12 col-md-4 pl-0">
+                <%-
+                FORM.selectsimple("config.ui.theme.secundaryShades", scope, {
+                    value: "id",
+                    data: TONES,
+                    icon: {class: "brush"}
+                }) %>
+
+            </div>
+            <div class="col-sm-12 col-md-4 pl-0">
+                <%-
+                FORM.selectsimple("config.ui.theme.extraShades", scope, {
+                    value: "id",
+                    data: TONES,
+                    icon: {class: "brush"}
+                }) %>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-4 pl-0">
+                <%- FORM.color("config.ui.theme.text1", scope, {icon: {class: "brush"}}) %>
+            </div>
+            <div class="col-sm-12 col-md-4 pl-0">
+                <%- FORM.color("config.ui.theme.text2", scope, {icon: {class: "brush"}}) %>
+            </div>
+            <div class="col-sm-12 col-md-4 pl-0">
+                <%- FORM.color("config.ui.theme.text3", scope, {icon: {class: "brush"}}) %>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="panel ">
+                <div class="panel-heading "
+                     style="background-color: {{dragon_configuration.primary_example}};color:{{dragon_configuration.config.ui.theme.text2}}">
+                    <h6 class="panel-title"><i class="icon-cog3 position-left"></i>
+                        {{dragon_configuration.config.appName}}
+                    </h6>
+                </div>
+
+                <div class="panel-body">
+                    <div class="row" style="margin-top: -20px;margin-left: -20px;">
+                        <div class="col-sm-3 col-md-3 pl-0">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th style="background-color: {{dragon_configuration.extra_example}};color:{{dragon_configuration.config.ui.theme.text3}}">
+                                        Menu 1
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th style="background-color: {{dragon_configuration.extra_example}};color:{{dragon_configuration.config.ui.theme.text3}}">
+                                        Menu 2
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th style="background-color: {{dragon_configuration.extra_example}};color:{{dragon_configuration.config.ui.theme.text3}}">
+                                        Menu 3
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th style="background-color: {{dragon_configuration.extra_example}};color:{{dragon_configuration.config.ui.theme.text3}}">
+                                        Menu 4
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th style="background-color: {{dragon_configuration.extra_example}};color:{{dragon_configuration.config.ui.theme.text3}}">
+                                        Menu 5
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th style="background-color: {{dragon_configuration.extra_example}};color:{{dragon_configuration.config.ui.theme.text3}}">
+                                        Menu 6
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th style="background-color: {{dragon_configuration.extra_example}};color:{{dragon_configuration.config.ui.theme.text3}}">
+                                        Menu 7
+                                    </th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <div class="col-sm-9 col-md-9 pl-0">
+                            <table class="table" style="margin-top: 20px;">
+                                <thead>
+                                <tr>
+                                    <th style="background-color: {{dragon_configuration.secundary_example}};color:{{dragon_configuration.config.ui.theme.text2}}">
+                                        Name
+                                    </th>
+                                    <th style="background-color: {{dragon_configuration.secundary_example}};color:{{dragon_configuration.config.ui.theme.text2}}">
+                                        LastName
+                                    </th>
+                                    <th style="background-color: {{dragon_configuration.secundary_example}};color:{{dragon_configuration.config.ui.theme.text2}}">
+                                        Actions
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Cell</td>
+                                    <td>Cell</td>
+                                    <td>.</td>
+                                </tr>
+                                <tr>
+                                    <td>Cell</td>
+                                    <td>Cell</td>
+                                    <td>.</td>
+                                </tr>
+                                <tr>
+                                    <td>Cell</td>
+                                    <td>Cell</td>
+                                    <td>.</td>
+                                </tr>
+                                <tr>
+                                    <td>Cell</td>
+                                    <td>Cell</td>
+                                    <td>.</td>
+                                </tr>
+                                <tr>
+                                    <td>Cell</td>
+                                    <td>Cell</td>
+                                    <td>.</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-<%= COLOR.secundary %>" ng-show="dragon_configuration.mode!=='admin'">
+    <div class="panel-heading">
+        <h6 class="panel-title" dragonlanguage><i class="icon-magazine position-left"></i>
+            <language>MESSAGE.ic('mono.owner')</language>
+        </h6>
+    </div>
+
+    <div class="panel-body">
+
+        <div class="row">
+
+            <div class="col-sm-4 col-md-4  ">
+                <%- FORM.input("config.developerBy.name", scope, {
+                    maxlength: 50,
+                    placeholder: "Name",
+                    icon: {class: ""}
+                }) %>
+            </div>
+
+            <div class="col-sm-4 col-md-4  ">
+                <%- FORM.input("config.developerBy.profile", scope, {
+                    maxlength: 50,
+                    placeholder: "Profile",
+                    icon: {class: ""}
+                }) %>
+            </div>
+
+            <div class="col-sm-4 col-md-4  ">
+                <%- FORM.input("config.developerBy.site", scope, {
+                    maxlength: 50,
+                    placeholder: "Site",
+                    icon: {class: ""}
+                }) %>
+            </div>
+
+        </div>
+    </div>
+</div>

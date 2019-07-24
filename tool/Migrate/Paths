@@ -3,6 +3,7 @@
 6-language
 7-plugins
 10-bootstrap
+11-sockets
 assets
 modules
 scripts
@@ -16,3 +17,4 @@ start.info
 windows.bat
 linux.sh
 mac.sh
+ngrok.exe

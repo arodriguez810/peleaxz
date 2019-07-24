@@ -205,6 +205,9 @@ FORM = {
     file: function (name, model, options) {
         return FORM.template('form/file', {name: name, model: model, opts: options});
     },
+    fileinline: function (name, model, options) {
+        return FORM.template('form/fileinline', {name: name, model: model, opts: options});
+    },
     inputview: function (name, model, options) {
         return FORM.template('form/inputview', {name: name, model: model, opts: options});
     },

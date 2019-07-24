@@ -50,6 +50,11 @@ var toclient = JSON.stringify(options);
                     id="popover<%= model %>_<%= nameclean %>" class="icon-help">
             </i>
         <% } %>
+        <% if(options.speech){ %>
+            <i
+                    id="speech<%= model %>_<%= nameclean %>" class="icon-reading" style="cursor: pointer">
+            </i>
+        <% } %>
     </label>
     <textarea rows=""
               ng-model="<%= model + "." + name %>" name="<%= model %>_<%= nameclean %>"
@@ -82,7 +87,16 @@ var toclient = JSON.stringify(options);
 </div>
 <script>
     $(document).ready(function () {
+
+        $("#speech<%= model %>_<%= nameclean %>").click(function () {
+            BASEAPI.ajax.speech(
+                $("#<%= model %>_<%= nameclean %>").val(),
+                $("#speech<%= model %>_<%= nameclean %>")
+            );
+        });
+
         <% if(options.popover){ %>
+
         $('#popover<%= model %>_<%= nameclean %>').popover({
             container: 'body',
             title: eval("`" +<%= model %>.form.options.<%= name %>.popover.title + "`"),

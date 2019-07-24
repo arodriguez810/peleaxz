@@ -41,3 +41,7 @@ body {
 .tumbimage {
     max-width: 40px;
 }
+
+.break {
+    word-break: break-all
+}

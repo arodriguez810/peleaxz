@@ -2,11 +2,11 @@
 <div class="navbar navbar-inverse  bg-<%= COLOR.primary %>-700" ng-show="baseController.isLogged">
     <div class="navbar-header  bg-<%= COLOR.primary %>-700">
         <a class="visible-lg visible-md visible-sm navbar-brand bg-<%= COLOR.primary %>-700 sidebar-mobile-main-toggle">
-            <img style="float: left !important;" src="files/configuration/logo/logo.png" alt="">
+            <img style="float: left !important;" src="files/dragon_configuration/logo/logo.png" alt="">
             <span class="navbar-brand-text" style="float: left;padding-left: 10px;"> <%= CONFIG.logo %></span>
         </a>
         <a class="visible-xs navbar-brand bg-<%= COLOR.primary %>-700 sidebar-mobile-main-toggle">
-            <img style="float: left !important;" src="files/configuration/logo/logo.png" alt="">
+            <img style="float: left !important;" src="files/dragon_configuration/logo/logo.png" alt="">
             <span id="apptitle" class="navbar-brand-text" style="float: left;padding-left: 10px;">
 
             </span>
@@ -42,7 +42,7 @@
             <li ng-if="baseController.features.configuration===true && (baseController.isSuper || baseController.isAdmin)">
                 <a class="sidebar-control" onclick="CONFIGURATION.OPEN()" data-popup="tooltip"
                    data-placement="bottom" data-container="body" dragonlanguage
-                   title="MESSAGE.ic('mono.configuration')">
+                   title="MESSAGE.ic('mono.dragon_configuration')">
                     <i class=" icon-cog2"></i>
                 </a>
             </li>
@@ -83,7 +83,7 @@
                     </li>
                     <li ng-show="!baseController.isClient" ng-if="baseController.mode==='developer'">
                         <a class="sidebar-control"
-                           onclick="MODAL.rawModal(MESSAGE.ic('mono.messages'),'language','comment',undefined,'language');"
+                           onclick="MODAL.rawModal(MESSAGE.ic('mono.messages'),'dragon_language','comment',undefined,'dragon_language');"
                            data-popup="tooltip"
                            data-placement="bottom" data-container="body" dragonlanguage
                            title="MESSAGE.ic('mono.messages')">
@@ -114,34 +114,34 @@
                 <ul class="dropdown-menu " id="datacenteroptions" style="color:#000 !important;">
                     <li ng-if="(baseController.isSuper)">
                         <a class="sidebar-control"
-                           onclick="MODAL.rawModal(MESSAGE.ic('mono.diskdata'), 'information/storage', 'cabinet', 'modal-lg', 'information')">
+                           onclick="MODAL.rawModal(MESSAGE.ic('mono.diskdata'), 'dragon_information/storage', 'cabinet', 'modal-lg', 'dragon_information')">
                             <language>MESSAGE.ic('mono.diskdata')</language>
                             <i class="icon-cabinet"></i>
                         </a>
                     </li>
                     <li ng-if="baseController.features.onesignal===true && (baseController.isSuper)">
                         <a class="sidebar-control"
-                           onclick="MODAL.rawModal(MESSAGE.ic('mono.notifications'),'notifications','bubble-notification',undefined,'notifications');"
+                           onclick="MODAL.rawModal(MESSAGE.ic('mono.dragon_notifications'),'dragon_notifications','bubble-notification',undefined,'dragon_notifications');"
                            data-popup="tooltip"
                            data-placement="bottom" data-container="body" dragonlanguage
-                           title="MESSAGE.ic('mono.notifications')">
+                           title="MESSAGE.ic('mono.dragon_notifications')">
                             <i class="icon-bubble-notification"></i>
-                            <language>MESSAGE.ic('mono.notifications')</language>
+                            <language>MESSAGE.ic('mono.dragon_notifications')</language>
                         </a>
                     </li>
                     <li ng-if="baseController.features.customfields===true">
                         <a class="sidebar-control"
-                           onclick="MODAL.rawModal(MESSAGE.ic('mono.customfield'),'customfield','magic-wand',undefined,'customfield');"
+                           onclick="MODAL.rawModal(MESSAGE.ic('mono.dragon_customfield'),'dragon_customfield','magic-wand',undefined,'dragon_customfield');"
                            data-popup="tooltip"
                            data-placement="bottom" data-container="body" dragonlanguage
-                           title="MESSAGE.ic('mono.customfield')">
+                           title="MESSAGE.ic('mono.dragon_customfield')">
                             <i class=" icon-magic-wand"></i>
-                            <language>MESSAGE.ic('mono.customfield')</language>
+                            <language>MESSAGE.ic('mono.dragon_customfield')</language>
                         </a>
                     </li>
-                    <li ng-if="(baseController.isSuper || baseController.isAdmin) && baseController.mode==='developer'">
+                    <li ng-if="(baseController.isSuper) && baseController.mode==='developer'">
                         <a class="sidebar-control"
-                           onclick="MODAL.rawModal(MESSAGE.ic('columns.curreny_plural'),'base_currency','coin-dollar',undefined,'base_currency');"
+                           onclick="MODAL.rawModal(MESSAGE.ic('columns.curreny_plural'),'dragon_currency','coin-dollar',undefined,'dragon_currency');"
                            data-popup="tooltip"
                            data-placement="bottom" data-container="body" dragonlanguage
                            title="MESSAGE.ic('columns.curreny_plural')">
@@ -149,38 +149,49 @@
                             <language>MESSAGE.ic('columns.curreny_plural')</language>
                         </a>
                     </li>
-                    <li ng-if="(baseController.isSuper || baseController.isAdmin) && baseController.mode==='developer'"
+                    <li ng-if="(baseController.isSuper) && baseController.mode==='developer'"
                         class="divider"></li>
-                    <li ng-if="(baseController.isSuper || baseController.isAdmin) && baseController.mode==='developer'">
+                    <li ng-if="(baseController.isSuper) && baseController.mode==='developer'">
                         <a class="sidebar-control"
-                           onclick="MODAL.rawModal(MESSAGE.ic('columns.mime_plural'),'mime','book',undefined,'mime');"
+                           onclick="MODAL.rawModal(MESSAGE.ic('columns.dragon_mime_plural'),'dragon_mime','book',undefined,'dragon_mime');"
                            data-popup="tooltip"
                            data-placement="bottom" data-container="body" dragonlanguage
-                           title="MESSAGE.ic('columns.mime_plural')">
+                           title="MESSAGE.ic('columns.dragon_mime_plural')">
                             <i class="icon-book"></i>
-                            <language>MESSAGE.ic('columns.mime_plural')</language>
+                            <language>MESSAGE.ic('columns.dragon_mime_plural')</language>
                         </a>
                     </li>
 
-                    <li ng-if="(baseController.isSuper || baseController.isAdmin) && baseController.mode==='developer'">
+                    <li ng-if="(baseController.isSuper) && baseController.mode==='developer'">
                         <a class="sidebar-control"
-                           onclick="MODAL.rawModal(MESSAGE.ic('columns.fieldtype_plural'),'fieldtype','terminal',undefined,'fieldtype');"
+                           onclick="MODAL.rawModal(MESSAGE.ic('columns.dragon_fieldtype_plural'),'dragon_fieldtype','terminal',undefined,'dragon_fieldtype');"
                            data-popup="tooltip"
                            data-placement="bottom" data-container="body" dragonlanguage
-                           title="MESSAGE.ic('columns.fieldtype_plural')">
+                           title="MESSAGE.ic('columns.dragon_fieldtype_plural')">
                             <i class="icon-terminal"></i>
-                            <language>MESSAGE.ic('columns.fieldtype_plural')</language>
+                            <language>MESSAGE.ic('columns.dragon_fieldtype_plural')</language>
                         </a>
                     </li>
 
-                    <li ng-if="(baseController.isSuper || baseController.isAdmin) && baseController.mode==='developer'">
+                    <li ng-if="(baseController.isSuper) && baseController.mode==='developer'">
                         <a class="sidebar-control"
-                           onclick="MODAL.rawModal(MESSAGE.ic('columns.interval_plural'),'interval','alarm',undefined,'interval');"
+                           onclick="MODAL.rawModal(MESSAGE.ic('columns.dragon_interval_plural'),'dragon_interval','alarm',undefined,'dragon_interval');"
                            data-popup="tooltip"
                            data-placement="bottom" data-container="body" dragonlanguage
-                           title="MESSAGE.ic('columns.interval_plural')">
+                           title="MESSAGE.ic('columns.dragon_interval_plural')">
                             <i class="icon-alarm"></i>
-                            <language>MESSAGE.ic('columns.interval_plural')</language>
+                            <language>MESSAGE.ic('columns.dragon_interval_plural')</language>
+                        </a>
+                    </li>
+
+                    <li ng-if="(baseController.isSuper) && baseController.mode==='developer'">
+                        <a class="sidebar-control"
+                           onclick="MODAL.rawModal(MESSAGE.ic('columns.dragon_function'),'dragon_function','code',undefined,'dragon_function');"
+                           data-popup="tooltip"
+                           data-placement="bottom" data-container="body" dragonlanguage
+                           title="MESSAGE.ic('columns.dragon_function_plural')">
+                            <i class="icon-code"></i>
+                            <language>MESSAGE.ic('columns.dragon_function_plural')</language>
                         </a>
                     </li>
                 </ul>
@@ -206,7 +217,7 @@
             </li>
             <li ng-show="!baseController.isClient" ng-if="baseController.mode==='developer'">
                 <a class="sidebar-control"
-                   onclick="MODAL.rawModal(MESSAGE.ic('mono.generatemobile'), 'information/mobile', 'mobile', 'modal-lg', 'information')"
+                   onclick="MODAL.rawModal(MESSAGE.ic('mono.generatemobile'), 'dragon_information/mobile', 'mobile', 'modal-lg', 'dragon_information')"
                    data-popup="tooltip"
                    data-placement="bottom" data-container="body" dragonlanguage
                    title="MESSAGE.ic('mono.generatemobile')">
@@ -259,7 +270,7 @@
                         </li>
                         <li dragonlanguage="">
                             <a style="color: #000 !important;"
-                               onclick="MODAL.rawModal(MESSAGE.ic('mono.about'), 'information/about', 'info3', 'modal-full', 'information')">
+                               onclick="MODAL.rawModal(MESSAGE.ic('mono.about'), 'dragon_information/about', 'info3', 'modal-full', 'dragon_information')">
                                 <i class="icon-info3"></i>
                                 <language>MESSAGE.ic('mono.about')</language>
                             </a>

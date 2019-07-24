@@ -1,5 +1,5 @@
 {
-  "tableStatus": "{0} ordenada por {1} {2}, mostrando {3} a {4} de {5} registros",
+  "tableStatus": "{0} ordenada por {1} {2}, mostrando {3} de {4} registro(s)",
   "emptyTable": "No hay información para mostrar",
   "info": "Mostrando _START_ a _END_ de _TOTAL_ registros",
   "infoEmpty": "Mostrando 0 a 0 de 0 entries",

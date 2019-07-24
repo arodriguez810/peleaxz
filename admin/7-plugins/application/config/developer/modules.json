@@ -167,6 +167,18 @@
     {
       "var": "tinycolor",
       "module": "tinycolor2"
+    },
+    {
+      "var": "xmlbuilder",
+      "module": "xmlbuilder"
+    },
+    {
+      "var": "request_promise",
+      "module": "request-promise"
+    },
+    {
+      "var": "cognitiveservices",
+      "module": "microsoft-cognitiveservices-speech-sdk"
     }
   ]
 }

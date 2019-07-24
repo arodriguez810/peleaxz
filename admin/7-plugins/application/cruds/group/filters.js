@@ -1,4 +1,4 @@
-CRUD_group = DSON.merge(CRUD_group,
+CRUD_dragon_group = DSON.merge(CRUD_dragon_group,
     {
         table: {
             filters: {

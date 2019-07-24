@@ -1,10 +1,10 @@
-CRUD_segment = {};
-DSON.keepmerge(CRUD_segment, CRUDDEFAULTS);
-DSON.keepmerge(CRUD_segment, {
+CRUD_dragon_segment = {};
+DSON.keepmerge(CRUD_dragon_segment, CRUDDEFAULTS);
+DSON.keepmerge(CRUD_dragon_segment, {
     table: {
         engine: 'ms',
         columns: {
-            id: {                 visible: false,                 visibleDetail: false,                 export: false,                 exportExample: false             },
+            id: {visible: false, visibleDetail: false, export: false, exportExample: false},
             name: {
                 label: "name",
                 shorttext: 80

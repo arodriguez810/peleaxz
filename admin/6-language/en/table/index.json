@@ -1,5 +1,5 @@
 {
-  "tableStatus": "{0} sorted by {1} {2}ending, showing {3} to {4} of {5} entries",
+  "tableStatus": "{0} sorted by {1} {2}ending, showing {3} of {4} entries",
   "emptyTable": "No information to show",
   "info": "Showing _START_ to _END_ of _TOTAL_ entries",
   "infoEmpty": "Showing 0 to 0 of 0 entries",

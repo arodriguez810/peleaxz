@@ -1,4 +1,4 @@
-CRUD_segment = DSON.merge(CRUD_segment,
+CRUD_dragon_segment = DSON.merge(CRUD_dragon_segment,
     {
         table: {
             filters: {

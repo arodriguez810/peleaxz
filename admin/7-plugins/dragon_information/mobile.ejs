@@ -1,0 +1,44 @@
+<div id="dragon_information" ng-controller="dragon_information as dragon_information" style="text-align: center">
+    <div class="col-md-12">
+        <div class="panel">
+
+            <div class="col-sm-12 col-lg-12">
+
+                <!-- User details (with sample pattern) -->
+                <div class="content-group">
+                    <div class="panel-body border-radius-top text-center">
+                        <div class="content-group-sm" dragonlanguage="">
+                            <h5 class="text-semibold no-margin-bottom">
+                                <%= CONFIG.appName %>
+                            </h5>
+
+                            <span class="display-block">
+                                    <language>MESSAGE.ic('mono.baseversion')</language>: <%= CONFIG.version.base %> -
+                                    <language>MESSAGE.ic('mono.version')</language>: <%= CONFIG.version.app %>
+                                </span>
+                        </div>
+                        <a href="#" class="display-inline-block content-group-sm">
+                            <img src="files/configuration/logo/logo.png" class="img-circle img-responsive" alt=""
+                                 style="width: 120px; height: 120px;">
+                        </a>
+
+
+                    </div>
+
+                    <div class="panel panel-body no-border-top no-border-radius-top text-center">
+                        <button
+                                dragonlanguage="" title="MESSAGE.ic('mono.generatemobile')"
+                                type="button" class="btn bg-<%= COLOR.secundary %> btn-labeled btn-xs ">
+                            <b><i class="icon-mobile"></i></b>
+                            <language>MESSAGE.ic('mono.generatemobile')</language>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div><!--end-->
+<script>
+    dragon_information.refreshAngular();
+</script>

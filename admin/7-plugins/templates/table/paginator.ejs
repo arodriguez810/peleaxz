@@ -1,14 +1,15 @@
 <div class="text-right">
-    <ul class="pagination" ng-if="<%= scope %>.table.totalPages>1">
+    <ul class="pagination" ng-if="<%= scope %>.records.data.length>0">
         <li ><a class="visible-md visible-lg">{{<%= scope %>.tableStatus()}}</a></li>
-        <li><a  dragonlanguage="" data-popup="tooltip" title="MESSAGE.ic('mono.first')" ng-click="<%= scope %>.firstPage()">‹‹</a></li>
-        <li><a class="visible-md visible-lg" data-popup="tooltip" dragonlanguage="" title="MESSAGE.ic('mono.back')" ng-click="<%= scope %>.backPage()">‹</a></li>
-        <li class="{{row.current}} {{row.class}}" ng-repeat="(key, row) in <%= scope %>.table.pages track by key">
+
+        <li ng-if="<%= scope %>.table.totalPages>1"><a  dragonlanguage="" data-popup="tooltip" title="MESSAGE.ic('mono.first')" ng-click="<%= scope %>.firstPage()">‹‹</a></li>
+        <li ng-if="<%= scope %>.table.totalPages>1"><a class="visible-md visible-lg" data-popup="tooltip" dragonlanguage="" title="MESSAGE.ic('mono.back')" ng-click="<%= scope %>.backPage()">‹</a></li>
+        <li ng-if="<%= scope %>.table.totalPages>1" class="{{row.current}} {{row.class}}" ng-repeat="(key, row) in <%= scope %>.table.pages track by key">
             <a class="{{row.current}}"
                ng-dblclick="<%= scope %>.goPageModal()" ng-click="<%= scope %>.goPage(row.number)">{{row.number}}
             </a>
         </li>
-        <li><a class="visible-md visible-lg" data-popup="tooltip" dragonlanguage="" title="MESSAGE.ic('mono.next')" ng-click="<%= scope %>.nextPage()">›</a></li>
-        <li><a class="visible-md visible-lg"  data-popup="tooltip" dragonlanguage="" title="MESSAGE.ic('mono.last')" ng-click="<%= scope %>.lastPage()">››</a></li>
+        <li ng-if="<%= scope %>.table.totalPages>1"><a class="visible-md visible-lg" data-popup="tooltip" dragonlanguage="" title="MESSAGE.ic('mono.next')" ng-click="<%= scope %>.nextPage()">›</a></li>
+        <li ng-if="<%= scope %>.table.totalPages>1"><a class="visible-md visible-lg"  data-popup="tooltip" dragonlanguage="" title="MESSAGE.ic('mono.last')" ng-click="<%= scope %>.lastPage()">››</a></li>
     </ul>
 </div>

@@ -1,0 +1,293 @@
+<div class="panel panel-white">
+    <div class="panel-heading">
+        <h6 class="panel-title" dragonlanguage><i class="icon-users2 position-left"></i>
+            <language>MESSAGE.ic('mono.authentication')</language>
+        </h6>
+    </div>
+
+    <div class="panel-body">
+
+        <div class="row">
+
+            <div class="col-sm-2 col-md-2  " ng-show="dragon_configuration.mode!=='admin'">
+                <%- FORM.input("config.users.model", scope, {
+                    maxlength: 50,
+                    placeholder: "Users Table",
+                    icon: {class: "none"},
+
+                }) %>
+
+            </div>
+            <div class="col-sm-2 col-md-2  " ng-show="dragon_configuration.mode!=='admin'">
+                <%-
+                FORM.selectsimple("config.users.engine", scope, {
+                    label: "Database Engine",
+                    value: "id",
+                    data: [
+                        {id: 'mssql', name: 'SQL Server'},
+                        {id: 'mysql', name: 'MySql'},
+                        {id: 'oracle', name: 'Oracle'},
+                        {id: 'storage', name: 'Files'}
+                    ],
+                    icon: {class: "wrench3"}
+                }) %>
+            </div>
+            <div class="col-sm-12 col-md-3  " ng-show="dragon_configuration.mode!=='admin'">
+                <%- FORM.input("config.users.fields.username", scope, {
+                    maxlength: 50,
+                    placeholder: "Username Field",
+                    icon: {class: "none"}
+                }) %>
+            </div>
+
+            <div class="col-sm-12 col-md-2 ">
+
+                <%-
+                FORM.selectsimple("config.users.hash", scope, {
+                    value: "id",
+                    data: [
+                        {id: 'md5', name: 'MD5'}
+                    ],
+                    icon: {class: "wrench3"}
+                }) %>
+            </div>
+
+            <div class="col-sm-12 col-md-3  center-icon" ng-show="dragon_configuration.mode!=='admin'">
+                <%- FORM.input("config.users.fields.password", scope, {
+                    maxlength: 50,
+                    placeholder: "Username Field",
+                    icon: {class: "none"}
+                }) %>
+            </div>
+
+
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 col-md-4 ">
+                <%- FORM.input("config.users.expire", scope, {
+                    maxlength: 50,
+                    placeholder: "Session expire",
+                    icon: {class: "none"},
+                    helptext: "d,h,m,s"
+                }) %>
+            </div>
+
+            <div class="col-sm-12 col-md-4 ">
+                <%- FORM.input("config.users.attempts", scope, {
+                    maxlength: 50,
+                    placeholder: "Login attempts allowed",
+                    icon: {class: "none"}
+                }) %>
+            </div>
+
+            <div class="col-sm-12 col-md-4 ">
+                <%- FORM.input("config.users.unlockTime", scope, {
+                    maxlength: 50,
+                    isNumber: true,
+                    placeholder: "UnlockTime in minutes",
+                    icon: {class: "none"}
+                }) %>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-white">
+    <div class="panel-heading">
+        <h6 class="panel-title" dragonlanguage><i class="icon-keyboard position-left"></i>
+            <language>MESSAGE.ic('mono.passwordrules')</language>
+        </h6>
+    </div>
+
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-3 col-md-3">
+                <%- FORM.format("config.users.rules.min", scope, {
+                    isNumber: false,
+                    icon: {class: "subscript2"},
+                    format: {mask: "##", options: {reverse: true}}
+                }) %>
+            </div>
+            <div class="col-sm-3 col-md-3">
+                <%- FORM.format("config.users.rules.max", scope, {
+                    isNumber: false,
+                    icon: {class: "superscript2"},
+                    format: {mask: "##", options: {reverse: true}}
+                }) %>
+            </div>
+            <div class="col-sm-3 col-md-3">
+                <%- FORM.format("config.users.rules.mayus", scope, {
+                    isNumber: false,
+                    icon: {class: "font-size"},
+                    format: {mask: "##", options: {reverse: true}}
+                }) %>
+            </div>
+            <div class="col-sm-3 col-md-3">
+                <%- FORM.format("config.users.rules.letter", scope, {
+                    isNumber: false,
+                    icon: {class: "text-color"},
+                    format: {mask: "##", options: {reverse: true}}
+                }) %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 col-md-3">
+                <%- FORM.format("config.users.rules.number", scope, {
+                    isNumber: false,
+                    icon: {class: "markup"},
+                    format: {mask: "##", options: {reverse: true}}
+                }) %>
+            </div>
+            <div class="col-sm-3 col-md-3">
+                <%- FORM.format("config.users.rules.specialchar", scope, {
+                    isNumber: false,
+                    icon: {class: "regexp"},
+                    format: {mask: "##", options: {reverse: true}}
+                }) %>
+            </div>
+            <div class="col-sm-3 col-md-3">
+                <%- FORM.checkbox("config.users.rules.notusername", scope, {size: 'switchery-sm'}) %>
+            </div>
+            <div class="col-sm-3 col-md-3">
+                <%- FORM.format("config.users.rules.expire", scope, {
+                    isNumber: false,
+                    icon: {class: "calendar52"},
+                    format: {mask: "####", options: {reverse: true}},
+                }) %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-white">
+    <div class="panel-heading">
+        <h6 class="panel-title" dragonlanguage><i class="icon-sphere position-left"></i>
+            <language>MESSAGE.ic('mono.network')</language>
+        </h6>
+    </div>
+
+    <div class="panel-body">
+
+        <div class="row" ng-show="dragon_configuration.mode!=='admin'">
+
+
+            <div class="col-sm-3 col-md-3  ">
+                <%- FORM.input("config.domain", scope, {
+                    maxlength: 50,
+                    placeholder: "Domain",
+                    icon: {class: "browser"}
+                }) %>
+            </div>
+
+            <div class="col-sm-3 col-md-3  ">
+                <%- FORM.input("config.subdomain", scope, {
+                    maxlength: 20,
+                    placeholder: "Subdomain",
+                    icon: {class: "browser"}
+                }) %>
+            </div>
+
+            <div class="col-sm-3 col-md-3  ">
+                <%- FORM.input("config.port", scope, {placeholder: "Port", maxlength: 4, isNumber: true}) %>
+            </div>
+
+            <div class="col-sm-3 col-md-3">
+                <%- FORM.checkbox("config.ssl", scope, {text: 'SSL/HTTPS', size: 'switchery-sm'}) %>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <%- FORM.password("config.googlemap", scope, {
+                normal: true,
+                maxlength: 50,
+                placeholder: "Google Map API Key"
+            }) %>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-white">
+    <div class="panel-heading">
+        <h6 class="panel-title" dragonlanguage><i class="icon-sphere position-left"></i>
+            <language>MESSAGE.ic('mono.proxy')</language>
+        </h6>
+    </div>
+
+    <div class="panel-body">
+
+        <div class="row" ng-show="dragon_configuration.mode!=='admin'">
+
+            <div class="col-sm-3 col-md-3  ">
+                <%- FORM.input("config.proxy.domain", scope, {
+                    maxlength: 50,
+                    placeholder: "Domain",
+                    icon: {class: "browser"}
+                }) %>
+            </div>
+
+            <div class="col-sm-3 col-md-3  ">
+                <%- FORM.input("config.proxy.subdomain", scope, {
+                    maxlength: 20,
+                    placeholder: "Subdomain",
+                    icon: {class: "browser"}
+                }) %>
+            </div>
+
+            <div class="col-sm-3 col-md-3  ">
+                <%- FORM.input("config.proxy.port", scope, {placeholder: "Port", maxlength: 4, isNumber: true}) %>
+            </div>
+
+            <div class="col-sm-3 col-md-3">
+                <%- FORM.checkbox("config.proxy.ssl", scope, {text: 'SSL/HTTPS', size: 'switchery-sm'}) %>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="panel panel-white">
+    <div class="panel-heading">
+        <h6 class="panel-title" dragonlanguage><i class="icon-bubble-notification position-left"></i>
+            <language>OneSignal</language>
+        </h6>
+    </div>
+
+    <div class="panel-body">
+
+        <div class="row">
+
+            <div class="col-sm-4 col-md-4  ">
+                <%- FORM.password("config.onesignal.userAuthKey", scope, {
+                    maxlength: 50,
+                    normal: true,
+                    placeholder: "User Auth Key",
+                    icon: {class: "key"}
+                }) %>
+            </div>
+
+            <div class="col-sm-4 col-md-4  ">
+                <%- FORM.password("config.onesignal.app.appAuthKey", scope, {
+                    maxlength: 50,
+                    normal: true,
+                    placeholder: "App Auth Key",
+                    icon: {class: "key"}
+                }) %>
+            </div>
+
+            <div class="col-sm-12 col-md-4  ">
+                <%- FORM.password("config.onesignal.app.appId", scope, {
+                    maxlength: 50,
+                    normal: true,
+                    placeholder: "App ID",
+                    icon: {class: "key"}
+                }) %>
+            </div>
+
+        </div>
+    </div>
+</div>

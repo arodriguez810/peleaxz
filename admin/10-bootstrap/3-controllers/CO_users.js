@@ -19,10 +19,10 @@ app.controller("users", function ($scope, $http, $compile) {
                 rules.push(VALIDATION.general.required(value));
                 VALIDATION.validate(users, "lastname", rules);
             });
-            users.$scope.$watch('users.group', function (value) {
+            users.$scope.$watch('users.dragon_group', function (value) {
                 var rules = [];
                 rules.push(VALIDATION.general.required(value));
-                VALIDATION.validate(users, "group", rules);
+                VALIDATION.validate(users, "dragon_group", rules);
             });
             users.$scope.$watch('users.email', function (value) {
                 var rules = [];

@@ -1,0 +1,117 @@
+<div class="tab-content">
+    <div class="tab-pane active" id="basic">
+        <div class="row">
+            <div class="col-sm-6 col-md-6">
+                <%- FORM.input("subject", scope, {maxlength: 50}) %>
+            </div>
+            <div class="col-sm-4 col-md-4" ng-show="!dragon_notifications.showSegments">
+                <%- FORM.select("segments", scope, {
+                    table: "dragon_segment",
+                    value: "name",
+                    get: {table: 'dragon_notifications_segment', fieldFrom: 'id', fieldTo: 'dragon_notifications', field: 'dragon_segment'},
+                    multiple: true,
+                    icon: {class: "collaboration"}
+                }) %>
+            </div>
+            <div class="col-sm-4 col-md-4" ng-show="dragon_notifications.showSegments">
+                <%- FORM.select("users", scope, {
+                    table: CONFIG.users.model,
+                    get: {table: 'user_dragon_notifications', fieldFrom: 'id', fieldTo: 'dragon_notifications', field: 'user'},
+                    multiple: true,
+                    icon: {class: "users4"}
+                }) %>
+            </div>
+            <div class="col-sm-2 col-md-2">
+                <%- FORM.checkbox("showSegments", scope, {text: 'Users?'}) %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <%- FORM.textarea("content", scope, {maxlength: 500}) %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <%- FORM.checkbox("advance", scope, {text: 'Advance'}) %>
+            </div>
+        </div>
+        <div ng-show="dragon_notifications.advance">
+            <div class="row">
+                <div class="col-sm-4 col-md-4">
+                    <%- FORM.datetime("sendAfter", scope, {
+                        placeHolder: 'Send after',
+                    }) %>
+                </div>
+                <div class="col-sm-4 col-md-4">
+                    <%- FORM.input("headings", scope, {maxlength: 50}) %>
+                </div>
+                <div class="col-sm-4 col-md-4">
+                    <%- FORM.input("url", scope, {maxlength: 200}) %>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <%- FORM.checkbox("schedule", scope, {text: 'Schedule'}) %>
+            </div>
+        </div>
+        <div ng-show="dragon_notifications.schedule">
+            <div class="row">
+                <div class="col-sm-4 col-md-4">
+                    <%- FORM.format("count", scope, {
+                        placeHolder: 'Count',
+                        isNumber: false,
+                        format: {mask: "###", options: {reverse: true}}
+                    }) %>
+                </div>
+                <div class="col-sm-4 col-md-4">
+                    <%- FORM.select("dragon_interval", scope, {
+                        table: "dragon_interval",
+                        value: "code",
+                        icon: {class: "alarm"}
+                    }) %>
+                </div>
+                <div class="col-sm-4 col-md-4">
+                    <%- FORM.datetime("until", scope, {
+                        placeHolder: 'Until',
+                    }) %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer" dragonlanguage="">
+     <span class="label label-white text-<%= COLOR.secundary %>-300 label-rounded label-icon">
+            <i class="position-right"></i>
+        </span>
+
+
+    <button type="button" class="btn bg-<%= COLOR.warning %> btn-labeled btn-xs pull-right"
+            ng-click="<%= scope %>.pages.form.close()">
+        <b><i class="icon-cross2"></i></b>
+        <language>MESSAGE.i('mono.cancel')</language>
+    </button>
+    <button type="button" role="button" class="btn bg-<%= COLOR.success %> btn-labeled btn-xs pull-right"
+            ng-click="<%= scope %>.pages.form.save()">
+        <b><i class="icon-floppy-disk"></i></b>
+        <language>MESSAGE.i('mono.save')</language>
+    </button>
+
+    <button type="button" role="button" class="btn bg-<%= COLOR.success %>-400 btn-labeled btn-xs pull-right"
+            ng-click="<%= scope %>.send()">
+        <b><i class="icon-redo2"></i></b>
+        <language>MESSAGE.ic('mono.send')</language>
+    </button>
+
+    <button type="button" role="button" class="btn bg-<%= COLOR.danger %> btn-labeled btn-xs pull-right"
+            ng-click="<%= scope %>.stop()">
+        <b><i class="icon-stop2"></i></b>
+        <language>MESSAGE.ic('mono.stopnotification')</language>
+    </button>
+</div>
+
+
+
+
+

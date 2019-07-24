@@ -457,6 +457,7 @@ FORM = {
                         SWEETALERT.loading({message: MESSAGE.i('mono.saving')});
                         var firstColumn = eval(`CRUD_${$scope.modelName}`).table.key || "id";
                         var DRAGONID = eval(`$scope.${firstColumn}`);
+
                         if ($scope.form !== null)
                             $scope.form.mode = FORM.modes.edit;
                         if ($scope.pages !== null)

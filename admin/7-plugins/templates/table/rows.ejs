@@ -1,8 +1,8 @@
 <td ng-if="<%= scope %>.characterist('batch')">
      <span style="margin-top: 1px;"
 
-             ng-bind-html="<%= scope %>.drawCheck(key,row)"
-             ng-click="<%= scope %>.check(row)"
+           ng-bind-html="<%= scope %>.drawCheck(key,row)"
+           ng-click="<%= scope %>.check(row)"
      >
      </span>
 </td>
@@ -17,7 +17,7 @@
 >
 
 
-    <span ng-bind-html="<%= scope %>.cellValue(key,value,row)"
+    <span class="{{value.break?'break ':''}}" ng-bind-html="<%= scope %>.cellValue(key,value,row)"
           ng-click="<%= scope %>.cell.click(key,value,row)"
           ng-dblclick="<%= scope %>.cell.dblclick(key,value,row)"
           ng-mousedown="<%= scope %>.cell.mousedown(key,value,row)"

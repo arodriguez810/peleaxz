@@ -163,7 +163,6 @@ exports.api = {
                     var date = new Date();
                     var generate = `${date.getFullYear()}${date.getMonth()}${date.getDay()}${usr[config.fields.id]}`;
                     var mdf5 = params.md5(params.CONFIG.appKey + generate);
-                    console.log(usr, mdf5, request.restore);
                     if (mdf5 === request.restore) {
                         user = usr;
                         break;
@@ -184,7 +183,6 @@ exports.api = {
                     var date = new Date();
                     var generate = `${date.getFullYear()}${date.getMonth()}${date.getDay()}${usr[config.fields.id]}`;
                     var mdf5 = params.md5(params.CONFIG.appKey + generate);
-                    console.log(usr, mdf5, request.restore);
                     if (mdf5 === request.restore) {
                         user = usr;
                         var newpassword = params.md5(params.CONFIG.appKey + request.newpassword);

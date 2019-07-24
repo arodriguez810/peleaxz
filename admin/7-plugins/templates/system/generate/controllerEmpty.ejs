@@ -1,0 +1,20 @@
+app.controller("<%= scope %>", function ($scope, $http, $compile) {
+    <%= scope %> = this;
+    //<%= scope %>.singular = "singular";
+    //<%= scope %>.plural = "plural";
+    //<%= scope %>.headertitle = "Hola Title";
+    <%= scope %>.destroyForm = false;
+    RUNCONTROLLER("<%= scope %>", <%= scope %>, $scope, $http, $compile);
+    RUN_B("<%= scope %>", <%= scope %>, $scope, $http, $compile);
+    // $scope.triggers.table.after.control = function (data) {
+    //     //console.log(`$scope.triggers.table.after.control ${$scope.modelName} ${data}`);
+    // };
+    // $scope.triggers.table.before.control = function (data) {
+    //     //console.log(`$scope.triggers.table.before.control ${$scope.modelName} ${data}`);
+    // };
+    //Put This in 0-config/security/permission.json
+    //"blog": {
+        //"type": "empty",
+        //"allow": {}
+    //},
+});

@@ -16,6 +16,7 @@ var folders = {
     language: "6-language",
     scripts: "scripts",
     modules: "modules",
+    sockets: "11-sockets",
     config: "0-config",
     eviroments: "8-enviroments",
     configBase: "7-plugins/application/config",
@@ -23,11 +24,11 @@ var folders = {
     server: "server",
     files: "files",
     themesTemplate: "7-plugins/templates/system/color.ejs",
-    themes: "files/configuration/themes",
+    themes: "files/dragon_configuration/themes",
 };
 
-var modules = {}, controls = [], localjs = [], localModules = [], localModulesVars = [], modulesList = [],
-    developer = {}, themes = [];
+var modules = {}, sockets = {}, controls = [], localjs = [], localModules = [], localModulesVars = [], modulesList = [],
+    developer = {}, themes = [], socketsList = [];
 var fs = require("fs");
 
 /*FUNCTIONS*/
@@ -125,6 +126,7 @@ for (var i in CONFIG.modules) {
     eval("var " + module.var + " = require('" + module.module + "');");
 }
 
+CONFIG.socketsList = socketsList;
 
 //GET LANGUAGES
 languages = getFiles("./" + folders.language + "/");
@@ -245,6 +247,15 @@ for (var i in filesmodules) {
     modulesList.push(file.replace(".js", "").replace("BASE_", ""));
     eval("modules." + file.replace(".js", "").replace("BASE_", "") + " = require('./" + folders.modules + "/" + file + "');");
 }
+
+var filessockets = fs.readdirSync("./" + folders.sockets + "/");
+for (var i in filessockets) {
+    var file = filessockets[i];
+    socketsList.push(file.replace(".js", "").replace("", ""));
+    eval("sockets." + file.replace(".js", "").replace("", "") + " = require('./" + folders.sockets + "/" + file + "');");
+}
+
+
 localStyles = getFiles("./" + folders.styles + "/");
 localjs = getFiles("./" + folders.scripts + "/");
 controls = getFiles("./" + folders.fields + "/");
@@ -277,6 +288,7 @@ for (var ctr of crudCustom)
 
 //******* App Configuration ********//
 var app = express();
+var sio = require('socket.io')(CONFIG.io);
 app.use(compression());
 if (CONFIG.mongo !== undefined) mongoose.connect(CONFIG.mongo);
 app.use(express.static(__dirname));
@@ -318,6 +330,10 @@ for (var i in localModulesVars) {
     allparams += "      collections: collections,";
     allparams += "      scope: '@model@',";
     allparams += "      modules:modules,";
+    allparams += "      sockets:sockets,";
+    allparams += "      socketlist:sockets,";
+    allparams += "      socketsList:socketsList,";
+    allparams += "      sio:sio,";
     allparams += "      storage:storage,";
     allparams += "      http:http,";
     allparams += "      fetch :fetch,";
@@ -634,9 +650,9 @@ servicesFiles.forEach(function (item) {
 modules.tools.init(eval("(" + allparams + ")"));
 modules.views.init(eval("(" + allparams + ")"));
 //******* Load Custom Modules********//
-
 //******* Run Application********//
 app.listen(CONFIG.port);
+sockets.connection.init(eval("(" + allparams + ")"));
 console.clear();
 console.log("");
 console.log(CONFIG.appName.pxz + " Server Models:".pxz);

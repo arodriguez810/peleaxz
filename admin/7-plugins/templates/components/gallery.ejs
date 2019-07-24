@@ -4,7 +4,7 @@
     }
 </style>
 <script>
-    var viewModel = MODAL.getViewData();
+    var viewModel = MODAL.getViewData() || baseController.viewData;
     <%= DATA.scope %>.galleryFiles = {};
     <%= DATA.scope %>.galleryFiles.viewModel = viewModel;
     <%= DATA.scope %>.galleryFiles.data = {};
@@ -81,6 +81,7 @@
         }
     };
     <%= DATA.scope %>.galleryFiles.check = function (file) {
+        console.log("CHEKEADO");
         file.selected = !file.selected;
     };
     <%= DATA.scope %>.galleryFiles.allChecked = function () {
@@ -197,45 +198,78 @@
     <language>MESSAGE.i('mono.Thereisnofilestoshow')</language>
 </div>
 
-<div class="btn-group btn-group-justified">
+<div class="col-md-4 pull-right22 pl-0">
+    <div class="panel panel-<%= COLOR.secundary %>">
+        <div class="panel-body">
+            <div class="row">
+                <center>
+                    <div class="btn-group" ng-show="<%= DATA.scope %>.galleryFiles.reachMaxFiles()">
+                        <button
+                                title="MESSAGE.i('columns.upload_image')" type="button"
+                                role="button"
+                                class=" btn bg-<%= COLOR.secundary %>-600 btn-labeled btn-xs"
+                                ng-show="<%= DATA.scope %>.allow('file.upload')"
+                                ng-click="<%= DATA.scope %>.galleryFiles.uploadview()" dragonlanguage="">
+                            <b><i class="icon-upload"></i></b>
+                            <language>MESSAGE.i('columns.upload_image')</language>
+                        </button>
+                    </div>
+
+                    <div class="btn-group" ng-show="!<%= DATA.scope %>.galleryFiles.isSingle()">
+                        <button title="{{<%= DATA.scope %>
+                .galleryFiles.allCheckedText()}} All" ng-click="<%= DATA.scope %>.galleryFiles.checkAll()" type="button"
+                                ng-show="<%= DATA.scope %>.allow(['file.remove','file.download','file.upload'])"
+                                class="btn bg-<%= COLOR.secundary %>-600 btn-icon">
+                            <span class="icon-{{<%= DATA.scope %>.galleryFiles.allCheckedIcon()}}"></span>
+                        </button>
+
+                    </div>
+
+                    <div class="btn-group"
+                         ng-show="!<%= DATA.scope %>.galleryFiles.isSingle() && <%= DATA.scope %>.allow('file.download')">
+                        <button title="Descargar todo" ng-click="<%= DATA.scope %>.galleryFiles.downloadAll()"
+                                type="button"
+                                class="btn bg-<%= COLOR.secundary %>-600 btn-icon">
+                            <span class="icon-download"></span>
+                        </button>
+                    </div>
+
+                    <!--<div class="btn-group"-->
+                    <!--ng-show="!<%= DATA.scope %>.galleryFiles.isSingle() && <%= DATA.scope %>.allow('file.download')">-->
+                    <!--<button title="Descargar imágenes seleccionados" ng-click="" type="button"-->
+                    <!--class="btn bg-<%= COLOR.secundary %>-600 btn-icon">-->
+                    <!--<span class="icon-download10"></span>-->
+                    <!--</button>-->
+                    <!--</div>-->
 
 
-    <div class="btn-group" ng-show="<%= DATA.scope %>.galleryFiles.reachMaxFiles()">
-        <button title="Upload" ng-click="<%= DATA.scope %>.galleryFiles.uploadview()" type="button"
-                ng-show="<%= DATA.scope %>.allow('file.upload')"
-                class="btn bg-<%= COLOR.secundary %>-600 btn-icon">
-            <span class="icon-upload"></span>
-        </button>
+                    <div class="btn-group"
+                         ng-show="!<%= DATA.scope %>.galleryFiles.isSingle() && <%= DATA.scope %>.allow('file.remove')">
+                        <button title="Eliminar imágenes seleccionadas"
+                                ng-click="<%= DATA.scope %>.galleryFiles.deleteSelected()" type="button"
+                                class="btn bg-<%= COLOR.secundary %>-600 btn-icon" style="margin-right: 0">
+                            <span class="icon-trash"></span>
+                        </button>
+                    </div>
+                </center>
+            </div>
+        </div>
     </div>
-
-    <div class="btn-group"
-         ng-show="!<%= DATA.scope %>.galleryFiles.isSingle() && <%= DATA.scope %>.allow('file.download')">
-        <button title="Download All" ng-click="<%= DATA.scope %>.galleryFiles.downloadAll()" type="button"
-                class="btn bg-<%= COLOR.secundary %>-600 btn-icon">
-            <span class="icon-download"></span>
-        </button>
-    </div>
-
-    <div class="btn-group" ng-show="!<%= DATA.scope %>.galleryFiles.isSingle()">
-        <button title="{{<%= DATA.scope %>
-            .galleryFiles.allCheckedText()}} All" ng-click="<%= DATA.scope %>.galleryFiles.checkAll()" type="button"
-                ng-show="<%= DATA.scope %>.allow(['file.remove','file.download','file.upload'])"
-                class="btn bg-<%= COLOR.secundary %>-600 btn-icon">
-            <span class="icon-{{<%= DATA.scope %>.galleryFiles.allCheckedIcon()}}"></span>
-        </button>
-
-    </div>
-
-    <div class="btn-group"
-         ng-show="!<%= DATA.scope %>.galleryFiles.isSingle() && <%= DATA.scope %>.allow('file.remove')">
-        <button title="Remove Seleted" ng-click="<%= DATA.scope %>.galleryFiles.deleteSelected()" type="button"
-                class="btn bg-<%= COLOR.secundary %>-600 btn-icon">
-            <span class="icon-trash"></span>
-        </button>
-    </div>
-
 
 </div>
+
+<div class="col-md-4 pull-right pl-0">
+    <!--<div class="panel panel-<%= COLOR.secundary %>">-->
+    <!--<div class="panel-body">-->
+    <!--<div class="row">-->
+    <!--<center>-->
+    <!--<label style="margin-bottom: 0; font-size: 18px;">Archivos subidos (0)</label>-->
+    <!--</center>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+</div>
+
 <div class="panel panel-flat"
      ng-show="(<%= DATA.scope %>.galleryFiles.upload && <%= DATA.scope %>.galleryFiles.columns) && <%= DATA.scope %>.galleryFiles.reachMaxFiles()">
     <div class="panel-heading">
@@ -251,11 +285,11 @@
         </form>
     </div>
 </div>
-<div class="row" id="galleryFiles">
+<div class="row imagen-panel" id="galleryFiles">
     <div class="col-md-{{<%= DATA.scope %>.galleryFiles.columns}}"
          ng-repeat="(key,file) in <%= DATA.scope %>.galleryFiles.data.files track by key">
         <div class="panel panel-flat">
-            <div class="panel-body">
+            <div class="panel-body image-body">
                 <div class="thumbnail" style="width: 100%">
                     <div class="thumb" style="width: 100%;min-height: 200px;">
                         <div ng-if="<%= DATA.scope %>.galleryFiles.Icon(file)!=='image'"
@@ -291,7 +325,7 @@
                             </a>
                             <a ng-click="<%= DATA.scope %>.galleryFiles.check(file)"
                                ng-show="<%= DATA.scope %>.allow(['file.remove','file.download','file.upload'])"
-                               class="btn  border-<%= COLOR.primary %>-300 text-black btn-icon">
+                               class="btn  border-<%= COLOR.primary %>-300 text-black btn-icon check-button">
                                 <i class="icon-{{<%= DATA.scope %>.galleryFiles.getIcon(file)}} position-left"></i>
                             </a>
                         </div>

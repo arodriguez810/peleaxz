@@ -5,8 +5,8 @@
     ],
     "terms": [
       {
-        "name": "group",
-        "relation": "user_group"
+        "name": "dragon_group",
+        "relation": "user_dragon_group"
       }
     ],
     "types": {
@@ -141,7 +141,7 @@
       }
     },
     "list": {
-      "group": {
+      "dragon_group": {
         "type": "full",
         "allow": {}
       }

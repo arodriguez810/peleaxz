@@ -1,6 +1,6 @@
-CRUD_notifications = {};
-DSON.keepmerge(CRUD_notifications, CRUDDEFAULTS);
-DSON.keepmerge(CRUD_notifications, {
+CRUD_dragon_notifications = {};
+DSON.keepmerge(CRUD_dragon_notifications, CRUDDEFAULTS);
+DSON.keepmerge(CRUD_dragon_notifications, {
     table: {
         engine: 'ms',
         allow: {

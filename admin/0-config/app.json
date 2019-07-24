@@ -17,7 +17,7 @@
     "token": true,
     "multilanguage": true,
     "configuration": true,
-    "onesignal": false,
+    "onesignal": true,
     "migrations": false,
     "customfields": true,
     "silent": true

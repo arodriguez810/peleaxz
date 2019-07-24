@@ -1,4 +1,4 @@
-CRUD_mime = DSON.merge(CRUD_mime,
+CRUD_dragon_mime = DSON.merge(CRUD_dragon_mime,
     {
         table: {
             filters: {

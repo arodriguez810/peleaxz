@@ -1,4 +1,4 @@
-CRUD_notifications = DSON.merge(CRUD_notifications,
+CRUD_dragon_notifications = DSON.merge(CRUD_dragon_notifications,
     {
         table: {
             filters: {

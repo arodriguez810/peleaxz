@@ -96,34 +96,53 @@ async function execute() {
 
         folder = "7-plugins/templates/system/generate";
         controller = `${folder}/controller.ejs`;
+        controllerEmpty = `${folder}/controllerEmpty.ejs`;
+        controllerReport = `${folder}/controllerReport.ejs`;
         crud = `${folder}/crud.ejs`;
+        crudReport = `${folder}/crudReport.ejs`;
         filter = `${folder}/view/filter.ejs`;
         form = `${folder}/view/form.ejs`;
         index = `${folder}/view/index.ejs`;
+        indexEmpty = `${folder}/view/indexEmpty.ejs`;
         view = `${folder}/view/view.ejs`;
         fs = fs || require("fs");
 
         var PARAMS = eval("(" + allparams + ")");
-        if (engine === "mysql") {
+        if (engine === "empty") {
+            dbtables = {};
+            dbtables.data = [];
+            dbfields = {};
+            dbfields.data = [];
+            controller = controllerEmpty;
+            index = indexEmpty;
+        }
+        if (engine === "mysql" || engine === "mysqlreport") {
             dbtables = await modules.mysql.data(`select TABLE_NAME as \`table\` from information_schema.\`TABLES\` where TABLE_SCHEMA='${CONFIG.mysql.database}'`, PARAMS, false);
             dbfields = await modules.mysql.data(`select COLUMN_NAME \`column\`,DATA_TYPE \`type\` from information_schema.\`COLUMNS\` where  TABLE_SCHEMA='${CONFIG.mysql.database}' and TABLE_NAME='${controllerName}'`, PARAMS, false);
         }
-        if (engine === "mssql") {
+        if (engine === "mssql" || engine === "mssqlreport") {
             dbtables = await modules.mssql.data(`select TABLE_NAME from INFORMATION_SCHEMA.TABLES`, PARAMS, false);
             dbfields = await modules.mssql.data(`select COLUMN_NAME \`column\`,DATA_TYPE \`type\` from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME='${controllerName}'`, PARAMS, false);
         }
-        if (engine === "oracle") {
+        if (engine === "oracle" || engine === "oraclereport") {
             dbtables = await modules.oracle.data(`SELECT TABLE_NAME as "table" FROM all_tables where owner='${CONFIG.oracle.user}'`, PARAMS, false);
             dbfields = await modules.oracle.data(`select COLUMN_NAME as "column" column,DATA_TYPE as "type" from all_tab_columns where TABLE_NAME='${controllerName}'`, PARAMS, false);
         }
-        var dbtablesArray = [];
-        dbtables.data.forEach((table) => {
-            dbtablesArray.push(table.table.toLowerCase())
-        });
-        if (dbtablesArray.indexOf(controllerName) === -1) {
-            console.log(`Table ${controllerName} not exist`.error);
-            return;
+        if (engine.indexOf("report") !== -1) {
+            controller = controllerReport;
+            crud = crudReport;
         }
+        var dbtablesArray = [];
+        if (dbtables)
+            dbtables.data.forEach((table) => {
+                dbtablesArray.push(table.table.toLowerCase())
+            });
+
+        if (engine !== "empty")
+            if (dbtablesArray.indexOf(controllerName) === -1) {
+                console.log(`Table ${controllerName} not exist`.error);
+                return;
+            }
         var dbfieldsArray = [];
         //dbfields.data = [{column: 'time', type: "datetime"}];
         dbfields.data.forEach((field) => {
@@ -236,7 +255,6 @@ async function execute() {
                     formFields.push(compiled);
             }
 
-
         });
         if (crudRelation.length > 0) {
             crudRelation = `,
@@ -259,15 +277,17 @@ async function execute() {
                 console.log(`the controller CO_${controllerName}.js already exist`.warning);
         }
 
-        fileD = fs.readFileSync(crud).toString();
-        compiled = "";
-        compiled = ejs.compile(fileD, {})({scope: controllerName, fields: crudFields, relations: crudRelation});
-        compiled = cleanHtml(compiled);
-        if (compiled !== "") {
-            if (!fs.existsSync(folders.crud + `/CRUD_${controllerName}.js`) || override)
-                fs.writeFileSync(folders.crud + `/CRUD_${controllerName}.js`, compiled);
-            else
-                console.log(`the controller CRUD_${controllerName}.js already exist`.warning);
+        if (engine !== "empty") {
+            fileD = fs.readFileSync(crud).toString();
+            compiled = "";
+            compiled = ejs.compile(fileD, {})({scope: controllerName, fields: crudFields, relations: crudRelation});
+            compiled = cleanHtml(compiled);
+            if (compiled !== "") {
+                if (!fs.existsSync(folders.crud + `/CRUD_${controllerName}.js`) || override)
+                    fs.writeFileSync(folders.crud + `/CRUD_${controllerName}.js`, compiled);
+                else
+                    console.log(`the controller CRUD_${controllerName}.js already exist`.warning);
+            }
         }
         if (!fs.existsSync(folders.views + `/${controllerName}`))
             fs.mkdirSync(folders.views + `/${controllerName}`);
@@ -275,12 +295,13 @@ async function execute() {
         fileD = fs.readFileSync(filter).toString();
         compiled = "";
         compiled = fileD;
-        if (compiled !== "") {
-            if (!fs.existsSync(folders.views + `/${controllerName}/filter.ejs`) || override)
-                fs.writeFileSync(folders.views + `/${controllerName}/filter.ejs`, compiled);
-            else
-                console.log(`the filter for ${controllerName} already exist`.warning);
-        }
+        if (engine !== "empty")
+            if (compiled !== "") {
+                if (!fs.existsSync(folders.views + `/${controllerName}/filter.ejs`) || override)
+                    fs.writeFileSync(folders.views + `/${controllerName}/filter.ejs`, compiled);
+                else
+                    console.log(`the filter for ${controllerName} already exist`.warning);
+            }
 
         fileD = fs.readFileSync(form).toString();
         fileD = compiledHack(fileD);
@@ -288,16 +309,18 @@ async function execute() {
         compiled = ejs.compile(fileD, {})({scope: controllerName, fields: formFields});
         compiled = compiledHackReturn(compiled);
         compiled = cleanHtml(compiled);
-        if (compiled !== "") {
-            if (!fs.existsSync(folders.views + `/${controllerName}/form.ejs`) || override)
-                fs.writeFileSync(folders.views + `/${controllerName}/form.ejs`, compiled);
-            else
-                console.log(`the form for ${controllerName} already exist`.warning);
-        }
+        if (engine !== "empty" && (engine.indexOf("report") === -1))
+            if (compiled !== "") {
+                if (!fs.existsSync(folders.views + `/${controllerName}/form.ejs`) || override)
+                    fs.writeFileSync(folders.views + `/${controllerName}/form.ejs`, compiled);
+                else
+                    console.log(`the form for ${controllerName} already exist`.warning);
+            }
 
         fileD = fs.readFileSync(index).toString();
         compiled = "";
         compiled = fileD;
+
         if (compiled !== "") {
             if (!fs.existsSync(folders.views + `/${controllerName}/index.ejs`) || override)
                 fs.writeFileSync(folders.views + `/${controllerName}/index.ejs`, compiled);
@@ -308,12 +331,13 @@ async function execute() {
         fileD = fs.readFileSync(view).toString();
         compiled = "";
         compiled = fileD;
-        if (compiled !== "") {
-            if (!fs.existsSync(folders.views + `/${controllerName}/view.ejs`) || override)
-                fs.writeFileSync(folders.views + `/${controllerName}/view.ejs`, compiled);
-            else
-                console.log(`the view for ${controllerName} already exist`.warning);
-        }
+        if (engine !== "empty")
+            if (compiled !== "") {
+                if (!fs.existsSync(folders.views + `/${controllerName}/view.ejs`) || override)
+                    fs.writeFileSync(folders.views + `/${controllerName}/view.ejs`, compiled);
+                else
+                    console.log(`the view for ${controllerName} already exist`.warning);
+            }
 
         console.log(`Generated ${controllerName}`.success);
     }
@@ -448,14 +472,14 @@ async function execute() {
     if (controllerNames.length === 1) {
         if (controllerNames[0] === "*") {
             var PARAMS = eval("(" + allparams + ")");
-            if (engine === "mysql") {
+            if (engine === "mysql" || engine === "mysqlreport") {
                 dbtables = await modules.mysql.data(`select TABLE_NAME as \`table\` from information_schema.\`TABLES\` where TABLE_SCHEMA='${CONFIG.mysql.database}'`, PARAMS, false);
             }
-            if (engine === "mssql") {
+            if (engine === "mssql" || engine === "mssqlreport") {
                 dbtables = await modules.mssql.data(`select TABLE_NAME from INFORMATION_SCHEMA.TABLES`, PARAMS, false);
                 dbfields = await modules.mssql.data(`select COLUMN_NAME \`column\`,DATA_TYPE \`type\` from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME='${controllerName}'`, PARAMS, false);
             }
-            if (engine === "oracle") {
+            if (engine === "oracle" || engine === "oraclereport") {
                 dbtables = await modules.oracle.data(`select TABLE_NAME from INFORMATION_SCHEMA.TABLES`, PARAMS, false);
                 dbfields = await modules.mssql.data(`select COLUMN_NAME \`column\`,DATA_TYPE \`type\` from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME='${controllerName}'`, PARAMS, false);
             }

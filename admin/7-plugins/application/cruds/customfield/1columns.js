@@ -1,6 +1,6 @@
-CRUD_customfield = {};
-DSON.keepmerge(CRUD_customfield, CRUDDEFAULTS);
-DSON.keepmerge(CRUD_customfield, {
+CRUD_dragon_customfield = {};
+DSON.keepmerge(CRUD_dragon_customfield, CRUDDEFAULTS);
+DSON.keepmerge(CRUD_dragon_customfield, {
     table: {
         columns: {
             id: {

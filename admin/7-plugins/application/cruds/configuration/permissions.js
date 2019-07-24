@@ -1,4 +1,4 @@
-CRUD_configuration =
+CRUD_dragon_configuration =
     {
         type: 'raw',
         table: {

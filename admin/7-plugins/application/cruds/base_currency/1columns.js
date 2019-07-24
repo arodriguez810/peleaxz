@@ -1,6 +1,6 @@
-CRUD_base_currency = {};
-DSON.keepmerge(CRUD_base_currency, CRUDDEFAULTS);
-DSON.keepmerge(CRUD_base_currency, {
+CRUD_dragon_currency = {};
+DSON.keepmerge(CRUD_dragon_currency, CRUDDEFAULTS);
+DSON.keepmerge(CRUD_dragon_currency, {
     table: {
         engine: 'ms',
         columns: {

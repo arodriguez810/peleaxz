@@ -52,7 +52,7 @@
       <sourceFolder url="file://$MODULE_DIR$/admin/server/scripts" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/styles/pages" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/templates/email" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/group" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/dragon_group" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/cruds/group" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/styles" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/styles/base" isTestSource="true" />
@@ -72,19 +72,19 @@
       <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/ms_all" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/navbar" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/6-language/en/permissions" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/configuration" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/dragon_configuration" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/templates/header" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/templates/charts23" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/recode" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/language" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/dragon_language" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/cruds/language" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/4-crud/a.defautls/notification" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/cruds/notifications" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/notifications" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/dragon_notifications" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/cruds/segment" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/segment" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/dragon_segment" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/cruds/interval" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/interval" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/dragon_interval" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/5-views" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/4-crud" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/4-crud/a.defautls" isTestSource="true" />
@@ -92,18 +92,16 @@
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/controllers" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/config" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/cruds/information" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/information" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/dragon_information" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/cruds/fieldtype" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/fieldtype" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/dragon_fieldtype" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/cruds/customfield" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/cruds/mime" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/customfield" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/mime" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/dragon_customfield" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/dragon_mime" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/modules" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/templates/system/view" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/base_currency" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/cruds" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/dragon_currency" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/cruds/base_currency" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/8-enviroments" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/9-endpoints" isTestSource="true" />
@@ -114,8 +112,21 @@
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/templates/system/generate" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/10-bootstrap" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/templates" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/templates/charts" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/dragon_function" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/dragon_function_query" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/dragon_query" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/dragon_sql_engine" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/cruds/wizard" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/dragon_wizard" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/cruds" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/cruds/dragon_function" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/cruds/dragon_function_query" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/cruds/query" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/cruds/sql_engine" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/11-sockets" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/.tmp" />
       <excludeFolder url="file://$MODULE_DIR$/admin/assets" />
       <excludeFolder url="file://$MODULE_DIR$/admin/defaults" />

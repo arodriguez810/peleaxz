@@ -244,6 +244,7 @@ TABLEEVENT = {
                 if (result.data.error === false) {
 
                     $scope.afterDelete(row);
+
                     $scope.procesingRow++;
                     if ($scope.procesingRowFor !== 0)
                         SWEETALERT.loading({

@@ -63,7 +63,7 @@ DSON.keepmerge(CRUD_texts,
                     formattype: ENUM.FORMAT.password
                 },
                 textarea: {
-                    shorttext: 60,
+                    break: true
                 },
             },
             filters: {

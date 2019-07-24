@@ -1,0 +1,66 @@
+<style>
+    .select2 {
+        margin-top: 6px;
+    }
+
+</style>
+<div id="dragon_configuration" ng-controller="dragon_configuration as dragon_configuration">
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="subcontent" style="margin-top: 10px; min-height: 800px">
+                <div class="container-fluid">
+                    <div class="row">
+
+                        <%- FORM.tabs(scope, [
+                            {id: "company", text: "Company", icon: "icon-menu7"},
+                            {id: "security", text: "Security", icon: "icon-archive"},
+                            {id: "smtp", text: "SMTP", icon: "icon-html5"},
+                            {id: "database", text: "Database", icon: "icon-comment"}
+                        ]) %>
+
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="company">
+                                <%- include('company',{scope:scope,mode:'full'}); %>
+                            </div>
+
+                            <div class="tab-pane" id="security">
+                                <%- include('security',{scope:scope,mode:'full'}); %>
+                            </div>
+
+                            <div class="tab-pane" id="smtp">
+                                <%- include('smtp',{scope:scope,mode:'full'}); %>
+                            </div>
+
+                            <div class="tab-pane" id="database">
+                                <%- include('database',{scope:scope,mode:'full'}); %>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    <div class="row" style="margin-top: 40px;position: relative">
+                        <button type="button" ng-click="dragon_configuration.configurationClose()"
+                                class="btn bg-<%= COLOR.warning %> btn-xs btn-labeled pull-right" dragonlanguage>
+                            <b><i class="icon-cross2"></i></b>
+                            <language>MESSAGE.i('mono.cancel')</language>
+                        </button>
+                        <button type="button" ng-click="dragon_configuration.saveConfiguration()"
+                                class="btn bg-<%= COLOR.success %> btn-xs btn-labeled pull-right"
+                                dragonlanguage><b><i class="icon-floppy-disk"></i></b>
+                            <language>MESSAGE.i('mono.save')</language>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('.js-example-basic-single').select2();
+        });
+    </script>
+
+</div>

@@ -1,4 +1,4 @@
-CRUD_interval = DSON.merge(CRUD_interval,
+CRUD_dragon_interval = DSON.merge(CRUD_dragon_interval,
     {
         table: {
             filters: {

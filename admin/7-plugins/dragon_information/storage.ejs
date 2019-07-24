@@ -1,0 +1,161 @@
+<div id="dragon_information" ng-controller="dragon_information as dragon_information" style="text-align: center">
+    <div class="panel panel-<%= COLOR.secundary %>">
+        <div class="panel-heading">
+            <h6 class="panel-title" dragonlanguage><i class="icon-database position-left"></i>
+                **<language>MESSAGE.ic('mono.basemodules')</language>**
+            </h6>
+        </div>
+
+        <div class="panel-body">
+            <table class="table-responsive table table-togglable table-framed" dragonlanguage="">
+                <thead class="bg-<%= COLOR.secundary %>" id="<%= scope %>head" dragonlanguage="">
+                <tr class="bg-<%= COLOR.secundary %>">
+                    <th>
+                        <language>MESSAGE.ic('mono.entity')</language>
+                    </th>
+                    <th>
+                        <language>MESSAGE.ic('mono.records')</language>
+                    </th>
+                    <th>
+                        <language>MESSAGE.ic('mono.actions')</language>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="(key,entity) in dragon_information.base" ng-if="entity.base">
+                    <td>
+                        <h4 class="{{entity.base?'text-danger':''}}">{{key}}</h4>
+                    </td>
+                    <td>
+                        <button
+                                id="{{key}}count"
+                                dragonlanguage="" title="MESSAGE.ic('mono.search')"
+                                type="button" class="btn bg-<%= COLOR.primary %>"
+                                ng-click="dragon_information.getCount(key)">
+                            <span id="{{key}}countvalue"><i class="icon-hash"></i></span>
+                        </button>
+                    </td>
+                    <td>
+                        <button
+
+                                dragonlanguage="" title="MESSAGE.ic('mono.clear')"
+                                type="button" class="btn bg-<%= COLOR.danger %>"
+                                ng-click="dragon_information.clean(key)">
+                            <span>
+                                <i class="icon-database-remove"></i>
+                            </span>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="panel panel-<%= COLOR.secundary %>">
+        <div class="panel-heading">
+            <h6 class="panel-title" dragonlanguage><i class="icon-database position-left"></i>
+                <language>MESSAGE.ic('mono.basemodules')</language>
+            </h6>
+        </div>
+
+        <div class="panel-body">
+            <table class="table-responsive table table-togglable table-framed" dragonlanguage="">
+                <thead class="bg-<%= COLOR.secundary %>" id="<%= scope %>head" dragonlanguage="">
+                <tr class="bg-<%= COLOR.secundary %>">
+                    <th>
+                        <language>MESSAGE.ic('mono.entity')</language>
+                    </th>
+                    <th>
+                        <language>MESSAGE.ic('mono.records')</language>
+                    </th>
+                    <th>
+                        <language>MESSAGE.ic('mono.actions')</language>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="(key,entity) in dragon_information.base" ng-if="!entity.base">
+                    <td>
+                        <h4 class="{{entity.base?'text-danger':''}}">{{key}}</h4>
+                    </td>
+                    <td>
+                        <button
+                                id="{{key}}count"
+                                dragonlanguage="" title="MESSAGE.ic('mono.search')"
+                                type="button" class="btn bg-<%= COLOR.primary %>"
+                                ng-click="dragon_information.getCount(key)">
+                            <span id="{{key}}countvalue"><i class="icon-hash"></i></span>
+                        </button>
+                    </td>
+                    <td>
+                        <button
+
+                                dragonlanguage="" title="MESSAGE.ic('mono.clear')"
+                                type="button" class="btn bg-<%= COLOR.danger %>"
+                                ng-click="dragon_information.clean(key)">
+                            <span>
+                                <i class="icon-database-remove"></i>
+                            </span>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="panel panel-<%= COLOR.secundary %>">
+        <div class="panel-heading">
+            <h6 class="panel-title" dragonlanguage><i class="icon-database2 position-left"></i>
+                FROM <%= CONFIG.appName %>
+            </h6>
+        </div>
+
+        <div class="panel-body">
+            <table class="table-responsive table table-togglable table-framed" dragonlanguage="">
+                <thead class="bg-<%= COLOR.secundary %>" id="<%= scope %>head" dragonlanguage="">
+                <tr class="bg-<%= COLOR.secundary %>">
+                    <th>
+                        <language>MESSAGE.ic('mono.entity')</language>
+                    </th>
+                    <th>
+                        <language>MESSAGE.ic('mono.records')</language>
+                    </th>
+                    <th>
+                        <language>MESSAGE.ic('mono.actions')</language>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="(key,entity) in dragon_information.app">
+                    <td>
+                        <h4>{{key}}</h4>
+                    </td>
+                    <td>
+                        <button
+                                id="{{key}}count"
+                                dragonlanguage="" title="MESSAGE.ic('mono.search')"
+                                type="button" class="btn bg-<%= COLOR.primary %>"
+                                ng-click="dragon_information.getCount(key)">
+                            <span id="{{key}}countvalue"><i class="icon-hash"></i></span>
+                        </button>
+                    </td>
+                    <td>
+                        <button
+
+                                dragonlanguage="" title="MESSAGE.ic('mono.clear')"
+                                type="button" class="btn bg-<%= COLOR.danger %>"
+                                ng-click="dragon_information.clean(key)">
+                            <span>
+                                <i class="icon-database-remove"></i>
+                            </span>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div><!--end-->
+<script>
+    dragon_information.refreshAngular();
+</script>

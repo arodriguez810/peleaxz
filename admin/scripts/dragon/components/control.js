@@ -1,21 +1,39 @@
 CONTROL = {
+    cache: {},
     run: function ($scope, $compile) {
         $scope.control = {};
         $scope.control.dropdown = [];
         $scope.control.draw = (content, url, name, opts) => new Promise((resolve, reject) => {
-            new LOAD().templatePost(`dragoncontrol/${url}`, {
-                name: name,
-                model: $scope.modelName,
-                opts: opts
-            }, function (control) {
-                if (control !== false) {
-                    $(content).html($compile(control)($scope.$scope));
-                    resolve(true);
-                } else {
-                    $(content).html(`${url}->${name}->error`);
-                    resolve(true);
-                }
-            });
+            if (!CONTROL.cache[url]) {
+                new LOAD().templatePost(`dragoncontrol/${url}`, {
+                    name: "DRAGONNAME",
+                    model: "DRAGONMODEL",
+                    opts: "DRAGONOPTION"
+                }, function (control) {
+                    if (control !== false) {
+                        CONTROL.cache[url] = control;
+                        var controlReal = control.replaceAll("DRAGONNAME", name);
+                        controlReal = controlReal.replaceAll("Dragonname", name);
+                        controlReal = controlReal.replaceAll("DRAGONMODEL", $scope.modelName);
+                        controlReal = controlReal.replaceAll("DRAGONOPTION", JSON.stringify(opts));
+                        $(content).html($compile(controlReal)($scope.$scope));
+                        resolve(true);
+                    } else {
+                        $(content).html(`${url}->${name}->error`);
+                        resolve(true);
+                    }
+                });
+            } else {
+                var controlReal = CONTROL.cache[url].replaceAll("DRAGONNAME", name);
+                controlReal = controlReal.replaceAll("Dragonname", name);
+                controlReal = controlReal.replaceAll("DRAGONMODEL", $scope.modelName);
+                console.log(opts);
+                console.log(JSON.stringify(opts));
+                controlReal = controlReal.replaceAll("DRAGONOPTION", JSON.stringify(opts));
+                $(content).html($compile(controlReal)($scope.$scope));
+                resolve(true);
+            }
+
         });
         for (var i of CONTROLS) {
             var nameData = i.replace(".ejs", "");
@@ -137,7 +155,6 @@ CONTROL = {
                         break;
                     }
                     case "6": {
-
 
                         $(content).append(`<div class="col-sm-${cols} col-md-${cols}" id="field${field.id}"></div>`);
 

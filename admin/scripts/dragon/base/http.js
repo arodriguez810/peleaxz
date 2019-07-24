@@ -28,6 +28,11 @@ HTTP = function () {
         formurl.push(`http${CONFIG.proxy.ssl ? "s" : ""}://${CONFIG.proxy.subdomain !== "" ? (CONFIG.proxy.subdomain + ".") : ""}${CONFIG.proxy.domain}${CONFIG.proxy.port === 80 || CONFIG.proxy.port === 443 ? "" : ":" + CONFIG.proxy.port}`);
         return formurl.concat(pathsarray).join("/");
     };
+    this.io = function (pathsarray) {
+        var formurl = [];
+        formurl.push(`http${CONFIG.proxy.ssl ? "s" : ""}://${CONFIG.proxy.subdomain !== "" ? (CONFIG.proxy.subdomain + ".") : ""}${CONFIG.proxy.domain}${CONFIG.proxy.io === 80 || CONFIG.proxy.io === 443 ? "" : ":" + CONFIG.proxy.io}`);
+        return formurl.concat(pathsarray).join("/");
+    };
     this.cleanRoot = function (path) {
         return path.replaceAll(new HTTP().path([]), "");
     };

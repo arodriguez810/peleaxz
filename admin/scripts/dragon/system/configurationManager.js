@@ -4,7 +4,7 @@ CONFIGURATION = {
         var modal = {
             width: 'modal-full',
             header: {
-                title: MESSAGE.ic('mono.configuration'),
+                title: MESSAGE.ic('mono.dragon_configuration'),
                 icon: "cog2"
             },
             footer: {
@@ -12,12 +12,12 @@ CONFIGURATION = {
             },
             content: {
                 loadingContentText: MESSAGE.i('actions.Loading'),
-                sameController: 'configuration'
+                sameController: 'dragon_configuration'
             },
         };
         if (user.super)
-            baseController.currentModel.modal.modalView("configuration", modal);
+            baseController.currentModel.modal.modalView("dragon_configuration", modal);
         else
-            baseController.currentModel.modal.modalView("configuration/soft", modal);
+            baseController.currentModel.modal.modalView("dragon_configuration/soft", modal);
     }
 };

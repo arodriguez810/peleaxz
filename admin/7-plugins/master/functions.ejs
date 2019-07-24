@@ -36,8 +36,6 @@ addMenu = function (prefix, array) {
 addMenu([], CONFIG.menus);
 %>
 <script>
-
-
     MENUMODAL = false;
     CHANGINGMENU = true;
     PRUDENTS = {};
@@ -103,10 +101,39 @@ addMenu([], CONFIG.menus);
     LAN = MESSAGE.current();
     LAN.money = eval(LAN.money);
     moment.locale(LAN.time);
+
     LAN.datetime = value => moment(value || new Date()).format("LL LT");
     LAN.date = value => moment(value || new Date()).format("LL");
     LAN.time = value => moment(value || new Date()).format("LT");
 
+    LAN.fullDate = value => moment(value || new Date()).format("LLLL");
+
+    LAN.fullYear = value => moment(value || new Date()).format("Y");
+    LAN.shortYear = value => moment(value || new Date()).format("YY");
+
+    LAN.monthName = value => moment(value || new Date()).format("MMMM");
+    LAN.shortMonth = value => moment(value || new Date()).format("MMM");
+    LAN.zeroMonth = value => moment(value || new Date()).format("MMM");
+    LAN.month = value => moment(value || new Date()).format("M");
+
+    LAN.day = value => moment(value || new Date()).format("D");
+    LAN.shortWeekDay = value => moment(value || new Date()).format("dd");
+    LAN.mediumWeekDay = value => moment(value || new Date()).format("ddd");
+    LAN.weekDay = value => moment(value || new Date()).format("dddd");
+    LAN.week = value => moment(value || new Date()).format("w");
+
+    LAN.hour = value => moment(value || new Date()).format("h");
+    LAN.zeroHour = value => moment(value || new Date()).format("hh");
+    LAN.hour24 = value => moment(value || new Date()).format("H");
+    LAN.zeroHour24 = value => moment(value || new Date()).format("HH");
+
+    LAN.minute = value => moment(value || new Date()).format("m");
+    LAN.zeroMinute = value => moment(value || new Date()).format("mm");
+
+    LAN.second = value => moment(value || new Date()).format("ss");
+    LAN.zeroSecond = value => moment(value || new Date()).format("ss");
+
+    EASYINTERVAL = [];
     PLAYERID = null;
 </script>
 <script>
@@ -133,4 +160,9 @@ addMenu([], CONFIG.menus);
         });
 
     }
+</script>
+
+<script>
+    SOCKETS.connect();
+    SOCKETS.run();
 </script>

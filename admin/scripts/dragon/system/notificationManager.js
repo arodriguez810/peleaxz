@@ -4,7 +4,7 @@ NOTIFICATION = {
         var modal = {
             width: 'modal-full',
             header: {
-                title: MESSAGE.ic('mono.notifications'),
+                title: MESSAGE.ic('mono.dragon_notifications'),
                 icon: "bubble-notification"
             },
             footer: {
@@ -12,7 +12,7 @@ NOTIFICATION = {
             },
             content: {
                 loadingContentText: MESSAGE.i('actions.Loading'),
-                sameController: 'configuration'
+                sameController: 'dragon_configuration'
             },
         };
         baseController.currentModel.modal.modalView("templates/components/notifications", modal);

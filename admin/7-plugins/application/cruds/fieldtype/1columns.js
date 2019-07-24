@@ -1,6 +1,6 @@
-CRUD_fieldtype = {};
-DSON.keepmerge(CRUD_fieldtype, CRUDDEFAULTS);
-DSON.keepmerge(CRUD_fieldtype, {
+CRUD_dragon_fieldtype = {};
+DSON.keepmerge(CRUD_dragon_fieldtype, CRUDDEFAULTS);
+DSON.keepmerge(CRUD_dragon_fieldtype, {
     table: {
         engine: 'ms',
         columns: {

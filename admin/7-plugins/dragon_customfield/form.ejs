@@ -1,0 +1,100 @@
+<div class="tab-content">
+    <div class="tab-pane active" id="basic">
+        <div class="row">
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.input("name", scope, {maxlength: 50}) %>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.input("variable", scope, {maxlength: 15}) %>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.select("type", scope, {
+                    column: "name",
+                    table: "dragon_fieldtype",
+                    icon: {class: "archive"}
+                }) %>
+            </div>
+        </div>
+        <div class="row">
+            <div ng-show="['list'].indexOf(dragon_customfield.type_object.key)!==-1">
+                <div class="col-sm-3 col-md-3">
+                    <%- FORM.select("parent", scope, {
+                        column: "name",
+                        value: "variable",
+                        self: false,
+                        table: "dragon_customfield",
+                        icon: {class: "archive"}
+                    }) %>
+                </div>
+                <div class="col-sm-2 col-md-2">
+                    <%- FORM.checkbox("multiple", scope, {text: 'Multiple?'}) %>
+                </div>
+                <div class="col-sm-7 col-md-7" ng-show="!dragon_customfield.parent_object.elements">
+                    <%- FORM.tags("elements", scope) %>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12" id="subelements">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-md-4"
+                 ng-show="['textbox','textarea','int'].indexOf(dragon_customfield.type_object.key)!==-1">
+                <%- FORM.format("length", scope, {
+                    isNumber: false,
+                    icon: {position: "right"},
+                    format: {mask: "####", options: {reverse: true}}
+                }) %>
+            </div>
+            <div class="col-sm-4 col-md-4" ng-show="['textbox'].indexOf(dragon_customfield.type_object.key)!==-1">
+                <%- FORM.input("mask", scope, {
+                    maxlength: 100, icon: {class: 'hash'},
+                    popover: {
+                        title: "${MESSAGE.ic('mono.whatisthis')}",
+                        content: "${MESSAGE.i('alerts.maskDescription')}"
+                    }
+                }) %>
+            </div>
+            <div ng-show="['int'].indexOf(dragon_customfield.type_object.key)!==-1">
+                <div class="col-sm-2 col-md-2">
+                    <%- FORM.checkbox("isDecimal", scope) %>
+                </div>
+                <div class="col-sm-4 col-md-4" ng-show="dragon_customfield.isDecimal">
+                    <%- FORM.format("positions", scope, {
+                        isNumber: false,
+                        icon: {position: "right"},
+                        format: {mask: "#", options: {reverse: true}}
+                    }) %>
+                </div>
+            </div>
+            <div ng-show="['file'].indexOf(dragon_customfield.type_object.key)!==-1">
+                <div class="col-sm-4 col-md-4">
+                    <%- FORM.select("documentType", scope, {
+                        column: "name",
+                        value: "key",
+                        table: "dragon_mime",
+                        icon: {class: "archive"}
+                    }) %>
+                </div>
+                <div class="col-sm-2 col-md-2">
+                    <%- FORM.checkbox("multiplefile", scope) %>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-md-8">
+                <%- FORM.textarea("description", scope, {maxlength: 200}) %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- FORM.footer(scope) %>
+
+
+
+
+

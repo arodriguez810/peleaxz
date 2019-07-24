@@ -65,16 +65,18 @@ TABLEFORMAT = {
             return value;
         };
         $scope.tableStatus = function () {
-            var currentShow =
-                $scope.table.currentPage * $scope.table.currentLimit -
-                ($scope.table.currentLimit - 1);
+            var currentShow = 0;
+            if ($scope.records !== undefined) {
+                if ($scope.records.data !== undefined) {
+                    currentShow = $scope.records.data.length;
+                }
+            }
             var result = String.format(
                 MESSAGE.i('table.tableStatus'),
                 $scope.plural,
-                $scope.table.orderby,
-                $scope.table.order,
+                MESSAGE.i('columns.' + $scope.table.orderby),
+                MESSAGE.i('mono.' + $scope.table.order),
                 currentShow,
-                currentShow + ($scope.table.currentCount - 1),
                 $scope.table.totalCount
             );
             return result;
@@ -382,6 +384,33 @@ TABLEFORMAT = {
             if (row.rowdeleted === true)
                 return "dragon-row-deleted";
             return "";
+        };
+        $scope.columns = function () {
+            if (STORAGE.hasColumns($scope)) {
+                var storage_columns = STORAGE.getColumns($scope);
+                return $scope.reorderColumn(storage_columns);
+            } else {
+                var hides = $scope.getModel("hideColumns");
+                for (const key in eval(`CRUD_${$scope.modelName}`).table.columns) {
+                    if (eval(`CRUD_${$scope.modelName}`).table.columns.hasOwnProperty(key)) {
+                        if (ARRAY.contains(hides, key)) {
+                            eval(`CRUD_${$scope.modelName}`).table.columns[key].visible = false;
+                        }
+                    }
+                }
+                return eval(`CRUD_${$scope.modelName}`).table.columns;
+            }
+        };
+        $scope.reorderColumn = function (storage_columns) {
+            var ordered = {};
+            var hides = $scope.getModel("hideColumns");
+            for (let obj of storage_columns) {
+                eval("ordered." + obj + " = eval(`CRUD_${$scope.modelName}`).table.columns." + obj);
+                if (ARRAY.contains(hides, obj)) {
+                    eval("eval(`CRUD_${$scope.modelName}`).table.columns." + obj + ".visible = false;");
+                }
+            }
+            return ordered;
         };
         $scope.LAN = LAN;
     }

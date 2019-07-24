@@ -6,6 +6,16 @@ BASEAPI = {
             else
                 SWEETALERT.loading({message: MESSAGE.i('actions.Loading')});
         },
+        speech: function (text, element) {
+            var http = new HTTP();
+            BASEAPI.ajax.get(http.path(["cognitiveservices", "api"]), {
+                text: text,
+                lan: MESSAGE.current().code,
+            }, function (data) {
+                var audio = new Audio(http.path(["preview.wav?cache=" + new Date().getTime()]));
+                audio.play();
+            }, element);
+        },
         stop: function (element) {
             if (element)
                 new ANIMATION().stoploadingPure(element, element);

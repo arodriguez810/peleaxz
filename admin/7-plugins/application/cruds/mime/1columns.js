@@ -1,6 +1,6 @@
-CRUD_mime = {};
-DSON.keepmerge(CRUD_mime, CRUDDEFAULTS);
-DSON.keepmerge(CRUD_mime, {
+CRUD_dragon_mime = {};
+DSON.keepmerge(CRUD_dragon_mime, CRUDDEFAULTS);
+DSON.keepmerge(CRUD_dragon_mime, {
     table: {
         engine: 'ms',
         columns: {

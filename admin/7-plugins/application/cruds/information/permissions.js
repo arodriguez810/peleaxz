@@ -1,4 +1,4 @@
-CRUD_information =
+CRUD_dragon_information =
     {
         type: 'raw',
         table: {
