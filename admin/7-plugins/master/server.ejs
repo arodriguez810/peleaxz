@@ -1,0 +1,58 @@
+<%
+models = params.models
+        .concat(params.modelsql)
+        .concat(params.modelmysql)
+        .concat(params.modeloracle).concat(params.modelstorage);
+var tags = params.CONFIG.ui.colors.tag;
+
+var newtags = {};
+for (var tag in tags) {
+    var itag = tags[tag];
+    var largeVar = "params.CONFIG.ui.colors." + tags[tag];
+    eval("newtags." + tag + " = " + largeVar + '===undefined ? "' + itag + '" : ' + largeVar + ";");
+}
+
+
+var CONTROLLERSNAMES = [];
+var CONTROLLERSNAMESILENT = [];
+for (var CONTROLLER of params.controllersjs) {
+    var name = CONTROLLER.split('CO_')[1].split('.js')[0];
+    if (["BASE"].indexOf(name) === -1) {
+        CONTROLLERSNAMES.push({id: name, name: name});
+        CONTROLLERSNAMESILENT.push(name);
+    }
+}
+
+STORAGENAMES = [];
+for (var sotargy in params.CONFIG.storageEntities) {
+    STORAGENAMES.push(sotargy);
+}
+
+silentsmodels = [];
+models.forEach(function (item) {
+    if (item != undefined) {
+        if (CONTROLLERSNAMESILENT.indexOf(item) === -1) {
+            if (STORAGENAMES.indexOf(item) === -1) {
+                silentsmodels.push(item);
+            }
+        }
+    }
+});
+
+
+CURRENCIES = params.currencies;
+THEMES = params.themes;
+session = params.session;
+localjs = params.localjs;
+controls = params.controls;
+controllersjs = params.controllersjs;
+localStyles = params.localStyles;
+crudjs = params.crudjs;
+CONFIG = params.CONFIG;
+LANGUAGE = params.LANGUAGE;
+SHOWLANGS = params.SHOWLANGS;
+COLOR = params.CONFIG.ui.colors;
+TAG = newtags;
+FOLDERS = params.folders;
+SERVICES = params.catalogs;
+%>

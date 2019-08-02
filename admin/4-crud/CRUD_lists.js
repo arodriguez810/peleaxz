@@ -11,9 +11,12 @@ DSON.keepmerge(CRUD_lists, {
             },
             name: {},
             parent_name: {link: {table: 'parent', from: 'parent'}},
-            child_name: {link: {table: 'child', from: 'child'}},
+            child_name: {link: {table: 'child', from: 'child_id'}},
+            child: {},
             relation: {multilink: {table: "relation", to: "list"}},
-            categories: {multilink: {table: "lists_category", to: "lists"}}
+            OneToMany: {},
+            categories: {multilink: {table: "lists_category", to: "lists"}},
+            ManyToMany: {}
         },
         filters: {
             columns: true

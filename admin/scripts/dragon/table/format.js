@@ -1,5 +1,23 @@
 TABLEFORMAT = {
     run: function ($scope) {
+        $scope.info = {};
+        $scope.info.getKey = function (modaleName) {
+            var crud = $scope.info.getCrud(modaleName);
+            if (crud)
+                return crud.key;
+            return "id";
+        };
+        $scope.info.getCrud = function (modaleName) {
+            if (eval(`CRUD_${modaleName || $scope.modelName}`))
+                return eval(`CRUD_${modaleName || $scope.modelName}.table`);
+            return null;
+        };
+        $scope.info.whereKey = function (value, modaleName) {
+            var crud = $scope.info.getCrud(modaleName);
+            if (crud)
+                return {where: [{field: $scope.info.getKey(modaleName), value: value}]};
+            return {where: []};
+        };
         $scope.cellValue = function (key, column, row) {
             if (column.formattype !== undefined) {
                 if ([

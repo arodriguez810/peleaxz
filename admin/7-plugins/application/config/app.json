@@ -20,7 +20,8 @@
     "onesignal": true,
     "migrations": false,
     "customfields": true,
-    "silent": true
+    "silent": true,
+    "sockets": true
   },
   "developerBy": {
     "name": "Angel Rodríguez",

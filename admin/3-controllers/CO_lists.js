@@ -13,11 +13,17 @@ app.controller("lists", function ($scope, $http, $compile) {
                 VALIDATION.validate(lists, 'parent', rules);
             });
             $scope.$watch("lists.child", function (value) {
+                console.log(new Date().getTime());
                 var rules = [];
                 //rules here
                 //rules.push(VALIDATION.general.required(value));
                 VALIDATION.validate(lists, 'child', rules);
             });
         }
+    };
+    lists.triggers.table.after.load = function (records) {
+        lists.runMagicOneToOne('child');
+        lists.runMagicOneToMany('OneToMany', 'relation', 'list');
+        lists.runMagicManyToMany('ManyToMany', 'category', 'lists');
     };
 });

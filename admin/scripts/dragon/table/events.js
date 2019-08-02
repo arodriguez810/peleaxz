@@ -30,7 +30,7 @@ TABLEEVENT = {
         $scope.cell.openLink = function (data) {
             if (!DSON.oseaX(data.value)) {
                 var mylink = data.column.link;
-                $scope.modalAction(mylink.table, MESSAGE.ic(`columns.${mylink.table}`), 'archive', 'edit', data.value);
+                $scope.modal.edit(mylink.table,data.value);
             }
         };
         $scope.cell.extendclick = function (data) {
@@ -100,7 +100,8 @@ TABLEEVENT = {
                 if (!DSON.oseaX(data.value)) {
                     var mylink = data.column.link;
                     if (!DSON.oseaX(data.value)) {
-                        $scope.modalAction(mylink.table, MESSAGE.ic(`columns.${mylink.table}`), 'archive', 'edit', eval("data.row." + mylink.from));
+                        console.log(mylink.table,eval("data.row." + mylink.from));
+                        $scope.modal.edit(mylink.table,eval("data.row." + mylink.from));
                     }
                     return;
                 }

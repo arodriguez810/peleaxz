@@ -16,56 +16,59 @@ app.controller("<%= scope %>", function ($scope, $http, $compile) {
 <%= fields %>
         }
     };
-    // $scope.triggers.table.after.load = function (records) {
-    //     //console.log(`$scope.triggers.table.after.load ${$scope.modelName}`);
+    // <%= scope %>.triggers.table.after.load = function (records) {
+    //     //<%= scope %>.runMagicOneToOne('@column');
+    //     //<%= scope %>.runMagicOneToMany('@column', '@tablerelation', '@fieldrelation');
+    //     //<%= scope %>.runMagicManyToMany('@thistable', '@tabledescription', '@idfromManyToManyTable');
+    //     //console.log(`<%= scope %>.triggers.table.after.load <%= scope %>`);
     // };
-    // $scope.triggers.table.before.load = () => new Promise((resolve, reject) => {
-    //     //console.log(`$scope.triggers.table.before.load ${$scope.modelName}`);
+    // <%= scope %>.triggers.table.before.load = () => new Promise((resolve, reject) => {
+    //     //console.log(`<%= scope %>.triggers.table.before.load <%= scope %>`);
     //     resolve(true);
     // });
     //
-    // $scope.triggers.table.after.open = function (data) {
-    //     //console.log(`$scope.triggers.table.after.open ${$scope.modelName}`);
+    // <%= scope %>.triggers.table.after.open = function (data) {
+    //     //console.log(`<%= scope %>.triggers.table.after.open <%= scope %>`);
     // };
-    // $scope.triggers.table.before.open = () => new Promise((resolve, reject) => {
-    //     //console.log(`$scope.triggers.table.before.open ${$scope.modelName}`);
+    // <%= scope %>.triggers.table.before.open = () => new Promise((resolve, reject) => {
+    //     //console.log(`<%= scope %>.triggers.table.before.open <%= scope %>`);
     //     resolve(true);
     // });
     //
-    // $scope.triggers.table.after.close = function (data) {
-    //     //console.log(`$scope.triggers.table.after.close ${$scope.modelName}`);
+    // <%= scope %>.triggers.table.after.close = function (data) {
+    //     //console.log(`<%= scope %>.triggers.table.after.close <%= scope %>`);
     // };
-    // $scope.triggers.table.before.close = () => new Promise((resolve, reject) => {
-    //     //console.log(`$scope.triggers.table.before.close ${$scope.modelName}`);
+    // <%= scope %>.triggers.table.before.close = () => new Promise((resolve, reject) => {
+    //     //console.log(`<%= scope %>.triggers.table.before.close <%= scope %>`);
     //     resolve(true);
     // });
     //
-    // $scope.triggers.table.after.insert = function (data) {
-    //     //console.log(`$scope.triggers.table.after.insert ${$scope.modelName}`);
+    // <%= scope %>.triggers.table.after.insert = function (data) {
+    //     //console.log(`<%= scope %>.triggers.table.after.insert <%= scope %>`);
     //     return true;
     // };
-    // $scope.triggers.table.before.insert = (data) => new Promise((resolve, reject) => {
-    //     //console.log(`$scope.triggers.table.before.insert ${$scope.modelName}`);
+    // <%= scope %>.triggers.table.before.insert = (data) => new Promise((resolve, reject) => {
+    //     //console.log(`<%= scope %>.triggers.table.before.insert <%= scope %>`);
     //     resolve(true);
     // });
     //
-    // $scope.triggers.table.after.update = function (data) {
-    //     //console.log(`$scope.triggers.table.after.update ${$scope.modelName}`);
+    // <%= scope %>.triggers.table.after.update = function (data) {
+    //     //console.log(`<%= scope %>.triggers.table.after.update <%= scope %>`);
     // };
-    // $scope.triggers.table.before.update = (data) => new Promise((resolve, reject) => {
-    //     //console.log(`$scope.triggers.table.before.update ${$scope.modelName}`);
+    // <%= scope %>.triggers.table.before.update = (data) => new Promise((resolve, reject) => {
+    //     //console.log(`<%= scope %>.triggers.table.before.update <%= scope %>`);
     //     resolve(true);
     // });
     //
-    // $scope.triggers.table.after.control = function (data) {
-    //     //console.log(`$scope.triggers.table.after.control ${$scope.modelName} ${data}`);
+    // <%= scope %>.triggers.table.after.control = function (data) {
+    //     //console.log(`<%= scope %>.triggers.table.after.control <%= scope %> ${data}`);
     // };
-    // $scope.triggers.table.before.control = function (data) {
-    //     //console.log(`$scope.triggers.table.before.control ${$scope.modelName} ${data}`);
+    // <%= scope %>.triggers.table.before.control = function (data) {
+    //     //console.log(`<%= scope %>.triggers.table.before.control <%= scope %> ${data}`);
     // };
-    //$scope.beforeDelete = function (data) {
+    //<%= scope %>.beforeDelete = function (data) {
     //    return false;
     //};
-    //$scope.afterDelete = function (data) {
+    //<%= scope %>.afterDelete = function (data) {
     //};
 });

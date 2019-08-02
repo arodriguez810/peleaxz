@@ -3,7 +3,7 @@ CONTROL = {
     run: function ($scope, $compile) {
         $scope.control = {};
         $scope.control.dropdown = [];
-        $scope.control.draw = (content, url, name, opts) => new Promise((resolve, reject) => {
+        $scope.control.draw = (content, url, name, opts, append, cols, label) => new Promise((resolve, reject) => {
             if (!CONTROL.cache[url]) {
                 new LOAD().templatePost(`dragoncontrol/${url}`, {
                     name: "DRAGONNAME",
@@ -13,10 +13,15 @@ CONTROL = {
                     if (control !== false) {
                         CONTROL.cache[url] = control;
                         var controlReal = control.replaceAll("DRAGONNAME", name);
-                        controlReal = controlReal.replaceAll("Dragonname", name);
+                        controlReal = controlReal.replaceAll("Dragonname", label || name);
                         controlReal = controlReal.replaceAll("DRAGONMODEL", $scope.modelName);
                         controlReal = controlReal.replaceAll("DRAGONOPTION", JSON.stringify(opts));
-                        $(content).html($compile(controlReal)($scope.$scope));
+                        if (cols)
+                            controlReal = `<div class="col-sm-${cols} col-md-${cols}">` + controlReal + `</div>`;
+                        if (append)
+                            $(content).append($compile(controlReal)($scope.$scope));
+                        else
+                            $(content).html($compile(controlReal)($scope.$scope));
                         resolve(true);
                     } else {
                         $(content).html(`${url}->${name}->error`);
@@ -25,20 +30,26 @@ CONTROL = {
                 });
             } else {
                 var controlReal = CONTROL.cache[url].replaceAll("DRAGONNAME", name);
-                controlReal = controlReal.replaceAll("Dragonname", name);
+                controlReal = controlReal.replaceAll("Dragonname", label || name);
                 controlReal = controlReal.replaceAll("DRAGONMODEL", $scope.modelName);
                 console.log(opts);
                 console.log(JSON.stringify(opts));
                 controlReal = controlReal.replaceAll("DRAGONOPTION", JSON.stringify(opts));
-                $(content).html($compile(controlReal)($scope.$scope));
+                if (cols)
+                    controlReal = `<div class="col-sm-${cols} col-md-${cols}">` + controlReal + `</div>`;
+                if (append)
+                    $(content).append($compile(controlReal)($scope.$scope));
+                else
+                    $(content).html($compile(controlReal)($scope.$scope));
+
                 resolve(true);
             }
 
         });
         for (var i of CONTROLS) {
             var nameData = i.replace(".ejs", "");
-            eval(`$scope.control.${nameData} = (content, name, opts) => new Promise(async (resolve, reject) => {
-                await $scope.control.draw(content, "${nameData}", name, opts);
+            eval(`$scope.control.${nameData} = (content, name, opts,append,cols,label) => new Promise(async (resolve, reject) => {
+                await $scope.control.draw(content, "${nameData}", name, opts,append,cols,label);
                 resolve(true);
             })`);
         }

@@ -1,3 +1,104 @@
+//base functions
+removeArray = function (array, ax) {
+    var what, a = arguments, L = a.length, ax;
+    while (L && array.length) {
+        what = a[--L];
+        while ((ax = array.indexOf(what)) !== -1) {
+            array.splice(ax, 1);
+        }
+    }
+    return array;
+};
+getFiles = function (params, exclude, dir, filelist, prefix) {
+    var fs = params.fs || require("fs"),
+        files = fs.readdirSync(dir);
+    filelist = filelist || [];
+    prefix = prefix || "";
+    files.forEach(function (file) {
+        if (fs.statSync(dir + "/" + file).isDirectory()) {
+            if (exclude.indexOf(dir + "/" + file) === -1) {
+                filelist.push(prefix + file);
+                filelist = getFiles(params,
+                    exclude,
+                    dir + "/" + file,
+                    filelist,
+                    prefix + file + "/"
+                );
+            } else {
+                //console.log("exclude:" + dir + "/" + file);
+            }
+        } else {
+        }
+    });
+    for (var root in exclude) {
+        if (exclude[root][0] === '@') {
+            var path = exclude[root].replace("@", "");
+            filelist = removeArray(filelist, path);
+        }
+    }
+    return filelist;
+};
+deleteFolderRecursive = function (path) {
+    var files = [];
+    if (fs.existsSync(path)) {
+        files = fs.readdirSync(path);
+        files.forEach(function (file, index) {
+            var curPath = path + "/" + file;
+            if (fs.lstatSync(curPath).isDirectory()) { // recurse
+                deleteFolderRecursive(curPath);
+            } else { // delete file
+                fs.unlinkSync(curPath);
+            }
+        });
+        fs.rmdirSync(path);
+    }
+};
+
+function getAccessToken(params) {
+    let options = {
+        method: 'POST',
+        uri: params.CONFIG.microsoft_cognitiveservices.API,
+        headers: {
+            'Ocp-Apim-Subscription-Key': params.CONFIG.microsoft_cognitiveservices.subscriptionKey
+        }
+    };
+    return params.request_promise(options);
+}
+
+function textToSpeech(accessToken, text, params, lan) {
+    // Create the SSML request.
+    let xml_body = params.xmlbuilder.create('speak')
+        .att('version', '1.0').att('xml:lang', 'en-us').ele('voice').att('xml:lang', 'en-us')
+        .att('name', eval(`params.CONFIG.microsoft_cognitiveservices.voices.${lan}`)).txt(text).end();
+    // Short name for 'Microsoft Server Speech Text to Speech Voice (en-US, Guy24KRUS)'
+    // Convert the XML into a string to send in the TTS request.
+    let body = xml_body.toString();
+    let options = {
+        method: 'POST',
+        baseUrl: params.CONFIG.microsoft_cognitiveservices.baseUrl,
+        url: 'cognitiveservices/v1',
+        headers: {
+            'Authorization': 'Bearer ' + accessToken,
+            'cache-control': 'no-cache',
+            'User-Agent': 'YOUR_RESOURCE_NAME',
+            'X-Microsoft-OutputFormat': 'riff-24khz-16bit-mono-pcm',
+            'Content-Type': 'application/ssml+xml'
+        },
+        body: body
+    };
+
+    let request = params.request_promise(options)
+        .on('response', (response) => {
+            if (response.statusCode === 200) {
+                request.pipe(params.fs.createWriteStream('./preview.wav'));
+                console.log('Your file is ready');
+            }
+        });
+    return request;
+
+};
+
+//Load Functions
 exports.LoadEJS = function (files, params, folder) {
     for (var i in files) {
         var file = files[i];
@@ -9,10 +110,12 @@ exports.LoadEJS = function (files, params, folder) {
                         res.json(token);
                         return;
                     }
-
-
                     var path = req.originalUrl;
                     var realPath = path.split("?");
+                    var viewN = realPath[0].split("/");
+                    var modelName = viewN.filter(function (item) {
+                        return item !== '';
+                    });
                     var query = "";
                     if (realPath.length > 1) {
                         query = realPath[1];
@@ -25,74 +128,11 @@ exports.LoadEJS = function (files, params, folder) {
                         }
                     }
 
-                    var models = params.models
-                        .concat(params.modelsql)
-                        .concat(params.modelmysql)
-                        .concat(params.modeloracle).concat(params.modelstorage);
-                    var tags = params.CONFIG.ui.colors.tag;
-                    var newtags = {};
-                    for (var tag in tags) {
-                        var itag = tags[tag];
-                        var largeVar = "params.CONFIG.ui.colors." + tags[tag];
-                        eval("newtags." + tag + " = " + largeVar + '===undefined ? "' + itag + '" : ' + largeVar + ";");
-                    }
-
-
-                    var CONTROLLERSNAMES = [];
-                    var CONTROLLERSNAMESILENT = [];
-                    for (var CONTROLLER of params.controllersjs) {
-                        var name = CONTROLLER.split('CO_')[1].split('.js')[0];
-                        if (["BASE"].indexOf(name) === -1) {
-                            CONTROLLERSNAMES.push({id: name, name: name});
-                            CONTROLLERSNAMESILENT.push(name);
-                        }
-                    }
-
-
-                    STORAGENAMES = [];
-                    for (var sotargy in params.CONFIG.storageEntities) {
-                        STORAGENAMES.push(sotargy);
-                    }
-
-                    silentsmodels = [];
-                    models.forEach(function (item) {
-                        if (item != undefined) {
-                            if (CONTROLLERSNAMESILENT.indexOf(item) === -1) {
-                                if (STORAGENAMES.indexOf(item) === -1) {
-                                    silentsmodels.push(item);
-                                }
-                            }
-                        }
+                    res.render("../" + (folder || params.folders.views) + "/" + realPath, {
+                        DATA: (req || {query: {}}).query,
+                        scope: req.query.scope,
+                        params: params
                     });
-
-                    var currencies = await params.storage.getItem("dragon_currency") || [];
-                    var send = {
-                        CURRENCIES: currencies,
-                        scope: params.modelName,
-                        THEMES: params.themes,
-                        session: params.session,
-                        localjs: params.localjs,
-                        controls: params.controls,
-                        controllersjs: params.controllersjs,
-                        localStyles: params.localStyles,
-                        crudjs: params.crudjs,
-                        CONFIG: params.CONFIG,
-                        LANGUAGE: params.LANGUAGE,
-                        SHOWLANGS: params.SHOWLANGS,
-                        COLOR: params.CONFIG.ui.colors,
-                        TAG: newtags,
-                        models: models,
-                        silentsmodels: silentsmodels,
-                        FOLDERS: params.folders,
-                        DATA: req.query,
-                        SERVICES: params.catalogs,
-                        params: params,
-                        localserver: localserver,
-                        CONTROLLERSNAMES: CONTROLLERSNAMES
-                    };
-
-                    console.log(folder);
-                    res.render("../" + (folder || params.folders.views) + "/" + realPath, send);
                 }).catch(function () {
 
                 });
@@ -112,9 +152,13 @@ exports.LoadEJSDragon = function (files, params, folder) {
                         return;
                     }
 
-
                     var path = req.originalUrl;
                     var realPath = path.split("?");
+                    var viewN = realPath[0].split("/");
+                    var modelName = viewN.filter(function (item) {
+                        return item !== '';
+                    });
+                    console.log("original: " + path);
                     var query = "";
                     if (realPath.length > 1) {
                         query = realPath[1];
@@ -127,76 +171,15 @@ exports.LoadEJSDragon = function (files, params, folder) {
                         }
                     }
 
-                    var models = params.models
-                        .concat(params.modelsql)
-                        .concat(params.modelmysql)
-                        .concat(params.modeloracle).concat(params.modelstorage);
-                    var tags = params.CONFIG.ui.colors.tag;
-                    var newtags = {};
-                    for (var tag in tags) {
-                        var itag = tags[tag];
-                        var largeVar = "params.CONFIG.ui.colors." + tags[tag];
-                        eval("newtags." + tag + " = " + largeVar + '===undefined ? "' + itag + '" : ' + largeVar + ";");
-                    }
 
-
-                    var CONTROLLERSNAMES = [];
-                    var CONTROLLERSNAMESILENT = [];
-                    for (var CONTROLLER of params.controllersjs) {
-                        var name = CONTROLLER.split('CO_')[1].split('.js')[0];
-                        if (["BASE"].indexOf(name) === -1) {
-                            CONTROLLERSNAMES.push({id: name, name: name});
-                            CONTROLLERSNAMESILENT.push(name);
-                        }
-                    }
-
-                    STORAGENAMES = [];
-                    for (var sotargy in params.CONFIG.storageEntities) {
-                        STORAGENAMES.push(sotargy);
-                    }
-
-                    silentsmodels = [];
-                    models.forEach(function (item) {
-                        if (item != undefined) {
-                            if (CONTROLLERSNAMESILENT.indexOf(item) === -1) {
-                                if (STORAGENAMES.indexOf(item) === -1) {
-                                    silentsmodels.push(item);
-                                }
-                            }
-                        }
+                    res.render("../" + (folder || params.folders.viewsDragon) + "/" + realPath, {
+                        DATA: (req || {query: {}}).query,
+                        scope: req.query.scope,
+                        params: params
                     });
-
-                    var currencies = await params.storage.getItem("dragon_currency") || [];
-                    var send = {
-                        CURRENCIES: currencies,
-                        scope: params.modelName,
-                        THEMES: params.themes,
-                        session: params.session,
-                        localjs: params.localjs,
-                        controls: params.controls,
-                        controllersjs: params.controllersjs,
-                        localStyles: params.localStyles,
-                        crudjs: params.crudjs,
-                        CONFIG: params.CONFIG,
-                        LANGUAGE: params.LANGUAGE,
-                        SHOWLANGS: params.SHOWLANGS,
-                        COLOR: params.CONFIG.ui.colors,
-                        TAG: newtags,
-                        models: models,
-                        silentsmodels: silentsmodels,
-                        FOLDERS: params.folders,
-                        DATA: req.query,
-                        SERVICES: params.catalogs,
-                        params: params,
-                        localserver: localserver,
-                        CONTROLLERSNAMES: CONTROLLERSNAMES
-                    };
-
-                    res.render("../" + (folder || params.folders.viewsDragon) + "/" + realPath, send);
                 }).catch(function () {
 
                 });
-                ;
             }
         );
     }
@@ -211,7 +194,7 @@ exports.runServices = function (services, prefix, params) {
             var service = config[0];
             var functionR = config[1];
             eval(`var serviceFunction = params.servicesFunctions["${service}"].gets.${functionR}`);
-            return await serviceFunction(req.query).then(result => {
+            return await serviceFunction((req || {query: {}}).query).then(result => {
                 params.secure.check(req, res).then(function (token) {
                     if (!token.apptoken) {
                         res.json(token);
@@ -310,89 +293,28 @@ exports.loadEJSSimple = function (folder, prefix, params) {
                         return;
                     }
                     var path = req.originalUrl;
+
+
                     var realPath = path.split("?");
                     var viewN = realPath[0].split("/");
 
-                    var models = params.models
-                        .concat(params.modelsql)
-                        .concat(params.modelmysql)
-                        .concat(params.modeloracle)
-                        .concat(params.modelstorage);
-                    var tags = params.CONFIG.ui.colors.tag;
-                    var newtags = {};
-                    for (var tag in tags) {
-                        var itag = tags[tag];
-                        var largeVar = "params.CONFIG.ui.colors." + tags[tag];
-                        eval(
-                            "newtags." + tag + " = " + largeVar + '===undefined ? "' + itag + '" : ' + largeVar + ";"
-                        );
-                    }
                     var modelName = viewN.filter(function (item) {
                         return item !== '';
                     });
-
-                    var CONTROLLERSNAMES = [];
-                    var CONTROLLERSNAMESILENT = [];
-                    for (var CONTROLLER of params.controllersjs) {
-                        var name = CONTROLLER.split('CO_')[1].split('.js')[0];
-                        if (["BASE"].indexOf(name) === -1) {
-                            CONTROLLERSNAMES.push({id: name, name: name});
-                            CONTROLLERSNAMESILENT.push(name);
-                        }
-                    }
-
-                    STORAGENAMES = [];
-                    for (var sotargy in params.CONFIG.storageEntities) {
-                        STORAGENAMES.push(sotargy);
-                    }
-
-                    silentsmodels = [];
-                    models.forEach(function (item) {
-                        if (item != undefined) {
-                            if (CONTROLLERSNAMESILENT.indexOf(item) === -1) {
-                                if (STORAGENAMES.indexOf(item) === -1) {
-                                    silentsmodels.push(item);
-                                }
-                            }
-                        }
-                    });
-
-                    var currencies = await params.storage.getItem("dragon_currency") || [];
-                    var send = {
-                        CURRENCIES: currencies,
-                        scope: req.query.scope,
-                        THEMES: params.themes,
-                        session: params.session,
-                        localjs: params.localjs,
-                        controls: params.controls,
-                        controllersjs: params.controllersjs,
-                        localStyles: params.localStyles,
-                        crudjs: params.crudjs,
-                        CONFIG: params.CONFIG,
-                        LANGUAGE: params.LANGUAGE,
-                        SHOWLANGS: params.SHOWLANGS,
-                        COLOR: params.CONFIG.ui.colors,
-                        TAG: newtags,
-                        models: models,
-                        silentsmodels: silentsmodels,
-                        FOLDERS: params.folders,
-                        DATA: req.query,
-                        SERVICES: params.catalogs,
-                        params: params,
-                        localserver: localserver,
-                        CONTROLLERSNAMES: CONTROLLERSNAMES
-                    };
                     var viewfinal = viewN[viewN.length - 1];
                     if (modelName.length == 1)
                         viewfinal = "index";
-
-                    res.render("." + folder + "/" + viewfinal, send);
+                    res.render("." + folder + "/" + viewfinal,
+                        {
+                            DATA: (req || {query: {}}).query,
+                            params: params,
+                            scope: req.query.scope
+                        });
                 }).catch(function () {
 
                 });
             });
             params.app.post(params.util.format("/post/%s%s", prefix, viewName), async function (req, res) {
-
 
                 var path = req.originalUrl;
                 var realPath = path.split("?");
@@ -403,88 +325,40 @@ exports.loadEJSSimple = function (folder, prefix, params) {
                     .concat(params.modelmysql)
                     .concat(params.modeloracle)
                     .concat(params.modelstorage);
-                var tags = params.CONFIG.ui.colors.tag;
-                var newtags = {};
-                for (var tag in tags) {
-                    var itag = tags[tag];
-                    var largeVar = "params.CONFIG.ui.colors." + tags[tag];
-                    eval(
-                        "newtags." + tag + " = " + largeVar + '===undefined ? "' + itag + '" : ' + largeVar + ";"
-                    );
-                }
+
                 var modelName = viewN.filter(function (item) {
                     return item !== '';
                 });
 
-                var CONTROLLERSNAMES = [];
-                var CONTROLLERSNAMESILENT = [];
-                for (var CONTROLLER of params.controllersjs) {
-                    var name = CONTROLLER.split('CO_')[1].split('.js')[0];
-                    if (["BASE"].indexOf(name) === -1) {
-                        CONTROLLERSNAMES.push({id: name, name: name});
-                        CONTROLLERSNAMESILENT.push(name);
-                    }
-                }
-
-                STORAGENAMES = [];
-                for (var sotargy in params.CONFIG.storageEntities) {
-                    STORAGENAMES.push(sotargy);
-                }
-
-                silentsmodels = [];
-                models.forEach(function (item) {
-                    if (item != undefined) {
-                        if (CONTROLLERSNAMESILENT.indexOf(item) === -1) {
-                            if (STORAGENAMES.indexOf(item) === -1) {
-                                silentsmodels.push(item);
-                            }
-                        }
-                    }
-                });
-
-                var currencies = await params.storage.getItem("dragon_currency") || [];
-                var send = {
-                    CURRENCIES: currencies,
-                    scope: req.query.scope,
-                    THEMES: params.themes,
-                    session: params.session,
-                    localjs: params.localjs,
-                    controls: params.controls,
-                    controllersjs: params.controllersjs,
-                    localStyles: params.localStyles,
-                    crudjs: params.crudjs,
-                    CONFIG: params.CONFIG,
-                    LANGUAGE: params.LANGUAGE,
-                    SHOWLANGS: params.SHOWLANGS,
-                    COLOR: params.CONFIG.ui.colors,
-                    TAG: newtags,
-                    models: models,
-                    silentsmodels: silentsmodels,
-                    FOLDERS: params.folders,
-                    DATA: req.body,
-                    SERVICES: params.catalogs,
-                    params: params,
-                    localserver: localserver,
-                    CONTROLLERSNAMES: CONTROLLERSNAMES
-                };
-
                 var viewfinal = viewN[viewN.length - 1];
                 if (modelName.length == 1)
                     viewfinal = "index";
-                if (send.DATA.pdf) {
-                    params.app.render("." + folder + "/" + viewfinal, send, function (err, html) {
+                if (req.body.pdf) {
+                    params.app.render("." + folder + "/" + viewfinal, {
+                        DATA: req.body,
+                        params: params,
+                        scope: modelName[0]
+                    }, function (err, html) {
                         if (err) {
                             res.json(err);
                             return;
                         }
 
-                        params.app.render("." + folder + "/" + 'header', send, function (err, headHtml) {
+                        params.app.render("." + folder + "/" + 'header', {
+                            DATA: req.body,
+                            params: params,
+                            scope: modelName[0]
+                        }, function (err, headHtml) {
                             if (err) {
                                 res.json(err);
                                 return;
                             }
 
-                            params.app.render("." + folder + "/" + 'footer', send, function (err, footerHtml) {
+                            params.app.render("." + folder + "/" + 'footer', {
+                                DATA: req.body,
+                                params: params,
+                                scope: modelName[0]
+                            }, function (err, footerHtml) {
                                 if (err) {
                                     res.json(err);
                                     return;
@@ -522,14 +396,18 @@ exports.loadEJSSimple = function (folder, prefix, params) {
 
                                 params.PDF.convert(pdfOptions, function (err, result) {
                                     result.toFile("./preview.pdf", function () {
-                                        res.download("./preview.pdf", send.DATA.pdf);
+                                        res.download("./preview.pdf", req.body.pdf);
                                     });
                                 });
                             });
                         });
                     });
-                } else if (send.DATA.docx) {
-                    params.app.render("." + folder + "/" + viewN[viewN.length - 1], send, function (err, html) {
+                } else if (req.body.docx) {
+                    params.app.render("." + folder + "/" + viewN[viewN.length - 1], {
+                        DATA: req.body,
+                        params: params,
+                        scope: modelName[0]
+                    }, function (err, html) {
                         if (err) {
                             res.json(err);
                             return;
@@ -544,11 +422,16 @@ exports.loadEJSSimple = function (folder, prefix, params) {
                                 return;
                             }
 
-                            res.download("./preview.docx", send.DATA.docx);
+                            res.download("./preview.docx", req.body.docx);
                         });
                     });
                 } else {
-                    res.render("." + folder + "/" + viewN[viewN.length - 1], send);
+                    res.render("." + folder + "/" + viewN[viewN.length - 1],
+                        {
+                            DATA: req.body,
+                            params: params,
+                            scope: modelName[0]
+                        });
                 }
             });
         }
@@ -570,178 +453,59 @@ exports.loadEJSSimpleSilents = function (folder, prefix, params) {
                     var path = req.originalUrl;
                     var realPath = path.split("?");
                     var viewN = realPath[0].split("/");
-
-                    var models = params.models
-                        .concat(params.modelsql)
-                        .concat(params.modelmysql)
-                        .concat(params.modeloracle)
-                        .concat(params.modelstorage);
-                    var tags = params.CONFIG.ui.colors.tag;
-                    var newtags = {};
-                    for (var tag in tags) {
-                        var itag = tags[tag];
-                        var largeVar = "params.CONFIG.ui.colors." + tags[tag];
-                        eval(
-                            "newtags." + tag + " = " + largeVar + '===undefined ? "' + itag + '" : ' + largeVar + ";"
-                        );
-                    }
                     var modelName = viewN.filter(function (item) {
                         return item !== '';
                     });
 
-                    var CONTROLLERSNAMES = [];
-                    var CONTROLLERSNAMESILENT = [];
-                    for (var CONTROLLER of params.controllersjs) {
-                        var name = CONTROLLER.split('CO_')[1].split('.js')[0];
-                        if (["BASE"].indexOf(name) === -1) {
-                            CONTROLLERSNAMES.push({id: name, name: name});
-                            CONTROLLERSNAMESILENT.push(name);
-                        }
-                    }
 
-                    STORAGENAMES = [];
-                    for (var sotargy in params.CONFIG.storageEntities) {
-                        STORAGENAMES.push(sotargy);
-                    }
-
-                    silentsmodels = [];
-                    models.forEach(function (item) {
-                        if (item != undefined) {
-                            if (CONTROLLERSNAMESILENT.indexOf(item) === -1) {
-                                if (STORAGENAMES.indexOf(item) === -1) {
-                                    silentsmodels.push(item);
-                                }
-                            }
-                        }
-                    });
-
-                    var currencies = await params.storage.getItem("dragon_currency") || [];
-                    var send = {
-                        CURRENCIES: currencies,
-                        scope: req.query.scope,
-                        THEMES: params.themes,
-                        session: params.session,
-                        localjs: params.localjs,
-                        controls: params.controls,
-                        controllersjs: params.controllersjs,
-                        localStyles: params.localStyles,
-                        crudjs: params.crudjs,
-                        CONFIG: params.CONFIG,
-                        LANGUAGE: params.LANGUAGE,
-                        SHOWLANGS: params.SHOWLANGS,
-                        COLOR: params.CONFIG.ui.colors,
-                        TAG: newtags,
-                        models: models,
-                        silentsmodels: silentsmodels,
-                        FOLDERS: params.folders,
-                        DATA: req.query,
-                        SERVICES: params.catalogs,
-                        params: params,
-                        localserver: localserver,
-                        CONTROLLERSNAMES: CONTROLLERSNAMES
-                    };
                     var viewfinal = viewN[viewN.length - 1];
                     if (modelName.length == 1)
                         viewfinal = "index";
-                    res.render("../" + params.folders.silents + "/" + viewfinal, send);
+                    res.render("../" + params.folders.silents + "/" + viewfinal, {
+                        DATA: (req || {query: {}}).query,
+                        params: params,
+                        scope: req.query.scope
+                    });
                 }).catch(function () {
 
                 });
             });
             params.app.post(params.util.format("/post/%s%s", prefix, viewName), async function (req, res) {
-
-
                 var path = req.originalUrl;
                 var realPath = path.split("?");
                 var viewN = realPath[0].split("/");
-
-                var models = params.models
-                    .concat(params.modelsql)
-                    .concat(params.modelmysql)
-                    .concat(params.modeloracle)
-                    .concat(params.modelstorage);
-                var tags = params.CONFIG.ui.colors.tag;
-                var newtags = {};
-                for (var tag in tags) {
-                    var itag = tags[tag];
-                    var largeVar = "params.CONFIG.ui.colors." + tags[tag];
-                    eval(
-                        "newtags." + tag + " = " + largeVar + '===undefined ? "' + itag + '" : ' + largeVar + ";"
-                    );
-                }
                 var modelName = viewN.filter(function (item) {
                     return item !== '';
                 });
-
-                var CONTROLLERSNAMES = [];
-                var CONTROLLERSNAMESILENT = [];
-                for (var CONTROLLER of params.controllersjs) {
-                    var name = CONTROLLER.split('CO_')[1].split('.js')[0];
-                    if (["BASE"].indexOf(name) === -1) {
-                        CONTROLLERSNAMES.push({id: name, name: name});
-                        CONTROLLERSNAMESILENT.push(name);
-                    }
-                }
-
-                STORAGENAMES = [];
-                for (var sotargy in params.CONFIG.storageEntities) {
-                    STORAGENAMES.push(sotargy);
-                }
-
-                silentsmodels = [];
-                models.forEach(function (item) {
-                    if (item != undefined) {
-                        if (CONTROLLERSNAMESILENT.indexOf(item) === -1) {
-                            if (STORAGENAMES.indexOf(item) === -1) {
-                                silentsmodels.push(item);
-                            }
-                        }
-                    }
-                });
-
-                var currencies = await params.storage.getItem("dragon_currency") || [];
-                var send = {
-                    CURRENCIES: currencies,
-                    scope: req.query.scope,
-                    THEMES: params.themes,
-                    session: params.session,
-                    localjs: params.localjs,
-                    controls: params.controls,
-                    controllersjs: params.controllersjs,
-                    localStyles: params.localStyles,
-                    crudjs: params.crudjs,
-                    CONFIG: params.CONFIG,
-                    LANGUAGE: params.LANGUAGE,
-                    SHOWLANGS: params.SHOWLANGS,
-                    COLOR: params.CONFIG.ui.colors,
-                    TAG: newtags,
-                    models: models,
-                    silentsmodels: silentsmodels,
-                    FOLDERS: params.folders,
-                    DATA: req.body,
-                    SERVICES: params.catalogs,
-                    params: params,
-                    localserver: localserver,
-                    CONTROLLERSNAMES: CONTROLLERSNAMES
-                };
-
                 var viewfinal = viewN[viewN.length - 1];
                 if (modelName.length == 1)
                     viewfinal = "index";
-                if (send.DATA.pdf) {
-                    params.app.render("." + folder + "/" + viewfinal, send, function (err, html) {
+                if (req.body.pdf) {
+                    params.app.render("." + folder + "/" + viewfinal, {
+                        DATA: req.body,
+                        params: params,
+                        scope: modelName[0]
+                    }, function (err, html) {
                         if (err) {
                             res.json(err);
                             return;
                         }
 
-                        params.app.render("." + folder + "/" + 'header', send, function (err, headHtml) {
+                        params.app.render("." + folder + "/" + 'header', {
+                            DATA: req.body,
+                            params: params,
+                            scope: modelName[0]
+                        }, function (err, headHtml) {
                             if (err) {
                                 res.json(err);
                                 return;
                             }
 
-                            params.app.render("." + folder + "/" + 'footer', send, function (err, footerHtml) {
+                            params.app.render("." + folder + "/" + 'footer', {
+                                DATA: req.body,
+                                params: params,
+                                scope: modelName[0]
+                            }, function (err, footerHtml) {
                                 if (err) {
                                     res.json(err);
                                     return;
@@ -779,14 +543,18 @@ exports.loadEJSSimpleSilents = function (folder, prefix, params) {
 
                                 params.PDF.convert(pdfOptions, function (err, result) {
                                     result.toFile("./preview.pdf", function () {
-                                        res.download("./preview.pdf", send.DATA.pdf);
+                                        res.download("./preview.pdf", req.body.pdf);
                                     });
                                 });
                             });
                         });
                     });
-                } else if (send.DATA.docx) {
-                    params.app.render("." + folder + "/" + viewN[viewN.length - 1], send, function (err, html) {
+                } else if (req.body.docx) {
+                    params.app.render("." + folder + "/" + viewN[viewN.length - 1], {
+                        DATA: req.body,
+                        params: params,
+                        scope: modelName[0]
+                    }, function (err, html) {
                         if (err) {
                             res.json(err);
                             return;
@@ -801,11 +569,16 @@ exports.loadEJSSimpleSilents = function (folder, prefix, params) {
                                 return;
                             }
 
-                            res.download("./preview.docx", send.DATA.docx);
+                            res.download("./preview.docx", req.body.docx);
                         });
                     });
                 } else {
-                    res.render("." + folder + "/" + viewN[viewN.length - 1], send);
+                    res.render("." + folder + "/" + viewN[viewN.length - 1],
+                        {
+                            DATA: req.body,
+                            params: params,
+                            scope: modelName[0]
+                        });
                 }
             });
         }
@@ -833,74 +606,19 @@ exports.loadEJSSimplePOST = function (folder, prefix, params) {
                         .concat(params.modelmysql)
                         .concat(params.modeloracle)
                         .concat(params.modelstorage);
-                    var tags = params.CONFIG.ui.colors.tag;
-                    var newtags = {};
-                    for (var tag in tags) {
-                        var itag = tags[tag];
-                        var largeVar = "params.CONFIG.ui.colors." + tags[tag];
-                        eval(
-                            "newtags." + tag + " = " + largeVar + '===undefined ? "' + itag + '" : ' + largeVar + ";"
-                        );
-                    }
+
                     var modelName = viewN.filter(function (item) {
                         return item !== '';
                     });
 
-                    var CONTROLLERSNAMES = [];
-                    var CONTROLLERSNAMESILENT = [];
-                    for (var CONTROLLER of params.controllersjs) {
-                        var name = CONTROLLER.split('CO_')[1].split('.js')[0];
-                        if (["BASE"].indexOf(name) === -1) {
-                            CONTROLLERSNAMES.push({id: name, name: name});
-                            CONTROLLERSNAMESILENT.push(name);
-                        }
-                    }
-
-                    STORAGENAMES = [];
-                    for (var sotargy in params.CONFIG.storageEntities) {
-                        STORAGENAMES.push(sotargy);
-                    }
-
-                    silentsmodels = [];
-                    models.forEach(function (item) {
-                        if (item != undefined) {
-                            if (CONTROLLERSNAMESILENT.indexOf(item) === -1) {
-                                if (STORAGENAMES.indexOf(item) === -1) {
-                                    silentsmodels.push(item);
-                                }
-                            }
-                        }
-                    });
-
-                    var currencies = await params.storage.getItem("dragon_currency") || [];
-                    var send = {
-                        CURRENCIES: currencies,
-                        scope: req.query.scope,
-                        THEMES: params.themes,
-                        session: params.session,
-                        localjs: params.localjs,
-                        controls: params.controls,
-                        controllersjs: params.controllersjs,
-                        localStyles: params.localStyles,
-                        crudjs: params.crudjs,
-                        CONFIG: params.CONFIG,
-                        LANGUAGE: params.LANGUAGE,
-                        SHOWLANGS: params.SHOWLANGS,
-                        COLOR: params.CONFIG.ui.colors,
-                        TAG: newtags,
-                        models: models,
-                        silentsmodels: silentsmodels,
-                        FOLDERS: params.folders,
-                        DATA: req.body,
-                        SERVICES: params.catalogs,
-                        params: params,
-                        localserver: localserver,
-                        CONTROLLERSNAMES: CONTROLLERSNAMES
-                    };
                     var viewfinal = viewN[viewN.length - 1];
                     if (modelName.length == 1)
                         viewfinal = "index";
-                    res.render("." + folder + "/" + viewfinal, send);
+                    res.render("." + folder + "/" + viewfinal, {
+                        DATA: req.body,
+                        params: params,
+                        scope: req.query.scope
+                    });
                 }).catch(function () {
 
                 });
@@ -908,16 +626,7 @@ exports.loadEJSSimplePOST = function (folder, prefix, params) {
         }
     });
 };
-removeArray = function (array, ax) {
-    var what, a = arguments, L = a.length, ax;
-    while (L && array.length) {
-        what = a[--L];
-        while ((ax = array.indexOf(what)) !== -1) {
-            array.splice(ax, 1);
-        }
-    }
-    return array;
-};
+
 exports.init = function (params) {
     var excludes = [
         params.folders.views + "//base",
@@ -947,6 +656,7 @@ exports.init = function (params) {
     models.forEach(element => {
         excludesDragon.push(params.folders.viewsDragon + "//" + element);
     });
+
     params.modelName = "base";
     params.fs.readdir(
         params.util.format("./" + params.folders.viewsDragon + "/%s", params.modelName), function (err, files) {
@@ -954,36 +664,8 @@ exports.init = function (params) {
             exports.LoadEJSDragon(files, params);
         }
     );
-    var getFiles = function (exclude, dir, filelist, prefix) {
-        var fs = params.fs || require("fs"),
-            files = fs.readdirSync(dir);
-        filelist = filelist || [];
-        prefix = prefix || "";
-        files.forEach(function (file) {
-            if (fs.statSync(dir + "/" + file).isDirectory()) {
-                if (exclude.indexOf(dir + "/" + file) === -1) {
-                    filelist.push(prefix + file);
-                    filelist = getFiles(
-                        exclude,
-                        dir + "/" + file,
-                        filelist,
-                        prefix + file + "/"
-                    );
-                } else {
-                    //console.log("exclude:" + dir + "/" + file);
-                }
-            } else {
-            }
-        });
-        for (var root in exclude) {
-            if (exclude[root][0] === '@') {
-                var path = exclude[root].replace("@", "");
-                filelist = removeArray(filelist, path);
-            }
-        }
-        return filelist;
-    };
-    var autroute = getFiles(excludesDragon, params.folders.viewsDragon + "/");
+
+    var autroute = getFiles(params, excludesDragon, params.folders.viewsDragon + "/");
     autroute.forEach(element => {
         exports.loadEJSSimple(
             "./" + params.folders.viewsDragon + "/" + element.replace(".ejs", ""),
@@ -991,7 +673,7 @@ exports.init = function (params) {
             params
         );
     });
-    autroute = getFiles(excludes, params.folders.views + "/");
+    autroute = getFiles(params, excludes, params.folders.views + "/");
     autroute.forEach(element => {
         exports.loadEJSSimple(
             "./" + params.folders.views + "/" + element.replace(".ejs", ""),
@@ -1021,9 +703,6 @@ exports.init = function (params) {
             }
         }
     });
-
-    console.log("Silents Models".pxz);
-    console.log(silentsmodels.join(","));
     silentsmodels.forEach(element => {
         if (params.CONFIG.silents.visible.indexOf(element) !== -1) {
             exports.loadEJSSimpleSilents(
@@ -1033,21 +712,8 @@ exports.init = function (params) {
     });
 
     exports.loadEJSSimplePOST("./" + params.folders.fields, "dragoncontrol", params);
-    deleteFolderRecursive = function (path) {
-        var files = [];
-        if (fs.existsSync(path)) {
-            files = fs.readdirSync(path);
-            files.forEach(function (file, index) {
-                var curPath = path + "/" + file;
-                if (fs.lstatSync(curPath).isDirectory()) { // recurse
-                    deleteFolderRecursive(curPath);
-                } else { // delete file
-                    fs.unlinkSync(curPath);
-                }
-            });
-            fs.rmdirSync(path);
-        }
-    };
+
+    //Extra API
     params.app.get("/test/token/", function (req, res) {
         params.secure.check(req, res).then(function (token) {
             if (!token.apptoken) {
@@ -1333,7 +999,7 @@ exports.init = function (params) {
                         COLOR: params.CONFIG.ui.colors,
                         models: models,
                         FOLDERS: params.folders,
-                        DATA: req.body.fields
+                        DATA: req.body.fields,
                     }, function (err, html) {
                         if (err) {
                             res.json({error: err, html: html});
@@ -1461,50 +1127,6 @@ exports.init = function (params) {
 
         });
     });
-
-    function getAccessToken(params) {
-        let options = {
-            method: 'POST',
-            uri: params.CONFIG.microsoft_cognitiveservices.API,
-            headers: {
-                'Ocp-Apim-Subscription-Key': params.CONFIG.microsoft_cognitiveservices.subscriptionKey
-            }
-        };
-        return params.request_promise(options);
-    }
-
-    function textToSpeech(accessToken, text, params, lan) {
-        // Create the SSML request.
-        let xml_body = params.xmlbuilder.create('speak')
-            .att('version', '1.0').att('xml:lang', 'en-us').ele('voice').att('xml:lang', 'en-us')
-            .att('name', eval(`params.CONFIG.microsoft_cognitiveservices.voices.${lan}`)).txt(text).end();
-        // Short name for 'Microsoft Server Speech Text to Speech Voice (en-US, Guy24KRUS)'
-        // Convert the XML into a string to send in the TTS request.
-        let body = xml_body.toString();
-        let options = {
-            method: 'POST',
-            baseUrl: params.CONFIG.microsoft_cognitiveservices.baseUrl,
-            url: 'cognitiveservices/v1',
-            headers: {
-                'Authorization': 'Bearer ' + accessToken,
-                'cache-control': 'no-cache',
-                'User-Agent': 'YOUR_RESOURCE_NAME',
-                'X-Microsoft-OutputFormat': 'riff-24khz-16bit-mono-pcm',
-                'Content-Type': 'application/ssml+xml'
-            },
-            body: body
-        };
-
-        let request = params.request_promise(options)
-            .on('response', (response) => {
-                if (response.statusCode === 200) {
-                    request.pipe(params.fs.createWriteStream('./preview.wav'));
-                    console.log('Your file is ready');
-                }
-            });
-        return request;
-
-    };
     params.app.get("/cognitiveservices/api/", function (req, res) {
         params.secure.check(req, res).then(async function (token) {
             if (!token.apptoken) {
@@ -1518,5 +1140,6 @@ exports.init = function (params) {
             res.json({success: false});
         });
     });
+
     exports.loadEJSSimple("./" + params.folders.viewsDragon + "/master/error", "error", params);
 };

@@ -73,7 +73,6 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
         baseController.menuLabel = function (menu) {
             return MESSAGE.ispace('menu.' + menu.text.replaceAll(' ', ''), menu.text);
         };
-
         baseController.changeMenu = function (menu) {
             var animation = new ANIMATION();
             animation.loading(`#dragonmenu`, "", ``, '30');
@@ -110,7 +109,6 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
         baseController.fullName = session.current().fullName();
         baseController.type = session.current().type;
         GROUPS = new SESSION().current().onlygroups;
-        //SWEETALERT.loading({message: MESSAGE.ic('actions.Loading') + " " + MESSAGE.ic('actions.permissions')});
         var entitiesPermission = [];
         for (var pers of CONFIG.permissions.entities) {
             entitiesPermission.push(`${pers}-${baseController.userID}`)
@@ -293,7 +291,7 @@ GARBAGECOLECTOR = function (exclude, ignoreChangeMenu) {
                     if((typeof ${item})!=='undefined'){
                         if(${item}!==null){
                           if(${item}.$scope!==undefined){ 
-                            if(${item}.destroyForm!==false){
+                            if(${item}.destroyForm!==false && ${item}.modelName!==CURRENT.url()){
                               ${item}.$scope.$destroy();
                               ${item} = null;
                               RELATIONS.anonymous = [];
@@ -425,11 +423,16 @@ RUNCONTROLLER = function (conrollerName, inside, $scope, $http, $compile) {
         inside.singular = MESSAGE.ic(`columns.${inside.singular}`);
 
     inside.$scope = $scope;
+    inside.$compile = $compile;
     COMPILE.run(inside, $scope, $compile);
     STORAGE.run(inside);
     MODAL.run(inside, $compile);
     PERMISSIONS.run(inside);
     TABLEFORMAT.run(inside);
+    TABLEOPTIONS.run(inside);
+    if (inside.crudConfig)
+        if (inside.crudConfig.type !== 'raw')
+            CRUD.run(inside, inside.crudConfig);
     inside.pages = {};
     inside.refreshAngular = function () {
         if (!inside.$scope.$$phase)

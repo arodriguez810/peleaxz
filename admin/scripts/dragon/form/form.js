@@ -115,6 +115,8 @@ FORM = {
             if ($scope.form !== null) {
                 var nameclean = name.replace(/\./g, '_');
                 $scope.form.fileds.push(name);
+
+
                 var references = name.split('.');
                 if ($scope.form === undefined) {
                     $scope.form = {};
@@ -1156,7 +1158,7 @@ FORM = {
                             if ($scope.refresh !== undefined) {
                                 if (close === false) {
                                     $scope.refresh();
-                                    $scope.modalAction($scope.modelName, 'Parent', 'user', 'new', {});
+                                    $scope.modal.new(mylink.table);
                                 }
                                 $scope.refresh();
                             }
@@ -1164,6 +1166,8 @@ FORM = {
                     for (var i in eval($scope.modelName))
                         if (i.indexOf("_Dragon") !== -1)
                             eval(`delete ${$scope.modelName}.${i}`);
+
+
                 };
                 $scope.pages.form.close = function (pre, post, close) {
                     if ($scope.form.mode !== FORM.modes.edit) {
@@ -1191,7 +1195,7 @@ FORM = {
                                             MODAL.close($scope);
                                             if (close === false) {
                                                 $scope.refresh();
-                                                $scope.modalAction($scope.modelName, 'Parent', 'user', 'new', {});
+                                                $scope.modal.new(mylink.table);
                                                 return;
                                             }
                                         }
@@ -1220,7 +1224,7 @@ FORM = {
                                             MODAL.close($scope);
                                             if (close === false) {
                                                 $scope.refresh();
-                                                $scope.modalAction($scope.modelName, 'Parent', 'user', 'new', {});
+                                                $scope.modal.new(mylink.table);
                                                 return;
                                             }
                                         }
@@ -1234,7 +1238,7 @@ FORM = {
                                         MODAL.close($scope);
                                         if (close === false) {
                                             $scope.refresh();
-                                            $scope.modalAction($scope.modelName, 'Parent', 'user', 'new', {});
+                                            $scope.modal.new(mylink.table);
                                             return;
                                         }
                                     }
@@ -1247,7 +1251,7 @@ FORM = {
                                 MODAL.close($scope);
                                 if (close === false) {
                                     $scope.refresh();
-                                    $scope.modalAction($scope.modelName, 'Parent', 'user', 'new', {});
+                                    $scope.modal.new(mylink.table);
                                     return;
                                 }
                             }
@@ -1282,10 +1286,11 @@ FORM = {
                     //eval(`CRUD_${$scope.modelName}.table.key = '';`);
                 }
                 if ($scope.form.target === FORM.targets.modal) {
+
                     $scope.modal.modalView($scope.modelName + '/form', {
                         width: $scope.form.modalWidth || ENUM.modal.width.full,
                         header: {
-                            title: finalTitle || capitalize(`${MESSAGE.i('mono.' + mode)} ${$scope.singular}`),
+                            title: finalTitle || capitalize(`${MESSAGE.i('mono.' + $scope.form.mode)} ${$scope.singular}`),
                             icon: $scope.form.modalIcon || icon,
                             bg: mode !== FORM.modes.view ? COLOR.primary + '-600' : `alpha-${COLOR.primary}-600`,
                             closeButton: true,
@@ -1316,6 +1321,15 @@ FORM = {
                             },
                             hide: {
                                 begin: async function (datam) {
+                                    for (var field of $scope.form.fileds) {
+                                        eval(`
+                                        if(${$scope.modelName}.$scope.$$watchers)
+                                        ${$scope.modelName}.$scope.$$watchers.filter((d, inx) => {
+                                            if (d.exp === \`${$scope.modelName}.\${field}\`) {
+                                                delete ${$scope.modelName}.$scope.$$watchers[inx];
+                                            }
+                                        });`);
+                                    }
                                     if (await $scope.triggers.table.before.close() === false)
                                         return;
                                     if (MODAL.history.length === 0) {
@@ -1332,6 +1346,7 @@ FORM = {
                                 },
                                 end: function () {
                                     $scope.triggers.table.after.close($scope.form);
+
                                 }
                             }
                         }

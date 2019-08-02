@@ -1,3 +1,8 @@
+<script>
+    if(!<%= scope %>.dataForView){
+        <%= scope %>.dataForView = DRAGONID;
+    }
+</script>
 <table class="table table-togglable table-framed">
     <tbody>
     <td ng-show="<%= scope %>.allow(['edit','remove','active'])"
@@ -49,7 +54,6 @@
                 ng-mouseover="<%= scope %>.cell.mouseover(keycolum,value,<%= scope %>.dataForView)"
                 ng-mouseup="<%= scope %>.cell.mouseup(keycolum,value,<%= scope %>.dataForView)"
         >
-
         </span>
         </td>
 

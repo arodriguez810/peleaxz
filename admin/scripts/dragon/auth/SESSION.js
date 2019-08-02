@@ -1,12 +1,7 @@
 SESSION = function () {
     this.myprofile = function () {
-        baseController.currentModel.modalAction(
-            this.current().path ? this.current().path() : CONFIG.users.path,
-            MESSAGE.ic('mono.myprofile'),
-            'user',
-            'edit',
-            this.current().getID()
-        );
+        MENUMODAL = true;
+        baseController.currentModel.modal.edit(this.current().path ? this.current().path() : CONFIG.users.path, this.current().getID());
     };
     this.current = function () {
         var obj = STORAGE.get("APPSESSION");

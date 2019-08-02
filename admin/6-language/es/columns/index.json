@@ -247,5 +247,8 @@
   "files": "archivos",
   "upload_image": "Subir documentos",
   "dragon_function_plural": "funciones",
-  "dragon_function": "funcion"
+  "dragon_function": "funcion",
+  "OneToMany": "Uno a Mucho",
+  "ManyToMany": "Mucho a Mucho",
+  "dragon_language_plural": "languages"
 }

@@ -86,13 +86,23 @@ ERROR = {
         if (CONFIG.mode !== 'developer') {
             switch (category) {
                 case ERROR.category.database: {
-                    SWEETALERT.confirm({
-                        type: "error",
-                        message: ERROR.regulate(errors.join('<br>')),
-                        confirm: function () {
-                            ERROR.send(errors.join('<br>'));
-                        }
-                    });
+                    var errorfinal = ERROR.regulate(JSON.stringify(errors.join('<br>')));
+
+                    if (errorfinal.regul) {
+                        SWEETALERT.show({
+                            type: "error",
+                            message: ERROR.regulate(errors.join('<br>')).regulated
+                        });
+                    } else {
+                        SWEETALERT.confirm({
+                            type: "error",
+                            message: MESSAGE.i('alerts.ClientDbError'),
+                            confirm: function () {
+                                ERROR.send(JSON.stringify(error));
+                            }
+                        });
+                    }
+
                     break;
                 }
             }

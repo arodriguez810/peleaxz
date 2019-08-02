@@ -18,17 +18,10 @@ var options = {
     format: '',
     readonly: false,
     disabled: false,
-    autocomplete: '',
-    sufix: '',
-    prefix: '',
+    autocomplete: false,
     posttype: "text",
     isNumber: true,
-    mask: null,
-    restrict: null,
-    repeat: null,
-    clean: null,
-    validate: null,
-    limit: null,
+    hint: null,
     //maxlength: 10,
 
 };
@@ -36,7 +29,6 @@ var options = {
 
 options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g, '_');
 options.icon.spyce = options.icon.class === "none" ? "remove-input-space" : "";
-options.autocomplete = options.autocomplete ? "autocomplete='Off'" : '';
 options.format = options.format ? options.format : false;
 options.model = options.model ? options.model : false;
 var toclient = JSON.stringify(options);
@@ -44,10 +36,14 @@ var toclient = JSON.stringify(options);
 <script>
     <%= model %>.triggers.table.before.control("<%= nameclean %>");
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
+    <% if(options.format || options.isNumber){ %>
+    <%= model %>.form.registerField("<%= name %>_DragonClean", "<%= toclient %>");
+    <% } %>
     if (MESSAGE.exist('columns.<%= nameclean %>')) {
         <%= model %>.
         form.options.<%= name %>.placeholder = MESSAGE.ic('columns.<%= nameclean %>');
     }
+
 </script>
 <div class="<%= options.icon.spyce %> form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-{{::<%= model %>.form.options.<%= name %>.icon.position}}"
      id="input<%= model %>_<%= nameclean %>">
@@ -60,25 +56,20 @@ var toclient = JSON.stringify(options);
             </i>
         <% } %>
     </label>
+
     <input
             ng-model="<%= model + "." + name %>" name="<%= model %>_<%= nameclean %>"
             ng-readonly="<%= model %>.form.options.<%= name %>.readonly"
             ng-disabled="<%= model %>.form.options.<%= name %>.disabled"
             maxlength="{{<%= model %>.form.options.<%= name %>.maxlength}}"
+            <%= !options.autocomplete ? "autocomplete=off" : "" %>
             type="text"
-            autocomplete="off"
+            onkeypress="return DSON.isNumberKey(event,this)"
             ng-model-onblur
-            <%- options.mask[0] === '`' ? ("mask=\"$eval(" + options.mask + ")\"") : ("mask=\"" + options.mask + "\"") %>
-            restrict="<%= options.restrict %>"
-            repeat="<%= options.repeat %>"
-            clean="<%= options.clean %>"
-            validate="<%= options.validate %>"
-            limit="<%= options.limit %>"
-
-            class=" form-control"
+            class="form-control"
             placeholder="{{::<%= model %>.form.options.<%= name %>.inputPlaceholder}}">
 
-    <div class="form-control-feedback" ng-if="<%= model %>.form.options.<%= name %>.icon.class!=='none'">
+    <div class="form-control-feedback">
         <i class="icon-<%= options.icon.class %> text-secundary">
 
         </i>
@@ -98,7 +89,38 @@ var toclient = JSON.stringify(options);
 </div>
 
 <script>
+    if (<%= model %>.
+    UNIQUEFIELD
+    )
+    {
+        if (UNIQUEFIELD !== "<%= name %>")
+            $("#input<%= model %>_<%= nameclean %>").parent().hide();
+    }
     <%= model %>.triggers.table.after.control("<%= nameclean %>");
+    <% if(options.maxlength){ %>
+    //$('[name="<%= model %>_<%= nameclean %>"]').maxlength();
+    <% } %>
+
+    $('[name="<%= model %>_<%= nameclean %>"]').focus(function () {
+        $('[name="<%= model %>_<%= nameclean %>"]').val(LAN.money(this.value).value);
+    });
+    $('[name="<%= model %>_<%= nameclean %>"]').blur(function () {
+        <%= model %>.
+        <%= name %>_DragonClean = LAN.money(this.value).value;
+        STEP.register({
+            scope: "<%= model %>",
+            action: "Change Text",
+            field: "<%= name %>",
+            value: <%= model %>.<%= name %>
+    })
+        ;
+        $('[name="<%= model %>_<%= nameclean %>"]').val(LAN.money(this.value).format(false));
+    });
+    $('[name="<%= model %>_<%= nameclean %>"]').val(LAN.money(<%= model %>.<%= name %>).format(false)
+    )
+    ;
+    <%= model %>.<%= name %>_DragonClean = <%= model %>.<%= name %>;
+
     <% if(options.popover){ %>
     $('#popover<%= model %>_<%= nameclean %>').popover({
         container: 'body',
@@ -111,32 +133,13 @@ var toclient = JSON.stringify(options);
     })
     ;
     <% } %>
-
-
-    $('[name="<%= model %>_<%= nameclean %>"]').blur(function () {
-
-        STEP.register({
-            scope: "<%= model %>",
-            action: "Change Format Text",
-            field: "<%= name %>",
-            value: <%= model %>.<%= name %>
-    })
-        ;
-    });
-
-    $('[name="<%= model %>_<%= nameclean %>"]').trigger('click');
-    <%= model %>.refreshAngular();
-
-    var isReadProgram = <%= model %>.form.isReadOnly('<%= name %>');
+    var isReadProgram = <%= model %>.
+    form.isReadOnly('<%= name %>');
     if (isReadProgram !== false) {
         <%= model %>.
         form.options.<%= name %>.disabled = true;
         if (isReadProgram !== undefined) {
             <%= model %>.<%= name %> = isReadProgram;
-            $me = isReadProgram;
-            $me = $me.replace(/\./g, 'POINT').replace(/\W/g, '').replace(/POINT/g, '.').replace(/[a-z]/gi, '');
-            <%= model %>.
-            <%= name %>_DragonClean = $me;
             $('[name="<%= model %>_<%= nameclean %>"]').val(isReadProgram);
         }
     }

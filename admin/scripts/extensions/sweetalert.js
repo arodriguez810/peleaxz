@@ -103,8 +103,33 @@ NOTIFY = {
             timeout: 6000,
             text: text,
             type: type || 'success',
-            layout: position || "bottomLeft"
+            layout: position || "bottomLeft",
         });
+    },
+    clear: function () {
+        $.noty.clearQueue();
+        $.noty.closeAll();
+    },
+    custom: function (opt, buttons) {
+        opt = opt || {};
+        noty({
+            force: opt.force || false,
+            timeout: opt.timeout || 6000,
+            text: opt.text || "[Empty]",
+            type: opt.type || 'success',
+            layout: opt.position || "bottomLeft",
+            width: opt.width || 200,
+            dismissQueue: opt.dismissQueue || true,
+            buttons: buttons
+        });
+    },
+    confirm: function (text, success, cancel, opt) {
+        opt = opt || {};
+        NOTIFY.custom({
+            text: text,
+            type: opt.type,
+            type: opt.type,
+        })
     },
     success: function (text, position) {
         NOTIFY.base('success', text, position);

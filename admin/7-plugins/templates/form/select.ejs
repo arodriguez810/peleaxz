@@ -64,7 +64,7 @@ options = OBJECT.merge(options, opts);
 var nameclean = name.replace(/\./g, '_');
 options.model = options.model ? options.model : false;
 options.controller = options.controller || options.table;
-options.permission = options.permission || "CRUD_" + options.controller;
+options.permission = options.permission || options.controller;
 var toclient = JSON.stringify(options);
 %>
 <script>
@@ -107,17 +107,18 @@ var toclient = JSON.stringify(options);
         }
     }
     <%= model %>.form.loadDropDown("<%= name %>");
-
-    var permissions = eval('<%= options.permission %>');
-    if (!permissions.table.allow.edit)
-            <%= model %>.
-    form.options.<%= name %>.allowedit = false;
-    if (!permissions.table.allow.view)
-            <%= model %>.
-    form.options.<%= name %>.allowview = false;
-    if (!permissions.table.allow.add)
-            <%= model %>.
-    form.options.<%= name %>.allownew = false;
+    <% if (options.permission) { %>
+        var permissions = eval('PERMISSIONS.mypermission.<%= options.permission %>');
+        permissions = permissions ? permissions.allow : {allow:{}};
+        if (permissions.edit===false)
+                <%= model %>.form.options.<%= name %>.allowedit = false;
+        if (permissions.view===false)
+                <%= model %>.form.options.<%= name %>.allowview = false;
+        if (permissions.add===false)
+                <%= model %>.form.options.<%= name %>.allownew = false;
+        if (permissions.menu===false)
+                <%= model %>.form.options.<%= name %>.allowlist = false;
+    <% } %>
 </script>
 
 <div class="form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || 'success' }}  has-feedback-<%= options.icon.position %>"
@@ -245,10 +246,8 @@ var toclient = JSON.stringify(options);
     function reloadMe<%= model %>_<%= nameclean %>() {
         if (PRUDENTS["<%= options.controller %>"] !== undefined) {
             <% if(options.multiple){ %>
-            if (<%= model %>.<%= nameclean %>===
-            "[NULL]"
-        )
-            <%= model %>.<%= nameclean %> = [];
+            if (<%= model %>.<%= nameclean %>==="[NULL]")
+                <%= model %>.<%= nameclean %> = [];
             <%= model %>.<%= nameclean %>.
             push(PRUDENTS["<%= options.controller %>"].toString());
             delete PRUDENTS["<%= options.controller %>"];
@@ -256,9 +255,8 @@ var toclient = JSON.stringify(options);
             <%= model %>.<%= nameclean %> = PRUDENTS["<%= options.controller %>"].toString();
             delete PRUDENTS["<%= options.controller %>"];
             <% } %>
+            <%= model %>.form.loadDropDown("<%= name %>");
         }
-        <%= model %>.
-        form.loadDropDown("<%= name %>");
     }
 
     $(document).ready(function () {
@@ -304,20 +302,21 @@ var toclient = JSON.stringify(options);
         });
         $('#new<%= model %>_<%= nameclean %>').click(function () {
             CURRENTPRUDENTS = "<%= options.controller %>";
-            <%= model %>.modalAction("<%= options.controller %>", MESSAGE.ic("columns.<%= options.controller %>"), '', 'new', {});
+            <%= model %>.modal.new("<%= options.controller %>");
+
             return false;
         });
         $('#list<%= model %>_<%= nameclean %>').click(function () {
-            <%= model %>.modalAction("<%= options.controller %>", MESSAGE.ic("columns.<%= options.controller %>"), '', 'list', {});
+            <%= model %>.modal.list("<%= options.controller %>");
             return false;
         });
 
         $('#edit<%= model %>_<%= nameclean %>').click(function () {
-            <%= model %>.modalAction("<%= options.controller %>", MESSAGE.ic("columns.<%= options.controller %>"), '', 'edit', <%= model %>.<%= name %>);
+            <%= model %>.modal.edit("<%= options.controller %>", `${<%= model %>.<%= name %>}`);
             return false;
         });
         $('#view<%= model %>_<%= nameclean %>').click(function () {
-            <%= model %>.modalAction("<%= options.controller %>", MESSAGE.ic("columns.<%= options.controller %>"), '', 'view', <%= model %>.form.selected("<%= options.controller %>"));
+            <%= model %>.modal.view("<%= options.controller %>", `${<%= model %>.<%= name %>}`);
             return false;
         });
     });

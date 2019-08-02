@@ -58,6 +58,77 @@ TABLE = {
             ${$scope.modelName}.refreshAngular();`);
             resolve(true);
         });
+        $scope.runMagicOneToOne = (column, table, key, description) => new Promise(async (resolve, reject) => {
+            table = table || column;
+            return $scope.runMagicColum(column, table, key, description);
+        });
+        $scope.runMagicOneToMany = (column, table, key, description, mykey) => new Promise(async (resolve, reject) => {
+            mykey = mykey || "id";
+            description = description || "name";
+            var result = await BASEAPI.listp(table, {});
+            eval(`${column}List = result;`);
+            eval(`${column}List = ${column}List.data;`);
+            eval(`${$scope.modelName}.records.data.forEach(row => {
+                row.${mykey} = row.${mykey} || undefined;
+                var thistype = ${column}List.filter(d => {
+                    if (row.${mykey} !== undefined)
+                        return d.${key}.toString() === row.${mykey}.toString();
+                    return false;
+                });
+                var resultB = [];
+                if (thistype.length > 0)
+                   thistype.forEach(type => { resultB.push(type.${description}); });
+                
+                if (thistype.length > 0)
+                    row.${column} = DSON.ULALIA(resultB);
+            });
+            ${$scope.modelName}.refreshAngular();`);
+            resolve(true);
+        });
+        $scope.runMagicManyToMany = (column, tablaDesc, idMAM, mykey, showColumn, tableMAM, idADY, idDesc) => new Promise(async (resolve, reject) => {
+            mykey = mykey || "id";
+            idADY = idADY || tablaDesc;
+            idDesc = idDesc || "id";
+            showColumn = showColumn || "name";
+            tableMAM = tableMAM || `${$scope.modelName}_${tablaDesc}`;
+            eval(`var ${column}allids = [];`);
+            eval(`${$scope.modelName}.records.data.forEach(row => {
+                if(row.${mykey})
+                ${column}allids.push(row.${mykey});
+            });`);
+            var result = await BASEAPI.listp(tableMAM, {where: [{field: idMAM, value: eval(`${column}allids `)}]});
+            eval(`var ${column}allids = [];`);
+            eval(`result.data.forEach(row => {
+                if(row.${idADY})
+                ${column}allids.push(row.${idADY});
+            });`);
+            var descriptions = await BASEAPI.listp(tablaDesc, {
+                where: [{
+                    field: idDesc,
+                    value: eval(`${column}allids `)
+                }]
+            });
+
+
+            eval(`${$scope.modelName}.records.data.forEach(row => {
+                row.${mykey} = row.${mykey} || undefined;
+                var mylist = [];
+                result.data.forEach(d => {
+                    if (row.${mykey} !== undefined)
+                        if(d.${idMAM}.toString() === row.${mykey}.toString())
+                            mylist.push(d.${idADY}.toString()); 
+                });
+                var mydescs = [];
+                descriptions.data.forEach(d => {
+                    if(mylist.indexOf( d.${idDesc}.toString())!==-1)
+                        mydescs.push(d.${showColumn}.toString());
+                });
+                row.${column} = DSON.ULALIA(mydescs);
+            });
+            ${$scope.modelName}.refreshAngular();`);
+            resolve(true);
+        });
+
         $scope.width = function () {
             if (!DSON.oseaX(eval(`CRUD_${$scope.modelName}`).table.width)) {
                 return "";
@@ -279,7 +350,12 @@ TABLE = {
                 dataToList.where = $scope.fixFiltersApply();
                 $scope.filtersApply(dataToList);
                 if (RELATIONS.anonymous[$scope.modelName] !== undefined) {
-                    dataToList.where = RELATIONS.anonymous[$scope.modelName].where;
+                    if (Array.isArray(dataToList.where)) {
+                        RELATIONS.anonymous[$scope.modelName].where.forEach(d => {
+                            dataToList.where.push(d);
+                        });
+                    } else
+                        dataToList.where = RELATIONS.anonymous[$scope.modelName].where;
                 }
                 if (!DSON.oseaX(ARRAY.last(MODAL.historyObject))) {
                     if (!DSON.oseaX(ARRAY.last(MODAL.historyObject).viewData)) {
@@ -312,7 +388,12 @@ TABLE = {
                 dataToList.where = $scope.fixFiltersApply();
                 $scope.filtersApply(dataToList);
                 if (RELATIONS.anonymous[$scope.modelName] !== undefined) {
-                    dataToList.where = RELATIONS.anonymous[$scope.modelName].where;
+                    if (Array.isArray(dataToList.where)) {
+                        RELATIONS.anonymous[$scope.modelName].where.forEach(d => {
+                            dataToList.where.push(d);
+                        });
+                    } else
+                        dataToList.where = RELATIONS.anonymous[$scope.modelName].where;
                 }
                 if (!DSON.oseaX(ARRAY.last(MODAL.historyObject))) {
                     if (!DSON.oseaX(ARRAY.last(MODAL.historyObject).viewData)) {

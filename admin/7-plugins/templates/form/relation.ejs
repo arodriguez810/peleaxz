@@ -48,9 +48,7 @@ if (options.master === null) {
     var thisID = eval(`<%= model %>.${keyColumn}`);
 
 </script>
-<div id="<%= model %>_<%= nameclean %>_content" style="height: 500px">
 
-</div>
 <script>
     $(document).ready(function () {
         <%= model %>.
@@ -97,15 +95,7 @@ if (options.master === null) {
             }
         else
             {
-                new LOAD().loadContentScope(
-                    "<%= options.table %>",
-                    "<%= model %>_<%= nameclean %>_content",
-                    MESSAGE.i('actions.Loading'),
-                    function () {
-                        MESSAGE.run();
-                        $("#<%= model %>_<%= nameclean %>_content").css('height', 'auto');
-                    }, undefined, undefined,<%= model %>
-                );
+
             }
 
 
@@ -113,4 +103,13 @@ if (options.master === null) {
         <%= model %>_<%= nameclean %>Load();
     });
 </script>
+
+<div id="<%= options.table %>" ng-controller="<%= options.table %> as <%= options.table %>">
+    <div class="panel panel-flat">
+        <%- include('../table/header',{scope:options.table}); %>
+        <div class="subcontent">
+            <%- include('../table/base',{scope:options.table}); %>
+        </div>
+    </div>
+</div><!--end-->
 

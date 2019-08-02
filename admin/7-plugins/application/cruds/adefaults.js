@@ -178,7 +178,10 @@ CRUDDEFAULTS = {
                             return false;
                         },
                         show: function (data) {
-                            return data.$scope.activeColumn();
+                            if (data.$scope.activeColumn)
+                                return data.$scope.activeColumn();
+                            else
+                                false;
                         }
                     },
                     {
@@ -207,7 +210,10 @@ CRUDDEFAULTS = {
                             return false;
                         },
                         show: function (data) {
-                            return data.$scope.activeColumn();
+                            if (data.$scope.activeColumn)
+                                return data.$scope.activeColumn();
+                            else
+                                false;
                         }
                     },
                     {

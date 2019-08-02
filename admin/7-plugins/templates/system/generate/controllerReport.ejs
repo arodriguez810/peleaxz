@@ -6,13 +6,15 @@ app.controller("<%= scope %>", function ($scope, $http, $compile) {
     //<%= scope %>.headertitle = "Hola Title";
     RUNCONTROLLER("<%= scope %>", <%= scope %>, $scope, $http, $compile);
     RUN_B("<%= scope %>", <%= scope %>, $scope, $http, $compile);
-    // $scope.triggers.table.after.load = function (records) {
-    //     //console.log(`$scope.triggers.table.after.load ${$scope.modelName}`);
+    // <%= scope %>.triggers.table.after.load = function (records) {
+    //     //console.log(`<%= scope %>.triggers.table.after.load <%= scope %>`);
     // };
-    // $scope.triggers.table.before.load = () => new Promise((resolve, reject) => {
-    //     //console.log(`$scope.triggers.table.before.load ${$scope.modelName}`);
-    //     resolve(true);
-    // });
+    // <%= scope %>.triggers.table.after.load = function (records) {
+    //     //<%= scope %>.runMagicOneToOne('@column');
+    //     //<%= scope %>.runMagicOneToMany('@column', '@tablerelation', '@fieldrelation');
+    //     //<%= scope %>.runMagicManyToMany('@thistable', '@tabledescription', '@idfromManyToManyTable');
+    //     //console.log(`<%= scope %>.triggers.table.after.load <%= scope %>`);
+    // };
     //Put This in 0-config/security/permission.json
     //"blog": {
         //"type": "report",

@@ -6,11 +6,11 @@ app.controller("<%= scope %>", function ($scope, $http, $compile) {
     <%= scope %>.destroyForm = false;
     RUNCONTROLLER("<%= scope %>", <%= scope %>, $scope, $http, $compile);
     RUN_B("<%= scope %>", <%= scope %>, $scope, $http, $compile);
-    // $scope.triggers.table.after.control = function (data) {
-    //     //console.log(`$scope.triggers.table.after.control ${$scope.modelName} ${data}`);
+    // <%= scope %>.triggers.table.after.control = function (data) {
+    //     //console.log(`<%= scope %>.triggers.table.after.control <%= scope %> ${data}`);
     // };
-    // $scope.triggers.table.before.control = function (data) {
-    //     //console.log(`$scope.triggers.table.before.control ${$scope.modelName} ${data}`);
+    // <%= scope %>.triggers.table.before.control = function (data) {
+    //     //console.log(`<%= scope %>.triggers.table.before.control <%= scope %> ${data}`);
     // };
     //Put This in 0-config/security/permission.json
     //"blog": {

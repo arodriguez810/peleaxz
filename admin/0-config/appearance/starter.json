@@ -1,13 +1,13 @@
 {
   "starter": [
     {
-      "text": "Getting Started",
+      "text": "Second Menu Example",
       "href": "#",
       "icon": "ampersand",
       "menus": [
         {
-          "text": "Download And Installs",
-          "href": "#documentation/downloadandinstall",
+          "text": "Test",
+          "href": "#child",
           "icon": "file-download2"
         }
       ]

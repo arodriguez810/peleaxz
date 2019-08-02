@@ -11,11 +11,6 @@
         "text": "Getting Started",
         "href": "starter",
         "icon": "file-download2"
-      },
-      {
-        "text": "Config",
-        "href": "config_menu",
-        "icon": "equalizer2"
       }
     ],
     "animation": {

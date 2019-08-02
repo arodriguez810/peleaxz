@@ -140,7 +140,6 @@ LOAD = function () {
                 http.evaluate(data);
                 if (!http.evaluateTokenHTML(data))
                     $("#content").html($compile(data.data)($scope));
-
                 if (!DSON.oseaX(inanimation))
                     new ANIMATION().playPure($('#content'), inanimation, function () {
 

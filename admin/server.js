@@ -326,10 +326,12 @@ for (var i in localModulesVars) {
     var name = localModulesVars[i];
     allparams += "      " + name + ":" + name + ",";
 }
+currencies = [];
 {
     allparams += "      collections: collections,";
     allparams += "      scope: '@model@',";
     allparams += "      modules:modules,";
+    allparams += "      currencies:currencies,";
     allparams += "      sockets:sockets,";
     allparams += "      socketlist:sockets,";
     allparams += "      socketsList:socketsList,";
@@ -648,7 +650,12 @@ servicesFiles.forEach(function (item) {
 
 //******* Load Custom Modules********//
 modules.tools.init(eval("(" + allparams + ")"));
-modules.views.init(eval("(" + allparams + ")"));
+
+storage.getItem("dragon_currency").then(currencies => {
+    currencies = currencies || []
+    modules.views.init(eval("(" + allparams + ")"));
+});
+
 //******* Load Custom Modules********//
 //******* Run Application********//
 app.listen(CONFIG.port);
@@ -730,23 +737,23 @@ var sp = function (str, length) {
 var urlsha = `${CONFIG.proxy.ssl === true ? 'https://' : 'http://'}${CONFIG.proxy.subdomain !== '' ? CONFIG.proxy.subdomain + '.' : ''}${CONFIG.proxy.domain}${(CONFIG.proxy.port === 80 || CONFIG.proxy.port === 443 || CONFIG.proxy.port === 443) ? '' : (":" + CONFIG.proxy.port) }`;
 var urlshahome = `${CONFIG.ssl === true ? 'https://' : 'http://'}${CONFIG.subdomain !== '' ? CONFIG.subdomain + '.' : ''}${CONFIG.domain}${(CONFIG.port === 80 || CONFIG.port === 443 || CONFIG.port === 443) ? '' : (":" + CONFIG.port) }`;
 
-
+var margin = 22;
 print(0, "center", "", "█", 1, "pxz", "█", "█");
 print(0, "center", "", "═", 1, "pxz", "█╔", "╗█");
 print(0, "center", "Dragon Framework " + CONFIG.version.base, " ", 1, "pxz2", "█║", "║█");
 print(0, "center", "", "█", 2, "vacio", "█║", "║█");
-print(0, "center", `${sp("APPLICATION")}: ${sp(CONFIG.appName + " " + CONFIG.version.app, 40)}`, " ", 1, "pxz2", "█║", "║█");
-print(0, "center", `${sp("HOME")}: ${sp(urlshahome, 40)}`, " ", 1, "pxz2", "█║", "║█");
-print(0, "center", `${sp("PROXY")}: ${sp(urlsha, 40)}`, " ", 1, "pxz2", "█║", "║█");
-print(0, "center", `${sp("MODE")}: ${sp(CONFIG.mode, 40)}`, " ", 1, "pxz2", "█║", "║█");
-print(0, "center", `${sp("CONFIGURATION")}: ${sp(('By Developer'), 40)}`, " ", 1, "pxz2", "█║", "║█");
-print(0, "center", `${sp("LANGUAGE")}: ${sp(CONFIG.language, 40)}`, " ", 1, "pxz2", "█║", "║█");
+print(0, "center", `${sp("APPLICATION")}: ${sp(CONFIG.appName + " " + CONFIG.version.app, margin)}`, " ", 1, "pxz2", "█║", "║█");
+print(0, "center", `${sp("HOME")}: ${sp(urlshahome, margin)}`, " ", 1, "pxz2", "█║", "║█");
+print(0, "center", `${sp("PROXY")}: ${sp(urlsha, margin)}`, " ", 1, "pxz2", "█║", "║█");
+print(0, "center", `${sp("MODE")}: ${sp(CONFIG.mode, margin)}`, " ", 1, "pxz2", "█║", "║█");
+print(0, "center", `${sp("CONFIGURATION")}: ${sp(('By Developer'), margin)}`, " ", 1, "pxz2", "█║", "║█");
+print(0, "center", `${sp("LANGUAGE")}: ${sp(CONFIG.language, margin)}`, " ", 1, "pxz2", "█║", "║█");
 if (CONFIG.mssql)
-    print(0, "center", `${sp("MSSQL")}: ${sp(CONFIG.mssql.server, 40)}`, " ", 1, "pxz2", "█║", "║█");
+    print(0, "center", `${sp("MSSQL")}: ${sp(CONFIG.mssql.server + ":" + CONFIG.mssql.database, margin)}`, " ", 1, "pxz2", "█║", "║█");
 if (CONFIG.mysql)
-    print(0, "center", `${sp("MYSQL")}: ${sp(CONFIG.mysql.host, 40)}`, " ", 1, "pxz2", "█║", "║█");
+    print(0, "center", `${sp("MYSQL")}: ${sp(CONFIG.mysql.host + ":" + CONFIG.mysql.database, margin)}`, " ", 1, "pxz2", "█║", "║█");
 if (CONFIG.oracle)
-    print(0, "center", `${sp("ORACLE")}: ${sp(CONFIG.oracle.connectString, 40)}`, " ", 1, "pxz2", "█║", "║█");
+    print(0, "center", `${sp("ORACLE")}: ${sp(CONFIG.oracle.connectString, margin)}`, " ", 1, "pxz2", "█║", "║█");
 print(0, "center", "", "█", (rows - drow) - 8, "vacio", "█║", "║█");
 print(0, "center", `${new Date().toString()}`, " ", 1, "pxz2", "█║", "║█");
 print(0, "center", "", "█", 3, "vacio", "█║", "║█");

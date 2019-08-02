@@ -8,6 +8,12 @@ function has_scrollbar(name) {
 }
 
 DSON = {
+    isNumberKey: function (evt, val) {
+        // console.log(val.value);
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        return !(charCode !== 46 && charCode > 31
+            && (charCode < 48 || charCode > 57));
+    },
     QUERO: function () {
         var obj = {};
         var query = location.href;

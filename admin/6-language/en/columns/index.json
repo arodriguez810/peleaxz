@@ -237,5 +237,8 @@
   "files": "files",
   "upload_image": "upload document",
   "dragon_function_plural": "functions",
-  "dragon_function": "function"
+  "dragon_function": "function",
+  "OneToMany": "One To Many",
+  "ManyToMany": "Many To Many",
+  "dragon_language_plural": "languages"
 }
