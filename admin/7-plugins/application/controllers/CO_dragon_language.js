@@ -93,7 +93,7 @@ app.controller("dragon_language", function ($scope, $http, $compile) {
                     MESSAGE.i('alerts.saveConfigSuperLanguage'),
                 confirm: function () {
                     SWEETALERT.loading({message: MESSAGE.ic('mono.procesing')});
-                    BASEAPI.ajax.post('dragon/api/saveLanguages', {json: JSON.stringify(dragon_language.LANGUAGE)}, function () {
+                    DRAGONAPI.ajax.post('dragon/api/saveLanguages', {json: JSON.stringify(dragon_language.LANGUAGE)}, function () {
                         SWEETALERT.loading({message: MESSAGE.ic('mono.restarting')});
                         setTimeout(() => {
                             location.reload();

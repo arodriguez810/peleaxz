@@ -1,7 +1,8 @@
 SOCKETS = {
     channels: {},
     connect: function () {
-        SOCKET = io(new HTTP().io([]));
+        var user = new SESSION().current();
+        SOCKET = io(new HTTP().io([]), {query: user});
     },
     run: function () {
         for (var channel in SOCKETS.channels) {

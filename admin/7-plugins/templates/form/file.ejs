@@ -127,7 +127,7 @@ var toclient = JSON.stringify(options);
             var toClean = eval(`"<%= modelfolder %>/${save}/${id}"`);
             var to = `${FOLDERS.files}/${toClean}`;
 
-            await BASEAPI.ajax.postp(new HTTP().path(["files", "api", "move"]), {moves: [{from: from, to: to}]});
+            await DRAGONAPI.ajax.postp(new HTTP().path(["files", "api", "move"]), {moves: [{from: from, to: to}]});
         }
         resolve(true);
     });
@@ -173,7 +173,7 @@ var toclient = JSON.stringify(options);
         ;
         <% } %>
         if (amLoad<%= name %> || direct === true) {
-            BASEAPI.ajax.get(new HTTP().path(["files", "api"]), {folder: <%= model %>.form.options.<%= name %>.folder
+            DRAGONAPI.ajax.get(new HTTP().path(["files", "api"]), {folder: <%= model %>.form.options.<%= name %>.folder
         },
 
             function (data) {
@@ -213,27 +213,17 @@ var toclient = JSON.stringify(options);
             amLoad<%= name %> = true;
             var root = <%= model %>.
             form.options.<%= name %>.folder;
-            baseController.viewData = {
+            DRAGON.viewData = {
                 root: root,
                 file:<%= model %>.form.options.<%= name %>.file,
-                scope
-        : <%= model %>,
-            maxsize: <%= model %>.
-            form.options.<%= name %>.maxsize_mb,
-                maxsize
-        : <%= model %>.
-            form.options.<%= name %>.maxsize_mb,
-                maxfiles
-        : <%= model %>.
-            form.options.<%= name %>.maxfiles,
-                acceptedFiles
-        : <%= model %>.
-            form.options.<%= name %>.acceptedFiles,
-                columns
-        : <%= model %>.
-            form.options.<%= name %>.columns
-        }
-            ;
+                scope: <%= model %>,
+                nameclean: "<%= model %>_<%= nameclean %>",
+                maxsize: <%= model %>.form.options.<%= name %>.maxsize_mb,
+                maxfiles: <%= model %>.form.options.<%= name %>.maxfiles,
+                acceptedFiles: <%= model %>.form.options.<%= name %>.acceptedFiles,
+                columns: <%= model %>.form.options.<%= name %>.columns
+            };
+
             var modal = {
                     width: <%= model %>.form.options.<%= name %>.width,
                 header: {

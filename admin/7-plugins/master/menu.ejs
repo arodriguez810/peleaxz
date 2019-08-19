@@ -1,6 +1,6 @@
 <!-- Main sidebar -->
 <div id="dragonmenu" class="sidebar sidebar-main  sidebar-expand-md  bg-<%= COLOR.extra %>-700"
-     ng-show="baseController.isLogged && !baseController.isClient">
+     ng-show="DRAGON.isLogged && !DRAGON.isClient">
 
     <div class="sidebar-mobile-toggler text-center visible-xs bg-<%= COLOR.extra %>-700">
         <a class="navbar-brand-mobile bg-<%= COLOR.extra %>-700 sidebar-mobile-main-toggle">
@@ -19,14 +19,15 @@
                     }
                 </style>
 
-                <ul id="dragonmenu" class="navigation navigation-main navigation-accordion dragon-menu bg-<%= COLOR.extra %>-700 ">
-                    
-                    <li ng-repeat="(key, menu) in baseController.myMenu() track by key" class="{{menu.class}}">
+                <ul id="dragonmenu"
+                    class="navigation navigation-main navigation-accordion dragon-menu bg-<%= COLOR.extra %>-700 ">
+
+                    <li ng-repeat="(key, menu) in DRAGON.myMenu() track by key" class="{{menu.class}}">
                         <a data-modal="{{menu.modal}}" href="{{menu.href}}"
                            class="bg-extra-700 {{menu.modal?'modalmenu':''}}">
                             <i class="icon-{{menu.icon}}"></i>
                             <span>
-                                {{baseController.menuLabel(menu)}}
+                                {{DRAGON.menuLabel(menu)}}
                             </span>
                         </a>
                         <ul ng-if="menu.menus">
@@ -35,7 +36,7 @@
                                    class="bg-extra-700 {{segundo.modal?'modalmenu':''}}">
                                     <i class="icon-{{segundo.icon}}"></i>
                                     <span>
-                                        {{baseController.menuLabel(segundo)}}
+                                        {{DRAGON.menuLabel(segundo)}}
                                      </span>
                                 </a>
                                 <ul ng-if="segundo.menus">
@@ -45,7 +46,7 @@
                                            class="bg-extra-700 {{tercero.modal?'modalmenu':''}}">
                                             <i class="icon-{{tercero.icon}}"></i>
                                             <span>
-                                        {{baseController.menuLabel(tercero)}}
+                                        {{DRAGON.menuLabel(tercero)}}
                                      </span>
                                         </a>
                                         <ul ng-if="tercero.menus">
@@ -55,7 +56,7 @@
                                                    class="bg-extra-700 {{cuarto.modal?'modalmenu':''}}">
                                                     <i class="icon-{{cuarto.icon}}"></i>
                                                     <span>
-                                        {{baseController.menuLabel(cuarto)}}
+                                        {{DRAGON.menuLabel(cuarto)}}
                                      </span>
                                                 </a>
                                                 <ul ng-if="cuarto.menus">
@@ -65,7 +66,7 @@
                                                            class="bg-extra-700 {{quinto.modal?'modalmenu':''}}">
                                                             <i class="icon-{{quinto.icon}}"></i>
                                                             <span>
-                                        {{baseController.menuLabel(quinto)}}
+                                        {{DRAGON.menuLabel(quinto)}}
                                      </span>
                                                         </a>
 

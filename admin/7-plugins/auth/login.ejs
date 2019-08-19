@@ -10,7 +10,8 @@
             <div class="panel panel-body" id="logincontent">
                 <div class="form-group has-feedback has-feedback-left text-center">
                     <div class="icon-object text-slate-300" style="padding: 10px;border-style: none;">
-                        <img style="float: left !important;width: 100px;" src="files/dragon_configuration/login/logo.png"
+                        <img style="float: left !important;width: 100px;"
+                             src="files/dragon_configuration/login/logo.png"
                              alt="">
                     </div>
                     <h5 class="content-group" dragonlanguage>
@@ -69,4 +70,11 @@
         else
             document.getElementById("logincontent").style.height = `auto`;
     }
+
+    $(document).ready(function () {
+        setTimeout(d => {
+            loginresize();
+        }, 1500)
+    })
+
 </script>

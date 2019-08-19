@@ -55,14 +55,14 @@ app.controller("auth", function ($scope, $http, $compile) {
 
             var where = {where: [{field: CONFIG.users.fields.email, value: auth.forgotfield}]};
             var user = await
-                BASEAPI.firstp(CONFIG.users.model, where);
+                DRAGONAPI.firstp(CONFIG.users.model, where);
             if (user !== null) {
                 user = new SESSION().runFunction(user);
                 animation.loadingPure($("#idsend"), "", $("#spinersend"), '30');
                 var date = new Date();
                 var token = `${date.getFullYear()}${date.getMonth()}${date.getDay()}${user.getID()}`;
                 SERVICE.base_auth.md5({value: token}, function (result) {
-                    BASEAPI.mail({
+                    DRAGONAPI.mail({
                         "to": eval(`user.${CONFIG.users.fields.email}`),
                         "subject": `${CONFIG.appName} - ${MESSAGE.ic('login.passwordrecovery')}`,
                         "name": user.fullName(),

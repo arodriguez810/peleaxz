@@ -187,6 +187,32 @@
         "user_created",
         "user_updated"
       ]
+    },
+    "dragon_query": {
+      "key": "id",
+      "type": "one",
+      "fields": [
+        "name",
+        "query"
+      ]
+    },
+    "dragon_function": {
+      "key": "id",
+      "type": "one",
+      "fields": [
+        "name",
+        "description"
+      ]
+    },
+    "dragon_function_query": {
+      "key": "id",
+      "type": "one",
+      "open": true,
+      "fields": [
+        "query",
+        "function",
+        "num"
+      ]
     }
   }
 }

@@ -22,10 +22,10 @@ DSON.keepmerge(CRUD_child,
                 // allparents: {
                 //     format: function (row) {
                 //         if (typeof  PIVOTE === "undefined") {
-                //             BASEAPI.listp('user_group', {}).then(function (data) {
+                //             DRAGONAPI.listp('user_group', {}).then(function (data) {
                 //                 PIVOTE = data.data;
                 //             });
-                //             BASEAPI.listp('group', {}).then(function (data) {
+                //             DRAGONAPI.listp('group', {}).then(function (data) {
                 //                 ORIGEN = data.data;
                 //             });
                 //         } else {

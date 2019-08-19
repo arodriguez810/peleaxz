@@ -179,6 +179,10 @@
     {
       "var": "cognitiveservices",
       "module": "microsoft-cognitiveservices-speech-sdk"
+    },
+    {
+      "var": "schedule",
+      "module": "node-schedule"
     }
   ]
 }

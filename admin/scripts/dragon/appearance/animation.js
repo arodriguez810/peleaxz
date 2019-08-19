@@ -63,28 +63,31 @@ ANIMATION = function () {
         if (spinner !== undefined) {
             this.spinner.onPure(spinner);
         }
-        customBlock.block({
-            message: text + '<br><i class="icon-' + (icon || "spinner2") + ' spinner" style="font-size: ' + (size || "50") + 'px"></i>',
-            overlayCSS: {
-                backgroundColor: '#fff',
-                opacity: 0.8,
-                cursor: 'wait',
-                'box-shadow': '0 0 0 1px #ddd',
-                height: '100%',
-                width: '100%',
-                left: '0px'
-            },
-            css: {
-                border: 0,
-                backgroundColor: 'none'
-            }
-        });
+        if (customBlock.block) {
+            customBlock.block({
+                message: text + '<br><i class="icon-' + (icon || "spinner2") + ' spinner" style="font-size: ' + (size || "50") + 'px"></i>',
+                overlayCSS: {
+                    backgroundColor: '#fff',
+                    opacity: 0.8,
+                    cursor: 'wait',
+                    'box-shadow': '0 0 0 1px #ddd',
+                    height: '100%',
+                    width: '100%',
+                    left: '0px'
+                },
+                css: {
+                    border: 0,
+                    backgroundColor: 'none'
+                }
+            });
+        }
     };
     this.stoploadingPure = function (customBlock, spinner) {
         if (spinner !== undefined) {
             this.spinner.offPure(spinner);
         }
-        customBlock.unblock();
+        if (customBlock.unblock)
+            customBlock.unblock();
     };
     this.spinner = {
         on: function (customBlock) {
@@ -108,23 +111,27 @@ ANIMATION = function () {
             }
         },
         onPure: function (customBlock) {
-            var i = customBlock.find("i");
-            customBlock.addClass("disabled");
-            customBlock.addClass("spinner");
-            if (i.length <= 0) {
+            if (customBlock.find) {
+                var i = customBlock.find("i");
+                customBlock.addClass("disabled");
+                customBlock.addClass("spinner");
+                if (i.length <= 0) {
 
-            } else {
-                i.addClass("spinner");
+                } else {
+                    i.addClass("spinner");
+                }
             }
         },
         offPure: function (customBlock) {
-            var i = customBlock.find("i");
-            customBlock.removeClass("disabled");
-            customBlock.removeClass("spinner");
-            if (i.length <= 0) {
+            if (customBlock.find) {
+                var i = customBlock.find("i");
+                customBlock.removeClass("disabled");
+                customBlock.removeClass("spinner");
+                if (i.length <= 0) {
 
-            } else {
-                i.removeClass("spinner");
+                } else {
+                    i.removeClass("spinner");
+                }
             }
         }
     }
@@ -137,37 +144,37 @@ $(document).ready(function () {
         if (firstPeace) {
 
 
-                $(".spinner222").addClass('afterSpinerLoad');
-                $('#baseController').show();
+            $(".spinner222").addClass('afterSpinerLoad');
+            $('#DRAGON').show();
 
-                $(document).on('dblclick', '[data-dragonfile]', function () {
-                    var folder = $(this).data('dragonfile');
-                    folder = folder[0] = '/' ? folder.substr(1, folder.length - 1) : folder;
-                    baseController.viewData = {
-                        root: folder,
-                        scope: baseController.currentModel,
-                        columns: 1,
-                        maxsize: 9999,
-                        maxfiles: 1
-                    };
-                    baseController.currentModel.modal.modalView("../templates/components/gallery", {
-                        width: 'modal-full',
-                        header: {
-                            title: `${MESSAGE.ic('mono.filesof')} ${folder}`,
-                            icon: "file-stats"
-                        },
-                        footer: {
-                            cancelButton: true
-                        },
-                        content: {
-                            loadingContentText: MESSAGE.i('actions.Loading')
-                        },
-                    });
+            $(document).on('dblclick', '[data-dragonfile]', function () {
+                var folder = $(this).data('dragonfile');
+                folder = folder[0] = '/' ? folder.substr(1, folder.length - 1) : folder;
+                DRAGON.viewData = {
+                    root: folder,
+                    scope: DRAGON.currentModel,
+                    columns: 1,
+                    maxsize: 9999,
+                    maxfiles: 1
+                };
+                DRAGON.currentModel.modal.modalView("../templates/components/gallery", {
+                    width: 'modal-full',
+                    header: {
+                        title: `${MESSAGE.ic('mono.filesof')} ${folder}`,
+                        icon: "file-stats"
+                    },
+                    footer: {
+                        cancelButton: true
+                    },
+                    content: {
+                        loadingContentText: MESSAGE.i('actions.Loading')
+                    },
                 });
+            });
 
-                $('[data-dragonfile]').each(function () {
-                    FILE.runServerFile($(this))
-                });
+            $('[data-dragonfile]').each(function () {
+                FILE.runServerFile($(this))
+            });
 
 
             firstPeace = false;

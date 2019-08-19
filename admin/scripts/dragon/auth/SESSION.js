@@ -1,7 +1,7 @@
 SESSION = function () {
     this.myprofile = function () {
-        MENUMODAL = true;
-        baseController.currentModel.modal.edit(this.current().path ? this.current().path() : CONFIG.users.path, this.current().getID());
+        //MENUMODAL = true;
+        DRAGON.modal.edit(this.current().path ? this.current().path() : CONFIG.users.path, this.current().getID());
     };
     this.current = function () {
         var obj = STORAGE.get("APPSESSION");
@@ -12,6 +12,23 @@ SESSION = function () {
             }
         }
         return obj;
+    };
+    this.update = function (obj) {
+        var session = STORAGE.get("APPSESSION");
+        for (var i in obj)
+            session[i] = obj[i];
+        STORAGE.add("APPSESSION", session);
+        return session;
+    };
+    this.profileImage = async function () {
+        if (this.isLogged())
+            return await FILE.serverp(`${this.current().path ? this.current().path() : CONFIG.users.path}/profileimage/${this.current().getID()}`, "assets/images/placeholder.jpg", "no");
+        return null;
+    };
+    this.getProfileImage = async function (id) {
+        if (this.isLogged())
+            return await FILE.serverp(`${this.current().path ? this.current().path() : CONFIG.users.path}/profileimage/${id}`, "assets/images/placeholder.jpg", "no");
+        return null;
     };
     this.runFunction = function (obj) {
         if (!DSON.oseaX(obj)) {

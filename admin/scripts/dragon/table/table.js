@@ -32,7 +32,7 @@ TABLE = {
                         var first = currents[i];
                         var dataTOUpdate = {where: [{value: first.id}]};
                         dataTOUpdate[$scope.dragrow] = ordered[i];
-                        await BASEAPI.updateallp($scope.tableOrMethod, dataTOUpdate);
+                        await DRAGONAPI.updateallp($scope.tableOrMethod, dataTOUpdate);
                     }
                     $scope.refresh();
                 }, 500);
@@ -41,7 +41,7 @@ TABLE = {
         $scope.runMagicColum = (column, table, key, description) => new Promise(async (resolve, reject) => {
             key = key || "id";
             description = description || "name";
-            var result = await BASEAPI.listp(table, {});
+            var result = await DRAGONAPI.listp(table, {});
             eval(`${column}List = result;`);
             eval(`${column}List = ${column}List.data;`);
 
@@ -65,7 +65,7 @@ TABLE = {
         $scope.runMagicOneToMany = (column, table, key, description, mykey) => new Promise(async (resolve, reject) => {
             mykey = mykey || "id";
             description = description || "name";
-            var result = await BASEAPI.listp(table, {});
+            var result = await DRAGONAPI.listp(table, {});
             eval(`${column}List = result;`);
             eval(`${column}List = ${column}List.data;`);
             eval(`${$scope.modelName}.records.data.forEach(row => {
@@ -96,13 +96,13 @@ TABLE = {
                 if(row.${mykey})
                 ${column}allids.push(row.${mykey});
             });`);
-            var result = await BASEAPI.listp(tableMAM, {where: [{field: idMAM, value: eval(`${column}allids `)}]});
+            var result = await DRAGONAPI.listp(tableMAM, {where: [{field: idMAM, value: eval(`${column}allids `)}]});
             eval(`var ${column}allids = [];`);
             eval(`result.data.forEach(row => {
                 if(row.${idADY})
                 ${column}allids.push(row.${idADY});
             });`);
-            var descriptions = await BASEAPI.listp(tablaDesc, {
+            var descriptions = await DRAGONAPI.listp(tablaDesc, {
                 where: [{
                     field: idDesc,
                     value: eval(`${column}allids `)
@@ -373,7 +373,7 @@ TABLE = {
                     dataToList.params = $scope.tableParams;
 
                 $scope.refreshAngular();
-                BASEAPI.list(
+                DRAGONAPI.list(
                     $scope.tableOrView,
                     dataToList,
                     function (data) {
@@ -410,7 +410,7 @@ TABLE = {
                 if ($scope.tableParams)
                     dataToList.params = $scope.tableParams;
 
-                BASEAPI.list(
+                DRAGONAPI.list(
                     $scope.tableOrView,
                     dataToList,
                     function (data) {

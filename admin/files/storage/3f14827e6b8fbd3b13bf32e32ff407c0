@@ -1,1 +1,1 @@
-{"key":"dragon_query","value":[{"name":"Delete Special","sql_engine":"1","description":"Delete Special","query":"delete from special;","user_created":"1","num":"1","id":1}]}
+{"key":"dragon_query","value":[{"name":"Insert Parent","query":"INSERT into parent(name,description) values(now(),now())","id":1},{"name":"Parent 2","query":"INSERT into parent(name,description) values('Parent 2',now())","id":2}]}

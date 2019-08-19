@@ -8,13 +8,13 @@
 </div>
 <script>
     $(document).ready(function () {
-        if (baseController.viewData.staticdata.length > 0) {
+        if (DRAGON.viewData.staticdata.length > 0) {
             var columns = [];
-            for (var i in baseController.viewData.staticdata[0]) {
+            for (var i in DRAGON.viewData.staticdata[0]) {
                 columns.push({title: capitalize(i)});
             }
             var table = $('.thistable').DataTable({
-                data: DSON.jsonToArray(baseController.viewData.staticdata),
+                data: DSON.jsonToArray(DRAGON.viewData.staticdata),
                 columns: columns,
                 responsive: true,
                 language: {

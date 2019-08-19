@@ -7,6 +7,7 @@
   "mode": "developer",
   "language": "en",
   "home": "texts",
+  "hosted": false,
   "support": {
     "email": "angel.rodriguez810@gmail.com",
     "phone": "809-316-1989"
@@ -21,7 +22,8 @@
     "migrations": false,
     "customfields": true,
     "silent": true,
-    "sockets": true
+    "sockets": true,
+    "functions": true
   },
   "developerBy": {
     "name": "Angel Rodríguez",

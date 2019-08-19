@@ -85,7 +85,7 @@ namespace DragonTool
             txtPaths.Text = Paths.ReadToEnd(); Paths.Close();
         }
 
-        private static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
+        private static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs, bool move)
         {
             DirectoryInfo dir = new DirectoryInfo(sourceDirName);
             if (!dir.Exists)
@@ -103,14 +103,17 @@ namespace DragonTool
             foreach (FileInfo file in files)
             {
                 string temppath = Path.Combine(destDirName, file.Name);
-                file.CopyTo(temppath, true);
+                if (move)
+                    file.MoveTo(temppath);
+                else
+                    file.CopyTo(temppath, true);
             }
             if (copySubDirs)
             {
                 foreach (DirectoryInfo subdir in dirs)
                 {
                     string temppath = Path.Combine(destDirName, subdir.Name);
-                    DirectoryCopy(subdir.FullName, temppath, copySubDirs);
+                    DirectoryCopy(subdir.FullName, temppath, copySubDirs,move);
                 }
             }
         }
@@ -131,15 +134,23 @@ namespace DragonTool
                     FileAttributes attr = File.GetAttributes(name);
                     if ((attr & FileAttributes.Directory) == FileAttributes.Directory)
                     {
-                        DirectoryCopy(name, destiny, true);
+                        DirectoryCopy(name, destiny, true, cbMove.Checked);
                     }
                     else
                     {
-                        File.Copy(name, destiny, true);
+                        if (cbMove.Checked)
+                            File.Move(name, destiny);
+                        else
+                            File.Copy(name, destiny, true);
                     }
                 }
             }
             MessageBox.Show("complete");
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

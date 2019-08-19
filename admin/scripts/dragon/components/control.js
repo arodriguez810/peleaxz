@@ -32,8 +32,6 @@ CONTROL = {
                 var controlReal = CONTROL.cache[url].replaceAll("DRAGONNAME", name);
                 controlReal = controlReal.replaceAll("Dragonname", label || name);
                 controlReal = controlReal.replaceAll("DRAGONMODEL", $scope.modelName);
-                console.log(opts);
-                console.log(JSON.stringify(opts));
                 controlReal = controlReal.replaceAll("DRAGONOPTION", JSON.stringify(opts));
                 if (cols)
                     controlReal = `<div class="col-sm-${cols} col-md-${cols}">` + controlReal + `</div>`;

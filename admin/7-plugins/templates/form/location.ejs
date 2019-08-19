@@ -110,7 +110,7 @@ var toclient = JSON.stringify(options);
             };
         }
         $('[name="<%= model %>_<%= nameclean %>"]').click(function () {
-            baseController.viewData = {
+            DRAGON.viewData = {
                 name: '<%= name %>'
             }
             var modal = {

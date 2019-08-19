@@ -1,0 +1,25 @@
+{
+  "appEntities": {
+    "blog": {
+      "key": "_id",
+      "type": "endpoint",
+      "expire": "60",
+      //minutes
+      "object": "response.blogs",
+      "methods": {
+        "list": "heroku.blogs",
+        "insert": "",
+        "update": "",
+        "remove": ""
+      },
+      "fields": [
+        "article",
+        "date",
+        "likes",
+        "title",
+        "topic",
+        "createdAt"
+      ]
+    }
+  }
+}

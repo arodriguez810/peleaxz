@@ -15,7 +15,7 @@ exports.api = {
             var array = [];
             var querys = await params.storage.getItem("dragon_function_query");
             querys = querys.filter((d) => {
-                return d.dragon_function == request.id;
+                return d.function == request.id;
             });
             querys.sort(function (a, b) {
                 var x = a.num;

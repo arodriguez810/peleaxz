@@ -240,5 +240,9 @@
   "dragon_function": "function",
   "OneToMany": "One To Many",
   "ManyToMany": "Many To Many",
-  "dragon_language_plural": "languages"
+  "dragon_language_plural": "languages",
+  "query_plural": "queries",
+  "dragon_function_query_plural": "queries",
+  "dragon_function_query": "query",
+  "dragon_query": "query"
 }

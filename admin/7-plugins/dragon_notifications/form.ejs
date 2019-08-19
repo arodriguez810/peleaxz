@@ -8,7 +8,7 @@
                 <%- FORM.select("segments", scope, {
                     table: "dragon_segment",
                     value: "name",
-                    get: {table: 'dragon_notifications_segment', fieldFrom: 'id', fieldTo: 'dragon_notifications', field: 'dragon_segment'},
+                    get: {table: 'dragon_notifications_segment', fieldFrom: 'id', fieldTo: 'notifications', field: 'segment'},
                     multiple: true,
                     icon: {class: "collaboration"}
                 }) %>
@@ -16,7 +16,7 @@
             <div class="col-sm-4 col-md-4" ng-show="dragon_notifications.showSegments">
                 <%- FORM.select("users", scope, {
                     table: CONFIG.users.model,
-                    get: {table: 'user_dragon_notifications', fieldFrom: 'id', fieldTo: 'dragon_notifications', field: 'user'},
+                    get: {table: 'user_dragon_notifications', fieldFrom: 'id', fieldTo: 'notifications', field: 'user'},
                     multiple: true,
                     icon: {class: "users4"}
                 }) %>

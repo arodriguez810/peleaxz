@@ -1,5 +1,5 @@
 <!-- Main navbar -->
-<div class="navbar navbar-inverse  bg-<%= COLOR.primary %>-700" ng-show="baseController.isLogged">
+<div class="navbar navbar-inverse  bg-<%= COLOR.primary %>-700" ng-show="DRAGON.isLogged">
     <div class="navbar-header  bg-<%= COLOR.primary %>-700">
         <a class="visible-lg visible-md visible-sm navbar-brand bg-<%= COLOR.primary %>-700 sidebar-mobile-main-toggle">
             <img style="float: left !important;" src="files/dragon_configuration/logo/logo.png" alt="">
@@ -16,8 +16,8 @@
             <li><a class="sidebar-mobile-main-toggle"><i class="icon-paragraph-justify3"></i></a></li>
         </ul>
     </div>
-    <div class="navbar-collapse collapse" id="navbar-mobile" ng-show="!baseController.isClient">
-        <ul ng-show="!baseController.isClient" class="nav navbar-nav">
+    <div class="navbar-collapse collapse" id="navbar-mobile" ng-show="!DRAGON.isClient">
+        <ul ng-show="!DRAGON.isClient" class="nav navbar-nav">
             <li>
                 <a class="sidebar-control sidebar-main-toggle hidden-xs" data-popup="tooltip"
                    data-placement="bottom" data-container="body" dragonlanguage title="MESSAGE.i('navbar.LiteMenu')">
@@ -39,7 +39,7 @@
                 </a>
             </li>
 
-            <li ng-if="baseController.features.configuration===true && (baseController.isSuper || baseController.isAdmin)">
+            <li ng-if="DRAGON.features.configuration===true && (DRAGON.isSuper || DRAGON.isAdmin)">
                 <a class="sidebar-control" onclick="CONFIGURATION.OPEN()" data-popup="tooltip"
                    data-placement="bottom" data-container="body" dragonlanguage
                    title="MESSAGE.ic('mono.dragon_configuration')">
@@ -47,7 +47,7 @@
                 </a>
             </li>
 
-            <li ng-if="baseController.mode==='developer'"
+            <li ng-if="DRAGON.mode==='developer'"
                 class="dropdown dropdownwithoptions" dragonlanguage="">
                 <a class="dropdown-toggle legitRipple" data-toggle="dropdown" aria-expanded="false">
                     <i class="icon-equalizer"></i>
@@ -55,17 +55,16 @@
                     <i class="caret"></i>
                 </a>
                 <ul class="dropdown-menu " id="dragonsecondmenu" style="color:#000 !important;">
-                    <li ng-if="baseController.mode==='developer'">
+                    <li ng-if="DRAGON.mode==='developer'">
                         <a class="sidebar-control" onclick="new HTTP().openManager()" data-popup="tooltip"
                            data-placement="bottom" data-container="body" dragonlanguage
                            title="MESSAGE.i('navbar.RequestManager')">
 
                             <i class="icon-git-pull-request"></i>
                             <language>MESSAGE.ic('navbar.RequestManager')</language>
-                            <span class="badge bg-<%= COLOR.secundary %>">{{baseController.WARNINGREQUESTS.length}}</span>
                         </a>
                     </li>
-                    <li ng-if="baseController.features.fileManager===true && (baseController.isSuper || baseController.isAdmin)">
+                    <li ng-if="DRAGON.features.fileManager===true && (DRAGON.isSuper || DRAGON.isAdmin)">
                         <a class="sidebar-control" onclick="FILEMANAGER.OPEN(['/'])" data-popup="tooltip"
                            data-placement="bottom" data-container="body" dragonlanguage
                            title="MESSAGE.i('navbar.FileManager')">
@@ -73,7 +72,7 @@
                             <language>MESSAGE.ic('navbar.FileManager')</language>
                         </a>
                     </li>
-                    <li ng-if="baseController.features.stepManager===true && baseController.mode==='developer'">
+                    <li ng-if="DRAGON.features.stepManager===true && DRAGON.mode==='developer'">
                         <a class="sidebar-control" onclick="STEP.OPEN()" data-popup="tooltip"
                            data-placement="bottom" data-container="body" dragonlanguage
                            title="MESSAGE.i('navbar.StepManager')">
@@ -81,7 +80,7 @@
                             <language>MESSAGE.ic('navbar.StepManager')</language>
                         </a>
                     </li>
-                    <li ng-show="!baseController.isClient" ng-if="baseController.mode==='developer'">
+                    <li ng-show="!DRAGON.isClient" ng-if="DRAGON.mode==='developer'">
                         <a class="sidebar-control"
                            onclick="MODAL.rawModal(MESSAGE.ic('mono.messages'),'dragon_language','comment',undefined,'dragon_language');"
                            data-popup="tooltip"
@@ -91,8 +90,8 @@
                             <language>MESSAGE.ic('mono.messages')</language>
                         </a>
                     </li>
-                    <li ng-show="!baseController.isClient"
-                        ng-if="baseController.mode==='developer'">
+                    <li ng-show="!DRAGON.isClient"
+                        ng-if="DRAGON.mode==='developer'">
                         <a class="sidebar-control" onclick="MESSAGE.OPEN()" data-popup="tooltip"
                            data-placement="bottom" data-container="body" dragonlanguage
                            title="MESSAGE.i('navbar.MessageManager')">
@@ -104,7 +103,7 @@
             </li>
 
 
-            <li ng-if="((baseController.isSuper) || (baseController.features.onesignal===true || baseController.features.customfields===true))||baseController.mode==='developer'"
+            <li ng-if="((DRAGON.isSuper) || (DRAGON.features.onesignal===true || DRAGON.features.customfields===true))||DRAGON.mode==='developer'"
                 class="dropdown dropdownwithoptions" dragonlanguage="">
                 <a class="dropdown-toggle legitRipple" data-toggle="dropdown" aria-expanded="false">
                     <i class="icon-equalizer"></i>
@@ -112,34 +111,14 @@
                     <i class="caret"></i>
                 </a>
                 <ul class="dropdown-menu " id="datacenteroptions" style="color:#000 !important;">
-                    <li ng-if="(baseController.isSuper)">
+                    <li ng-if="(DRAGON.isSuper)">
                         <a class="sidebar-control"
                            onclick="MODAL.rawModal(MESSAGE.ic('mono.diskdata'), 'dragon_information/storage', 'cabinet', 'modal-lg', 'dragon_information')">
                             <language>MESSAGE.ic('mono.diskdata')</language>
                             <i class="icon-cabinet"></i>
                         </a>
                     </li>
-                    <li ng-if="baseController.features.onesignal===true && (baseController.isSuper)">
-                        <a class="sidebar-control"
-                           onclick="MODAL.rawModal(MESSAGE.ic('mono.dragon_notifications'),'dragon_notifications','bubble-notification',undefined,'dragon_notifications');"
-                           data-popup="tooltip"
-                           data-placement="bottom" data-container="body" dragonlanguage
-                           title="MESSAGE.ic('mono.dragon_notifications')">
-                            <i class="icon-bubble-notification"></i>
-                            <language>MESSAGE.ic('mono.dragon_notifications')</language>
-                        </a>
-                    </li>
-                    <li ng-if="baseController.features.customfields===true">
-                        <a class="sidebar-control"
-                           onclick="MODAL.rawModal(MESSAGE.ic('mono.dragon_customfield'),'dragon_customfield','magic-wand',undefined,'dragon_customfield');"
-                           data-popup="tooltip"
-                           data-placement="bottom" data-container="body" dragonlanguage
-                           title="MESSAGE.ic('mono.dragon_customfield')">
-                            <i class=" icon-magic-wand"></i>
-                            <language>MESSAGE.ic('mono.dragon_customfield')</language>
-                        </a>
-                    </li>
-                    <li ng-if="(baseController.isSuper) && baseController.mode==='developer'">
+                    <li ng-if="(DRAGON.isSuper) && DRAGON.mode==='developer'">
                         <a class="sidebar-control"
                            onclick="MODAL.rawModal(MESSAGE.ic('columns.curreny_plural'),'dragon_currency','coin-dollar',undefined,'dragon_currency');"
                            data-popup="tooltip"
@@ -149,9 +128,9 @@
                             <language>MESSAGE.ic('columns.curreny_plural')</language>
                         </a>
                     </li>
-                    <li ng-if="(baseController.isSuper) && baseController.mode==='developer'"
+                    <li ng-if="(DRAGON.isSuper) && DRAGON.mode==='developer'"
                         class="divider"></li>
-                    <li ng-if="(baseController.isSuper) && baseController.mode==='developer'">
+                    <li ng-if="(DRAGON.isSuper) && DRAGON.mode==='developer'">
                         <a class="sidebar-control"
                            onclick="MODAL.rawModal(MESSAGE.ic('columns.dragon_mime_plural'),'dragon_mime','book',undefined,'dragon_mime');"
                            data-popup="tooltip"
@@ -162,7 +141,7 @@
                         </a>
                     </li>
 
-                    <li ng-if="(baseController.isSuper) && baseController.mode==='developer'">
+                    <li ng-if="(DRAGON.isSuper) && DRAGON.mode==='developer'">
                         <a class="sidebar-control"
                            onclick="MODAL.rawModal(MESSAGE.ic('columns.dragon_fieldtype_plural'),'dragon_fieldtype','terminal',undefined,'dragon_fieldtype');"
                            data-popup="tooltip"
@@ -173,7 +152,7 @@
                         </a>
                     </li>
 
-                    <li ng-if="(baseController.isSuper) && baseController.mode==='developer'">
+                    <li ng-if="(DRAGON.isSuper) && DRAGON.mode==='developer'">
                         <a class="sidebar-control"
                            onclick="MODAL.rawModal(MESSAGE.ic('columns.dragon_interval_plural'),'dragon_interval','alarm',undefined,'dragon_interval');"
                            data-popup="tooltip"
@@ -184,7 +163,7 @@
                         </a>
                     </li>
 
-                    <li ng-if="(baseController.isSuper) && baseController.mode==='developer'">
+                    <li ng-if="(DRAGON.isSuper) && DRAGON.mode==='developer'">
                         <a class="sidebar-control"
                            onclick="MODAL.rawModal(MESSAGE.ic('columns.dragon_function'),'dragon_function','code',undefined,'dragon_function');"
                            data-popup="tooltip"
@@ -197,25 +176,68 @@
                 </ul>
             </li>
 
+            <li ng-if="((DRAGON.isSuper) || (DRAGON.features.onesignal===true || DRAGON.features.customfields===true))||DRAGON.mode==='developer'"
+                class="dropdown dropdownwithoptions" dragonlanguage="">
+                <a class="dropdown-toggle legitRipple" data-toggle="dropdown" aria-expanded="false">
+                    <i class="icon-equalizer"></i>
+                    <language>MESSAGE.ic('mono.modules')</language>
+                    <i class="caret"></i>
+                </a>
+                <ul class="dropdown-menu " id="datacenteroptions" style="color:#000 !important;">
+
+                    <li ng-if="DRAGON.features.onesignal===true && (DRAGON.isSuper)">
+                        <a class="sidebar-control"
+                           onclick="MODAL.rawModal(MESSAGE.ic('mono.dragon_notifications'),'dragon_notifications','bubble-notification',undefined,'dragon_notifications');"
+                           data-popup="tooltip"
+                           data-placement="bottom" data-container="body" dragonlanguage
+                           title="MESSAGE.ic('mono.dragon_notifications')">
+                            <i class="icon-bubble-notification"></i>
+                            <language>MESSAGE.ic('mono.dragon_notifications')</language>
+                        </a>
+                    </li>
+                    <li ng-if="DRAGON.features.customfields===true">
+                        <a class="sidebar-control"
+                           onclick="MODAL.rawModal(MESSAGE.ic('mono.dragon_customfield'),'dragon_customfield','magic-wand',undefined,'dragon_customfield');"
+                           data-popup="tooltip"
+                           data-placement="bottom" data-container="body" dragonlanguage
+                           title="MESSAGE.ic('mono.dragon_customfield')">
+                            <i class=" icon-magic-wand"></i>
+                            <language>MESSAGE.ic('mono.dragon_customfield')</language>
+                        </a>
+                    </li>
+
+                    <li ng-if="DRAGON.features.functions===true">
+                        <a class="sidebar-control"
+                           onclick="MODAL.rawModal(MESSAGE.ic('mono.functions'),'dragon_function','code',undefined,'dragon_function');"
+                           data-popup="tooltip"
+                           data-placement="bottom" data-container="body" dragonlanguage
+                           title="MESSAGE.ic('mono.functions')">
+                            <i class=" icon-code"></i>
+                            <language>MESSAGE.ic('mono.functions')</language>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
         </ul>
         <ul class="nav navbar-nav">
 
 
             <li class="dropdown language-switch dropdownwithoptions"
-                ng-if="baseController.features.multilanguage===true">
+                ng-if="DRAGON.features.multilanguage===true">
                 <a class="dropdown-toggle legitRipple" data-toggle="dropdown" aria-expanded="false"><img
-                            src="assets/images/flags/{{baseController.currentLang.flag}}.png" alt=""
-                            class="position-left"> {{baseController.currentLang.name}} <i class="caret"></i></a>
+                            src="assets/images/flags/{{DRAGON.currentLang.flag}}.png" alt=""
+                            class="position-left"> {{DRAGON.currentLang.name}} <i class="caret"></i></a>
                 <ul class="dropdown-menu">
                     <li
-                            ng-repeat="(key,lan) in baseController.SHOWLANGS track by key"
-                            class="{{baseController.currentLang.code===lan.code?'bg-<%= COLOR.primary %>':''}}">
-                        <a style="color: #000 !important;" ng-click="baseController.changeLanguage(lan)">
+                            ng-repeat="(key,lan) in DRAGON.SHOWLANGS track by key"
+                            class="{{DRAGON.currentLang.code===lan.code?'bg-<%= COLOR.primary %>':''}}">
+                        <a style="color: #000 !important;" ng-click="DRAGON.changeLanguage(lan)">
                             <img src="assets/images/flags/{{lan.flag}}.png" alt="">{{lan.name}}</a>
                     </li>
                 </ul>
             </li>
-            <li ng-show="!baseController.isClient" ng-if="baseController.mode==='developer'">
+            <li ng-show="!DRAGON.isClient" ng-if="DRAGON.mode==='developer'">
                 <a class="sidebar-control"
                    onclick="MODAL.rawModal(MESSAGE.ic('mono.generatemobile'), 'dragon_information/mobile', 'mobile', 'modal-lg', 'dragon_information')"
                    data-popup="tooltip"
@@ -225,7 +247,7 @@
                 </a>
             </li>
             <li class="dropdown dropdownwithoptions"
-                ng-show="baseController.isSuper && baseController.menusList.length>1"
+                ng-show="DRAGON.isSuper && DRAGON.menusList.length>1"
                 dragonlanguage="">
                 <a class="dropdown-toggle legitRipple" data-toggle="dropdown" aria-expanded="false">
                     <i class="icon-menu9"></i>
@@ -234,20 +256,20 @@
                             </span>
                 </a>
                 <ul class="dropdown-menu ">
-                    <li ng-repeat="(key, menu) in baseController.menusList track by key"
-                        class="{{baseController.currentMenu===menu.href?'bg-primary':''}}">
-                        <a data-modal="{{menu.modal}}" ng-click="baseController.changeMenu(menu)"
+                    <li ng-repeat="(key, menu) in DRAGON.menusList track by key"
+                        class="{{DRAGON.currentMenu===menu.href?'bg-primary':''}}">
+                        <a data-modal="{{menu.modal}}" ng-click="DRAGON.changeMenu(menu)"
                            style="color: black !important;">
                             <i class="icon-{{menu.icon}}"></i>
                             <span>
-                                        {{baseController.menuLabel(menu)}}
+                                        {{DRAGON.menuLabel(menu)}}
                                      </span>
                         </a>
                     </li>
                 </ul>
             </li>
         </ul>
-        <div class="navbar-right" ng-show="baseController.isLogged">
+        <div class="navbar-right" ng-show="DRAGON.isLogged">
 
             <ul class="nav navbar-nav">
 
@@ -255,10 +277,10 @@
                     <a class="dropdown-toggle legitRipple" data-toggle="dropdown" aria-expanded="false">
 
                         <img id="profileImage"
-                             data-dragonfile="/{{::baseController.path}}/profileimage/{{::baseController.userID}}"
+                             data-dragonfile="/{{::DRAGON.path}}/profileimage/{{::DRAGON.userID}}"
                              src="assets/images/placeholder.jpg" alt="">
 
-                        <span>{{::baseController.fullName}}</span>
+                        <span>{{::DRAGON.fullName}}</span>
                         <i class="caret"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-right">

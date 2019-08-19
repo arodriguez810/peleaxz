@@ -4,24 +4,28 @@
     }
 </style>
 <script>
-    var viewModel = MODAL.getViewData() || baseController.viewData;
-    <%= DATA.scope %>.galleryFiles = {};
-    <%= DATA.scope %>.galleryFiles.viewModel = viewModel;
-    <%= DATA.scope %>.galleryFiles.data = {};
-    <%= DATA.scope %>.galleryFiles.data.files = [];
-    <%= DATA.scope %>.galleryFiles.upload = false;
-    <%= DATA.scope %>.galleryFiles.rootFolder = viewModel.root;
-    <%= DATA.scope %>.galleryFiles.fileName = viewModel.file;
+    var viewModel = MODAL.getViewData() || DRAGON.viewData;
+    <%
+    DATA.nameclean = "id" + new Date().getTime();
+    %>
+    <%= DATA.scope %>.<%= DATA.nameclean %> = {};
+    <%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles = {};
+    <%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.viewModel = viewModel;
+    <%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.data = {};
+    <%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.data.files = [];
+    <%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.upload = false;
+    <%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.rootFolder = viewModel.root;
+    <%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.fileName = viewModel.file;
     var firstThis = true;
-    <%= DATA.scope %>.galleryFiles.refresh = function () {
+    <%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.refresh = function () {
         var http = new HTTP();
         if (!firstThis) {
             $(`[data-dragonfile='/${viewModel.root}']:not(:hidden)`).each(function () {
                 FILE.runServerFile($(this))
             });
         }
-        BASEAPI.ajax.get(http.path(["files", "api"]), {folder: viewModel.root}, function (data) {
-            for (var i in  data.data.files) {
+        DRAGONAPI.ajax.get(http.path(["files", "api"]), {folder: viewModel.root}, function (data) {
+            for (var i in data.data.files) {
                 var file = data.data.files[i];
                 data.data.files[i] = {
                     url: `${http.path([FOLDERS.files, viewModel.root])}/${file}`,
@@ -33,31 +37,31 @@
                 }
                 data.data.files[i].originalCrop = DSON.substringif(data.data.files[i].original, 12);
             }
-            <%= DATA.scope %>.
+            <%= DATA.scope %>.<%= DATA.nameclean %>.
             galleryFiles.data = data.data;
-            <%= DATA.scope %>.
+            <%= DATA.scope %>.<%= DATA.nameclean %>.
             galleryFiles.columns = (12 / viewModel.columns);
             <%= DATA.scope %>.
             refreshAngular();
             firstThis = false;
         });
     };
-    <%= DATA.scope %>.galleryFiles.refresh();
-    <%= DATA.scope %>.galleryFiles.isSingle = function () {
-        return <%= DATA.scope %>.
+    <%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.refresh();
+    <%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.isSingle = function () {
+        return <%= DATA.scope %>.<%= DATA.nameclean %>.
         galleryFiles.viewModel.maxfiles == 1;
     };
-    <%= DATA.scope %>.galleryFiles.reachMaxFiles = function () {
-        return <%= DATA.scope %>.
-        galleryFiles.data.files.length < <%= DATA.scope %>.
+    <%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.reachMaxFiles = function () {
+        return <%= DATA.scope %>.<%= DATA.nameclean %>.
+        galleryFiles.data.files.length < <%= DATA.scope %>.<%= DATA.nameclean %>.
         galleryFiles.viewModel.maxfiles;
     };
-    <%= DATA.scope %>.galleryFiles.uploadview = function (file) {
-        <%= DATA.scope %>.
-        galleryFiles.upload = !<%= DATA.scope %>.
+    <%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.uploadview = function (file) {
+        <%= DATA.scope %>.<%= DATA.nameclean %>.
+        galleryFiles.upload = !<%= DATA.scope %>.<%= DATA.nameclean %>.
         galleryFiles.upload;
     };
-    <%= DATA.scope %>.galleryFiles.Icon = function (file) {
+    <%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.Icon = function (file) {
         if (DSON.oseaX(file))
             return "";
         if (FILE.isImage(file.fileName)) {
@@ -66,7 +70,7 @@
             return FILE.fileToIcon(file.fileName);
         }
     };
-    <%= DATA.scope %>.galleryFiles.view = function (file) {
+    <%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.view = function (file) {
         var load = new LOAD();
         if (FILE.isImage(file.fileName)) {
             load.template('templates/components/crop', {src: file.url}, function (html) {
@@ -80,33 +84,32 @@
             });
         }
     };
-    <%= DATA.scope %>.galleryFiles.check = function (file) {
-        console.log("CHEKEADO");
+    <%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.check = function (file) {
         file.selected = !file.selected;
     };
-    <%= DATA.scope %>.galleryFiles.allChecked = function () {
-        var allSelected = <%= DATA.scope %>.
+    <%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.allChecked = function () {
+        var allSelected = <%= DATA.scope %>.<%= DATA.nameclean %>.
         galleryFiles.data.files.filter(function (file) {
             return !file.selected;
         });
         return allSelected.length === 0;
     };
-    <%= DATA.scope %>.galleryFiles.allCheckedText = function () {
-        return <%= DATA.scope %>.
+    <%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.allCheckedText = function () {
+        return <%= DATA.scope %>.<%= DATA.nameclean %>.
         galleryFiles.allChecked() ? "UnCheck" : "Check";
     };
 
-    <%= DATA.scope %>.galleryFiles.allCheckedIcon = function () {
-        return !<%= DATA.scope %>.
+    <%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.allCheckedIcon = function () {
+        return !<%= DATA.scope %>.<%= DATA.nameclean %>.
         galleryFiles.allChecked() ? "checkbox-unchecked" : "checkbox-checked";
     };
-    <%= DATA.scope %>.galleryFiles.checkAll = function () {
-        if (<%= DATA.scope %>.
+    <%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.checkAll = function () {
+        if (<%= DATA.scope %>.<%= DATA.nameclean %>.
         galleryFiles.allChecked()
     )
 
         {
-            for (var file of <%= DATA.scope %>.
+            for (var file of <%= DATA.scope %>.<%= DATA.nameclean %>.
             galleryFiles.data.files
         )
             {
@@ -115,7 +118,7 @@
         }
     else
         {
-            for (var file of <%= DATA.scope %>.
+            for (var file of <%= DATA.scope %>.<%= DATA.nameclean %>.
             galleryFiles.data.files
         )
             {
@@ -123,26 +126,26 @@
             }
         }
     };
-    <%= DATA.scope %>.galleryFiles.getIcon = function (file) {
+    <%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.getIcon = function (file) {
         return !file.selected ? "checkbox-unchecked" : "checkbox-checked";
     };
-    <%= DATA.scope %>.galleryFiles.deleteSelected = function () {
+    <%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.deleteSelected = function () {
 
-        var allSelected = <%= DATA.scope %>.
+        var allSelected = <%= DATA.scope %>.<%= DATA.nameclean %>.
         galleryFiles.data.files.filter(function (file) {
             return file.selected;
         });
         STEP.register({
-            scope: baseController.currentModel.modelName,
+            scope: DRAGON.currentModel.modelName,
             action: `Deleted Selected ${allSelected.length} Files`,
             field: viewModel.root
         });
-        <%= DATA.scope %>.
+        <%= DATA.scope %>.<%= DATA.nameclean %>.
         galleryFiles.delete(allSelected);
     };
-    <%= DATA.scope %>.galleryFiles.delete = function (files) {
+    <%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.delete = function (files) {
         STEP.register({
-            scope: baseController.currentModel.modelName,
+            scope: DRAGON.currentModel.modelName,
             action: `Deleted ${files.cleanUrl} File`,
             field: viewModel.root
         });
@@ -157,10 +160,10 @@
             message: MESSAGE.i('alerts.AYSDeleteFile'),
             confirm: function () {
                 SWEETALERT.loading({message: MESSAGE.ic('mono.deleting')});
-                BASEAPI.ajax.post(new HTTP().path(["files", "api", "delete"]), {filename: finalArray}, function (data) {
+                DRAGONAPI.ajax.post(new HTTP().path(["files", "api", "delete"]), {filename: finalArray}, function (data) {
                     SWEETALERT.stop();
                     if (data.data.deleted) {
-                        <%= DATA.scope %>.
+                        <%= DATA.scope %>.<%= DATA.nameclean %>.
                         galleryFiles.refresh();
                     }
                 });
@@ -168,9 +171,9 @@
         });
     };
 
-    <%= DATA.scope %>.galleryFiles.downloadAll = function () {
+    <%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.downloadAll = function () {
         STEP.register({
-            scope: baseController.currentModel.modelName,
+            scope: DRAGON.currentModel.modelName,
             action: `Download All`,
             field: viewModel.root
         });
@@ -179,7 +182,7 @@
             confirm: function () {
                 var http = new HTTP();
                 SWEETALERT.loading({message: MESSAGE.i('mono.Preparingdownloadforfiles')});
-                BASEAPI.ajax.get(http.path(["files", "api", "download"]), {
+                DRAGONAPI.ajax.get(http.path(["files", "api", "download"]), {
                     folder: viewModel.root,
                     name: MODAL.current().header.title + ".zip"
                 }, function (data) {
@@ -193,60 +196,57 @@
     };
 </script>
 <div dragonlanguage=""
-     ng-show="<%= DATA.scope %>.galleryFiles.columns && <%= DATA.scope %>.galleryFiles.data.files.length<=0"
+     ng-show="<%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.columns && <%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.data.files.length<=0"
      class="alert alpha-<%= COLOR.secundary %> border-<%= COLOR.secundary %> alert-styled-left">
     <language>MESSAGE.i('mono.Thereisnofilestoshow')</language>
 </div>
 
-<div class="col-md-4 pull-right22 pl-0">
+<div class="col-md-12 pull-right22 pl-0">
     <div class="panel panel-<%= COLOR.secundary %>">
         <div class="panel-body">
             <div class="row">
                 <center>
-                    <div class="btn-group" ng-show="<%= DATA.scope %>.galleryFiles.reachMaxFiles()">
+                    <div class="btn-group"
+                         ng-show="<%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.reachMaxFiles()">
                         <button
                                 title="MESSAGE.i('columns.upload_image')" type="button"
                                 role="button"
                                 class=" btn bg-<%= COLOR.secundary %>-600 btn-labeled btn-xs"
                                 ng-show="<%= DATA.scope %>.allow('file.upload')"
-                                ng-click="<%= DATA.scope %>.galleryFiles.uploadview()" dragonlanguage="">
+                                ng-click="<%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.uploadview()"
+                                dragonlanguage="">
                             <b><i class="icon-upload"></i></b>
                             <language>MESSAGE.i('columns.upload_image')</language>
                         </button>
                     </div>
 
-                    <div class="btn-group" ng-show="!<%= DATA.scope %>.galleryFiles.isSingle()">
+                    <div class="btn-group" ng-show="!<%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.isSingle()">
                         <button title="{{<%= DATA.scope %>
-                .galleryFiles.allCheckedText()}} All" ng-click="<%= DATA.scope %>.galleryFiles.checkAll()" type="button"
+                .galleryFiles.allCheckedText()}} All"
+                                ng-click="<%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.checkAll()" type="button"
                                 ng-show="<%= DATA.scope %>.allow(['file.remove','file.download','file.upload'])"
                                 class="btn bg-<%= COLOR.secundary %>-600 btn-icon">
-                            <span class="icon-{{<%= DATA.scope %>.galleryFiles.allCheckedIcon()}}"></span>
+                            <span class="icon-{{<%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.allCheckedIcon()}}"></span>
                         </button>
 
                     </div>
 
                     <div class="btn-group"
-                         ng-show="!<%= DATA.scope %>.galleryFiles.isSingle() && <%= DATA.scope %>.allow('file.download')">
-                        <button title="Descargar todo" ng-click="<%= DATA.scope %>.galleryFiles.downloadAll()"
+                         ng-show="!<%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.isSingle() && <%= DATA.scope %>.allow('file.download')">
+                        <button title="Descargar todo"
+                                ng-click="<%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.downloadAll()"
                                 type="button"
                                 class="btn bg-<%= COLOR.secundary %>-600 btn-icon">
                             <span class="icon-download"></span>
                         </button>
                     </div>
 
-                    <!--<div class="btn-group"-->
-                    <!--ng-show="!<%= DATA.scope %>.galleryFiles.isSingle() && <%= DATA.scope %>.allow('file.download')">-->
-                    <!--<button title="Descargar imágenes seleccionados" ng-click="" type="button"-->
-                    <!--class="btn bg-<%= COLOR.secundary %>-600 btn-icon">-->
-                    <!--<span class="icon-download10"></span>-->
-                    <!--</button>-->
-                    <!--</div>-->
-
 
                     <div class="btn-group"
-                         ng-show="!<%= DATA.scope %>.galleryFiles.isSingle() && <%= DATA.scope %>.allow('file.remove')">
+                         ng-show="!<%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.isSingle() && <%= DATA.scope %>.allow('file.remove')">
                         <button title="Eliminar imágenes seleccionadas"
-                                ng-click="<%= DATA.scope %>.galleryFiles.deleteSelected()" type="button"
+                                ng-click="<%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.deleteSelected()"
+                                type="button"
                                 class="btn bg-<%= COLOR.secundary %>-600 btn-icon" style="margin-right: 0">
                             <span class="icon-trash"></span>
                         </button>
@@ -258,47 +258,35 @@
 
 </div>
 
-<div class="col-md-4 pull-right pl-0">
-    <!--<div class="panel panel-<%= COLOR.secundary %>">-->
-    <!--<div class="panel-body">-->
-    <!--<div class="row">-->
-    <!--<center>-->
-    <!--<label style="margin-bottom: 0; font-size: 18px;">Archivos subidos (0)</label>-->
-    <!--</center>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-</div>
-
 <div class="panel panel-flat"
-     ng-show="(<%= DATA.scope %>.galleryFiles.upload && <%= DATA.scope %>.galleryFiles.columns) && <%= DATA.scope %>.galleryFiles.reachMaxFiles()">
-    <div class="panel-heading">
-        <h5 dragonlanguage class="panel-title">
-            <language>MESSAGE.i('alerts.SelectorDropFiles')</language>
-        </h5>
-    </div>
+     ng-show="(<%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.upload && <%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.columns) && <%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.reachMaxFiles()">
+
     <div class="panel-body">
-        <form class="dropzone" id="filesForm" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="folder" value="{{<%= DATA.scope %>.galleryFiles.rootFolder}}">
-            <input type="hidden" name="user" value="{{baseController.userID}}">
-            <input type="hidden" name="filename" value="{{<%= DATA.scope %>.galleryFiles.fileName}}">
+        <form class="dropzone" style="margin-top: 75px;" id="<%= DATA.nameclean %>" method="post"
+              enctype="multipart/form-data">
+            <input type="hidden" name="folder"
+                   value="{{<%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.rootFolder}}">
+            <input type="hidden" name="user" value="{{DRAGON.userID}}">
+            <input type="hidden" name="filename"
+                   value="{{<%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.fileName}}">
         </form>
     </div>
 </div>
 <div class="row imagen-panel" id="galleryFiles">
-    <div class="col-md-{{<%= DATA.scope %>.galleryFiles.columns}}"
-         ng-repeat="(key,file) in <%= DATA.scope %>.galleryFiles.data.files track by key">
+    <div class="col-md-{{<%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.columns}}"
+         ng-repeat="(key,file) in <%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.data.files track by key">
         <div class="panel panel-flat">
             <div class="panel-body image-body">
                 <div class="thumbnail" style="width: 100%">
                     <div class="thumb" style="width: 100%;min-height: 200px;">
-                        <div ng-if="<%= DATA.scope %>.galleryFiles.Icon(file)!=='image'"
+                        <div ng-if="<%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.Icon(file)!=='image'"
                              class="notsupportitem"
-                             ng-bind-html="<%= DATA.scope %>.galleryFiles.Icon(file)"></div>
-                        <object ng-if="<%= DATA.scope %>.galleryFiles.Icon(file)!=='image'" title="{{file.original}}"
+                             ng-bind-html="<%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.Icon(file)"></div>
+                        <object ng-if="<%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.Icon(file)!=='image'"
+                                title="{{file.original}}"
                                 style='height: auto;width: 200px'
                                 data='{{file.url}}'></object>
-                        <img ng-if="<%= DATA.scope %>.galleryFiles.Icon(file)==='image'"
+                        <img ng-if="<%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.Icon(file)==='image'"
                              style='max-height: 198px;width: 200px'
                              src='{{file.url}}'/>
 
@@ -309,7 +297,7 @@
                         </div>
                         <div class="" style="padding-right: 0px;text-align: center;">
 
-                            <a ng-click="<%= DATA.scope %>.galleryFiles.view(file)"
+                            <a ng-click="<%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.view(file)"
                                class="btn  border-<%= COLOR.primary %>-300 text-black btn-icon">
                                 <i class="icon-zoomin3"></i>
                             </a>
@@ -318,15 +306,15 @@
                                class="btn  border-<%= COLOR.primary %>-300 text-black btn-icon">
                                 <i class="icon-download"></i>
                             </a>
-                            <a ng-click="<%= DATA.scope %>.galleryFiles.delete(file)"
+                            <a ng-click="<%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.delete(file)"
                                ng-show="<%= DATA.scope %>.allow('file.remove')"
                                class="btn  border-<%= COLOR.primary %>-300 text-black btn-icon">
                                 <i class="icon-trash"></i>
                             </a>
-                            <a ng-click="<%= DATA.scope %>.galleryFiles.check(file)"
+                            <a ng-click="<%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.check(file)"
                                ng-show="<%= DATA.scope %>.allow(['file.remove','file.download','file.upload'])"
                                class="btn  border-<%= COLOR.primary %>-300 text-black btn-icon check-button">
-                                <i class="icon-{{<%= DATA.scope %>.galleryFiles.getIcon(file)}} position-left"></i>
+                                <i class="icon-{{<%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.getIcon(file)}} position-left"></i>
                             </a>
                         </div>
                     </div>
@@ -338,8 +326,12 @@
 <script>
     $(document).ready(function () {
         var http = new HTTP();
-        $("#filesForm").attr('action', http.path(["files", "api", "upload"]));
-        var myDropzone = $("#filesForm").dropzone({
+        $("#<%= DATA.nameclean %>").attr('action', http.path(["files", "api", "upload"]));
+        var myDropzone = $("#<%= DATA.nameclean %>")[0].dropzone;
+        if (myDropzone) {
+            myDropzone.destroy();
+        }
+        myDropzone = $("#<%= DATA.nameclean %>").dropzone({
             paramName: "toupload", // The name that will be used to transfer the file
             dictDefaultMessage: MESSAGE.i('alerts.upload'),
             maxFilesize: viewModel.maxsize || 20, // MB
@@ -350,21 +342,22 @@
                     this.removeFile(file);
 
                     STEP.register({
-                        scope: baseController.currentModel.modelName,
+                        scope: DRAGON.currentModel.modelName,
                         action: "Upload File",
                         field: viewModel.root
                     });
 
-                    <%= DATA.scope %>.
+                    <%= DATA.scope %>.<%= DATA.nameclean %>.
                     galleryFiles.uploadview();
-                    <%= DATA.scope %>.
+                    <%= DATA.scope %>.<%= DATA.nameclean %>.
                     galleryFiles.refresh();
                 });
                 this.on('completemultiple', function (file) {
-                    <%= DATA.scope %>.
+                    <%= DATA.scope %>.<%= DATA.nameclean %>.
                     galleryFiles.refresh();
                 });
             }
         });
+
     });
 </script>

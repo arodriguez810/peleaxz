@@ -26,4 +26,5 @@ app.controller("lists", function ($scope, $http, $compile) {
         lists.runMagicOneToMany('OneToMany', 'relation', 'list');
         lists.runMagicManyToMany('ManyToMany', 'category', 'lists');
     };
+
 });

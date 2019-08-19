@@ -307,7 +307,7 @@ FORM = {
 
                 var crud = eval(`CRUD_${$scope.modelName}`);
                 if (crud.table.dragrow !== false) {
-                    var last = await BASEAPI.firstp($scope.tableOrView, {
+                    var last = await DRAGONAPI.firstp($scope.tableOrView, {
                         order: 'desc',
                         orderby: crud.table.dragrow,
                         where: $scope.fixFilters,
@@ -318,7 +318,7 @@ FORM = {
                         $scope.form.inserting[crud.table.dragrow] = (parseInt(last[crud.table.dragrow]) + 1).toString();
                 }
 
-                BASEAPI.insertID($scope.tableOrMethod, $scope.form.inserting, $scope.form.fieldExGET, $scope.form.valueExGET, async function (result) {
+                DRAGONAPI.insertID($scope.tableOrMethod, $scope.form.inserting, $scope.form.fieldExGET, $scope.form.valueExGET, async function (result) {
                     if (result.data.error === false) {
 
                         SWEETALERT.loading({message: MESSAGE.i('mono.saving')});
@@ -365,7 +365,7 @@ FORM = {
                                     for (var file of $scope.form.uploading)
                                         file.to = file.to.replace('$id', DRAGONID);
 
-                                    BASEAPI.ajax.post(new HTTP().path(["files", "api", "move"]), {moves: $scope.form.uploading}, function (data) {
+                                    DRAGONAPI.ajax.post(new HTTP().path(["files", "api", "move"]), {moves: $scope.form.uploading}, function (data) {
                                         $scope.pages.form.subRequestComplete(close);
                                         $scope.filesToMove = [];
                                     });
@@ -380,7 +380,7 @@ FORM = {
                                                 eval(`frel.${i} = vi`);
                                             }
                                         }
-                                        BASEAPI.insert(relation.config.toTable, relation.data, function (data) {
+                                        DRAGONAPI.insert(relation.config.toTable, relation.data, function (data) {
                                             $scope.pages.form.subRequestComplete(close);
                                         });
                                     }
@@ -403,7 +403,7 @@ FORM = {
                                             eval(`dataToUpdate.${i} = vi`);
                                         }
                                         dataToUpdate.where = dataToWhere;
-                                        BASEAPI.updateall(relation.config.toTable, dataToUpdate, function (udata) {
+                                        DRAGONAPI.updateall(relation.config.toTable, dataToUpdate, function (udata) {
                                             $scope.pages.form.subRequestComplete(close);
                                         });
                                     }
@@ -439,7 +439,7 @@ FORM = {
                 }) === false)
                     return;
 
-                BASEAPI.updateall($scope.tableOrMethod, dataToUpdate, async function (result) {
+                DRAGONAPI.updateall($scope.tableOrMethod, dataToUpdate, async function (result) {
                     if (result.data.error === false) {
                         if ($scope.form !== null) {
                             $scope.form.after.update({
@@ -492,8 +492,8 @@ FORM = {
                                         whereDelete.push(relation.config.fieldsUpdate)
 
 
-                                        var ddata = await BASEAPI.deleteallp(relation.config.toTable, whereDelete);
-                                        await BASEAPI.insertp(relation.config.toTable, relation.data);
+                                        var ddata = await DRAGONAPI.deleteallp(relation.config.toTable, whereDelete);
+                                        await DRAGONAPI.insertp(relation.config.toTable, relation.data);
                                         $scope.pages.form.subRequestComplete(close);
 
                                     }
@@ -721,7 +721,7 @@ FORM = {
                             });
                         }
                     }
-                    BASEAPI.list(options.table, toquery,
+                    DRAGONAPI.list(options.table, toquery,
                         function (info) {
                             if (!DSON.oseaX(options.groupby)) {
                                 var newData = {};
@@ -772,7 +772,7 @@ FORM = {
                                             field: options.get.fieldTo,
                                             value: eval(`$scope.${options.get.fieldFrom}`)
                                         });
-                                        BASEAPI.list(options.get.table, {
+                                        DRAGONAPI.list(options.get.table, {
                                             limit: 99999,
                                             page: 1,
                                             orderby: options.get.fieldTo,
@@ -878,7 +878,7 @@ FORM = {
                                 });
                             }
                         }
-                        BASEAPI.list(options.table, toquery,
+                        DRAGONAPI.list(options.table, toquery,
                             function (info) {
                                 if (!DSON.oseaX(options.groupby)) {
                                     var newData = {};
@@ -930,7 +930,7 @@ FORM = {
                                                 field: options.get.fieldTo,
                                                 value: eval(`$scope.${options.get.fieldFrom}`)
                                             });
-                                            BASEAPI.list(options.get.table, {
+                                            DRAGONAPI.list(options.get.table, {
                                                 limit: 99999,
                                                 page: 1,
                                                 orderby: options.get.fieldTo,
@@ -1043,7 +1043,7 @@ FORM = {
             if ($scope.form !== null) {
                 var animation = new ANIMATION();
                 animation.loading(`#input${name}`, "", `#icon${name}`, '30');
-                BASEAPI.list(options.table, options.query,
+                DRAGONAPI.list(options.table, options.query,
                     function (info) {
                         if (!DSON.oseaX(options.groupby)) {
                             var newData = {};
@@ -1158,7 +1158,7 @@ FORM = {
                             if ($scope.refresh !== undefined) {
                                 if (close === false) {
                                     $scope.refresh();
-                                    $scope.modal.new(mylink.table);
+                                    $scope.modal.new($scope.tableOrView);
                                 }
                                 $scope.refresh();
                             }
@@ -1195,7 +1195,7 @@ FORM = {
                                             MODAL.close($scope);
                                             if (close === false) {
                                                 $scope.refresh();
-                                                $scope.modal.new(mylink.table);
+                                                $scope.modal.new($scope.tableOrView);
                                                 return;
                                             }
                                         }
@@ -1224,7 +1224,7 @@ FORM = {
                                             MODAL.close($scope);
                                             if (close === false) {
                                                 $scope.refresh();
-                                                $scope.modal.new(mylink.table);
+                                                $scope.modal.new($scope.tableOrView);
                                                 return;
                                             }
                                         }
@@ -1238,7 +1238,7 @@ FORM = {
                                         MODAL.close($scope);
                                         if (close === false) {
                                             $scope.refresh();
-                                            $scope.modal.new(mylink.table);
+                                            $scope.modal.new($scope.tableOrView);
                                             return;
                                         }
                                     }
@@ -1251,7 +1251,7 @@ FORM = {
                                 MODAL.close($scope);
                                 if (close === false) {
                                     $scope.refresh();
-                                    $scope.modal.new(mylink.table);
+                                    $scope.modal.new($scope.tableOrView);
                                     return;
                                 }
                             }
@@ -1373,9 +1373,9 @@ FORM = {
                     $scope.form.fileds.push(i);
                 }
 
-                if (baseController.viewData)
-                    if (baseController.viewData.readonly) {
-                        $scope.form.readonly = DSON.merge(baseController.viewData.readonly, $scope.form.readonly, true);
+                if (DRAGON.viewData)
+                    if (DRAGON.viewData.readonly) {
+                        $scope.form.readonly = DSON.merge(DRAGON.viewData.readonly, $scope.form.readonly, true);
                         for (var i in $scope.form.readonly) {
                             eval(`$scope.${i} = $scope.form.readonly.${i};`);
                             $scope.form.fileds.push(i);
@@ -1399,7 +1399,7 @@ FORM = {
                 if (data !== null) {
                     $scope.open.query = data;
                     $scope.open.query.orderby = data.where[0].field;
-                    BASEAPI.first($scope.tableOrMethod, $scope.open.query, function (data) {
+                    DRAGONAPI.first($scope.tableOrMethod, $scope.open.query, function (data) {
                         for (var i in data) {
 
                             var item = eval(` \`${eval(`data.${i}`)}\``);

@@ -89,7 +89,7 @@ var toclient = JSON.stringify(options);
     $(document).ready(function () {
 
         $("#speech<%= model %>_<%= nameclean %>").click(function () {
-            BASEAPI.ajax.speech(
+            DRAGONAPI.ajax.speech(
                 $("#<%= model %>_<%= nameclean %>").val(),
                 $("#speech<%= model %>_<%= nameclean %>")
             );
@@ -110,16 +110,7 @@ var toclient = JSON.stringify(options);
         <% } %>
         <%= model %>.
         form.options.<%= name %>.autosize = false;
-        <%= model %>.
-        triggers.table.after.control("<%= nameclean %>");
-        <% if(options.format){ %>
-        $('[name="<%= model %>_<%= nameclean %>"]').formatter({
-            pattern: '<%= options.format %>'
-        });
-        <% } %>
-        <% if(options.maxlength){ %>
-        //$('[name="<%= model %>_<%= nameclean %>"]').maxlength();
-        <% } %>
+        <%= model %>.triggers.table.after.control("<%= nameclean %>");
         function resizeme<%= model %>_<%= nameclean %>() {
             if (!DSON.oseaX($('[name="<%= model %>_<%= nameclean %>"]').val().lines().length > 1)) {
                 if (<%= model %>.

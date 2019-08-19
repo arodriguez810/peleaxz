@@ -1,7 +1,7 @@
 MESSAGE = {
     missingLanguage: {},
     OPEN: function () {
-        baseController.viewData = {
+        DRAGON.viewData = {
             staticdata: MESSAGE.missingLanguage
         };
         var modal = {
@@ -16,14 +16,13 @@ MESSAGE = {
                 loadingContentText: MESSAGE.i('actions.Loading')
             },
         };
-        baseController.currentModel.modal.modalView("../templates/components/messageManager", modal);
+        DRAGON.currentModel.modal.modalView("../templates/components/messageManager", modal);
     },
     register: function (lan, folder, key) {
         if (MESSAGE.missingLanguage[lan + '-' + folder] === undefined) {
             MESSAGE.missingLanguage[lan + '-' + folder] = {lan: "en", folder: folder, messages: []};
             MESSAGE.missingLanguage[lan + '-' + folder].messages.push(key);
-        }
-        else {
+        } else {
             if (!ARRAY.contains(MESSAGE.missingLanguage[lan + '-' + folder].messages, key))
                 MESSAGE.missingLanguage[lan + '-' + folder].messages.push(key);
         }
@@ -145,6 +144,34 @@ MESSAGE = {
                 }
             });
             $me.removeAttr('dragonlanguage');
+        });
+
+        $('[dragoncontrol]').each(function () {
+            $me = $(this);
+            $meId = $me.attr('id');
+            $control = $me.attr('dragoncontrol');
+            $name = $me.attr('name');
+            $scope = $me.attr('scope');
+            $properties = {};
+            if ($me.attr('prop')) {
+                $properties = DSON.EO($me.attr('prop'));
+            }
+            $append = false;
+            if ($me.attr('append')) {
+                $append = $me.attr('append');
+            }
+            $cols = 6;
+            if ($me.attr('cols')) {
+                $cols = $me.attr('cols');
+            }
+            $label = capitalize($name);
+            if ($me.attr('label')) {
+                $label = $me.attr('label');
+            }
+            if (($name && $scope)) {
+                eval(`${$scope}.control.${$control}("#${$meId}", "${$name}", $properties,$append,$cols,$label)`);
+            }
+            $me.removeAttr('dragoncontrol');
         });
     }
 };

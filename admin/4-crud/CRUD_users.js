@@ -12,7 +12,17 @@ DSON.keepmerge(CRUD_users, {
                 exportExample: false
             },
             username: {
-                shorttext: 80
+                shorttext: 80,
+                format: function (row) {
+                    if (DRAGON.ONLINE) {
+                        var status = DRAGON.ONLINE.filter(d => {
+                            return d.id == row.id
+                        }).length > 0 ? '<i class="online icon-circle2"></i>' : '<i class="offline icon-circle2"></i>';
+                        return row.username + " " + status;
+                    } else {
+                        return row.username
+                    }
+                }
             },
             name: {
                 shorttext: 80

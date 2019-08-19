@@ -1,6 +1,6 @@
 CURRENT = {
     controller: function () {
-        return baseController.currentModel.modelName;
+        return DRAGON.currentModel.modelName;
     },
     url: function () {
         var url = location.href;
@@ -51,7 +51,7 @@ CURRENT = {
             return eval(`${CURRENT.controller()}.${CURRENT.form.key()}`);
         },
         mode: function () {
-            return baseController.currentModel.form.mode !== undefined;
+            return DRAGON.currentModel.form.mode !== undefined;
         },
     }
 };

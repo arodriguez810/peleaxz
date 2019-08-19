@@ -94,7 +94,7 @@ var toclient = JSON.stringify(options);
             return false;
         });
         $('#list<%= model %>_<%= nameclean %>').click(function () {
-            baseController.viewData = {};
+            DRAGON.viewData = {};
             var modal = {
                     header: {
                         title: MESSAGE.i('mono.Listof') + <%= options.table %>.plural,

@@ -10,7 +10,7 @@ app.controller("dragon_information", function ($scope, $http, $compile) {
     dragon_information.getCount = async function (entity) {
         var animation = new ANIMATION();
         animation.loading(`#${entity}count`, "", ``, '30');
-        var data = await BASEAPI.listp(entity, {});
+        var data = await DRAGONAPI.listp(entity, {});
         $(`#${entity}countvalue`).html(LAN.money(data.totalCount).format(false).split(".")[0]);
         animation.stoploading(`#${entity}count`);
     };
@@ -19,7 +19,7 @@ app.controller("dragon_information", function ($scope, $http, $compile) {
             message: MESSAGE.i('alerts.AYSDelete'),
             confirm: async function () {
                 SWEETALERT.loading({message: MESSAGE.ic('mono.deleting') + "..."});
-                var result = await BASEAPI.truncatep(entity);
+                var result = await DRAGONAPI.truncatep(entity);
                 if (result)
                     dragon_information.getCount(entity);
                 SWEETALERT.stop();

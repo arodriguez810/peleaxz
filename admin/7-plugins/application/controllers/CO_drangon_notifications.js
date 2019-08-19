@@ -32,9 +32,8 @@ app.controller("dragon_notifications", function ($scope, $http, $compile) {
             SERVICE.base_onesignal.send(notificationObj, function (result) {
                 if (result.data.response.data.errors === undefined) {
                     dragon_notifications.notificationID = result.data.response.data.id;
-                    dragon_notifications.pages.form.save(undefined, undefined, false);
-                }
-                else {
+                    SWEETALERT.stop();
+                } else {
 
                     SWEETALERT.show({type: 'error', message: JSON.stringify(result.data.response.data.errors)});
                 }
@@ -44,9 +43,8 @@ app.controller("dragon_notifications", function ($scope, $http, $compile) {
             SERVICE.base_onesignal.send(notificationObj, function (result) {
                 if (result.data.response.data.errors === undefined) {
                     dragon_notifications.notificationID = result.data.response.data.id;
-                    dragon_notifications.pages.form.save(undefined, undefined, false);
-                }
-                else {
+                    SWEETALERT.stop();
+                } else {
                     SWEETALERT.show({type: 'error', message: JSON.stringify(result.data.response.data.errors)});
                 }
             });

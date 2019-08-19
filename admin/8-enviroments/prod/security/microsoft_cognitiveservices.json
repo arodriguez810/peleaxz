@@ -1,0 +1,12 @@
+{
+  "microsoft_cognitiveservices": {
+    "API": "https://westus.api.cognitive.microsoft.com/sts/v1.0/issueToken",
+    "baseUrl": "https://westus.tts.speech.microsoft.com/",
+    "subscriptionKey": "7aeb3a1765a1473288461d82baa38f72",
+    "serviceRegion ": "westus",
+    "voices": {
+      "en": "en-US-Guy24kRUS",
+      "es": "es-ES-HelenaRUS"
+    }
+  }
+}

@@ -5,6 +5,7 @@
   "ssl": false,
   "port": 8090,
   "io": 8190,
+  "hosted": false,
   "proxy": {
     "domain": "localhost",
     "subdomain": "",

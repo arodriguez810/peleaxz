@@ -1,0 +1,16 @@
+{
+  "config_menu": [
+    {
+      "text": "Config Tutorial",
+      "href": "#",
+      "icon": "ampersand",
+      "menus": [
+        {
+          "text": "Appearance",
+          "href": "#documentation/appearance",
+          "icon": "paint-format"
+        }
+      ]
+    }
+  ]
+}

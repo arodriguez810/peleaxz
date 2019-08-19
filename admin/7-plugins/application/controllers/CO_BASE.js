@@ -53,67 +53,75 @@ $.ajaxSetup({
             xhr.setRequestHeader("x-access-token", session.current().token);
     }
 });
-app.controller('baseController', function ($scope, $http, $compile, $controller) {
-    var baseController = this;
+app.controller('DRAGON', function ($scope, $http, $compile, $controller) {
+    DRAGON = this;
+    COMPILE.run(DRAGON, $scope, $compile);
+    MODAL.run(DRAGON, $compile);
+    CONTROL.run(DRAGON, $compile);
     var session = new SESSION();
+    DRAGON.refreshAngular = function () {
+        if (!$scope.$$phase)
+            $scope.$digest();
+    };
+
     session.ifLogoffRedirec();
     if (session.current()) {
         if (session.current().menus)
-            baseController.currentMenu = session.current().menus();
+            DRAGON.currentMenu = session.current().menus();
         else
-            baseController.currentMenu = "menus";
+            DRAGON.currentMenu = "menus";
         if (STORAGE.exist('currentMenu')) {
-            baseController.currentMenu = STORAGE.get("currentMenu");
+            DRAGON.currentMenu = STORAGE.get("currentMenu");
         }
-        baseController.menus = CONFIG.menus;
-        baseController.menusList = CONFIG.ui.menusList;
-        baseController.myMenu = function () {
-            return eval(`CONFIG.${baseController.currentMenu}`);
+        DRAGON.menus = CONFIG.menus;
+        DRAGON.menusList = CONFIG.ui.menusList;
+        DRAGON.myMenu = function () {
+            return eval(`CONFIG.${DRAGON.currentMenu}`);
         };
-        baseController.menuLabel = function (menu) {
+        DRAGON.menuLabel = function (menu) {
             return MESSAGE.ispace('menu.' + menu.text.replaceAll(' ', ''), menu.text);
         };
-        baseController.changeMenu = function (menu) {
+        DRAGON.changeMenu = function (menu) {
             var animation = new ANIMATION();
             animation.loading(`#dragonmenu`, "", ``, '30');
             setTimeout(() => {
-                baseController.currentMenu = menu.href;
-                STORAGE.add("currentMenu", baseController.currentMenu);
-                baseController.refreshAngular();
+                DRAGON.currentMenu = menu.href;
+                STORAGE.add("currentMenu", DRAGON.currentMenu);
+                DRAGON.refreshAngular();
                 animation.stoploading(`#dragonmenu`);
                 MENU.setActive();
                 location.reload();
             }, 500);
         };
-        baseController.isLogged = true;
-        baseController.isSuper = session.current().super;
-        baseController.isAdmin = session.current().groupadmin;
+        DRAGON.isLogged = true;
+        DRAGON.isSuper = session.current().super;
+        DRAGON.isAdmin = session.current().groupadmin;
 
-        if (!baseController.isSuper) {
+        if (!DRAGON.isSuper) {
             if (session.current().menus)
-                baseController.currentMenu = session.current().menus();
+                DRAGON.currentMenu = session.current().menus();
             else
-                baseController.currentMenu = "menus";
+                DRAGON.currentMenu = "menus";
         }
 
         if (session.current().isClient)
-            baseController.isClient = new SESSION().current().isClient();
+            DRAGON.isClient = new SESSION().current().isClient();
         else
-            baseController.isClient = false;
+            DRAGON.isClient = false;
 
-        baseController.userID = session.current().getID();
+        DRAGON.userID = session.current().getID();
         if (session.current().path)
-            baseController.path = session.current().path();
+            DRAGON.path = session.current().path();
         else
-            baseController.path = CONFIG.users.path;
-        baseController.fullName = session.current().fullName();
-        baseController.type = session.current().type;
+            DRAGON.path = CONFIG.users.path;
+        DRAGON.fullName = session.current().fullName();
+        DRAGON.type = session.current().type;
         GROUPS = new SESSION().current().onlygroups;
         var entitiesPermission = [];
         for (var pers of CONFIG.permissions.entities) {
-            entitiesPermission.push(`${pers}-${baseController.userID}`)
+            entitiesPermission.push(`${pers}-${DRAGON.userID}`)
         }
-        BASEAPI.list('permission', {
+        DRAGONAPI.list('permission', {
             where: [
                 {
                     "field": "id",
@@ -159,20 +167,20 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
         });
     }
 
-    baseController.favorites = [];
-    baseController.mode = CONFIG.mode;
-    baseController.features = CONFIG.features;
-    baseController.SHOWLANGS = SHOWLANGS;
-    baseController.currentLang = MESSAGE.current();
-    baseController.changeLanguage = MESSAGE.change;
+    DRAGON.favorites = [];
+    DRAGON.mode = CONFIG.mode;
+    DRAGON.features = CONFIG.features;
+    DRAGON.SHOWLANGS = SHOWLANGS;
+    DRAGON.currentLang = MESSAGE.current();
+    DRAGON.changeLanguage = MESSAGE.change;
     if (STORAGE.exist('favorites')) {
-        baseController.favorites = STORAGE.get('favorites');
+        DRAGON.favorites = STORAGE.get('favorites');
     }
-    baseController.base = function () {
+    DRAGON.base = function () {
         new LOAD().loadContent($scope, $http, $compile);
     };
-    baseController.base();
-    baseController.deleteFavorite = function (href) {
+    DRAGON.base();
+    DRAGON.deleteFavorite = function (href) {
         if (STORAGE.exist('favorites')) {
             var stored = STORAGE.get('favorites');
             var newarray = [];
@@ -181,14 +189,14 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
                     newarray.push(item);
             });
             STORAGE.add('favorites', newarray);
-            baseController.favorites = newarray;
+            DRAGON.favorites = newarray;
         }
     };
-    baseController.refreshAngular = function () {
+    DRAGON.refreshAngular = function () {
         if (!$scope.$$phase)
             $scope.$digest();
     };
-    baseController.favorite = function (href) {
+    DRAGON.favorite = function (href) {
         if (STORAGE.exist('favorites')) {
             var stored = STORAGE.get('favorites');
             var newarray = [];
@@ -197,7 +205,7 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
                     newarray.push(item);
             });
             STORAGE.add('favorites', newarray);
-            baseController.favorites = newarray;
+            DRAGON.favorites = newarray;
         }
     };
     var permissionOptions = {
@@ -218,7 +226,7 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
         },
         click: function (data) {
             SWEETALERT.loading({message: MESSAGE.i('actions.Loading')});
-            BASEAPI.list('permission', {
+            DRAGONAPI.list('permission', {
                 "where": [
                     {
                         "value": `${data.$scope.permissionTable || data.$scope.modelName}-${data.row.id}`
@@ -267,6 +275,7 @@ app.controller('baseController', function ($scope, $http, $compile, $controller)
             eval(`CRUD_${entity.name}.table.options.push(permissionOptions)`);
         }
     }
+
 });
 CHILDSCOPES = [];
 REMOVELASTCHILDSCOPE = function () {
@@ -292,7 +301,8 @@ GARBAGECOLECTOR = function (exclude, ignoreChangeMenu) {
                         if(${item}!==null){
                           if(${item}.$scope!==undefined){ 
                             if(${item}.destroyForm!==false && ${item}.modelName!==CURRENT.url()){
-                              ${item}.$scope.$destroy();
+                                if(${item}.$scope.$destroy)
+                                  ${item}.$scope.$destroy();
                               ${item} = null;
                               RELATIONS.anonymous = [];
                             }
@@ -360,7 +370,7 @@ RUN_A = function (conrollerName, inside, $scope, $http, $compile) {
     $scope.$on('$destroy', function () {
     });
     if (MODAL.history.length === 0) {
-        baseController.currentModel = inside;
+        DRAGON.currentModel = inside;
     }
 };
 RUN_B = function (conrollerName, inside, $scope, $http, $compile) {
@@ -442,5 +452,5 @@ RUNCONTROLLER = function (conrollerName, inside, $scope, $http, $compile) {
 
     });
     if (MODAL.history.length === 0)
-        baseController.currentModel = inside;
+        DRAGON.currentModel = inside;
 };

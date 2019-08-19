@@ -100,14 +100,14 @@ PERMISSIONS = {
         };
         $scope.savePermission = function () {
             SWEETALERT.loading({message: MESSAGE.ic('mono.saving')});
-            BASEAPI.deleteall('permission', {
+            DRAGONAPI.deleteall('permission', {
                 "where": [
                     {
                         "value": `${$scope.idPermission}`
                     }
                 ]
             }, function (deleted) {
-                BASEAPI.insert('permission', {
+                DRAGONAPI.insert('permission', {
                     "insertData": {
                         "id": `${$scope.idPermission}`,
                         "object": JSON.stringify($scope.permissions)

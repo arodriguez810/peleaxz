@@ -13,7 +13,7 @@
     <%= DATA.scope %>.galleryFiles.rootFolder = viewModel.root;
     <%= DATA.scope %>.galleryFiles.refresh = function () {
         var http = new HTTP();
-        BASEAPI.ajax.get(http.path(["files", "api"]), {folder: viewModel.root}, function (data) {
+        DRAGONAPI.ajax.get(http.path(["files", "api"]), {folder: viewModel.root}, function (data) {
             for (var i in  data.data.files) {
                 var file = data.data.files[i];
                 data.data.files[i] = {
@@ -138,7 +138,7 @@
             confirm: function () {
                 var http = new HTTP();
                 SWEETALERT.loading({message: MESSAGE.i('mono.deleting')});
-                BASEAPI.ajax.post(http.path(["files", "api", "delete"]), {filename: finalArray}, function (data) {
+                DRAGONAPI.ajax.post(http.path(["files", "api", "delete"]), {filename: finalArray}, function (data) {
                     SWEETALERT.stop();
                     if (data.data.deleted) {
                         <%= DATA.scope %>.
@@ -162,7 +162,7 @@
             confirm: function () {
                 SWEETALERT.loading({message: "Importing Files"});
                 var http = new HTTP();
-                BASEAPI.ajax.post(http.path(["files", "api", "import"]), {filename: finalArray}, function (data) {
+                DRAGONAPI.ajax.post(http.path(["files", "api", "import"]), {filename: finalArray}, function (data) {
                     SWEETALERT.stop();
                     var records = data.data;
                     var columns =eval(`CRUD_<%= DATA.scope %>`).table.columns;
@@ -213,7 +213,7 @@
             confirm: function () {
                 var http = new HTTP();
                 SWEETALERT.loading({message: MESSAGE.i('mono.Preparingdownloadforfiles')});
-                BASEAPI.ajax.get(http.path(["files", "api", "download"]), {
+                DRAGONAPI.ajax.get(http.path(["files", "api", "download"]), {
                     folder: viewModel.root,
                     name: MODAL.current().header.title + ".zip"
                 }, function (data) {
@@ -283,7 +283,7 @@
     <div class="panel-body">
         <form class="dropzone" id="filesForm" method="post" enctype="multipart/form-data">
             <input type="hidden" name="folder" value="{{<%= DATA.scope %>.galleryFiles.rootFolder}}">
-            <input type="hidden" name="user" value="{{baseController.userID}}">
+            <input type="hidden" name="user" value="{{DRAGON.userID}}">
 
         </form>
     </div>

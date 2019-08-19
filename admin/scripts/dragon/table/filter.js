@@ -151,7 +151,7 @@ FILTER = {
                                     for (const filter of $scope.filters.fields) {
                                         if (filter.type === FILTER.types.relation) {
                                             if (loadonce.indexOf(filter.key) === -1) {
-                                                BASEAPI.list(filter.table, filter.query,
+                                                DRAGONAPI.list(filter.table, filter.query,
                                                     function (info) {
                                                         eval(`$scope.filters.options.${filter.key} = info.data`);
                                                         for (const block of $scope.filters.blocks) {
@@ -354,7 +354,7 @@ FILTER = {
                 }
 
                 STEP.register({
-                    scope: baseController.currentModel.modelName,
+                    scope: DRAGON.currentModel.modelName,
                     action: `Apply Filters`,
                     field: $scope.filters.descriptionNoHtml()
                 });

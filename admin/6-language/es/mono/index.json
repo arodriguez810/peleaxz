@@ -229,5 +229,7 @@
   "DownloadSteps": "Descargar pasos",
   "sort_datetime": "cronológicamente",
   "sort_date": "cronológicamente",
-  "MapView": "Mapa"
+  "MapView": "Mapa",
+  "modules": "módulos",
+  "functions": "funciones"
 }

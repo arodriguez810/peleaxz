@@ -1,7 +1,7 @@
 FILE = {
     server: function (folder, callback, nofound, element) {
         var http = new HTTP();
-        BASEAPI.ajax.get(http.path(["generalfiles", "api"]), {folder: folder}, function (data) {
+        DRAGONAPI.ajax.get(http.path(["generalfiles", "api"]), {folder: folder}, function (data) {
             if (data.data.files) {
                 for (var i in  data.data.files) {
                     var file = data.data.files[i];
@@ -26,6 +26,11 @@ FILE = {
             }
         }, element);
     },
+    serverp: (folder, nofound, element) => new Promise((resolve, reject) => {
+        FILE.server(folder, function (result) {
+            resolve(result);
+        }, nofound, element);
+    }),
     extension: function (filename) {
         var extension = filename.split('.');
         return extension.length > 1 ? ARRAY.last(extension) : "";

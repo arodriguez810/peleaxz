@@ -1,4 +1,4 @@
-BASEAPI = {
+DRAGONAPI = {
     ajax: {
         loading: function (element) {
             if (element)
@@ -8,7 +8,7 @@ BASEAPI = {
         },
         speech: function (text, element) {
             var http = new HTTP();
-            BASEAPI.ajax.get(http.path(["cognitiveservices", "api"]), {
+            DRAGONAPI.ajax.get(http.path(["cognitiveservices", "api"]), {
                 text: text,
                 lan: MESSAGE.current().code,
             }, function (data) {
@@ -23,7 +23,7 @@ BASEAPI = {
                 SWEETALERT.stop();
         },
         formpost: function (method, parameters, callBack) {
-            BASEAPI.ajax.loading();
+            DRAGONAPI.ajax.loading();
             var newForm = $('<form>', {
                 'action': method,
                 'method': 'post'
@@ -38,48 +38,48 @@ BASEAPI = {
             }
             newForm.appendTo(document.body).submit();
             newForm.remove();
-            BASEAPI.ajax.stop();
+            DRAGONAPI.ajax.stop();
             callBack();
         },
         post: function (method, parameters, callBack, element) {
-            BASEAPI.ajax.loading(element);
+            DRAGONAPI.ajax.loading(element);
             $http = angular.injector(["ng"]).get("$http");
             var http = new HTTP();
             http.setToken($http);
             $http.post(method, parameters).then(function (data) {
                 http.evaluate(data);
-                BASEAPI.ajax.stop(element);
+                DRAGONAPI.ajax.stop(element);
                 callBack(data);
             }, function (data) {
-                BASEAPI.ajax.stop(element);
+                DRAGONAPI.ajax.stop(element);
                 console.log(data);
             });
         },
         postp: (method, parameters, element) => new Promise((resolve, reject) => {
-            BASEAPI.ajax.post(method, parameters, function (result) {
+            DRAGONAPI.ajax.post(method, parameters, function (result) {
                 resolve(result);
             }, element);
         }),
         get: function (method, parameters, callBack, element) {
-            BASEAPI.ajax.loading(element);
+            DRAGONAPI.ajax.loading(element);
             $http = angular.injector(["ng"]).get("$http");
             var http = new HTTP();
             http.setToken($http);
             var query = http.objToQuery(parameters);
             $http.get(method + "?" + query).then(function (data) {
                 http.evaluate(data);
-                BASEAPI.ajax.stop(element);
+                DRAGONAPI.ajax.stop(element);
                 if (!http.evaluateTokenHTML(data))
                     callBack(data);
             }, function (data) {
-                BASEAPI.ajax.stop(element);
+                DRAGONAPI.ajax.stop(element);
                 console.log(data);
             });
         },
     },
     csv: function (engine, tableName, paramenters) {
         var rootPath = '/api/' + model;
-        BASEAPI.ajax.post(`${engine}_csv`, {
+        DRAGONAPI.ajax.post(`${engine}_csv`, {
             "tableName": tableName
         }, function (data) {
             console.log(data);
@@ -109,7 +109,7 @@ BASEAPI = {
         });
     },
     listp: (model, parameters) => new Promise((resolve, reject) => {
-        BASEAPI.list(model, parameters, function (result) {
+        DRAGONAPI.list(model, parameters, function (result) {
             resolve(result);
         });
     }),
@@ -133,7 +133,7 @@ BASEAPI = {
         });
     },
     firstp: (model, parameters) => new Promise((resolve, reject) => {
-        BASEAPI.first(model, parameters, function (result) {
+        DRAGONAPI.first(model, parameters, function (result) {
             resolve(result);
         });
     }),
@@ -151,7 +151,7 @@ BASEAPI = {
         });
     },
     getp: (model, id) => new Promise((resolve, reject) => {
-        BASEAPI.get(model, id, function (result) {
+        DRAGONAPI.get(model, id, function (result) {
             resolve(result);
         });
     }),
@@ -169,7 +169,7 @@ BASEAPI = {
         });
     },
     insertp: (model, dataToInsert) => new Promise((resolve, reject) => {
-        BASEAPI.insert(model, dataToInsert, function (result) {
+        DRAGONAPI.insert(model, dataToInsert, function (result) {
             resolve(result);
         });
     }),
@@ -191,7 +191,7 @@ BASEAPI = {
         });
     },
     insertIDp: (model, dataToInsert, field, value) => new Promise((resolve, reject) => {
-        BASEAPI.insertID(model, dataToInsert, field, value, function (result) {
+        DRAGONAPI.insertID(model, dataToInsert, field, value, function (result) {
             resolve(result);
         });
     }),
@@ -209,7 +209,7 @@ BASEAPI = {
         });
     },
     updatep: (model, id, dataToUpdate) => new Promise((resolve, reject) => {
-        BASEAPI.update(model, id, dataToUpdate, function (result) {
+        DRAGONAPI.update(model, id, dataToUpdate, function (result) {
             resolve(result);
         });
     }),
@@ -227,7 +227,7 @@ BASEAPI = {
         });
     },
     updateallp: (model, dataToUpdate) => new Promise((resolve, reject) => {
-        BASEAPI.updateall(model, dataToUpdate, function (result) {
+        DRAGONAPI.updateall(model, dataToUpdate, function (result) {
             resolve(result);
         });
     }),
@@ -245,7 +245,7 @@ BASEAPI = {
         });
     },
     deleteallp: (model, dataToDelete) => new Promise((resolve, reject) => {
-        BASEAPI.deleteall(model, dataToDelete, function (result) {
+        DRAGONAPI.deleteall(model, dataToDelete, function (result) {
             resolve(result);
         });
     }),
@@ -261,7 +261,7 @@ BASEAPI = {
         });
     },
     deletep: (model, id) => new Promise((resolve, reject) => {
-        BASEAPI.delete(model, id, function (result) {
+        DRAGONAPI.delete(model, id, function (result) {
             resolve(result);
         });
     }),
@@ -277,7 +277,7 @@ BASEAPI = {
         });
     },
     truncatep: (model) => new Promise((resolve, reject) => {
-        BASEAPI.truncate(model, function (result) {
+        DRAGONAPI.truncate(model, function (result) {
             resolve(result);
         });
     }),
@@ -293,7 +293,7 @@ BASEAPI = {
         });
     },
     mailp: (params) => new Promise((resolve, reject) => {
-        BASEAPI.mail(params, function (result) {
+        DRAGONAPI.mail(params, function (result) {
             resolve(result);
         });
     }),

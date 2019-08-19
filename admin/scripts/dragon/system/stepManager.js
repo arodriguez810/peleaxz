@@ -39,14 +39,14 @@ STEP = {
                 csv += `"${values.join('","')}"\r\n`;
             }
             SWEETALERT.loading({title: `Downloading  Steps`});
-            DOWNLOAD.csv(`${baseController.currentModel.plural} steps ${new Date()}.csv`, csv);
+            DOWNLOAD.csv(`${DRAGON.currentModel.plural} steps ${new Date()}.csv`, csv);
             swal.close();
         } else {
             SWEETALERT.show('Theres not steps for download');
         }
     },
     OPEN: function () {
-        baseController.viewData = {
+        DRAGON.viewData = {
             staticdata: STEP.steps
         };
         var modal = {
@@ -61,6 +61,6 @@ STEP = {
                 loadingContentText: MESSAGE.i('actions.Loading')
             },
         };
-        baseController.currentModel.modal.modalView("../templates/components/stepManager", modal);
+        DRAGON.currentModel.modal.modalView("../templates/components/stepManager", modal);
     }
 };

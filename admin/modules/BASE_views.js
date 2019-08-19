@@ -1027,7 +1027,8 @@ exports.init = function (params) {
                 return;
             }
             var fs = params.fs || require("fs");
-            var file = __dirname + '/../' + params.folders.config + '/' + 'z_saved.json';
+            var configFolder = params.CONFIG.mode === "developer" ? params.folders.config : `${params.folders.eviroments}/${params.CONFIG.mode}`;
+            var file = __dirname + '/../' + configFolder + '/' + 'z_saved.json';
             req.body.json = params.S(req.body.json).replaceAll("&#39;", "'").s;
             req.body.json = params.S(req.body.json).replaceAll("&#34;", "\"").s;
             req.body.json = params.S(req.body.json).replaceAll("&lt;", "<").s;
@@ -1049,7 +1050,9 @@ exports.init = function (params) {
                 return;
             }
             var fs = params.fs || require("fs");
-            var file = __dirname + '/../' + params.folders.config + '/' + 'z_saved.json';
+
+            var configFolder = params.CONFIG.mode === "developer" ? params.folders.config : `${params.folders.eviroments}/${params.CONFIG.mode}`;
+            var file = __dirname + '/../' + configFolder + '/' + 'z_saved.json';
 
             req.body.json = params.S(req.body.json).replaceAll("&#39;", "'").s;
             req.body.json = params.S(req.body.json).replaceAll("&#34;", "\"").s;

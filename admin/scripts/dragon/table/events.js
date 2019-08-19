@@ -36,7 +36,7 @@ TABLEEVENT = {
         $scope.cell.extendclick = function (data) {
             if (data.column.folder) {
                 var root = DSON.template(data.column.folder, data.row);
-                baseController.viewData = {
+                DRAGON.viewData = {
                     root: root,
                     scope: $scope,
                     maxsize: data.column.files.maxsize_mb,
@@ -100,7 +100,6 @@ TABLEEVENT = {
                 if (!DSON.oseaX(data.value)) {
                     var mylink = data.column.link;
                     if (!DSON.oseaX(data.value)) {
-                        console.log(mylink.table,eval("data.row." + mylink.from));
                         $scope.modal.edit(mylink.table,eval("data.row." + mylink.from));
                     }
                     return;
@@ -241,7 +240,7 @@ TABLEEVENT = {
             }
             if ($scope.beforeDelete(row)) return;
             $scope.procesingRowErrors = [];
-            BASEAPI.deleteall($scope.tableOrMethod, where, async function (result) {
+            DRAGONAPI.deleteall($scope.tableOrMethod, where, async function (result) {
                 if (result.data.error === false) {
 
                     $scope.afterDelete(row);
@@ -299,7 +298,7 @@ TABLEEVENT = {
         $scope.reorderItems = async function () {
             //drag
             if ($scope.dragrow !== false) {
-                var nextrecords = await BASEAPI.listp($scope.tableOrView, {
+                var nextrecords = await DRAGONAPI.listp($scope.tableOrView, {
                     limit: 0,
                     orderby: $scope.dragrow,
                     order: "asc",
@@ -319,7 +318,7 @@ TABLEEVENT = {
                                 ]
                             };
                             dataTOUpdate[$scope.dragrow] = order;
-                            await BASEAPI.updateallp($scope.modelName, dataTOUpdate);
+                            await DRAGONAPI.updateallp($scope.modelName, dataTOUpdate);
                             order++;
                         }
                         NOTIFY.success(`${$scope.plural} ${MESSAGE.i('mono.ordered')}`);
@@ -369,7 +368,7 @@ TABLEEVENT = {
             data.where = where;
             var actionText = active ? MESSAGE.i('mono.activing') : MESSAGE.i('mono.disabling');
             $scope.procesingRowErrors = [];
-            BASEAPI.updateall($scope.tableOrMethod, data, function (result) {
+            DRAGONAPI.updateall($scope.tableOrMethod, data, function (result) {
                 if (result.data.error === false) {
                     $scope.procesingRow++;
                     if ($scope.procesingRowFor !== 0)
@@ -466,7 +465,7 @@ TABLEEVENT = {
                         eval(`row.row.${i} = \`${eval(audit)}\`;`);
                 }
                 $scope.procesingRowErrors = [];
-                BASEAPI.insertID($scope.tableOrMethod, row.row, '', '', function (result) {
+                DRAGONAPI.insertID($scope.tableOrMethod, row.row, '', '', function (result) {
                     if (result.data.error === false) {
                         var savedRow = result.data.data[0];
                         $scope.procesingRow++;
@@ -487,7 +486,7 @@ TABLEEVENT = {
                                 var relaRow = {};
                                 eval(`relaRow.${relation.to} = \`${savedRow.id}\`;`);
                                 eval(`relaRow.${relation.from} = \`${value}\`;`);
-                                BASEAPI.insert(relation.table, relaRow, function (relResult) {
+                                DRAGONAPI.insert(relation.table, relaRow, function (relResult) {
 
                                 });
                             }
@@ -576,7 +575,7 @@ TABLEEVENT = {
         };
         $scope.fileManager = function () {
             var root = `${$scope.modelName}/imports_files/`;
-            baseController.viewData = {
+            DRAGON.viewData = {
                 root: root,
                 scope: $scope,
                 maxfiles: 8,

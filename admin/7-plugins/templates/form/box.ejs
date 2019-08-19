@@ -311,7 +311,7 @@ var toclient = JSON.stringify(options);
             $('#list<%= model %>_<%= nameclean %>').trigger('click');
         });
         $('#list<%= model %>_<%= nameclean %>').click(function () {
-            baseController.viewData = {};
+            DRAGON.viewData = {};
             var modal = {
                 header: {
                     title: MESSAGE.i('mono.Listof') + " " + (<%= options.controller %>.headertitle || <%= options.controller %>.plural),

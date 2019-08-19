@@ -88,10 +88,10 @@ HTTP = function () {
             }
         }
         STORAGE.add('warningRequests', WARNINGREQUESTS);
-        baseController.WARNINGREQUESTS = WARNINGREQUESTS;
+        DRAGON.WARNINGREQUESTS = WARNINGREQUESTS;
     };
     this.openManager = function () {
-        baseController.viewData = {
+        DRAGON.viewData = {
             staticdata: WARNINGREQUESTS
         };
         var modal = {
@@ -106,7 +106,7 @@ HTTP = function () {
                 loadingContentText: MESSAGE.i('actions.Loading')
             },
         };
-        baseController.currentModel.modal.modalView("../templates/components/requestManager", modal);
+        DRAGON.currentModel.modal.modalView("../templates/components/requestManager", modal);
     };
     this.resetManager = function () {
         if (WARNINGREQUESTS.length)
@@ -116,7 +116,7 @@ HTTP = function () {
                 confirm: function () {
                     STORAGE.delete('warningRequests');
                     WARNINGREQUESTS = [];
-                    MODAL.close(baseController.currentModel);
+                    MODAL.close(DRAGON.currentModel);
                 }
             });
         else
@@ -134,7 +134,7 @@ $(document).ready(function () {
         if (paths.length > 0) {
             $("body").removeClass("sidebar-mobile-main");
             var controller = paths[0];
-            MENUMODAL = true;
+            //MENUMODAL = true;
             MODAL.rawModal(title, link, icon.replace('icon-', ''), width, controller);
         }
         return false;
@@ -145,10 +145,10 @@ $(document).ready(function () {
         FIXELEMENT.elements = [];
         if (!DSON.oseaX(outanimation)) {
             new ANIMATION().playPure($('#content'), outanimation, function () {
-                ANGULARJS.get('baseController').base();
+                ANGULARJS.get('DRAGON').base();
             });
         } else {
-            ANGULARJS.get('baseController').base();
+            ANGULARJS.get('DRAGON').base();
         }
 
     });

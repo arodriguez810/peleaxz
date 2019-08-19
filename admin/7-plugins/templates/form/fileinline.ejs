@@ -9,10 +9,10 @@ if (DATA.name !== undefined) {
 }
 var name = name || "";
 
-console.log(modelfolder+":mandado es");
+console.log(modelfolder + ":mandado es");
 if (!modelfolder) {
     modelfolder = model;
-    console.log(modelfolder+":este es");
+    console.log(modelfolder + ":este es");
 }
 
 var options = {
@@ -49,7 +49,7 @@ var toclient = JSON.stringify(options);
 <script>
     <%= model %>.filesMessages = MESSAGE.ic("mono.files");
     <%= model %>.triggers.table.before.control("<%= nameclean %>");
-    var keyColumn = eval(`CRUD_<%= model %>`).table.key;
+    var keyColumn = eval(`CRUD_<%= model %>`) ? eval(`CRUD_<%= model %>`).table.key : "id";
     <%= model %>.form.schemas.insert["<%= name %>"] = FORM.schemasType.upload;
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
     <%= model %>.form.registerField("<%= name %>_DragonCountFile", "<%= toclient %>");
@@ -74,7 +74,6 @@ var toclient = JSON.stringify(options);
 <div class="form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-<%= options.icon.position %>"
      id="input<%= model %>_<%= nameclean %>">
 
-
     <% if(options.show === 'image'){ %>
         <img id="showImage<%= model %>_<%= nameclean %>"
              style="max-height: <%= options.image %>px;float: <%= options.imagefloat %>"
@@ -83,8 +82,6 @@ var toclient = JSON.stringify(options);
 
     <div id="<%= model %>_<%= nameclean %>" class="x-force task">
     </div>
-
-
 
     <% if(options.popover){ %>
         <i
@@ -121,7 +118,7 @@ var toclient = JSON.stringify(options);
             var toClean = eval(`"<%= modelfolder %>/${save}/${id}"`);
             var to = `${FOLDERS.files}/${toClean}`;
 
-            await BASEAPI.ajax.postp(new HTTP().path(["files", "api", "move"]), {moves: [{from: from, to: to}]});
+            await DRAGONAPI.ajax.postp(new HTTP().path(["files", "api", "move"]), {moves: [{from: from, to: to}]});
         }
         resolve(true);
     });
@@ -167,7 +164,7 @@ var toclient = JSON.stringify(options);
         ;
         <% } %>
         if (amLoad<%= name %> || direct === true) {
-            BASEAPI.ajax.get(new HTTP().path(["files", "api"]), {folder: <%= model %>.form.options.<%= name %>.folder
+            DRAGONAPI.ajax.get(new HTTP().path(["files", "api"]), {folder: <%= model %>.form.options.<%= name %>.folder
         },
 
             function (data) {
@@ -202,47 +199,45 @@ var toclient = JSON.stringify(options);
         form.options.<%= name %>.folder;
 
 
-
-
-            amLoad<%= name %> = true;
-            var root = <%= model %>.
-            form.options.<%= name %>.folder;
-            baseController.viewData = {
-                root: root,
-                file:<%= model %>.form.options.<%= name %>.file,
-                scope
-        : <%= model %>,
-            maxsize: <%= model %>.
-            form.options.<%= name %>.maxsize_mb,
-                maxsize
-        : <%= model %>.
-            form.options.<%= name %>.maxsize_mb,
-                maxfiles
-        : <%= model %>.
-            form.options.<%= name %>.maxfiles,
-                acceptedFiles
-        : <%= model %>.
-            form.options.<%= name %>.acceptedFiles,
-                columns
-        : <%= model %>.
-            form.options.<%= name %>.columns
-        }
-            ;
-            var modal = {
-                    width: <%= model %>.form.options.<%= name %>.width,
-                header: {
-                    title: <%= model %>.form.options.<%= name %>.title,
-                    icon: <%= model %>.form.options.<%= name %>.icon.class
-                },
-                footer: {
-                    cancelButton: true
-                },
-                content: {
-                    loadingContentText: MESSAGE.i('actions.Loading')
-                },
-                };
-            <%= model %>.
-            modal.modalViewInline("../templates/components/gallery", modal, "<%= model %>_<%= nameclean %>");
+        amLoad<%= name %> = true;
+        var root = <%= model %>.
+        form.options.<%= name %>.folder;
+        DRAGON.viewData = {
+            root: root,
+            file:<%= model %>.form.options.<%= name %>.file,
+            scope
+    : <%= model %>,
+        maxsize: <%= model %>.
+        form.options.<%= name %>.maxsize_mb,
+            maxsize
+    : <%= model %>.
+        form.options.<%= name %>.maxsize_mb,
+            maxfiles
+    : <%= model %>.
+        form.options.<%= name %>.maxfiles,
+            acceptedFiles
+    : <%= model %>.
+        form.options.<%= name %>.acceptedFiles,
+            columns
+    : <%= model %>.
+        form.options.<%= name %>.columns
+    }
+        ;
+        var modal = {
+                width: <%= model %>.form.options.<%= name %>.width,
+            header: {
+                title: <%= model %>.form.options.<%= name %>.title,
+                icon: <%= model %>.form.options.<%= name %>.icon.class
+            },
+            footer: {
+                cancelButton: true
+            },
+            content: {
+                loadingContentText: MESSAGE.i('actions.Loading')
+            },
+            };
+        <%= model %>.
+        modal.modalViewInline("../templates/components/gallery", modal, "<%= model %>_<%= nameclean %>");
 
     });
 </script>

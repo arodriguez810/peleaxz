@@ -1,5 +1,5 @@
-var lines = process.stdout.getWindowSize()[1];
-for (var i = 0; i < lines; i++) console.log("\r\n");
+
+
 var folders = {
     models: "2-procedures",
     service: "1-service",
@@ -17,6 +17,7 @@ var folders = {
     scripts: "scripts",
     modules: "modules",
     sockets: "11-sockets",
+    tasks: "12-tasks",
     config: "0-config",
     eviroments: "8-enviroments",
     configBase: "7-plugins/application/config",
@@ -28,7 +29,7 @@ var folders = {
 };
 
 var modules = {}, sockets = {}, controls = [], localjs = [], localModules = [], localModulesVars = [], modulesList = [],
-    developer = {}, themes = [], socketsList = [];
+     themes = [], socketsList = [], tasks = {}, taskList = [];
 var fs = require("fs");
 
 /*FUNCTIONS*/
@@ -127,6 +128,12 @@ for (var i in CONFIG.modules) {
 }
 
 CONFIG.socketsList = socketsList;
+
+if(CONFIG.hosted){
+    var lines = process.stdout.getWindowSize()[1];
+    for (var i = 0; i < lines; i++) console.log("\r\n");
+}
+
 
 //GET LANGUAGES
 languages = getFiles("./" + folders.language + "/");
@@ -253,6 +260,14 @@ for (var i in filessockets) {
     var file = filessockets[i];
     socketsList.push(file.replace(".js", "").replace("", ""));
     eval("sockets." + file.replace(".js", "").replace("", "") + " = require('./" + folders.sockets + "/" + file + "');");
+}
+
+
+var filestasks = fs.readdirSync("./" + folders.tasks + "/");
+for (var i in filestasks) {
+    var file = filestasks[i];
+    taskList.push(file.replace(".js", "").replace("", ""));
+    eval("tasks." + file.replace(".js", "").replace("", "") + " = require('./" + folders.tasks + "/" + file + "');");
 }
 
 
@@ -660,6 +675,9 @@ storage.getItem("dragon_currency").then(currencies => {
 //******* Run Application********//
 app.listen(CONFIG.port);
 sockets.connection.init(eval("(" + allparams + ")"));
+for (var i in tasks) {
+    tasks[i].init(eval("(" + allparams + ")"));
+}
 console.clear();
 console.log("");
 console.log(CONFIG.appName.pxz + " Server Models:".pxz);
@@ -734,10 +752,10 @@ var sp = function (str, length) {
     length = length || 15;
     return `${str}${" ".repeat(length - str.length)}`;
 };
-var urlsha = `${CONFIG.proxy.ssl === true ? 'https://' : 'http://'}${CONFIG.proxy.subdomain !== '' ? CONFIG.proxy.subdomain + '.' : ''}${CONFIG.proxy.domain}${(CONFIG.proxy.port === 80 || CONFIG.proxy.port === 443 || CONFIG.proxy.port === 443) ? '' : (":" + CONFIG.proxy.port) }`;
-var urlshahome = `${CONFIG.ssl === true ? 'https://' : 'http://'}${CONFIG.subdomain !== '' ? CONFIG.subdomain + '.' : ''}${CONFIG.domain}${(CONFIG.port === 80 || CONFIG.port === 443 || CONFIG.port === 443) ? '' : (":" + CONFIG.port) }`;
+var urlsha = `${CONFIG.proxy.ssl === true ? 'https://' : 'http://'}${CONFIG.proxy.subdomain !== '' ? CONFIG.proxy.subdomain + '.' : ''}${CONFIG.proxy.domain}${(CONFIG.proxy.port === 80 || CONFIG.proxy.port === 443 || CONFIG.proxy.port === 443) ? '' : (":" + CONFIG.proxy.port)}`;
+var urlshahome = `${CONFIG.ssl === true ? 'https://' : 'http://'}${CONFIG.subdomain !== '' ? CONFIG.subdomain + '.' : ''}${CONFIG.domain}${(CONFIG.port === 80 || CONFIG.port === 443 || CONFIG.port === 443) ? '' : (":" + CONFIG.port)}`;
 
-var margin = 22;
+var margin = 40;
 print(0, "center", "", "█", 1, "pxz", "█", "█");
 print(0, "center", "", "═", 1, "pxz", "█╔", "╗█");
 print(0, "center", "Dragon Framework " + CONFIG.version.base, " ", 1, "pxz2", "█║", "║█");

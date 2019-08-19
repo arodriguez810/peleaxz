@@ -228,5 +228,7 @@
   "reset": "reset",
   "StepsManager": "Steps Manager",
   "DownloadSteps": "Download Steps",
-  "MapView": "Map View"
+  "MapView": "Map View",
+  "modules": "modules",
+  "functions":"functions"
 }

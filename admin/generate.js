@@ -1,6 +1,4 @@
 async function execute() {
-
-
     folders = {
         models: "2-procedures",
         service: "1-service",

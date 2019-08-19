@@ -16,8 +16,8 @@ CONFIGURATION = {
             },
         };
         if (user.super)
-            baseController.currentModel.modal.modalView("dragon_configuration", modal);
+            DRAGON.currentModel.modal.modalView("dragon_configuration", modal);
         else
-            baseController.currentModel.modal.modalView("dragon_configuration/soft", modal);
+            DRAGON.currentModel.modal.modalView("dragon_configuration/soft", modal);
     }
 };

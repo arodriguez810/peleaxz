@@ -32,7 +32,7 @@ ERROR = {
     send: function (error) {
         SWEETALERT.loading({message: MESSAGE.i('actions.Loading')});
         var session = new SESSION();
-        BASEAPI.mail({
+        DRAGONAPI.mail({
             "to": CONFIG.support.email,
             "subject": "Database Error Reporting Code: " + new Date().getTime(),
             "name": session.current().fullName(),

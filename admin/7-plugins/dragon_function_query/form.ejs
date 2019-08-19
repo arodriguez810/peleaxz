@@ -1,0 +1,54 @@
+<div class="tab-content">
+    <div class="tab-pane active" id="basic">
+        <div class="row">
+            <div class='col-sm-4 col-md-4'>
+                <%- FORM.select('dragon_query', scope, {
+                    column: 'name',
+                    table: 'dragon_query',
+                    //self: true,
+                    //allownull: true,
+                    //allownew: true,
+                    //allowedit: true,
+                    //allowview: true,
+                    //allowlist: true,
+                    //refresh: true,
+                    //condition: 'true',
+                    //multiple: false,get: {table: "dragon_query_linked", fieldFrom: "id", fieldTo: "myid(dragon_query)", field: "theirid"},
+                    //disabled: false,
+                    //helptext: "",
+                    //value: 'id',
+                    //text: 'item.name',
+                    //query: {
+                    //limit: 0,
+                    //page: 1,
+                    //where: [],
+                    //orderby: 'id',
+                    //order: 'asc',
+                    //distinct: false
+                    // join: [
+                    //     {
+                    //         table: 'ms_category',
+                    //         base: 'category',
+                    //         field: 'id',
+                    //         columns: ['id', 'name']
+                    //     },
+                    //     {
+                    //         table: 'otratable',
+                    //         base: 'ms_category_id',
+                    //         field: 'id',
+                    //         columns: ['id', 'name']
+                    //     }
+                    // ]
+                    //},
+                }) %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- FORM.footer(scope) %>
+
+
+
+
+

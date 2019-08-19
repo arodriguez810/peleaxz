@@ -17,7 +17,12 @@
                     maxfiles: 50
                 }) %>
             </div>
-
+            <div class="col-sm-6 col-md-6">
+                <%- FORM.file("files", scope, {
+                    maxfiles: 50,
+                    columns: 4
+                }) %>
+            </div>
         </div>
 
         <div class="row">
@@ -28,13 +33,6 @@
         <div class="row">
             <div class='col-sm-12 col-md-12'>
                 <%- FORM.html('html', scope) %>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12 col-md-12">
-                <%- FORM.fileinline("files", scope, {
-                    maxfiles: 50
-                }) %>
             </div>
         </div>
     </div>
