@@ -1,9 +1,12 @@
 FILE = {
+    defaultImage: function () {
+        return "assets/images/placeholder.jpg";
+    },
     server: function (folder, callback, nofound, element) {
         var http = new HTTP();
         DRAGONAPI.ajax.get(http.path(["generalfiles", "api"]), {folder: folder}, function (data) {
             if (data.data.files) {
-                for (var i in  data.data.files) {
+                for (var i in data.data.files) {
                     var file = data.data.files[i];
                     data.data.files[i] = {
                         url: `${http.path([FOLDERS.files, folder])}/${file}`,
@@ -18,7 +21,10 @@ FILE = {
                 }
                 if (data.data.files.length <= 0) {
                     if (nofound)
-                        return nofound(data.data.files);
+                        if (typeof nofound === "function")
+                            return nofound(data.data.files);
+                        else
+                            return nofound;
                 }
                 return callback(data.data.files);
             } else {

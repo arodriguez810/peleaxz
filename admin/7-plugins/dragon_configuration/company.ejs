@@ -137,7 +137,7 @@
 
     <div class="panel-body">
         <div class="row">
-            <div class="col-sm-2 col-md-3">
+            <div class="col-sm-3 col-md-3">
                 <%- FORM.checkbox("config.features.token", scope, {
                     text: 'Token Security', size: 'switchery-sm',
                     popover: {
@@ -147,14 +147,14 @@
                 }) %>
             </div>
 
-            <div class="col-sm-2 col-md-3">
+            <div class="col-sm-3 col-md-3">
                 <%- FORM.checkbox("config.features.fileManager", scope, {
                     text: 'General File Manager',
                     size: 'switchery-sm'
                 }) %>
             </div>
 
-            <div class="col-sm-2 col-md-3">
+            <div class="col-sm-3 col-md-3">
                 <%- FORM.checkbox("config.features.stepManager", scope, {
                     text: 'Step Manager QA/LOG',
                     size: 'switchery-sm'
@@ -162,7 +162,7 @@
             </div>
 
 
-            <div class="col-sm-2 col-md-3">
+            <div class="col-sm-3 col-md-3">
                 <%- FORM.checkbox("config.features.multilanguage", scope, {
                     text: 'Multi Languages',
                     size: 'switchery-sm'
@@ -170,27 +170,47 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-2 col-md-3">
+            <div class="col-sm-3 col-md-3">
                 <%- FORM.checkbox("config.features.onesignal", scope, {
                     text: 'OneSignal',
                     size: 'switchery-sm'
                 }) %>
             </div>
-            <div class="col-sm-2 col-md-3">
+            <div class="col-sm-3 col-md-3">
                 <%- FORM.checkbox("config.features.configuration", scope, {
                     text: 'Config',
                     size: 'switchery-sm'
                 }) %>
             </div>
-            <div class="col-sm-2 col-md-3">
+            <div class="col-sm-3 col-md-3">
                 <%- FORM.checkbox("config.features.customfields", scope, {
                     text: 'Custom Fields',
                     size: 'switchery-sm'
                 }) %>
             </div>
-            <div class="col-sm-2 col-md-3">
+            <div class="col-sm-3 col-md-3">
                 <%- FORM.checkbox("config.features.functions", scope, {
                     text: 'Functions',
+                    size: 'switchery-sm'
+                }) %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 col-md-3">
+                <%- FORM.checkbox("config.features.sockets", scope, {
+                    text: 'Sockets Integration',
+                    size: 'switchery-sm'
+                }) %>
+            </div>
+            <div class="col-sm-3 col-md-3">
+                <%- FORM.checkbox("config.features.chat", scope, {
+                    text: 'Chat',
+                    size: 'switchery-sm'
+                }) %>
+            </div>
+            <div class="col-sm-3 col-md-3">
+                <%- FORM.checkbox("config.features.user_interactive", scope, {
+                    text: 'Interactive Users',
                     size: 'switchery-sm'
                 }) %>
             </div>
@@ -402,9 +422,9 @@
 
         </div>
         <div class="row">
-
             <div class="col-sm-12 col-md-12" ng-repeat="(key,lan) in dragon_configuration.config.languages">
-                <div dragoncontrol="input" label="{{lan.name}}" cols="12" name="config.version.about.{{lan.code}}" scope="dragon_configuration"
+                <div dragoncontrol="input" label="{{lan.name}}" cols="12" name="config.version.about.{{lan.code}}"
+                     scope="dragon_configuration"
                      id="mycontrol{{lan.code}}">
                 </div>
             </div>

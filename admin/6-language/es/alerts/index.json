@@ -2,6 +2,7 @@
   "Copy": "Esta opción copia este registro sin relaciones y pega uno nuevo con el último ID ¿Está seguro de que desea copiar este registro?",
   "Copys": "Esta opción copia este registro sin relaciones y pega uno nuevo con la última identificación. ¿Está seguro de que desea copiar este registro?",
   "ExportedDepends": "La información exportada depende de las opciones que elija.",
+  "AYSImport": "¿Está seguro de que desea importar este registro?",
   "AYSDelete": "¿Está seguro de que desea eliminar este registro?",
   "AYSDeletes": "¿Está seguro de que desea eliminar este registro?",
   "YMDelete": "Debe seleccionar al menos un registro para eliminar",
@@ -41,5 +42,7 @@
   "fullRelations": "Usted ha registrado varios elementos en las entidades: ${relations} desea cerrar de todos modos?",
   "saveConfigSuperLanguage": "Esta opción cambia los mensajes de la aplicación completa, esta seguro que desea guardar de todos modos?",
   "tokenDescription": "Todos los requests de esta aplicación se transmiten usando un token de seguridad, esto garantiza que la interacción de la data sea certificada evitando así que usuarios no certificados logren interactuar con la aplicación. Los usuarios al logearse inician una especie de contrato donde le es generado varios token únicos para usarlo a lo largo de toda su interacción con la data. Una vez este contrato vence ya el usuario no puede interactuar más hasta que se autentique nuevamente. El tiempo de ese contrato es configurado en las opciones de la sección de “Seguridad” (Tiempo de expiración para la sesión).",
-  "maskDescription": "Crea tu máscara con los siguientes códigos (0: número requerido, 9: número opcional, A: alfanumérico, S: letras, #: números repetidas veces)"
+  "maskDescription": "Crea tu máscara con los siguientes códigos (0: número requerido, 9: número opcional, A: alfanumérico, S: letras, #: números repetidas veces)",
+  "userwasonline": "Se conectó",
+  "userwasoffline": "Se desconectó"
 }

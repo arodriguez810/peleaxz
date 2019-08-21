@@ -1,1 +1,1 @@
-{"key":"dragon_function","value":[{"name":"Test","description":"TEst","id":1}]}
+{"key":"dragon_function","value":[{"name":"Test","description":"Test","id":2,"parameters":"name,name2"}]}

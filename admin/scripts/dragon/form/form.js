@@ -338,6 +338,15 @@ FORM = {
                             multipleRelations: $scope.form.multipleRelations,
                             relations: $scope.form.relations,
                         });
+                        if (DRAGON.features.user_interactive)
+                            SOCKETS.tunel({
+                                channel: "interactive",
+                                data: {
+                                    user: new SESSION().current(),
+                                    action: SOCKETS.actions.refreshtable,
+                                    scope: $scope.modelName
+                                }
+                            });
 
                         var firstColumn = eval(`CRUD_${$scope.modelName}`).table.key || "id";
                         var DRAGONID = eval(`savedRow.${firstColumn}`);
@@ -455,10 +464,23 @@ FORM = {
                                 multipleRelations: $scope.form.multipleRelations,
                                 relations: $scope.form.relations,
                             });
+
+
                         }
                         SWEETALERT.loading({message: MESSAGE.i('mono.saving')});
                         var firstColumn = eval(`CRUD_${$scope.modelName}`).table.key || "id";
                         var DRAGONID = eval(`$scope.${firstColumn}`);
+
+                        if (DRAGON.features.user_interactive)
+                            SOCKETS.tunel({
+                                channel: "interactive",
+                                data: {
+                                    user: new SESSION().current(),
+                                    action: SOCKETS.actions.editrecord,
+                                    scope: $scope.modelName,
+                                    record: DRAGONID
+                                }
+                            });
 
                         if ($scope.form !== null)
                             $scope.form.mode = FORM.modes.edit;
@@ -484,7 +506,7 @@ FORM = {
                                                 eval(`frel.${i} = vi`);
                                             }
                                         }
-                                        for (var i in  relation.config.fieldsUpdate) {
+                                        for (var i in relation.config.fieldsUpdate) {
                                             var vi = relation.config.fieldsUpdate[i].replace('$id', DRAGONID);
                                             eval(`relation.config.fieldsUpdate.${i} = vi`);
                                         }
@@ -551,8 +573,7 @@ FORM = {
                                     eval(`$scope.form.inserting.${field} = $scope.form.lastPrepare.${field};`);
                             }
                         }
-                    }
-                    else {
+                    } else {
                         var typeField = eval(`$scope.form.schemas.insert.${field}`);
                         switch (typeField) {
                             case FORM.schemasType.upload: {
@@ -713,8 +734,7 @@ FORM = {
                         if (exist.length) {
                             if (eval(`$scope.${options.parent.model}_object !==null`))
                                 exist[0].value = eval(`$scope.${options.parent.model}_object.${options.parent.sufield}`);
-                        }
-                        else {
+                        } else {
                             toquery.where.push({
                                 field: options.parent.myfield || options.parent.model,
                                 value: eval(`$scope.${options.parent.model}_object.${options.parent.sufield}`)
@@ -870,8 +890,7 @@ FORM = {
                             if (exist.length) {
                                 if (eval(`$scope.${options.parent.model}_object !==null`))
                                     exist[0].value = eval(`$scope.${options.parent.model}_object.${options.parent.sufield}`);
-                            }
-                            else {
+                            } else {
                                 toquery.where.push({
                                     field: options.parent.myfield || options.parent.model,
                                     value: eval(`$scope.${options.parent.model}_object.${options.parent.sufield}`)
@@ -1302,7 +1321,7 @@ FORM = {
                         event: {
                             show: {
                                 begin: function (datam) {
-                                    for (const func of  $scope.form.beginFunctions) {
+                                    for (const func of $scope.form.beginFunctions) {
                                         eval(func);
                                     }
                                 },

@@ -4,7 +4,7 @@ MODAL = {
     viewData: [],
     rawModal: function (title, link, icon, width, controller) {
         //MENUMODAL = true;
-        DRAGON.currentModel.modal.modalView(link, {
+        DRAGON.modal.modalView(link, {
             width: width || ENUM.modal.width.full,
             header: {
                 title: title || '',
@@ -42,7 +42,7 @@ MODAL = {
             $(item).remove();
         }
         MODAL.history = [];
-        if (typeof  DRAGON !== "undefined")
+        if (typeof DRAGON !== "undefined")
             DRAGON.viewData = undefined;
         if (MODAL.historyObject.length < 1) {
             if (MENUMODAL) {
@@ -53,6 +53,8 @@ MODAL = {
         }
     },
     close: function ($scope, callback) {
+        if ($scope === undefined)
+            $scope = DRAGON.currentModel;
         var last = ARRAY.last(MODAL.history);
         STEP.register({
             scope: $scope ? $scope.modelName : '',
@@ -88,7 +90,6 @@ MODAL = {
         }
         if (typeof callback === "function")
             callback();
-
     },
     run: function ($scope) {
         $scope.modal = {};
@@ -243,8 +244,7 @@ MODAL = {
                         function (success) {
                             MESSAGE.run();
                         }, undefined, undefined, $scope);
-                }
-                else {
+                } else {
 
                     new LOAD().loadContentClean(
                         data.content.data.replaceAll("->", ""),
@@ -287,8 +287,7 @@ MODAL = {
                         function (success) {
                             MESSAGE.run();
                         }, undefined, undefined, $scope);
-                }
-                else {
+                } else {
 
                     new LOAD().loadContentClean(
                         data.content.data.replaceAll("->", ""),

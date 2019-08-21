@@ -10,7 +10,7 @@ DSON.keepmerge(CRUD_dragon_query, {
         //batch: false,
         //persist: false,
         //sortable: false,
-        //dragrow: 'num',
+        dragrow: 'num',
         //rowStyle: function (row, $scope) {
         //    return "color:red;";
         //},
@@ -47,7 +47,13 @@ DSON.keepmerge(CRUD_dragon_query, {
                 export: false,
                 exportExample: false
             },
-            name: {},
+            num: {
+                visible: false,
+                visibleDetail: false,
+                export: false,
+                exportExample: false
+            },
+            name: {drag: true},
             query: {shorttext: 360}
         },
         filters: {

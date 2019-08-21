@@ -1,5 +1,5 @@
 SERVICE = {
-    run: function (services) {
+    run: async function (services) {
         for (const service of services) {
             var data = service.split("*");
             var method = data[0];
@@ -41,6 +41,22 @@ SERVICE = {
                         "                    };";
                     eval(String.format("SERVICE.{0}.{1} = {2}", parent, functionName, functioner));
                     break;
+                }
+            }
+        }
+        var functions = await DRAGONAPI.listp('dragon_function', {});
+        if (functions) {
+            if (functions.data) {
+                for (var func of functions.data) {
+                    eval(`
+                SERVICE.${func.name} = (data) => new Promise((resolve, reject) => {
+                    SERVICE.database_db.runFunction({
+                        id: '${func.id}',
+                        params: data
+                    }, function (result) {
+                        resolve(result);
+                    });
+                });`);
                 }
             }
         }

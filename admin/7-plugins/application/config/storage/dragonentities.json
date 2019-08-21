@@ -193,7 +193,10 @@
       "type": "one",
       "fields": [
         "name",
-        "query"
+        "query",
+        "function",
+        "num",
+        "tempid"
       ]
     },
     "dragon_function": {
@@ -201,17 +204,8 @@
       "type": "one",
       "fields": [
         "name",
-        "description"
-      ]
-    },
-    "dragon_function_query": {
-      "key": "id",
-      "type": "one",
-      "open": true,
-      "fields": [
-        "query",
-        "function",
-        "num"
+        "description",
+        "parameters"
       ]
     }
   }

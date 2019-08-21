@@ -163,6 +163,8 @@ addMenu([], CONFIG.menus);
 </script>
 
 <script>
-    SOCKETS.connect();
-    SOCKETS.run();
+    if (CONFIG.features.sockets) {
+        SOCKETS.connect();
+        SOCKETS.run();
+    }
 </script>

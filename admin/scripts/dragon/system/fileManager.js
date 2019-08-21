@@ -1,6 +1,6 @@
 FILEMANAGER = {
     OPEN: function (folder, params) {
-        var root = `${ folder.join('/')}`;
+        var root = `${folder.join('/')}`;
         DRAGON.viewData = {
             root: root,
             scope: DRAGON.currentModel,
@@ -12,7 +12,7 @@ FILEMANAGER = {
         DRAGON.currentModel.modal.modalView("../templates/components/filemanager", {
             width: 'modal-full',
             header: {
-                title:  MESSAGE.i('mono.FileManager'),
+                title: MESSAGE.i('mono.FileManager'),
                 icon: "file-stats"
             },
             footer: {

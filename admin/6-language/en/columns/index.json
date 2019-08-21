@@ -244,5 +244,6 @@
   "query_plural": "queries",
   "dragon_function_query_plural": "queries",
   "dragon_function_query": "query",
-  "dragon_query": "query"
+  "dragon_query": "query",
+  "parameters":"parameters"
 }

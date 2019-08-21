@@ -254,5 +254,6 @@
   "query_plural": "consultas",
   "dragon_function_query_plural": "consultas",
   "dragon_function_query": "consulta",
-  "dragon_query": "consulta"
+  "dragon_query": "consulta",
+  "parameters": "parámetros"
 }

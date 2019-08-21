@@ -106,7 +106,7 @@ HTTP = function () {
                 loadingContentText: MESSAGE.i('actions.Loading')
             },
         };
-        DRAGON.currentModel.modal.modalView("../templates/components/requestManager", modal);
+        DRAGON.modal.modalView("../templates/components/requestManager", modal);
     };
     this.resetManager = function () {
         if (WARNINGREQUESTS.length)
@@ -116,7 +116,7 @@ HTTP = function () {
                 confirm: function () {
                     STORAGE.delete('warningRequests');
                     WARNINGREQUESTS = [];
-                    MODAL.close(DRAGON.currentModel);
+                    MODAL.closeAll();
                 }
             });
         else
@@ -134,7 +134,6 @@ $(document).ready(function () {
         if (paths.length > 0) {
             $("body").removeClass("sidebar-mobile-main");
             var controller = paths[0];
-            //MENUMODAL = true;
             MODAL.rawModal(title, link, icon.replace('icon-', ''), width, controller);
         }
         return false;

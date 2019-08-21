@@ -151,6 +151,11 @@
   "audit": "audit",
   "insert": "insert",
   "update": "update",
+  "inserting": "inserting",
+  "insertingrow": "has inserted a record",
+  "deletingrow": "has removed a record",
+  "updatingrow": "has edit a record",
+  "updating": "updated",
   "support": "support",
   "owner": "owner",
   "network": "network",
@@ -230,5 +235,9 @@
   "DownloadSteps": "Download Steps",
   "MapView": "Map View",
   "modules": "modules",
-  "functions":"functions"
+  "functions": "functions",
+  "runFuntion": "Run Function",
+  "executed": "executed",
+  "sorrydelete": "Sorry this record is no longer available was deleted by ${user.fullName()}",
+  "sorryedit": "Sorry this record was edited by ${user.fullName()}, do you want to take your changes?"
 }

@@ -2,168 +2,78 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8fb134e-e727-43fe-b984-89a1d2d7969c" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/admin/8-enviroments/prod/appearance/config_menu.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/8-enviroments/prod/appearance/menu.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/8-enviroments/prod/appearance/starter.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/8-enviroments/prod/appearance/theme.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/8-enviroments/prod/developer/control.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/8-enviroments/prod/developer/silents.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/8-enviroments/prod/security/auth.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/8-enviroments/prod/security/microsoft_cognitiveservices.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/8-enviroments/prod/security/permission.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/8-enviroments/prod/storage/entities.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/winstall.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/peleaxz.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/peleaxz.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/11-sockets/tunel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/scripts/extensions/browser.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/scripts/schannels/crud/form.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/scripts/schannels/notifications/login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/0-config/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/0-config/app.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/1-service/database/SE_db.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/1-service/database/SE_db.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/5-views/users/myprofile.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/5-views/users/myprofile.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/11-sockets/connection.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/11-sockets/connection.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/11-sockets/server1.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/11-sockets/server2.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/3-controllers/CO_lists.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/3-controllers/CO_lists.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/4-crud/CRUD_child.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/4-crud/CRUD_child.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/4-crud/CRUD_users.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/4-crud/CRUD_users.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/special/form.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/special/form.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/texts/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/texts/index.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/users/myprofile.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/5-views/users/myprofile.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/6-language/en/actions/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/6-language/en/actions/index.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/6-language/en/alerts/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/6-language/en/alerts/index.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/6-language/en/columns/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/6-language/en/columns/index.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/6-language/en/mono/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/6-language/en/mono/index.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/6-language/es/actions/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/6-language/es/actions/index.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/6-language/es/alerts/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/6-language/es/alerts/index.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/6-language/es/columns/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/6-language/es/columns/index.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/6-language/es/mono/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/6-language/es/mono/index.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/config/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/config/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/config/developer/generate.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/config/developer/generate.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/config/developer/modules.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/config/developer/modules.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/config/security/network.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/config/security/network.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/config/storage/baseentities.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/config/storage/baseentities.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/config/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/config/dragonapp.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/config/appearance/language.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/config/appearance/dragonlanguage.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/config/appearance/theme.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/config/appearance/dragontheme.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/config/developer/control.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/config/developer/dragoncontrol.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/config/developer/generate.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/config/developer/dragongenerate.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/config/developer/modules.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/config/developer/dragonmodules.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/config/developer/silents.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/config/developer/dragonsilents.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/config/security/auth.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/config/security/dragonauth.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/config/security/google.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/config/security/dragongoogle.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/config/security/network.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/config/security/dragonnetwork.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/config/security/onesignal.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/config/security/dragononesignal.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/config/security/performance.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/config/security/dragonperformance.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/config/security/permission.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/config/security/dragonpermission.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/config/security/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/config/security/dragonroutes.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/config/security/smtp.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/config/security/dragonsmtp.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/config/storage/baseentities.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/config/storage/dragonentities.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/controllers/CO_BASE.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/controllers/CO_BASE.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/controllers/CO_dragon_configuration.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/controllers/CO_dragon_configuration.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/controllers/CO_dragon_information.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/controllers/CO_dragon_information.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/controllers/CO_dragon_language.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/controllers/CO_dragon_language.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/controllers/CO_drangon_notifications.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/controllers/CO_drangon_notifications.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/controllers/CO_login.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/controllers/CO_login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/7-plugins/auth/login.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/auth/login.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/controllers/CO_dragon_function_query.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/cruds/CRUD_dragon_function.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/cruds/CRUD_dragon_function.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/cruds/CRUD_dragon_function_query.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/cruds/CRUD_dragon_query.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/cruds/CRUD_dragon_query.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/7-plugins/dragon_configuration/company.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/dragon_configuration/company.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/7-plugins/dragon_information/mobile.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/dragon_information/mobile.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/7-plugins/dragon_notifications/form.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/dragon_notifications/form.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/7-plugins/master/css.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/master/css.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/7-plugins/master/head.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/master/head.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/dragon_function/form.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/dragon_function/form.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/dragon_function_query/filter.ejs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/dragon_function_query/form.ejs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/dragon_function_query/index.ejs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/dragon_function_query/view.ejs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/master/functions.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/master/functions.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/7-plugins/master/menu.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/master/menu.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/7-plugins/master/navbar.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/master/navbar.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/7-plugins/templates/components/filemanager.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/templates/components/filemanager.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/7-plugins/templates/components/gallery.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/templates/components/gallery.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/7-plugins/templates/components/import.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/templates/components/import.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/7-plugins/templates/components/messageManager.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/templates/components/messageManager.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/7-plugins/templates/components/statictable.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/templates/components/statictable.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/7-plugins/templates/form/box.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/templates/form/box.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/7-plugins/templates/form/file.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/templates/form/file.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/7-plugins/templates/form/fileinline.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/templates/form/fileinline.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/7-plugins/templates/form/image.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/templates/form/image.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/7-plugins/templates/form/location.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/templates/form/location.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/7-plugins/templates/form/relation.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/templates/form/relation.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/7-plugins/templates/form/textarea.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/templates/form/textarea.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/7-plugins/templates/system/generate/crud.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/templates/system/generate/crud.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/8-enviroments/prod/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/8-enviroments/prod/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/storage/13f322b05bf6d1f8202ef8f4e948f805" beforeDir="false" afterPath="$PROJECT_DIR$/admin/files/storage/13f322b05bf6d1f8202ef8f4e948f805" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/files/storage/2459a82c1749b829527613e364882a05" beforeDir="false" afterPath="$PROJECT_DIR$/admin/files/storage/2459a82c1749b829527613e364882a05" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/files/storage/3f14827e6b8fbd3b13bf32e32ff407c0" beforeDir="false" afterPath="$PROJECT_DIR$/admin/files/storage/3f14827e6b8fbd3b13bf32e32ff407c0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/storage/46ae3be8a0ebc4aa6d778d5ff907db04" beforeDir="false" afterPath="$PROJECT_DIR$/admin/files/storage/46ae3be8a0ebc4aa6d778d5ff907db04" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/storage/4b65ca0f8b76e7181a12bf1fabc48532" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/storage/4bcbc758e73d2fdfa94c593b563c2c36" beforeDir="false" afterPath="$PROJECT_DIR$/admin/files/storage/4bcbc758e73d2fdfa94c593b563c2c36" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/storage/85f408e1da5b23a1697176433f3dc481" beforeDir="false" afterPath="$PROJECT_DIR$/admin/files/storage/85f408e1da5b23a1697176433f3dc481" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/files/storage/8fe424596629218f89f9f620aaa6c627" beforeDir="false" afterPath="$PROJECT_DIR$/admin/files/storage/8fe424596629218f89f9f620aaa6c627" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/files/storage/a738b0635517ff7388518e4fbbab5c2a" beforeDir="false" afterPath="$PROJECT_DIR$/admin/files/storage/a738b0635517ff7388518e4fbbab5c2a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/storage/b7eb1a7a46dd9fefd19cffc226e21f34" beforeDir="false" afterPath="$PROJECT_DIR$/admin/files/storage/b7eb1a7a46dd9fefd19cffc226e21f34" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/storage/ddd97bdb87af5539a4331926890b7f1d" beforeDir="false" afterPath="$PROJECT_DIR$/admin/files/storage/ddd97bdb87af5539a4331926890b7f1d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/storage/f01d7ba8b4dd2d20c9b4e0da238dad0d" beforeDir="false" afterPath="$PROJECT_DIR$/admin/files/storage/f01d7ba8b4dd2d20c9b4e0da238dad0d" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/files/storage/c8c60cb118e714fd80c0f7b1a34bca4b" beforeDir="false" afterPath="$PROJECT_DIR$/admin/files/storage/c8c60cb118e714fd80c0f7b1a34bca4b" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/files/storage/f29e98d580a0ff8db33ab6e6b743c11c" beforeDir="false" afterPath="$PROJECT_DIR$/admin/files/storage/f29e98d580a0ff8db33ab6e6b743c11c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/storage/f41f308b7f2bda22def033ecdd584c6f" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/generate.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/generate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/modules/BASE_views.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/modules/BASE_views.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/node_modules/oracledb/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/admin/node_modules/oracledb/CHANGELOG.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/node_modules/oracledb/LICENSE.md" beforeDir="false" afterPath="$PROJECT_DIR$/admin/node_modules/oracledb/LICENSE.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/node_modules/oracledb/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/admin/node_modules/oracledb/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/node_modules/oracledb/build/Release/oracledb-abi48-darwin-x64.node" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/node_modules/oracledb/build/Release/oracledb-abi48-darwin-x64.node-buildinfo.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/node_modules/oracledb/build/Release/oracledb-abi48-linux-x64.node" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/node_modules/oracledb/build/Release/oracledb-abi48-linux-x64.node-buildinfo.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/node_modules/oracledb/build/Release/oracledb-abi48-win32-x64.node" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/node_modules/oracledb/build/Release/oracledb-abi48-win32-x64.node-buildinfo.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/node_modules/oracledb/build/Release/oracledb-abi57-darwin-x64.node" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/node_modules/oracledb/build/Release/oracledb-abi57-darwin-x64.node-buildinfo.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/node_modules/oracledb/build/Release/oracledb-abi57-linux-x64.node" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/node_modules/oracledb/build/Release/oracledb-abi57-linux-x64.node-buildinfo.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/node_modules/oracledb/build/Release/oracledb-abi57-win32-x64.node" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/node_modules/oracledb/build/Release/oracledb-abi57-win32-x64.node-buildinfo.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/node_modules/oracledb/build/Release/oracledb-abi64-darwin-x64.node" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/node_modules/oracledb/build/Release/oracledb-abi64-darwin-x64.node-buildinfo.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/node_modules/oracledb/build/Release/oracledb-abi64-linux-x64.node" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/node_modules/oracledb/build/Release/oracledb-abi64-linux-x64.node-buildinfo.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/node_modules/oracledb/build/Release/oracledb-abi64-win32-x64.node" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/node_modules/oracledb/build/Release/oracledb-abi64-win32-x64.node-buildinfo.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/node_modules/oracledb/build/Release/oracledb-abi67-darwin-x64.node" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/node_modules/oracledb/build/Release/oracledb-abi67-darwin-x64.node-buildinfo.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/node_modules/oracledb/build/Release/oracledb-abi67-linux-x64.node" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/node_modules/oracledb/build/Release/oracledb-abi67-linux-x64.node-buildinfo.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/node_modules/oracledb/build/Release/oracledb-abi67-win32-x64.node" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/node_modules/oracledb/build/Release/oracledb-abi67-win32-x64.node-buildinfo.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/node_modules/oracledb/lib/connection.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/node_modules/oracledb/lib/connection.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/node_modules/oracledb/lib/lob.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/node_modules/oracledb/lib/lob.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/node_modules/oracledb/lib/oracledb.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/node_modules/oracledb/lib/oracledb.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/node_modules/oracledb/lib/pool.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/node_modules/oracledb/lib/pool.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/node_modules/oracledb/lib/querystream.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/node_modules/oracledb/lib/querystream.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/node_modules/oracledb/lib/resultset.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/node_modules/oracledb/lib/resultset.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/node_modules/oracledb/lib/sodaCollection.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/node_modules/oracledb/lib/sodaCollection.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/node_modules/oracledb/lib/sodaDatabase.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/node_modules/oracledb/lib/sodaDatabase.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/node_modules/oracledb/lib/sodaDocCursor.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/node_modules/oracledb/lib/sodaDocCursor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/node_modules/oracledb/lib/sodaDocument.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/node_modules/oracledb/lib/sodaDocument.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/node_modules/oracledb/lib/sodaOperation.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/node_modules/oracledb/lib/sodaOperation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/node_modules/oracledb/lib/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/node_modules/oracledb/lib/util.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/node_modules/oracledb/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/node_modules/oracledb/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/node_modules/oracledb/package/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/admin/node_modules/oracledb/package/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/node_modules/oracledb/package/install.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/node_modules/oracledb/package/install.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/preview.wav" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/appearance/animation.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/appearance/animation.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/auth/SESSION.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/auth/SESSION.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/base/baseapi.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/base/baseapi.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/base/http.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/base/http.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/components/control.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/components/control.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/base/load.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/base/load.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/base/service.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/base/service.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/components/current.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/components/current.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/components/modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/components/modal.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/components/sockets.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/components/sockets.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/file/file.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/file/file.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/form/form.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/form/form.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/system/configurationManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/system/configurationManager.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/system/errors.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/system/errors.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/system/fileManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/system/fileManager.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/system/language.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/system/language.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/system/notificationManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/system/notificationManager.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/system/stepManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/system/stepManager.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/table/events.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/table/events.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/table/export.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/table/export.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/table/filter.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/table/filter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/table/permissions.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/table/permissions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/table/table.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/table/table.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/schannels/client1.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/schannels/client2.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/styles/components/buttons.css" beforeDir="false" afterPath="$PROJECT_DIR$/admin/styles/components/buttons.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/windows.bat" beforeDir="false" afterPath="$PROJECT_DIR$/admin/windows.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tool/DragonTool/.vs/DragonTool/v15/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/tool/DragonTool/.vs/DragonTool/v15/.suo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tool/DragonTool/.vs/DragonTool/v15/Server/sqlite3/storage.ide-shm" beforeDir="false" afterPath="$PROJECT_DIR$/tool/DragonTool/.vs/DragonTool/v15/Server/sqlite3/storage.ide-shm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tool/DragonTool/.vs/DragonTool/v15/Server/sqlite3/storage.ide-wal" beforeDir="false" afterPath="$PROJECT_DIR$/tool/DragonTool/.vs/DragonTool/v15/Server/sqlite3/storage.ide-wal" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tool/DragonTool/Migrate.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/tool/DragonTool/Migrate.Designer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tool/DragonTool/Migrate.cs" beforeDir="false" afterPath="$PROJECT_DIR$/tool/DragonTool/Migrate.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tool/DragonTool/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/tool/DragonTool/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tool/DragonTool/bin/Debug/DragonTool.exe" beforeDir="false" afterPath="$PROJECT_DIR$/tool/DragonTool/bin/Debug/DragonTool.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tool/DragonTool/bin/Debug/DragonTool.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/tool/DragonTool/bin/Debug/DragonTool.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tool/DragonTool/obj/Debug/DesignTimeResolveAssemblyReferences.cache" beforeDir="false" afterPath="$PROJECT_DIR$/tool/DragonTool/obj/Debug/DesignTimeResolveAssemblyReferences.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tool/DragonTool/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache" beforeDir="false" afterPath="$PROJECT_DIR$/tool/DragonTool/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tool/DragonTool/obj/Debug/DragonTool.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/tool/DragonTool/obj/Debug/DragonTool.csproj.FileListAbsolute.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tool/DragonTool/obj/Debug/DragonTool.csproj.GenerateResource.cache" beforeDir="false" afterPath="$PROJECT_DIR$/tool/DragonTool/obj/Debug/DragonTool.csproj.GenerateResource.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tool/DragonTool/obj/Debug/DragonTool.exe" beforeDir="false" afterPath="$PROJECT_DIR$/tool/DragonTool/obj/Debug/DragonTool.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tool/DragonTool/obj/Debug/DragonTool.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/tool/DragonTool/obj/Debug/DragonTool.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/scripts/schannels/user_connect.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/schannels/user_connect.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/start.info" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -241,7 +151,7 @@
     <property name="excluded.www.directory" value="true" />
     <property name="javascript.nodejs.core.library.configured.version" value="9.2.0" />
     <property name="jsx.switch.disabled" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/admin/8-enviroments/prod" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/admin/scripts/schannels/crud" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.jscs" value="true" />
@@ -260,18 +170,18 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\peleaxz\admin\scripts\schannels\notifications" />
       <recent name="C:\xampp\htdocs\peleaxz\admin\7-plugins" />
       <recent name="C:\xampp\htdocs\peleaxz\admin\7-plugins\application\cruds" />
       <recent name="C:\xampp\htdocs\peleaxz\admin\7-plugins\application\controllers" />
       <recent name="C:\wamp\www\peleaxz\admin\7-plugins" />
-      <recent name="C:\wamp\www\peleaxz\admin\files\storage" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\peleaxz\admin\scripts\schannels\crud" />
+      <recent name="C:\xampp\htdocs\peleaxz\admin\11-sockets" />
+      <recent name="C:\xampp\htdocs\peleaxz\admin\scripts\schannels" />
+      <recent name="C:\xampp\htdocs\peleaxz\admin\scripts\extensions" />
       <recent name="C:\xampp\htdocs\peleaxz\admin\8-enviroments\prod" />
-      <recent name="C:\xampp\htdocs\peleaxz\admin\files" />
-      <recent name="C:\xampp\htdocs\peleaxz\admin" />
-      <recent name="C:\wamp\www\peleaxz\admin\12-tasks" />
-      <recent name="C:\wamp\www\peleaxz\admin\scripts\schannels" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -414,6 +324,9 @@
       <workItem from="1566112378506" duration="3222000" />
       <workItem from="1566157947586" duration="23469000" />
       <workItem from="1566220996609" duration="1502000" />
+      <workItem from="1566236681210" duration="12617000" />
+      <workItem from="1566273263790" duration="18036000" />
+      <workItem from="1566345846689" duration="14267000" />
     </task>
     <servers />
   </component>

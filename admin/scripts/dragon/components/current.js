@@ -30,8 +30,16 @@ CURRENT = {
             return eval(`${CURRENT.url()}.${CURRENT.form.key()}`);
         },
         mode: function () {
-            return eval(`${CURRENT.url()}.form.mode`);
+            if (eval(`${CURRENT.url()}`))
+                if (eval(`${CURRENT.url()}.form`))
+                    return eval(`${CURRENT.url()}.form.mode`);
+            return undefined;
         },
+        getValue: function (row) {
+            if (!CURRENT.form.crud())
+                return undefined;
+            return eval(`row.${CURRENT.form.key()}`);
+        }
     },
     form: {
         isOpen: function () {
@@ -51,7 +59,15 @@ CURRENT = {
             return eval(`${CURRENT.controller()}.${CURRENT.form.key()}`);
         },
         mode: function () {
-            return DRAGON.currentModel.form.mode !== undefined;
+            if (DRAGON.currentModel)
+                if (DRAGON.currentModel.form)
+                    return DRAGON.currentModel.form.mode || undefined;
+            return undefined;
         },
+        getValue: function (row) {
+            if (!CURRENT.form.crud())
+                return undefined;
+            return eval(`row.${CURRENT.form.key()}`);
+        }
     }
 };

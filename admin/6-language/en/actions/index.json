@@ -12,5 +12,6 @@
   "Clipboard": "Clipboard",
   "Back": "Back",
   "permissions": "permissions",
-  "Extra": "Extra"
+  "Extra": "Extra",
+  "execute":"execute"
 }

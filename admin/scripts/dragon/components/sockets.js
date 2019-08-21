@@ -1,8 +1,13 @@
 SOCKETS = {
     channels: {},
+    actions: {
+        refreshtable: "refreshtable",
+        deleterecord: "deleterecord",
+        editrecord: "editrecord",
+    },
     connect: function () {
-        var user = new SESSION().current();
-        SOCKET = io(new HTTP().io([]), {query: user});
+        var session = new SESSION();
+        SOCKET = io(new HTTP().io([]), {query: session.current()});
     },
     run: function () {
         for (var channel in SOCKETS.channels) {
@@ -13,9 +18,9 @@ SOCKETS = {
                 }
              });
              
-              SOCKETS.${channel} = function(data${channel}){
+             SOCKETS.${channel} = function(data${channel}){
                 SOCKET.emit('${channel}', data${channel});
-              };
+             };
               
             `);
         }

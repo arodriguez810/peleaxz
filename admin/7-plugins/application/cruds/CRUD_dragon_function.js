@@ -48,7 +48,8 @@ DSON.keepmerge(CRUD_dragon_function, {
                 exportExample: false
             },
             name: {},
-            description: {}
+            description: {},
+            parameters: {}
         },
         filters: {
             columns: true
@@ -60,24 +61,37 @@ DSON.keepmerge(CRUD_dragon_function, {
 //  return data.row.id > 5;
 //};
 //add options example, remember add new item in allow object at admin/0-config/security/permission.json
-// CRUD_dragon_function.table.options[0].menus.push({
-//     text: (data) => {
-//         return MESSAGE.i('actions.Extra');
-//     },
-//     icon: (data) => {
-//         return "list";
-//     },
-//     permission: (data) => {
-//         return 'extra';
-//     },
-//     characterist: (data) => {
-//         return "";
-//     },
-//     show: function (data) {
-//         return true;
-//     },
-//     click: function (data) {
-//         //extra function
-//         return false;
-//     }
-// });
+CRUD_dragon_function.table.options.push({
+    text: (data) => {
+        return MESSAGE.i('actions.execute');
+    },
+    icon: (data) => {
+        return "play4";
+    },
+    title: (data) => {
+        return MESSAGE.i("mono.runFuntion");
+    },
+    permission: (data) => {
+        return 'execute';
+    },
+    characterist: (data) => {
+        return "";
+    },
+    show: function (data) {
+        return true;
+    },
+    click: function (data) {
+        SWEETALERT.confirm({
+            message: MESSAGE.i('mono.AYS'),
+            confirm: function () {
+                SERVICE.database_db.runFunction({
+                    id: data.row.id,
+                    params: {name: "Hola", name2: "Bye"}
+                }, function (result) {
+                    SWEETALERT.show({message: MESSAGE.i('mono.executed')});
+                });
+            }
+        });
+        return false;
+    }
+});

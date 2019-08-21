@@ -47,7 +47,7 @@ LOAD = function () {
         $http = angular.injector(["ng"]).get("$http");
 
         new HTTP().setToken($http);
-        $http.get(view + `?scope=${controller || $scope.modelName}`, {}).then(
+        $http.get(view + `?scope=${controller || $scope.modelName || 'DRAGON'}`, {}).then(
             function (data) {
                 var http = new HTTP();
                 http.evaluate(data);

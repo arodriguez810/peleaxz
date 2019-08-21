@@ -12,5 +12,6 @@
   "Clipboard": "Portapapeles",
   "Back": "Atrás",
   "permissions": "permisos",
-  "Extra": "Extra"
+  "Extra": "Extra",
+  "execute":"ejecutar"
 }

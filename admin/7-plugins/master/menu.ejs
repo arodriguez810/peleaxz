@@ -20,7 +20,7 @@
                 </style>
 
                 <ul id="dragonmenu"
-                    class="navigation navigation-main navigation-accordion dragon-menu bg-<%= COLOR.extra %>-700 ">
+                    class="navigation navigation-main navigation-accordion dragon-menu bg-<%= COLOR.extra %>-700">
 
                     <li ng-repeat="(key, menu) in DRAGON.myMenu() track by key" class="{{menu.class}}">
                         <a data-modal="{{menu.modal}}" href="{{menu.href}}"
@@ -76,6 +76,28 @@
                                         </ul>
                                     </li>
                                 </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li ng-if="DRAGON.features.chat">
+                        <a href="#" data-modal="" class="bg-extra-700">
+                            <i class="icon-bubbles4"></i>
+                            <span>
+                                Chat
+                            </span>
+                        </a>
+                        <ul>
+                            <li></li>
+                            <li style="background-color: whitesmoke;color: black !important;"
+                                ng-repeat="(key,user) in DRAGON.ONLINE"
+                                ng-if="DRAGON.userID!=(user.getID?user.getID():0)">
+                                <a style="background-color: whitesmoke;color: black !important;" href="#"
+                                   class="bg-extra-700">
+                                    <img style="max-height: 34px;" src="{{user.image}}"/>
+                                    <span>
+                                {{user.fullName()}}
+                            </span>
+                                </a>
                             </li>
                         </ul>
                     </li>

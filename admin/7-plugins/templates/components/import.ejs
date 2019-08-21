@@ -14,7 +14,7 @@
     <%= DATA.scope %>.galleryFiles.refresh = function () {
         var http = new HTTP();
         DRAGONAPI.ajax.get(http.path(["files", "api"]), {folder: viewModel.root}, function (data) {
-            for (var i in  data.data.files) {
+            for (var i in data.data.files) {
                 var file = data.data.files[i];
                 data.data.files[i] = {
                     url: `${http.path([FOLDERS.files, viewModel.root])}/${file}`,
@@ -158,14 +158,14 @@
                 finalArray.push(files[i].cleanUrl);
             }
         SWEETALERT.confirm({
-            message: "¿Are you sure you want import selected file(s)?",
+            message: MESSAGE.i('alerts.AYSImport'),
             confirm: function () {
-                SWEETALERT.loading({message: "Importing Files"});
+                SWEETALERT.loading({message: MESSAGE.i('mono.importing')});
                 var http = new HTTP();
                 DRAGONAPI.ajax.post(http.path(["files", "api", "import"]), {filename: finalArray}, function (data) {
                     SWEETALERT.stop();
                     var records = data.data;
-                    var columns =eval(`CRUD_<%= DATA.scope %>`).table.columns;
+                    var columns = eval(`CRUD_<%= DATA.scope %>`).table.columns;
                     var inserts = [];
                     for (var i in records) {
                         var record = records[i];
@@ -187,8 +187,7 @@
                                 if (column === false) continue;
                                 if (key.indexOf('$$') === -1) {
                                     eval(`row.${key} = '${value}';`);
-                                }
-                                else
+                                } else
                                     relations.push({
                                         table: column.multilink.table,
                                         from: column.multilink.getList,

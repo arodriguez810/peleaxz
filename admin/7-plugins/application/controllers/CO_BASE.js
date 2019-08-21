@@ -148,14 +148,14 @@ app.controller('DRAGON', function ($scope, $http, $compile, $controller) {
 
             for (var gp in grouppermission) {
                 var entities = eval("(" + grouppermission[gp].object + ")");
-                for (var i in  entities)
+                for (var i in entities)
                     if (PERMISSIONS.mypermission.hasOwnProperty(i))
                         DSON.jalar(entities[i].allow, PERMISSIONS.mypermission[i].allow, false);
             }
 
             for (var gp in grouppermission) {
                 var entities = eval("(" + grouppermission[gp].object + ")");
-                for (var i in  entities)
+                for (var i in entities)
                     if (PERMISSIONS.mypermission.hasOwnProperty(i))
                         DSON.jalar(entities[i].allow, PERMISSIONS.mypermission[i].allow, true);
             }

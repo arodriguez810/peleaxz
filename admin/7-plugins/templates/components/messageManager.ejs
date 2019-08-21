@@ -1,9 +1,6 @@
-<script>
-    <%= scope %>.MMessages = DRAGON.viewData.staticdata;
-</script>
 <div class="dragon-panel" id="TablePanel" style="overflow-x: scroll;overflow-y: visible">
     <div class="panel-group content-group-lg" id="accordion1">
-        <div class="panel" ng-repeat="(key,message) in <%= scope %>.MMessages track by key">
+        <div class="panel" ng-repeat="(key,message) in DRAGON.viewData.staticdata track by key">
             <div class="panel-heading bg-<%= COLOR.secundary %>">
                 <h6 class="panel-title">
                     <a>{{key}}</a>
@@ -20,7 +17,7 @@
     </div>
 </div>
 <script>
-    <%= scope %>.refreshAngular();
+    DRAGON.refreshAngular();
     // $(".collapsible-sortable").sortable({
     //     connectWith: '.collapsible-sortable',
     //     items: '.panel',

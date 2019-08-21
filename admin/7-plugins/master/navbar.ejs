@@ -128,8 +128,7 @@
                             <language>MESSAGE.ic('columns.curreny_plural')</language>
                         </a>
                     </li>
-                    <li ng-if="(DRAGON.isSuper) && DRAGON.mode==='developer'"
-                        class="divider"></li>
+
                     <li ng-if="(DRAGON.isSuper) && DRAGON.mode==='developer'">
                         <a class="sidebar-control"
                            onclick="MODAL.rawModal(MESSAGE.ic('columns.dragon_mime_plural'),'dragon_mime','book',undefined,'dragon_mime');"
@@ -163,16 +162,7 @@
                         </a>
                     </li>
 
-                    <li ng-if="(DRAGON.isSuper) && DRAGON.mode==='developer'">
-                        <a class="sidebar-control"
-                           onclick="MODAL.rawModal(MESSAGE.ic('columns.dragon_function'),'dragon_function','code',undefined,'dragon_function');"
-                           data-popup="tooltip"
-                           data-placement="bottom" data-container="body" dragonlanguage
-                           title="MESSAGE.ic('columns.dragon_function_plural')">
-                            <i class="icon-code"></i>
-                            <language>MESSAGE.ic('columns.dragon_function_plural')</language>
-                        </a>
-                    </li>
+
                 </ul>
             </li>
 

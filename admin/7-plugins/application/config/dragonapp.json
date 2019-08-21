@@ -23,7 +23,9 @@
     "customfields": true,
     "silent": true,
     "sockets": true,
-    "functions": true
+    "functions": true,
+    "chat": true,
+    "user_interactive": true
   },
   "developerBy": {
     "name": "Angel Rodríguez",

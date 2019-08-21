@@ -150,6 +150,11 @@
   "audit": "auditoría",
   "insert": "insertar",
   "update": "actualizar",
+  "inserting": "insertando",
+  "insertingrow": "ha insertado un registro",
+  "deletingrow": "ha eliminado un registro",
+  "updatingrow": "ha editado un registro",
+  "updating": "actualizado",
   "support": "soporte",
   "owner": "Dueño",
   "network": "Dominio",
@@ -231,5 +236,9 @@
   "sort_date": "cronológicamente",
   "MapView": "Mapa",
   "modules": "módulos",
-  "functions": "funciones"
+  "functions": "funciones",
+  "runFuntion": "Ejecutar Función",
+  "executed": "ejecutado",
+  "sorrydelete": "Lo sentimos este registro ya no está disponible fue eliminado por ${user.fullName()}",
+  "sorryedit": "Lo sentimos éste fue editado por ${user.fullName()}, quieres tomar sus cambios?"
 }

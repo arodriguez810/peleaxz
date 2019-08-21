@@ -12,8 +12,9 @@ exports.api = {
     gets: {},
     posts: {
         runFunction: async function (request) {
+            var config = params.CONFIG.users;
             var array = [];
-            var querys = await params.storage.getItem("dragon_function_query");
+            var querys = await params.storage.getItem("dragon_query");
             querys = querys.filter((d) => {
                 return d.function == request.id;
             });
@@ -22,12 +23,16 @@ exports.api = {
                 var y = b.num;
                 return ((x < y) ? -1 : ((x > y) ? 1 : 0));
             });
-            querys.forEach(async function (query) {
-                eval(`module = params.modules.${query.engine};`);
-                var result = await module.executeNonQuery(query.query);
+            for (const query of querys) {
+                eval(`module = params.modules.${config.engine};`);
+                for (var par in request.params)
+                    eval(`var ${par} =request.params[par]`);
+                var Query = params.S(query.query).replaceAll("@", "$").s;
+                Query = eval("`" + Query + "`");
+                var result = await module.executeNonQuery(Query, params);
                 array.push(result);
-            });
-            return result;
+            }
+            return array;
         },
     },
     puts: {},

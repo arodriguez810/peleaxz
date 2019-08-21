@@ -30,7 +30,7 @@ TABLEEVENT = {
         $scope.cell.openLink = function (data) {
             if (!DSON.oseaX(data.value)) {
                 var mylink = data.column.link;
-                $scope.modal.edit(mylink.table,data.value);
+                $scope.modal.edit(mylink.table, data.value);
             }
         };
         $scope.cell.extendclick = function (data) {
@@ -47,9 +47,9 @@ TABLEEVENT = {
 
                 data.column.files.modal = {
                     width: 'modal-full',
-                        header: {
+                    header: {
                         title: MESSAGE.ic("mono.files"),
-                            icon: "file-eye"
+                        icon: "file-eye"
                     },
                     footer: {
                         cancelButton: true
@@ -100,7 +100,7 @@ TABLEEVENT = {
                 if (!DSON.oseaX(data.value)) {
                     var mylink = data.column.link;
                     if (!DSON.oseaX(data.value)) {
-                        $scope.modal.edit(mylink.table,eval("data.row." + mylink.from));
+                        $scope.modal.edit(mylink.table, eval("data.row." + mylink.from));
                     }
                     return;
                 }
@@ -120,14 +120,12 @@ TABLEEVENT = {
                         $scope.modal.simpleModal(data.value || "", {
                             header: {title: "HTML " + MESSAGE.i('mono.of') + " " + data.column.label}
                         });
-                    }
-                    else if (data.column.formattype.indexOf("color") !== -1) {
+                    } else if (data.column.formattype.indexOf("color") !== -1) {
 
                         load.template('templates/components/color', {color: data.value}, function (html) {
                             $scope.modal.simpleModal(html, {header: {title: MESSAGE.ic('mono.color')}});
                         });
-                    }
-                    else if (data.column.formattype.indexOf("location") !== -1) {
+                    } else if (data.column.formattype.indexOf("location") !== -1) {
                         if (!DSON.oseaX(data.value)) {
                             var location = data.value.split(';');
                             if (location.length > 1) {
@@ -138,8 +136,7 @@ TABLEEVENT = {
                                 $scope.modal.map({lat: lat, lng: lng}, name, {header: {title: name}});
                             }
                         }
-                    }
-                    else if (data.column.formattype.indexOf("file") !== -1) {
+                    } else if (data.column.formattype.indexOf("file") !== -1) {
                         var format = data.column.formattype.split(":");
                         format = format.length > 1 ? format[1] : "";
                         var fileUrl = new HTTP().path([CONFIG.filePath, data.value]);
@@ -166,8 +163,7 @@ TABLEEVENT = {
                                 }
                             }
                         }
-                    }
-                    else if (data.column.formattype.indexOf(ENUM.FORMAT.externalimage) !== -1) {
+                    } else if (data.column.formattype.indexOf(ENUM.FORMAT.externalimage) !== -1) {
                         var fileUrl = data.value;
                         if (!DSON.oseaX(data.value)) {
                             load.template('templates/components/crop', {src: fileUrl}, function (html) {
@@ -245,6 +241,17 @@ TABLEEVENT = {
 
                     $scope.afterDelete(row);
 
+                    if (DRAGON.features.user_interactive)
+                        SOCKETS.tunel({
+                            channel: "interactive",
+                            data: {
+                                user: new SESSION().current(),
+                                action: SOCKETS.actions.deleterecord,
+                                scope: $scope.modelName,
+                                record: row
+                            }
+                        });
+
                     $scope.procesingRow++;
                     if ($scope.procesingRowFor !== 0)
                         SWEETALERT.loading({
@@ -258,6 +265,7 @@ TABLEEVENT = {
                         SWEETALERT.stop();
                         $scope.reorderItems();
                         NOTIFY.success(`${$scope.singular} ${MESSAGE.i('mono.deleted')}`);
+
                         $scope.backPage();
                     } else {
                         if (multiple) {
@@ -436,7 +444,7 @@ TABLEEVENT = {
                     SWEETALERT.loading({message: `${actionTextMultiple}  ${MESSAGE.ic('mono.multiple')}  ${MESSAGE.ic('mono.rows')} ${$scope.procesingRow}  ${MESSAGE.i('mono.of')} ${$scope.procesingRowFor}`});
                     STEP.register({
                         scope: $scope.modelName,
-                        action: ` ${MESSAGE.ic('mono.active')} ${ $scope.forDelte.length}  ${MESSAGE.ic('mono.rows')}`
+                        action: ` ${MESSAGE.ic('mono.active')} ${$scope.forDelte.length}  ${MESSAGE.ic('mono.rows')}`
                     });
                     $scope.activeRows(value);
                 }

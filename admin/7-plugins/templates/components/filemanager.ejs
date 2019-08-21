@@ -21,7 +21,7 @@
         }
         var http = new HTTP();
         DRAGONAPI.ajax.get(http.path(["generalfiles", "api"]), {folder: viewModel.root}, function (data) {
-            for (var i in  data.data.files) {
+            for (var i in data.data.files) {
                 var file = data.data.files[i];
                 data.data.files[i] = {
                     url: `${http.path([FOLDERS.files, viewModel.root])}/${file}`,
@@ -64,8 +64,7 @@
             return "";
         if (file.isFolder) {
             return "folder-open";
-        }
-        else {
+        } else {
             return FILE.fileToIconClass(file.fileName);
         }
     };
@@ -331,7 +330,9 @@
         </tbody>
         <tfoot>
         <tr class="bg-<%= COLOR.secundary %>" dragonlanguage="">
-            <th class="col-lg-9">MESSAGE.ic("File_Folder")</th>
+            <th class="col-lg-9">
+                <language> MESSAGE.ic("mono.folders")</language>
+            </th>
             <th class="col-lg-3">
                 <language>MESSAGE.ic('mono.options')</language>
             </th>
