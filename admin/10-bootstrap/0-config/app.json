@@ -20,7 +20,11 @@
     "onesignal": true,
     "migrations": false,
     "customfields": true,
-    "silent": true
+    "silent": true,
+    "functions": true,
+    "sockets": false,
+    "chat": false,
+    "user_interactive": false
   },
   "developerBy": {
     "name": "Company",

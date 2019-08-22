@@ -1,6 +1,6 @@
 {
   "filePath": "files",
   "storage": "files/storage",
-  "mode": "developer",
+  "mode": "PROD",
   "home": "#group"
 }

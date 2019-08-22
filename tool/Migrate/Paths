@@ -4,6 +4,7 @@
 7-plugins
 10-bootstrap
 11-sockets
+12-tasks
 assets
 modules
 scripts
@@ -13,7 +14,6 @@ package.json
 server.js
 generate.js
 start.exe
-start.info
 windows.bat
 linux.sh
 mac.sh

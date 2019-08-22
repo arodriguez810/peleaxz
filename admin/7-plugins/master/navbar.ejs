@@ -54,7 +54,7 @@
                     <language>MESSAGE.ic('mono.managers')</language>
                     <i class="caret"></i>
                 </a>
-                <ul class="dropdown-menu " id="dragonsecondmenu" style="color:#000 !important;">
+                <ul class="dropdown-menu  dragon-navbar" id="dragonsecondmenu" style="color:#000 !important;">
                     <li ng-if="DRAGON.mode==='developer'">
                         <a class="sidebar-control" onclick="new HTTP().openManager()" data-popup="tooltip"
                            data-placement="bottom" data-container="body" dragonlanguage
@@ -110,7 +110,7 @@
                     <language>MESSAGE.ic('mono.datacenter')</language>
                     <i class="caret"></i>
                 </a>
-                <ul class="dropdown-menu " id="datacenteroptions" style="color:#000 !important;">
+                <ul class="dropdown-menu dragon-navbar " id="datacenteroptions" style="color:#000 !important;">
                     <li ng-if="(DRAGON.isSuper)">
                         <a class="sidebar-control"
                            onclick="MODAL.rawModal(MESSAGE.ic('mono.diskdata'), 'dragon_information/storage', 'cabinet', 'modal-lg', 'dragon_information')">
@@ -173,7 +173,7 @@
                     <language>MESSAGE.ic('mono.modules')</language>
                     <i class="caret"></i>
                 </a>
-                <ul class="dropdown-menu " id="datacenteroptions" style="color:#000 !important;">
+                <ul class="dropdown-menu   dragon-navbar" id="datacenteroptions" style="color:#000 !important;">
 
                     <li ng-if="DRAGON.features.onesignal===true && (DRAGON.isSuper)">
                         <a class="sidebar-control"
@@ -185,7 +185,7 @@
                             <language>MESSAGE.ic('mono.dragon_notifications')</language>
                         </a>
                     </li>
-                    <li ng-if="DRAGON.features.customfields===true">
+                    <li ng-if="DRAGON.features.customfields===true && (DRAGON.isSuper)">
                         <a class="sidebar-control"
                            onclick="MODAL.rawModal(MESSAGE.ic('mono.dragon_customfield'),'dragon_customfield','magic-wand',undefined,'dragon_customfield');"
                            data-popup="tooltip"
@@ -196,7 +196,7 @@
                         </a>
                     </li>
 
-                    <li ng-if="DRAGON.features.functions===true">
+                    <li ng-if="DRAGON.features.functions===true && DRAGON.mode==='developer'">
                         <a class="sidebar-control"
                            onclick="MODAL.rawModal(MESSAGE.ic('mono.functions'),'dragon_function','code',undefined,'dragon_function');"
                            data-popup="tooltip"
@@ -218,7 +218,7 @@
                 <a class="dropdown-toggle legitRipple" data-toggle="dropdown" aria-expanded="false"><img
                             src="assets/images/flags/{{DRAGON.currentLang.flag}}.png" alt=""
                             class="position-left"> {{DRAGON.currentLang.name}} <i class="caret"></i></a>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu  dragon-navbar">
                     <li
                             ng-repeat="(key,lan) in DRAGON.SHOWLANGS track by key"
                             class="{{DRAGON.currentLang.code===lan.code?'bg-<%= COLOR.primary %>':''}}">
@@ -245,7 +245,7 @@
                                 <language>MESSAGE.i('menu.list')</language>
                             </span>
                 </a>
-                <ul class="dropdown-menu ">
+                <ul class="dropdown-menu  dragon-navbar">
                     <li ng-repeat="(key, menu) in DRAGON.menusList track by key"
                         class="{{DRAGON.currentMenu===menu.href?'bg-primary':''}}">
                         <a data-modal="{{menu.modal}}" ng-click="DRAGON.changeMenu(menu)"

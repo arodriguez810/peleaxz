@@ -1,5 +1,3 @@
-
-
 var folders = {
     models: "2-procedures",
     service: "1-service",
@@ -29,7 +27,7 @@ var folders = {
 };
 
 var modules = {}, sockets = {}, controls = [], localjs = [], localModules = [], localModulesVars = [], modulesList = [],
-     themes = [], socketsList = [], tasks = {}, taskList = [];
+    themes = [], socketsList = [], tasks = {}, taskList = [];
 var fs = require("fs");
 
 /*FUNCTIONS*/
@@ -110,6 +108,15 @@ configs.forEach(function (config) {
     mergeObject(file, CONFIG);
 });
 
+configs = getFiles("./" + folders.config + "/");
+configs = configs.filter(function (file) {
+    return file.indexOf('.disabled') === -1;
+});
+configs.forEach(function (config) {
+    var file = eval("(" + fs.readFileSync(folders.config + "/" + config) + ")");
+    mergeObject(file, CONFIG);
+});
+
 configs = getFiles("./" + configMode + "/");
 configs = configs.filter(function (file) {
     return file.indexOf('.disabled') === -1;
@@ -129,7 +136,7 @@ for (var i in CONFIG.modules) {
 
 CONFIG.socketsList = socketsList;
 
-if(CONFIG.hosted){
+if (CONFIG.hosted) {
     var lines = process.stdout.getWindowSize()[1];
     for (var i = 0; i < lines; i++) console.log("\r\n");
 }

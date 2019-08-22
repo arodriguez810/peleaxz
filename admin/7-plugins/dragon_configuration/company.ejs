@@ -37,14 +37,9 @@
             </div>
 
             <div class="col-sm-4 col-md-4" ng-show="dragon_configuration.mode!=='admin'">
-                <%-
-                FORM.selectsimple("config.mode", scope, {
-                    label: "App Mode",
-                    value: "id",
-                    data: [
-                        {id: 'developer', name: 'developer'},
-                        {id: 'production', name: 'production'}
-                    ],
+                <%- FORM.input("config.mode", scope, {
+                    maxlength: 50,
+                    placeholder: "App Mode",
                     icon: {class: "wrench3"}
                 }) %>
             </div>

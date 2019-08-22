@@ -173,5 +173,6 @@ MESSAGE = {
             }
             $me.removeAttr('dragoncontrol');
         });
+        MENU.hideNavBar();
     }
 };

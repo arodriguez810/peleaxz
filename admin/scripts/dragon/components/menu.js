@@ -72,6 +72,9 @@ MENU = {
             }
         }
     },
+    hideNavBar: function () {
+        $("ul.dragon-navbar:not(:has(li))").parent().remove();
+    },
     hideMenus: function (controller) {
         $("[href='#" + controller + "']").parent().remove();
         $("ul.hidden-ul:not(:has(li))").parent().remove();

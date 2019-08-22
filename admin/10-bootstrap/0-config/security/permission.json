@@ -4,6 +4,10 @@
       "dragon_group": {
         "type": "permission",
         "allow": {}
+      },
+      "users": {
+        "type": "permission",
+        "allow": {}
       }
     }
   }
