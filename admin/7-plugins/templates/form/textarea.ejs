@@ -3,7 +3,8 @@ if (DATA.name !== undefined) {
     var name, model, opts;
     name = DATA.name;
     model = DATA.model;
-    opts = DATA.opts;
+if (DATA.opts !== "")
+        opts = eval("(" + DATA.opts + ")");
 }
 var name = name || "";
 var options = {
@@ -20,7 +21,8 @@ var options = {
     readonly: false,
     disabled: false,
     autocomplete: '',
-    posttype: "text"
+    posttype: "text",
+    code: false,
     //maxlength: 10,
 
 };
@@ -110,7 +112,9 @@ var toclient = JSON.stringify(options);
         <% } %>
         <%= model %>.
         form.options.<%= name %>.autosize = false;
-        <%= model %>.triggers.table.after.control("<%= nameclean %>");
+        <%= model %>.
+        triggers.table.after.control("<%= nameclean %>");
+
         function resizeme<%= model %>_<%= nameclean %>() {
             if (!DSON.oseaX($('[name="<%= model %>_<%= nameclean %>"]').val().lines().length > 1)) {
                 if (<%= model %>.
@@ -156,7 +160,7 @@ var toclient = JSON.stringify(options);
                 action: "Change TextArea",
                 field: "<%= name %>",
                 value: <%= model %>.<%= name %>
-        })
+            })
             ;
 
         });
@@ -170,7 +174,21 @@ var toclient = JSON.stringify(options);
                 $('[name="<%= model %>_<%= nameclean %>"]').html(isReadProgram)
             }
         }
+        if(<%= model %>.form.options.<%= name %>.code!==false){
+            window.editor = CodeMirror.fromTextArea(document.getElementById('<%= model %>_<%= nameclean %>'), {
+                mode: <%= model %>.form.options.<%= name %>.code,
+                smartIndent: true,
+                lineNumbers: true,
+                matchBrackets: true,
+                autofocus: true,
+                extraKeys: {"Ctrl-Space": "autocomplete"},
+                onChange: function (cm) {
 
+                }
+            }).on('change', cm => {
+                <%= model %>.<%= name %> = cm.getValue();
+            });
+        }
 
     });
 </script>

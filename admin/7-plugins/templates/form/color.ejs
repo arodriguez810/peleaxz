@@ -3,7 +3,8 @@ if(DATA.name!==undefined){
     var name, model, opts;
     name = DATA.name;
     model = DATA.model;
-    opts = DATA.opts;
+if (DATA.opts !== "")
+        opts = eval("(" + DATA.opts + ")");
 }
 var name  = name || "";
 var options = {

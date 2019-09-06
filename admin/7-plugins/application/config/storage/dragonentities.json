@@ -207,6 +207,26 @@
         "description",
         "parameters"
       ]
+    },
+    "dragon_task": {
+      "key": "id",
+      "type": "one",
+      "fields": [
+        "id",
+        "name",
+        "description",
+        "script",
+        "second",
+        "minute",
+        "hour",
+        "day",
+        "month",
+        "year",
+        "dayOfWeek",
+        "start",
+        "end",
+        "enabled"
+      ]
     }
   }
 }

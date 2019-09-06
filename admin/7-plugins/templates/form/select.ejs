@@ -3,7 +3,8 @@ if (DATA.name !== undefined) {
     var name, model, opts;
     name = DATA.name;
     model = DATA.model;
-    opts = DATA.opts;
+    if (DATA.opts !== "")
+        opts = eval("(" + DATA.opts + ")");
 }
 var name = name || "";
 var options = {
@@ -108,16 +109,20 @@ var toclient = JSON.stringify(options);
     }
     <%= model %>.form.loadDropDown("<%= name %>");
     <% if (options.permission) { %>
-        var permissions = eval('PERMISSIONS.mypermission.<%= options.permission %>');
-        permissions = permissions ? permissions.allow : {allow:{}};
-        if (permissions.edit===false)
-                <%= model %>.form.options.<%= name %>.allowedit = false;
-        if (permissions.view===false)
-                <%= model %>.form.options.<%= name %>.allowview = false;
-        if (permissions.add===false)
-                <%= model %>.form.options.<%= name %>.allownew = false;
-        if (permissions.menu===false)
-                <%= model %>.form.options.<%= name %>.allowlist = false;
+    var permissions = eval('PERMISSIONS.mypermission.<%= options.permission %>');
+    permissions = permissions ? permissions.allow : {allow: {}};
+    if (permissions.edit === false)
+            <%= model %>.
+    form.options.<%= name %>.allowedit = false;
+    if (permissions.view === false)
+            <%= model %>.
+    form.options.<%= name %>.allowview = false;
+    if (permissions.add === false)
+            <%= model %>.
+    form.options.<%= name %>.allownew = false;
+    if (permissions.menu === false)
+            <%= model %>.
+    form.options.<%= name %>.allowlist = false;
     <% } %>
 </script>
 
@@ -246,8 +251,10 @@ var toclient = JSON.stringify(options);
     function reloadMe<%= model %>_<%= nameclean %>() {
         if (PRUDENTS["<%= options.controller %>"] !== undefined) {
             <% if(options.multiple){ %>
-            if (<%= model %>.<%= nameclean %>==="[NULL]")
-                <%= model %>.<%= nameclean %> = [];
+            if (<%= model %>.<%= nameclean %>===
+            "[NULL]"
+        )
+            <%= model %>.<%= nameclean %> = [];
             <%= model %>.<%= nameclean %>.
             push(PRUDENTS["<%= options.controller %>"].toString());
             delete PRUDENTS["<%= options.controller %>"];
@@ -255,7 +262,8 @@ var toclient = JSON.stringify(options);
             <%= model %>.<%= nameclean %> = PRUDENTS["<%= options.controller %>"].toString();
             delete PRUDENTS["<%= options.controller %>"];
             <% } %>
-            <%= model %>.form.loadDropDown("<%= name %>");
+            <%= model %>.
+            form.loadDropDown("<%= name %>");
         }
     }
 
@@ -289,7 +297,7 @@ var toclient = JSON.stringify(options);
                 action: "Change DropDown",
                 field: "<%= name %>",
                 value: <%= model %>.<%= name %>
-        })
+            })
             ;
 
 
@@ -302,21 +310,25 @@ var toclient = JSON.stringify(options);
         });
         $('#new<%= model %>_<%= nameclean %>').click(function () {
             CURRENTPRUDENTS = "<%= options.controller %>";
-            <%= model %>.modal.new("<%= options.controller %>");
+            <%= model %>.
+            modal.new("<%= options.controller %>");
 
             return false;
         });
         $('#list<%= model %>_<%= nameclean %>').click(function () {
-            <%= model %>.modal.list("<%= options.controller %>");
+            <%= model %>.
+            modal.list("<%= options.controller %>");
             return false;
         });
 
         $('#edit<%= model %>_<%= nameclean %>').click(function () {
-            <%= model %>.modal.edit("<%= options.controller %>", `${<%= model %>.<%= name %>}`);
+            <%= model %>.
+            modal.edit("<%= options.controller %>", `${<%= model %>.<%= name %>}`);
             return false;
         });
         $('#view<%= model %>_<%= nameclean %>').click(function () {
-            <%= model %>.modal.view("<%= options.controller %>", `${<%= model %>.<%= name %>}`);
+            <%= model %>.
+            modal.view("<%= options.controller %>", `${<%= model %>.<%= name %>}`);
             return false;
         });
     });

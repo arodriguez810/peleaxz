@@ -25,14 +25,15 @@ DSON.keepmerge(CRUD_parent, {
                 visible: false,
                 visibleDetail: false,
                 export: false,
-                exportExample: false
+                exportExample: false,
+                dead: true
             },
             name: {},
             description: {},
-            created: {visible: false,visibleDetail: false,export: false,exportExample: false},
-            updated: {visible: false,visibleDetail: false,export: false,exportExample: false},
-            user_created: {visible: false,visibleDetail: false,export: false,exportExample: false},
-            user_updated: {visible: false,visibleDetail: false,export: false,exportExample: false}
+            created: {visible: false, visibleDetail: false, export: false, exportExample: false},
+            updated: {visible: false, visibleDetail: false, export: false, exportExample: false},
+            user_created: {visible: false, visibleDetail: false, export: false, exportExample: false},
+            user_updated: {visible: false, visibleDetail: false, export: false, exportExample: false}
         },
         filters: {
             columns: true

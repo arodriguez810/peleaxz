@@ -55,7 +55,8 @@ SESSION = function () {
     };
     this.register = function (data) {
         STORAGE.add("APPSESSION", data);
-        SOCKETS.tunel({channel: "login", data: data});
+        if (CONFIG.features.user_interactive)
+            SOCKETS.tunel({channel: "login", data: data});
     };
     this.isLogged = function () {
         return !DSON.oseaX(STORAGE.get("APPSESSION"));
@@ -84,7 +85,8 @@ SESSION = function () {
         SWEETALERT.confirm({
             message: MESSAGE.i('alerts.AYSCloseSession'),
             confirm: function () {
-                SOCKETS.tunel({channel: "logoff", data: new SESSION().current()});
+                if (CONFIG.features.user_interactive)
+                    SOCKETS.tunel({channel: "logoff", data: new SESSION().current()});
                 new SESSION().destroy();
                 location.reload();
             }

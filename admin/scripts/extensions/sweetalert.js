@@ -36,7 +36,7 @@ SWEETALERT = {
             html: data.message || MESSAGE.i('mono.Areyousure'),
             showCancelButton: true,
             confirmButtonText: data.yes || MESSAGE.ic('mono.yes'),
-            cancelButtonText: data.cancel || MESSAGE.ic('mono.no')
+            cancelButtonText: data.cancelButtonText || MESSAGE.ic('mono.no')
         }).then(result => {
             if (result.dismiss === undefined) {
                 if (typeof data.confirm === "function") data.confirm();

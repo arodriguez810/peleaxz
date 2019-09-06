@@ -3,7 +3,8 @@ if (DATA.name !== undefined) {
     var name, model, opts, modelfolder;
     name = DATA.name;
     model = DATA.model;
-    opts = DATA.opts;
+if (DATA.opts !== "")
+        opts = eval("(" + DATA.opts + ")");
     modelfolder = DATA.opts.modelfolder;
 
 }

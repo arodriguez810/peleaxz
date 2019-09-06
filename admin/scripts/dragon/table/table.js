@@ -132,8 +132,7 @@ TABLE = {
         $scope.width = function () {
             if (!DSON.oseaX(eval(`CRUD_${$scope.modelName}`).table.width)) {
                 return "";
-            }
-            else
+            } else
                 for (const key in $scope.columns()) {
                     var index = 1;
                     var column = {};
@@ -194,7 +193,8 @@ TABLE = {
         };
         $scope.showallColumn = function () {
             for (const key in eval(`CRUD_${$scope.modelName}`).table.columns) {
-                eval(`CRUD_${$scope.modelName}`).table.columns[key].visible = true;
+                if (!eval(`CRUD_${$scope.modelName}`).table.columns[key].dead)
+                    eval(`CRUD_${$scope.modelName}`).table.columns[key].visible = true;
             }
             STORAGE.add($scope.modelName + "." + 'hideColumns', []);
             $scope.width();
@@ -377,14 +377,19 @@ TABLE = {
                     $scope.tableOrView,
                     dataToList,
                     function (data) {
-                        $scope.afterData(data);
-                        $scope.table.loaded = true;
-                        $scope.refreshAngular();
-                        DRAG.run($scope);
+                        if ($scope.table.currentPage > 1) {
+                            if (data.data.length === 0) {
+                                $scope.firstPage();
+                            }
+                        } else {
+                            $scope.afterData(data);
+                            $scope.table.loaded = true;
+                            $scope.refreshAngular();
+                            DRAG.run($scope);
+                        }
                     }
                 );
-            }
-            else {
+            } else {
                 dataToList.where = $scope.fixFiltersApply();
                 $scope.filtersApply(dataToList);
                 if (RELATIONS.anonymous[$scope.modelName] !== undefined) {
@@ -414,9 +419,16 @@ TABLE = {
                     $scope.tableOrView,
                     dataToList,
                     function (data) {
-                        $scope.afterData(data);
-                        $scope.refreshAngular();
-                        DRAG.run($scope);
+
+                        if ($scope.table.currentPage > 1) {
+                            if (data.data.length === 0) {
+                                $scope.firstPage();
+                            }
+                        } else {
+                            $scope.afterData(data);
+                            $scope.refreshAngular();
+                            DRAG.run($scope);
+                        }
                     }
                 );
             }

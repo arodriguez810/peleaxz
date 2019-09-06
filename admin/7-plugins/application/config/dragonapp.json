@@ -25,7 +25,8 @@
     "sockets": true,
     "functions": true,
     "chat": true,
-    "user_interactive": true
+    "user_interactive": true,
+    "tasks": true
   },
   "developerBy": {
     "name": "Angel Rodríguez",

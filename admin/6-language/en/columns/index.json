@@ -245,5 +245,16 @@
   "dragon_function_query_plural": "queries",
   "dragon_function_query": "query",
   "dragon_query": "query",
-  "parameters":"parameters"
+  "parameters":"parameters",
+  "dragon_task_plural":"tasks",
+  "dragon_task":"task",
+  "second":"second",
+  "minute":"minute",
+  "day":"day",
+  "month":"month",
+  "dayOfWeek":"day Of Week",
+  "start":"start",
+  "end":"end",
+  "enabled":"enabled",
+  "script":"script"
 }

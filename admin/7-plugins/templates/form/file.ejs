@@ -3,16 +3,15 @@ if (DATA.name !== undefined) {
     var name, model, opts, modelfolder;
     name = DATA.name;
     model = DATA.model;
-    opts = DATA.opts;
+    if (DATA.opts !== "")
+        opts = eval("(" + DATA.opts + ")");
     modelfolder = DATA.opts.modelfolder;
 
 }
 var name = name || "";
-
-console.log(modelfolder+":mandado es");
+modelfolder = "";
 if (!modelfolder) {
     modelfolder = model;
-    console.log(modelfolder+":este es");
 }
 
 var options = {
@@ -39,7 +38,8 @@ var options = {
     posttype: "file",
     download: true,
     remove: true,
-    upload: true
+    upload: true,
+    alone: false
 };
 options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g, '_');
 options.color = options.type === "form" ? "{{" + model + ".validation.stateDefault()}}" : options.icon.color;
@@ -173,17 +173,17 @@ var toclient = JSON.stringify(options);
         ;
         <% } %>
         if (amLoad<%= name %> || direct === true) {
-            DRAGONAPI.ajax.get(new HTTP().path(["files", "api"]), {folder: <%= model %>.form.options.<%= name %>.folder
-        },
+            DRAGONAPI.ajax.get(new HTTP().path(["files", "api"]), {
+                    folder: <%= model %>.form.options.<%= name %>.folder
+                },
 
-            function (data) {
-                <%= model %>.
-                <%= name %>_DragonCountFile = data.data.files.length;
-                <%= model %>.
-                $scope.$digest();
-            }
-
-        )
+                function (data) {
+                    <%= model %>.
+                    <%= name %>_DragonCountFile = data.data.files.length;
+                    <%= model %>.
+                    $scope.$digest();
+                }
+            )
             ;
             amLoad<%= name %> = false;
         }
@@ -194,8 +194,10 @@ var toclient = JSON.stringify(options);
         form.options.<%= name %>.file === ''
     )
         {
-            <%= model %>.
-            form.options.<%= name %>.folder = `<%= modelfolder %>/<%= name %>/${thisID}`;
+            if( <%= model %>.form.options.<%= name %>.alone === true)
+            <%= model %>.form.options.<%= name %>.folder = `<%= options.folder %>`;
+            else
+            <%= model %>.form.options.<%= name %>.folder = `<%= modelfolder %>/<%= name %>/${thisID}`;
         }
         ShowCount<%= name %>(true);
     }
@@ -225,7 +227,7 @@ var toclient = JSON.stringify(options);
             };
 
             var modal = {
-                    width: <%= model %>.form.options.<%= name %>.width,
+                width: <%= model %>.form.options.<%= name %>.width,
                 header: {
                     title: <%= model %>.form.options.<%= name %>.title,
                     icon: <%= model %>.form.options.<%= name %>.icon.class
@@ -236,10 +238,11 @@ var toclient = JSON.stringify(options);
                 content: {
                     loadingContentText: MESSAGE.i('actions.Loading')
                 },
-                };
+            };
             <%= model %>.
             modal.modalView("../templates/components/gallery", modal);
         });
     });
+    <%= model %>.refreshAngular();
 </script>
 

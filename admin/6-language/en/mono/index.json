@@ -239,5 +239,6 @@
   "runFuntion": "Run Function",
   "executed": "executed",
   "sorrydelete": "Sorry this record is no longer available was deleted by ${user.fullName()}",
-  "sorryedit": "Sorry this record was edited by ${user.fullName()}, do you want to take your changes?"
+  "sorryedit": "Sorry this record was edited by ${user.fullName()}, do you want to take your changes?",
+  "tasks": "tasks"
 }

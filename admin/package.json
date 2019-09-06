@@ -45,6 +45,7 @@
     "phantom-html2pdf": "^4.0.1",
     "phantomjs": "^2.1.7",
     "pluralize": "^7.0.0",
+    "public-ip": "^3.2.0",
     "read-excel-file": "^2.0.6",
     "request-promise": "^4.2.4",
     "rich-filemanager-node": "^0.1.5",

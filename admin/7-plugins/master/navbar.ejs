@@ -207,6 +207,17 @@
                         </a>
                     </li>
 
+                    <li ng-if="DRAGON.features.tasks===true && (DRAGON.isAdmin)">
+                        <a class="sidebar-control"
+                           onclick="MODAL.rawModal(MESSAGE.ic('mono.tasks'),'dragon_task','task',undefined,'dragon_task');"
+                           data-popup="tooltip"
+                           data-placement="bottom" data-container="body" dragonlanguage
+                           title="MESSAGE.ic('mono.tasks')">
+                            <i class="icon-task"></i>
+                            <language>MESSAGE.ic('mono.tasks')</language>
+                        </a>
+                    </li>
+
                 </ul>
             </li>
         </ul>
@@ -227,37 +238,37 @@
                     </li>
                 </ul>
             </li>
-            <li ng-show="!DRAGON.isClient" ng-if="DRAGON.mode==='developer'">
-                <a class="sidebar-control"
-                   onclick="MODAL.rawModal(MESSAGE.ic('mono.generatemobile'), 'dragon_information/mobile', 'mobile', 'modal-lg', 'dragon_information')"
-                   data-popup="tooltip"
-                   data-placement="bottom" data-container="body" dragonlanguage
-                   title="MESSAGE.ic('mono.generatemobile')">
-                    <i class="icon-mobile"></i>
-                </a>
-            </li>
-            <li class="dropdown dropdownwithoptions"
-                ng-show="DRAGON.isSuper && DRAGON.menusList.length>1"
-                dragonlanguage="">
-                <a class="dropdown-toggle legitRipple" data-toggle="dropdown" aria-expanded="false">
-                    <i class="icon-menu9"></i>
-                    <span>
-                                <language>MESSAGE.i('menu.list')</language>
-                            </span>
-                </a>
-                <ul class="dropdown-menu  dragon-navbar">
-                    <li ng-repeat="(key, menu) in DRAGON.menusList track by key"
-                        class="{{DRAGON.currentMenu===menu.href?'bg-primary':''}}">
-                        <a data-modal="{{menu.modal}}" ng-click="DRAGON.changeMenu(menu)"
-                           style="color: black !important;">
-                            <i class="icon-{{menu.icon}}"></i>
-                            <span>
-                                        {{DRAGON.menuLabel(menu)}}
-                                     </span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
+<!--            <li ng-show="!DRAGON.isClient" ng-if="DRAGON.mode==='developer'">-->
+<!--                <a class="sidebar-control"-->
+<!--                   onclick="MODAL.rawModal(MESSAGE.ic('mono.generatemobile'), 'dragon_information/mobile', 'mobile', 'modal-lg', 'dragon_information')"-->
+<!--                   data-popup="tooltip"-->
+<!--                   data-placement="bottom" data-container="body" dragonlanguage-->
+<!--                   title="MESSAGE.ic('mono.generatemobile')">-->
+<!--                    <i class="icon-mobile"></i>-->
+<!--                </a>-->
+<!--            </li>-->
+<!--            <li class="dropdown dropdownwithoptions"-->
+<!--                ng-show="DRAGON.isSuper && DRAGON.menusList.length>1"-->
+<!--                dragonlanguage="">-->
+<!--                <a class="dropdown-toggle legitRipple" data-toggle="dropdown" aria-expanded="false">-->
+<!--                    <i class="icon-menu9"></i>-->
+<!--                    <span>-->
+<!--                                <language>MESSAGE.i('menu.list')</language>-->
+<!--                            </span>-->
+<!--                </a>-->
+<!--                <ul class="dropdown-menu  dragon-navbar">-->
+<!--                    <li ng-repeat="(key, menu) in DRAGON.menusList track by key"-->
+<!--                        class="{{DRAGON.currentMenu===menu.href?'bg-primary':''}}">-->
+<!--                        <a data-modal="{{menu.modal}}" ng-click="DRAGON.changeMenu(menu)"-->
+<!--                           style="color: black !important;">-->
+<!--                            <i class="icon-{{menu.icon}}"></i>-->
+<!--                            <span>-->
+<!--                                        {{DRAGON.menuLabel(menu)}}-->
+<!--                                     </span>-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </li>-->
         </ul>
         <div class="navbar-right" ng-show="DRAGON.isLogged">
 

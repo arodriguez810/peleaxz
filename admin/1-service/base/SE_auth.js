@@ -84,7 +84,7 @@ exports.api = {
                         data.data[0].players = players;
                     }
 
-
+                    data.data[0].ip = await params.publicIp.v4();
                     data.data[0].super = config.super.indexOf(request.username.toLowerCase()) !== -1;
 
                     data.data[0].groups = [];
@@ -148,6 +148,9 @@ exports.api = {
                 }
                 return data;
             });
+        },
+        ip: async function (request) {
+            return {ip: await params.publicIp.v4()};
         },
         md5: async function (request) {
             var mdf5 = params.md5(params.CONFIG.appKey + request.value);

@@ -1,6 +1,5 @@
 <head>
     <% include server %>
-
     <% var root = '../../'; %>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -40,20 +39,15 @@
                     <!-- Error title -->
                     <div class="text-center content-group"
                          style="background-color: #fff;min-height: 500px;margin-bottom: 0px !important;margin-top: -20px !important;">
+                        <div class="error-title dragon-welcome">
+                            <img style="width: 100px;float: left !important;margin-left: 40px;" src="files/dragon_configuration/logo/logo.png" alt="">
+                        </div>
                         <h1 class="error-title dragon-welcome"
                             style="color: <%= CONFIG.ui.theme.primary %>;text-shadow: 0 1px 0 <%= CONFIG.ui.theme.secundary %>,0 2px 0 <%= CONFIG.ui.theme.secundary %>,0 3px 0 <%= CONFIG.ui.theme.secundary %>,0 4px 0 <%= CONFIG.ui.theme.secundary %>,0 5px 0 #aaa,0 6px 1px rgba(0,0,0,.1),0 0 5px rgba(0,0,0,.1),0 1px 3px rgba(0,0,0,.3),0 3px 5px rgba(0,0,0,.2),0 5px 10px rgba(0,0,0,.25),0 10px 10px rgba(0,0,0,.2),0 20px 20px rgba(0,0,0,.15);">
                             <%= CONFIG.appName %>
-                            <script>
-                                if (new SESSION().current()) {
-                                    if (document.location.href.indexOf('#') === -1 && new SESSION().current().homePage) {
-                                        new HTTP().redirecttag(new SESSION().current().homePage.replace('#', ''));
-                                    } else if (document.location.href.indexOf('#') === -1) {
-                                        new HTTP().redirecttag(CONFIG.home.replace('#', ''));
-                                    }
-                                } else {
-                                    new SESSION().ifLogoffRedirec();
-                                }
-                            </script>
                         </h1>
+
+                        <h3 style="padding: 25px;">{{DRAGON.about}}</h3>
+
                     </div>
                     <!-- /error title -->

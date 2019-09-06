@@ -115,8 +115,6 @@ FORM = {
             if ($scope.form !== null) {
                 var nameclean = name.replace(/\./g, '_');
                 $scope.form.fileds.push(name);
-
-
                 var references = name.split('.');
                 if ($scope.form === undefined) {
                     $scope.form = {};
@@ -350,6 +348,7 @@ FORM = {
 
                         var firstColumn = eval(`CRUD_${$scope.modelName}`).table.key || "id";
                         var DRAGONID = eval(`savedRow.${firstColumn}`);
+
                         if (!DSON.oseaX(CURRENTPRUDENTS)) {
                             PRUDENTS[CURRENTPRUDENTS] = DRAGONID;
                             CURRENTPRUDENTS = "";
@@ -1109,7 +1108,9 @@ FORM = {
                 }
             }
         };
+        $scope.form.preUpdate = null;
         $scope.openForm = async function (mode) {
+
 
             if (await $scope.triggers.table.before.open() === false)
                 return;
@@ -1340,15 +1341,16 @@ FORM = {
                             },
                             hide: {
                                 begin: async function (datam) {
-                                    for (var field of $scope.form.fileds) {
-                                        eval(`
+                                    if (MODAL.history[MODAL.history.length - 1] === "#modal" + MODAL.current().id)
+                                        for (var field of $scope.form.fileds) {
+                                            eval(`
                                         if(${$scope.modelName}.$scope.$$watchers)
                                         ${$scope.modelName}.$scope.$$watchers.filter((d, inx) => {
                                             if (d.exp === \`${$scope.modelName}.\${field}\`) {
                                                 delete ${$scope.modelName}.$scope.$$watchers[inx];
                                             }
                                         });`);
-                                    }
+                                        }
                                     if (await $scope.triggers.table.before.close() === false)
                                         return;
                                     if (MODAL.history.length === 0) {

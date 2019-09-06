@@ -3,12 +3,12 @@ CONTROL = {
     run: function ($scope, $compile) {
         $scope.control = {};
         $scope.control.dropdown = [];
-        $scope.control.draw = (content, url, name, opts, append, cols, label) => new Promise((resolve, reject) => {
-            if (!CONTROL.cache[url]) {
+        $scope.control.draw = (content, url, name, opts, append, cols, label, cache) => new Promise((resolve, reject) => {
+            if (!CONTROL.cache[url] || cache === false) {
                 new LOAD().templatePost(`dragoncontrol/${url}`, {
                     name: "DRAGONNAME",
                     model: "DRAGONMODEL",
-                    opts: "DRAGONOPTION"
+                    opts: JSON.stringify(opts)
                 }, function (control) {
                     if (control !== false) {
                         CONTROL.cache[url] = control;
@@ -46,8 +46,8 @@ CONTROL = {
         });
         for (var i of CONTROLS) {
             var nameData = i.replace(".ejs", "");
-            eval(`$scope.control.${nameData} = (content, name, opts,append,cols,label) => new Promise(async (resolve, reject) => {
-                await $scope.control.draw(content, "${nameData}", name, opts,append,cols,label);
+            eval(`$scope.control.${nameData} = (content, name, opts,append,cols,label,cache) => new Promise(async (resolve, reject) => {
+                await $scope.control.draw(content, "${nameData}", name, opts,append,cols,label,cache);
                 resolve(true);
             })`);
         }

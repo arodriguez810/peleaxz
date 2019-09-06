@@ -3,8 +3,10 @@ if (DATA.name !== undefined) {
     var name, model, opts;
     name = DATA.name;
     model = DATA.model;
-    opts = DATA.opts;
+    if (DATA.opts !== "")
+        opts = eval("(" + DATA.opts + ")");
 }
+
 var name = name || "";
 var options = {
     placeholder: params.capitalize(name),
@@ -25,7 +27,6 @@ var options = {
     //maxlength: 10,
 
 };
-
 
 options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g, '_');
 options.icon.spyce = options.icon.class === "none" ? "remove-input-space" : "";
@@ -106,7 +107,7 @@ var toclient = JSON.stringify(options);
             action: "Change Text",
             field: "<%= name %>",
             value: <%= model %>.<%= name %>
-    })
+        })
         ;
     });
     <% if(options.popover){ %>

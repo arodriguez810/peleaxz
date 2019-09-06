@@ -255,5 +255,16 @@
   "dragon_function_query_plural": "consultas",
   "dragon_function_query": "consulta",
   "dragon_query": "consulta",
-  "parameters": "parámetros"
+  "parameters": "parámetros",
+  "dragon_task_plural": "tareas",
+  "dragon_task": "tarea",
+  "second": "segundo",
+  "minute": "minuto",
+  "day": "día",
+  "month": "mes",
+  "dayOfWeek": "día de la semana",
+  "start": "inicio",
+  "end": "final",
+  "enabled": "activa",
+  "script": "código"
 }

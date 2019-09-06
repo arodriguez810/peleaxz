@@ -133,6 +133,17 @@ addMenu([], CONFIG.menus);
     LAN.second = value => moment(value || new Date()).format("ss");
     LAN.zeroSecond = value => moment(value || new Date()).format("ss");
 
+    LAN.months = [];
+    for (var i in moment()._locale._months) {
+        LAN.months.push({id: i, name: capitalize(moment()._locale._months[i])});
+    }
+
+    LAN.weekdays = [];
+    for (var i in moment()._locale._weekdays) {
+        LAN.weekdays.push({id: i, name: capitalize(moment()._locale._weekdays[i])});
+    }
+
+
     EASYINTERVAL = [];
     PLAYERID = null;
 </script>

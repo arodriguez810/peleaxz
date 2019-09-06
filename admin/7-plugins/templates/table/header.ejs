@@ -127,7 +127,8 @@
                         </a>
                     </li>
                     <li ng-repeat="(keyblock,item) in <%= scope %>.filters.blocksDescription() track by keyblock">
-                        <a dragonlanguage="" class="legitRipple" ng-click="<%= scope %>.filters.removeApply(item);">
+                        <a dragonlanguage="" class="legitRipple"
+                           ng-click="<%= scope %>.filters.removeApply(item,true);">
                             <b>{{<%= scope %>.filters.label(item.column)}}</b> {{item.operator.text}}
                             <b ng-if="!Array.isArray(item.showvalue)">{{item.showvalue}}</b>
                             <span ng-if="Array.isArray(item.showvalue)"
@@ -141,7 +142,9 @@
                         </a>
                     </li>
                     <li ng-if="<%= scope %>.filters.blocksDescription().length>0">
-                        <a dragonlanguage="" ng-click="<%= scope %>.filters.clearApply(true);" class="legitRipple"
+                        <a dragonlanguage=""
+                           ng-click="<%= scope %>.filters.clearApply(true);"
+                           class="legitRipple"
                            title="Filter">
                             <language>MESSAGE.i('mono.ClearAll')</language>
                         </a>

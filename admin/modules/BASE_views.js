@@ -637,7 +637,7 @@ exports.init = function (params) {
         params.folders.viewsDragon + "//master",
         "@templates",
         params.folders.viewsDragon + "//templates/charts",
-        params.folders.viewsDragon + "//templates/email",
+        // params.folders.viewsDragon + "//templates/email",
         params.folders.viewsDragon + "//templates/form",
         params.folders.viewsDragon + "//templates/header",
         params.folders.viewsDragon + "//templates/system",

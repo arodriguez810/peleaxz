@@ -58,6 +58,7 @@ app.controller('DRAGON', function ($scope, $http, $compile, $controller) {
     COMPILE.run(DRAGON, $scope, $compile);
     MODAL.run(DRAGON, $compile);
     CONTROL.run(DRAGON, $compile);
+    DRAGON.about = eval(`CONFIG.version.about.${MESSAGE.current().code}`);
     var session = new SESSION();
     DRAGON.refreshAngular = function () {
         if (!$scope.$$phase)

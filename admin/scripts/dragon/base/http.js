@@ -43,9 +43,28 @@ HTTP = function () {
         return formurl.concat(pathsarray).join("/");
     };
     this.redirect = function (path) {
+        var url = new HTTP().path(path.split('/'));
+        console.log(url);
+        var $menu = $(`.modalmenu[href='${path}']`);
+        if ($menu.length > 0) {
+            var modal = $menu.data('modal');
+            if (modal) {
+                $menu.trigger("click");
+                return;
+            }
+        }
         document.location.href = new HTTP().path(path.split('/'));
     };
     this.redirecttag = function (path) {
+        var url = new HTTP().tagpath(path.split('/'));
+        var $menu = $(`.modalmenu[href='#${path}']`);
+        if ($menu.length > 0) {
+            var modal = $menu.data('modal');
+            if (modal) {
+                $menu.trigger("click");
+                return;
+            }
+        }
         document.location.href = new HTTP().tagpath(path.split('/'));
     };
     this.evaluateTokenHTML = function (data) {

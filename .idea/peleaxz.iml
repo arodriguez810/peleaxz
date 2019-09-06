@@ -121,13 +121,14 @@
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/dragon_wizard" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/cruds" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/cruds/dragon_function" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/cruds/dragon_function_query" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/cruds/query" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/cruds/sql_engine" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/11-sockets" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/12-tasks" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/dragon_task" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/.tmp" />
       <excludeFolder url="file://$MODULE_DIR$/admin/assets" />
       <excludeFolder url="file://$MODULE_DIR$/admin/defaults" />

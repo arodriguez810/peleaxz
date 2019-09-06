@@ -183,6 +183,10 @@
     {
       "var": "schedule",
       "module": "node-schedule"
+    },
+    {
+      "var": "publicIp ",
+      "module": "public-ip"
     }
   ]
 }

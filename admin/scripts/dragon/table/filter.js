@@ -75,6 +75,22 @@ FILTER = {
                                 distinct: false
                             },
                         });
+                    } else if (column.multilink) {
+                        myCrud.table.filters.columns.push({
+                            key: i,
+                            type: FILTER.types.relation,
+                            table: column.multilink.table,
+                            value: column.multilink.from || "id",
+                            text: column.multilink.text || "item.name",
+                            query: {
+                                limit: 0,
+                                page: 1,
+                                where: [],
+                                orderby: column.multilink.from || "id",
+                                order: "asc",
+                                distinct: false
+                            },
+                        });
                     } else
                         myCrud.table.filters.columns.push({
                             key: column.reference || i,
@@ -166,8 +182,7 @@ FILTER = {
                                                             });
                                                         }
                                                     });
-                                            }
-                                            else {
+                                            } else {
                                                 for (const block of $scope.filters.blocks) {
                                                     if (block.column.type === FILTER.types.relation)
                                                         block.value = block.finalValue;
@@ -206,6 +221,8 @@ FILTER = {
                 }
             };
             $scope.filters.label = function (column) {
+                if (typeof column.label === "function")
+                    return column.label();
                 if (MESSAGE.exist('columns.' + column.key)) {
                     return MESSAGE.ic('columns.' + column.key);
                 } else {
@@ -318,9 +335,9 @@ FILTER = {
                     return item.id !== block.id;
                 });
             };
-            $scope.filters.removeApply = function (block) {
+            $scope.filters.removeApply = function (block, close) {
                 $scope.filters.remove(block);
-                $scope.filters.apply();
+                $scope.filters.apply(close);
             };
             $scope.filters.applyText = function (block) {
                 return !block.applied ? '*' : '';
@@ -336,10 +353,6 @@ FILTER = {
             };
             $scope.filters.clear = function () {
                 $scope.filters.blocks = [];
-            };
-            $scope.filters.clearApply = function (close) {
-                $scope.filters.clear();
-                $scope.filters.apply(close);
             };
             $scope.filters.apply = function (close) {
                 if ($scope.filters.blocks.length > 0) {
@@ -390,8 +403,7 @@ FILTER = {
 
                     };
                     $scope.filters.blocks.push(newbloack);
-                }
-                else {
+                } else {
                     var last = ARRAY.last($scope.filters.blocks);
                     var newbloack = {
                         applied: false,
@@ -587,8 +599,7 @@ FILTER = {
                                         whe.value = `$(select R.[${m.to}] from [${m.table}] R where R.[${m.adjacent}] in ('${item.finalValue.join("','")}'))`;
                                     }
                             }
-                        }
-                        else {
+                        } else {
                             whe.value = item.operator.value.replace('{0}', item.finalValue);
                         }
                         where.push(whe);
@@ -608,20 +619,15 @@ FILTER = {
                 else if ([FILTER.types.decimal].indexOf(block.column.type) !== -1) {
                     block.finalValue = Number(block.value.replaceAll(',', '')).toFixed(2);
                     block.finalValue = isNaN(block.finalValue) ? 0 : block.finalValue;
-                }
-                else if ([FILTER.types.datetime].indexOf(block.column.type) !== -1) {
+                } else if ([FILTER.types.datetime].indexOf(block.column.type) !== -1) {
                     block.finalValue = $(control.currentTarget).data('realValue');
-                }
-                else if ([FILTER.types.date].indexOf(block.column.type) !== -1) {
+                } else if ([FILTER.types.date].indexOf(block.column.type) !== -1) {
                     block.finalValue = $(control.currentTarget).data('realValue');
-                }
-                else if ([FILTER.types.time].indexOf(block.column.type) !== -1) {
+                } else if ([FILTER.types.time].indexOf(block.column.type) !== -1) {
                     block.finalValue = $(control.currentTarget).data('realValue');
-                }
-                else if ([FILTER.types.relation].indexOf(block.column.type) !== -1) {
+                } else if ([FILTER.types.relation].indexOf(block.column.type) !== -1) {
                     block.finalValue = block.value;
-                }
-                else
+                } else
                     block.finalValue = block.value;
             };
             if ($scope.hasModel('filters')) {

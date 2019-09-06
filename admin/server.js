@@ -213,6 +213,7 @@ extra = ejs.compile(ThemeTemplate, {})({DATA: shadesMonochrome(CONFIG.ui.theme.e
 fs.writeFileSync(folders.themes + "/primary.css", primary);
 fs.writeFileSync(folders.themes + "/secundary.css", secundary);
 fs.writeFileSync(folders.themes + "/extra.css", extra);
+
 if (CONFIG.domain === true) {
     var ifaces = os.networkInterfaces();
     Object.keys(ifaces).forEach(function (ifname) {

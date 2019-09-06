@@ -4,7 +4,7 @@
   "filePath": "files",
   "storage": "files/storage",
   "appKey": "d94g0nf94m3w09k",
-  "mode": "prod",
+  "mode": "developer",
   "language": "en",
   "home": "#texts",
   "support": {
@@ -22,7 +22,7 @@
     "customfields": true,
     "silent": true,
     "functions": true,
-    "sockets": false,
+    "sockets": true,
     "chat": true,
     "user_interactive": true
   },

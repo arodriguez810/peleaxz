@@ -3,7 +3,9 @@ if (DATA.name !== undefined) {
     var name, model, opts;
     name = DATA.name;
     model = DATA.model;
-    opts = DATA.opts;
+    if (DATA.opts)
+        if (DATA.opts.trim() !== "")
+            opts = eval("(" + DATA.opts + ")");
 }
 var name = name || "";
 var options = {
@@ -160,7 +162,7 @@ var toclient = JSON.stringify(options);
                 action: "Change DropDown",
                 field: "<%= name %>",
                 value: <%= model %>.<%= name %>
-        })
+            })
             ;
 
 

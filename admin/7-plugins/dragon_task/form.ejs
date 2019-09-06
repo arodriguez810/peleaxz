@@ -1,0 +1,78 @@
+<div class="tab-content">
+    <div class="tab-pane active" id="basic">
+        <div class="row">
+            <div class='col-sm-6 col-md-6'>
+                <%- FORM.input('name', scope, {}) %>
+            </div>
+            <div class='col-sm-6 col-md-6'>
+                <%- FORM.textarea('description', scope, {}) %>
+            </div>
+        </div>
+        <div class="row">
+            <div class='col-sm-2 col-md-2'>
+                <%- FORM.integer('second', scope, {
+                    length: 2
+                }) %>
+            </div>
+            <div class='col-sm-2 col-md-2'>
+                <%- FORM.integer('minute', scope, {
+                    length: 2
+                }) %>
+            </div>
+            <div class='col-sm-2 col-md-2'>
+                <%- FORM.integer('hour', scope, {
+                    length: 2
+                }) %>
+            </div>
+            <div class='col-sm-2 col-md-2'>
+                <%- FORM.integer('day', scope, {
+                    length: 2
+                }) %>
+            </div>
+            <div dragoncontrol="selectsimple" label="Month" cols="2" name="month" scope="<%= scope %>"
+                 id="<%= scope %>__month" cache="false">
+                {data:LAN.months}
+            </div>
+
+            <div class='col-sm-2 col-md-2'>
+                <%- FORM.year('year', scope, {
+                    length: 4
+                }) %>
+            </div>
+        </div>
+        <div class="row">
+
+        </div>
+        <div class="row">
+
+            <div dragoncontrol="selectsimple" label="Day of Week" cols="3" name="dayOfWeek" scope="<%= scope %>"
+                 id="<%= scope %>__dayOfWeek" cache="false">
+                {data:LAN.weekdays}
+            </div>
+
+            <div class='col-sm-6 col-md-6'>
+                <%- FORM.daterange('date', scope, {
+                    from: "start",
+                    to: "end"
+                }) %>
+            </div>
+            <div class='col-sm-3 col-md-3'>
+                <%- FORM.checkbox('enabled', scope) %>
+            </div>
+        </div>
+        <div class="row">
+            <div class='col-sm-12 col-md-12'>
+                <%- FORM.textarea('script', scope, {
+                    code: "text/javascript"
+                }) %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- FORM.footer(scope) %>
+
+
+
+
+

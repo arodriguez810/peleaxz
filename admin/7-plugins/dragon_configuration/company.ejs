@@ -209,6 +209,12 @@
                     size: 'switchery-sm'
                 }) %>
             </div>
+            <div class="col-sm-3 col-md-3">
+                <%- FORM.checkbox("config.features.tasks", scope, {
+                    text: 'Schedules Tasks',
+                    size: 'switchery-sm'
+                }) %>
+            </div>
         </div>
     </div>
 </div>
@@ -418,7 +424,10 @@
         </div>
         <div class="row">
             <div class="col-sm-12 col-md-12" ng-repeat="(key,lan) in dragon_configuration.config.languages">
-                <div dragoncontrol="input" label="{{lan.name}}" cols="12" name="config.version.about.{{lan.code}}"
+                <div dragoncontrol="input"
+                     label="{{lan.name}}"
+                     cols="12"
+                     name="config.version.about.{{lan.code}}"
                      scope="dragon_configuration"
                      id="mycontrol{{lan.code}}">
                 </div>

@@ -152,9 +152,10 @@ MESSAGE = {
             $control = $me.attr('dragoncontrol');
             $name = $me.attr('name');
             $scope = $me.attr('scope');
+            $cache = $me.attr('cache')==="false" ? false : true;
             $properties = {};
-            if ($me.attr('prop')) {
-                $properties = DSON.EO($me.attr('prop'));
+            if ($me.html().trim() !== "") {
+                $properties = DSON.EO($me.html());
             }
             $append = false;
             if ($me.attr('append')) {
@@ -169,7 +170,7 @@ MESSAGE = {
                 $label = $me.attr('label');
             }
             if (($name && $scope)) {
-                eval(`${$scope}.control.${$control}("#${$meId}", "${$name}", $properties,$append,$cols,$label)`);
+                eval(`${$scope}.control.${$control}("#${$meId}", "${$name}", $properties,$append,$cols,$label,$cache)`);
             }
             $me.removeAttr('dragoncontrol');
         });

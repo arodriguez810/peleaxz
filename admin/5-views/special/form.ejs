@@ -12,16 +12,26 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-6 col-md-6">
+            <div class="col-sm-4 col-md-4">
                 <%- FORM.file("images", scope, {
-                    maxfiles: 50
+                    maxfiles: 50,
                 }) %>
             </div>
-            <div class="col-sm-6 col-md-6">
+            <div class="col-sm-4 col-md-4">
                 <%- FORM.file("files", scope, {
                     maxfiles: 50,
                     columns: 4
                 }) %>
+            </div>
+
+            <div dragoncontrol="file" label="Yorield" cols="4" name="yorield" scope="<%= scope %>"
+                 id="<%= scope %>__yorield" cache="false">
+                {
+                    maxfiles: 2,
+                    folder:"yorield/"+ new Date().getTime(),
+                    text:'Yorield',
+                    alone:true
+                }
             </div>
         </div>
 

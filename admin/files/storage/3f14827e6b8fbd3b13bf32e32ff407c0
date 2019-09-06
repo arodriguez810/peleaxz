@@ -1,1 +1,1 @@
-{"key":"dragon_query","value":[{"function":"2","name":"Q1","query":"INSERT into parent(name,description) values('from @{name2} 1','from');","num":3,"id":1},{"function":"2","name":"Q2","query":"INSERT into parent(name,description) values('from @{name} 2','from');","num":2,"id":2},{"function":"2","name":"DEL","query":"delete from parent where name like '%from%';","num":1,"id":3}]}
+{"key":"dragon_query","value":[{"function":"1","name":"Ejecutar 1","query":"select 1","num":"1","id":1}]}
