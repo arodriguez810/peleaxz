@@ -156,7 +156,7 @@ var toclient = JSON.stringify(options);
                 files.forEach((file) => {
                     var theClone = $("#showImage<%= model %>_<%= nameclean %>").clone();
                     theClone.attr('amclone', true);
-                    FILE.addSourceToElement(theClone, file.url);
+                    FILE.addSourceToElement(theClone, file.url + `?log=${new Date().getTime()}`);
                     theClone.show();
                     $("#showImage<%= model %>_<%= nameclean %>").after(theClone);
                 });
@@ -194,10 +194,14 @@ var toclient = JSON.stringify(options);
         form.options.<%= name %>.file === ''
     )
         {
-            if( <%= model %>.form.options.<%= name %>.alone === true)
-            <%= model %>.form.options.<%= name %>.folder = `<%= options.folder %>`;
-            else
-            <%= model %>.form.options.<%= name %>.folder = `<%= modelfolder %>/<%= name %>/${thisID}`;
+            if ( <%= model %>.
+            form.options.<%= name %>.alone === true
+        )
+            <%= model %>.
+            form.options.<%= name %>.folder = `<%= options.folder %>`;
+        else
+            <%= model %>.
+            form.options.<%= name %>.folder = `<%= modelfolder %>/<%= name %>/${thisID}`;
         }
         ShowCount<%= name %>(true);
     }
@@ -238,6 +242,14 @@ var toclient = JSON.stringify(options);
                 content: {
                     loadingContentText: MESSAGE.i('actions.Loading')
                 },
+                event: {
+                    hide: {
+                        begin: function (data) {
+                            for(var functionName of <%= model %>.form.beginFunctions)
+                                eval(functionName)
+                        }
+                    }
+                }
             };
             <%= model %>.
             modal.modalView("../templates/components/gallery", modal);

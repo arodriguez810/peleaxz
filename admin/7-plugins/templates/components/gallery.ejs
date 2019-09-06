@@ -28,7 +28,7 @@
             for (var i in data.data.files) {
                 var file = data.data.files[i];
                 data.data.files[i] = {
-                    url: `${http.path([FOLDERS.files, viewModel.root])}/${file}`,
+                    url: `${http.path([FOLDERS.files, viewModel.root])}/${file}` + `?log=${new Date().getTime()}`,
                     cleanUrl: http.cleanRoot(`${http.path([FOLDERS.files, viewModel.root])}/${file}`),
                     selected: false,
                     fileName: file,
