@@ -36,6 +36,9 @@ var toclient = JSON.stringify(options);
     <%= model + "." %>charts<%= "." + name %>.refresh = function () {
                 <%= model %>.
                 charts.<%= name %>_chart_options = {
+                    dataZoom :{
+                        show:true
+                    },
                     grid: {
                         x: 40,
                         x2: 20,

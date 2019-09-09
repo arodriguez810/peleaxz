@@ -185,8 +185,12 @@
       "module": "node-schedule"
     },
     {
-      "var": "publicIp ",
+      "var": "publicIp",
       "module": "public-ip"
+    },
+    {
+      "var": "ncp",
+      "module": "ncp"
     }
   ]
 }

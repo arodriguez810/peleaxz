@@ -10,9 +10,13 @@ $prototype.replaceAll = function (search, replacement) {
 
 MENUONEROW = [];
 TONES = [];
+
+
 for (var i in CONFIG.ui.shadows) {
     TONES.push({id: i, name: i.replace("_", " ")});
 }
+
+
 addMenu = function (prefix, array) {
     for (var menu of array) {
         if (menu.href !== "#") {

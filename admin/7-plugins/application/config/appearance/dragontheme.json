@@ -17,13 +17,13 @@
       "bg": "bgRed"
     },
     "theme": {
-      "primary": "random",
+      "primary": "#ed2c30",
       "primaryShades": "Balanced",
-      "secundary": "random2",
-      "secundaryShades": "Balanced",
-      "extra": "random",
+      "secundary": "#DAA520",
+      "secundaryShades": "Lineal_fixed",
+      "extra": "#ed2c30",
       "extraShades": "Balanced",
-      "text1": "#000",
+      "text1": "#FFF",
       "text2": "#FFF",
       "text3": "#FFF"
     },

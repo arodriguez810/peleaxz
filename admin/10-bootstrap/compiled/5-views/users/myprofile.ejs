@@ -1,0 +1,12 @@
+<div id="<%= scope %>" ng-controller="<%= scope %> as <%= scope %>">
+    <script>
+        MODAL.closeAll();
+        //MENUMODAL = true;
+        <%= scope %>.formulary({
+            where: [{
+                field: CONFIG.users.fields.id,
+                value: new SESSION().current().getID()
+            }]
+        }, FORM.modes.edit, {})
+    </script>
+</div><!--end-->

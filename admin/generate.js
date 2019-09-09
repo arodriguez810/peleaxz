@@ -122,6 +122,7 @@ async function execute() {
             dbtables = await modules.mssql.data(`select TABLE_NAME from INFORMATION_SCHEMA.TABLES`, PARAMS, false);
             dbfields = await modules.mssql.data(`select COLUMN_NAME \`column\`,DATA_TYPE \`type\` from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME='${controllerName}'`, PARAMS, false);
         }
+
         if (engine === "oracle" || engine === "oraclereport") {
             dbtables = await modules.oracle.data(`SELECT TABLE_NAME as "table" FROM all_tables where owner='${CONFIG.oracle.user}'`, PARAMS, false);
             dbfields = await modules.oracle.data(`select COLUMN_NAME as "column" column,DATA_TYPE as "type" from all_tab_columns where TABLE_NAME='${controllerName}'`, PARAMS, false);
@@ -131,6 +132,7 @@ async function execute() {
             crud = crudReport;
         }
         var dbtablesArray = [];
+
         if (dbtables)
             dbtables.data.forEach((table) => {
                 dbtablesArray.push(table.table.toLowerCase())

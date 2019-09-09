@@ -1,0 +1,308 @@
+.bg-secundary {
+    background-color: #DAA520;
+    border-color: #DAA520;
+    color: #FFF !important;
+}
+.bg-secundary-100 {
+    background-color: #fcf6e9;
+    border-color: #fcf6e9;
+    color: #FFF !important;
+}
+.bg-secundary-200 {
+    background-color: #f5e5bc;
+    border-color: #f5e5bc;
+    color: #FFF !important;
+}
+.bg-secundary-300 {
+    background-color: #efd490;
+    border-color: #efd490;
+    color: #FFF !important;
+}
+.bg-secundary-400 {
+    background-color: #e8c263;
+    border-color: #e8c263;
+    color: #FFF !important;
+}
+.bg-secundary-500 {
+    background-color: #DAA520;
+    border-color: #DAA520;
+    color: #FFF !important;
+}
+.bg-secundary-600 {
+    background-color: #DAA520;
+    border-color: #DAA520;
+    color: #FFF !important;
+}
+.bg-secundary-700 {
+    background-color: #DAA520;
+    border-color: #DAA520;
+    color: #FFF !important;
+}
+.bg-secundary-800 {
+    background-color: #DAA520;
+    border-color: #DAA520;
+    color: #FFF !important;
+}
+.bg-secundary-900 {
+    background-color: #DAA520;
+    border-color: #DAA520;
+    color: #FFF !important;
+}
+.bg-secundary-1000 {
+    background-color: #DAA520;
+    border-color: #DAA520;
+    color: #FFF !important;
+}
+.alpha-secundary {
+    background-color: #fcf6e9;
+    border-color: #fcf6e9;
+}
+
+.border-secundary {
+    border-color: #DAA520;
+}
+.border-secundary-100 {
+    border-color: #fcf6e9;
+}
+.border-secundary-200 {
+    border-color: #f5e5bc;
+}
+.border-secundary-300 {
+    border-color: #efd490;
+}
+.border-secundary-400 {
+    border-color: #e8c263;
+}
+.border-secundary-500 {
+    border-color: #DAA520;
+}
+.border-secundary-600 {
+    border-color: #DAA520;
+}
+.border-secundary-700 {
+    border-color: #DAA520;
+}
+.border-secundary-800 {
+    border-color: #DAA520;
+}
+.border-secundary-900 {
+    border-color: #DAA520;
+}
+.border-secundary-1000 {
+    border-color: #DAA520;
+}
+
+.border-top-secundary {
+    border-top-color: #DAA520;
+}
+.border-top-secundary-100 {
+    border-top-color: #fcf6e9;
+}
+.border-top-secundary-200 {
+    border-top-color: #f5e5bc;
+}
+.border-top-secundary-300 {
+    border-top-color: #efd490;
+}
+.border-top-secundary-400 {
+    border-top-color: #e8c263;
+}
+.border-top-secundary-500 {
+    border-top-color: #DAA520;
+}
+.border-top-secundary-600 {
+    border-top-color: #DAA520;
+}
+.border-top-secundary-700 {
+    border-top-color: #DAA520;
+}
+.border-top-secundary-800 {
+    border-top-color: #DAA520;
+}
+.border-top-secundary-900 {
+    border-top-color: #DAA520;
+}
+.border-top-secundary-1000 {
+    border-top-color: #DAA520;
+}
+.border-bottom-secundary {
+    border-bottom-color: #DAA520;
+}
+
+
+.border-bottom-secundary-100 {
+    border-bottom-color: #fcf6e9;
+}
+.border-bottom-secundary-200 {
+    border-bottom-color: #f5e5bc;
+}
+.border-bottom-secundary-300 {
+    border-bottom-color: #efd490;
+}
+.border-bottom-secundary-400 {
+    border-bottom-color: #e8c263;
+}
+.border-bottom-secundary-500 {
+    border-bottom-color: #DAA520;
+}
+.border-bottom-secundary-600 {
+    border-bottom-color: #DAA520;
+}
+.border-bottom-secundary-700 {
+    border-bottom-color: #DAA520;
+}
+.border-bottom-secundary-800 {
+    border-bottom-color: #DAA520;
+}
+.border-bottom-secundary-900 {
+    border-bottom-color: #DAA520;
+}
+.border-bottom-secundary-1000 {
+    border-bottom-color: #DAA520;
+}
+
+
+.border-left-secundary {
+    border-left-color: #DAA520;
+}
+.border-left-secundary-100 {
+    border-left-color: #fcf6e9;
+}
+.border-left-secundary-200 {
+    border-left-color: #f5e5bc;
+}
+.border-left-secundary-300 {
+    border-left-color: #efd490;
+}
+.border-left-secundary-400 {
+    border-left-color: #e8c263;
+}
+.border-left-secundary-500 {
+    border-left-color: #DAA520;
+}
+.border-left-secundary-600 {
+    border-left-color: #DAA520;
+}
+.border-left-secundary-700 {
+    border-left-color: #DAA520;
+}
+.border-left-secundary-800 {
+    border-left-color: #DAA520;
+}
+.border-left-secundary-900 {
+    border-left-color: #DAA520;
+}
+.border-left-secundary-1000 {
+    border-left-color: #DAA520;
+}
+
+
+.border-right-secundary {
+    border-right-color: #DAA520;
+}
+.border-right-secundary-100 {
+    border-right-color: #fcf6e9;
+}
+.border-right-secundary-200 {
+    border-right-color: #f5e5bc;
+}
+.border-right-secundary-300 {
+    border-right-color: #efd490;
+}
+.border-right-secundary-400 {
+    border-right-color: #e8c263;
+}
+.border-right-secundary-500 {
+    border-right-color: #DAA520;
+}
+.border-right-secundary-600 {
+    border-right-color: #DAA520;
+}
+.border-right-secundary-700 {
+    border-right-color: #DAA520;
+}
+.border-right-secundary-800 {
+    border-right-color: #DAA520;
+}
+.border-right-secundary-900 {
+    border-right-color: #DAA520;
+}
+.border-right-secundary-1000 {
+    border-right-color: #DAA520;
+}
+
+
+.text-secundary,
+.text-secundary:hover,
+.text-secundary:focus {
+    color: #DAA520 !important;
+}
+.text-secundary-100,
+.text-secundary-100:hover,
+.text-secundary-100:focus {
+    color: #fcf6e9 !important;
+}
+.text-secundary-200,
+.text-secundary-200:hover,
+.text-secundary-200:focus {
+    color: #f5e5bc !important;
+}
+.text-secundary-300,
+.text-secundary-300:hover,
+.text-secundary-300:focus {
+    color: #efd490 !important;
+}
+.text-secundary-400,
+.text-secundary-400:hover,
+.text-secundary-400:focus {
+    color: #e8c263 !important;
+}
+.text-secundary-600,
+.text-secundary-600:hover,
+.text-secundary-600:focus {
+    color: #DAA520 !important;
+}
+.text-secundary-700,
+.text-secundary-700:hover,
+.text-secundary-700:focus {
+    color: #DAA520 !important;
+}
+.text-secundary-800,
+.text-secundary-800:hover,
+.text-secundary-800:focus {
+    color: #DAA520 !important;
+}
+.text-secundary-900,
+.text-secundary-900:hover,
+.text-secundary-900:focus {
+    color: #DAA520 !important;
+}
+.text-secundary-1000,
+.text-secundary-1000:hover,
+.text-secundary-1000:focus {
+    color: #DAA520 !important;
+}
+
+.bg-secundary-700.navbar-inverse a {
+    color: #FFF !important;
+}
+
+.bg-secundary-700.navbar-inverse a:hover {
+    color: #FFF !important;
+}
+
+.bg-secundary-700.navbar-inverse .navbar-text {
+    color: #FFF !important;
+}
+
+.nav-tabs.bg-secundary-700 > .active > a, .nav-tabs.bg-secundary-800 > .active > a:hover, .nav-tabs.bg-secundary-800 > .active > a:focus {
+    color: #FFF !important;;
+}
+
+.nav-tabs.bg-secundary-700 > li > a {
+    color: #FFF !important;
+}
+.nav-secundary li.active {
+    border-bottom: #DAA520 1px solid;
+    border-block-width: 2px;
+}

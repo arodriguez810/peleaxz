@@ -1,0 +1,12 @@
+{
+  "mysqlactive": true,
+  "mysql": {
+    "host": "localhost",
+    "user": "root",
+    "password": "",
+    "database": "dbname",
+    "multipleStatements": true,
+    "connectionLimit": 99999,
+    "port": 3306
+  }
+}

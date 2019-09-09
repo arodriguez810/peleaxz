@@ -1,0 +1,11 @@
+{
+  "mssqlactive": true,
+  "mssql": {
+    "user": "user",
+    "password": "password",
+    "server": "localhost",
+    "database": "dbname",
+    "port": 1433,
+    "encrypt": false
+  }
+}
