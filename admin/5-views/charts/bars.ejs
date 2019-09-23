@@ -1,0 +1,297 @@
+<div id="<%= scope %>" ng-controller="<%= scope %> as <%= scope %>">
+    <div class="panel panel-flat">
+        <%- include('../../7-plugins/templates/header/begin',{scope:scope}); %>
+        <ul class="breadcrumb-elements visible-elements">
+            <li dragonlanguage="">
+                <a onclick="alert('Holaaaa')">
+                    <i dragonlanguage="" title="MESSAGE.ic('mono.add')" class="icon-mail5"></i> 
+                </a>
+            </li>
+        </ul>
+        <%- include('../../7-plugins/templates/header/end',{scope:scope}); %>
+        <div class="subcontent">
+            <div class="row">
+                <div class="col-sm-12 col-md-12" ng-show="charts.allow(['bar'])">
+                    <div class="panel panel-flat">
+                        <div class="panel-heading">
+                            <h5 class="panel-title">Bar</h5>
+                            <div class="heading-elements">
+                            </div>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="chart-container has-scroll">
+                                <div class="chart has-fixed-height" style="width: 1000px" id="bar">
+
+                                </div>
+                            </div>
+                            <script>
+                                <%= scope %>.bar_data = {
+                                    legend: ['Year 2013', 'Year 2014'],
+                                    left: ['Germany', 'France', 'Spain', 'Netherlands', 'Belgium'],
+                                    data: [
+                                        {
+                                            name: 'Year 2013',
+                                            type: 'bar',
+                                            itemStyle: {
+                                                normal: {
+                                                    color: '#EF5350'
+                                                }
+                                            },
+                                            data: [38203, 73489, 129034, 204970, 331744]
+                                        },
+                                        {
+                                            name: 'Year 2014',
+                                            type: 'bar',
+                                            itemStyle: {
+                                                normal: {
+                                                    color: '#66BB6A'
+                                                }
+                                            },
+                                            data: [39325, 83438, 131000, 221594, 334141]
+                                        }
+                                    ]
+                                }
+                            </script>
+                            <%- CHART.bar("bar", scope, {}) %>
+
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-12 col-md-12" ng-show="charts.allow(['Stacked'])">
+                    <div class="panel panel-flat">
+                        <div class="panel-heading">
+                            <h5 class="panel-title">Stacked Bar</h5>
+                            <div class="heading-elements">
+                            </div>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="chart-container has-scroll">
+                                <div class="chart has-fixed-height" style="width: 1000px" id="bar2"></div>
+                            </div>
+                            <script>
+                                <%= scope %>.bar2_data = {
+                                    legend: ['Internet Explorer', 'Opera', 'Safari', 'Firefox', 'Chrome'],
+                                    left: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                                    data: [
+                                        {
+                                            name: 'Internet Explorer',
+                                            type: 'bar',
+                                            stack: 'Total',
+                                            itemStyle: {
+                                                normal: {
+                                                    color: '#42A5F5',
+                                                    label: {
+                                                        show: true,
+                                                        position: 'insideRight'
+                                                    }
+                                                },
+                                                emphasis: {
+                                                    color: '#42A5F5',
+                                                    label: {
+                                                        show: true
+                                                    }
+                                                }
+                                            },
+                                            data: [320, 302, 301, 334, 390, 330, 320]
+                                        },
+                                        {
+                                            name: 'Opera',
+                                            type: 'bar',
+                                            stack: 'Total',
+                                            itemStyle: {
+                                                normal: {
+                                                    color: '#ef5350',
+                                                    label: {
+                                                        show: true,
+                                                        position: 'insideRight'
+                                                    }
+                                                },
+                                                emphasis: {
+                                                    color: '#ef5350',
+                                                    label: {
+                                                        show: true
+                                                    }
+                                                }
+                                            },
+                                            data: [120, 132, 101, 134, 90, 230, 210]
+                                        },
+                                        {
+                                            name: 'Safari',
+                                            type: 'bar',
+                                            stack: 'Total',
+                                            itemStyle: {
+                                                normal: {
+                                                    color: '#66bb6a',
+                                                    label: {
+                                                        show: true,
+                                                        position: 'insideRight'
+                                                    }
+                                                },
+                                                emphasis: {
+                                                    color: '#66bb6a',
+                                                    label: {
+                                                        show: true
+                                                    }
+                                                }
+                                            },
+                                            data: [220, 182, 191, 234, 290, 330, 310]
+                                        },
+                                        {
+                                            name: 'Firefox',
+                                            type: 'bar',
+                                            stack: 'Total',
+                                            itemStyle: {
+                                                normal: {
+                                                    color: '#ff7043',
+                                                    label: {
+                                                        show: true,
+                                                        position: 'insideRight'
+                                                    }
+                                                },
+                                                emphasis: {
+                                                    color: '#ff7043',
+                                                    label: {
+                                                        show: true
+                                                    }
+                                                }
+                                            },
+                                            data: [150, 212, 201, 154, 190, 330, 410]
+                                        },
+                                        {
+                                            name: 'Chrome',
+                                            type: 'bar',
+                                            stack: 'Total',
+                                            itemStyle: {
+                                                normal: {
+                                                    color: '#26a69a',
+                                                    label: {
+                                                        show: true,
+                                                        position: 'insideRight'
+                                                    }
+                                                },
+                                                emphasis: {
+                                                    color: '#26a69a',
+                                                    label: {
+                                                        show: true
+                                                    }
+                                                }
+                                            },
+                                            data: [820, 832, 901, 934, 1290, 1330, 1320]
+                                        }
+                                    ]
+                                }
+                            </script>
+                            <%- CHART.bar("bar2", scope, {}) %>
+
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-12 col-md-12" ng-show="charts.allow(['Columns'])">
+                    <div class="panel panel-flat">
+                        <div class="panel-heading">
+                            <h5 class="panel-title">Columns</h5>
+                            <div class="heading-elements">
+                            </div>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="chart-container has-scroll">
+                                <div class="chart has-fixed-height" style="width: 1000px" id="columns"></div>
+                            </div>
+                            <script>
+                                var legendt = [];
+                                legendt.push('Estatus 1');
+                                legendt.push('Estatus 2');
+
+                                var dataRereport = [];
+                                dataRereport.push({
+                                    name: 'Estatus 1',
+                                    type: 'bar',
+                                    data: [120]
+                                });
+                                dataRereport.push({
+                                    name: 'Estatus 2',
+                                    type: 'bar',
+                                    data: [180]
+                                });
+                                <%= scope %>.columns_data = {
+                                    legend: legendt,
+                                    down: ['--'],
+                                    data: dataRereport
+                                }
+
+
+                            </script>
+                            <%- CHART.columns("columns", scope, {}) %>
+
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-12 col-md-12" ng-show="charts.allow(['ColumnsStack'])">
+                    <div class="panel panel-flat">
+                        <div class="panel-heading">
+                            <h5 class="panel-title">Columns Stack</h5>
+                            <div class="heading-elements">
+                            </div>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="chart-container has-scroll">
+                                <div class="chart has-fixed-height" style="width: 1000px" id="columnsstack"></div>
+                            </div>
+                            <script>
+                                <%= scope %>.columnsstack_data = {
+                                    legend: ['Internet Explorer', 'Opera', 'Safari', 'Firefox', 'Chrome'],
+                                    down: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                                    data: [
+                                        {
+                                            name: 'Internet Explorer',
+                                            type: 'bar',
+                                            stack: 'Total',
+                                            data: [120, 132, 101, 134, 490, 230, 210]
+                                        },
+                                        {
+                                            name: 'Safari',
+                                            type: 'bar',
+                                            stack: 'Total',
+                                            data: [150, 1232, 901, 154, 190, 330, 810]
+                                        },
+                                        {
+                                            name: 'Firefox',
+                                            type: 'bar',
+                                            stack: 'Total',
+                                            data: [320, 1332, 1801, 1334, 590, 830, 1220]
+                                        },
+                                        {
+                                            name: 'Chrome',
+                                            type: 'bar',
+                                            stack: 'Total',
+                                            data: [820, 1632, 1901, 2234, 1290, 1330, 1320]
+                                        }
+                                    ]
+                                }
+
+
+                            </script>
+                            <%- CHART.columns("columnsstack", scope, {}) %>
+                            <script>
+                                charts.charts.bar.refresh();
+                            </script>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!--end-->
+

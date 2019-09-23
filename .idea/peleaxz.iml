@@ -127,9 +127,10 @@
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/application/cruds/sql_engine" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/11-sockets" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/12-tasks" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/dragon_task" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/admin/original" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/admin/7-plugins/dragon_audit" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/.tmp" />
       <excludeFolder url="file://$MODULE_DIR$/admin/assets" />
       <excludeFolder url="file://$MODULE_DIR$/admin/defaults" />

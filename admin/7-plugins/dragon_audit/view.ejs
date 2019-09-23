@@ -1,0 +1,101 @@
+<script>
+    if(!<%= scope %>.dataForView){
+        <%= scope %>.dataForView = DRAGONID;
+    }
+
+    console.log(dragon_audit.dataForView);
+</script>
+
+<style>
+    .c-mamut{
+        float: left;
+        width: 100%;
+        margin-bottom: 0;
+    }
+
+    .tatu{
+        float: left;
+        width: 100%;
+        border-left: none;
+        border-right: none;
+        border-top: none;
+        border-bottom: 1px solid #ddd;
+    }
+
+    table a{
+        color: #333;
+    }
+
+    table a:hover{
+        color: #333;
+        cursor: default;
+    }
+</style>
+
+<div class="row">
+    <div class="col-lg-2">
+        <label class="control-label c-mamut" dragonlanguage><language>MESSAGE.i('columns.modelname')</language></label>
+        <input class="tatu" value="{{dragon_audit.dataForView.modelname}}" readonly>
+    </div>
+    <div class="col-lg-2">
+        <label class="control-label c-mamut" dragonlanguage><language>MESSAGE.i('columns.action')</language></label>
+        <input class="tatu" value="{{dragon_audit.dataForView.action}}" readonly>
+    </div>
+    <div class="col-lg-2">
+        <label class="control-label c-mamut" dragonlanguage><language>MESSAGE.i('columns.user')</language></label>
+        <input class="tatu" value="{{dragon_audit.dataForView.username}}" readonly>
+    </div>
+    <div class="col-lg-2">
+        <label class="control-label c-mamut" dragonlanguage><language>MESSAGE.i('columns.date')</language></label>
+        <input class="tatu" value="{{dragon_audit.dataForView.date | date: 'd MMMM yyyy hh:mm'}}" readonly>
+    </div>
+    <div class="col-lg-2">
+        <label class="control-label c-mamut" dragonlanguage><language>MESSAGE.i('columns.version')</language></label>
+        <input class="tatu" value="{{dragon_audit.dataForView.version}}" readonly>
+    </div>
+    <div class="col-lg-2">
+        <label class="control-label c-mamut" dragonlanguage><language>MESSAGE.i('columns.ip')</language></label>
+        <input class="tatu" value="{{dragon_audit.dataForView.ip}}" readonly>
+    </div>
+</div>
+
+<div ng-if="dragon_audit.dataForView.updatedJson" style="margin-top: 30px;" dragonlanguage>
+    <h4 style="font-size: 18px;margin-bottom: 0;"><language>MESSAGE.i('mono.actual_data')</language></h4>
+    <table ng-if="dragon_audit.dataForView.updatedJson" class="table table-togglable table-framed" >
+        <tbody>
+        <tr ng-repeat="(keycolum, value) in dragon_audit.dataForView.updatedJson" ng-show="value.visibleDetail!=false" ng-if="keycolum !== 'where'">
+            <td class="text-white bg-<%= COLOR.secundary %>" style="width: 30%">
+                <span ng-bind-html="dragon_audit.columnLabel(value,keycolum)"></span>
+            </td>
+            <td style="width: 70%">
+            <span  class="break" ng-bind-html="dragon_audit.cellValue(keycolum,value,dragon_audit.dataForView.updatedJson)">
+        </span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div  style="margin-top: 30px;" dragonlanguage>
+    <h4 style="font-size: 18px;margin-bottom: 0;" ng-if="dragon_audit.dataForView.updatedJson"><language>MESSAGE.i('mono.old_data')</language></h4>
+    <table class="table table-togglable table-framed">
+        <tbody>
+        <tr ng-repeat="(keycolum, value) in dragon_audit.dataForView.dataJson" ng-show="value.visibleDetail!=false">
+            <td class="text-white bg-<%= COLOR.secundary %>" style="width: 30%">
+                <span ng-bind-html="dragon_audit.columnLabel(value,keycolum)"></span>
+            </td>
+            <td style="width: 70%">
+                <span  class="break" ng-bind-html="dragon_audit.cellValue(keycolum,value,dragon_audit.dataForView.dataJson)">
+            </span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+<!--Table List-->
+<script>
+    <%= scope %>.refreshAngular();
+</script>

@@ -1,0 +1,37 @@
+<%- FORM.tabs(scope, [
+    {id: "dates", text: "Dates", icon: "icon-calendar"},
+]) %>
+
+<div class="tab-content">
+
+    <div class="tab-pane active" id="basic">
+        <div class="row">
+
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.daterange("range", scope, {}) %>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.datetimerange("rangetime", scope, {}) %>
+            </div>
+
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.timerange("timerange", scope, {}) %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.date("date", scope, {}) %>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.datetime("datetime", scope, {}) %>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.time("time", scope, {}) %>
+            </div>
+        </div>
+    </div>
+
+</div>
+<%- FORM.footer(scope) %>

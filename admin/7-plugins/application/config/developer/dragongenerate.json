@@ -35,13 +35,7 @@
     },
     "controllerFields": [
       "id",
-      "_id",
-      "created",
-      "created_date",
-      "updated",
-      "updated_date",
-      "user_created",
-      "user_updated"
+      "_id"
     ],
     "crudFields": [
       "id",

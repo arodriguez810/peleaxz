@@ -40,10 +40,8 @@
   },
   "audit": {
     "insert": {
-      "user_created": "new SESSION().current().getID()"
     },
     "update": {
-      "user_updated": "new SESSION().current().getID()"
     }
   }
 }

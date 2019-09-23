@@ -1,0 +1,41 @@
+{
+  "permissions": {
+    "list": {
+      "dragon_group": {
+        "type": "permission",
+        "allow": {}
+      },
+      "blog": {
+        "type": "report",
+        "allow": {}
+      },
+      "texts": {
+        "type": "full",
+        "allow": {
+          "extra": true
+        }
+      },
+      "dates": {
+        "type": "full",
+        "allow": {}
+      },
+      "users": {
+        "type": "permission",
+        "allow": {}
+      },
+      "view_report": {
+        "type": "report",
+        "allow": {}
+      },
+      "charts": {
+        "type": "empty",
+        "allow": {
+          "bar": true,
+          "Stacked": true,
+          "Columns": true,
+          "ColumnsStack": true
+        }
+      }
+    }
+  }
+}

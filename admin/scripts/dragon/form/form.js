@@ -346,6 +346,8 @@ FORM = {
                                 }
                             });
 
+                        await AUDIT.LOG(AUDIT.ACTIONS.insert, $scope.modelName, $scope.form.inserting);
+
                         var firstColumn = eval(`CRUD_${$scope.modelName}`).table.key || "id";
                         var DRAGONID = eval(`savedRow.${firstColumn}`);
 
@@ -480,6 +482,8 @@ FORM = {
                                     record: DRAGONID
                                 }
                             });
+
+                        await AUDIT.LOG(AUDIT.ACTIONS.update, $scope.modelName, $scope.open.default, dataToUpdate);
 
                         if ($scope.form !== null)
                             $scope.form.mode = FORM.modes.edit;

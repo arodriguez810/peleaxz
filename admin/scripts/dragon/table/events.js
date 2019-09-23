@@ -252,6 +252,8 @@ TABLEEVENT = {
                             }
                         });
 
+                    await AUDIT.LOG(AUDIT.ACTIONS.delete, $scope.modelName, row);
+
                     $scope.procesingRow++;
                     if ($scope.procesingRowFor !== 0)
                         SWEETALERT.loading({

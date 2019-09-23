@@ -266,5 +266,15 @@
   "start": "inicio",
   "end": "final",
   "enabled": "activa",
-  "script": "código"
+  "script": "código",
+  "dragon_audit_plural": "Auditorías",
+  "dragon_audit": "Auditoría",
+  "modelname": "Modelo",
+  "action": "Acción",
+  "dataJson": "Datos",
+  "updatedJson": "Datos Actualizados",
+  "version": "Versión",
+  "ip": "IP",
+  "where": "where",
+  "user": "Usuario"
 }

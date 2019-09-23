@@ -1,8 +1,0 @@
-{
-  "oracleactive": true,
-  "oracle": {
-    "user": "TSUSER",
-    "password": "password",
-    "connectString": "TNSSERVER"
-  }
-}

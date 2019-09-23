@@ -241,5 +241,7 @@
   "executed": "ejecutado",
   "sorrydelete": "Lo sentimos este registro ya no está disponible fue eliminado por ${user.fullName()}",
   "sorryedit": "Lo sentimos éste fue editado por ${user.fullName()}, quieres tomar sus cambios?",
-  "tasks": "tareas"
+  "tasks": "tareas",
+  "old_data": "Data Anterior",
+  "actual_data": "Data Actual"
 }

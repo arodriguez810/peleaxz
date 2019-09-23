@@ -240,5 +240,7 @@
   "executed": "executed",
   "sorrydelete": "Sorry this record is no longer available was deleted by ${user.fullName()}",
   "sorryedit": "Sorry this record was edited by ${user.fullName()}, do you want to take your changes?",
-  "tasks": "tasks"
+  "tasks": "tasks",
+  "old_data": "Previous Data",
+  "actual_data": "Actual Data"
 }

@@ -1,6 +1,7 @@
 {
   "version": {
     "base": "3.0",
+    "data": 1,
     "documentation": "1.0",
     "app": "1.0",
     "about": {

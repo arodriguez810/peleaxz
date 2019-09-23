@@ -3,7 +3,7 @@ if (DATA.name !== undefined) {
     var name, model, opts;
     name = DATA.name;
     model = DATA.model;
-if (DATA.opts !== "")
+    if (DATA.opts !== "")
         opts = eval("(" + DATA.opts + ")");
 }
 var name = name || "";
@@ -32,6 +32,15 @@ var toclient = JSON.stringify(options);
 
 <script>
     <%= model + "." %>charts<%= "." + name %>_chart = echarts.init(document.getElementById('<%= name %>'));
+
+    if (<%= model + "." + name + "_events" %>) {
+        for(event in <%= model + "." + name + "_events" %>){
+            eval(`<%= model + "." %>charts<%= "." + name %>_chart.on('${event}', (data) => {
+                <%= model + "." + name + "_events" %>['${event}'](data);
+            })`)
+        }
+    }
+
 
     <%= model + "." %>charts<%= "." + name %>.refresh = function () {
         <%= model %>.
@@ -62,7 +71,8 @@ var toclient = JSON.stringify(options);
                 radius: '60%',
                 center: ['40%', '55.5%'],
                 data: <%= model %>.<%= name %>_data || [{}]
-        }]};
+            }]
+        };
         if (<%= model + "." %>charts<%= "." + name %>_chart) {
             <%= model + "." %>charts<%= "." + name %>_chart.setOption(<%= model + "." %>charts<%= "." + name %>_chart_options, true, true);
         }

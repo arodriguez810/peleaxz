@@ -1,0 +1,9 @@
+{
+  "version": {
+    "app": "1.0",
+    "about": {
+      "en": "is a full stack nodeJS framework with a great flow of aids, code, comfort, flexibility for the use of all operating systems, connection with a highly scalable and dynamic service where the front-end and the back-end are more united than ever.",
+      "es": "es un framework nodeJS de pila completa con un gran flujo de ayudas, código, comodidad, flexibilidad para el uso de todos los sistemas operativos, conexión con un servicio altamente escalable y dinámico donde el front-end y el back-end están más unidos que nunca."
+    }
+  }
+}

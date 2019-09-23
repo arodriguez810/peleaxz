@@ -2,317 +2,149 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8fb134e-e727-43fe-b984-89a1d2d7969c" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/admin/0-config/aconfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/0-config/mssql.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/0-config/mysql.disabled" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/0-config/oracle.disabled" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/0-config/menu.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/0-config/mssql.disabled" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/0-config/mysql.disabled" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/0-config/oracle.disabled" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/dragon_configuration/logo/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/storage/13f322b05bf6d1f8202ef8f4e948f805" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/storage/3f14827e6b8fbd3b13bf32e32ff407c0" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/storage/962e458eafd6037520922221e5ea23d4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/storage/a738b0635517ff7388518e4fbbab5c2a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/storage/c05dc9e9c5e52e4e2b1e9ce07c7b9ca0" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/storage/c0a74e870ea0e2b34056cc7924d68f63" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/8-enviroments/QA/app.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/8-enviroments/QA/appearance/menu.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/clean.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/clean.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/dragoninstall.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/dragoninstall.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/dragoninstall.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/files/storage/1404994b594276a80e87ab47d677df5c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/files/storage/1af0389838508d7016a9841eb6273962" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/files/storage/1d5704527d2389acdc2a02d4c336360c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/files/storage/375a496a99fefae08848d504fd177f84" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/files/storage/64224a3e5523b7fd7d0609453ef6391d" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/files/storage/688b3ced4f0c6afad79e67142be0dba6" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/files/storage/d02a169f33469c888396a24dd9d9f1c6" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/files/storage/db0f6f37ebeb6ea09489124345af2a45" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/files/storage/dee32a2c83d3cf5be976a46706f4145a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/3-controllers/CO_users.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/4-crud/CRUD_users.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/5-views/users/form.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/5-views/users/myprofile.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/5-views/view_report/filter.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/5-views/view_report/index.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/5-views/view_report/view.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/8-enviroments/prod/app.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/8-enviroments/prod/appearance/menu.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/8-enviroments/prod/security/network.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/files/dragon_configuration/login/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/files/dragon_configuration/logo/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/files/dragon_configuration/splash/splash.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/files/dragon_configuration/themes/extra.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/files/dragon_configuration/themes/primary.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/files/dragon_configuration/themes/secundary.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/files/storage/13f322b05bf6d1f8202ef8f4e948f805" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/files/storage/2459a82c1749b829527613e364882a05" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/files/storage/3f14827e6b8fbd3b13bf32e32ff407c0" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/files/storage/4cbec709fa813db541c5dee50c7c0188" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/files/storage/8fe424596629218f89f9f620aaa6c627" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/files/storage/95652ca12ce3ae08ddea5916cc17c331" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/files/storage/962e458eafd6037520922221e5ea23d4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/files/storage/965c5fc2fa08e3d76fd5678a326eb10b" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/files/storage/9f817848a6b5f5d53e9fbe2030294e83" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/files/storage/a0f2d0fc8ce32e6ad6fed21fc7e040b9" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/files/storage/a738b0635517ff7388518e4fbbab5c2a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/files/storage/ab4942b5c6a808974196b6d1806763b9" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/files/storage/b7eb1a7a46dd9fefd19cffc226e21f34" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/files/storage/c05dc9e9c5e52e4e2b1e9ce07c7b9ca0" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/files/storage/c0a74e870ea0e2b34056cc7924d68f63" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/files/storage/c8c60cb118e714fd80c0f7b1a34bca4b" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/files/storage/f29e98d580a0ff8db33ab6e6b743c11c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/files/storage/f4368c70b9ebd0b0a1344893566f56c9" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/files/storageProd/0b68cb9a9394ece9b23949a90d2aac38" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/files/storageProd/21b311e5c707d7b4c54d289a8c7cfd89" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/files/storageProd/2c57c2f755efd1b8d52298473f4dcabe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/files/storageProd/4cbec709fa813db541c5dee50c7c0188" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/files/storageProd/50443042f0dd0f00db94a29d31be5a95" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/files/storageProd/6bcfcc2b9a0b6c2855b49a7be211a67c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/files/storageProd/8fe424596629218f89f9f620aaa6c627" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/files/storageProd/95652ca12ce3ae08ddea5916cc17c331" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/files/storageProd/965c5fc2fa08e3d76fd5678a326eb10b" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/files/storageProd/9af553b359b47a5fc7f3ce0bb0d49d1a" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/files/storageProd/9f817848a6b5f5d53e9fbe2030294e83" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/files/storageProd/a0f2d0fc8ce32e6ad6fed21fc7e040b9" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/files/storageProd/bb9fe66b993f390c3afc4cb231740ef7" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/files/storageProd/c4db9b40110ca5b095a7329345e4a2c0" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/files/storageProd/c8c60cb118e714fd80c0f7b1a34bca4b" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/files/storageProd/e8edf4b0b8e20968806cd7c566cdfcc9" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/files/storageProd/f4368c70b9ebd0b0a1344893566f56c9" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/original/files/storageProd/fc94f70839cf04637dd4b13ca33eb87c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/run.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/0-config/app.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/0-config/appearance/config_menu.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/0-config/appearance/menu.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/0-config/appearance/starter.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/0-config/appearance/theme.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/0-config/developer/control.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/0-config/developer/silents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/0-config/security/auth.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/0-config/security/microsoft_cognitiveservices.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/0-config/security/permission.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/0-config/storage/entities.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/users/profileimage/1/example.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/3-controllers/CO_blog.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/3-controllers/CO_charts.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/3-controllers/CO_child.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/3-controllers/CO_dates.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/3-controllers/CO_documentation.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/3-controllers/CO_example.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/3-controllers/CO_lists.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/3-controllers/CO_lists_category.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/3-controllers/CO_parent.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/3-controllers/CO_relation.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/3-controllers/CO_special.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/3-controllers/CO_texts.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/3-controllers/CO_view_report.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/4-crud/CRUD_blog.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/4-crud/CRUD_child.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/4-crud/CRUD_dates.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/4-crud/CRUD_lists.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/4-crud/CRUD_lists_category.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/4-crud/CRUD_parent.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/4-crud/CRUD_relation.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/4-crud/CRUD_special.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/4-crud/CRUD_texts.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/4-crud/CRUD_view_report.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/blog/filter.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/blog/form.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/blog/index.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/blog/view.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/charts/bars.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/charts/lines.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/charts/pies.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/child/filter.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/child/form.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/child/index.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/child/view.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/dates/filter.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/dates/form.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/dates/index.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/dates/view.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/example/index.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/lists/filter.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/lists/form.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/lists/index.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/lists/view.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/lists_category/filter.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/lists_category/form.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/lists_category/index.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/lists_category/view.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/parent/filter.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/parent/form.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/parent/index.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/parent/view.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/relation/filter.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/relation/form.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/relation/index.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/relation/view.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/special/filter.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/special/form.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/special/index.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/special/view.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/texts/filter.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/texts/form.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/texts/index.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/texts/view.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/view_report/filter.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/view_report/index.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/view_report/view.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/7-plugins/application/controllers/CO_dragon_audit.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/7-plugins/application/cruds/CRUD_dragon_audit.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/7-plugins/dragon_audit/filter.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/7-plugins/dragon_audit/form.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/7-plugins/dragon_audit/index.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/7-plugins/dragon_audit/view.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/7-plugins/templates/email/plane.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/8-enviroments/PROD/appearance/config_menu.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/8-enviroments/PROD/appearance/starter.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/8-enviroments/PROD/appearance/theme.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/8-enviroments/PROD/developer/control.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/8-enviroments/PROD/developer/silents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/8-enviroments/PROD/security/auth.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/8-enviroments/PROD/security/microsoft_cognitiveservices.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/8-enviroments/PROD/security/permission.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/8-enviroments/PROD/storage/entities.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/scripts/dragon/components/audit.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/peleaxz.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/peleaxz.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/0-config/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/0-config/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/0-config/appearance/config_menu.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/0-config/appearance/config_menu.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/0-config/appearance/menu.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/0-config/appearance/menu.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/0-config/appearance/starter.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/0-config/appearance/starter.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/0-config/appearance/theme.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/0-config/appearance/theme.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/0-config/developer/control.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/0-config/developer/control.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/0-config/developer/silents.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/0-config/developer/silents.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/0-config/security/auth.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/0-config/security/auth.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/0-config/security/microsoft_cognitiveservices.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/0-config/security/microsoft_cognitiveservices.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/0-config/security/permission.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/0-config/security/permission.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/0-config/storage/entities.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/0-config/storage/entities.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/0-config/app.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/0-config/appearance/menu.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/0-config/menu.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/0-config/appearance/theme.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/0-config/developer/control.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/0-config/developer/silents.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/0-config/security/auth.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/0-config/security/microsoft_cognitiveservices.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/8-enviroments/prod/security/microsoft_cognitiveservices.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/0-config/security/network.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/8-enviroments/QA/security/network.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/0-config/security/permission.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/0-config/storage/entities.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/3-controllers/CO_users.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/3-controllers/CO_users.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/4-crud/CRUD_users.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/4-crud/CRUD_users.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/5-views/users/filter.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/5-views/users/filter.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/5-views/users/form.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/5-views/users/form.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/5-views/users/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/5-views/users/index.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/5-views/users/myprofile.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/5-views/users/myprofile.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/5-views/users/view.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/5-views/users/view.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/8-enviroments/PROD/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/8-enviroments/PROD/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/8-enviroments/PROD/appearance/menu.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/8-enviroments/PROD/appearance/menu.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/8-enviroments/PROD/security/network.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/8-enviroments/PROD/security/network.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/8-enviroments/QA/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/8-enviroments/QA/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/8-enviroments/QA/appearance/menu.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/8-enviroments/QA/appearance/menu.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/8-enviroments/QA/security/network.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/8-enviroments/QA/security/network.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/files/dragon_configuration/logo/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/dragon_configuration/login/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/files/dragon_configuration/splash/splash.png" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/dragon_configuration/splash/splash.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/files/dragon_configuration/themes/extra.css" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/dragon_configuration/themes/extra.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/files/dragon_configuration/themes/primary.css" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/dragon_configuration/themes/primary.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/files/dragon_configuration/themes/secundary.css" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/dragon_configuration/themes/secundary.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/files/storage/0847d93c6fb732f8314445b77b4abe69" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/storage/0847d93c6fb732f8314445b77b4abe69" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/files/storage/0b68cb9a9394ece9b23949a90d2aac38" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/storage/0b68cb9a9394ece9b23949a90d2aac38" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/files/storage/126ac9f6149081eb0e97c2e939eaad52" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/storage/126ac9f6149081eb0e97c2e939eaad52" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/files/storage/13f322b05bf6d1f8202ef8f4e948f805" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/storageProd/13f322b05bf6d1f8202ef8f4e948f805" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/files/storage/1404994b594276a80e87ab47d677df5c" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/storage/1404994b594276a80e87ab47d677df5c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/files/storage/1af0389838508d7016a9841eb6273962" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/storage/1af0389838508d7016a9841eb6273962" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/files/storage/1d5704527d2389acdc2a02d4c336360c" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/storage/1d5704527d2389acdc2a02d4c336360c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/files/storage/21b311e5c707d7b4c54d289a8c7cfd89" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/storage/21b311e5c707d7b4c54d289a8c7cfd89" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/files/storage/2459a82c1749b829527613e364882a05" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/storage/2459a82c1749b829527613e364882a05" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/files/storage/2c57c2f755efd1b8d52298473f4dcabe" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/storage/2c57c2f755efd1b8d52298473f4dcabe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/files/storage/30eac65ac47d33524683f6f06c6020dc" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/storage/30eac65ac47d33524683f6f06c6020dc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/files/storage/375a496a99fefae08848d504fd177f84" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/storage/375a496a99fefae08848d504fd177f84" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/files/storage/4cbec709fa813db541c5dee50c7c0188" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/storage/4cbec709fa813db541c5dee50c7c0188" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/files/storage/50443042f0dd0f00db94a29d31be5a95" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/storage/50443042f0dd0f00db94a29d31be5a95" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/files/storage/60b6463904c3ac964cc1b746394d2f3e" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/storage/60b6463904c3ac964cc1b746394d2f3e" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/files/storage/64224a3e5523b7fd7d0609453ef6391d" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/storage/64224a3e5523b7fd7d0609453ef6391d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/files/storage/6bcfcc2b9a0b6c2855b49a7be211a67c" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/storage/6bcfcc2b9a0b6c2855b49a7be211a67c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/files/storage/95652ca12ce3ae08ddea5916cc17c331" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/storage/95652ca12ce3ae08ddea5916cc17c331" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/files/storage/962e458eafd6037520922221e5ea23d4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/files/storage/965c5fc2fa08e3d76fd5678a326eb10b" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/storage/965c5fc2fa08e3d76fd5678a326eb10b" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/files/storage/9af553b359b47a5fc7f3ce0bb0d49d1a" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/storage/9af553b359b47a5fc7f3ce0bb0d49d1a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/files/storage/9f817848a6b5f5d53e9fbe2030294e83" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/storage/9f817848a6b5f5d53e9fbe2030294e83" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/files/storage/a0f2d0fc8ce32e6ad6fed21fc7e040b9" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/storage/a0f2d0fc8ce32e6ad6fed21fc7e040b9" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/files/storage/ab4942b5c6a808974196b6d1806763b9" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/storage/ab4942b5c6a808974196b6d1806763b9" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/files/storage/b7eb1a7a46dd9fefd19cffc226e21f34" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/storage/b7eb1a7a46dd9fefd19cffc226e21f34" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/files/storage/bb9fe66b993f390c3afc4cb231740ef7" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/storage/bb9fe66b993f390c3afc4cb231740ef7" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/files/storage/bf35c050b5d5bdc7510c88cfe17e3daa" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/storage/bf35c050b5d5bdc7510c88cfe17e3daa" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/files/storage/c4db9b40110ca5b095a7329345e4a2c0" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/storage/c4db9b40110ca5b095a7329345e4a2c0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/files/storage/d02a169f33469c888396a24dd9d9f1c6" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/storage/d02a169f33469c888396a24dd9d9f1c6" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/files/storage/d2e16d3f793e62737a6cdf2d54b0d9c1" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/storage/d2e16d3f793e62737a6cdf2d54b0d9c1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/files/storage/db0f6f37ebeb6ea09489124345af2a45" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/storage/db0f6f37ebeb6ea09489124345af2a45" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/files/storage/dee32a2c83d3cf5be976a46706f4145a" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/storage/dee32a2c83d3cf5be976a46706f4145a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/files/storage/e8edf4b0b8e20968806cd7c566cdfcc9" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/storage/e8edf4b0b8e20968806cd7c566cdfcc9" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/files/storage/f29e98d580a0ff8db33ab6e6b743c11c" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/storage/f29e98d580a0ff8db33ab6e6b743c11c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/files/storage/f4368c70b9ebd0b0a1344893566f56c9" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/storage/f4368c70b9ebd0b0a1344893566f56c9" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/files/storage/fc94f70839cf04637dd4b13ca33eb87c" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/storage/fc94f70839cf04637dd4b13ca33eb87c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/files/storage/fdd32b9061681edb52c554bd9bbf0712" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/storage/fdd32b9061681edb52c554bd9bbf0712" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/3-controllers/CO_blog.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/3-controllers/CO_blog.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/3-controllers/CO_charts.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/3-controllers/CO_charts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/3-controllers/CO_child.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/3-controllers/CO_child.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/3-controllers/CO_dates.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/3-controllers/CO_dates.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/3-controllers/CO_documentation.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/3-controllers/CO_documentation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/3-controllers/CO_example.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/3-controllers/CO_example.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/3-controllers/CO_lists.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/3-controllers/CO_lists.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/3-controllers/CO_lists_category.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/3-controllers/CO_lists_category.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/3-controllers/CO_parent.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/3-controllers/CO_parent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/3-controllers/CO_relation.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/3-controllers/CO_relation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/3-controllers/CO_special.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/3-controllers/CO_special.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/3-controllers/CO_texts.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/3-controllers/CO_texts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/3-controllers/CO_view_report.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/3-controllers/CO_view_report.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/4-crud/CRUD_blog.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/4-crud/CRUD_blog.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/4-crud/CRUD_child.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/4-crud/CRUD_child.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/4-crud/CRUD_dates.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/4-crud/CRUD_dates.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/4-crud/CRUD_lists.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/4-crud/CRUD_lists.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/4-crud/CRUD_lists_category.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/4-crud/CRUD_lists_category.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/4-crud/CRUD_parent.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/4-crud/CRUD_parent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/4-crud/CRUD_relation.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/4-crud/CRUD_relation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/4-crud/CRUD_special.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/4-crud/CRUD_special.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/4-crud/CRUD_texts.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/4-crud/CRUD_texts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/4-crud/CRUD_view_report.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/4-crud/CRUD_view_report.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/blog/filter.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/5-views/blog/filter.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/blog/form.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/5-views/blog/form.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/blog/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/5-views/blog/index.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/blog/view.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/5-views/blog/view.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/charts/bars.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/5-views/charts/bars.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/charts/lines.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/5-views/charts/lines.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/charts/pies.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/5-views/charts/pies.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/child/filter.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/5-views/child/filter.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/child/form.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/5-views/child/form.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/child/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/5-views/child/index.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/child/view.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/5-views/child/view.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/dates/filter.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/5-views/dates/filter.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/dates/form.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/5-views/dates/form.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/dates/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/5-views/dates/index.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/dates/view.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/5-views/dates/view.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/example/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/5-views/example/index.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/lists/filter.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/5-views/lists/filter.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/lists/form.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/5-views/lists/form.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/lists/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/5-views/lists/index.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/lists/view.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/5-views/lists/view.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/lists_category/filter.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/5-views/lists_category/filter.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/lists_category/form.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/5-views/lists_category/form.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/lists_category/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/5-views/lists_category/index.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/lists_category/view.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/5-views/lists_category/view.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/parent/filter.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/5-views/parent/filter.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/parent/form.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/5-views/parent/form.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/parent/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/5-views/parent/index.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/parent/view.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/5-views/parent/view.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/relation/filter.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/5-views/relation/filter.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/relation/form.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/5-views/relation/form.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/relation/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/5-views/relation/index.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/relation/view.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/5-views/relation/view.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/special/filter.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/5-views/special/filter.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/special/form.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/5-views/special/form.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/special/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/5-views/special/index.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/special/view.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/5-views/special/view.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/texts/filter.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/5-views/texts/filter.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/texts/form.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/5-views/texts/form.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/texts/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/5-views/texts/index.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/texts/view.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/5-views/texts/view.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/view_report/filter.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/5-views/users/filter.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/view_report/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/5-views/users/index.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/5-views/view_report/view.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/5-views/users/view.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/config/appearance/dragontheme.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/config/appearance/dragontheme.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/0-config/aconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/0-config/menu.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/0-config/mssql.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/0-config/mysql.disabled" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/0-config/oracle.disabled" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/compiled/4-crud/CRUD_users.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/4-crud/CRUD_users.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/dbs/mssql.sql" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/dbs/mssql.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/10-bootstrap/dbs/oracle.sql" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/dbs/oracle.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/11-sockets/connection.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/11-sockets/connection.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/12-tasks/example.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/12-tasks/example.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/6-language/en/columns/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/6-language/en/columns/index.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/6-language/en/mono/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/6-language/en/mono/index.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/6-language/es/columns/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/6-language/es/columns/index.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/6-language/es/mono/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/6-language/es/mono/index.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/config/developer/dragoncontrol.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/config/developer/dragoncontrol.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/config/developer/dragonmodules.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/config/developer/dragonmodules.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/config/developer/dragongenerate.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/config/developer/dragongenerate.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/config/dragonapp.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/config/dragonapp.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/7-plugins/master/functions.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/master/functions.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/7-plugins/templates/charts/line.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/templates/charts/line.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/config/security/dragonauth.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/config/security/dragonauth.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/config/security/dragonpermission.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/config/security/dragonpermission.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/config/storage/dragonentities.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/config/storage/dragonentities.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/controllers/CO_drangon_notifications.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/controllers/CO_drangon_notifications.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/cruds/base_currency/1columns.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/cruds/base_currency/1columns.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/cruds/customfield/1columns.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/cruds/customfield/1columns.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/cruds/fieldtype/1columns.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/cruds/fieldtype/1columns.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/cruds/group/1columns.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/cruds/group/1columns.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/cruds/interval/1columns.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/cruds/interval/1columns.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/cruds/mime/1columns.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/cruds/mime/1columns.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/cruds/notifications/1columns.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/cruds/notifications/1columns.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/cruds/segment/1columns.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/cruds/segment/1columns.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/dragon_configuration/company.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/dragon_configuration/company.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/master/navbar.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/master/navbar.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/templates/charts/pie.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/templates/charts/pie.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/templates/form/fileinline.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/templates/form/fileinline.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/8-enviroments/prod/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/8-enviroments/prod/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/8-enviroments/prod/appearance/config_menu.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/8-enviroments/prod/appearance/config_menu.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/8-enviroments/prod/appearance/menu.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/8-enviroments/prod/appearance/menu.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/8-enviroments/prod/appearance/starter.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/8-enviroments/prod/appearance/starter.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/8-enviroments/prod/appearance/theme.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/8-enviroments/prod/appearance/theme.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/8-enviroments/prod/developer/control.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/8-enviroments/prod/developer/control.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/8-enviroments/prod/developer/silents.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/8-enviroments/prod/developer/silents.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/8-enviroments/prod/security/auth.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/8-enviroments/prod/security/auth.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/8-enviroments/prod/security/microsoft_cognitiveservices.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/8-enviroments/prod/security/permission.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/8-enviroments/prod/security/permission.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/8-enviroments/prod/storage/entities.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/8-enviroments/prod/storage/entities.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/files/dragon_configuration/login/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/admin/files/dragon_configuration/login/logo.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/files/dragon_configuration/logo/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/admin/files/dragon_configuration/logo/logo.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/files/dragon_configuration/splash/splash.png" beforeDir="false" afterPath="$PROJECT_DIR$/admin/files/dragon_configuration/splash/splash.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/special/files/1/20151025_f562cfa4f8aa26.png___ade19119c9251cae073e7375fded7497.png___01aa20ebd8d53ab9a097cc9389cb65f5.png" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/special/files/1/20151025_f562cfa4f8aa26.png___ade19119c9251cae073e7375fded7497.png___01aa20ebd8d53ab9a097cc9389cb65f5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/special/files/2/273189 NO.jpg___6aa69bfa298938037e4ff813c83c601d.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/special/files/2/273189 NO.jpg___6aa69bfa298938037e4ff813c83c601d.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/special/files/2/273189.jpg___35049b0e656cd72e3230885ab8488cac.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/special/files/2/273189.jpg___35049b0e656cd72e3230885ab8488cac.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/special/files/2/sharingan.png___06c7bf95174686a847fcf671f7b4b797.png" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/special/files/2/sharingan.png___06c7bf95174686a847fcf671f7b4b797.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/special/images/1/190621_122206_mf202f05c1c_avatar.png___257bbd3207c8dfed2be0e9c774c89339.png___e9918168e10071b6978eb5a5316109c0.png" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/special/images/1/190621_122206_mf202f05c1c_avatar.png___257bbd3207c8dfed2be0e9c774c89339.png___e9918168e10071b6978eb5a5316109c0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/special/images/1/20151025_f562cfa4f8aa26.png___ade19119c9251cae073e7375fded7497.png___22e35a4869f0d10cd997781b5b4492d4.png" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/special/images/1/20151025_f562cfa4f8aa26.png___ade19119c9251cae073e7375fded7497.png___22e35a4869f0d10cd997781b5b4492d4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/special/images/2/sharingan.png___216c2d9d747a55ed379ab744aba82edf.png" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/special/images/2/sharingan.png___216c2d9d747a55ed379ab744aba82edf.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/special/images/4/itachi-uchiha-profile-pictures-9.jpg___5a4a930b46f0d5518b157700e250b0c3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/special/images/4/itachi-uchiha-profile-pictures-9.jpg___5a4a930b46f0d5518b157700e250b0c3.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/special/images/4/itachi.jpeg___c8f888cb5d0ef3d506721d62d9648649.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/special/images/4/itachi.jpeg___c8f888cb5d0ef3d506721d62d9648649.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/special/images/5/ita.jpeg___3a15b29604655fff633dd8068768ee39.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/special/images/5/ita.jpeg___3a15b29604655fff633dd8068768ee39.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/special/temp_files/files/1562949727541/1280px-Flag_of_Thailand.svg.png___572e8b1a9af8718fca5bb313138d9bdf.png" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/special/temp_files/files/1562949727541/1280px-Flag_of_Thailand.svg.png___572e8b1a9af8718fca5bb313138d9bdf.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/special/temp_files/files/1562949727541/3.png___21671877a9709e318806f3585fb3cbc4.png" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/special/temp_files/files/1562949727541/3.png___21671877a9709e318806f3585fb3cbc4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/special/temp_files/files/1562949727541/3252px-All_Seasons_Plaza_Bangkok.jpg___c9a573f7e3fed20cffc827ca56e97d4a.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/special/temp_files/files/1562949727541/3252px-All_Seasons_Plaza_Bangkok.jpg___c9a573f7e3fed20cffc827ca56e97d4a.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/special/temp_files/files/1562949727541/5.png___deb68998ccbe66dc9d236ce13ab0dfbe.png" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/special/temp_files/files/1562949727541/5.png___deb68998ccbe66dc9d236ce13ab0dfbe.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/special/temp_files/images/1562949727532/1280px-Flag_of_Thailand.svg.png___9225bcaf5a83cfe9db3ad0f0b6faafa9.png" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/special/temp_files/images/1562949727532/1280px-Flag_of_Thailand.svg.png___9225bcaf5a83cfe9db3ad0f0b6faafa9.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/special/temp_files/images/1562949727532/3252px-All_Seasons_Plaza_Bangkok.jpg___d032dd14786a3f49fa3b53bd1f99e7ae.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/special/temp_files/images/1562949727532/3252px-All_Seasons_Plaza_Bangkok.jpg___d032dd14786a3f49fa3b53bd1f99e7ae.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/storage/126ac9f6149081eb0e97c2e939eaad52" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/storageProd/0b68cb9a9394ece9b23949a90d2aac38" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/storage/0b68cb9a9394ece9b23949a90d2aac38" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/storageProd/13f322b05bf6d1f8202ef8f4e948f805" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/storageProd/21b311e5c707d7b4c54d289a8c7cfd89" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/storage/21b311e5c707d7b4c54d289a8c7cfd89" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/storageProd/2459a82c1749b829527613e364882a05" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/storageProd/2459a82c1749b829527613e364882a05" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/storageProd/2c57c2f755efd1b8d52298473f4dcabe" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/storage/2c57c2f755efd1b8d52298473f4dcabe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/storageProd/3f14827e6b8fbd3b13bf32e32ff407c0" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/storageProd/3f14827e6b8fbd3b13bf32e32ff407c0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/storageProd/46ae3be8a0ebc4aa6d778d5ff907db04" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/storageProd/46ae3be8a0ebc4aa6d778d5ff907db04" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/storageProd/4bcbc758e73d2fdfa94c593b563c2c36" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/storageProd/4bcbc758e73d2fdfa94c593b563c2c36" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/storageProd/4cbec709fa813db541c5dee50c7c0188" beforeDir="false" afterPath="$PROJECT_DIR$/admin/files/storage/fdd32b9061681edb52c554bd9bbf0712" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/storageProd/50443042f0dd0f00db94a29d31be5a95" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/storage/50443042f0dd0f00db94a29d31be5a95" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/storageProd/6bcfcc2b9a0b6c2855b49a7be211a67c" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/storage/6bcfcc2b9a0b6c2855b49a7be211a67c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/storageProd/85f408e1da5b23a1697176433f3dc481" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/storageProd/85f408e1da5b23a1697176433f3dc481" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/storageProd/8fe424596629218f89f9f620aaa6c627" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/storage/8fe424596629218f89f9f620aaa6c627" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/storageProd/9198a24b1ff56c4a8d2d97c0fb4395c4" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/storageProd/9198a24b1ff56c4a8d2d97c0fb4395c4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/storageProd/95652ca12ce3ae08ddea5916cc17c331" beforeDir="false" afterPath="$PROJECT_DIR$/admin/files/storage/bf35c050b5d5bdc7510c88cfe17e3daa" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/storageProd/965c5fc2fa08e3d76fd5678a326eb10b" beforeDir="false" afterPath="$PROJECT_DIR$/admin/files/storage/60b6463904c3ac964cc1b746394d2f3e" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/storageProd/9af553b359b47a5fc7f3ce0bb0d49d1a" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/storage/9af553b359b47a5fc7f3ce0bb0d49d1a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/storageProd/9f817848a6b5f5d53e9fbe2030294e83" beforeDir="false" afterPath="$PROJECT_DIR$/admin/files/storage/30eac65ac47d33524683f6f06c6020dc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/storageProd/a0f2d0fc8ce32e6ad6fed21fc7e040b9" beforeDir="false" afterPath="$PROJECT_DIR$/admin/files/storage/0847d93c6fb732f8314445b77b4abe69" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/storageProd/a738b0635517ff7388518e4fbbab5c2a" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/storageProd/a738b0635517ff7388518e4fbbab5c2a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/storageProd/b7eb1a7a46dd9fefd19cffc226e21f34" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/storageProd/b7eb1a7a46dd9fefd19cffc226e21f34" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/storageProd/bb9fe66b993f390c3afc4cb231740ef7" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/storage/bb9fe66b993f390c3afc4cb231740ef7" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/storageProd/c4db9b40110ca5b095a7329345e4a2c0" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/storage/c4db9b40110ca5b095a7329345e4a2c0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/storageProd/c8c60cb118e714fd80c0f7b1a34bca4b" beforeDir="false" afterPath="$PROJECT_DIR$/admin/10-bootstrap/compiled/files/storage/c8c60cb118e714fd80c0f7b1a34bca4b" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/storageProd/ddd97bdb87af5539a4331926890b7f1d" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/storageProd/ddd97bdb87af5539a4331926890b7f1d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/storageProd/e8edf4b0b8e20968806cd7c566cdfcc9" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/storage/e8edf4b0b8e20968806cd7c566cdfcc9" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/storageProd/f01d7ba8b4dd2d20c9b4e0da238dad0d" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/storageProd/f01d7ba8b4dd2d20c9b4e0da238dad0d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/storageProd/f29e98d580a0ff8db33ab6e6b743c11c" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/storageProd/f29e98d580a0ff8db33ab6e6b743c11c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/storageProd/f4368c70b9ebd0b0a1344893566f56c9" beforeDir="false" afterPath="$PROJECT_DIR$/admin/files/storage/d2e16d3f793e62737a6cdf2d54b0d9c1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/storageProd/fc94f70839cf04637dd4b13ca33eb87c" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/storage/fc94f70839cf04637dd4b13ca33eb87c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/users/profileimage/1/190621_122206_mf202f05c1c_avatar.png___84964033adbdee1ed204abc5bf4c2cb4.png" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/users/profileimage/1/190621_122206_mf202f05c1c_avatar.png___84964033adbdee1ed204abc5bf4c2cb4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/users/profileimage/2/20151025_f562cfa4f8aa26.png___ade19119c9251cae073e7375fded7497.png" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/users/profileimage/2/20151025_f562cfa4f8aa26.png___ade19119c9251cae073e7375fded7497.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/users/profileimage/3/151104_f9bea2a5e84.png___51f8fb72356398b256dd165c179f6813.png___e51fc87fa5eef9e8f289764a76fb8304.png___f8e7cec5bffff48678cb2051a402bbd3.png" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/users/profileimage/3/151104_f9bea2a5e84.png___51f8fb72356398b256dd165c179f6813.png___e51fc87fa5eef9e8f289764a76fb8304.png___f8e7cec5bffff48678cb2051a402bbd3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/users/profileimage/4/20151025_f562cfa4f8aa26.png___ade19119c9251cae073e7375fded7497.png___335da9b992c112c1b308b6dcde90a1a0.png" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/users/profileimage/4/20151025_f562cfa4f8aa26.png___ade19119c9251cae073e7375fded7497.png___335da9b992c112c1b308b6dcde90a1a0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/users/profileimage/5/151104_f9bea2a5e84.png___51f8fb72356398b256dd165c179f6813.png___e51fc87fa5eef9e8f289764a76fb8304.png" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/users/profileimage/5/151104_f9bea2a5e84.png___51f8fb72356398b256dd165c179f6813.png___e51fc87fa5eef9e8f289764a76fb8304.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/yorield/1567624526433/sharingan.png___ce240f52d643adf22217908219b7b852.png" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/yorield/1567624526433/sharingan.png___ce240f52d643adf22217908219b7b852.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/yorield/1567624556796/273189.jpg___72860f7e971329ff5c97b56ddf965408.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/yorield/1567624556796/273189.jpg___72860f7e971329ff5c97b56ddf965408.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/yorield/1567702277225/sharingan.png___03b4b70eecfaa74d6dccfb040e5a9026.png" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/files/yorield/1567702277225/sharingan.png___03b4b70eecfaa74d6dccfb040e5a9026.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/files/storage/688b3ced4f0c6afad79e67142be0dba6" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/files/users/profileimage/1/logo.png___c0b92c537702e310a7b6ed8e6b1da20f.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/generate.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/generate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/linux.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/mac.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/start.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/windows.bat" beforeDir="false" afterPath="$PROJECT_DIR$/admin/run.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/winstall.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/original/0-config/security/auth.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/original/0-config/security/auth.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/form/form.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/form/form.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/table/events.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/table/events.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tool/Migrate/Betas" beforeDir="false" afterPath="$PROJECT_DIR$/tool/Migrate/Betas" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tool/Migrate/Paths" beforeDir="false" afterPath="$PROJECT_DIR$/tool/Migrate/Paths" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -390,7 +222,7 @@
     <property name="excluded.www.directory" value="true" />
     <property name="javascript.nodejs.core.library.configured.version" value="9.2.0" />
     <property name="jsx.switch.disabled" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/admin/files/dragon_configuration" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/admin/7-plugins/templates/email" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.jscs" value="true" />
@@ -408,19 +240,19 @@
     <property name="ts.external.directory.path" value="C:\wamp\www\peleaxz\mobile\node_modules\typescript\lib" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\peleaxz\admin\files\dragon_configuration" />
-      <recent name="C:\xampp\htdocs\peleaxz\admin\10-bootstrap\compiled\files\dragon_configuration\login" />
-      <recent name="C:\xampp\htdocs\peleaxz\admin\10-bootstrap\compiled\files\dragon_configuration" />
-      <recent name="C:\xampp\htdocs\peleaxz\admin" />
-      <recent name="C:\xampp\htdocs\peleaxz\admin\10-bootstrap\compiled\0-config" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\peleaxz\admin\10-bootstrap\compiled\0-config" />
       <recent name="C:\xampp\htdocs\peleaxz\admin\10-bootstrap" />
       <recent name="C:\xampp\htdocs\peleaxz\admin\10-bootstrap\compiled" />
       <recent name="C:\xampp\htdocs\peleaxz\admin\7-plugins" />
       <recent name="C:\xampp\htdocs\peleaxz\admin\7-plugins\application\cruds" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\peleaxz\admin\7-plugins\templates\email" />
+      <recent name="C:\xampp\htdocs\peleaxz\admin" />
+      <recent name="C:\xampp\htdocs\peleaxz\admin\10-bootstrap\compiled\files" />
+      <recent name="C:\xampp\htdocs\peleaxz\admin\scripts\dragon\components" />
+      <recent name="C:\xampp\htdocs\peleaxz\admin\7-plugins" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -594,7 +426,13 @@
       <workItem from="1567688782641" duration="12273000" />
       <workItem from="1567779659151" duration="27246000" />
       <workItem from="1567818144512" duration="5289000" />
-      <workItem from="1568043441141" duration="1854000" />
+      <workItem from="1568043441141" duration="6710000" />
+      <workItem from="1568052353756" duration="887000" />
+      <workItem from="1568055635841" duration="4308000" />
+      <workItem from="1568311301619" duration="731000" />
+      <workItem from="1568920334395" duration="600000" />
+      <workItem from="1569000292463" duration="6698000" />
+      <workItem from="1569081843129" duration="959000" />
     </task>
     <servers />
   </component>

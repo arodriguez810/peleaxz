@@ -1,0 +1,63 @@
+<div class="tab-content">
+    <div class="tab-pane active" id="basic">
+        <div class="row">
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.input("basic", scope, {maxlength: 50}) %>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.percentage("percentage", scope, {}) %>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.money("money", scope, {}) %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.phone("phone", scope, {}) %>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.cellphone("cellphone", scope, {}) %>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.hour("hour", scope, {}) %>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.integer("integer", scope, {}) %>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.decimal("decimal", scope, {}) %>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.year("year", scope, {}) %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.identification("indentification", scope, {}) %>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.creditcard("creditcard", scope, {}) %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.inputview("readonly", scope, {maxlength: 50}) %>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.normalpassword("normalpassword", scope, {maxlength: 15}) %>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.password("passwordplus", scope, {maxlength: 15}) %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <%- FORM.textarea("textarea", scope, {maxlength: 99999}) %>
+            </div>
+        </div>
+    </div>
+</div>
+<%- FORM.footer(scope) %>

@@ -119,8 +119,8 @@ async function execute() {
             dbfields = await modules.mysql.data(`select COLUMN_NAME \`column\`,DATA_TYPE \`type\` from information_schema.\`COLUMNS\` where  TABLE_SCHEMA='${CONFIG.mysql.database}' and TABLE_NAME='${controllerName}'`, PARAMS, false);
         }
         if (engine === "mssql" || engine === "mssqlreport") {
-            dbtables = await modules.mssql.data(`select TABLE_NAME from INFORMATION_SCHEMA.TABLES`, PARAMS, false);
-            dbfields = await modules.mssql.data(`select COLUMN_NAME \`column\`,DATA_TYPE \`type\` from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME='${controllerName}'`, PARAMS, false);
+            dbtables = await modules.mssql.data(`select TABLE_NAME as \'table\' from INFORMATION_SCHEMA.TABLES`, PARAMS, false);
+            dbfields = await modules.mssql.data(`select COLUMN_NAME \'column\',DATA_TYPE \'type\' from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME='${controllerName}'`, PARAMS, false);
         }
 
         if (engine === "oracle" || engine === "oraclereport") {
@@ -131,12 +131,17 @@ async function execute() {
             controller = controllerReport;
             crud = crudReport;
         }
+
+
         var dbtablesArray = [];
+
+
 
         if (dbtables)
             dbtables.data.forEach((table) => {
                 dbtablesArray.push(table.table.toLowerCase())
             });
+
 
         if (engine !== "empty")
             if (dbtablesArray.indexOf(controllerName) === -1) {
@@ -474,14 +479,15 @@ async function execute() {
             var PARAMS = eval("(" + allparams + ")");
             if (engine === "mysql" || engine === "mysqlreport") {
                 dbtables = await modules.mysql.data(`select TABLE_NAME as \`table\` from information_schema.\`TABLES\` where TABLE_SCHEMA='${CONFIG.mysql.database}'`, PARAMS, false);
+                dbfields = await modules.mysql.data(`select COLUMN_NAME \`column\`,DATA_TYPE \`type\` from information_schema.\`COLUMNS\` where  TABLE_SCHEMA='${CONFIG.mysql.database}' and TABLE_NAME='${controllerName}'`, PARAMS, false);
             }
             if (engine === "mssql" || engine === "mssqlreport") {
-                dbtables = await modules.mssql.data(`select TABLE_NAME from INFORMATION_SCHEMA.TABLES`, PARAMS, false);
-                dbfields = await modules.mssql.data(`select COLUMN_NAME \`column\`,DATA_TYPE \`type\` from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME='${controllerName}'`, PARAMS, false);
+                dbtables = await modules.mssql.data(`select TABLE_NAME \'table\' from INFORMATION_SCHEMA.TABLES`, PARAMS, false);
+                dbfields = await modules.mssql.data(`select COLUMN_NAME \'column\',DATA_TYPE \'type\' from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME='${controllerName}'`, PARAMS, false);
             }
             if (engine === "oracle" || engine === "oraclereport") {
                 dbtables = await modules.oracle.data(`select TABLE_NAME from INFORMATION_SCHEMA.TABLES`, PARAMS, false);
-                dbfields = await modules.mssql.data(`select COLUMN_NAME \`column\`,DATA_TYPE \`type\` from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME='${controllerName}'`, PARAMS, false);
+                dbfields = await modules.oracle.data(`select COLUMN_NAME \`column\`,DATA_TYPE \`type\` from INFORMATION_SCHEMA.COLUMNS where TABLE_NAME='${controllerName}'`, PARAMS, false);
             }
             var dbtablesArray = [];
             controllerNames = [];

@@ -44,30 +44,6 @@ DSON.keepmerge(CRUD_users, {
             email: {
                 shorttext: 80
             },
-            created: {
-                visible: false,
-                sorttype: "time",
-                formattype: "datetime>DD-MM-YYYY hh:mm a",
-                exportExample: false
-            },
-            updated: {
-                visible: false,
-                visibleDetail: false,
-                export: false,
-                exportExample: false
-            },
-            user_created: {
-                visible: false,
-                visibleDetail: false,
-                export: false,
-                exportExample: false
-            },
-            user_updated: {
-                visible: false,
-                visibleDetail: false,
-                export: false,
-                exportExample: false
-            }
         },
         filters: {
             columns: true

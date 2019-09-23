@@ -8,11 +8,7 @@
         "name",
         "description",
         "isAdmin",
-        "homePage",
-        "created",
-        "updated",
-        "user_created",
-        "user_updated"
+        "homePage"
       ]
     },
     "user_dragon_group": {
@@ -21,11 +17,7 @@
       "fields": [
         "user",
         "group",
-        "created",
-        "updated",
-        "tempid",
-        "user_created",
-        "user_updated"
+        "tempid"
       ]
     },
     "permission": {
@@ -58,11 +50,7 @@
         "sendAfter",
         "headings",
         "url",
-        "content",
-        "created",
-        "updated",
-        "user_created",
-        "user_updated"
+        "content"
       ]
     },
     "dragon_segment": {
@@ -71,11 +59,7 @@
       "base": true,
       "fields": [
         "name",
-        "description",
-        "created",
-        "updated",
-        "user_created",
-        "user_updated"
+        "description"
       ]
     },
     "dragon_interval": {
@@ -85,11 +69,7 @@
       "fields": [
         "name",
         "description",
-        "code",
-        "created",
-        "updated",
-        "user_created",
-        "user_updated"
+        "code"
       ]
     },
     "dragon_notifications_segment": {
@@ -98,11 +78,7 @@
       "fields": [
         "notifications",
         "segment",
-        "created",
-        "updated",
-        "tempid",
-        "user_created",
-        "user_updated"
+        "tempid"
       ]
     },
     "user_dragon_notifications": {
@@ -111,11 +87,7 @@
       "fields": [
         "user",
         "notifications",
-        "created",
-        "updated",
-        "tempid",
-        "user_created",
-        "user_updated"
+        "tempid"
       ]
     },
     "dragon_customfield": {
@@ -136,11 +108,7 @@
         "positions",
         "fileCount",
         "multiplefile",
-        "documentType",
-        "created",
-        "updated",
-        "user_created",
-        "user_updated"
+        "documentType"
       ]
     },
     "dragon_fieldtype": {
@@ -150,11 +118,7 @@
       "fields": [
         "name",
         "key",
-        "description",
-        "created",
-        "updated",
-        "user_created",
-        "user_updated"
+        "description"
       ]
     },
     "dragon_mime": {
@@ -164,11 +128,7 @@
       "fields": [
         "name",
         "key",
-        "description",
-        "created",
-        "updated",
-        "user_created",
-        "user_updated"
+        "description"
       ]
     },
     "dragon_currency": {
@@ -181,11 +141,7 @@
         "symbol",
         "decimal",
         "separator",
-        "precision",
-        "created",
-        "updated",
-        "user_created",
-        "user_updated"
+        "precision"
       ]
     },
     "dragon_query": {
@@ -227,6 +183,9 @@
         "end",
         "enabled"
       ]
+    },
+    "dragon_audit": {
+      "type": "deep"
     }
   }
 }

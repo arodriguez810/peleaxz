@@ -1,0 +1,50 @@
+<div class="tab-content">
+    <div class="tab-pane active" id="basic">
+        <div class="row">
+            <div class='col-sm-4 col-md-4'>
+                <%- FORM.input('name', scope, {}) %>
+            </div>
+            <div class='col-sm-4 col-md-4'>
+                <%- FORM.select('parent', scope, {
+                    column: 'name',
+                    table: 'parent'
+                }) %>
+            </div>
+            <div class='col-sm-4 col-md-4'>
+                <%- FORM.select('child', scope, {
+                    column: 'name',
+                    table: 'child',
+                    condition: "item.parent==lists.parent"
+                }) %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <%- FORM.select("category", scope, {
+                    column: "name",
+                    table: "category",
+                    get: {table: 'lists_category', fieldFrom: 'id', fieldTo: 'lists', field: 'category'},
+                    multiple: true,
+                    icon: {class: "list"}
+                }) %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+                <%- FORM.relation("relation", scope, {
+                    table: "relation",
+                    field: "list",
+                    master: null,
+                    icon: {class: "archive"}
+                }) %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- FORM.footer(scope) %>
+
+
+
+
+

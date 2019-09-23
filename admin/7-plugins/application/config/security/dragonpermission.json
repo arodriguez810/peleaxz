@@ -144,6 +144,10 @@
       "dragon_group": {
         "type": "full",
         "allow": {}
+      },
+      "dragon_audit": {
+        "type": "report",
+        "allow": {}
       }
     }
   }

@@ -1,0 +1,56 @@
+<div class="tab-content">
+    <div class="tab-pane active" id="basic">
+        <div class="row">
+            <div class='col-sm-4 col-md-4'>
+                <%- FORM.color('color', scope, {}) %>
+            </div>
+            <div class='col-sm-4 col-md-4'>
+                <%- FORM.location('location', scope) %>
+            </div>
+            <div class='col-sm-4 col-md-4'>
+                <%- FORM.checkbox('bit', scope) %>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.file("images", scope, {
+                    maxfiles: 50,
+                }) %>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <%- FORM.file("files", scope, {
+                    maxfiles: 50,
+                    columns: 4
+                }) %>
+            </div>
+
+            <div dragoncontrol="file" label="Yorield" cols="4" name="yorield" scope="<%= scope %>"
+                 id="<%= scope %>__yorield" cache="false">
+                {
+                    maxfiles: 2,
+                    folder:"yorield/"+ new Date().getTime(),
+                    text:'Yorield',
+                    alone:true
+                }
+            </div>
+        </div>
+
+        <div class="row">
+            <div class='col-sm-12 col-md-12'>
+                <%- FORM.tags('tags', scope) %>
+            </div>
+        </div>
+        <div class="row">
+            <div class='col-sm-12 col-md-12'>
+                <%- FORM.html('html', scope) %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- FORM.footer(scope) %>
+
+
+
+
+

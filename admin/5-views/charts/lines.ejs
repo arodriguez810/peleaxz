@@ -1,0 +1,118 @@
+<div id="<%= scope %>" ng-controller="<%= scope %> as <%= scope %>">
+    <div class="panel panel-flat">
+        <%- include('../../7-plugins/templates/header/begin',{scope:scope}); %>
+        <ul class="breadcrumb-elements visible-elements">
+            <li dragonlanguage="">
+                <a onclick="alert('Holaaaa')">
+                    <i dragonlanguage="" title="MESSAGE.ic('mono.add')" class="icon-mail5"></i> 
+                </a>
+            </li>
+        </ul>
+        <%- include('../../7-plugins/templates/header/end',{scope:scope}); %>
+        <div class="subcontent">
+            <div class="row">
+                <div class="col-sm-12 col-md-12">
+                    <div class="panel panel-flat">
+                        <div class="panel-heading">
+                            <h5 class="panel-title">Line</h5>
+                            <div class="heading-elements">
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="chart has-fixed-height has-minimum-width" style="width: 1000px" id="line"></div>
+                            <script>
+                                <%= scope %>.line_data = {
+                                    legend: ['Internet Explorer', 'Opera', 'Safari', 'Firefox', 'Chrome'],
+                                    down: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                                    data: [
+                                        {
+                                            name: 'Internet Explorer',
+                                            type: 'line',
+                                            stack: 'Total',
+                                            data: [120, 132, 101, 134, 90, 230, 210]
+                                        },
+                                        {
+                                            name: 'Opera',
+                                            type: 'line',
+                                            stack: 'Total',
+                                            data: [220, 182, 191, 234, 290, 330, 310]
+                                        },
+                                        {
+                                            name: 'Safari',
+                                            type: 'line',
+                                            stack: 'Total',
+                                            data: [150, 232, 201, 154, 190, 330, 410]
+                                        },
+                                        {
+                                            name: 'Firefox',
+                                            type: 'line',
+                                            stack: 'Total',
+                                            data: [320, 332, 301, 334, 390, 330, 320]
+                                        },
+                                        {
+                                            name: 'Chrome',
+                                            type: 'line',
+                                            stack: 'Total',
+                                            data: [820, 932, 901, 934, 1290, 1330, 1320]
+                                        }
+                                    ]
+                                }
+                            </script>
+                            <%- CHART.line("line", scope, {}) %>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12">
+                    <div class="panel panel-flat">
+                        <div class="panel-heading">
+                            <h5 class="panel-title">Area</h5>
+                            <div class="heading-elements">
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="chart has-fixed-height has-minimum-width" style="width: 1000px" id="area"></div>
+                            <script>
+                                <%= scope %>.area_data = {
+                                    legend: ['Internet Explorer', 'Opera', 'Safari', 'Firefox', 'Chrome'],
+                                    down: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                                    data: [
+                                        {
+                                            name: 'Internet Explorer',
+                                            type: 'line',
+                                            stack: 'Total',
+                                            itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                                            data: [120, 132, 101, 134, 490, 230, 210]
+                                        },
+                                        {
+                                            name: 'Safari',
+                                            type: 'line',
+                                            stack: 'Total',
+                                            itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                                            data: [150, 1232, 901, 154, 190, 330, 810]
+                                        },
+                                        {
+                                            name: 'Firefox',
+                                            type: 'line',
+                                            stack: 'Total',
+                                            itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                                            data: [320, 1332, 1801, 1334, 590, 830, 1220]
+                                        },
+                                        {
+                                            name: 'Chrome',
+                                            type: 'line',
+                                            stack: 'Total',
+                                            itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                                            data: [820, 1632, 1901, 2234, 1290, 1330, 1320]
+                                        }
+                                    ]
+                                }
+                            </script>
+                            <%- CHART.line("area", scope, {}) %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!--end-->
+

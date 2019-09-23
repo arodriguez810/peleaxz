@@ -26,7 +26,8 @@
     "functions": true,
     "chat": true,
     "user_interactive": true,
-    "tasks": true
+    "tasks": true,
+    "audit": true
   },
   "developerBy": {
     "name": "Angel Rodríguez",

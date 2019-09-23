@@ -22,9 +22,6 @@ exports.init = function (params) {
     params.sio.on('connection', function (socket) {
         var Data = socket.handshake.query;
         User(Data);
-        console.log(ONLINE.map(d => {
-            return d.id;
-        }));
         for (var channel of params.socketsList) {
             if (channel !== 'connection') {
                 eval(`

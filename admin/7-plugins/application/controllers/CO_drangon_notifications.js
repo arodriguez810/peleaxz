@@ -5,7 +5,6 @@ app.controller("dragon_notifications", function ($scope, $http, $compile) {
         if (!DSON.oseaX(dragon_notifications.notificationID))
             SERVICE.base_onesignal.cancel({id: dragon_notifications.notificationID}, function (result) {
                 result.data.response.data = DSON.EO(result.data.response.data);
-                console.log(result);
                 if (result.data.response.data.errors === undefined) {
                     SWEETALERT.show({message: MESSAGE.ic('mono.dragon_notificationstoped')});
                 } else {

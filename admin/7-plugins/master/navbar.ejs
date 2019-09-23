@@ -207,7 +207,7 @@
                         </a>
                     </li>
 
-                    <li ng-if="DRAGON.features.tasks===true && (DRAGON.isAdmin)">
+                    <li ng-if="DRAGON.features.tasks===true && (DRAGON.isAdmin || DRAGON.isSuper)">
                         <a class="sidebar-control"
                            onclick="MODAL.rawModal(MESSAGE.ic('mono.tasks'),'dragon_task','task',undefined,'dragon_task');"
                            data-popup="tooltip"
@@ -215,6 +215,17 @@
                            title="MESSAGE.ic('mono.tasks')">
                             <i class="icon-task"></i>
                             <language>MESSAGE.ic('mono.tasks')</language>
+                        </a>
+                    </li>
+
+                    <li ng-if="DRAGON.features.tasks===true && (DRAGON.isAdmin || DRAGON.isSuper)">
+                        <a class="sidebar-control"
+                           onclick="MODAL.rawModal(MESSAGE.ic('mono.audit'),'dragon_audit','stack-text',undefined,'dragon_audit');"
+                           data-popup="tooltip"
+                           data-placement="bottom" data-container="body" dragonlanguage
+                           title="MESSAGE.ic('mono.audit')">
+                            <i class="icon-stack-text"></i>
+                            <language>MESSAGE.ic('mono.audit')</language>
                         </a>
                     </li>
 

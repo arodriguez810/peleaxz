@@ -8,6 +8,8 @@ exports.init = function (params) {
     // dayOfWeek (0-6) Starting with Sunday
     // start: Date
     // end: Date
+
+
     var work = async function () {
         module = params.modules.mysql;
         users = new module.Model('users', params);
