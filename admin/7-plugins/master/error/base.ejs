@@ -1,5 +1,29 @@
 <!-- Error title -->
-<div class="text-center content-group" style="min-height: 600px;background-color: #eee">
+
+
+<div id="errorbase" class="text-center content-group"
+     style="min-height: 600px;background-color: #eee;display: none">
     <h1 class="error-title"><%= DATA.status %></h1>
-    <h5 dragonlanguage><language>MESSAGE.i('error.Oopsanerrorhasoccurred')</language>.  <%= DATA.statusText %>!</h5>
+    <h5 dragonlanguage>
+        <language>MESSAGE.i('error.Oopsanerrorhasoccurred')</language>
+        . <%= DATA.statusText %>!
+    </h5>
 </div>
+
+<div id="errorbutton" class="text-center content-group"  style="min-height: 600px;background-color: #eee;display: none">
+    <h4>No Controlado</h4>
+    <h5 dragonlanguage>
+        Error por server
+    </h5>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        if ("<%= DATA.statusText %>".indexOf("e500") !== -1) {
+            $("#errorbutton").show();
+        } else {
+            $("#errorbase").show();
+        }
+    });
+</script>

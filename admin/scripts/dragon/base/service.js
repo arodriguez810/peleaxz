@@ -16,7 +16,7 @@ SERVICE = {
                         "                        $http = angular.injector([\"ng\"]).get(\"$http\");\n" +
                         "                        var http = new HTTP();                " +
                         "                        http.setToken($http);                " +
-                        "                        $http.get(String.format(\"service/{1}/{2}?{3}\", '', '" + parent + "', '" + functionName + "', $queryString)).then(function (data) {\n" +
+                        "                        $http.get(String.format(\"/service/{1}/{2}?{3}\", '', '" + parent + "', '" + functionName + "', $queryString)).then(function (data) {\n" +
                         "                            http.evaluate(data); if (!http.evaluateTokenHTML(data)) callBack(data);\n" +
                         "                        }, function (data) {\n" +
                         "                            console.log('error',data);\n" +
@@ -33,7 +33,7 @@ SERVICE = {
                         "                        $http = angular.injector([\"ng\"]).get(\"$http\");\n" +
                         "                        var http = new HTTP();                " +
                         "                        http.setToken($http);                " +
-                        "                        $http." + method + "(String.format(\"service/{1}/{2}\", 'service', '" + parent + "', '" + functionName + "'),parameters).then(function (data) {\n" +
+                        "                        $http." + method + "(String.format(\"/service/{1}/{2}\", 'service', '" + parent + "', '" + functionName + "'),parameters).then(function (data) {\n" +
                         "                            callBack(data);\n" +
                         "                        }, function (data) {\n" +
                         "                            console.log('error',data);\n" +

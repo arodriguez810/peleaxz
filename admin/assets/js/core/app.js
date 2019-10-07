@@ -107,6 +107,7 @@ $(function () {
     $('.navigation').find('li').has('ul').children('a').addClass('has-ul');
     $('.dropdown-menu:not(.dropdown-content), .dropdown-menu:not(.dropdown-content) .dropdown-submenu').has('li.active').addClass('active').parents('.navbar-nav .dropdown:not(.language-switch), .navbar-nav .dropup:not(.language-switch)').addClass('active');
     $('.navigation-main > .navigation-header > i').tooltip({placement: 'right', container: 'body'});
+
     $('.navigation-main').find('li').has('ul').children('a').on('click', function (e) {
         e.preventDefault();
         $(this).parent('li').not('.disabled').not($('.sidebar-xs').not('.sidebar-xs-indicator').find('.navigation-main').children('li')).toggleClass('active').children('ul').slideToggle(250);
@@ -114,6 +115,16 @@ $(function () {
             $(this).parent('li').not('.disabled').not($('.sidebar-xs').not('.sidebar-xs-indicator').find('.navigation-main').children('li')).siblings(':has(.has-ul)').removeClass('active').children('ul').slideUp(250)
         }
     });
+
+    $('.navigation-main').find('li').has('ul').children('a').on('keydown', function (e) {
+        console.log(e);
+        // e.preventDefault();
+        // $(this).parent('li').not('.disabled').not($('.sidebar-xs').not('.sidebar-xs-indicator').find('.navigation-main').children('li')).toggleClass('active').children('ul').slideToggle(250);
+        // if ($('.navigation-main').hasClass('navigation-accordion')) {
+        //     $(this).parent('li').not('.disabled').not($('.sidebar-xs').not('.sidebar-xs-indicator').find('.navigation-main').children('li')).siblings(':has(.has-ul)').removeClass('active').children('ul').slideUp(250)
+        // }
+    });
+
     $('.navigation-alt').find('li').has('ul').children('a').on('click', function (e) {
         e.preventDefault();
         $(this).parent('li').not('.disabled').toggleClass('active').children('ul').slideToggle(200);
@@ -159,8 +170,7 @@ $(function () {
         if ($('body').hasClass('sidebar-opposite-visible')) {
             $('body').addClass('sidebar-xs');
             $('.navigation-main').children('li').children('ul').css('display', '')
-        }
-        else {
+        } else {
             $('body').removeClass('sidebar-xs')
         }
     });
@@ -169,8 +179,7 @@ $(function () {
         $('body').toggleClass('sidebar-opposite-visible');
         if ($('body').hasClass('sidebar-opposite-visible')) {
             $('body').addClass('sidebar-main-hidden')
-        }
-        else {
+        } else {
             $('body').removeClass('sidebar-main-hidden')
         }
     });
@@ -179,8 +188,7 @@ $(function () {
         $('body').toggleClass('sidebar-opposite-visible');
         if ($('body').hasClass('sidebar-opposite-visible')) {
             $('body').addClass('sidebar-secondary-hidden')
-        }
-        else {
+        } else {
             $('body').removeClass('sidebar-secondary-hidden')
         }
     });
@@ -190,8 +198,7 @@ $(function () {
         if ($('body').hasClass('sidebar-all-hidden')) {
             $('body').addClass('sidebar-opposite-visible');
             $('.navigation-main').children('li').children('ul').css('display', '')
-        }
-        else {
+        } else {
             $('body').removeClass('sidebar-opposite-visible')
         }
     });
@@ -226,7 +233,6 @@ $(function () {
     }
 
 
-
     $(window).on('resize', function () {
         setTimeout(function () {
             containerHeight();
@@ -240,15 +246,13 @@ $(function () {
                 }).on('mouseleave', function () {
                     $(this).children('.dropdown-menu').removeClass('show')
                 })
-            }
-            else {
+            } else {
                 $('body').removeClass('sidebar-xs-indicator');
                 $('.sidebar-opposite').insertAfter('.content-wrapper');
                 $('body').removeClass('sidebar-mobile-main sidebar-mobile-secondary sidebar-mobile-detached sidebar-mobile-opposite');
                 if ($('body').hasClass('has-detached-left')) {
                     $('.sidebar-detached').insertBefore('.container-detached')
-                }
-                else if ($('body').hasClass('has-detached-right')) {
+                } else if ($('body').hasClass('has-detached-right')) {
                     $('.sidebar-detached').insertAfter('.container-detached')
                 }
                 $('.page-header-content, .panel-heading, .panel-footer').removeClass('has-visible-elements');

@@ -58,7 +58,7 @@ TABLEEVENT = {
                         loadingContentText: MESSAGE.i('actions.Loading')
                     },
                 };
-                $scope.modal.modalView("../templates/components/gallery", data.column.files.modal);
+                $scope.modal.modalView("templates/components/gallery", data.column.files.modal);
                 return;
             }
             if (data.column.multilink && data.column.reference !== false) {
@@ -592,7 +592,7 @@ TABLEEVENT = {
                 acceptedFiles: 'text/csv,application/vnd.ms-excel',
                 columns: 4,
             };
-            $scope.modal.modalView("../templates/components/import", {
+            $scope.modal.modalView("templates/components/import", {
                 width: 'modal-full',
                 header: {
                     title: `${MESSAGE.i('export.Importfilesof')} ${$scope.modelName}`,

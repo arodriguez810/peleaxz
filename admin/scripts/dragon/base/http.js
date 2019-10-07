@@ -28,6 +28,11 @@ HTTP = function () {
         formurl.push(`http${CONFIG.proxy.ssl ? "s" : ""}://${CONFIG.proxy.subdomain !== "" ? (CONFIG.proxy.subdomain + ".") : ""}${CONFIG.proxy.domain}${CONFIG.proxy.port === 80 || CONFIG.proxy.port === 443 ? "" : ":" + CONFIG.proxy.port}`);
         return formurl.concat(pathsarray).join("/");
     };
+    this.folderpath = function (pathsarray) {
+        var formurl = [];
+        formurl.push(`http${CONFIG.proxy.ssl ? "s" : ""}://${CONFIG.proxy.subdomain !== "" ? (CONFIG.proxy.subdomain + ".") : ""}${CONFIG.proxy.domain}${CONFIG.proxy.port === 80 || CONFIG.proxy.port === 443 ? "" : ":" + CONFIG.proxy.port}${CONFIG.folderslash || ''}`);
+        return formurl.concat(pathsarray).join("/");
+    };
     this.io = function (pathsarray) {
         var formurl = [];
         formurl.push(`http${CONFIG.proxy.ssl ? "s" : ""}://${CONFIG.proxy.subdomain !== "" ? (CONFIG.proxy.subdomain + ".") : ""}${CONFIG.proxy.domain}${CONFIG.proxy.io === 80 || CONFIG.proxy.io === 443 ? "" : ":" + CONFIG.proxy.io}`);
@@ -39,7 +44,7 @@ HTTP = function () {
     this.tagpath = function (pathsarray) {
         var formurl = [];
         pathsarray[0] = "#" + pathsarray[0];
-        formurl.push(`http${CONFIG.proxy.ssl ? "s" : ""}://${CONFIG.proxy.subdomain !== "" ? (CONFIG.proxy.subdomain + ".") : ""}${CONFIG.proxy.domain}${CONFIG.proxy.port === 80 || CONFIG.proxy.port === 443 ? "" : ":" + CONFIG.proxy.port}`);
+        formurl.push(`http${CONFIG.proxy.ssl ? "s" : ""}://${CONFIG.proxy.subdomain !== "" ? (CONFIG.proxy.subdomain + ".") : ""}${CONFIG.proxy.domain}${CONFIG.proxy.port === 80 || CONFIG.proxy.port === 443 ? "" : ":" + CONFIG.proxy.port}${CONFIG.folderslash || ''}`);
         return formurl.concat(pathsarray).join("/");
     };
     this.redirect = function (path) {
@@ -54,6 +59,20 @@ HTTP = function () {
             }
         }
         document.location.href = new HTTP().path(path.split('/'));
+    };
+
+    this.folderredirect = function (path) {
+        var url = new HTTP().path(path.split('/'));
+        console.log(url);
+        var $menu = $(`.modalmenu[href='${path}']`);
+        if ($menu.length > 0) {
+            var modal = $menu.data('modal');
+            if (modal) {
+                $menu.trigger("click");
+                return;
+            }
+        }
+        document.location.href = new HTTP().folderpath(path.split('/'));
     };
     this.redirecttag = function (path) {
         var url = new HTTP().tagpath(path.split('/'));
@@ -125,7 +144,7 @@ HTTP = function () {
                 loadingContentText: MESSAGE.i('actions.Loading')
             },
         };
-        DRAGON.modal.modalView("../templates/components/requestManager", modal);
+        DRAGON.modal.modalView("templates/components/requestManager", modal);
     };
     this.resetManager = function () {
         if (WARNINGREQUESTS.length)

@@ -103,13 +103,18 @@ exports.LoadEJS = function (files, params, folder) {
     for (var i in files) {
         var file = files[i];
         var viewName = params.S(file).contains("index.ejs") ? "" : file.replace(".ejs", "");
-        params.app.get(params.util.format("/%s%s", params.modelName === "base" ? "" : params.modelName + "/", viewName),
+        var url = params.util.format("/%s%s", params.modelName === "base" ? `${params.CONFIG.folder}` : `${params.CONFIG.folder}/` + params.modelName + "/", viewName);
+        params.app.get(url,
             function (req, res) {
                 params.secure.check(req, res).then(async function (token) {
                     if (!token.apptoken) {
                         res.json(token);
                         return;
                     }
+                    req.originalUrl = req.originalUrl.replace(params.CONFIG.folder + "/", "");
+                    req.originalUrl = req.originalUrl.replace("/" + params.CONFIG.folder, "");
+
+
                     var path = req.originalUrl;
                     var realPath = path.split("?");
                     var viewN = realPath[0].split("/");
@@ -144,16 +149,22 @@ exports.LoadEJSDragon = function (files, params, folder) {
     for (var i in files) {
         var file = files[i];
         var viewName = params.S(file).contains("index.ejs") ? "" : file.replace(".ejs", "");
-        params.app.get(params.util.format("/%s%s", params.modelName === "base" ? "" : params.modelName + "/", viewName),
+        var url = params.util.format("/%s%s", params.modelName === "base" ? `${params.CONFIG.folder}` : `${params.CONFIG.folder}/` + params.modelName + "/", viewName);
+        params.app.get(url,
             function (req, res) {
                 params.secure.check(req, res).then(async function (token) {
                     if (!token.apptoken) {
                         res.json(token);
                         return;
                     }
+                    console.log(req.originalUrl + "- real path");
+                    req.originalUrl = req.originalUrl.replace(params.CONFIG.folder + "/", "");
+                    req.originalUrl = req.originalUrl.replace("/" + params.CONFIG.folder, "");
+
 
                     var path = req.originalUrl;
                     var realPath = path.split("?");
+                    console.log(realPath + "- real path");
                     var viewN = realPath[0].split("/");
                     var modelName = viewN.filter(function (item) {
                         return item !== '';
@@ -286,12 +297,15 @@ exports.loadEJSSimple = function (folder, prefix, params) {
             var viewName = params.S(file).contains("index.ejs") ? "" : "/" + file.replace(".ejs", "");
             if (viewName.indexOf('.') !== -1)
                 continue;
-            params.app.get(params.util.format("/%s%s", prefix, viewName), function (req, res) {
+            params.app.get(params.util.format("/%s%s", `${params.CONFIG.folder}/` + prefix, viewName), function (req, res) {
                 params.secure.check(req, res).then(async function (token) {
                     if (!token.apptoken) {
                         res.json(token);
                         return;
                     }
+                    req.originalUrl = req.originalUrl.replace(params.CONFIG.folder + "/", "");
+                    req.originalUrl = req.originalUrl.replace("/" + params.CONFIG.folder, "");
+
                     var path = req.originalUrl;
 
 
@@ -442,12 +456,15 @@ exports.loadEJSSimpleSilents = function (folder, prefix, params) {
         for (var i in files) {
             var file = files[i];
             var viewName = params.S(file).contains("index.ejs") ? "" : "/" + file.replace(".ejs", "");
-            params.app.get(params.util.format("/%s%s", prefix, viewName), function (req, res) {
+            params.app.get(params.util.format("/%s%s", `${params.CONFIG.folder}/` + prefix, viewName), function (req, res) {
                 params.secure.check(req, res).then(async function (token) {
                     if (!token.apptoken) {
                         res.json(token);
                         return;
                     }
+
+                    req.originalUrl = req.originalUrl.replace(params.CONFIG.folder + "/", "");
+                    req.originalUrl = req.originalUrl.replace("/" + params.CONFIG.folder, "");
 
 
                     var path = req.originalUrl;
@@ -589,13 +606,15 @@ exports.loadEJSSimplePOST = function (folder, prefix, params) {
         for (var i in files) {
             var file = files[i];
             var viewName = params.S(file).contains("index.ejs") ? "" : "/" + file.replace(".ejs", "");
-            params.app.post(params.util.format("/%s%s", prefix, viewName), function (req, res) {
+            params.app.post(params.util.format("/%s%s", `${params.CONFIG.folder}/` + prefix, viewName), function (req, res) {
                 params.secure.check(req, res).then(async function (token) {
                     if (!token.apptoken) {
                         res.json(token);
                         return;
                     }
 
+                    req.originalUrl = req.originalUrl.replace(params.CONFIG.folder + "/", "");
+                    req.originalUrl = req.originalUrl.replace("/" + params.CONFIG.folder, "");
 
                     var path = req.originalUrl;
                     var realPath = path.split("?");
@@ -1043,6 +1062,14 @@ exports.init = function (params) {
 
         });
     });
+    params.app.post("/dragon/api/restart", function (req, res) {
+        var fs = params.fs || require("fs");
+        var configFolder = params.folders.config;
+        var file = __dirname + '/../' + configFolder + '/' + 'z_restart.json';
+        fs.writeFile(file, "{\"restart\":" + new Date().getTime() + "}", function (err, data) {
+            res.json({success: 'complete'});
+        });
+    });
     params.app.post("/dragon/api/saveConfig", function (req, res) {
         params.secure.check(req, res).then(async function (token) {
             if (!token.apptoken) {
@@ -1143,6 +1170,44 @@ exports.init = function (params) {
             res.json({success: false});
         });
     });
-
     exports.loadEJSSimple("./" + params.folders.viewsDragon + "/master/error", "error", params);
+    params.app.post("/data/api/list", async function (req, res) {
+        params.secure.check(req, res).then(function (token) {
+            if (!token.apptoken) {
+                res.json(token);
+                return;
+            }
+            var fs = params.fs || require("fs");
+            var verarray = [];
+            var errors = [];
+            var success = [];
+            try {
+                for (var transfer of req.body.moves) {
+                    if (fs.statSync(transfer.from).isDirectory()) {
+
+                        if (!fs.existsSync(transfer.from))
+                            params.shelljs.mkdir('-p', transfer.from);
+
+                        if (!fs.existsSync(transfer.to))
+                            params.shelljs.mkdir('-p', transfer.to);
+
+                        var files = fs.readdirSync(transfer.from);
+                        for (const file of files) {
+                            verarray.push({from: file, to: transfer.to});
+                            fs.renameSync(transfer.from + "/" + file, transfer.to + "/" + file);
+                        }
+                        success.push({success: true, arr: verarray});
+                    } else {
+                        errors.push({root: realPath, files: [], count: 0, error: "Is Not Directory"});
+                    }
+                }
+            } catch (err) {
+                console.log(err);
+                res.json({success: false, errors: errors, fines: success});
+            }
+            res.json({success: true});
+        }).catch(function () {
+
+        });
+    });
 };

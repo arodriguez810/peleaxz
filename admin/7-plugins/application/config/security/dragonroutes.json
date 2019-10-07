@@ -2,11 +2,12 @@
   "routes": {
     "notoken": [
       "/",
-      "/error/error",
-      "/error/base",
-      "/auth/login",
-      "/auth/forgot",
-      "/auth/restore",
+      "/${CONFIG.folder}/",
+      "/${CONFIG.folder}/error/error",
+      "/${CONFIG.folder}/error/base",
+      "/${CONFIG.folder}/auth/login",
+      "/${CONFIG.folder}/auth/forgot",
+      "/${CONFIG.folder}/auth/restore",
       "/api/my_user/list",
       "/email/send",
       "/service/base_auth/md5",

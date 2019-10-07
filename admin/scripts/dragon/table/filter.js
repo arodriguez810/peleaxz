@@ -162,7 +162,7 @@ FILTER = {
 
                             },
                             end: function (data) {
-                                if (!$scope.firstTime) {
+                                if (true) {
                                     var loadonce = [];
                                     for (const filter of $scope.filters.fields) {
                                         if (filter.type === FILTER.types.relation) {

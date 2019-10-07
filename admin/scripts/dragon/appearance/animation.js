@@ -157,7 +157,7 @@ $(document).ready(function () {
                     maxsize: 9999,
                     maxfiles: 1
                 };
-                DRAGON.modal.modalView("../templates/components/gallery", {
+                DRAGON.modal.modalView("templates/components/gallery", {
                     width: 'modal-full',
                     header: {
                         title: `${MESSAGE.ic('mono.filesof')} ${folder}`,

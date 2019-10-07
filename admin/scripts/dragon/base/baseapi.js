@@ -66,6 +66,7 @@ DRAGONAPI = {
             var http = new HTTP();
             http.setToken($http);
             var query = http.objToQuery(parameters);
+            console.log(method + "?" + query);
             $http.get(method + "?" + query).then(function (data) {
                 http.evaluate(data);
                 DRAGONAPI.ajax.stop(element);

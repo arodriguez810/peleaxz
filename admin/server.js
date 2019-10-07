@@ -310,10 +310,14 @@ for (var ctr of crudCustom)
 //*SYSTEM FILES**//
 
 //******* App Configuration ********//
+
+
 var app = express();
 var sio = require('socket.io')(CONFIG.io);
 app.use(compression());
 if (CONFIG.mongo !== undefined) mongoose.connect(CONFIG.mongo);
+CONFIG.folderslash = "/" + CONFIG.folder;
+app.use(CONFIG.folderslash, express.static(__dirname));
 app.use(express.static(__dirname));
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({extended: "true", limit: '100mb'}));
@@ -399,6 +403,10 @@ currencies = [];
 }
 
 var secure = {};
+for (var i in CONFIG.routes.notoken) {
+    CONFIG.routes.notoken[i] = eval('`' + CONFIG.routes.notoken[i] + '`;');
+}
+
 secure.check = (req, res) => new Promise((resolve, reject) => {
     if (!CONFIG.features.token) {
         resolve({
@@ -677,8 +685,9 @@ modules.tools.init(eval("(" + allparams + ")"));
 storage.getItem("dragon_currency").then(currencies => {
     currencies = currencies || []
     modules.views.init(eval("(" + allparams + ")"));
-});
 
+});
+//return;
 //******* Load Custom Modules********//
 //******* Run Application********//
 app.listen(CONFIG.port);
@@ -760,8 +769,8 @@ var sp = function (str, length) {
     length = length || 15;
     return `${str}${" ".repeat(length - str.length)}`;
 };
-var urlsha = `${CONFIG.proxy.ssl === true ? 'https://' : 'http://'}${CONFIG.proxy.subdomain !== '' ? CONFIG.proxy.subdomain + '.' : ''}${CONFIG.proxy.domain}${(CONFIG.proxy.port === 80 || CONFIG.proxy.port === 443 || CONFIG.proxy.port === 443) ? '' : (":" + CONFIG.proxy.port)}`;
-var urlshahome = `${CONFIG.ssl === true ? 'https://' : 'http://'}${CONFIG.subdomain !== '' ? CONFIG.subdomain + '.' : ''}${CONFIG.domain}${(CONFIG.port === 80 || CONFIG.port === 443 || CONFIG.port === 443) ? '' : (":" + CONFIG.port)}`;
+var urlsha = `${CONFIG.proxy.ssl === true ? 'https://' : 'http://'}${CONFIG.proxy.subdomain !== '' ? CONFIG.proxy.subdomain + '.' : ''}${CONFIG.proxy.domain}${(CONFIG.proxy.port === 80 || CONFIG.proxy.port === 443 || CONFIG.proxy.port === 443) ? '' : (":" + CONFIG.proxy.port)}${CONFIG.folderslash}`;
+var urlshahome = `${CONFIG.ssl === true ? 'https://' : 'http://'}${CONFIG.subdomain !== '' ? CONFIG.subdomain + '.' : ''}${CONFIG.domain}${(CONFIG.port === 80 || CONFIG.port === 443 || CONFIG.port === 443) ? '' : (":" + CONFIG.port)}${CONFIG.folderslash}`;
 
 var margin = 40;
 print(0, "center", "", "█", 1, "pxz", "█", "█");

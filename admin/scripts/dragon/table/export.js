@@ -10,7 +10,7 @@ EXPORT = {
                 acceptedFiles: 'text/csv,application/vnd.ms-excel',
                 columns: 4,
             };
-            $scope.modal.modalView("../templates/components/import", {
+            $scope.modal.modalView("templates/components/import", {
                 width: 'modal-full',
                 header: {
                     title: `${MESSAGE.i('export.Importfilesof')} ${$scope.modelName}`,

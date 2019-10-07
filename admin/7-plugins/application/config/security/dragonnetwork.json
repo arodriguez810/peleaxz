@@ -1,6 +1,7 @@
 {
   "browser": "firefox",
   "domain": "localhost",
+  "folder": "dragonframework",
   "subdomain": "",
   "ssl": false,
   "port": 8090,
@@ -8,6 +9,7 @@
   "hosted": false,
   "proxy": {
     "domain": "localhost",
+    "folder": "dragonframework",
     "subdomain": "",
     "ssl": false,
     "port": 8090,

@@ -16,7 +16,7 @@ MESSAGE = {
                 loadingContentText: MESSAGE.i('actions.Loading')
             },
         };
-        DRAGON.modal.modalView("../templates/components/messageManager", modal);
+        DRAGON.modal.modalView("templates/components/messageManager", modal);
     },
     register: function (lan, folder, key) {
         if (MESSAGE.missingLanguage[lan + '-' + folder] === undefined) {

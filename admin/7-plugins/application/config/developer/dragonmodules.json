@@ -5,6 +5,10 @@
       "module": "express"
     },
     {
+      "var": "path",
+      "module": "path"
+    },
+    {
       "var": "os",
       "module": "os"
     },

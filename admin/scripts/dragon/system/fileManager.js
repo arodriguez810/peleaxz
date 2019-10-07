@@ -9,7 +9,7 @@ FILEMANAGER = {
             columns: 12,
         };
         DRAGON.viewData = DSON.merge(params, DRAGON.viewData);
-        DRAGON.currentModel.modal.modalView("../templates/components/filemanager", {
+        DRAGON.currentModel.modal.modalView("templates/components/filemanager", {
             width: 'modal-full',
             header: {
                 title: MESSAGE.i('mono.FileManager'),

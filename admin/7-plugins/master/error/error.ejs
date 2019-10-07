@@ -1,15 +1,22 @@
 <!-- Error title -->
 <script>
+    <%= scope %>.CONFIG = CONFIG;
     <%= scope %>.httpError.hideError = true;
     <%= scope %>.isServer = function () {
-        return  <%= scope %>.httpError.data.indexOf("FORM is not defined") !== -1;
+        var iserror  = false;
+        iserror = <%= scope %>.httpError.data.indexOf("FORM is not defined") !== -1;
+        if(iserror)
+            return true;
+        iserror = <%= scope %>.httpError.data.indexOf("COLOR is not defined") !== -1;
+        if(iserror)
+            return true;
     };
 </script>
 <div class="row" ng-show="!<%= scope %>.httpError.hideError">
     <div class="col-lg-4 col-lg-offset-4 col-sm-6 col-sm-offset-3">
         <form action="#" class="main-search panel panel-body">
             <div class="text-center">
-                <a ng-click="<%= scope %>.modal.close();" class="btn bg-<%= COLOR.primary %>-400" dragonlanguage>
+                <a ng-click="<%= scope %>.modal.close();" class="btn bg-{{ <%= scope %>.CONFIG.ui.colors.primary }}-400" dragonlanguage>
                     <i class="icon-circle-left2 position-left"></i>
                     <language>MESSAGE.i('actions.Back')</language>
                 </a>
@@ -41,12 +48,12 @@
         <form action="#" class="main-search panel panel-body">
             <div class="text-center">
                 <a ng-show="!<%= scope %>.isServer()" ng-click="<%= scope %>.modal.close();"
-                   class="btn bg-<%= COLOR.primary %>-400" dragonlanguage="">
+                   class="btn bg-{{ <%= scope %>.CONFIG.ui.colors.primary }}-400" dragonlanguage="">
                     <i class="icon-circle-left2 position-left"></i>
                     <language>MESSAGE.i('actions.Back')</language>
                 </a>
                 <a ng-show="<%= scope %>.isServer()" onclick="location.reload()"
-                   class="btn bg-<%= COLOR.primary %>-400" dragonlanguage="">
+                   class="btn bg-{{ <%= scope %>.CONFIG.ui.colors.primary }}-400" dragonlanguage="">
                     <i class="icon-circle-left2 position-left"></i>
                     <language>MESSAGE.i('mono.reload')</language>
                 </a>

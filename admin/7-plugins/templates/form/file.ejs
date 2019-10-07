@@ -152,6 +152,7 @@ var toclient = JSON.stringify(options);
 
         $("[amclone='true']").remove();
         FILE.server(<%= model %>.form.options.<%= name %>.folder, function (files) {
+            console.log(files.length);
             if (files.length > 0) {
                 files.forEach((file) => {
                     var theClone = $("#showImage<%= model %>_<%= nameclean %>").clone();
@@ -245,14 +246,16 @@ var toclient = JSON.stringify(options);
                 event: {
                     hide: {
                         begin: function (data) {
-                            for(var functionName of <%= model %>.form.beginFunctions)
-                                eval(functionName)
+                            for (var functionName of <%= model %>.
+                            form.beginFunctions
+                        )
+                            eval(functionName)
                         }
                     }
                 }
             };
             <%= model %>.
-            modal.modalView("../templates/components/gallery", modal);
+            modal.modalView("templates/components/gallery", modal);
         });
     });
     <%= model %>.refreshAngular();

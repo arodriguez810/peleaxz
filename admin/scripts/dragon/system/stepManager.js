@@ -61,6 +61,6 @@ STEP = {
                 loadingContentText: MESSAGE.i('actions.Loading')
             },
         };
-        DRAGON.modal.modalView("../templates/components/stepManager", modal);
+        DRAGON.modal.modalView("templates/components/stepManager", modal);
     }
 };

@@ -144,7 +144,7 @@ app.controller("auth", function ($scope, $http, $compile) {
                     var user = response.data[0];
                     new SESSION().register(user);
                     var http = new HTTP();
-                    http.redirect('');
+                    http.folderredirect('');
                 } else {
                     SWEETALERT.show({
                         type: 'error',
