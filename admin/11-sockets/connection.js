@@ -32,10 +32,12 @@ exports.init = function (params) {
             }
         }
         params.sio.emit("user_connect", ONLINE);
+
         socket.on('disconnect', function (socketDisconnect) {
             var Data = socket.handshake.query;
             User(Data, true);
             params.sio.emit("user_connect", ONLINE);
+
         });
     });
 };

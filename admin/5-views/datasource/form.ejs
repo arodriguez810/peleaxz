@@ -1,0 +1,110 @@
+<div class="row">
+    <div class='col-sm-4 col-md-4'>
+        <%- FORM.select('datasource_engine', scope, {
+            column: 'name',
+            value: 'name',
+            table: 'datasource_engine'
+        }) %>
+    </div>
+    <div class='col-sm-4 col-md-4'>
+        <%- FORM.input('entity', scope, {}) %>
+    </div>
+</div>
+<%- FORM.tabs(scope, [
+    {id: "basedata", text: "Base Data", icon: "icon-menu7"},
+    {id: "header", text: "Headers", icon: "icon-archive", ngshow: "datasource.infields('datasource_header')"},
+    {id: "params", text: "Params", icon: "icon-menu7", ngshow: "datasource.infields('datasource_param')"},
+    {id: "formdata", text: "Form Data", icon: "icon-archive", ngshow: "datasource.infields('datasource_formdata')"}
+]) %>
+
+<div class="tab-content">
+    <div class="tab-pane active" id="basedata">
+        <div class="row">
+            <div class='col-sm-2 col-md-2' ng-show="datasource.infields('name')">
+                <%- FORM.checkbox('memcache', scope, {}) %>
+            </div>
+            <div class='col-sm-2 col-md-2' ng-show="datasource.infields('name')">
+                <%- FORM.checkbox('rewritedata', scope, {}) %>
+            </div>
+            <div class='col-sm-4 col-md-4' ng-show="datasource.infields('name')">
+                <%- FORM.input('name', scope, {}) %>
+            </div>
+            <div class='col-sm-4 col-md-4' ng-show="datasource.infields('description')">
+                <%- FORM.input('description', scope, {}) %>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class='col-sm-4 col-md-4' ng-show="datasource.infields('server')">
+                <%- FORM.input('server', scope, {}) %>
+            </div>
+            <div class='col-sm-4 col-md-4' ng-show="datasource.infields('user')">
+                <%- FORM.input('user', scope, {}) %>
+            </div>
+            <div class='col-sm-4 col-md-4' ng-show="datasource.infields('password')">
+                <%- FORM.input('password', scope, {type: 'password'}) %>
+            </div>
+        </div>
+        <div class="row">
+            <div class='col-sm-4 col-md-4' ng-show="datasource.infields('database')">
+                <%- FORM.input('database', scope, {}) %>
+            </div>
+            <div class='col-sm-4 col-md-4' ng-show="datasource.infields('port')">
+                <%- FORM.integer('port', scope, {
+                    //length:15
+                }) %>
+            </div>
+            <div class='col-sm-12 col-md-12' ng-show="datasource.infields('query')">
+                <%- FORM.textarea('query', scope, {
+                    code: "text/x-sql"
+                }) %>
+            </div>
+        </div>
+        <div class="row">
+            <div class='col-sm-4 col-md-4' ng-show="datasource.infields('tns')">
+                <%- FORM.input('tns', scope, {}) %>
+            </div>
+            <div class='col-sm-4 col-md-4' ng-show="datasource.infields('url')">
+                <%- FORM.input('url', scope, {}) %>
+            </div>
+
+        </div>
+    </div>
+    <div class="tab-pane" id="header" ng-show="datasource.infields('datasource_header')">
+        <div class='col-sm-12 col-md-12' ng-show="datasource.infields('datasource_header')">
+            <%- FORM.relation('datasource_header', scope, {
+                table: 'datasource_header',
+                field: 'datasource',
+                //master: 'tempid',
+                icon: {class: 'archive'}
+            }) %>
+        </div>
+    </div>
+    <div class="tab-pane" id="params" ng-show="datasource.infields('datasource_param')">
+        <div class='col-sm-12 col-md-12' ng-show="datasource.infields('datasource_param')">
+            <%- FORM.relation('datasource_param', scope, {
+                table: 'datasource_param',
+                field: 'datasource',
+                //master: 'tempid',
+                icon: {class: 'archive'}
+            }) %>
+        </div>
+    </div>
+    <div class="tab-pane" id="formdata" ng-show="datasource.infields('datasource_formdata')">
+        <div class='col-sm-12 col-md-12' ng-show="datasource.infields('datasource_formdata')">
+            <%- FORM.relation('datasource_formdata', scope, {
+                table: 'datasource_formdata',
+                field: 'datasource',
+                //master: 'tempid',
+                icon: {class: 'archive'}
+            }) %>
+        </div>
+    </div>
+</div>
+
+<%- FORM.footer(scope) %>
+
+
+
+
+

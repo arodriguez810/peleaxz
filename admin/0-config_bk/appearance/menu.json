@@ -1,0 +1,110 @@
+{
+  "menus": [
+    {
+      "text": "Dragon Menu",
+      "href": "#",
+      "icon": "ampersand",
+      "menus": [
+        {
+          "text": "Examples",
+          "href": "#",
+          "icon": "stackoverflow",
+          "menus": [
+            {
+              "text": "Texts",
+              "href": "#texts",
+              "icon": "typography"
+            },
+            {
+              "text": "Dates",
+              "href": "#dates",
+              "icon": "calendar"
+            },
+            {
+              "text": "Blogs",
+              "href": "#blog",
+              "icon": "blogger2",
+              "modal": "modal-full"
+            },
+            {
+              "text": "DropDowns",
+              "href": "#",
+              "icon": "menu2",
+              "menus": [
+                {
+                  "text": "Lists",
+                  "href": "#lists",
+                  "icon": "menu4"
+                },
+                {
+                  "text": "Parent",
+                  "href": "#parent",
+                  "icon": "menu62"
+                },
+                {
+                  "text": "Child",
+                  "href": "#child",
+                  "icon": "menu9"
+                },
+                {
+                  "text": "Category",
+                  "href": "#category",
+                  "icon": "list"
+                }
+              ]
+            },
+            {
+              "text": "Specials",
+              "href": "#special",
+              "icon": "pie-chart6"
+            },
+            {
+              "text": "View",
+              "href": "#view_report",
+              "icon": "file-spreadsheet"
+            },
+            {
+              "text": "Charts",
+              "href": "#",
+              "icon": "lab",
+              "menus": [
+                {
+                  "text": "Bars",
+                  "href": "#charts/bars",
+                  "icon": "stats-bars3"
+                },
+                {
+                  "text": "Pies",
+                  "href": "#charts/pies",
+                  "icon": "pie-chart6"
+                },
+                {
+                  "text": "Lines",
+                  "href": "#charts/lines",
+                  "icon": "stats-dots"
+                }
+              ]
+            },
+            {
+              "text": "Administration",
+              "href": "#",
+              "icon": "equalizer3",
+              "menus": [
+                {
+                  "text": "Users",
+                  "href": "#users",
+                  "icon": "user"
+                },
+                {
+                  "text": "Groups",
+                  "href": "#dragon_group",
+                  "icon": "users4"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

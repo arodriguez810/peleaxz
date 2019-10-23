@@ -1,0 +1,18 @@
+{
+  "browser": "firefox",
+  "domain": "localhost",
+  "folder": "bigdata",
+  "subdomain": "",
+  "ssl": false,
+  "port": 8090,
+  "io": 8190,
+  "hosted": false,
+  "proxy": {
+    "domain": "localhost",
+    "folder": "bigdata",
+    "subdomain": "",
+    "ssl": false,
+    "port": 8090,
+    "io": 8190
+  }
+}

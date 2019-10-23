@@ -1,0 +1,56 @@
+<div class="tab-content">
+    <div class="tab-pane active" id="basic">
+        <div class="row">
+            <div class='col-sm-4 col-md-4'>
+                <%- FORM.select('datasource', scope, {
+                    column: 'name',
+                    table: 'datasource'
+                }) %>
+            </div>
+            <div class='col-sm-4 col-md-4'>
+                <%- FORM.select('datasource_function', scope, {
+                    column: 'name',
+                    table: 'datasource_function',
+
+                }) %>
+            </div>
+            <div class='col-sm-4 col-md-4'>
+                <%- FORM.select('datasource_field', scope, {
+                    column: 'name',
+                    table: 'datasource_field',
+                    condition: "item.datasource==datasource_block.datasource",
+                }) %>
+            </div>
+        </div>
+        <div class="row">
+            <div class='col-sm-12 col-md-12'>
+
+                <div class="col-sm-12 col-md-12">
+                    <%- FORM.select("fields", scope, {
+                        column: "name",
+                        table: "datasource_field",
+                        get: {
+                            table: 'datasource_block_field',
+                            fieldFrom: 'id',
+                            fieldTo: 'datasource_block',
+                            field: 'datasource_field'
+                        },
+                        condition: "item.datasource==datasource_block.datasource",
+                        multiple: true,
+                        icon: {class: "list"}
+                    }) %>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<%- FORM.footer(scope) %>
+
+
+
+
+

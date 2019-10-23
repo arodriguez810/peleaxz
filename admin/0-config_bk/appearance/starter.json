@@ -1,0 +1,16 @@
+{
+  "starter": [
+    {
+      "text": "Second Menu Example",
+      "href": "#",
+      "icon": "ampersand",
+      "menus": [
+        {
+          "text": "Test",
+          "href": "#child",
+          "icon": "file-download2"
+        }
+      ]
+    }
+  ]
+}

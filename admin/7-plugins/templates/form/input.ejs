@@ -32,6 +32,9 @@ options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g, '_');
 options.icon.spyce = options.icon.class === "none" ? "remove-input-space" : "";
 options.format = options.format ? options.format : false;
 options.model = options.model ? options.model : false;
+
+// options.popover = {title: model, content: nameclean};
+
 var toclient = JSON.stringify(options);
 %>
 <script>

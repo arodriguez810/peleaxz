@@ -136,7 +136,7 @@
             return file.selected;
         });
         STEP.register({
-            scope: DRAGON.currentModel.modelName,
+            scope: CURRENT.url(),
             action: `Deleted Selected ${allSelected.length} Files`,
             field: viewModel.root
         });
@@ -145,7 +145,7 @@
     };
     <%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.delete = function (files) {
         STEP.register({
-            scope: DRAGON.currentModel.modelName,
+            scope: CURRENT.url(),
             action: `Deleted ${files.cleanUrl} File`,
             field: viewModel.root
         });
@@ -173,7 +173,7 @@
 
     <%= DATA.scope %>.<%= DATA.nameclean %>.galleryFiles.downloadAll = function () {
         STEP.register({
-            scope: DRAGON.currentModel.modelName,
+            scope: CURRENT.url(),
             action: `Download All`,
             field: viewModel.root
         });
@@ -342,7 +342,7 @@
                     this.removeFile(file);
 
                     STEP.register({
-                        scope: DRAGON.currentModel.modelName,
+                        scope: CURRENT.url(),
                         action: "Upload File",
                         field: viewModel.root
                     });

@@ -1,8 +1,9 @@
 {
-  "appName": "Dragon Framework",
-  "logo": "Dragon Framework",
+  "appName": "Big Data",
+  "logo": "Big Data Framework",
   "filePath": "files",
   "storage": "files/storage",
+  "errors": "files/dragon_error",
   "appKey": "d94g0nf94m3w09k",
   "mode": "developer",
   "language": "en",

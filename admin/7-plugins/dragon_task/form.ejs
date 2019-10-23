@@ -61,6 +61,14 @@
             </div>
         </div>
         <div class="row">
+            <div class='col-sm-4 col-md-4'>
+                <%- FORM.select('datasource', scope, {
+                    column: 'name',
+                    table: 'datasource'
+                }) %>
+            </div>
+        </div>
+        <div class="row" ng-show="DRAGON.isSuper">
             <div class='col-sm-12 col-md-12'>
                 <%- FORM.textarea('script', scope, {
                     code: "text/javascript"

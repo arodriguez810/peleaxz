@@ -2,41 +2,55 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8fb134e-e727-43fe-b984-89a1d2d7969c" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/admin/5-views/child/audit.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/test.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/0-config/security/network.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/0-config_bk/app.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/0-config_bk/appearance/config_menu.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/0-config_bk/appearance/menu.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/0-config_bk/appearance/starter.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/0-config_bk/appearance/theme.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/0-config_bk/developer/control.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/0-config_bk/developer/silents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/0-config_bk/security/auth.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/0-config_bk/security/microsoft_cognitiveservices.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/0-config_bk/security/permission.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/0-config_bk/storage/entities.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/0-config_bk/z_restart.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/5-views/charts/dashboard.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/0-config/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/0-config/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/0-config/security/auth.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/0-config/security/auth.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/config/developer/dragonmodules.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/config/developer/dragonmodules.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/config/security/dragonnetwork.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/config/security/dragonnetwork.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/config/security/dragonroutes.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/config/security/dragonroutes.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/controllers/CO_dragon_configuration.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/controllers/CO_dragon_configuration.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/controllers/CO_dragon_language.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/controllers/CO_dragon_language.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/controllers/CO_login.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/controllers/CO_login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/7-plugins/dragon_configuration/company.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/dragon_configuration/company.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/7-plugins/master/error/base.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/master/error/base.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/7-plugins/master/error/error.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/master/error/error.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/7-plugins/master/navbar.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/master/navbar.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/7-plugins/templates/form/file.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/templates/form/file.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/7-plugins/templates/form/fileinline.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/templates/form/fileinline.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/7-plugins/templates/form/location.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/templates/form/location.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/assets/js/core/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/assets/js/core/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/files/special/files/1/20151025_f562cfa4f8aa26.png___ade19119c9251cae073e7375fded7497.png___01aa20ebd8d53ab9a097cc9389cb65f5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/0-config/appearance/menu.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/0-config/appearance/menu.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/0-config/appearance/theme.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/0-config/appearance/theme.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/0-config/developer/control.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/0-config/developer/control.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/11-sockets/connection.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/11-sockets/connection.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/12-tasks/base.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/12-tasks/base.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/3-controllers/CO_charts.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/3-controllers/CO_charts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/6-language/en/columns/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/6-language/en/columns/index.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/6-language/en/menu/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/6-language/en/menu/index.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/config/storage/dragonentities.json" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/config/storage/dragonentities.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/application/cruds/CRUD_dragon_task.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/application/cruds/CRUD_dragon_task.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/dragon_task/form.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/dragon_task/form.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/templates/components/gallery.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/templates/components/gallery.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/templates/form/input.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/templates/form/input.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/7-plugins/templates/form/tabs.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/admin/7-plugins/templates/form/tabs.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/files/dragon_configuration/login/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/admin/files/dragon_configuration/login/logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/files/dragon_configuration/logo/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/admin/files/dragon_configuration/logo/logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/files/dragon_configuration/splash/splash.png" beforeDir="false" afterPath="$PROJECT_DIR$/admin/files/dragon_configuration/splash/splash.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/files/dragon_configuration/themes/extra.css" beforeDir="false" afterPath="$PROJECT_DIR$/admin/files/dragon_configuration/themes/extra.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/files/dragon_configuration/themes/primary.css" beforeDir="false" afterPath="$PROJECT_DIR$/admin/files/dragon_configuration/themes/primary.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/files/dragon_configuration/themes/secundary.css" beforeDir="false" afterPath="$PROJECT_DIR$/admin/files/dragon_configuration/themes/secundary.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/files/storage/10115441d7ee4bca36ecc6bb9130fbb0" beforeDir="false" afterPath="$PROJECT_DIR$/admin/files/storage/10115441d7ee4bca36ecc6bb9130fbb0" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/files/storage/13f322b05bf6d1f8202ef8f4e948f805" beforeDir="false" afterPath="$PROJECT_DIR$/admin/files/storage/13f322b05bf6d1f8202ef8f4e948f805" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/files/storage/962e458eafd6037520922221e5ea23d4" beforeDir="false" afterPath="$PROJECT_DIR$/admin/files/storage/962e458eafd6037520922221e5ea23d4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/files/storage/a738b0635517ff7388518e4fbbab5c2a" beforeDir="false" afterPath="$PROJECT_DIR$/admin/files/storage/a738b0635517ff7388518e4fbbab5c2a" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/files/storage/ab4942b5c6a808974196b6d1806763b9" beforeDir="false" afterPath="$PROJECT_DIR$/admin/files/storage/ab4942b5c6a808974196b6d1806763b9" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/files/storage/f29e98d580a0ff8db33ab6e6b743c11c" beforeDir="false" afterPath="$PROJECT_DIR$/admin/files/storage/f29e98d580a0ff8db33ab6e6b743c11c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/modules/BASE_mssql.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/modules/BASE_mssql.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/modules/BASE_storage.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/modules/BASE_storage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/modules/BASE_views.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/modules/BASE_views.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/appearance/animation.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/appearance/animation.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/base/baseapi.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/base/baseapi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/base/http.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/base/http.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/base/load.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/base/load.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/base/service.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/base/service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/system/fileManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/system/fileManager.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/system/language.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/system/language.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/system/stepManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/system/stepManager.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/table/events.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/table/events.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/table/export.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/table/export.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/table/filter.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/table/filter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/scripts/dragon/table/table.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/dragon/table/table.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/scripts/schannels/notifications/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/scripts/schannels/notifications/login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/admin/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/runwork/dragon.bat" beforeDir="false" afterPath="$PROJECT_DIR$/runwork/dragon.bat" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -114,7 +128,7 @@
     <property name="excluded.www.directory" value="true" />
     <property name="javascript.nodejs.core.library.configured.version" value="9.2.0" />
     <property name="jsx.switch.disabled" value="true" />
-    <property name="last_opened_file_path" value="C:/inetpub/wwwroot/GoMamaPagatodo/app-movil-gomama-android" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/admin/12-tasks" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.jscs" value="true" />
@@ -133,11 +147,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\peleaxz\admin\5-views\child" />
-      <recent name="C:\xampp\htdocs\peleaxz\admin\modules" />
-      <recent name="C:\xampp\htdocs\peleaxz\admin\7-plugins\templates\email" />
+      <recent name="C:\xampp\htdocs\peleaxz\admin\12-tasks" />
+      <recent name="C:\xampp\htdocs\peleaxz\admin\5-views\charts" />
+      <recent name="C:\xampp\htdocs\peleaxz\admin\0-config\security" />
       <recent name="C:\xampp\htdocs\peleaxz\admin" />
-      <recent name="C:\xampp\htdocs\peleaxz\admin\10-bootstrap\compiled\files" />
+      <recent name="C:\xampp\htdocs\peleaxz\admin\5-views\child" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\peleaxz\admin\10-bootstrap\compiled\0-config" />
@@ -334,7 +348,22 @@
       <workItem from="1569935010938" duration="9280000" />
       <workItem from="1570022885428" duration="686000" />
       <workItem from="1570113252218" duration="2996000" />
-      <workItem from="1570454275597" duration="43000" />
+      <workItem from="1570454275597" duration="23526000" />
+      <workItem from="1570550729350" duration="4297000" />
+      <workItem from="1570633382713" duration="45000" />
+      <workItem from="1570633922558" duration="2276000" />
+      <workItem from="1570651945581" duration="953000" />
+      <workItem from="1570811277979" duration="2489000" />
+      <workItem from="1570827944641" duration="769000" />
+      <workItem from="1571069736639" duration="65000" />
+      <workItem from="1571145994394" duration="67000" />
+      <workItem from="1571264215970" duration="831000" />
+      <workItem from="1571349515036" duration="181000" />
+      <workItem from="1571352286618" duration="630000" />
+      <workItem from="1571759529743" duration="1389000" />
+      <workItem from="1571773781107" duration="419000" />
+      <workItem from="1571775457248" duration="101000" />
+      <workItem from="1571778410962" duration="301000" />
     </task>
     <servers />
   </component>

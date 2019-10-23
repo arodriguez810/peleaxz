@@ -415,22 +415,19 @@ TABLE = {
                 if ($scope.tableParams)
                     dataToList.params = $scope.tableParams;
 
-                DRAGONAPI.list(
+                var data = await DRAGONAPI.listp(
                     $scope.tableOrView,
-                    dataToList,
-                    function (data) {
-
-                        if ($scope.table.currentPage > 1) {
-                            if (data.data.length === 0) {
-                                $scope.firstPage();
-                            }
-                        } else {
-                            $scope.afterData(data);
-                            $scope.refreshAngular();
-                            DRAG.run($scope);
-                        }
-                    }
+                    dataToList
                 );
+                if ($scope.table.currentPage > 1) {
+                    if (data.data.length === 0) {
+                        $scope.firstPage();
+                    }
+                } else {
+                    $scope.afterData(data);
+                    $scope.refreshAngular();
+                    DRAG.run($scope);
+                }
             }
 
         };

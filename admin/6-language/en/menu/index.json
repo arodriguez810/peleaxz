@@ -38,5 +38,12 @@
   "Bars": "Bars",
   "Pies": "Pies",
   "Lines": "Lines",
-  "GettingStarted": "Getting Started"
+  "GettingStarted": "Getting Started",
+  "DataSource": "DataSource",
+  "Engines": "Engines",
+  "Variables": "Variables",
+  "Source": "Source",
+  "Dashboard": "Dashboard",
+  "Blocks": "Blocks",
+  "Tasks": "Tasks"
 }

@@ -171,6 +171,7 @@
         "id",
         "name",
         "description",
+        "datasource",
         "script",
         "second",
         "minute",

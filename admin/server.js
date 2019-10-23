@@ -142,6 +142,7 @@ if (CONFIG.hosted) {
 }
 
 
+
 //GET LANGUAGES
 languages = getFiles("./" + folders.language + "/");
 languages = languages.filter(function (file) {

@@ -49,26 +49,47 @@ DSON.keepmerge(CRUD_dragon_task, {
                 exportExample: false
             },
             name: {},
-            second: {formattype: ENUM.FORMAT.numeric},
-            minute: {formattype: ENUM.FORMAT.numeric},
-            hour: {},
-            day: {formattype: ENUM.FORMAT.numeric},
-            month: {
-                format: function (row) {
-                    var month = LAN.months.filter(d => {
-                        return d.id == row.month;
-                    });
-                    return month.length > 0 ? month[0].name : "";
-                }
+            second: {
+                visible: false,
+                visibleDetail: false,
+                export: false,
+                exportExample: false
             },
-            year: {formattype: ENUM.FORMAT.numeric},
+            minute: {
+                visible: false,
+                visibleDetail: false,
+                export: false,
+                exportExample: false
+            },
+            hour: {
+                visible: false,
+                visibleDetail: false,
+                export: false,
+                exportExample: false
+            },
+            day: {
+                visible: false,
+                visibleDetail: false,
+                export: false,
+                exportExample: false
+            },
+            month: {
+                visible: false,
+                visibleDetail: false,
+                export: false,
+                exportExample: false
+            },
+            year: {
+                visible: false,
+                visibleDetail: false,
+                export: false,
+                exportExample: false
+            },
             dayOfWeek: {
-                format: function (row) {
-                    var month = LAN.weekdays.filter(d => {
-                        return d.id == row.dayOfWeek;
-                    });
-                    return month.length > 0 ? month[0].name : "";
-                }
+                visible: false,
+                visibleDetail: false,
+                export: false,
+                exportExample: false
             },
             start: {formattype: ENUM.FORMAT.datetime},
             end: {formattype: ENUM.FORMAT.datetime},

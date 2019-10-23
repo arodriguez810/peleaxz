@@ -1,0 +1,44 @@
+<div id="<%= scope %>" ng-controller="<%= scope %> as <%= scope %>">
+    <div class="panel panel-flat">
+        <%- include('../../7-plugins/templates/header/begin',{scope:scope}); %>
+        <ul class="breadcrumb-elements visible-elements">
+            <li dragonlanguage="">
+                <a onclick="alert('Holaaaa')">
+                    <i dragonlanguage="" title="MESSAGE.ic('mono.add')" class="icon-mail5"></i> 
+                </a>
+            </li>
+        </ul>
+        <%- include('../../7-plugins/templates/header/end',{scope:scope}); %>
+        <div class="subcontent">
+            <div class="row" style="text-align: center">
+                <div  class="col-sm-12 col-md-12" ng-show="charts.data!==null">
+                    <div class="panel panel-flat">
+                        <div class="panel-heading">
+                            <h5 class="panel-title">Data Count</h5>
+                            <div class="heading-elements">
+                            </div>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="chart has-fixed-height has-minimum-width" style="width:1300px" id="pie"></div>
+                            <script>
+                                <%= scope %>.pie_events = {
+                                    'click': function (data) {
+
+                                    }
+                                }
+                            </script>
+                            <%- CHART.pie("pie", scope, {}) %>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!--end-->
+<script>
+    charts.loaddata();
+</script>
+

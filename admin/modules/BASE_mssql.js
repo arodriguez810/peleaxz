@@ -13,6 +13,21 @@ exports.executeNonQuery = async function (query, params, show) {
         return {query: query, error: err.originalError.message};
     });
 };
+exports.executeNonQueryGeneral = async function (config, query, params, show) {
+
+    if (show === undefined)
+        console.log(query.pxz);
+    return await new params.mssql.ConnectionPool(config).connect().then(
+        pool => {
+            return pool.request().query(query);
+        }).then(recordset => {
+        params.mssql.close();
+        return {query: query, error: false, recordset: recordset};
+    }).catch(function (err) {
+        console.log(err);
+        return {query: query, error: err.originalError.message};
+    });
+};
 exports.executeNonQueryArray = async function (queries, params, show) {
     for (var query of queries)
         await exports.executeNonQuery(query, params, show);
@@ -42,8 +57,7 @@ exports.insertQuery = async function (table, data, params, get, getvalue) {
         if (get !== undefined) {
             queries += params.format("INSERT INTO [{0}]({1}) VALUES({2}); SELECT * FROM [{0}] where [" + get + "]=" + getvalue, table, columns.join(", "), values.join(", "));
             break;
-        }
-        else
+        } else
             queries += params.format("INSERT INTO [{0}]({1}) VALUES({2});", table, columns.join(", "), values.join(", "));
     }
     return queries;
@@ -149,13 +163,32 @@ exports.data = async function (query, params, index) {
         return {query: query, error: err.originalError.message};
     });
 };
+exports.dataGeneral = async function (config, query, params, index) {
+
+    console.log(query.pxz);
+    return await new params.mssql.ConnectionPool(config).connect().then(
+        pool => {
+            return pool.request().query(query);
+        }).then(recordset => {
+        params.mssql.close();
+        return {
+            query: query,
+            error: false,
+            data: recordset.recordset,
+            count: recordset.rowsAffected,
+            index: index
+        };
+    }).catch(function (err) {
+        return {query: query, error: err.originalError.message};
+    });
+};
 exports.defaultRequests = function (Model, params) {
     params.modelName = Model.tableName;
     params.fs.readdir(params.util.format('./' + params.folders.views + '/%s', params.modelName), function (err, files) {
         params.modules.views.LoadEJS(files, params);
     });
     params.app.post('/api/ms_list', function (req, res) {
-        params.secure.check(req, res).then( function (token) {
+        params.secure.check(req, res).then(function (token) {
             if (!token.apptoken) {
                 res.json(token);
                 return;
@@ -178,7 +211,7 @@ exports.defaultRequests = function (Model, params) {
         });
     });
     params.app.post(params.util.format('/api/%s/list', Model.tableName), function (req, res) {
-        params.secure.check(req, res).then( function (token) {
+        params.secure.check(req, res).then(function (token) {
             if (!token.apptoken) {
                 res.json(token);
                 return;
@@ -201,7 +234,7 @@ exports.defaultRequests = function (Model, params) {
         });
     });
     params.app.get(params.util.format('/api/%s/all', Model.tableName), function (req, res) {
-        params.secure.check(req, res).then( function (token) {
+        params.secure.check(req, res).then(function (token) {
             if (!token.apptoken) {
                 res.json(token);
                 return;
@@ -217,7 +250,7 @@ exports.defaultRequests = function (Model, params) {
         });
     });
     params.app.get(params.util.format('/api/%s/get/:id', Model.tableName), function (req, res) {
-        params.secure.check(req, res).then( function (token) {
+        params.secure.check(req, res).then(function (token) {
             if (!token.apptoken) {
                 res.json(token);
                 return;
@@ -233,7 +266,7 @@ exports.defaultRequests = function (Model, params) {
         });
     });
     params.app.post('/api/' + Model.tableName + '/insert', function (req, res) {
-        params.secure.check(req, res).then( function (token) {
+        params.secure.check(req, res).then(function (token) {
             if (!token.apptoken) {
                 res.json(token);
                 return;
@@ -249,7 +282,7 @@ exports.defaultRequests = function (Model, params) {
         });
     });
     params.app.post('/api/' + Model.tableName + '/insertID', function (req, res) {
-        params.secure.check(req, res).then( function (token) {
+        params.secure.check(req, res).then(function (token) {
             if (!token.apptoken) {
                 res.json(token);
                 return;
@@ -265,7 +298,7 @@ exports.defaultRequests = function (Model, params) {
         });
     });
     params.app.post('/api/' + Model.tableName + '/update/', function (req, res) {
-        params.secure.check(req, res).then( function (token) {
+        params.secure.check(req, res).then(function (token) {
             if (!token.apptoken) {
                 res.json(token);
                 return;
@@ -281,7 +314,7 @@ exports.defaultRequests = function (Model, params) {
         });
     });
     params.app.post('/api/' + Model.tableName + '/delete', function (req, res) {
-        params.secure.check(req, res).then( function (token) {
+        params.secure.check(req, res).then(function (token) {
             if (!token.apptoken) {
                 res.json(token);
                 return;
@@ -531,8 +564,7 @@ exports.Model = function (tableName, params) {
                     groupbyarray.push(grby);
                 }
                 groupby = " GROUP BY " + groupbyarray.join(",");
-            }
-            else
+            } else
                 groupby = " GROUP BY " + options.groupby;
         }
         var order = "";
@@ -544,8 +576,7 @@ exports.Model = function (tableName, params) {
                     var column = options.orderby[i];
                     if (column[0] === "$")
                         orderbyarray.push(column.replace('$', ''));
-                    else
-                    {
+                    else {
                         if (options.orderby.indexOf('_') !== -1)
                             orderbyarray.push(params.format(`{0}`, options.orderby));
                         else
@@ -553,12 +584,10 @@ exports.Model = function (tableName, params) {
                     }
                 }
                 orderby = " ORDER BY " + orderbyarray.join(",");
-            }
-            else {
+            } else {
                 if (options.orderby[0] === "$")
                     orderby = " ORDER BY " + options.orderby.replace('$', '');
-                else
-                {
+                else {
                     if (options.orderby.indexOf('_') !== -1)
                         orderby = " ORDER BY " + params.format(`{0}`, options.orderby);
                     else
@@ -628,8 +657,7 @@ exports.Model = function (tableName, params) {
                         data.totalPage = Math.ceil(countData.data[0].count / data.index.limitvalue);
                         data.totalCount = countData.data[0].count;
                         data.currentPage = data.index.pagec;
-                    }
-                    else
+                    } else
                         data.index = {};
                 else
                     data.index = {};

@@ -1,4 +1,4 @@
-exports.getdata = (config, request,params) => new Promise(async (resolve, reject) => {
+exports.getdata = (config, request, params) => new Promise(async (resolve, reject) => {
     var component = {};
     component.method = config.method || "GET";
     if (config.body)
@@ -12,7 +12,7 @@ exports.getdata = (config, request,params) => new Promise(async (resolve, reject
 exports.last = function (arr) {
     return arr[arr.length - 1];
 };
-exports.insertQuery = async function (table, data, params, where, index) {
+exports.insertQuery = async function (table, data, params, where, index, general) {
 
     var records = await params.storage.getItem(table) || [];
     var backup = await params.storage.getItem(table) || [];
@@ -22,6 +22,16 @@ exports.insertQuery = async function (table, data, params, where, index) {
     var entity = eval(`params.CONFIG.storageEntities.${table}`);
     if (!entity)
         entity = eval(`params.CONFIG.appEntities.${table}`);
+
+    if (!entity) {
+        entity = {};
+        entity.type = "deep";
+    }
+    if (general) {
+        entity = {};
+        entity.type = "deep";
+    }
+
     var datas = (Array.isArray(data)) ? data : [data];
     try {
         var rowinserting = 1;
@@ -64,6 +74,8 @@ exports.insertQuery = async function (table, data, params, where, index) {
     }
 
 };
+
+
 exports.update = async function (table, data, where, params) {
 
     var wherefinal = where;
@@ -205,8 +217,7 @@ exports.makeWhere = function (where, params) {
                     if (obj.value[0] === '%' && obj.value[obj.value.length - 1] === '%') {
                         obj.value = params.S(obj.value).replaceAll("%", "").s;
                         whereprepare.push(params.format(open + " row.{0}" + addi + ".indexOf({2})!==-1 {4} {3}", field, operator, obj.value[0] === '$' ? obj.value.replace('$', '') : "'" + obj.value + "'", connector, close));
-                    }
-                    else if (obj.value[0] !== '%' && obj.value[obj.value.length - 1] === '%') {
+                    } else if (obj.value[0] !== '%' && obj.value[obj.value.length - 1] === '%') {
                         obj.value = params.S(obj.value).replaceAll("%", "").s;
                         whereprepare.push(params.format(open + " params.S(row.{0}" + addi + ").startsWith({2})  {4} {3}", field, operator, obj.value[0] === '$' ? obj.value.replace('$', '') : "'" + obj.value + "'", connector, close));
                     } else {
@@ -263,8 +274,7 @@ exports.data = async function (table, params, where, index) {
         if (where.length > 0) {
 
             wherefinal = exports.makeWhere(where, params);
-        }
-        else
+        } else
             wherefinal = '';
     }
     if (wherefinal !== undefined)
@@ -273,12 +283,17 @@ exports.data = async function (table, params, where, index) {
     if (!entity)
         entity = eval(`params.CONFIG.appEntities.${table}`);
 
+    if (!entity) {
+        entity = {
+            "type": "deep"
+        };
+    }
 
     if (entity.type === "endpoint") {
         var records = await params.storage.getItem(table) || [];
 
         if (records.length === 0) {
-            var response = await exports.getdata(eval(`params.ENDPOINTS.${entity.methods.list}`), index,params);
+            var response = await exports.getdata(eval(`params.ENDPOINTS.${entity.methods.list}`), index, params);
             await params.storage.setItem(table, eval(`${entity.object}`), {ttl: entity.expire * 60000});
             records = eval(`${entity.object}`);
         }
@@ -530,6 +545,157 @@ exports.defaultRequests = function (Model, params, folder) {
 
         });
     });
+
+
+    params.app.post('/data/list', function (req, res) {
+        params.secure.check(req, res).then(function (token) {
+            if (!token.apptoken) {
+                res.json(token);
+                return;
+            }
+
+            if (req.query.limit === undefined)
+                req.query.limit = 10;
+            if (req.query.page === undefined)
+                req.query.page = 1;
+            if (req.query.orderby === undefined)
+                req.query.orderby = "id";
+            exports.data(req.body.entity, params, req.body.where, req.body).then(data => {
+                if (data.error !== false) res.send(data.error);
+                res.json(data);
+            }).catch(err => {
+                res.json(err);
+            });
+        }).catch(function () {
+
+        });
+    });
+    // params.app.get(params.util.format('/api/%s/all', Model.tableName), function (req, res) {
+    //     params.secure.check(req, res).then(function (token) {
+    //         if (!token.apptoken) {
+    //             res.json(token);
+    //             return;
+    //         }
+    //         if (req.query.limit === undefined)
+    //             req.query.limit = 10;
+    //         if (req.query.page === undefined)
+    //             req.query.page = 1;
+    //         if (req.query.orderby === undefined)
+    //             req.query.orderby = "id";
+    //
+    //         Model.data(req.query).then((data) => {
+    //             if (data.error !== false) res.send(data.error);
+    //             res.json(data);
+    //         }).catch(err => {
+    //             res.json(err);
+    //         });
+    //     }).catch(function () {
+    //
+    //     });
+    // });
+    // params.app.get(params.util.format('/api/%s/get/:id', Model.tableName), function (req, res) {
+    //     params.secure.check(req, res).then(function (token) {
+    //         if (!token.apptoken) {
+    //             res.json(token);
+    //             return;
+    //         }
+    //         Model.find(req.params.id).then((data) => {
+    //             if (data.error !== false) res.send(data.error);
+    //             res.json(data);
+    //         }).catch(err => {
+    //             res.json(err);
+    //         });
+    //     }).catch(function () {
+    //
+    //     });
+    // });
+    // params.app.post('/api/' + Model.tableName + '/insert', function (req, res) {
+    //     params.secure.check(req, res).then(function (token) {
+    //         if (!token.apptoken) {
+    //             res.json(token);
+    //             return;
+    //         }
+    //         Model.insert(req.body).then((data) => {
+    //             if (data.error !== false) res.send(data.error);
+    //             res.json(data);
+    //         }).catch(err => {
+    //             res.json(err);
+    //         });
+    //     }).catch(function () {
+    //
+    //     });
+    // });
+    // params.app.post('/api/' + Model.tableName + '/insertID', function (req, res) {
+    //     params.secure.check(req, res).then(function (token) {
+    //         if (!token.apptoken) {
+    //             res.json(token);
+    //             return;
+    //         }
+    //         if (req.body.limit === undefined)
+    //             req.body.limit = 99999999;
+    //         if (req.body.page === undefined)
+    //             req.body.page = 1;
+    //         if (req.body.orderby === undefined)
+    //             req.body.orderby = "id";
+    //
+    //         Model.insertID(req.body).then((data) => {
+    //             if (data.error !== false) res.send(data.error);
+    //             res.json(data);
+    //         }).catch(err => {
+    //             res.json(err);
+    //         });
+    //     }).catch(function () {
+    //
+    //     });
+    // });
+    // params.app.post('/api/' + Model.tableName + '/update/', function (req, res) {
+    //     params.secure.check(req, res).then(function (token) {
+    //         if (!token.apptoken) {
+    //             res.json(token);
+    //             return;
+    //         }
+    //         Model.update(req.body).then((data) => {
+    //             if (data.error !== false) res.send(data.error);
+    //             res.json(data);
+    //         }).catch(err => {
+    //             res.json(err);
+    //         });
+    //     }).catch(function () {
+    //
+    //     });
+    // });
+    // params.app.post('/api/' + Model.tableName + '/delete', function (req, res) {
+    //     params.secure.check(req, res).then(function (token) {
+    //         if (!token.apptoken) {
+    //             res.json(token);
+    //             return;
+    //         }
+    //         Model.delete(req.body).then((data) => {
+    //             if (data.error !== false) res.send(data.error);
+    //             res.json(data);
+    //         }).catch(err => {
+    //             res.json(err);
+    //         });
+    //     }).catch(function () {
+    //
+    //     });
+    // });
+    // params.app.post('/api/' + Model.tableName + '/truncate', function (req, res) {
+    //     params.secure.check(req, res).then(function (token) {
+    //         if (!token.apptoken) {
+    //             res.json(token);
+    //             return;
+    //         }
+    //         Model.truncate().then((data) => {
+    //             if (data.error !== false) res.send(data.error);
+    //             res.json(data);
+    //         }).catch(err => {
+    //             res.json(err);
+    //         });
+    //     }).catch(function () {
+    //
+    //     });
+    // });
 };
 exports.Model = function (tableName, params) {
 

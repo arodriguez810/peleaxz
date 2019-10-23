@@ -1,6 +1,6 @@
 <ul class="nav nav-<%= COLOR.primary %> nav-tabs <%= COLOR.primary %> nav-justified" dragonlanguage="">
     <% var first = "active"; for(var tab of tabs) { %>
-        <li class="<%= first %>">
+        <li class="<%= first %>" ng-show="<%= tab.ngshow || true %>" ng-click="<%= tab.click || "" %>">
             <a href="#<%= tab.id %>" data-toggle="tab" id="tab<%= tab.id %>">
                 <i class="<%= tab.icon %> position-left"></i>
                 <language>MESSAGE.icspace('columns.<%= tab.text %>','<%= tab.text %>')</language>
