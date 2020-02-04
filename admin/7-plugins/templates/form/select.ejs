@@ -251,12 +251,9 @@ var toclient = JSON.stringify(options);
     function reloadMe<%= model %>_<%= nameclean %>() {
         if (PRUDENTS["<%= options.controller %>"] !== undefined) {
             <% if(options.multiple){ %>
-            if (<%= model %>.<%= nameclean %>===
-            "[NULL]"
-        )
-            <%= model %>.<%= nameclean %> = [];
-            <%= model %>.<%= nameclean %>.
-            push(PRUDENTS["<%= options.controller %>"].toString());
+            if (<%= model %>.<%= nameclean %>==="[NULL]")
+                <%= model %>.<%= nameclean %> = [];
+            <%= model %>.<%= nameclean %>.push(PRUDENTS["<%= options.controller %>"].toString());
             delete PRUDENTS["<%= options.controller %>"];
             <% }else { %>
             <%= model %>.<%= nameclean %> = PRUDENTS["<%= options.controller %>"].toString();

@@ -112,15 +112,11 @@ var toclient = JSON.stringify(options);
 
 </div>
 <script>
-    if (!<%= model %>.
-    filesToMove
-    )
+    if (!<%= model %>.filesToMove)
     <%= model %>.filesToMove = [];
     <%= model %>.filesToMove.push("<%= nameclean %>");
     <%= model %>.saveAllFiles = (id) => new Promise(async (resolve, reject) => {
-        for (var save of <%= model %>.
-        filesToMove
-    )
+        for (var save of <%= model %>.filesToMove)
         {
             var fromClean = eval(`<%= model %>.${save}.replace('upload:', '')`);
             var from = `${FOLDERS.files}/${fromClean}`;
@@ -140,11 +136,7 @@ var toclient = JSON.stringify(options);
         title: eval("`" +<%= model %>.form.options.<%= name %>.popover.title + "`"),
         content
     :
-    eval("`" +<%= model %>.form.options.<%= name %>.popover.content + "`"
-    ),
-    trigger: 'click'
-    })
-    ;
+    eval("`" +<%= model %>.form.options.<%= name %>.popover.content + "`"),trigger: 'click'});
     <% } %>
 
     function ShowCount<%= name %>(direct) {

@@ -22,11 +22,11 @@
       "bg": "bgRed"
     },
     "theme": {
-      "primary": "rgb(111, 168, 220)",
+      "primary": "#ed2c30",
       "primaryShades": "Balanced",
-      "secundary": "rgb(103, 78, 167)",
+      "secundary": "#DAA520",
       "secundaryShades": "Lineal_fixed",
-      "extra": "rgb(111, 168, 220)",
+      "extra": "#ed2c30",
       "extraShades": "Balanced",
       "text1": "#FFF",
       "text2": "#FFF",

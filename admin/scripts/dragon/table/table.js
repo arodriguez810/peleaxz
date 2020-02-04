@@ -62,10 +62,24 @@ TABLE = {
             table = table || column;
             return $scope.runMagicColum(column, table, key, description);
         });
-        $scope.runMagicOneToMany = (column, table, key, description, mykey) => new Promise(async (resolve, reject) => {
+        //cambios sockets de andy
+        //se
+        //tabla js
+        //errores
+        //imrpot
+        $scope.runMagicOneToMany = (column, table, key, description, mykey, hasid) => new Promise(async (resolve, reject) => {
             mykey = mykey || "id";
+            hasid = hasid || true;
             description = description || "name";
-            var result = await DRAGONAPI.listp(table, {});
+            var result = {};
+            result.data = [];
+            if (hasid)
+                result = await DRAGONAPI.listp(table, {});
+            else
+                result = await DRAGONAPI.listp(table, {
+                    orderby: key,
+                    order: "asc"
+                });
             eval(`${column}List = result;`);
             eval(`${column}List = ${column}List.data;`);
             eval(`${$scope.modelName}.records.data.forEach(row => {
@@ -415,19 +429,36 @@ TABLE = {
                 if ($scope.tableParams)
                     dataToList.params = $scope.tableParams;
 
-                var data = await DRAGONAPI.listp(
+                $scope.refreshAngular();
+                DRAGONAPI.list(
                     $scope.tableOrView,
-                    dataToList
-                );
-                if ($scope.table.currentPage > 1) {
-                    if (data.data.length === 0) {
-                        $scope.firstPage();
+                    dataToList,
+                    function (data) {
+                        if ($scope.table.currentPage > 1) {
+                            if (data.data.length === 0) {
+                                $scope.firstPage();
+                            }
+                        } else {
+                            $scope.afterData(data);
+                            $scope.table.loaded = true;
+                            $scope.refreshAngular();
+                        }
                     }
-                } else {
-                    $scope.afterData(data);
-                    $scope.refreshAngular();
-                    DRAG.run($scope);
-                }
+                );
+
+                // var data = await DRAGONAPI.listp(
+                //     $scope.tableOrView,
+                //     dataToList
+                // );
+                // if ($scope.table.currentPage > 1) {
+                //     if (data.data.length === 0) {
+                //         $scope.firstPage();
+                //     }
+                // } else {
+                //     $scope.afterData(data);
+                //     $scope.refreshAngular();
+                //     DRAG.run($scope);
+                // }
             }
 
         };

@@ -11,6 +11,7 @@ SESSION = function () {
                 eval(`obj.${i} = function () { return ${calc.replaceAll("&#34;", '"').replaceAll("&#39;", "'")};}`);
             }
         }
+        //obj.ip = IP;
         return obj;
     };
     this.prepare = (user) => new Promise(async (resolve, reject) => {

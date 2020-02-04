@@ -1,0 +1,58 @@
+{
+  "menus": [
+    {
+      "text": "Dashboard",
+      "href": "#charts/dashboard",
+      "icon": "drawer"
+    },
+    {
+      "text": "Data Source",
+      "href": "#",
+      "icon": "database-upload",
+      "menus": [
+        {
+          "text": "Engines",
+          "href": "#datasource_engine",
+          "icon": "drawer"
+        },
+        {
+          "text": "Variables",
+          "href": "#datasource_variable",
+          "icon": "power3"
+        },
+        {
+          "text": "Source",
+          "href": "#datasource",
+          "icon": "download10"
+        },
+        {
+          "text": "Blocks",
+          "href": "#datasource_block",
+          "icon": "calculator"
+        },
+        {
+          "text": "Tasks",
+          "href": "#dragon_task",
+          "icon": "task"
+        }
+      ]
+    },
+    {
+      "text": "Administration",
+      "href": "#",
+      "icon": "equalizer3",
+      "menus": [
+        {
+          "text": "Users",
+          "href": "#users",
+          "icon": "user"
+        },
+        {
+          "text": "Groups",
+          "href": "#dragon_group",
+          "icon": "users4"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "version": {
+    "app": "1.0",
+    "about": {
+      "en": "It is a framework for developers created in nodejs to handle large amounts of data for later analysis, integrates a mechanism with memcache and mongo db for instant results.",
+      "es": "Es un framework para desarrolladores creado en nodejs para manejar grandes cantidades de datos con el fin de su posterior análisis, integra un mecanismo con memcache y mongo db para resultados instataneos."
+    }
+  }
+}

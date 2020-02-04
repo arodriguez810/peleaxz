@@ -351,10 +351,11 @@ FORM = {
                         var firstColumn = eval(`CRUD_${$scope.modelName}`).table.key || "id";
                         var DRAGONID = eval(`savedRow.${firstColumn}`);
 
-                        if (!DSON.oseaX(CURRENTPRUDENTS)) {
-                            PRUDENTS[CURRENTPRUDENTS] = DRAGONID;
-                            CURRENTPRUDENTS = "";
-                        }
+                        if ($scope.modelName===CURRENTPRUDENTS)
+                            if (!DSON.oseaX(CURRENTPRUDENTS)) {
+                                PRUDENTS[CURRENTPRUDENTS] = DRAGONID;
+                                CURRENTPRUDENTS = "";
+                            }
                         $scope.form.mode = FORM.modes.edit;
                         $scope.pages.form.subRequestCompleteVar = 0;
                         $scope.pages.form.subRequestCompleteProgress = 0;
@@ -424,6 +425,7 @@ FORM = {
                     }
                 });
             }
+            $scope.form.multirepeat = [];
             if ($scope.form.mode === FORM.modes.edit) {
                 var firstColumn = eval(`CRUD_${$scope.modelName}`).table.key || "id";
                 var dataToWhere = [{field: firstColumn, value: eval(`$scope.${firstColumn}`)}];
@@ -516,8 +518,10 @@ FORM = {
                                         var whereDelete = [];
                                         whereDelete.push(relation.config.fieldsUpdate)
 
-
-                                        var ddata = await DRAGONAPI.deleteallp(relation.config.toTable, whereDelete);
+                                        if ($scope.form.multirepeat.indexOf(relation.config.toTable) === -1) {
+                                            var ddata = await DRAGONAPI.deleteallp(relation.config.toTable, whereDelete);
+                                            $scope.form.multirepeat.push(relation.config.toTable);
+                                        }
                                         await DRAGONAPI.insertp(relation.config.toTable, relation.data);
                                         $scope.pages.form.subRequestComplete(close);
 

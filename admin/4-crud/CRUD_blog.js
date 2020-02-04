@@ -35,5 +35,6 @@ DSON.keepmerge(CRUD_blog,
             filters: {
                 columns: true
             }
+
         }
     });

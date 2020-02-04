@@ -142,7 +142,6 @@ if (CONFIG.hosted) {
 }
 
 
-
 //GET LANGUAGES
 languages = getFiles("./" + folders.language + "/");
 languages = languages.filter(function (file) {
@@ -315,7 +314,9 @@ for (var ctr of crudCustom)
 
 var app = express();
 var sio = require('socket.io')(CONFIG.io);
-app.use(compression());
+app.use(compression({
+    threshold: 0
+}));
 if (CONFIG.mongo !== undefined) mongoose.connect(CONFIG.mongo);
 CONFIG.folderslash = "/" + CONFIG.folder;
 app.use(CONFIG.folderslash, express.static(__dirname));

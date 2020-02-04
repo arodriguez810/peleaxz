@@ -54,6 +54,7 @@ $.ajaxSetup({
     }
 });
 app.controller('DRAGON', function ($scope, $http, $compile, $controller) {
+    IP = "";
     DRAGON = this;
     COMPILE.run(DRAGON, $scope, $compile);
     MODAL.run(DRAGON, $compile);
@@ -67,6 +68,7 @@ app.controller('DRAGON', function ($scope, $http, $compile, $controller) {
 
     session.ifLogoffRedirec();
     if (session.current()) {
+        IP = "";
         if (session.current().menus)
             DRAGON.currentMenu = session.current().menus();
         else
