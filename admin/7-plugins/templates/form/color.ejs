@@ -3,7 +3,157 @@ if(DATA.name!==undefined){
     var name, model, opts;
     name = DATA.name;
     model = DATA.model;
-if (DATA.opts !== "")
+if (DATA.opts !== "")<%
+    if(DATA.name!==undefined){
+        var name, model, opts;
+        name = DATA.name;
+        model = DATA.model;
+        opts = DATA.opts;
+    }
+    var name  = name || "";
+    var options = {
+        placeholder: params.capitalize(name),
+        icon: {
+            class: "none",
+            position: "left",
+            color: COLOR.secundary + "-800"
+        },
+        helptext: '',
+        posttype: "color",
+        disabled: false
+
+    };
+    options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g, '_');
+    popopme = function(entity, field){
+        var prueba = HINTS.filter(d => {
+            return d.entities === entity && d.field_names === field
+        })
+        function sortArray() {
+            options.mess = prueba.sort(function(a, b){return b.id - a.id});
+        }
+        sortArray();
+    }
+    popopme(model, nameclean);
+    var toclient = JSON.stringify(options);
+%>
+<script>
+    <%= model %>.triggers.table.before.control("<%= nameclean %>");
+    <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
+    if (MESSAGE.exist('columns.<%= nameclean %>')) {
+        <%= model %>.
+        form.options.<%= name %>.placeholder = MESSAGE.ic('columns.<%= nameclean %>');
+    }
+    if(new SESSION().isLogged()) {
+        <%= model %>.form.options.<%= name %>.mess = <%= model %>.form.options.<%= name %>.mess.filter(d => {
+            return d.company == new SESSION().current().compania_id;
+        })
+        if(<%= model %>.form.options.<%= name %>.mess.length == 0){
+            delete <%= model %>.form.options.<%= name %>.mess
+        }
+        if (<%= model %>.form.options.<%= name %>.mess){
+            <%= model %>.form.options.<%= name %>.popover = {
+                title: <%= model %>.form.options.<%= name %>.mess[0].field_names.replace('_',' '),
+                content: <%= model %>.form.options.<%= name %>.mess[0].text,
+                label: MESSAGE.exist('columns.<%= nameclean %>') ? MESSAGE.i('columns.<%= nameclean %>') : <%= model %>.form.options.<%= name %>.mess[0].field_names.replace('_',' ')
+            }
+        }
+    }
+    var isReadProgram = <%= model %>.form.isReadOnly('<%= name %>');
+    if (isReadProgram !== false) {
+        <%= model %>.
+        form.options.<%= name %>.disabled = true;
+        if (isReadProgram !== undefined) {
+            <%= model %>.<%= name %> = isReadProgram;
+        }
+    }
+</script>
+<div class="form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-<%= options.icon.position %>"
+     id="input<%= model %>_<%= nameclean %>">
+    <label
+
+            class="control-label is-visible animate" style="color:#000000 !important;">
+        {{::<%= model %>.form.options.<%= name %>.placeholder}}
+        <i ng-show="<%= model %>.form.options.<%= name %>.mess.length>0"
+           id="popover<%= model %>_<%= nameclean %>" class="icon-help">
+        </i>
+    </label>
+    <input
+            ng-model="<%= model + "." + name %>"
+            name="<%= model %>_<%= nameclean %>"
+            type="text"
+            class="form-control">
+
+    <div style="margin: 10px;margin-top: -7px" class="form-control-feedback"
+         ng-if="<%= model %>.form.options.<%= name %>.icon.class!=='none'">
+        <i class="icon-<%= options.icon.class %> text-secundary">
+
+        </i>
+    </div>
+    <span ng-if="<%= model %>.form.options.<%= name %>.helptext!=''"
+          class="help-block text-muted">
+        {{<%= model %>.form.options.<%= name %>.helptext}}
+    </span>
+
+    <span ng-show="<%= model %>.validate['<%= name %>'].messages.length>0" class="help-block">
+        <p class="text-{{validation.type}}" ng-show="validation.visible!==false || <%= model %>.form.intent===true"
+           ng-repeat="(key,validation) in <%= model %>.validate['<%= name %>'].messages track by key">
+               <i class="{{validation.icon}}"></i> {{validation.message}}
+        </p>
+    </span>
+</div>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $('[name="<%= model %>_<%= nameclean %>"]').spectrum({
+            color:<%= model + "." + name %>,
+            showInitial: true,
+            showInput: true,
+            showAlpha: true,
+            allowEmpty: true,
+            showPalette: true,
+            disabled: (isReadProgram !== false),
+            palette: [
+                ["#000", "#444", "#666", "#999", "#ccc", "#eee", "#f3f3f3", "#fff"],
+                ["#f00", "#f90", "#ff0", "#0f0", "#0ff", "#00f", "#90f", "#f0f"],
+                ["#f4cccc", "#fce5cd", "#fff2cc", "#d9ead3", "#d0e0e3", "#cfe2f3", "#d9d2e9", "#ead1dc"],
+                ["#ea9999", "#f9cb9c", "#ffe599", "#b6d7a8", "#a2c4c9", "#9fc5e8", "#b4a7d6", "#d5a6bd"],
+                ["#e06666", "#f6b26b", "#ffd966", "#93c47d", "#76a5af", "#6fa8dc", "#8e7cc3", "#c27ba0"],
+                ["#c00", "#e69138", "#f1c232", "#6aa84f", "#45818e", "#3d85c6", "#674ea7", "#a64d79"],
+                ["#900", "#b45f06", "#bf9000", "#38761d", "#134f5c", "#0b5394", "#351c75", "#741b47"],
+                ["#600", "#783f04", "#7f6000", "#274e13", "#0c343d", "#073763", "#20124d", "#4c1130"]
+            ]
+        });
+        <%= model %>.
+        triggers.table.after.control("<%= nameclean %>");
+        if (isReadProgram !== false) {
+            if (isReadProgram !== undefined) {
+                $('.sp-preview-inner').css('background-color', isReadProgram)
+            }
+        }
+
+        $('[name="<%= model %>_<%= nameclean %>"]').change(function () {
+
+            STEP.register({
+                scope: "<%= model %>",
+                action: "Change Color",
+                field: "<%= name %>",
+                value: <%= model %>.<%= name %>
+            })
+            ;
+        });
+        if(new SESSION().isLogged()) {
+            if (<%= model %>.form.options.<%= name %>.mess){
+                $('#popover<%= model %>_<%= nameclean %>').popover({
+                    container: 'body',
+                    title: eval("`" +<%= model %>.form.options.<%= name %>.popover.label + "`"),
+                    content:eval("`" +<%= model %>.form.options.<%= name %>.popover.content + "`"),
+                trigger: 'click'
+            });
+            }
+        }
+    });
+</script>
         opts = eval("(" + DATA.opts + ")");
 }
 var name  = name || "";

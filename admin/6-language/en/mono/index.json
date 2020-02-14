@@ -242,5 +242,10 @@
   "sorryedit": "Sorry this record was edited by ${user.fullName()}, do you want to take your changes?",
   "tasks": "tasks",
   "old_data": "Previous Data",
-  "actual_data": "Actual Data"
+  "actual_data": "Actual Data",
+  "auditof": "Audit of ",
+  "timeouttitle": "Are you still there?",
+  "timeoutbody": "It seems that you have been out of the page for a long time, because of this the session will soon be closed. Do you want to stay connected?",
+  "extendsession": "Extend the session",
+  "logmeout": "Log me out!"
 }

@@ -3,7 +3,7 @@ if (DATA.name !== undefined) {
     var name, model, opts;
     name = DATA.name;
     model = DATA.model;
-if (DATA.opts !== "")
+    if (DATA.opts !== "")
         opts = eval("(" + DATA.opts + ")");
 }
 var name = name || "";
@@ -27,11 +27,21 @@ var options = {
 
 };
 
-
+options.icon = {class: "calculator2", position: "left"};
 options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g, '_');
 options.icon.spyce = options.icon.class === "none" ? "remove-input-space" : "";
 options.format = options.format ? options.format : false;
 options.model = options.model ? options.model : false;
+popopme = function(entity, field){
+    var prueba = HINTS.filter(d => {
+        return d.entities === entity && d.field_names === field
+    })
+    function sortArray() {
+        options.mess = prueba.sort(function(a, b){return b.id - a.id});
+    }
+    sortArray();
+}
+popopme(model, nameclean);
 var toclient = JSON.stringify(options);
 %>
 <script>
@@ -44,18 +54,30 @@ var toclient = JSON.stringify(options);
         <%= model %>.
         form.options.<%= name %>.placeholder = MESSAGE.ic('columns.<%= nameclean %>');
     }
-
+    if(new SESSION().isLogged()) {
+        <%= model %>.form.options.<%= name %>.mess = <%= model %>.form.options.<%= name %>.mess.filter(d => {
+            return d.company == new SESSION().current().compania_id;
+        })
+        if(<%= model %>.form.options.<%= name %>.mess.length == 0){
+            delete <%= model %>.form.options.<%= name %>.mess
+        }
+        if (<%= model %>.form.options.<%= name %>.mess){
+            <%= model %>.form.options.<%= name %>.popover = {
+                title: <%= model %>.form.options.<%= name %>.mess[0].field_names.replace('_',' '),
+                content: <%= model %>.form.options.<%= name %>.mess[0].text,
+                label: MESSAGE.exist('columns.<%= nameclean %>') ? MESSAGE.i('columns.<%= nameclean %>') : <%= model %>.form.options.<%= name %>.mess[0].field_names.replace('_',' ')
+            }
+        }
+    }
 </script>
 <div class="<%= options.icon.spyce %> form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-{{::<%= model %>.form.options.<%= name %>.icon.position}}"
      id="input<%= model %>_<%= nameclean %>">
     <label
             class="control-label is-visible animate" style="color:#000000 !important;">
         {{::<%= model %>.form.options.<%= name %>.placeholder}}
-        <% if(options.popover){ %>
-            <i
-                    id="popover<%= model %>_<%= nameclean %>" class="icon-help">
-            </i>
-        <% } %>
+        <i ng-show="<%= model %>.form.options.<%= name %>.mess.length>0"
+           id="popover<%= model %>_<%= nameclean %>" class="icon-help">
+        </i>
     </label>
 
     <input
@@ -71,7 +93,7 @@ var toclient = JSON.stringify(options);
             placeholder="{{::<%= model %>.form.options.<%= name %>.inputPlaceholder}}">
 
     <div class="form-control-feedback">
-        <i class="icon-<%= options.icon.class %> text-secundary">
+        <i class="icon-{{ <%= model %>.form.options.<%= name %>.disabled ? 'lock2' : 'calculator2' }} text-secundary">
 
         </i>
     </div>
@@ -101,10 +123,10 @@ var toclient = JSON.stringify(options);
     <% if(options.maxlength){ %>
     //$('[name="<%= model %>_<%= nameclean %>"]').maxlength();
     <% } %>
-
-    $('[name="<%= model %>_<%= nameclean %>"]').focus(function () {
-        $('[name="<%= model %>_<%= nameclean %>"]').val(LAN.money(this.value).value);
-    });
+    if(LAN.money(this.value).value!=0)
+        $('[name="<%= model %>_<%= nameclean %>"]').focus(function () {
+            <!--$('[name="<= model >_<= nameclean >"]').val(LAN.money(this.value).value);-->
+        });
     $('[name="<%= model %>_<%= nameclean %>"]').blur(function () {
         <%= model %>.
         <%= name %>_DragonClean = LAN.money(this.value).value;
@@ -113,27 +135,26 @@ var toclient = JSON.stringify(options);
             action: "Change Text",
             field: "<%= name %>",
             value: <%= model %>.<%= name %>
-    })
+        })
         ;
-        $('[name="<%= model %>_<%= nameclean %>"]').val(LAN.money(this.value).format(false));
+        if(this.value) {
+            $('[name="<%= model %>_<%= nameclean %>"]').val(LAN.money(this.value).format(false));
+        }
     });
     $('[name="<%= model %>_<%= nameclean %>"]').val(LAN.money(<%= model %>.<%= name %>).format(false)
     )
     ;
     <%= model %>.<%= name %>_DragonClean = <%= model %>.<%= name %>;
-
-    <% if(options.popover){ %>
-    $('#popover<%= model %>_<%= nameclean %>').popover({
-        container: 'body',
-        title: eval("`" +<%= model %>.form.options.<%= name %>.popover.title + "`"),
-        content
-    :
-    eval("`" +<%= model %>.form.options.<%= name %>.popover.content + "`"
-    ),
-    trigger: 'click'
-    })
-    ;
-    <% } %>
+    if(new SESSION().isLogged()) {
+        if (<%= model %>.form.options.<%= name %>.mess){
+            $('#popover<%= model %>_<%= nameclean %>').popover({
+                container: 'body',
+                title: eval("`" +<%= model %>.form.options.<%= name %>.popover.label + "`"),
+                content:eval("`" +<%= model %>.form.options.<%= name %>.popover.content + "`"),
+            trigger: 'click'
+        });
+        }
+    }
     var isReadProgram = <%= model %>.
     form.isReadOnly('<%= name %>');
     if (isReadProgram !== false) {

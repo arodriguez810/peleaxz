@@ -211,7 +211,7 @@ MODAL = {
             var h = data.header.h || "h6";
             var icon = data.header.icon ? '<i class="icon-' + data.header.icon + '"></i>' : "";
             var title = data.header.title || "";
-            var content = data.content.data.startsWith("->") ?
+            var content = data.content.data.startsWith("->") && !STORAGE.get('animation') ?
                 `<div class="spinner222Modal">
                     <div class="double-bounce1 bg-${COLOR.primary}-600"></div>
                     <div class="double-bounce2 bg-${COLOR.secundary}-600"></div>

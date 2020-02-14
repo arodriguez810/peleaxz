@@ -103,6 +103,14 @@ FILE = {
                 element.attr('src', source);
                 break
             }
+            case "VIDEO": {
+                element.attr('src', source);
+                break
+            }
+            case "AUDIO": {
+                element.attr('src', source);
+                break
+            }
             case "A": {
                 element.attr('href', source);
                 break

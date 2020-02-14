@@ -362,7 +362,7 @@ TABLE = {
             if ($scope.table.loaded !== true) {
 
                 dataToList.where = $scope.fixFiltersApply();
-                $scope.filtersApply(dataToList);
+
                 if (RELATIONS.anonymous[$scope.modelName] !== undefined) {
                     if (Array.isArray(dataToList.where)) {
                         RELATIONS.anonymous[$scope.modelName].where.forEach(d => {
@@ -371,6 +371,9 @@ TABLE = {
                     } else
                         dataToList.where = RELATIONS.anonymous[$scope.modelName].where;
                 }
+
+                $scope.filtersApply(dataToList);
+
                 if (!DSON.oseaX(ARRAY.last(MODAL.historyObject))) {
                     if (!DSON.oseaX(ARRAY.last(MODAL.historyObject).viewData)) {
                         if (!DSON.oseaX(ARRAY.last(MODAL.historyObject).viewData.data)) {
@@ -395,6 +398,9 @@ TABLE = {
                             if (data.data.length === 0) {
                                 $scope.firstPage();
                             }
+                            $scope.afterData(data);
+                            $scope.table.loaded = true;
+                            $scope.refreshAngular();
                         } else {
                             $scope.afterData(data);
                             $scope.table.loaded = true;
@@ -405,7 +411,6 @@ TABLE = {
                 );
             } else {
                 dataToList.where = $scope.fixFiltersApply();
-                $scope.filtersApply(dataToList);
                 if (RELATIONS.anonymous[$scope.modelName] !== undefined) {
                     if (Array.isArray(dataToList.where)) {
                         RELATIONS.anonymous[$scope.modelName].where.forEach(d => {
@@ -414,6 +419,9 @@ TABLE = {
                     } else
                         dataToList.where = RELATIONS.anonymous[$scope.modelName].where;
                 }
+
+                $scope.filtersApply(dataToList);
+
                 if (!DSON.oseaX(ARRAY.last(MODAL.historyObject))) {
                     if (!DSON.oseaX(ARRAY.last(MODAL.historyObject).viewData)) {
                         if (!DSON.oseaX(ARRAY.last(MODAL.historyObject).viewData.data)) {
@@ -429,36 +437,25 @@ TABLE = {
                 if ($scope.tableParams)
                     dataToList.params = $scope.tableParams;
 
-                $scope.refreshAngular();
                 DRAGONAPI.list(
                     $scope.tableOrView,
                     dataToList,
                     function (data) {
+
                         if ($scope.table.currentPage > 1) {
                             if (data.data.length === 0) {
                                 $scope.firstPage();
                             }
-                        } else {
                             $scope.afterData(data);
                             $scope.table.loaded = true;
                             $scope.refreshAngular();
+                        } else {
+                            $scope.afterData(data);
+                            $scope.refreshAngular();
+                            DRAG.run($scope);
                         }
                     }
                 );
-
-                // var data = await DRAGONAPI.listp(
-                //     $scope.tableOrView,
-                //     dataToList
-                // );
-                // if ($scope.table.currentPage > 1) {
-                //     if (data.data.length === 0) {
-                //         $scope.firstPage();
-                //     }
-                // } else {
-                //     $scope.afterData(data);
-                //     $scope.refreshAngular();
-                //     DRAG.run($scope);
-                // }
             }
 
         };

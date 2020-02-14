@@ -3,8 +3,7 @@ if(DATA.name!==undefined){
     var name, model, opts;
     name = DATA.name;
     model = DATA.model;
-if (DATA.opts !== "")
-        opts = eval("(" + DATA.opts + ")");
+    opts = DATA.opts;
 }
 var name  = name || "";
 var options = {
@@ -23,6 +22,16 @@ var options = {
 
 options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g, '_');
 options.icon.spyce = options.icon.class === "none" ? "remove-input-space" : "";
+popopme = function(entity, field){
+    var prueba = HINTS.filter(d => {
+        return d.entities === entity && d.field_names === field
+    })
+    function sortArray() {
+        options.mess = prueba.sort(function(a, b){return b.id - a.id});
+    }
+    sortArray();
+}
+popopme(model, nameclean);
 var toclient = JSON.stringify(options);
 %>
 <script>
@@ -35,6 +44,30 @@ var toclient = JSON.stringify(options);
         <%= model %>.
         form.options.<%= name %>.placeholder = MESSAGE.ic('columns.<%= nameclean %>');
     }
+    if(new SESSION().isLogged()) {
+        <%= model %>.form.options.<%= name %>.mess = <%= model %>.form.options.<%= name %>.mess.filter(d => {
+            return d.company == new SESSION().current().compania_id;
+        })
+        if(<%= model %>.form.options.<%= name %>.mess.length == 0){
+            delete <%= model %>.form.options.<%= name %>.mess
+        }
+        if (<%= model %>.form.options.<%= name %>.mess){
+            if (<%= model %>.form.options.<%= name %>.mess[0].cousin){
+                <%= model %>.form.options.<%= name %>.popover = {
+                    title: <%= model %>.form.options.<%= name %>.mess[0].cousin.replace('_',' ').replace('_',' '),
+                    content: <%= model %>.form.options.<%= name %>.mess[0].text,
+                    label: MESSAGE.exist('columns.<%= nameclean %>') ? MESSAGE.i('columns.<%= nameclean %>') : <%= model %>.form.options.<%= name %>.mess[0].cousin.replace('_',' ')
+                }
+            } else {
+                <%= model %>.form.options.<%= name %>.popover = {
+                    title: <%= model %>.form.options.<%= name %>.mess[0].field_names.replace('_',' ').replace('_',' '),
+                    content: <%= model %>.form.options.<%= name %>.mess[0].text,
+                    label: MESSAGE.exist('columns.<%= nameclean %>') ? MESSAGE.i('columns.<%= nameclean %>') : <%= model %>.form.options.<%= name %>.mess[0].field_names.replace('_',' ')
+                }
+            }
+
+        }
+    }
 </script>
 <div class="<%= options.icon.spyce %> form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-<%= options.icon.position %>"
      id="input<%= model %>_<%= nameclean %>">
@@ -42,18 +75,16 @@ var toclient = JSON.stringify(options);
             id="label<%= model %>_<%= nameclean %>"
             class="control-label is-visible animate" style="color:#000000 !important;">
         {{::<%= model %>.form.options.<%= name %>.placeholder}}
-        <% if(options.popover){ %>
-            <i
-                    id="popover<%= model %>_<%= nameclean %>" class="icon-help">
-            </i>
-        <% } %>
+        <i ng-show="<%= model %>.form.options.<%= name %>.mess.length>0"
+           id="popover<%= model %>_<%= nameclean %>" class="icon-help">
+        </i>
     </label>
-    <input
-            ng-model="<%= model + "." + name %>" name="<%= name %>"
-            readonly
-            type="text"
-            class="form-control"
-            placeholder="{{::<%= model %>.form.options.<%= name %>.inputPlaceholder}}">
+    <input style="padding-top: 0px !important;"
+           ng-model="<%= model + "." + name %>" name="<%= name %>"
+           readonly
+           type="text"
+           class="form-control"
+           placeholder="{{::<%= model %>.form.options.<%= name %>.inputPlaceholder}}">
 
     <div class="form-control-feedback">
         <i class="icon-<%= options.icon.class %> text-secundary">
@@ -74,14 +105,26 @@ var toclient = JSON.stringify(options);
 </div>
 <script>
     $(document).ready(function () {
-        <% if(options.popover){ %>
-        $('#popover<%= model %>_<%= nameclean %>').popover({
-            container: 'body',
-            title: eval("`" +<%= model %>.form.options.<%= name %>.popover.title + "`"),
-            content:eval("`" +<%= model %>.form.options.<%= name %>.popover.content + "`"),
-        trigger: 'click'
-    });
-        <% } %>
+        if(new SESSION().isLogged()) {
+            if (<%= model %>.form.options.<%= name %>.mess){
+                if (<%= model %>.form.options.<%= name %>.mess[0].cousin){
+                    $('#popover<%= model %>_<%= model %>.form.options.<%= name %>.mess[0].cousin').popover({
+                        container: 'body',
+                        title: eval("`" +<%= model %>.form.options.<%= name %>.popover.label + "`"),
+                        content:eval("`" +<%= model %>.form.options.<%= name %>.popover.content + "`"),
+                    trigger: 'click'
+                });
+                } else {
+                    $('#popover<%= model %>_<%= nameclean %>').popover({
+                        container: 'body',
+                        title: eval("`" +<%= model %>.form.options.<%= name %>.popover.label + "`"),
+                        content:eval("`" +<%= model %>.form.options.<%= name %>.popover.content + "`"),
+                    trigger: 'click'
+                });
+                }
+
+            }
+        }
         <%= model %>.triggers.table.after.control("<%= nameclean %>");
         <% if(options.format){ %>
         var formaty =<%= model %>.

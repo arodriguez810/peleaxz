@@ -3,8 +3,7 @@ if(DATA.name!==undefined){
     var name, model, opts;
     name = DATA.name;
     model = DATA.model;
-if (DATA.opts !== "")
-        opts = eval("(" + DATA.opts + ")");
+    opts = DATA.opts;
 }
 var name  = name || "";
 var options = {
@@ -78,7 +77,7 @@ var toclient = JSON.stringify(options);
                 action: "Change DropDown",
                 field: "<%= name %>",
                 value: <%= model %>.<%= name %>
-        })
+            })
             ;
 
 
@@ -97,8 +96,8 @@ var toclient = JSON.stringify(options);
         $('#list<%= model %>_<%= nameclean %>').click(function () {
             DRAGON.viewData = {};
             var modal = {
-                    header: {
-                        title: MESSAGE.i('mono.Listof') + <%= options.table %>.plural,
+                header: {
+                    title: MESSAGE.i('mono.Listof') + <%= options.table %>.plural,
                     icon: "list"
                 },
                 footer: {
@@ -107,7 +106,7 @@ var toclient = JSON.stringify(options);
                 content: {
                     loadingContentText: MESSAGE.i('actions.Loading'),
                 }
-        }
+            }
             <%= options.table %>.
             modal.modalView(String.format("{0}", "<%= options.table %>"), modal);
             return false;
@@ -116,13 +115,13 @@ var toclient = JSON.stringify(options);
         $('#edit<%= model %>_<%= nameclean %>').click(function () {
             <%= options.table %>.
             formulary({
-                where: [{
-                    field: <%= 'CRUD_' + options.table %>.table.key,
-                    value
-        : <%= model %>.<%= name %>}]
-        },
-            FORM.modes.edit, {}
-        )
+                    where: [{
+                        field: <%= 'CRUD_' + options.table %>.table.key,
+                        value
+                            : <%= model %>.<%= name %>}]
+                },
+                FORM.modes.edit, {}
+            )
             ;
             return false;
         });
@@ -133,9 +132,9 @@ var toclient = JSON.stringify(options);
                 table: "<%= options.table %>",
                 column: "<%= options.column %>",
                 value: <%= model %>.<%= name %>, field
-        :
-            "<%= name %>"
-        })
+                    :
+                    "<%= name %>"
+            })
             ;
 
 

@@ -19,27 +19,42 @@ var options = {
     format: '',
     readonly: false,
     disabled: false,
-    autocomplete: false,
+    autocomplete: '',
+    sufix: '',
+    prefix: '',
     posttype: "text",
     isNumber: true,
-    hint: null,
+    mask: null,
+    restrict: null,
+    repeat: null,
+    clean: null,
+    validate: null,
+    limit: null,
     //maxlength: 10,
 
 };
 
+options.isNumber = false;
+options.icon = {class: "calculator4", position: "left"};
+options.mask = "9";
+options.restrict = "reject";
+options.repeat = options.length || 15;
 
 options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g, '_');
 options.icon.spyce = options.icon.class === "none" ? "remove-input-space" : "";
+options.autocomplete = options.autocomplete ? "autocomplete='Off'" : '';
 options.format = options.format ? options.format : false;
 options.model = options.model ? options.model : false;
+
 popopme = function(entity, field){
     var prueba = HINTS.filter(d => {
-        return d.entities === entity && (d.field_names === field || d.cousin === field)
+        return d.entities === entity && d.field_names === field
     })
     function sortArray() {
         options.mess = prueba.sort(function(a, b){return b.id - a.id});
     }
     sortArray();
+    //console.log("Hola", options.mess);
 }
 popopme(model, nameclean);
 var toclient = JSON.stringify(options);
@@ -47,9 +62,6 @@ var toclient = JSON.stringify(options);
 <script>
     <%= model %>.triggers.table.before.control("<%= nameclean %>");
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
-    <% if(options.format || options.isNumber){ %>
-    <%= model %>.form.registerField("<%= name %>_DragonClean", "<%= toclient %>");
-    <% } %>
     if (MESSAGE.exist('columns.<%= nameclean %>')) {
         <%= model %>.
         form.options.<%= name %>.placeholder = MESSAGE.ic('columns.<%= nameclean %>');
@@ -63,41 +75,43 @@ var toclient = JSON.stringify(options);
         }
         if (<%= model %>.form.options.<%= name %>.mess){
             <%= model %>.form.options.<%= name %>.popover = {
-                title: <%= model %>.form.options.<%= name %>.mess[0].field_names.replace('_',' '),
-                content: <%= model %>.form.options.<%= name %>.mess[0].text,
-                label: MESSAGE.exist('columns.<%= nameclean %>') ? MESSAGE.i('columns.<%= nameclean %>') : <%= model %>.form.options.<%= name %>.mess[0].field_names.replace('_',' ')
+                title: <%= model %>.form.options.<%= name %>.mess[0].field_names,
+                content: <%= model %>.form.options.<%= name %>.mess[0].text
             }
         }
     }
-
 </script>
 <div class="<%= options.icon.spyce %> form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-{{::<%= model %>.form.options.<%= name %>.icon.position}}"
      id="input<%= model %>_<%= nameclean %>">
     <label
             class="control-label is-visible animate" style="color:#000000 !important;">
         {{::<%= model %>.form.options.<%= name %>.placeholder}}
-        <i ng-show="<%= model %>.form.options.<%= name %>.mess.length>0"
-           id="popover<%= model %>_<%= nameclean %>" class="icon-help">
-        </i>
+            <i ng-show="<%= model %>.form.options.<%= name %>.mess.length>0"
+                    id="popover<%= model %>_<%= nameclean %>" class="icon-help">
+            </i>
     </label>
-
     <input
             ng-model="<%= model + "." + name %>" name="<%= model %>_<%= nameclean %>"
             ng-readonly="<%= model %>.form.options.<%= name %>.readonly"
             ng-disabled="<%= model %>.form.options.<%= name %>.disabled"
             maxlength="{{<%= model %>.form.options.<%= name %>.maxlength}}"
-            <%= !options.autocomplete ? "autocomplete=off" : "" %>
             type="text"
-            onkeypress="return DSON.isNumberKey(event,this)"
-            ng-model-onblur
-            class="form-control"
-            style="padding-left: 31px !important;"
+            autocomplete="off"
+            onkeypress='validate(event)'
+            onCopy="return false" onDrag="return false" onDrop="return false" onPaste="return false"
+            mask="<%= options.mask %>"
+            restrict="<%= options.restrict %>"
+            repeat="<%= options.repeat %>"
+            clean="<%= options.clean %>"
+            validate="<%= options.validate %>"
+            limit="<%= options.limit %>"
+
+            class=" form-control"
             placeholder="{{::<%= model %>.form.options.<%= name %>.inputPlaceholder}}">
 
-    <div class="form-control-feedback money" style="top: 29px; font-size: 14px;">
-        <i class="icon-{{ <%= model %>.form.options.<%= name %>.disabled ? 'lock2' : 'cash' }} text-secundary">
+    <div class="form-control-feedback" ng-if="<%= model %>.form.options.<%= name %>.icon.class!=='none'">
+        <i class="icon-{{ <%= model %>.form.options.<%= name %>.disabled ? 'lock2' : 'calculator4' }} text-secundary">
 
-        </i>
         </i>
     </div>
     <span ng-if="<%= model %>.form.options.<%= name %>.helptext!=''"
@@ -115,54 +129,58 @@ var toclient = JSON.stringify(options);
 </div>
 
 <script>
-    if (<%= model %>.
-    UNIQUEFIELD
-    )
-    {
-        if (UNIQUEFIELD !== "<%= name %>")
-            $("#input<%= model %>_<%= nameclean %>").parent().hide();
-    }
     <%= model %>.triggers.table.after.control("<%= nameclean %>");
-    <% if(options.maxlength){ %>
-    //$('[name="<%= model %>_<%= nameclean %>"]').maxlength();
-    <% } %>
-    if(LAN.money(this.value).value!=0)
-        $('[name="<%= model %>_<%= nameclean %>"]').focus(function () {
-            <!--$('[name="<= model >_<= nameclean >"]').val(LAN.money(this.value).value);-->
-        });
+    if(new SESSION().isLogged()) {
+        if (<%= model %>.form.options.<%= name %>.mess) {
+            $('#popover<%= model %>_<%= nameclean %>').popover({
+                container: 'body',
+                title: eval("`" +<%= model %>.form.options.<%= name %>.popover.title + "`"),
+                content: eval("`" +<%= model %>.form.options.<%= name %>.popover.content + "`"),
+                trigger: 'click'
+            });
+        }
+    }
+
+
     $('[name="<%= model %>_<%= nameclean %>"]').blur(function () {
-        <%= model %>.<%= name %>_DragonClean = LAN.money(this.value).value;
+
         STEP.register({
             scope: "<%= model %>",
-            action: "Change Text",
+            action: "Change Format Text",
             field: "<%= name %>",
             value: <%= model %>.<%= name %>
         });
-        if(this.value) {
-            $('[name="<%= model %>_<%= nameclean %>"]').val(LAN.money(this.value).format(false));
-        }
+
+        <%= model %>.
+        refreshAngular();
     });
 
-    <%= model %>.<%= name %>_DragonClean = <%= model %>.<%= name %>;
+    $('[name="<%= model %>_<%= nameclean %>"]').trigger('click');
+    <%= model %>.refreshAngular();
 
-    if(new SESSION().isLogged()) {
-        if (<%= model %>.form.options.<%= name %>.mess){
-            $('#popover<%= model %>_<%= nameclean %>').popover({
-                container: 'body',
-                title: eval("`" +<%= model %>.form.options.<%= name %>.popover.label + "`"),
-                content:eval("`" +<%= model %>.form.options.<%= name %>.popover.content + "`"),
-            trigger: 'click'
-        });
-        }
-    }
-    var isReadProgram = <%= model %>.
-    form.isReadOnly('<%= name %>');
+    var isReadProgram = <%= model %>.form.isReadOnly('<%= name %>');
     if (isReadProgram !== false) {
         <%= model %>.
         form.options.<%= name %>.disabled = true;
         if (isReadProgram !== undefined) {
             <%= model %>.<%= name %> = isReadProgram;
+            $me = isReadProgram;
+            $me = $me.replace(/\./g, 'POINT').replace(/\W/g, '').replace(/POINT/g, '.').replace(/[a-z]/gi, '');
+            <%= model %>.
+            <%= name %>_DragonClean = $me;
             $('[name="<%= model %>_<%= nameclean %>"]').val(isReadProgram);
+        }
+    }
+</script>
+<script type="text/javascript">
+    function validate(evt) {
+        var theEvent = evt || window.event;
+        var key = theEvent.keyCode || theEvent.which;
+        key = String.fromCharCode(key);
+        var regex = /[0-9]|\./;
+        if (!regex.test(key)) {
+            theEvent.returnValue = false;
+            if (theEvent.preventDefault) theEvent.preventDefault();
         }
     }
 </script>

@@ -3,8 +3,7 @@ if (DATA.name !== undefined) {
     var name, model, opts;
     name = DATA.name;
     model = DATA.model;
-if (DATA.opts !== "")
-        opts = eval("(" + DATA.opts + ")");
+    opts = DATA.opts;
 }
 var name = name || "";
 var options = {
@@ -66,6 +65,16 @@ var nameclean = name.replace(/\./g, '_');
 options.model = options.model ? options.model : false;
 options.controller = options.controller||options.table;
 options.permission = options.permission || "CRUD_" + options.table;
+popopme = function(entity, field){
+    var prueba = HINTS.filter(d => {
+        return d.entities === entity && d.field_names === field
+    })
+    function sortArray() {
+        options.mess = prueba.sort(function(a, b){return b.id - a.id});
+    }
+    sortArray();
+}
+popopme(model, nameclean);
 var toclient = JSON.stringify(options);
 %>
 <script>
@@ -95,7 +104,21 @@ var toclient = JSON.stringify(options);
         <%= model %>.
         form.options.<%= name %>.default = `${MESSAGE.ic('mono.select')} ` + MESSAGE.ic('columns.<%= nameclean %>');
     }
-
+    if(new SESSION().isLogged()) {
+        <%= model %>.form.options.<%= name %>.mess = <%= model %>.form.options.<%= name %>.mess.filter(d => {
+            return d.company == new SESSION().current().compania_id;
+        })
+        if(<%= model %>.form.options.<%= name %>.mess.length == 0){
+            delete <%= model %>.form.options.<%= name %>.mess
+        }
+        if (<%= model %>.form.options.<%= name %>.mess){
+            <%= model %>.form.options.<%= name %>.popover = {
+                title: <%= model %>.form.options.<%= name %>.mess[0].field_names.replace('_',' '),
+                content: <%= model %>.form.options.<%= name %>.mess[0].text,
+                label: MESSAGE.exist('columns.<%= nameclean %>') ? MESSAGE.i('columns.<%= nameclean %>') : <%= model %>.form.options.<%= name %>.mess[0].field_names.replace('_',' ')
+            }
+        }
+    }
 
     var isReadProgram = <%= model %>.form.isReadOnly('<%= name %>');
     if (isReadProgram !== false) {
@@ -123,6 +146,15 @@ var toclient = JSON.stringify(options);
     <% } %>
     <div class="form-group-material form-group has-feedback  has-feedback-<%= options.icon.position %>"
          id="input<%= model %>_<%= nameclean %>">
+        <label
+                class="control-label is-visible animate" style="color:#000000 !important;">
+            {{::<%= model %>.form.options.<%= name %>.placeholder}}
+
+            <i ng-show="<%= model %>.form.options.<%= name %>.mess.length>0"
+               id="popover<%= model %>_<%= nameclean %>" class="icon-help">
+            </i>
+
+        </label>
         <div
                 <%= options.multiple ? "multiple='multiple'" : "" %>
                 ng-model="<%= model + "." + name %>"
@@ -277,6 +309,16 @@ var toclient = JSON.stringify(options);
         <%= model %>.
         form.beginFunctions.push(`reloadMe<%= model %>_<%= nameclean %>();`);
 
+        if(new SESSION().isLogged()) {
+            if (<%= model %>.form.options.<%= name %>.mess){
+                $('#popover<%= model %>_<%= nameclean %>').popover({
+                    container: 'body',
+                    title: eval("`" +<%= model %>.form.options.<%= name %>.popover.label + "`"),
+                    content:eval("`" +<%= model %>.form.options.<%= name %>.popover.content + "`"),
+                trigger: 'click'
+            });
+            }
+        }
 
         <%= model %>.
         <%= name %>_object = {};
@@ -291,7 +333,7 @@ var toclient = JSON.stringify(options);
                 action: "Change DropDown",
                 field: "<%= name %>",
                 value: <%= model %>.<%= name %>
-        })
+            })
             ;
 
 
@@ -334,13 +376,13 @@ var toclient = JSON.stringify(options);
         $('#edit<%= model %>_<%= nameclean %>').click(function () {
             <%= options.controller %>.
             formulary({
-                where: [{
-                    field: <%= 'CRUD_' + options.controller %>.table.key,
-                    value
-        : <%= model %>.<%= name %>}]
-        },
-            FORM.modes.edit, {}
-        )
+                    where: [{
+                        field: <%= 'CRUD_' + options.controller %>.table.key,
+                        value
+                            : <%= model %>.<%= name %>}]
+                },
+                FORM.modes.edit, {}
+            )
             ;
             return false;
         });
@@ -351,9 +393,9 @@ var toclient = JSON.stringify(options);
                 table: "<%= options.controller %>",
                 column: "<%= options.column %>",
                 value: <%= model %>.<%= name %>, field
-        :
-            "<%= name %>"
-        })
+                    :
+                    "<%= name %>"
+            })
             ;
 
 

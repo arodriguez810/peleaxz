@@ -211,6 +211,177 @@ app.controller('DRAGON', function ($scope, $http, $compile, $controller) {
             DRAGON.favorites = newarray;
         }
     };
+    DRAGON.show_form = function(form, index){
+        var fm = form + index;
+        if($(`.${fm}`).hasClass('show-form')){
+            $(`.${fm}`).removeClass('show-form');
+            $(`.${fm}`).show();
+            $(`[name=icon${fm}]`).select2({
+                templateSelection: DROPDOWN.iformat,
+                templateResult: DROPDOWN.iformat,
+                allowHtml: true
+            });
+        }else{
+            $(`.${fm}`).addClass('show-form');
+            $(`.${fm}`).hide();
+        }
+    };
+    DRAGON.add_menu = function (nivel, form, index, levl1, levl2, levl3, levl4) {
+        var text, href, modal_full, icon, fm, input;
+
+        fm = form + index;
+        input = fm;
+
+        text= $(`[name=text${input}]`).val();
+        href= $(`[name=href${input}]`).val();
+        modal_full =  $(`[name=modal_full${input}]`).is(':checked');
+        icon =   $(`[name=icon${input}]`).val();
+
+        switch(nivel) {
+            case 'new':
+                DRAGON.menus.push({
+                    text: text,
+                    href: href,
+                    icon: icon,
+                    modal: modal_full ? 'modal-full' : ''
+                });
+                break;
+            case 'primero':
+                if(!DRAGON.menus[levl1].menus){
+                    DRAGON.menus[levl1].menus = [];
+                }
+                DRAGON.menus[levl1].menus.push({
+                    text: text,
+                    href: href,
+                    icon: "lifebuoy",
+                    modal: modal_full ? 'modal-full' : ''
+                });
+                break;
+            case 'segundo':
+                if(!DRAGON.menus[levl1].menus[levl2].menus){
+                    DRAGON.menus[levl1].menus[levl2].menus = [];
+                }
+                DRAGON.menus[levl1].menus[levl2].menus.push({
+                    text: text,
+                    href: href,
+                    icon: "lifebuoy",
+                    modal: modal_full ? 'modal-full' : ''
+                });
+                break;
+            case 'tercero':
+                if(!DRAGON.menus[levl1].menus[levl2].menus[levl3].menus){
+                    DRAGON.menus[levl1].menus[levl2].menus[levl3].menus = [];
+                }
+                DRAGON.menus[levl1].menus[levl2].menus[levl3].menus.push({
+                    text: text,
+                    href: href,
+                    icon: "lifebuoy",
+                    modal: modal_full ? 'modal-full' : ''
+                });
+                break;
+            case 'cuarto':
+                if(!DRAGON.menus[levl1].menus[levl2].menus[levl3].menus[levl4].menus){
+                    DRAGON.menus[levl1].menus[levl2].menus[levl3].menus[levl4].menus = [];
+                }
+                DRAGON.menus[levl1].menus[levl2].menus[levl3].menus[levl4].menus.push({
+                    text: text,
+                    href: href,
+                    icon: "lifebuoy",
+                    modal: modal_full ? 'modal-full' : ''
+                });
+                break;
+            default:
+            // code block
+        }
+
+        $(`[name=text${input}]`).val('');
+        $(`[name=href${input}]`).val('');
+        $(`[name=modal_full${input}]`).prop("checked", false);
+        $(`[name=icon${input}]`).val("");
+
+        $(`.${fm}`).addClass('show-form');
+        $(`.${fm}`).hide();
+
+        setTimeout(function () {
+            $(".edit-hide").hide();
+            $(".editar-menu").show();
+        },1000);
+        DRAGON.refreshAngular();
+    };
+    DRAGON.edit_menu = function (nivel, form, index, levl1, levl2, levl3, levl4, levl5) {
+        var text, href, modal_full, icon, fm, input;
+
+        fm = form + index;
+        input = fm;
+
+        text = $(`[name=text${input}]`).val();
+        href = $(`[name=href${input}]`).val();
+        modal_full = $(`[name=modal_full${input}]`).is(':checked');
+        icon =   $(`[name=icon${input}]`).val();
+
+        // console.log(fm,text, href, modal_full, icon );
+
+        switch(nivel) {
+            case 'primero':
+                DRAGON.menus[levl1].text = text;
+                DRAGON.menus[levl1].href = href;
+                DRAGON.menus[levl1].modal = modal_full ? 'modal-full' : '';
+                DRAGON.menus[levl1].icon = icon;
+                break;
+            case 'segundo':
+                DRAGON.menus[levl1].menus[levl2].text = text;
+                DRAGON.menus[levl1].menus[levl2].href = href;
+                DRAGON.menus[levl1].menus[levl2].modal = modal_full ? 'modal-full' : '';
+                DRAGON.menus[levl1].menus[levl2].icon = icon;
+                break;
+            case 'tercero':
+                DRAGON.menus[levl1].menus[levl2].menus[levl3].text = text;
+                DRAGON.menus[levl1].menus[levl2].menus[levl3].href = href;
+                DRAGON.menus[levl1].menus[levl2].menus[levl3].modal = modal_full ? 'modal-full' : '';
+                DRAGON.menus[levl1].menus[levl2].menus[levl3].icon = icon;
+                break;
+            case 'cuarto':
+                DRAGON.menus[levl1].menus[levl2].menus[levl3].menus[levl4].text = text;
+                DRAGON.menus[levl1].menus[levl2].menus[levl3].menus[levl4].href = href;
+                DRAGON.menus[levl1].menus[levl2].menus[levl3].menus[levl4].modal = modal_full ? 'modal-full' : '';
+                DRAGON.menus[levl1].menus[levl2].menus[levl3].menus[levl4].icon = icon;
+                break;
+            case 'quinto':
+                DRAGON.menus[levl1].menus[levl2].menus[levl3].menus[levl4].menus[levl5].text = text;
+                DRAGON.menus[levl1].menus[levl2].menus[levl3].menus[levl4].menus[levl5].href = href;
+                DRAGON.menus[levl1].menus[levl2].menus[levl3].menus[levl4].menus[levl5].modal = modal_full ? 'modal-full' : '';
+                DRAGON.menus[levl1].menus[levl2].menus[levl3].menus[levl4].menus[levl5].icon = "lifebuoy";
+                break;
+            default:
+            // code block
+        }
+
+        $(`.${fm}`).addClass('show-form');
+        $(`.${fm}`).hide();
+        DRAGON.refreshAngular();
+    };
+    DRAGON.remove_menu = function(nivel, levl1, levl2, levl3, levl4, levl5){
+        switch(nivel) {
+            case 'primero':
+                DRAGON.menus.splice(levl1, 1);
+                break;
+            case 'segundo':
+                DRAGON.menus[levl1].menus.splice(levl2, 1);
+                break;
+            case 'tercero':
+                DRAGON.menus[levl1].menus[levl2].menus.splice(levl3, 1);
+                break;
+            case 'cuarto':
+                DRAGON.menus[levl1].menus[levl2].menus[levl3].menus.splice(levl4, 1);
+                break;
+            case 'quinto':
+                DRAGON.menus[levl1].menus[levl2].menus[levl3].menus[levl4].menus.splice(levl5, 1);
+                break;
+            default:
+            // code block
+        }
+        DRAGON.refreshAngular();
+    };
     var permissionOptions = {
         text: (data) => {
             return "";

@@ -340,21 +340,28 @@
             init: function () {
                 this.on('complete', function (file) {
                     this.removeFile(file);
+                    if ((file.size / 1000000) > viewModel.maxsize ) {
+                        SWEETALERT.show({message: `El tamaño del archivo excede el límite soportado por el sistema. El límite es  (` + viewModel.maxsize + ` MB).`});
+                    }else{
+                        STEP.register({
+                            scope: CURRENT.url(),
+                            action: "Upload File",
+                            field: viewModel.root
+                        });
 
-                    STEP.register({
-                        scope: CURRENT.url(),
-                        action: "Upload File",
-                        field: viewModel.root
-                    });
-
-                    <%= DATA.scope %>.<%= DATA.nameclean %>.
-                    galleryFiles.uploadview();
-                    <%= DATA.scope %>.<%= DATA.nameclean %>.
-                    galleryFiles.refresh();
+                        <%= DATA.scope %>.<%= DATA.nameclean %>.
+                        galleryFiles.uploadview();
+                        <%= DATA.scope %>.<%= DATA.nameclean %>.
+                        galleryFiles.refresh();
+                    }
                 });
                 this.on('completemultiple', function (file) {
-                    <%= DATA.scope %>.<%= DATA.nameclean %>.
-                    galleryFiles.refresh();
+                    if ((file.size / 1000000) > viewModel.maxsize ) {
+                        SWEETALERT.show({message: `El tamaño del archivo excede el límite soportado por el sistema. El límite es  (` + viewModel.maxsize + ` MB).`});
+                    }else{
+                        <%= DATA.scope %>.<%= DATA.nameclean %>.
+                        galleryFiles.refresh();
+                    }
                 });
             }
         });

@@ -1,0 +1,43 @@
+<div class="tab-content">
+    <div class="tab-pane active" id="basic">
+        <div class="row">
+            <div dragoncontrol="selectsimple" label="Entities" cols="4" name="entities" scope="<%= scope %>"
+                 id="<%= scope %>__entities" cache="false">
+                {data: ENTITIES, icon: {class: 'archive'}}
+            </div>
+            <div dragoncontrol="selectsimple" label="Field Names" cols="4" name="field_names" scope="<%= scope %>"
+                 id="<%= scope %>__field_names" cache="false">
+                {data: FIELDS, icon: {class: 'archive'}, condition: 'item.entity == hint_fields.entities'}
+            </div>
+            <div class='col-sm-4 col-md-4'>
+                <%- FORM.input('text', scope, {}) %>
+            </div>
+        </div>
+        <div class="row" ng-if="hint_fields.super">
+            <div class='col-sm-4 col-md-4'>
+                <%- FORM.select('company', scope, {
+                    allownull: false,
+                    allownew: false,
+                    allowedit: false,
+                    allowview: false,
+                    allowlist: false,
+                    refresh: false,
+                    multiple: false,
+                    disabled: false,
+                    label: "Compañía",
+                    text: "item.nombre",
+                    table: "compania",
+                    columns: ["id", "nombre"],
+                    icon: {class: "archive"}
+                }) %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- FORM.footer(scope) %>
+
+
+
+
+

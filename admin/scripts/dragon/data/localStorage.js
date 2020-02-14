@@ -66,6 +66,21 @@ STORAGE = {
         else
             SWEETALERT.show({message: MESSAGE.i('alerts.norestore')});
     },
+    restore: function () {
+        if (localStorage.length)
+            SWEETALERT.confirm({
+                message:
+                    'Esta opción restablece toda la configuración de las opciones de ayuda, ¿está seguro?',
+                confirm: function () {
+                    STORAGE.delete("keydownOn");
+                    STORAGE.delete("grays");
+                    STORAGE.delete("animation");
+                    location.reload();
+                }
+            });
+        else
+            SWEETALERT.show({message: MESSAGE.i('alerts.norestore')});
+    },
     delete: function (id) {
         localStorage.removeItem(id);
     },

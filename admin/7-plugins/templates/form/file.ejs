@@ -15,6 +15,9 @@ if (!modelfolder) {
 }
 
 var options = {
+    custom_folder: true,
+    folder_path: '',
+    disabled: false,
     text: params.capitalize(name),
     title: `${params.capitalize(name)}`,
     show: false,
@@ -78,20 +81,32 @@ var toclient = JSON.stringify(options);
              style="max-height: <%= options.image %>px;float: <%= options.imagefloat %>"
              src="assets/images/placeholder.jpg" alt="">
     <% } %>
-    <button name="<%= model %>_<%= nameclean %>"
-            type="button"
-            title='{{<%= model %>.<%= name %>_DragonCountFile>0? (<%= model %>.filesMessages + " " + "(" + <%= model %>.<%= name %>_DragonCountFile+")") :""}}  {{<%= model %>.form.options.<%= name %>.text}}'
-            role="button"
-            style=" <%= options.maxfiles > 1 ? "" : "width:50px;" %>height: <%= options.image %>px;"
-            class="btn bg-<%= options.color %>-600 btn-block legitRipple">
-        <%= options.model ? "{{" + options.model + "}}" : "" %>
+    <% if(options.show === 'audio'){ %>
+        <video controls type='audio/*' id="showAudio<%= model %>_<%= nameclean %>"
+               style="max-height: <%= options.image %>px;float: <%= options.imagefloat %>; visibility: hidden"
+               src="" alt="">
+        </video>
+    <% } %>
+    <% if(options.show === 'video'){ %>
+        <video controls type='video/*' id="showVideo<%= model %>_<%= nameclean %>"
+               style="max-height: <%= options.image %>px;float: <%= options.imagefloat %>; visibility: hidden"
+               src="" alt="">
+        </video>
+    <% } %>
+    <button ng-show="<%= !options.disabled %>" name="<%= model %>_<%= nameclean %>"
+                type="button"
+                title='{{<%= model %>.<%= name %>_DragonCountFile>0? (<%= model %>.filesMessages + " " + "(" + <%= model %>.<%= name %>_DragonCountFile+")") :""}}  {{<%= model %>.form.options.<%= name %>.text}}'
+                role="button"
+                style=" <%= options.maxfiles > 1 ? "" : "width:50px;" %>height: <%= options.image %>px;"
+                class="btn bg-<%= options.color %>-600 btn-block legitRipple">
+            <%= options.model ? "{{" + options.model + "}}" : "" %>
 
-        <i class="icon-<%= options.icon.class %> position-<%= options.icon.position %>"></i>
-        <span ng-show="<%= model %>.form.options.<%= name %>.maxfiles>1">
+            <i class="icon-<%= options.icon.class %> position-<%= options.icon.position %>"></i>
+            <span ng-show="<%= model %>.form.options.<%= name %>.maxfiles>1">
             {{<%= model %>.<%= name %>_DragonCountFile>0? (<%= model %>.filesMessages + " " + "(" + <%= model %>
             .<%= name %>_DragonCountFile+")") :""}}  {{<%= model %>.form.options.<%= name %>.text}}
         </span>
-    </button>
+        </button>
     <% if(options.popover){ %>
         <i
                 id="popover<%= model %>_<%= nameclean %>" class="icon-help">
@@ -144,7 +159,6 @@ var toclient = JSON.stringify(options);
 
         $("[amclone='true']").remove();
         FILE.server(<%= model %>.form.options.<%= name %>.folder, function (files) {
-            console.log(files.length);
             if (files.length > 0) {
                 files.forEach((file) => {
                     var theClone = $("#showImage<%= model %>_<%= nameclean %>").clone();
@@ -161,6 +175,56 @@ var toclient = JSON.stringify(options);
                 $("#showImage<%= model %>_<%= nameclean %>").after(theClone);
             }
             $("#showImage<%= model %>_<%= nameclean %>").hide();
+        }
+    )
+        ;
+        <% } %>
+        <% if(options.show === 'audio'){ %>
+
+        $("[amclone='true']").remove();
+        FILE.server(<%= model %>.form.options.<%= name %>.folder, function (files) {
+            if (files.length > 0) {
+                files.forEach((file) => {
+                    var theClone = $("#showAudio<%= model %>_<%= nameclean %>").clone();
+                    theClone.attr('amclone', true);
+                    theClone.css('visibility', 'inherit');
+                    FILE.addSourceToElement(theClone, file.url + `?log=${new Date().getTime()}`);
+                    theClone.show();
+                    $("#showAudio<%= model %>_<%= nameclean %>").after(theClone);
+                });
+            } else {
+                var theClone = $("#showAudio<%= model %>_<%= nameclean %>").clone();
+                theClone.attr('amclone', true);
+                FILE.addSourceToElement(theClone, "");
+                theClone.show();
+                $("#showAudio<%= model %>_<%= nameclean %>").after(theClone);
+            }
+            $("#showAudio<%= model %>_<%= nameclean %>").hide();
+        }
+    )
+        ;
+        <% } %>
+        <% if(options.show === 'video'){ %>
+
+        $("[amclone='true']").remove();
+        FILE.server(<%= model %>.form.options.<%= name %>.folder, function (files) {
+            if (files.length > 0) {
+                files.forEach((file) => {
+                    var theClone = $("#showVideo<%= model %>_<%= nameclean %>").clone();
+                    theClone.attr('amclone', true);
+                    theClone.css('visibility', 'inherit');
+                    FILE.addSourceToElement(theClone, file.url + `?log=${new Date().getTime()}`);
+                    theClone.show();
+                    $("#showVideo<%= model %>_<%= nameclean %>").after(theClone);
+                });
+            } else {
+                var theClone = $("#showVideo<%= model %>_<%= nameclean %>").clone();
+                theClone.attr('amclone', true);
+                FILE.addSourceToElement(theClone, "");
+                theClone.show();
+                $("#showVideo<%= model %>_<%= nameclean %>").after(theClone);
+            }
+            $("#showVideo<%= model %>_<%= nameclean %>").hide();
         }
     )
         ;
@@ -189,17 +253,26 @@ var toclient = JSON.stringify(options);
         {
             if ( <%= model %>.
             form.options.<%= name %>.alone === true
-        )
+        ){
             <%= model %>.
             form.options.<%= name %>.folder = `<%= options.folder %>`;
+        }
         else
             <%= model %>.
             form.options.<%= name %>.folder = `<%= modelfolder %>/<%= name %>/${thisID}`;
+
         }
+
+        if (`<%= opts.custom_folder %>`)
+                <%= model %>.
+        form.options.<%= name %>.folder = `<%= opts.folder_path %>/<%= name %>/${thisID}`;
+
         ShowCount<%= name %>(true);
     }
 
-    <%= model %>.form.beginFunctions.push("ShowCount<%= name %>()");
+    if(!<%= model %>.form.beginFunctions.includes("ShowCountprofileimage()")){
+        <%= model %>.form.beginFunctions.push("ShowCount<%= name %>()");
+    }
 
     $(document).ready(function () {
 
@@ -238,10 +311,11 @@ var toclient = JSON.stringify(options);
                 event: {
                     hide: {
                         begin: function (data) {
-                            for (var functionName of <%= model %>.
-                            form.beginFunctions
-                        )
-                            eval(functionName)
+                            for(var functionName of <%= model %>.form.beginFunctions){
+                                if(functionName.indexOf('ShowCountprofileimage') == -1){
+                                    eval(functionName);
+                                }
+                            }
                         }
                     }
                 }

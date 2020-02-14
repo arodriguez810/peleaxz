@@ -3,8 +3,7 @@ if (DATA.name !== undefined) {
     var name, model, opts;
     name = DATA.name;
     model = DATA.model;
-if (DATA.opts !== "")
-        opts = eval("(" + DATA.opts + ")");
+    opts = DATA.opts;
 }
 var name = name || "";
 var options = {
@@ -20,18 +19,16 @@ var options = {
     format: 'LL',
     universal: 'YYYY/MM/DD',
     minDate: '',
-    prop: '',
     maxDate: '',
     from: '',
     to: '',
-    translate: true,
     disabled: false,
     singleDatePicker: false,
     datepicker: true
 };
 
 options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g, '_');
-options.placeholder = options.placeholder || params.capitalize(options.from !== '' ? options.from : name);
+options.placeholder = params.capitalize(options.from !== '' ? options.from : name);
 options.from = options.from === '' ? nameclean + "_from" : options.from;
 options.to = options.to === '' ? nameclean + "_to" : options.to;
 if (options.timepicker == false) {
@@ -46,9 +43,21 @@ if (options.isTime) {
     options.posttype = 'time';
     options.format = 'LT';
 }
+
+popopme = function(entity, field){
+    var prueba = HINTS.filter(d => {
+        return d.entities === entity && d.field_names === field
+    })
+    function sortArray() {
+        options.mess = prueba.sort(function(a, b){return b.id - a.id});
+    }
+    sortArray();
+}
+popopme(model, nameclean);
 var toclient = JSON.stringify(options);
 %>
 <script>
+    //
     <%= model %>.triggers.table.before.control("<%= nameclean %>");
     <%= model %>.form.schemas.select["<%= options.from %>"] = FORM.schemasType.range;
     <%= model %>.form.schemas.select["<%= options.to %>"] = FORM.schemasType.range;
@@ -57,9 +66,24 @@ var toclient = JSON.stringify(options);
     <% if(options.singleDatePicker === false){ %>
     <%= model %>.form.registerField("<%= options.to %>", "<%= toclient %>");
     <% } %>
-    if (MESSAGE.exist('columns.<%= nameclean %>') && <%= options.translate %>=== true) {
+    if (MESSAGE.exist('columns.<%= nameclean %>')) {
         <%= model %>.
         form.options.<%= options.from %>.placeholder = MESSAGE.ic('columns.<%= nameclean %>');
+    }
+    if(new SESSION().isLogged()) {
+        <%= model %>.form.options.<%= options.from %>.mess = <%= model %>.form.options.<%= options.from %>.mess.filter(d => {
+            return d.company == new SESSION().current().compania_id;
+        })
+        if(<%= model %>.form.options.<%= options.from %>.mess.length == 0){
+            delete <%= model %>.form.options.<%= options.from %>.mess
+        }
+        if (<%= model %>.form.options.<%= options.from %>.mess){
+            <%= model %>.form.options.<%= options.from %>.popover = {
+                title: <%= model %>.form.options.<%= options.from %>.mess[0].field_names.replace('_',' ').replace('_',' '),
+                content: <%= model %>.form.options.<%= options.from %>.mess[0].text,
+                label: MESSAGE.exist('columns.<%= nameclean %>') ? MESSAGE.i('columns.<%= nameclean %>') : <%= model %>.form.options.<%= options.from %>.mess[0].field_names.replace('_',' ')
+            }
+        }
     }
     if (<%= model %>.<%= options.from %> && <%= model %>.<%= options.to %>)
     {
@@ -73,17 +97,15 @@ var toclient = JSON.stringify(options);
     else
     <%= model + "." + name %>= "";
 </script>
-<div class="remove-input-space form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= options.from %>'].type || <%= model %>.defaultColor }}  has-feedback-<%= options.icon.position %>"
+<div class="remove-input-space form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-<%= options.icon.position %>"
      id="input<%= model %>_<%= nameclean %>">
     <label
             id="label<%= model %>_<%= nameclean %>"
             class="control-label is-visible animate" style="color:#000000 !important;">
         {{::<%= model %>.form.options.<%= options.from %>.placeholder}}
-        <% if(options.popover){ %>
-            <i
-                    id="popover<%= model %>_<%= nameclean %>" class="icon-help">
-            </i>
-        <% } %>
+        <i ng-show="<%= model %>.form.options.<%= options.from %>.mess.length>0"
+           id="popover<%= model %>_<%= nameclean %>" class="icon-help">
+        </i>
     </label>
 
     <div id="<%= model %>_<%= nameclean %>div"
@@ -102,10 +124,9 @@ var toclient = JSON.stringify(options);
         {{<%= model %>.form.options.<%= name %>.helptext}}
     </span>
 
-    <span ng-if="<%= model %>.validate['<%= options.from %>'].messages.length>0" class="help-block">
-
+    <span ng-show="<%= model %>.validate['<%= name %>'].messages.length>0" class="help-block">
         <p class="text-{{validation.type}}" ng-show="validation.visible!==false || <%= model %>.form.intent===true"
-           ng-repeat="(key,validation) in <%= model %>.validate['<%= options.from %>'].messages track by key">
+           ng-repeat="(key,validation) in <%= model %>.validate['<%= name %>'].messages track by key">
                <i class="{{validation.icon}}"></i> {{validation.message}}
         </p>
     </span>
@@ -116,18 +137,16 @@ var toclient = JSON.stringify(options);
 <script type="text/javascript">
     $(document).ready(function () {
 
-        <% if(options.popover){ %>
-        $('#popover<%= model %>_<%= nameclean %>').popover({
-            container: 'body',
-            title: eval("`" +<%= model %>.form.options.<%= name %>.popover.title + "`"),
-            content
-    :
-        eval("`" +<%= model %>.form.options.<%= name %>.popover.content + "`"
-    ),
-        trigger: 'click'
-    })
-        ;
-        <% } %>
+        if(new SESSION().isLogged()) {
+            if (<%= model %>.form.options.<%= options.from %>.mess){
+                $('#popover<%= model %>_<%= nameclean %>').popover({
+                    container: 'body',
+                    title: eval("`" +<%= model %>.form.options.<%= options.from %>.popover.label + "`"),
+                    content:eval("`" +<%= model %>.form.options.<%= options.from %>.popover.content + "`"),
+                trigger: 'click'
+            });
+            }
+        }
 
         $('#<%= model %>_<%= nameclean %>').keypress(function (e) {
             e.preventDefault();
@@ -193,7 +212,6 @@ var toclient = JSON.stringify(options);
         <%= options.minDate === "" ? "" : ("minDate:moment(" + options.minDate + "),") %>
         <%= options.maxDate === "" ? "" : ("maxDate:moment(" + options.maxDate + "),") %>
         <%= options.singleDatePicker === false ? "" : ("singleDatePicker:true,") %>
-        <%- options.prop === "" ? "" : options.prop %>
     },
 
         function (start, end, label) {

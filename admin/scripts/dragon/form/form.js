@@ -467,25 +467,12 @@ FORM = {
                                 multipleRelations: $scope.form.multipleRelations,
                                 relations: $scope.form.relations,
                             });
-
-
                         }
-                        SWEETALERT.loading({message: MESSAGE.i('mono.saving')});
+                        // SWEETALERT.loading({message: MESSAGE.i('mono.saving')});
                         var firstColumn = eval(`CRUD_${$scope.modelName}`).table.key || "id";
                         var DRAGONID = eval(`$scope.${firstColumn}`);
 
-                        if (DRAGON.features.user_interactive)
-                            SOCKETS.tunel({
-                                channel: "interactive",
-                                data: {
-                                    user: new SESSION().current(),
-                                    action: SOCKETS.actions.editrecord,
-                                    scope: $scope.modelName,
-                                    record: DRAGONID
-                                }
-                            });
-
-                        await AUDIT.LOG(AUDIT.ACTIONS.update, $scope.modelName, $scope.open.default, dataToUpdate);
+                        await AUDIT.LOG(AUDIT.ACTIONS.update, $scope.tableOrView ? $scope.tableOrView : $scope.modelName, $scope.open.default, dataToUpdate);
 
                         if ($scope.form !== null)
                             $scope.form.mode = FORM.modes.edit;
@@ -501,10 +488,26 @@ FORM = {
                             SWEETALERT.stop();
                             NOTIFY.success(`${$scope.singular} ${MESSAGE.i('mono.saved')}`);
                         }
+
+                        var allrelations = [];
+                        for (var item of $scope.form.relations) {
+                            var relations = [];
+                            var objExist = [];
+                            for (var sub of item.data) {
+                                if (objExist.indexOf(JSON.stringify(sub)) === -1) {
+                                    relations.push(sub);
+                                    objExist.push(JSON.stringify(sub));
+                                }
+                            }
+                            item.data = relations;
+                            allrelations.push(item);
+                        }
+                        // if (allrelations.length)
+                        //     allrelations = allrelations[0];
                         if ($scope.form !== null)
                             if ($scope.form.relations !== undefined) {
-                                if ($scope.form.relations.length > 0) {
-                                    for (var relation of $scope.form.relations) {
+                                if (allrelations.length > 0) {
+                                    for (var relation of allrelations) {
                                         for (var frel of relation.data) {
                                             for (var i in frel) {
                                                 var vi = frel[i].replace('$id', DRAGONID);
@@ -516,15 +519,14 @@ FORM = {
                                             eval(`relation.config.fieldsUpdate.${i} = vi`);
                                         }
                                         var whereDelete = [];
-                                        whereDelete.push(relation.config.fieldsUpdate)
+                                        whereDelete.push(relation.config.fieldsUpdate);
 
-                                        if ($scope.form.multirepeat.indexOf(relation.config.toTable) === -1) {
-                                            var ddata = await DRAGONAPI.deleteallp(relation.config.toTable, whereDelete);
-                                            $scope.form.multirepeat.push(relation.config.toTable);
+                                        if ($scope.form.multirepeat.indexOf(relation.config.toDeleteTable) === -1) {
+                                            var ddata = await DRAGONAPI.deleteallp(relation.config.toDeleteTable, whereDelete);
                                         }
-                                        await DRAGONAPI.insertp(relation.config.toTable, relation.data);
+                                        $scope.form.multirepeat.push(relation.config.toDeleteTable);
+                                        console.log(await DRAGONAPI.insertp(relation.config.toTable, relation.data));
                                         $scope.pages.form.subRequestComplete(close);
-
                                     }
                                 }
                             }
@@ -594,6 +596,7 @@ FORM = {
                                 var prop = eval(`$scope.form.options.${field}`);
                                 var config = {
                                     toTable: prop.get.table,
+                                    toDeleteTable: prop.get.tableDelete || prop.get.table,
                                     text: "Inserting multiples...",
                                     fields: {},
                                     fieldsUpdate: {}
@@ -615,6 +618,10 @@ FORM = {
                                         }
                                         dataarray.push(newObj);
                                     }
+                                    console.log("llenando", {
+                                        config: config,
+                                        data: dataarray
+                                    });
                                     $scope.form.relations.push({
                                         config: config,
                                         data: dataarray
@@ -627,6 +634,7 @@ FORM = {
                                 var prop = eval(`$scope.form.options.${field}`);
                                 var config = {
                                     toTable: prop.table,
+                                    toDeleteTable: (prop.get || {tableDelete: prop.table}).tableDelete || prop.table,
                                     update: {all: "$id", tempid: "$NULL"},
                                     where: [{field: "tempid", value: "$id"}]
                                 };

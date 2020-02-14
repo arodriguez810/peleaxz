@@ -19,34 +19,98 @@
     <div class="navbar-collapse collapse" id="navbar-mobile" ng-show="!DRAGON.isClient">
         <ul ng-show="!DRAGON.isClient" class="nav navbar-nav">
             <li>
-                <a id="litemenu" class="sidebar-control sidebar-main-toggle hidden-xs" data-popup="tooltip"
+                <a id="LiteMenu" class="sidebar-control sidebar-main-toggle hidden-xs" data-popup="tooltip"
                    data-placement="bottom" data-container="body" dragonlanguage title="MESSAGE.i('navbar.LiteMenu')">
                     <i class="icon-paragraph-justify3"></i>
                 </a>
             </li>
             <li>
-                <a class="sidebar-control sidebar-main-hide hidden-xs legitRipple" data-popup="tooltip"
+                <a id="HideMenu" class="sidebar-control sidebar-main-hide hidden-xs legitRipple" data-popup="tooltip"
                    data-placement="bottom" data-container="body" dragonlanguage title="MESSAGE.i('navbar.HideMenu')">
                     <i class="icon-lan3"></i>
                 </a>
             </li>
             <li>
-                <a class="sidebar-control" onclick="STORAGE.clearAll()" data-popup="tooltip"
+                <a id="RestoreallConfiguration" class="sidebar-control" onclick="STORAGE.clearAll()" data-popup="tooltip"
                    data-placement="bottom" data-container="body" dragonlanguage
                    title="MESSAGE.i('navbar.RestoreallConfiguration')">
                     <i class="icon-loop"></i>
                     <span class="hidden-lg"><language>MESSAGE.i('navbar.RestoreallConfiguration')</language></span>
                 </a>
             </li>
-
             <li ng-if="DRAGON.features.configuration===true && (DRAGON.isSuper || DRAGON.isAdmin)">
-                <a class="sidebar-control" onclick="CONFIGURATION.OPEN()" data-popup="tooltip"
+                <a id="configuration" class="sidebar-control" onclick="CONFIGURATION.OPEN()" data-popup="tooltip"
                    data-placement="bottom" data-container="body" dragonlanguage
                    title="MESSAGE.ic('mono.dragon_configuration')">
                     <i class=" icon-cog2"></i>
                 </a>
             </li>
+            <li id="helpOptions">
+                <a onclick="showAccess()" class="dropdown-toggle legitRipple sidebar-control" aria-expanded="false">
+                    <i class="icon-accessibility2" title="Opciones de ayuda"></i>
+                    <span class="hidden-lg"><language>Opciones de accesibilidad</language></span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-left" style="min-width: 290px !important;">
+                    <a title="Cerrar" onclick="showAccess()" style="color: #000 !important; margin-left: 256px;">
+                        <i style="font-size: 20px !important;" class="icon-cross"></i>
+                    </a>
+                    <li id="keyboard" title="Navegar por teclado">
+                        <a onclick="keydownOn()" style="color: #000 !important;">
+                            <i class="icon-keyboard"></i>
+                            Navegar por teclado
+                        </a>
+                    </li>
+                    <li id="grayscale" title="Escala de Grises">
+                        <a onclick="grayscaleOn()" style="color: #000 !important;">
+                            <i class="icon-eye-blocked"></i>
+                            Escala de Grises
+                        </a>
+                    </li>
+                    <li id="zoom1" title="Lupa Agrandar">
+                        <a id="zoom-in" style="color: #000 !important;">
+                            <i class="icon-zoomin3"></i>
+                            Lupa Agrandar
+                        </a>
+                    </li>
+                    <li id="zoom2" title="Lupa Minimizar">
+                        <a id="zoom-out" style="color: #000 !important;">
+                            <i class="icon-zoomout3"></i>
+                            Lupa Minimizar
+                        </a>
+                    </li>
+                    <li id="animation2" title="Bloquear Animaciones">
+                        <a onclick="animationOn()" style="color: #000 !important;">
+                            <i><img src="files/dragon_configuration/icon_image/lightbulb.png" alt="Verificar la ruta de la imagen" width="23"
+                                    style="margin-left: -4px;margin-top: -4px;"></i>
+                            Bloquear Animaciones
+                        </a>
+                    </li>
 
+                    <li title="Restablecer opciones de accesibilidad">
+                        <a onclick="STORAGE.restore()" style="color: #000 !important;">
+                            <i class="icon-loop"></i>
+                            Restablecer opciones de accesibilidad
+                        </a>
+                    </li>
+
+                </ul>
+
+            </li>
+            <li class="edit-hide">
+                <a id="editMenu" class="sidebar-control" onclick="editar_menu()" data-popup="tooltip"
+                   data-placement="bottom" data-container="body" dragonlanguage>
+                    <i class="icon-menu" title="Ativar modo actualización de menú"></i>
+                    <span class="hidden-lg"><language>Ativar modo actualización de menú</language></span>
+                </a>
+
+            </li>
+            <li style="display: none" class="editar-menu">
+                <a class="sidebar-control" onclick="cancelar_edicion()" data-popup="tooltip"
+                   data-placement="bottom" data-container="body" dragonlanguage>
+                    <i class="icon-checkmark-circle2" title="Desactivar modo actualización de menú"></i>
+                    <span class="hidden-lg"><language>Desactivar modo actualización de menú</language></span>
+                </a>
+            </li>
             <li ng-if="DRAGON.mode==='developer'"
                 class="dropdown dropdownwithoptions" dragonlanguage="">
                 <a class="dropdown-toggle legitRipple" data-toggle="dropdown" aria-expanded="false">
@@ -325,3 +389,152 @@
     </div>
 </div>
 <!-- /main navbar -->
+<script>
+    //function show and hide dropdown
+    function showAccess(){
+        var bool = false;
+        bool =  $('#helpOptions').hasClass("open");
+        if(bool){
+            $('#helpOptions').removeClass("open");
+        }else
+            $('#helpOptions').addClass("open");
+    }
+
+    //function zoom
+    $('#zoom-in').click(function() {
+        updateZoom(0.1);
+        $('#zoom1').addClass("active2");
+        $('#zoom2').removeClass("active2");
+    });
+    $('#zoom-out').click(function() {
+        updateZoom(-0.1)
+        $('#zoom2').addClass("active2");
+        $('#zoom1').removeClass("active2");
+    });
+    zoomLevel = 1;
+    var updateZoom = function(zoom) {
+        zoomLevel += zoom;
+        $('body').css({ zoom: zoomLevel, '-moz-transform': 'scale(' + zoomLevel + ')' });
+    }
+
+    //function zoom keydown
+    keydownOnOf = STORAGE.get('keydownOn');
+    function keydownOn(){
+        if(keydownOnOf || !STORAGE.exist('keydownOn')){
+            document.onkeydown = function (e) {
+                if (e.ctrlKey && e.altKey && e.which == 76){
+                    console.log("Entre");
+                    $("#LiteMenu").click();
+                }
+                if (e.ctrlKey && e.altKey && e.which == 72){
+                    $("#HideMenu").click();
+                }
+                if (e.ctrlKey && e.altKey && e.which == 82){
+                    $("#RestoreallConfiguration").click();
+                }
+                if (e.ctrlKey && e.altKey && e.which == 67){
+                    $("#configuration").click();
+                }
+                if (e.which == 27){
+                    $("#closeModal").click();
+                }
+            };
+            keydownOnOf = false;
+            $('#keyboard').addClass("active2");
+            STORAGE.add('keydownOn', true);
+        }else{
+            document.onkeydown = function (e) {
+                if (e.ctrlKey && e.altKey && e.which == 76){
+                }
+                if (e.ctrlKey && e.altKey && e.which == 72){
+                }
+                if (e.ctrlKey && e.altKey && e.which == 82){
+                }
+                if (e.ctrlKey && e.altKey && e.which == 67){
+                }
+                if (e.which == 27){
+                }
+            };
+            keydownOnOf = true;
+            $('#keyboard').removeClass("active2");
+            STORAGE.add('keydownOn', false);
+        }
+    }
+
+    //function grayscale
+    grayscaleOnOf = STORAGE.get('grays');
+    function grayscaleOn() {
+        if(grayscaleOnOf || !STORAGE.exist('grays')){
+            $('body').css("filter","grayscale(1)");
+            grayscaleOnOf = false;
+            $('#grayscale').addClass("active2");
+            STORAGE.add('grays', true);
+        }else{
+            $('body').css("filter","grayscale(0)");
+            grayscaleOnOf = true;
+            $('#grayscale').removeClass("active2");
+            STORAGE.add('grays', false);
+        }
+    }
+
+    //function animation
+    animationOnOf = STORAGE.get('animation');
+    function animationOn() {
+        if(!animationOnOf){
+            STORAGE.add('animation', true);
+            $('#animation2').removeClass("active2");
+        }else{
+            STORAGE.add('animation', false);
+            $('#animation2').addClass("active2");
+        }
+        location.reload();
+    }
+
+    //execute default functions
+    if(STORAGE.exist('keydownOn')){
+        keydownOn();
+    }
+    if(STORAGE.exist('grays')){
+        grayscaleOn();
+    }
+    $(document).ready(function(){
+        if(!animationOnOf){
+            $('#animation2').removeClass("active2");
+        }else{
+            $('#animation2').addClass("active2");
+        }
+    });
+
+    var editar_menu= function () {
+        $(".edit-hide").hide();
+        $(".editar-menu").show();
+    }
+
+    var restaurar_menu = function () {
+        SWEETALERT.loading({message: "Restaurando..."});
+        location.reload();
+    }
+
+    var cancelar_edicion = function () {
+        $(".editar-menu").hide();
+        $(".edit-hide").show();
+    }
+
+    var guardar_menu = function () {
+        SWEETALERT.confirm({
+            message: "Desea guardar los cambios realizados en el menú?",
+            confirm: function () {
+                // DRAGON.refreshAngular();
+                var jsonMenu = DRAGON.menus;
+                console.log(jsonMenu);
+                SWEETALERT.loading({message: "Guardando..."});
+                DRAGONAPI.ajax.post('/menu/edit', {json: JSON.stringify(jsonMenu)}, function () {
+                    SWEETALERT.loading({message: MESSAGE.ic('mono.saving')});
+                    setTimeout(() => {
+                        location.reload();
+                    }, 5000);
+                });
+            }
+        });
+    }
+</script>

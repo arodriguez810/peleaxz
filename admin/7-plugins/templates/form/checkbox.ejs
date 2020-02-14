@@ -3,8 +3,7 @@ if (DATA.name !== undefined) {
     var name, model, opts;
     name = DATA.name;
     model = DATA.model;
-if (DATA.opts !== "")
-        opts = eval("(" + DATA.opts + ")");
+    opts = DATA.opts;
 }
 var name = name || "";
 var options = {
@@ -22,6 +21,17 @@ var options = {
 options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g, '_');
 options.icon.spyce = options.icon.class === "none" ? "remove-input-space" : "";
 options.model = options.model ? options.model : false;
+popopme = function(entity, field){
+    var prueba = HINTS.filter(d => {
+        return d.entities === entity && d.field_names === field
+    })
+    function sortArray() {
+        options.mess = prueba.sort(function(a, b){return b.id - a.id});
+    }
+    sortArray();
+    //console.log("Hola", options.mess);
+}
+popopme(model, nameclean);
 var toclient = JSON.stringify(options);
 %>
 <script>
@@ -32,6 +42,21 @@ var toclient = JSON.stringify(options);
     if (MESSAGE.exist('columns.<%= nameclean %>')) {
         <%= model %>.
         form.options.<%= name %>.text = MESSAGE.ic('columns.<%= nameclean %>');
+    }
+    if(new SESSION().isLogged()) {
+        <%= model %>.form.options.<%= name %>.mess = <%= model %>.form.options.<%= name %>.mess.filter(d => {
+            return d.company == new SESSION().current().compania_id;
+        })
+        if(<%= model %>.form.options.<%= name %>.mess.length == 0){
+            delete <%= model %>.form.options.<%= name %>.mess
+        }
+        if (<%= model %>.form.options.<%= name %>.mess){
+            <%= model %>.form.options.<%= name %>.popover = {
+                title: <%= model %>.form.options.<%= name %>.mess[0].field_names.replace('_',' '),
+                content: <%= model %>.form.options.<%= name %>.mess[0].text,
+                label: MESSAGE.exist('columns.<%= nameclean %>') ? MESSAGE.i('columns.<%= nameclean %>') : <%= model %>.form.options.<%= name %>.mess[0].field_names.replace('_',' ')
+            }
+        }
     }
     var isReadProgram = <%= model %>.form.isReadOnly('<%= name %>');
     if (isReadProgram !== false) {
@@ -50,6 +75,9 @@ var toclient = JSON.stringify(options);
 <label>
 
     {{<%= model %>.form.options.<%= name %>.text}}
+    <i ng-show="<%= model %>.form.options.<%= name %>.mess.length>0"
+       id="popover<%= model %>_<%= nameclean %>" class="icon-help">
+    </i>
 
 </label>
 <div>
@@ -61,11 +89,6 @@ var toclient = JSON.stringify(options);
                 id="<%= model %>_<%= nameclean %>"
                 class="switchery"
         />
-        <% if(options.popover){ %>
-            <i
-                    id="popover<%= model %>_<%= nameclean %>" class="icon-help">
-            </i>
-        <% } %>
     </div>
     <div class="checkbox checkbox-switchery" ng-show="<%= model %>.form.options.<%= name %>.disabled">
 
@@ -76,8 +99,8 @@ var toclient = JSON.stringify(options);
                readonly="readonly"
                disabled="disabled"
         />
-
     </div>
+
 </div>
 
 <script>
@@ -87,18 +110,7 @@ var toclient = JSON.stringify(options);
     {
         checkbox<%= model %>_<%= nameclean %>.setPosition(<%= model + "." + name %>);
     }
-    <% if(options.popover){ %>
-    $('#popover<%= model %>_<%= nameclean %>').popover({
-        container: 'body',
-        title: eval("`" +<%= model %>.form.options.<%= name %>.popover.title + "`"),
-        content
-    :
-    eval("`" +<%= model %>.form.options.<%= name %>.popover.content + "`"
-    ),
-    trigger: 'click'
-    })
-    ;
-    <% } %>
+
     $("#<%= model %>_<%= nameclean %>").change(function (val) {
         <%= model %>.<%= name %> = $(this).prop("checked");
         STEP.register({
@@ -106,10 +118,21 @@ var toclient = JSON.stringify(options);
             action: "Change Checkbox",
             field: "<%= name %>",
             value: <%= model %>.<%= name %>
-    })
+        })
         ;
         <%= model %>.
         refreshAngular();
     });
+
+    if(new SESSION().isLogged()) {
+        if (<%= model %>.form.options.<%= name %>.mess){
+            $('#popover<%= model %>_<%= nameclean %>').popover({
+                container: 'body',
+                title: eval("`" +<%= model %>.form.options.<%= name %>.popover.label + "`"),
+                content:eval("`" +<%= model %>.form.options.<%= name %>.popover.content + "`"),
+            trigger: 'click'
+        });
+        }
+    }
     <%= model %>.triggers.table.after.control("<%= nameclean %>");
 </script>

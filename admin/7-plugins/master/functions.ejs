@@ -175,6 +175,31 @@ addMenu([], CONFIG.menus);
         });
 
     }
+    $(function() {
+        $.sessionTimeout({
+            keepAlive: false,
+            warnAfter: (CONFIG.users.expire * 60000),
+            redirAfter: ((CONFIG.users.expire * 60000) * 1.5).toString(),
+            onWarn: function () {
+                SWEETALERT.lastLaert = myswal({
+                    title: MESSAGE.i('mono.timeouttitle'),
+                    html:  MESSAGE.i("mono.timeoutbody"),
+                    showCancelButton: true,
+                    confirmButtonText: MESSAGE.i("mono.extendsession"),
+                    cancelButtonText: MESSAGE.i("mono.logmeout")
+                }).then(result => {
+                    console.log(result);
+                    if (result.dismiss == "cancel"){
+                        new SESSION().destroy();
+                        location.reload();
+                    }
+                });
+            },
+            onRedir: function () {
+                new SESSION().terminated();
+            }
+        });
+    });
 </script>
 
 <script>

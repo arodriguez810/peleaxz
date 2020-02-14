@@ -293,7 +293,7 @@ EXPORT = {
                                                         action: function () {
                                                             SWEETALERT.loading({title: MESSAGE.ic('mono.downloading') + " PDF..."});
                                                             if (direct) {
-                                                                DRAGONAPI.ajax.formpost('post/templates/pdf/clean',
+                                                                DRAGONAPI.ajax.formpost('/post/templates/pdf/clean',
                                                                     {
                                                                         pdf: `PDF ${dataToExport.length} ${MESSAGE.i('mono.rows')} ${MESSAGE.i('mono.of')} ${$scope.plural} ${MESSAGE.i('mono.to')} ${type}.pdf`,
                                                                         content: $scope.export.Preview
@@ -301,7 +301,7 @@ EXPORT = {
 
                                                                     });
                                                             } else {
-                                                                DRAGONAPI.ajax.formpost('post/templates/pdf/table',
+                                                                DRAGONAPI.ajax.formpost('/post/templates/pdf/table',
                                                                     {
                                                                         pdf: `PDF ${dataToExport.length} ${MESSAGE.i('mono.rows')} ${MESSAGE.i('mono.of')} ${$scope.plural} ${MESSAGE.i('mono.to')} ${type}.pdf`,
                                                                         content: JSON.stringify(dataToExport),
@@ -361,7 +361,7 @@ EXPORT = {
                                                         action: function () {
                                                             SWEETALERT.loading({title: MESSAGE.ic('mono.building')});
                                                             if (direct) {
-                                                                DRAGONAPI.ajax.formpost('post/templates/docx/clean',
+                                                                DRAGONAPI.ajax.formpost('/post/templates/docx/clean',
                                                                     {
                                                                         docx: `DOC ${dataToExport.length} ${MESSAGE.i('mono.rows')} ${MESSAGE.i('mono.of')} ${$scope.plural} ${MESSAGE.i('mono.to')} ${type}.docx`,
                                                                         content: $scope.export.ToExport
@@ -369,7 +369,7 @@ EXPORT = {
 
                                                                     });
                                                             } else {
-                                                                DRAGONAPI.ajax.formpost('post/templates/pdf/table',
+                                                                DRAGONAPI.ajax.formpost('/post/templates/pdf/table',
                                                                     {
                                                                         docx: `DOC ${dataToExport.length} ${MESSAGE.i('mono.rows')} ${MESSAGE.i('mono.of')} ${$scope.plural} ${MESSAGE.i('mono.to')} ${type}.docx`,
                                                                         content: JSON.stringify(dataToExport),

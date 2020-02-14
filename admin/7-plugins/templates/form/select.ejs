@@ -79,6 +79,7 @@ var toclient = JSON.stringify(options);
     <%= model %>.form.schemas.insert["<%= name %>"] = FORM.schemasType.selectMultiple;
     <%= model %>.form.schemas.select["<%= name %>"] = `{
                     toTable: "<%= options.table %>",
+                    toDeleteTable: "<%= (options.get || {tableDelete: options.table}).tableDelete || options.table %>",
                     text: MESSAGE.i('actions.Loading'),
                     fields: {
                         <%= options.get.fieldTo %>: "$id",

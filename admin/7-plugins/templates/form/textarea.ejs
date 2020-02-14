@@ -3,8 +3,7 @@ if (DATA.name !== undefined) {
     var name, model, opts;
     name = DATA.name;
     model = DATA.model;
-if (DATA.opts !== "")
-        opts = eval("(" + DATA.opts + ")");
+    opts = DATA.opts;
 }
 var name = name || "";
 var options = {
@@ -22,8 +21,7 @@ var options = {
     disabled: false,
     autocomplete: '',
     posttype: "text",
-    code: false,
-    //maxlength: 10,
+    maxlength: -1
 
 };
 options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g, '_');
@@ -31,14 +29,39 @@ options.autocomplete = options.autocomplete ? "autocomplete='Off'" : '';
 options.icon.spyce = options.icon.class === "none" ? "remove-input-space" : "";
 options.format = options.format ? options.format : false;
 options.model = options.model ? options.model : false;
+
+popopme = function(entity, field){
+    var prueba = HINTS.filter(d => {
+        return d.entities === entity && d.field_names === field
+    })
+    function sortArray() {
+        options.mess = prueba.sort(function(a, b){return b.id - a.id});
+    }
+    sortArray();
+    //console.log("Hola", options.mess);
+}
+popopme(model, nameclean);
 var toclient = JSON.stringify(options);
 %>
 <script>
     <%= model %>.triggers.table.before.control("<%= nameclean %>");
     <%= model %>.form.registerField("<%= name %>", "<%= toclient %>");
     if (MESSAGE.exist('columns.<%= nameclean %>')) {
-        <%= model %>.
-        form.options.<%= name %>.placeholder = MESSAGE.ic('columns.<%= nameclean %>');
+        <%= model %>.form.options.<%= name %>.placeholder = MESSAGE.ic('columns.<%= nameclean %>');
+    }
+    if(new SESSION().isLogged()) {
+        <%= model %>.form.options.<%= name %>.mess = <%= model %>.form.options.<%= name %>.mess.filter(d => {
+            return d.company == new SESSION().current().compania_id;
+        })
+        if(<%= model %>.form.options.<%= name %>.mess.length == 0){
+            delete <%= model %>.form.options.<%= name %>.mess
+        }
+        if (<%= model %>.form.options.<%= name %>.mess){
+            <%= model %>.form.options.<%= name %>.popover = {
+                title: <%= model %>.form.options.<%= name %>.mess[0].field_names,
+                content: <%= model %>.form.options.<%= name %>.mess[0].text
+            }
+        }
     }
 </script>
 <div class="<%= options.icon.spyce %> form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-<%= options.icon.position %>"
@@ -47,16 +70,9 @@ var toclient = JSON.stringify(options);
             id="label<%= model %>_<%= nameclean %>"
             class="control-label is-visible animate" style="color:#000000 !important;">
         {{::<%= model %>.form.options.<%= name %>.placeholder}}
-        <% if(options.popover){ %>
-            <i
-                    id="popover<%= model %>_<%= nameclean %>" class="icon-help">
-            </i>
-        <% } %>
-        <% if(options.speech){ %>
-            <i
-                    id="speech<%= model %>_<%= nameclean %>" class="icon-reading" style="cursor: pointer">
-            </i>
-        <% } %>
+        <i ng-show="<%= model %>.form.options.<%= name %>.mess.length>0"
+           id="popover<%= model %>_<%= nameclean %>" class="icon-help">
+        </i>
     </label>
     <textarea rows=""
               ng-model="<%= model + "." + name %>" name="<%= model %>_<%= nameclean %>"
@@ -89,32 +105,26 @@ var toclient = JSON.stringify(options);
 </div>
 <script>
     $(document).ready(function () {
-
-        $("#speech<%= model %>_<%= nameclean %>").click(function () {
-            DRAGONAPI.ajax.speech(
-                $("#<%= model %>_<%= nameclean %>").val(),
-                $("#speech<%= model %>_<%= nameclean %>")
-            );
+        if(new SESSION().isLogged()) {
+            if (<%= model %>.form.options.<%= name %>.mess){
+                $('#popover<%= model %>_<%= nameclean %>').popover({
+                    container: 'body',
+                    title: eval("`" + <%= model %>.form.options.<%= name %>.popover.title + "`"),
+                    content: eval("`" +<%= model %>.form.options.<%= name %>.popover.content + "`"),
+                trigger: 'click'
+            });
+            }
+        }
+        <%= model %>.form.options.<%= name %>.autosize = false;
+        <%= model %>.triggers.table.after.control("<%= nameclean %>");
+        <% if(options.format){ %>
+        $('[name="<%= model %>_<%= nameclean %>"]').formatter({
+            pattern: '<%= options.format %>'
         });
-
-        <% if(options.popover){ %>
-
-        $('#popover<%= model %>_<%= nameclean %>').popover({
-            container: 'body',
-            title: eval("`" +<%= model %>.form.options.<%= name %>.popover.title + "`"),
-            content
-    :
-        eval("`" +<%= model %>.form.options.<%= name %>.popover.content + "`"
-    ),
-        trigger: 'click'
-    })
-        ;
         <% } %>
-        <%= model %>.
-        form.options.<%= name %>.autosize = false;
-        <%= model %>.
-        triggers.table.after.control("<%= nameclean %>");
-
+        <% if(options.maxlength){ %>
+        //$('[name="<%= model %>_<%= nameclean %>"]').maxlength();
+        <% } %>
         function resizeme<%= model %>_<%= nameclean %>() {
             if (!DSON.oseaX($('[name="<%= model %>_<%= nameclean %>"]').val().lines().length > 1)) {
                 if (<%= model %>.
@@ -174,21 +184,7 @@ var toclient = JSON.stringify(options);
                 $('[name="<%= model %>_<%= nameclean %>"]').html(isReadProgram)
             }
         }
-        if(<%= model %>.form.options.<%= name %>.code!==false){
-            window.editor = CodeMirror.fromTextArea(document.getElementById('<%= model %>_<%= nameclean %>'), {
-                mode: <%= model %>.form.options.<%= name %>.code,
-                smartIndent: true,
-                lineNumbers: true,
-                matchBrackets: true,
-                autofocus: true,
-                extraKeys: {"Ctrl-Space": "autocomplete"},
-                onChange: function (cm) {
 
-                }
-            }).on('change', cm => {
-                <%= model %>.<%= name %> = cm.getValue();
-            });
-        }
 
     });
 </script>

@@ -259,16 +259,16 @@ TABLEEVENT = {
                         SWEETALERT.loading({
                             message: `${MESSAGE.ic('mono.DeletingMultipleRows')} ${$scope.procesingRow} ${MESSAGE.i('mono.of')} ${$scope.procesingRowFor}`
                         }, false);
-
                     if ($scope.procesingRow === $scope.procesingRowFor || $scope.procesingRowFor === 0) {
-                        $scope.procesingRow = 0;
-                        $scope.procesingRowFor = 0;
                         $scope.refresh();
                         SWEETALERT.stop();
                         $scope.reorderItems();
                         NOTIFY.success(`${$scope.singular} ${MESSAGE.i('mono.deleted')}`);
-
-                        $scope.backPage();
+                        if ($scope.procesingRow === parseInt($scope.records.count)){
+                            $scope.backPage();
+                        }
+                        $scope.procesingRow = 0;
+                        $scope.procesingRowFor = 0;
                     } else {
                         if (multiple) {
                             $scope.deleteRow();

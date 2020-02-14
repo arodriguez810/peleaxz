@@ -29,12 +29,12 @@ var options = {
 
 
 options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g, '_');
-options.icon.spyce = options.icon.class === "none" ? "remove-input-space" : "";
+options.icon = {class: "calculator4", position: "left"};
 options.format = options.format ? options.format : false;
 options.model = options.model ? options.model : false;
 popopme = function(entity, field){
     var prueba = HINTS.filter(d => {
-        return d.entities === entity && (d.field_names === field || d.cousin === field)
+        return d.entities === entity && d.field_names === field
     })
     function sortArray() {
         options.mess = prueba.sort(function(a, b){return b.id - a.id});
@@ -69,7 +69,6 @@ var toclient = JSON.stringify(options);
             }
         }
     }
-
 </script>
 <div class="<%= options.icon.spyce %> form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-{{::<%= model %>.form.options.<%= name %>.icon.position}}"
      id="input<%= model %>_<%= nameclean %>">
@@ -88,16 +87,16 @@ var toclient = JSON.stringify(options);
             maxlength="{{<%= model %>.form.options.<%= name %>.maxlength}}"
             <%= !options.autocomplete ? "autocomplete=off" : "" %>
             type="text"
-            onkeypress="return DSON.isNumberKey(event,this)"
+            onkeypress="return DSON.isNumberKeyNegative(event,this)"
+            onCopy="return false" onDrag="return false" onDrop="return false" onPaste="return false"
             ng-model-onblur
             class="form-control"
             style="padding-left: 31px !important;"
             placeholder="{{::<%= model %>.form.options.<%= name %>.inputPlaceholder}}">
 
-    <div class="form-control-feedback money" style="top: 29px; font-size: 14px;">
-        <i class="icon-{{ <%= model %>.form.options.<%= name %>.disabled ? 'lock2' : 'cash' }} text-secundary">
+    <div class="form-control-feedback" ng-if="<%= model %>.form.options.<%= name %>.icon.class!=='none'">
+        <i class="icon-{{ <%= model %>.form.options.<%= name %>.disabled ? 'lock2' : 'calculator4' }} text-secundary">
 
-        </i>
         </i>
     </div>
     <span ng-if="<%= model %>.form.options.<%= name %>.helptext!=''"
@@ -126,24 +125,18 @@ var toclient = JSON.stringify(options);
     <% if(options.maxlength){ %>
     //$('[name="<%= model %>_<%= nameclean %>"]').maxlength();
     <% } %>
-    if(LAN.money(this.value).value!=0)
-        $('[name="<%= model %>_<%= nameclean %>"]').focus(function () {
-            <!--$('[name="<= model >_<= nameclean >"]').val(LAN.money(this.value).value);-->
-        });
+
     $('[name="<%= model %>_<%= nameclean %>"]').blur(function () {
-        <%= model %>.<%= name %>_DragonClean = LAN.money(this.value).value;
+        <%= model %>.<%= name %>_DragonClean =this.value.replace(/(?!^)-/g, '').replace(/^,/, '').replace(/^-,/, '-');
         STEP.register({
             scope: "<%= model %>",
             action: "Change Text",
             field: "<%= name %>",
             value: <%= model %>.<%= name %>
         });
-        if(this.value) {
-            $('[name="<%= model %>_<%= nameclean %>"]').val(LAN.money(this.value).format(false));
-        }
+        $('[name="<%= model %>_<%= nameclean %>"]').val(this.value.replace(/(?!^)-/g, '').replace(/^,/, '').replace(/^-,/, '-'));
     });
 
-    <%= model %>.<%= name %>_DragonClean = <%= model %>.<%= name %>;
 
     if(new SESSION().isLogged()) {
         if (<%= model %>.form.options.<%= name %>.mess){

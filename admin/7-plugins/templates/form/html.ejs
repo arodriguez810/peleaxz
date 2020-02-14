@@ -3,8 +3,7 @@ if(DATA.name!==undefined){
     var name, model, opts;
     name = DATA.name;
     model = DATA.model;
-if (DATA.opts !== "")
-        opts = eval("(" + DATA.opts + ")");
+    opts = DATA.opts;
 }
 var name  = name || "";
 var options = {
@@ -78,12 +77,12 @@ var toclient = JSON.stringify(options);
 <script>
     $(document).ready(function () {
         <% if(options.popover){ %>
-                $('#popover<%= model %>_<%= nameclean %>').popover({
-                    container: 'body',
-                    title: eval("`" +<%= model %>.form.options.<%= name %>.popover.title + "`"),
-                    content:eval("`" +<%= model %>.form.options.<%= name %>.popover.content + "`"),
-                trigger: 'click'
-            });
+        $('#popover<%= model %>_<%= nameclean %>').popover({
+            container: 'body',
+            title: eval("`" +<%= model %>.form.options.<%= name %>.popover.title + "`"),
+            content:eval("`" +<%= model %>.form.options.<%= name %>.popover.content + "`"),
+        trigger: 'click'
+    });
         <% } %>
         var isReadProgram = <%= model %>.form.isReadOnly('<%= name %>');
         if(isReadProgram!==false){
@@ -115,9 +114,9 @@ var toclient = JSON.stringify(options);
         $('[name="<%= model %>_<%= nameclean %>"]').on('summernote.change', function(we, contents, $editable) {
 
             STEP.register({
-                    scope: "<%= model %>",
-                    action: "Change HTML",
-                    field: "<%= name %>"
+                scope: "<%= model %>",
+                action: "Change HTML",
+                field: "<%= name %>"
             });
             <%= model %>.<%= name %> = $(this).val();
         });

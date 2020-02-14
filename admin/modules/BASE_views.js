@@ -379,14 +379,14 @@ exports.loadEJSSimple = function (folder, prefix, params) {
                                 }
                                 var runnings = `module.exports = {
                                     header: {
-                                        height: '3cm', 
+                                        height: '5cm', 
                                         contents: function (page) {
                                             return '${headHtml.replace(/(\r\n|\n|\r)/gm, "")}';
                                         }
                                     },
         
                                     footer: {
-                                        height: '3cm', 
+                                        height: '5cm', 
                                         contents: function (page) {
                                             return '${footerHtml.replace(/(\r\n|\n|\r)/gm, "")}';
                                         }
@@ -770,6 +770,38 @@ exports.init = function (params) {
             res.json({root: realPath, files: [], count: 0});
         }).catch(function () {
 
+        });
+    });
+    params.app.post("/menu/edit/", function (req, res) {
+        params.secure.check(req, res).then(function (token) {
+            if (!token.apptoken) {
+                res.json(token);
+                return;
+            }
+
+            // var moment = require('moment');
+            // var date = moment().format();
+            var fs = params.fs || require("fs");
+            var configFolder = params.folders.menu;
+            var file = __dirname + '/../' + configFolder;
+
+            req.body.json = params.S(req.body.json).replaceAll("&#39;", "'").s;
+            req.body.json = params.S(req.body.json).replaceAll("&#34;", "\"").s;
+            req.body.json = params.S(req.body.json).replaceAll("&lt;", "<").s;
+            req.body.json = params.S(req.body.json).replaceAll("&gt;", ">").s;
+
+            console.log(file, req.body.json);
+
+            fs.writeFile(file, "{\"menus\":" + req.body.json + "}", function (err, data) {
+                if (err) {
+                    res.json({error: err});
+                }
+            });
+
+            res.json({error: false, saved: true});
+
+        }).catch(function () {
+            res.json({error: true});
         });
     });
     params.app.get("/generalfiles/api/", function (req, res) {

@@ -243,5 +243,10 @@
   "sorryedit": "Lo sentimos éste fue editado por ${user.fullName()}, quieres tomar sus cambios?",
   "tasks": "tareas",
   "old_data": "Data Anterior",
-  "actual_data": "Data Actual"
+  "actual_data": "Data Actual",
+  "auditof": "Auditoría de ",
+  "timeouttitle": "¿Sigues ahí?",
+  "timeoutbody": "Parece que has estado fuera de la aplicación durante mucho tiempo, debido a esto la sesión pronto se cerrará. ¿Deseas continuar conectado?",
+  "extendsession": "Extender la sessión",
+  "logmeout": "Desconectame!"
 }

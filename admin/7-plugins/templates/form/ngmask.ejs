@@ -3,8 +3,7 @@ if (DATA.name !== undefined) {
     var name, model, opts;
     name = DATA.name;
     model = DATA.model;
-if (DATA.opts !== "")
-        opts = eval("(" + DATA.opts + ")");
+    opts = DATA.opts;
 }
 var name = name || "";
 var options = {
@@ -69,7 +68,7 @@ var toclient = JSON.stringify(options);
             type="text"
             autocomplete="off"
             ng-model-onblur
-            <%- options.mask[0] === '`' ? ("mask=\"$eval(" + options.mask + ")\"") : ("mask=\"" + options.mask + "\"") %>
+            mask="<%= options.mask %>"
             restrict="<%= options.restrict %>"
             repeat="<%= options.repeat %>"
             clean="<%= options.clean %>"
@@ -121,7 +120,7 @@ var toclient = JSON.stringify(options);
             action: "Change Format Text",
             field: "<%= name %>",
             value: <%= model %>.<%= name %>
-    })
+        })
         ;
     });
 

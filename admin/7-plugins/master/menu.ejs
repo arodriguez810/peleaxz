@@ -1,4 +1,35 @@
 <!-- Main sidebar -->
+<style>
+    .icon-size{
+        font-size: 12px !important;
+        margin-right: 0px !important;
+        padding: 0 !important;
+    }
+    .remove-content{
+        float: right !important;
+    }
+    .form-menu{
+        margin-left: 15px !important;
+        margin-right: 15px !important;
+    }
+    .form-menu input{
+        padding-top: 0px !important;
+    }
+    .form-menu .row{
+        margin-top: 5px !important;
+    }
+    .editar-menu .delete-hide{
+        display: none;
+    }
+    .editar-menu:hover .delete-hide{
+        display: block;
+    }
+    .btn-crud{
+        margin-right: 10px;
+        display: none;
+        color: white;
+    }
+</style>
 <div id="dragonmenu" class="sidebar sidebar-main  sidebar-expand-md  bg-<%= COLOR.extra %>-700"
      ng-show="DRAGON.isLogged && !DRAGON.isClient">
 
@@ -19,57 +50,316 @@
                     }
                 </style>
 
-                <ul id="dragonmenu"
-                    class="navigation navigation-main navigation-accordion dragon-menu bg-<%= COLOR.extra %>-700">
+                <ul id="dragonmenuSort" data-nivel="1" class="sort-menu navigation navigation-main navigation-accordion dragon-menu bg-<%= COLOR.extra %>-700 ">
 
-                    <li ng-repeat="(key, menu) in DRAGON.myMenu() track by key" class="{{menu.class}}">
-                        <a data-modal="{{menu.modal}}" href="{{menu.href}}"
-                           class="bg-extra-700 {{menu.modal?'modalmenu':''}}">
+                    <li ng-repeat="(key, menu) in DRAGON.myMenu() track by key" class="{{menu.class}} jsonData"
+                        data-text="{{menu.text}}" data-href="{{menu.href}}"  data-icon="{{menu.icon}}" data-modal="{{menu.modal}}" data-menus="{{menu.menus}}">
+                        <a  data-modal="{{menu.modal}}" href="{{menu.href}}"
+                            class="bg-extra-700 {{menu.modal?'modalmenu':''}} edit-hide">
                             <i class="icon-{{menu.icon}}"></i>
                             <span>
                                 {{DRAGON.menuLabel(menu)}}
                             </span>
                         </a>
-                        <ul ng-if="menu.menus">
-                            <li ng-repeat="(key, segundo) in menu.menus track by key" class="{{segundo.class}}">
+
+                        <a style="display: none" data-modal="{{menu.modal}}" title="Editar menú" ng-dblclick="DRAGON.show_form('form-menu-edit',$index)" class="bg-extra-700 editar-menu">
+                            <i class="icon-{{menu.icon}}"></i>
+                            <i title="Eliminar menú" ng-click="DRAGON.remove_menu('primero',key)" class="remove-content delete-hide bg-extra-700"><i class="icon-size icon-trash"></i></i>
+                            <i title="Desactivar modo actualización de menú" onclick="cancelar_edicion()" class="remove-content delete-hide bg-extra-700"><i class="icon-size icon-cancel-circle2"></i></i>
+                            <i title="Guardar cambios" onclick="guardar_menu()" class="remove-content delete-hide bg-extra-700"><i class="icon-size icon-checkmark4"></i></i>
+                            <span>
+                                {{DRAGON.menuLabel(menu)}}
+                            </span>
+                        </a>
+
+                        <div class="form-menu-edit{{$index}} form-menu show-form" style="display: none">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="remove-input-space form-group-material form-group has-feedback has-feedback-left">
+                                        <label class="control-label is-visible animate ng-binding">Nombre</label>
+                                        <input class="form-control" type="text" value="{{DRAGON.menus[key].text}}" name="text{{'form-menu-edit' + $index}}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="remove-input-space form-group-material form-group has-feedback has-feedback-left">
+                                        <label class="control-label is-visible animate ng-binding">URL</label>
+                                        <input class="form-control" type="text" value="{{DRAGON.menus[key].href}}" name="href{{'form-menu-edit' + $index}}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="remove-input-space form-group-material form-group has-feedback has-feedback-left">
+                                        <label class="control-label is-visible">Iconos</label>
+                                        <select  id="icon{{'form-menu-edit' + $index}}" name="icon{{'form-menu-edit' + $index}}">
+                                            <option value="">Seleccione un icono</option>
+                                            <option ng-repeat="icon in DRAGON.iconList" ng-selected= "{{icon == DRAGON.menus[key].icon}}" data-icon="{{icon}}" value="{{icon}}" >{{icon}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12" style="text-align: right;">
+                                    <input class="form-check-input" type="checkbox" name="modal_full{{'form-menu-edit' + $index}}"  ng-checked="DRAGON.menus[key].modal">
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        Abrir menú en un modal
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row" style="text-align: center">
+                                <button type="button" ng-click="DRAGON.edit_menu('primero', 'form-menu-edit', $index, key)" class="swal2-confirm btn btn-xs btn-success" aria-label="">Guardar</button>
+                            </div>
+                        </div>
+
+                        <ul data-nivel="2" class="sort-menu" ng-if="menu.menus">
+                            <li ng-repeat="(key2, segundo) in menu.menus track by key2" ng-init="innerIndex2=$parent.$index + '' + $index" class="{{segundo.class}}"
+                                data-text="{{segundo.text}}" data-href="{{segundo.href}}"  data-icon="{{segundo.icon}}" data-modal="{{segundo.modal}}" data-menus="{{segundo.menus}}">
                                 <a data-modal="{{segundo.modal}}" href="{{segundo.href}}"
-                                   class="bg-extra-700 {{segundo.modal?'modalmenu':''}}">
+                                   class="bg-extra-700 {{segundo.modal?'modalmenu':''}} edit-hide">
                                     <i class="icon-{{segundo.icon}}"></i>
                                     <span>
                                         {{DRAGON.menuLabel(segundo)}}
                                      </span>
                                 </a>
-                                <ul ng-if="segundo.menus">
-                                    <li ng-repeat="(key, tercero) in segundo.menus track by key"
-                                        class="{{tercero.class}}">
+
+                                <a style="display: none" data-modal="{{segundo.modal}}" title="Editar menú" ng-dblclick="DRAGON.show_form('form-segundo-edit',innerIndex2)" class="bg-extra-700 editar-menu">
+                                    <i class="icon-{{segundo.icon}}"></i>
+                                    <i title="Eliminar menú" ng-click="DRAGON.remove_menu('segundo', key, key2)" class="remove-content delete-hide bg-extra-700"><i class="icon-size icon-trash"></i></i>
+                                    <i title="Desactivar modo actualización de menú" onclick="cancelar_edicion()" class="remove-content delete-hide bg-extra-700"><i class="icon-size icon-cancel-circle2"></i></i>
+                                    <i title="Guardar cambios" onclick="guardar_menu()" class="remove-content delete-hide bg-extra-700"><i class="icon-size icon-checkmark4"></i></i>
+                                    <span>
+                                        {{DRAGON.menuLabel(segundo)}}
+                                    </span>
+                                </a>
+
+                                <div class="form-segundo-edit{{innerIndex2}} form-menu show-form" style="display: none">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="remove-input-space form-group-material form-group has-feedback has-feedback-left">
+                                                <label class="control-label is-visible animate ng-binding">Nombre</label>
+                                                <input class="form-control" type="text" value="{{DRAGON.menus[key].menus[key2].text}}" name="text{{'form-segundo-edit' + innerIndex2}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="remove-input-space form-group-material form-group has-feedback has-feedback-left">
+                                                <label class="control-label is-visible animate ng-binding">URL</label>
+                                                <input class="form-control" type="text" value="{{DRAGON.menus[key].menus[key2].href}}" name="href{{'form-segundo-edit' + innerIndex2}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="remove-input-space form-group-material form-group has-feedback has-feedback-left">
+                                                <label class="control-label is-visible">Iconos</label>
+                                                <select  id="icon{{'form-segundo-edit' + innerIndex2}}" name="icon{{'form-segundo-edit' + innerIndex2}}">
+                                                    <option value="">Seleccione un icono</option>
+                                                    <option ng-repeat="icon in DRAGON.iconList" ng-selected= "{{icon == DRAGON.menus[key].menus[key2].icon}}" data-icon="{{icon}}" value="{{icon}}" >{{icon}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12" style="text-align: right;">
+                                            <input class="form-check-input" type="checkbox" name="modal_full{{'form-segundo-edit' + innerIndex2}}"  ng-checked="DRAGON.menus[key].menus[key2].modal">
+                                            <label class="form-check-label" for="defaultCheck1">
+                                                Abrir menú en un modal
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="text-align: center">
+                                        <button type="button" ng-click="DRAGON.edit_menu('segundo', 'form-segundo-edit', innerIndex2, key, key2)" class="swal2-confirm btn btn-xs btn-success" aria-label="">Guardar</button>
+                                    </div>
+                                </div>
+
+                                <ul data-nivel="3" class="sort-menu" ng-if="segundo.menus">
+                                    <li ng-repeat="(key3, tercero) in segundo.menus track by key3" ng-init="innerIndex3= innerIndex2 + '' + $index"
+                                        class="{{tercero.class}}" data-text="{{tercero.text}}" data-href="{{tercero.href}}"  data-icon="{{tercero.icon}}" data-modal="{{tercero.modal}}" data-menus="{{tercero.menus}}">
                                         <a data-modal="{{tercero.modal}}" href="{{tercero.href}}"
-                                           class="bg-extra-700 {{tercero.modal?'modalmenu':''}}">
+                                           class="bg-extra-700 {{tercero.modal?'modalmenu':''}} edit-hide">
                                             <i class="icon-{{tercero.icon}}"></i>
                                             <span>
                                         {{DRAGON.menuLabel(tercero)}}
                                      </span>
                                         </a>
-                                        <ul ng-if="tercero.menus">
-                                            <li ng-repeat="(key, cuarto) in tercero.menus track by key"
-                                                class="{{cuarto.class}}">
+
+                                        <a style="display: none" data-modal="{{tercero.modal}}" title="Editar menú" ng-dblclick="DRAGON.show_form('form-tercero-edit',innerIndex3)" class="bg-extra-700 editar-menu">
+                                            <i class="icon-{{tercero.icon}}"></i>
+                                            <i  title="Eliminar menú" ng-click="DRAGON.remove_menu('tercero', key, key2, key3)" class="remove-content delete-hide bg-extra-700"><i class="icon-size icon-trash"></i></i>
+                                            <i title="Desactivar modo actualización de menú" onclick="cancelar_edicion()" class="remove-content delete-hide bg-extra-700"><i class="icon-size icon-cancel-circle2"></i></i>
+                                            <i title="Guardar cambios" onclick="guardar_menu()" class="remove-content delete-hide bg-extra-700"><i class="icon-size icon-checkmark4"></i></i>
+                                            <span>
+                                                {{DRAGON.menuLabel(tercero)}}
+                                            </span>
+                                        </a>
+
+                                        <div class="form-tercero-edit{{innerIndex3}} form-menu show-form" style="display: none">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="remove-input-space form-group-material form-group has-feedback has-feedback-left">
+                                                        <label class="control-label is-visible animate ng-binding">Nombre</label>
+                                                        <input class="form-control" type="text" value="{{DRAGON.menus[key].menus[key2].menus[key3].text}}" name="text{{'form-tercero-edit' + innerIndex3}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="remove-input-space form-group-material form-group has-feedback has-feedback-left">
+                                                        <label class="control-label is-visible animate ng-binding">URL</label>
+                                                        <input class="form-control" type="text" value="{{DRAGON.menus[key].menus[key2].menus[key3].href}}" name="href{{'form-tercero-edit' + innerIndex3}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="remove-input-space form-group-material form-group has-feedback has-feedback-left">
+                                                        <label class="control-label is-visible">Iconos</label>
+                                                        <select  id="icon{{'form-tercero-edit' + innerIndex3}}" name="icon{{'form-tercero-edit' + innerIndex3}}">
+                                                            <option value="">Seleccione un icono</option>
+                                                            <option ng-repeat="icon in DRAGON.iconList" ng-selected= "{{icon == DRAGON.menus[key].menus[key2].menus[key3].icon}}" data-icon="{{icon}}" value="{{icon}}" >{{icon}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12" style="text-align: right;">
+                                                    <input class="form-check-input" type="checkbox" name="modal_full{{'form-tercero-edit' + innerIndex3}}" ng-checked="DRAGON.menus[key].menus[key2].menus[key3].modal">
+                                                    <label class="form-check-label" for="defaultCheck1">
+                                                        Abrir menú en un modal
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="row" style="text-align: center">
+                                                <button type="button" ng-click="DRAGON.edit_menu('tercero', 'form-tercero-edit', innerIndex3, key, key2, key3)" class="swal2-confirm btn btn-xs btn-success" aria-label="">Guardar</button>
+                                            </div>
+                                        </div>
+
+                                        <ul class="sort-menu" ng-if="tercero.menus">
+                                            <li ng-repeat="(key4, cuarto) in tercero.menus track by key4" ng-init="innerIndex4= innerIndex3 + '' + $index"
+                                                class="{{cuarto.class}}" data-text="{{cuarto.text}}" data-href="{{cuarto.href}}"  data-icon="{{cuarto.icon}}" data-modal="{{cuarto.modal}}" data-menus="{{cuarto.menus}}">
                                                 <a data-modal="{{cuarto.modal}}" href="{{cuarto.href}}"
-                                                   class="bg-extra-700 {{cuarto.modal?'modalmenu':''}}">
+                                                   class="bg-extra-700 {{cuarto.modal?'modalmenu':''}} edit-hide">
                                                     <i class="icon-{{cuarto.icon}}"></i>
                                                     <span>
-                                        {{DRAGON.menuLabel(cuarto)}}
-                                     </span>
+                                                        {{DRAGON.menuLabel(cuarto)}}
+                                                    </span>
                                                 </a>
-                                                <ul ng-if="cuarto.menus">
-                                                    <li ng-repeat="(key, quinto) in cuarto.menus track by key"
-                                                        class="{{quinto.class}}">
+
+                                                <a style="display: none" data-modal="{{cuarto.modal}}" title="Editar menú" ng-dblclick="DRAGON.show_form('form-cuarto-edit',innerIndex4)" class="bg-extra-700 editar-menu">
+                                                    <i class="icon-{{cuarto.icon}}"></i>
+                                                    <i  title="Eliminar menú" ng-click="DRAGON.remove_menu('cuarto', key, key2, key3, key4)" class="remove-content delete-hide bg-extra-700"><i class="icon-size icon-trash"></i></i>
+                                                    <i title="Desactivar modo actualización de menú" onclick="cancelar_edicion()" class="remove-content delete-hide bg-extra-700"><i class="icon-size icon-cancel-circle2"></i></i>
+                                                    <i title="Guardar cambios" onclick="guardar_menu()" class="remove-content delete-hide bg-extra-700"><i class="icon-size icon-checkmark4"></i></i>
+                                                    <span>
+                                                        {{DRAGON.menuLabel(cuarto)}}
+                                                    </span>
+                                                </a>
+
+                                                <div class="form-cuarto-edit{{innerIndex4}} form-menu show-form" style="display: none">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="remove-input-space form-group-material form-group has-feedback has-feedback-left">
+                                                                <label class="control-label is-visible animate ng-binding">Nombre</label>
+                                                                <input class="form-control" type="text" value="{{DRAGON.menus[key].menus[key2].menus[key3].menus[key4].text}}" name="text{{'form-cuarto-edit' + innerIndex4}}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="remove-input-space form-group-material form-group has-feedback has-feedback-left">
+                                                                <label class="control-label is-visible animate ng-binding">URL</label>
+                                                                <input class="form-control" type="text" value="{{DRAGON.menus[key].menus[key2].menus[key3].menus[key4].href}}" name="href{{'form-cuarto-edit' + innerIndex4}}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="remove-input-space form-group-material form-group has-feedback has-feedback-left">
+                                                                <label class="control-label is-visible">Iconos</label>
+                                                                <select  id="icon{{'form-cuarto-edit' + innerIndex4}}" name="icon{{'form-cuarto-edit' + innerIndex4}}">
+                                                                    <option value="">Seleccione un icono</option>
+                                                                    <option ng-repeat="icon in DRAGON.iconList" ng-selected= "{{icon == DRAGON.menus[key].menus[key2].menus[key3].menus[key4].icon}}" data-icon="{{icon}}" value="{{icon}}" >{{icon}}</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12" style="text-align: right;">
+                                                            <input class="form-check-input" type="checkbox" name="modal_full{{'form-cuarto-edit' + innerIndex4}}"  ng-checked="DRAGON.menus[key].menus[key2].menus[key3].menus[key4].modal">
+                                                            <label class="form-check-label" for="defaultCheck1">
+                                                                Abrir menú en un modal
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="text-align: center">
+                                                        <button type="button" ng-click="DRAGON.edit_menu('cuarto', 'form-cuarto-edit', innerIndex4, key, key2, key3, key4)" class="swal2-confirm btn btn-xs btn-success" aria-label="">Guardar</button>
+                                                    </div>
+                                                </div>
+
+                                                <ul class="sort-menu" ng-if="cuarto.menus">
+                                                    <li ng-repeat="(key5, quinto) in cuarto.menus track by key5" ng-init="innerIndex5= innerIndex4 + '' + $index"
+                                                        class="{{quinto.class}}" data-text="{{quinto.text}}" data-href="{{quinto.href}}"  data-icon="{{quinto.icon}}" data-modal="{{quinto.modal}}">
                                                         <a data-modal="{{quinto.modal}}" href="{{quinto.href}}"
-                                                           class="bg-extra-700 {{quinto.modal?'modalmenu':''}}">
+                                                           class="bg-extra-700 {{quinto.modal?'modalmenu':''}} edit-hide">
                                                             <i class="icon-{{quinto.icon}}"></i>
                                                             <span>
-                                        {{DRAGON.menuLabel(quinto)}}
-                                     </span>
+                                                                 {{DRAGON.menuLabel(quinto)}}
+                                                            </span>
                                                         </a>
 
+                                                        <a style="display: none" data-modal="{{quinto.modal}}" title="Editar menú" ng-dblclick="DRAGON.show_form('form-quinto-edit',innerIndex5)" class="bg-extra-700 editar-menu">
+                                                            <i class="icon-{{quinto.icon}}"></i>
+                                                            <i  title="Eliminar menú" ng-click="DRAGON.remove_menu('quinto', key, key2, key3, key4, key5)" class="remove-content delete-hide bg-extra-700"><i class="icon-size icon-trash"></i></i>
+                                                            <i title="Desactivar modo actualización de menú" onclick="cancelar_edicion()" class="remove-content delete-hide bg-extra-700"><i class="icon-size icon-cancel-circle2"></i></i>
+                                                            <i title="Guardar cambios" onclick="guardar_menu()" class="remove-content delete-hide bg-extra-700"><i class="icon-size icon-checkmark4"></i></i>
+                                                            <span>
+                                                                {{DRAGON.menuLabel(quinto)}}
+                                                            </span>
+                                                        </a>
+
+                                                        <div class="form-quinto-edit{{innerIndex5}} form-menu show-form" style="display: none">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="remove-input-space form-group-material form-group has-feedback has-feedback-left">
+                                                                        <label class="control-label is-visible animate ng-binding">Nombre</label>
+                                                                        <input class="form-control" type="text" value="{{DRAGON.menus[key].menus[key2].menus[key3].menus[key4].menus[key5].text}}" name="text{{'form-quinto-edit' + innerIndex5}}">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="remove-input-space form-group-material form-group has-feedback has-feedback-left">
+                                                                        <label class="control-label is-visible animate ng-binding">URL</label>
+                                                                        <input class="form-control" type="text" value="{{DRAGON.menus[key].menus[key2].menus[key3].menus[key4].menus[key5].href}}" name="href{{'form-quinto-edit' + innerIndex5}}">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="remove-input-space form-group-material form-group has-feedback has-feedback-left">
+                                                                        <label class="control-label is-visible">Iconos</label>
+                                                                        <select  id="icon{{'form-quinto-edit' + innerIndex5}}" name="icon{{'form-quinto-edit' + innerIndex5}}">
+                                                                            <option value="">Seleccione un icono</option>
+                                                                            <option ng-repeat="icon in DRAGON.iconList" ng-selected= "{{icon == DRAGON.menus[key].menus[key2].menus[key3].menus[key4].menus[key5].icon}}" data-icon="{{icon}}" value="{{icon}}" >{{icon}}</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-12" style="text-align: right;">
+                                                                    <input class="form-check-input" type="checkbox" name="modal_full{{'form-quinto-edit' + innerIndex5}}"  ng-checked="DRAGON.menus[key].menus[key2].menus[key3].menus[key4].menus[key5].modal">
+                                                                    <label class="form-check-label" for="defaultCheck1">
+                                                                        Abrir menú en un modal
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row" style="text-align: center">
+                                                                <button type="button" ng-click="DRAGON.edit_menu('quinto', 'form-quinto-edit', innerIndex5, key, key2, key3, key4, key5)" class="swal2-confirm btn btn-xs btn-success" aria-label="">Guardar</button>
+                                                            </div>
+                                                        </div>
                                                     </li>
                                                 </ul>
                                             </li>
@@ -79,35 +369,58 @@
                             </li>
                         </ul>
                     </li>
-                    <li ng-if="DRAGON.features.chat">
-                        <a href="#" data-modal="" class="bg-extra-700">
-                            <i class="icon-bubbles4"></i>
-                            <span>
-                                Chat
-                            </span>
-                        </a>
-                        <ul>
-                            <li></li>
-                            <li style="background-color: whitesmoke;color: black !important;"
-                                ng-repeat="(key,user) in DRAGON.ONLINE"
-                                ng-if="DRAGON.userID!=(user.getID?user.getID():0)">
-                                <a style="background-color: whitesmoke;color: black !important;" href="#"
-                                   class="bg-extra-700">
-                                    <img style="max-height: 34px;" src="{{user.image}}"/>
-                                    <span>
-                                {{user.fullName()}}
-                            </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
                 </ul>
+                <div style="text-align: center">
+                    <a style="text-decoration: underline;" title="Agregar menú" ng-click="DRAGON.show_form('form-menus','')" class="removeContent editar-menu btn-crud">Agregar menú</a>
+                    <a title="Guardar cambios" onclick="guardar_menu()" class="bg-extra-700 editar-menu btn-crud"><i class="icon-size icon-checkmark4"></i></a>
+                    <a title="Desactivar modo actualización de menú" onclick="cancelar_edicion()" class="bg-extra-700 editar-menu btn-crud"><i class="icon-size icon-cancel-circle2"></i></a>
+                    <a title="Restaurar menú" onclick="restaurar_menu()" class="bg-extra-700 editar-menu btn-crud"><i class="icon-size icon-rotate-cw3"></i></a>
+                </div>
 
+                <div class="form-menus form-menu show-form" style="display: none; padding-top: 15px;">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="remove-input-space form-group-material form-group has-feedback has-feedback-left">
+                                <label class="control-label is-visible animate ng-binding">Nombre</label>
+                                <input class="form-control" type="text" name="text{{'form-menus'}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="remove-input-space form-group-material form-group has-feedback has-feedback-left">
+                                <label class="control-label is-visible animate ng-binding">URL</label>
+                                <input class="form-control" type="text" name="href{{'form-menus'}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="remove-input-space form-group-material form-group has-feedback has-feedback-left">
+                                <label for="icon{{'form-menus'}">iconos</label>
+                                <select  id="icon{{'form-menus'}}" name="icon{{'form-menus'}}">
+                                    <option value="">Seleccione un icono</option>
+                                    <option ng-repeat="icon in DRAGON.iconList"  data-icon="{{icon}}" value="{{icon}}" >{{icon}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12" style="text-align: right;">
+                            <input class="form-check-input" type="checkbox" name="modal_full{{'form-menus'}}">
+                            <label class="form-check-label" for="defaultCheck1">
+                                Abrir menú en un modal
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row" style="text-align: center">
+                        <button type="button" ng-click="DRAGON.add_menu('new', 'form-menus', '')" class="swal2-confirm btn btn-xs btn-success" aria-label="">Agregar menú</button>
+                    </div>
+                </div>
             </div>
             <div class="text-muted developerby" dragonlanguage="">
-                © <%= new Date().getFullYear() %>. <a target="_blank" class="text-muted"
-                                                      onclick="MODAL.rawModal(MESSAGE.ic('mono.about'), 'dragon_information/about', 'info3', 'modal-full', 'dragon_information')"><%= CONFIG.appName %></a>
-                <language>MESSAGE.i('mono.by')</language>
+                <label style="text-align: center;width: 100%;">© <%= new Date().getFullYear() %>. <a target="_blank" class="text-muted" onclick="MODAL.rawModal(MESSAGE.ic('mono.about'), 'information/about', 'info3', 'modal-full', 'information')"><%= CONFIG.appName %></a>
+                    <language>MESSAGE.i('mono.developedby')</language></label>
                 <a class="text-muted" href="<%= CONFIG.developerBy.profile %>"
                    target="_blank"><%= CONFIG.developerBy.name %></a>
             </div>
@@ -127,6 +440,7 @@
         });
         MESSAGE.run();
         MENU.setActive();
+        $(".remove-content").removeClass("has-ul");
     });
 </script>
 

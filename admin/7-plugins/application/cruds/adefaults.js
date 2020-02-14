@@ -44,6 +44,7 @@ CRUDDEFAULTS = {
                 DOC: true
             },
             actions: true,
+            audit: true
         },
         options: [
             {
@@ -54,15 +55,16 @@ CRUDDEFAULTS = {
                     return MESSAGE.i('actions.Edit') + ", " +
                         MESSAGE.i('actions.View') + ", " +
                         MESSAGE.i('actions.Remove') + ", " +
-                        MESSAGE.i('actions.Disable') + ", " +
+                        // MESSAGE.i('actions.Disable') + ", " +
                         MESSAGE.i('actions.Copy') + ", " +
-                        MESSAGE.i('actions.Enable');
+                        // MESSAGE.i('actions.Enable') + ", " +
+                        MESSAGE.i('actions.audit');
                 },
                 icon: (data) => {
                     return "cog2";
                 },
                 permission: (data) => {
-                    return ['edit', 'remove', 'active', 'view', 'copy'];
+                    return ['edit', 'remove', 'active', 'view', 'copy', 'audit'];
                 },
                 characterist: (data) => {
                     return '';
@@ -178,10 +180,7 @@ CRUDDEFAULTS = {
                             return false;
                         },
                         show: function (data) {
-                            if (data.$scope.activeColumn)
-                                return data.$scope.activeColumn();
-                            else
-                                false;
+                            return data.$scope.activeColumn();
                         }
                     },
                     {
@@ -210,10 +209,7 @@ CRUDDEFAULTS = {
                             return false;
                         },
                         show: function (data) {
-                            if (data.$scope.activeColumn)
-                                return data.$scope.activeColumn();
-                            else
-                                false;
+                            return data.$scope.activeColumn();
                         }
                     },
                     {
@@ -285,7 +281,42 @@ CRUDDEFAULTS = {
                             });
                             return false;
                         }
-                    }
+                    },
+                    {
+                        text: (data) => {
+                            return MESSAGE.i('actions.audit');
+                        },
+                        title: (data) => {
+                            return MESSAGE.i('actions.audit');
+                        },
+                        permission: (data) => {
+                            return 'audit';
+                        },
+                        icon: (data) => {
+                            return "stack-text";
+                        },
+                        characterist: (data) => {
+                            return "";
+                        },
+                        click: function (data) {
+                            if (!DSON.oseaX(data.row)) {
+                                data.$scope.dataForView = data.row;
+                                data.$scope.modal.modalView(String.format("{0}/audit", data.$scope.modelName), {
+                                    header: {
+                                        title: MESSAGE.i('mono.auditof') + " " + data.$scope.plural,
+                                        icon: "user"
+                                    },
+                                    footer: {
+                                        cancelButton: true
+                                    },
+                                    content: {
+                                        loadingContentText: `${MESSAGE.i('actions.Loading')}...`,
+                                        sameController: true
+                                    },
+                                });
+                            }
+                        }
+                    },
                 ]
             },
             {

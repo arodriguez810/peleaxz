@@ -22,6 +22,7 @@ var folders = {
     styles: "styles",
     server: "server",
     files: "files",
+    menu: "0-config/appearance/menu.json",
     themesTemplate: "7-plugins/templates/system/color.ejs",
     themes: "files/dragon_configuration/themes",
 };
@@ -356,11 +357,13 @@ for (var i in localModulesVars) {
     allparams += "      " + name + ":" + name + ",";
 }
 currencies = [];
+hints = [];
 {
     allparams += "      collections: collections,";
     allparams += "      scope: '@model@',";
     allparams += "      modules:modules,";
     allparams += "      currencies:currencies,";
+    allparams += "      hints:hints,";
     allparams += "      sockets:sockets,";
     allparams += "      socketlist:sockets,";
     allparams += "      socketsList:socketsList,";
@@ -657,7 +660,7 @@ if (true) {
     console.log('loaded storage app queries');
     loadedMotors++;
 } else loadedMotors++;
-while (loadedMotors < 6) sleep(1);
+while (loadedMotors < 5) sleep(1);
 //******* Load Models********//
 //return;
 //******* Load Services********//
@@ -677,6 +680,13 @@ servicesFiles.forEach(function (item) {
     var c = modules.views.runServices(services, model, eval("(" + stringModel + ")"));
     c.forEach(function (item) {
         catalogs.push(item);
+    });
+});
+storage.getItem("dragon_currency").then(currencies => {
+    currencies = currencies || []
+    storage.getItem("hint_fields").then(hints => {
+        hints = hints || []
+        modules.views.init(eval("(" + allparams + ")"));
     });
 });
 //******* Load Services********//

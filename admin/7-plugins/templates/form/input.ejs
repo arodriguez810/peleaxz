@@ -6,7 +6,6 @@ if (DATA.name !== undefined) {
     if (DATA.opts !== "")
         opts = eval("(" + DATA.opts + ")");
 }
-
 var name = name || "";
 var options = {
     placeholder: params.capitalize(name),
@@ -20,21 +19,31 @@ var options = {
     format: '',
     readonly: false,
     disabled: false,
-    autocomplete: false,
+    autocomplete: '',
     posttype: "text",
     isNumber: false,
-    hint: null,
+    hint: null
     //maxlength: 10,
 
 };
 
+
 options = OBJECT.merge(options, opts); var nameclean = name.replace(/\./g, '_');
 options.icon.spyce = options.icon.class === "none" ? "remove-input-space" : "";
+options.autocomplete = options.autocomplete ? "autocomplete='Off'" : '';
 options.format = options.format ? options.format : false;
 options.model = options.model ? options.model : false;
 
-// options.popover = {title: model, content: nameclean};
-
+popopme = function(entity, field){
+    var prueba = HINTS.filter(d => {
+        return d.entities === entity && d.field_names === field
+    })
+    function sortArray() {
+        options.mess = prueba.sort(function(a, b){return b.id - a.id});
+    }
+    sortArray();
+}
+popopme(model, nameclean);
 var toclient = JSON.stringify(options);
 %>
 <script>
@@ -45,20 +54,43 @@ var toclient = JSON.stringify(options);
     <% } %>
     if (MESSAGE.exist('columns.<%= nameclean %>')) {
         <%= model %>.
-        form.options.<%= name %>.placeholder = MESSAGE.ic('columns.<%= nameclean %>');
-    }
+        form.options.<%= name %>.placeholder =  MESSAGE.ic('columns.<%= nameclean %>');
+    };
+    if(new SESSION().isLogged()) {
+        <%= model %>.form.options.<%= name %>.mess = <%= model %>.form.options.<%= name %>.mess.filter(d => {
+            return d.company == new SESSION().current().compania_id;
+        })
+        if(<%= model %>.form.options.<%= name %>.mess.length == 0){
+            delete <%= model %>.form.options.<%= name %>.mess
+        }
+        if (<%= model %>.form.options.<%= name %>.mess){
+            if (<%= model %>.form.options.<%= name %>.mess[0].cousin){
+                <%= model %>.form.options.<%= name %>.popover = {
+                    title: <%= model %>.form.options.<%= name %>.mess[0].cousin.replace('_',' ').replace('_',' '),
+                    content: <%= model %>.form.options.<%= name %>.mess[0].text,
+                    label: MESSAGE.exist('columns.<%= nameclean %>') ? MESSAGE.i('columns.<%= nameclean %>') : <%= model %>.form.options.<%= name %>.mess[0].cousin.replace('_',' ')
+                }
+            } else {
+                <%= model %>.form.options.<%= name %>.popover = {
+                    title: <%= model %>.form.options.<%= name %>.mess[0].field_names.replace('_',' ').replace('_',' '),
+                    content: <%= model %>.form.options.<%= name %>.mess[0].text,
+                    label: MESSAGE.exist('columns.<%= nameclean %>') ? MESSAGE.i('columns.<%= nameclean %>') : <%= model %>.form.options.<%= name %>.mess[0].field_names.replace('_',' ')
+                }
+            }
 
+        }
+    }
 </script>
 <div class="<%= options.icon.spyce %> form-group-material form-group has-feedback has-{{<%= model %>.validate['<%= name %>'].type || <%= model %>.defaultColor }}  has-feedback-{{::<%= model %>.form.options.<%= name %>.icon.position}}"
      id="input<%= model %>_<%= nameclean %>">
     <label
             class="control-label is-visible animate" style="color:#000000 !important;">
         {{::<%= model %>.form.options.<%= name %>.placeholder}}
-        <% if(options.popover){ %>
-            <i
-                    id="popover<%= model %>_<%= nameclean %>" class="icon-help">
-            </i>
-        <% } %>
+
+        <i ng-show="<%= model %>.form.options.<%= name %>.mess.length>0"
+           id="popover<%= model %>_<%= nameclean %>" class="icon-help">
+        </i>
+
     </label>
 
     <input
@@ -66,7 +98,7 @@ var toclient = JSON.stringify(options);
             ng-readonly="<%= model %>.form.options.<%= name %>.readonly"
             ng-disabled="<%= model %>.form.options.<%= name %>.disabled"
             maxlength="{{<%= model %>.form.options.<%= name %>.maxlength}}"
-            <%= !options.autocomplete ? "autocomplete=off" : "" %>
+            autocomplete="off"
             type="text"
             ng-model-onblur
             class="form-control"
@@ -92,11 +124,8 @@ var toclient = JSON.stringify(options);
 </div>
 
 <script>
-    if (<%= model %>.
-    UNIQUEFIELD
-    )
-    {
-        if (UNIQUEFIELD !== "<%= name %>")
+    if(<%= model %>.UNIQUEFIELD){
+        if(UNIQUEFIELD!=="<%= name %>")
             $("#input<%= model %>_<%= nameclean %>").parent().hide();
     }
     <%= model %>.triggers.table.after.control("<%= nameclean %>");
@@ -113,18 +142,26 @@ var toclient = JSON.stringify(options);
         })
         ;
     });
-    <% if(options.popover){ %>
-    $('#popover<%= model %>_<%= nameclean %>').popover({
-        container: 'body',
-        title: eval("`" +<%= model %>.form.options.<%= name %>.popover.title + "`"),
-        content
-    :
-    eval("`" +<%= model %>.form.options.<%= name %>.popover.content + "`"
-    ),
-    trigger: 'click'
-    })
-    ;
-    <% } %>
+    if(new SESSION().isLogged()) {
+        if (<%= model %>.form.options.<%= name %>.mess){
+            if (<%= model %>.form.options.<%= name %>.mess[0].cousin){
+                $('#popover<%= model %>_<%= model %>.form.options.<%= name %>.mess[0].cousin').popover({
+                    container: 'body',
+                    title: eval("`" +<%= model %>.form.options.<%= name %>.popover.label + "`"),
+                    content:eval("`" +<%= model %>.form.options.<%= name %>.popover.content + "`"),
+                trigger: 'click'
+            });
+            } else {
+                $('#popover<%= model %>_<%= nameclean %>').popover({
+                    container: 'body',
+                    title: eval("`" +<%= model %>.form.options.<%= name %>.popover.label + "`"),
+                    content:eval("`" +<%= model %>.form.options.<%= name %>.popover.content + "`"),
+                trigger: 'click'
+            });
+            }
+
+        }
+    }
     var isReadProgram = <%= model %>.
     form.isReadOnly('<%= name %>');
     if (isReadProgram !== false) {

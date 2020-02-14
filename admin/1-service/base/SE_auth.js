@@ -138,7 +138,7 @@ exports.api = {
                         },
                         params.CONFIG.appKey,
                         {
-                            expiresIn: config.expire
+
                         }
                     );
 

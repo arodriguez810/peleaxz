@@ -3,8 +3,7 @@ if(DATA.name!==undefined){
     var name, model, opts;
     name = DATA.name;
     model = DATA.model;
-if (DATA.opts !== "")
-        opts = eval("(" + DATA.opts + ")");
+    opts = DATA.opts;
 }
 var name  = name || "";
 var options = {
@@ -33,29 +32,29 @@ var toclient = JSON.stringify(options);
 
     <label>
         <input
-               type="checkbox"
-               id="<%= name %>{{item.id}}"
-               name="<%= name %>[]"
-               value="{{item.id}}"
-               class="switchery"
-               ng-checked="<%= model %>.<%= name %>.indexOf(item.id) > -1"
-               ng-click="<%= model %>.toggleSelection<%= name %>(item.id)"
+                type="checkbox"
+                id="<%= name %>{{item.id}}"
+                name="<%= name %>[]"
+                value="{{item.id}}"
+                class="switchery"
+                ng-checked="<%= model %>.<%= name %>.indexOf(item.id) > -1"
+                ng-click="<%= model %>.toggleSelection<%= name %>(item.id)"
         />
         {{item.text}}
     </label>
 </div>
 <script>
     <%= model %>.toggleSelection<%= name %> = function (item) {
-            var idx = <%= model %>.<%= name %>.indexOf(item);
+        var idx = <%= model %>.<%= name %>.indexOf(item);
 
-            // Is currently selected
-            if (idx > -1) {
-                <%= model %>.<%= name %>.splice(idx, 1);
-            }
+        // Is currently selected
+        if (idx > -1) {
+            <%= model %>.<%= name %>.splice(idx, 1);
+        }
 
-            // Is newly selected
-            else {
-                <%= model %>.<%= name %>.push(item);
-            }
-        };
+        // Is newly selected
+        else {
+            <%= model %>.<%= name %>.push(item);
+        }
+    };
 </script>

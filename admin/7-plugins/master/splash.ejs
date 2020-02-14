@@ -3,3 +3,11 @@
     <div class="double-bounce2 bg-<%= COLOR.secundary %>-600"></div>
     <div class="double-bounce3 bg-<%= COLOR.extra %>-600"></div>
 </div>
+<script>
+    if(!STORAGE.get('animation')){
+        $(".spinner222").show();
+    }else{
+        $(".spinner222").hide();
+    }
+
+</script>
