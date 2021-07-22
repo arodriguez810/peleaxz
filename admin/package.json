@@ -61,7 +61,7 @@
     "table-dragger": "^1.0.2",
     "tinycolor2": "^1.4.1",
     "xls-parser": "^2.0.3",
-    "xlsx": "^0.14.1",
+    "xlsx": "^0.17.0",
     "xmlbuilder": "^13.0.2",
     "zip-dir": "^1.0.2",
     "zlib": "^1.0.5"
