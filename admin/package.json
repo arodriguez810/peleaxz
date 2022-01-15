@@ -51,7 +51,7 @@
     "request-promise": "^4.2.4",
     "rich-filemanager-node": "^0.1.5",
     "rimraf": "^2.6.3",
-    "shelljs": "^0.8.2",
+    "shelljs": "^0.8.5",
     "socket.io": "^2.2.0",
     "socket.io-client": "^2.2.0",
     "string": "^3.3.3",
