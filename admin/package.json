@@ -18,7 +18,7 @@
     "docx-pdf": "0.0.1",
     "ejs": "^2.6.1",
     "export-to-csv": "^0.1.2",
-    "express": "~4.7.2",
+    "express": "~4.17.3",
     "express-json-csv": "0.0.3",
     "express-layout": "^0.1.0",
     "html-docx-js": "^0.3.1",
